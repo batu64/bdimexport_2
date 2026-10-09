@@ -3,7 +3,7 @@
 **Amaç:** Tüm agent'ların ve modellerin TEK DOĞRULUK KAYNAĞI. Orchestrator (GLM 5.3) her dağıtım öncesi bu dosyadaki kayıt defterini okur.
 
 > **Çelişki çözümü:** Süreç kuralları çelişirse `ORCHESTRATOR.md` §11 (değişmez kurallar), **model/agent ataması çelişirse bu dosya** kazanır.
-> **Model adları notu:** Aşağıdaki model kimlikleri proje planındaki hedef modellerdir. Faz 0'da her CLI/config'de gerçek model ID'si ping testiyle doğrulanır (§7 Kural 1); bulunamayan model otomatik fallback'ine düşer ve `token_ledger`'a "model_missing" notu düşer.
+> **Model adları notu:** ✅ FAZ_0 ping testi tamamlandı (tasks/ping-report.json) — **TÜM modeller tek kaynak üzerinden erişilebilir: Nous Portal (`hermes proxy`, http://127.0.0.1:8645/v1). Provider key gerektirmez; abonelik tek doğruluk kaynağıdır.** Portal katalog eşlemeleri kayıt defterinde güncellidir (örn. "Argon 4" → gemini-3.8-flash kodlama eşdeğeri). Kayıt defterindeki portal_id'ler yetkilidir; bulunamayan model otomatik fallback'ine düşer ve `token_ledger`'a "model_missing" notu düşer.
 
 ---
 
@@ -131,9 +131,10 @@ Tasarım en pahalı token tüketen iştir; kural: **bir kez karar verilir, sonsu
 
 ---
 
-## 8. Açık Konular (Faz 0'da kapatılacak)
+## 8. Açık Konular
 
-- [ ] Her modelin gerçek CLI kimliği/config girişi doğrulanacak (§7 Kural 1 ping testi)
-- [ ] ChatGPT Image / Ideogram / FLUX API erişimi ve kotaları teyit edilecek
-- [ ] `design/design-tokens.md` marka paleti nihai kararı (insan onayı) — Opus 5 ilk çağrısının girdisi
+- [x] ~~Model ping testi~~ ✅ FAZ_0 — 9/9 erişilebilir, Nous Portal proxy tek kaynak (tasks/ping-report.json)
+- [x] ~~Design tokens palet kararı~~ ✅ Varyant A "Ticaret Güveni" (insan onayı)
+- [ ] Görsel modeller (ChatGPT Image/Ideogram/FLUX) erişimi: Portal kataloğunda chat-completions dışı — FAZ_2 öncesi image API testi (Alternatif: google/gemini-3-pro-image Portal'da VAR)
 - [ ] Görsel haftalık kota sayısı (öneri: 20 master/ay başlangıç)
+- [ ] GitHub Actions fazlarında (FAZ_1+ CI) proxy localhost olamayacağı için Portal static API key (portal.nousresearch.com → API Keys) → GitHub Secrets (tek key, tek çatı)

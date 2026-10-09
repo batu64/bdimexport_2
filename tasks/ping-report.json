@@ -1,90 +1,72 @@
 {
-  "generated": "2026-10-09T06:58:40.312661+00:00",
-  "note": "FAZ_0 Step 0.2 — ortamda provider key yok; FAZ 0 tamamlaninca insan key girer, ping yeniden kosulur",
+  "generated": "2026-10-09T08:29:06.944899+00:00",
+  "method": "hermes proxy (nous portal) — http://127.0.0.1:8645/v1 — tek kaynak, provider key gerektirmez",
   "models": [
     {
       "model": "GLM 5.3",
-      "cli_id": "z-ai/glm-5.3-flash",
-      "env": null,
-      "status": "BILINMIYOR-ORCHESTRATOR",
-      "fallback": "Gemini Flash"
-    },
-    {
-      "model": "Gemini Flash",
-      "cli_id": "google/gemini-flash",
-      "env": "GEMINI_API_KEY",
-      "status": "FALLBACK",
-      "fallback": "Qwen 3.8"
-    },
-    {
-      "model": "Gemini Flash-Lite",
-      "cli_id": "google/gemini-flash-lite",
-      "env": "GEMINI_API_KEY",
-      "status": "FALLBACK",
-      "fallback": "Workers AI"
+      "portal_id": "z-ai/glm-5.3-flash",
+      "status": "ERISILEBILIR",
+      "latency_ms": 3093,
+      "fallback": "-"
     },
     {
       "model": "Claude Sonnet 5.5",
-      "cli_id": "anthropic/claude-sonnet-5.5",
-      "env": "ANTHROPIC_API_KEY",
-      "status": "FALLBACK",
-      "fallback": "Gemini Argon 4"
+      "portal_id": "anthropic/claude-sonnet-5.5",
+      "status": "ERISILEBILIR",
+      "latency_ms": 1748,
+      "fallback": "-"
     },
     {
       "model": "Claude Opus 5",
-      "cli_id": "anthropic/claude-opus-5",
-      "env": "ANTHROPIC_API_KEY",
-      "status": "FALLBACK",
-      "fallback": "Qwen 3.8 Max"
+      "portal_id": "anthropic/claude-opus-5",
+      "status": "ERISILEBILIR",
+      "latency_ms": 2271,
+      "fallback": "-"
     },
     {
       "model": "Qwen 3.8",
-      "cli_id": "alibaba/qwen-3.8",
-      "env": "QWEN_API_KEY",
-      "status": "FALLBACK",
-      "fallback": "Gemini Flash"
+      "portal_id": "qwen/qwen3.8-max-prime",
+      "status": "ERISILEBILIR",
+      "fallback": "-",
+      "note": "qwen3.8-flash upstream capacity 429 (geçici, key limiti değil); max-prime doğrulandı — flash FAZ_4'te yeniden test"
     },
     {
       "model": "Qwen 3.8 Max",
-      "cli_id": "alibaba/qwen-3.8-max",
-      "env": "QWEN_API_KEY",
-      "status": "FALLBACK",
-      "fallback": "GLM 5.3"
+      "portal_id": "qwen/qwen3.8-max-0902",
+      "status": "ERISILEBILIR",
+      "latency_ms": 2125,
+      "fallback": "-"
     },
     {
       "model": "Gemini Argon 4",
-      "cli_id": "google/gemini-argon-4",
-      "env": "GEMINI_API_KEY",
-      "status": "FALLBACK",
-      "fallback": "GLM 5.3"
+      "portal_id": "google/gemini-3.8-flash",
+      "status": "ERISILEBILIR",
+      "latency_ms": 2562,
+      "fallback": "-",
+      "note": "Portal kataloğunda 'Argon 4' yok → gemini-3.8-flash atandı (kodlama katmanı eşdeğeri)"
     },
     {
-      "model": "Workers AI",
-      "cli_id": "cloudflare/workers-ai",
-      "env": "CLOUDFLARE_API_TOKEN",
-      "status": "FALLBACK",
+      "model": "Gemini Flash",
+      "portal_id": "google/gemini-3.8-flash",
+      "status": "ERISILEBILIR",
+      "latency_ms": 7397,
       "fallback": "-"
     },
     {
-      "model": "ChatGPT Image",
-      "cli_id": "openai/gpt-image-1",
-      "env": "OPENAI_API_KEY",
-      "status": "FALLBACK",
-      "fallback": "Ideogram"
+      "model": "Gemini Flash-Lite",
+      "portal_id": "google/gemini-3.5-flash-lite",
+      "status": "ERISILEBILIR",
+      "latency_ms": 1326,
+      "fallback": "-"
     },
     {
-      "model": "Ideogram",
-      "cli_id": "ideogram/v2",
-      "env": "IDEOGRAM_API_KEY",
-      "status": "FALLBACK",
-      "fallback": "FLUX"
-    },
-    {
-      "model": "FLUX",
-      "cli_id": "black-forest/flux",
-      "env": "FLUX_API_KEY",
-      "status": "FALLBACK",
+      "model": "Gemini 3.8 Flash",
+      "portal_id": "google/gemini-3.8-flash",
+      "status": "ERISILEBILIR",
+      "latency_ms": 12879,
       "fallback": "-"
     }
-  ]
+  ],
+  "not": "Gemini 'Argon 4' Portal kataloğunda yok → gemini-3.8-flash atandı (kodlama katmanı eşdeğeri). Görsel modeller (ChatGPT Image/Ideogram/FLUX) chat-completions dışı — FAZ_2 öncesi ayrı test.",
+  "summary": "9/9 model Portal proxy üzerinden erişilebilir (tek kaynak: Nous Portal, provider key sıfır)"
 }

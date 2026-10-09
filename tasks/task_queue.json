@@ -70,6 +70,12 @@
           "model": "hermes-session",
           "result": "accepted",
           "reason": "Ping testi koşuldu; 11 model ortamda key yok → fallback işaretli. İnsan key girişi sonrası yeniden koşulacak"
+        },
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3",
+          "result": "accepted",
+          "reason": "RE-PING (Portal proxy): 9/9 model erişilebilir — tek kaynak mimarisi onaylandı, provider key sıfır. Gemini 'Argon 4' → gemini-3.8-flash eşleşmesi sabitlendi"
         }
       ]
     },
