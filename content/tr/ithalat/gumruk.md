@@ -26,6 +26,8 @@ Gümrük vergisi GTİP bazlıdır; KDV genelde %20 bandındadır; Çin menşeli 
 
 [Gümrük Ön Hesabı Talep Et — 24 saatte dönüş](/ithalat/danismanlik-talebi)
 
+Sevkiyat sürecinin evrak boyutu için [lojistik hizmeti](/ithalat/lojistik); ürünün doğru tedarik edilmesi için [tedarik hizmeti](/ithalat/tedarik) sayfalarına bakın.
+
 
 ## GTİP: 8 Haneli Sınıflandırma Nasıl Okunur?
 

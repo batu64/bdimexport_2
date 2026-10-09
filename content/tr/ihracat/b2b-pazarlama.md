@@ -22,6 +22,8 @@ bdimexport.com'un kendisi bu döngünün ürünüdür: onaylı partnerler global
 
 [B2B Değerlendirme Başlat](/ihracat/ucretsiz-destek-basvuru)
 
+Satış kanalı stratejisi için [e-ihracat danışmanlığı](/ihracat/e-ihracat); partner görünürlüğü programı için [program tanıtımı](/ihracat/program-tanitim).
+
 
 ## B2B Alıcı Yolculuğu: İlk Mailden İlk Siparişe
 

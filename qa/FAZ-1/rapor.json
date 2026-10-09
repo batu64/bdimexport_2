@@ -1,0 +1,77 @@
+[
+  {
+    "test": "Build",
+    "result": "PASS",
+    "evidence": "pnpm build geçti — 49 sayfa prerender (terminal doğrulaması)"
+  },
+  {
+    "test": "Kelime eşikleri 13/13",
+    "result": "PASS",
+    "evidence": "min 813; rehberler ≥1200"
+  },
+  {
+    "test": "Meta desc 120–158",
+    "result": "PASS",
+    "evidence": "13/13"
+  },
+  {
+    "test": "FAQ ≥ 5",
+    "result": "PASS",
+    "evidence": "13/13"
+  },
+  {
+    "test": "İç link ≥ 2",
+    "result": "PASS",
+    "evidence": "fail: yok (retry sonrası)"
+  },
+  {
+    "test": "Turnstile entegrasyonu",
+    "result": "PASS",
+    "evidence": "site key env; secret kodda YOK"
+  },
+  {
+    "test": "Secret scan",
+    "result": "PASS",
+    "evidence": "bulgu yok"
+  },
+  {
+    "test": "Sitemap FAZ_1 URLs",
+    "result": "PASS",
+    "evidence": "13 URL"
+  },
+  {
+    "test": "Form alanları §2.2 birebir",
+    "result": "PASS",
+    "evidence": "8/8 alan"
+  },
+  {
+    "test": "KVKK+logo ayrı checkbox",
+    "result": "PASS",
+    "evidence": "iki ayrı rıza alanı"
+  },
+  {
+    "test": "hreflang K1-K5",
+    "result": "PASS",
+    "evidence": "helper gömülü"
+  },
+  {
+    "test": "PartnerGrid consent filtresi",
+    "result": "PASS",
+    "evidence": "consent=false → avatar"
+  },
+  {
+    "test": "KVKK v1 insan onayı",
+    "result": "FAIL",
+    "evidence": "⏳ BEKLIYOR — 1.1 (FAZ_1 çıkışın tek engeli)"
+  },
+  {
+    "test": "Form insan review",
+    "result": "FAIL",
+    "evidence": "⏳ BEKLIYOR — T-0016 (ApplicationForm incelenmesi)"
+  },
+  {
+    "test": "e2e form submit (gerçek)",
+    "result": "FAIL",
+    "evidence": "⏳ FAZ_3'te endpoint ile — FAZ_1'de UI-only kabul"
+  }
+]

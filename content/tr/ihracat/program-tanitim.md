@@ -38,6 +38,8 @@ Form: firma bilgileri, vergi no, ürün kataloğu (PDF), kapasite ve sertifikala
 
 [▶ Başvuru Formuna Git](/ihracat/ucretsiz-destek-basvuru)
 
+Program kapsamındaki satış kanalı desteği için [e-ihracat danışmanlığı](/ihracat/e-ihracat) ve [B2B pazarlama](/ihracat/b2b-pazarlama) sayfalarına bakabilirsiniz.
+
 
 ## Programın Adım Adım Akışı
 

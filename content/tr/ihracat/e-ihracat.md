@@ -26,6 +26,8 @@
 
 [E-İhracat Değerlendirmesi Başlat](/ihracat/ucretsiz-destek-basvuru)
 
+Alıcı görünürlüğü stratejisi için [B2B pazarlama](/ihracat/b2b-pazarlama); üretim kapasitesini alıcılarla buluşturan program için [Ücretsiz İhracat Hızlandırma](/ihracat/program-tanitim).
+
 
 ## E-İhracat Sürecinin 5 Aşaması — Yol Haritası Örneği
 
