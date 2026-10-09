@@ -1,0 +1,24 @@
+name: Weekly Report
+# FAZ_0 Step 0.7 — Pzt 09:00 TR (ORCHESTRATION.md §7.3)
+# İçerik: trafik/lead özeti + en iyi/kötü 5 sayfa + token/maliyet + FAZ_6'da tam otomatik
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # Pazartesi 09:00 TR
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Haftalık rapor üret (placeholder — FAZ_6 6.4'te tam otomasyon)
+        env:
+          GLM_API_KEY: ${{ secrets.GLM_API_KEY }}
+        run: |
+          echo "reports/weekly/YYYY-WW.md üretimi — GLM 5.3 analizi (FAZ_6 Step 6.4'te aktif)"
+          echo "Bu fazda: token_ledger özet + task_queue istatistiği"
+          node -e "
+            const l=require('./tasks/token_ledger.json');
+            console.log('ledger kayıt:', l.entries.length, '| toplam est maliyet: \$'+l.entries.reduce((s,e)=>s+(e.cost_est_usd||0),0).toFixed(2));
+          "

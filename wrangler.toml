@@ -1,0 +1,26 @@
+name = "bdimexport"
+main = "workers/api/index.ts"
+compatibility_date = "2026-01-01"
+
+# D1 binding — staging/production ayrımı FAZ_3 3.9'da (wrangler env'leri)
+# Şimdilik yalnızca local dev binding (FAZ_0 0.8 kabul: lokalde koşmalı)
+[[d1_databases]]
+binding = "DB"
+database_name = "bdimexport-db"
+database_id = "local-dev"   # production ID FAZ_3 3.9'da gerçek D1 oluşturulunca girilir (insan)
+migrations_dir = "db/migrations"
+
+# R2 — logo/katalog (FAZ_1 1.6'da aktif kullanım)
+# credential'lar env: CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_API_TOKEN (keys.md → ~/.bdimexport-secrets/)
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "bdimexport-media"
+
+# KV — cache + rate limit (FAZ_1 1.8)
+[[kv_namespaces]]
+binding = "CACHE"
+id = "local-dev"           # production ID FAZ_3'te girilir
+
+# Cron — FAZ_4'te aktif (rss + TTL)
+# [triggers]
+# crons = ["0 * * * *", "0 23 * * *"]

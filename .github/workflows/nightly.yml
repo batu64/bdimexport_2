@@ -1,0 +1,27 @@
+name: Nightly Maintenance
+# FAZ_0 Step 0.7 — gece 02:00 TR (23:00 UTC kış / 23:00 UTC yaz notu: TR=UTC+3 sabit)
+# ORCHESTRATION.md §7.2: TTL silme + ücretsiz kota gece batch'i + hafta içi D1→R2 yedek
+
+on:
+  schedule:
+    - cron: "0 23 * * *"   # 02:00 Türkiye saati (UTC+3)
+  workflow_dispatch:
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Bakım rutinleri (placeholder — Workers cron FAZ_4'te devralır)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          echo "1) rss_news TTL silme: DELETE WHERE expires_at < NOW()  (FAZ_4'te workers/cron-rss'e taşınır)"
+          echo "2) Gemini gece batch kuyruğu (FAZ_4'te aktif)"
+          date -u +"Rutin çalıştı: %Y-%m-%dT%H:%M:%SZ"
+          echo "D1→R2 yedek: hafta içi günleri (pazartesi kontrolü)"
+          if [ "$(date -u +%u)" -le 5 ]; then echo "  → wrangler d1 export + r2 upload (FAZ_3 3.9'da prod binding ile aktif)"; fi

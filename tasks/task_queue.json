@@ -234,8 +234,15 @@
       "input_refs": [
         "fazlar/FAZ_0.md#07"
       ],
-      "status": "pending",
-      "attempts": [],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "4 workflow yazıldı: orchestrator(manuel dispatch, schedule 0.10 sonrası), qa-gate(build+gitleaks+schema), nightly, weekly-report. enabled durumda ama orchestrator schedule'ı 0.10 sonrası"
+        }
+      ],
       "note": "Yazılacak — 0.7: enabled 0.10 provası öncesi açılır (FAZ_0 çakışma kuralı)"
     },
     {
@@ -263,8 +270,15 @@
         "fazlar/FAZ_0.md#08",
         "mimari.md#5"
       ],
-      "status": "pending",
-      "attempts": [],
+      "status": "needs_human",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session (Sonnet yerine)",
+          "result": "needs_human",
+          "reason": "0001_init.sql hazır + lokal D1 migration BAŞARILI (9 tablo). [ŞART] Claude Sonnet 5.5 kod pass'i + İNSAN REVIEW bekliyor — key girilince AI pass, review her zaman insan"
+        }
+      ],
       "note": "🔒 GÜVENLİK-KRİTİK: [ŞART] Claude Sonnet 5.5 + İNSAN REVIEW — bu ortamda Anthropic key yok; insan kararı bekliyor (aşağıda şablon hazırlandı)"
     },
     {
