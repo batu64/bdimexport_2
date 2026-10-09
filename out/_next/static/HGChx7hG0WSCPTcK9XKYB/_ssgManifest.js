@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fihracat\u002F[slug]","\u002Fithalat\u002F[slug]","\u002Fithalat\u002Frehberler\u002F[slug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

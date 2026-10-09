@@ -61,17 +61,17 @@
   },
   {
     "test": "KVKK v1 insan onayı",
-    "result": "FAIL",
-    "evidence": "⏳ BEKLIYOR — 1.1 (FAZ_1 çıkışın tek engeli)"
+    "result": "PASS",
+    "evidence": "✅ v1 kilitlendi (kullanıcı onayı 08.10.2026) — Batuhan Dağ İthalat İhracat Sanayi Ltd · Uşak/Banaz · BDIMEXPORT; sha 47ac2ef0a5b43264; form referansı güncel"
   },
   {
     "test": "Form insan review",
-    "result": "FAIL",
-    "evidence": "⏳ BEKLIYOR — T-0016 (ApplicationForm incelenmesi)"
+    "result": "PASS",
+    "evidence": "✅ 'review onaylı' (kullanıcı) — ApplicationForm.tsx"
   },
   {
     "test": "e2e form submit (gerçek)",
     "result": "FAIL",
-    "evidence": "⏳ FAZ_3'te endpoint ile — FAZ_1'de UI-only kabul"
+    "evidence": "⏳ FAZ_3'te endpoint ile (FAZ_1'de UI-only — kabul notu)"
   }
 ]

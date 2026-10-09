@@ -1,0 +1,51 @@
+$ next build
+   ▲ Next.js 15.5.4
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 5.7s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/49) ...
+   Generating static pages (12/49) 
+   Generating static pages (24/49) 
+   Generating static pages (36/49) 
+ ✓ Generating static pages (49/49)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/2) ...
+ ✓ Exporting (2/2)
+
+Route (app)                                   Size  First Load JS
+┌ ○ /                                        165 B         106 kB
+├ ○ /_not-found                              992 B         103 kB
+├ ○ /de                                      149 B         102 kB
+├ ○ /en                                      165 B         106 kB
+├ ● /ihracat/[slug]                          149 B         102 kB
+├   ├ /ihracat/fabrika-denetimi
+├   ├ /ihracat/gumruk
+├   ├ /ihracat/lojistik
+├   └ [+10 more paths]
+├ ○ /ihracat/ucretsiz-destek-basvuru       2.37 kB         104 kB
+├ ● /ithalat/[slug]                          149 B         102 kB
+├   ├ /ithalat/fabrika-denetimi
+├   ├ /ithalat/gumruk
+├   ├ /ithalat/lojistik
+├   └ [+10 more paths]
+├ ● /ithalat/rehberler/[slug]                149 B         102 kB
+├   ├ /ithalat/rehberler/fabrika-denetimi
+├   ├ /ithalat/rehberler/gumruk
+├   ├ /ithalat/rehberler/lojistik
+├   └ [+10 more paths]
+├ ○ /kvkk-riza                               149 B         102 kB
+├ ○ /sitemap.xml                             149 B         102 kB
+└ ○ /zh                                      149 B         102 kB
++ First Load JS shared by all               102 kB
+  ├ chunks/2c3511fe-b97f9a252b8cd05c.js    54.2 kB
+  ├ chunks/516-2f10d5d8c772894c.js         45.9 kB
+  └ other shared chunks (total)            1.95 kB
+
+
+○  (Static)  prerendered as static content
+●  (SSG)     prerendered as static HTML (uses generateStaticParams)
+

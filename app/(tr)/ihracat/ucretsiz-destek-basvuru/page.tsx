@@ -16,7 +16,7 @@ export default function UcretsizDestekBasvuruPage() {
         Başvurunuz 48 saat içinde ön değerlendirilir. KVKK açık rızası zorunludur;
         logo yayın rızası ayrı ve opsiyoneldir.
       </p>
-      <ApplicationForm kvkkVersion="v0.1-draft (908031c6993e1c7b)" />
+      <ApplicationForm kvkkVersion="v1 (47ac2ef0a5b43264)" />
     </main>
   );
 }

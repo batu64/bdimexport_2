@@ -1,32 +1,31 @@
 // Dil bazlı parçalı sitemap üreteci — SEO_PLAYBOOK §8
-// Deterministik: build sırasında Next.js sitemap API'si çalıştırır (agent YOK — ORCHESTRATOR.md §4.3 K8)
-// K1: hreflang karşılıklılık · K2: yalnızca GERÇEKTEN var olan diller (404-hreflang yasağı)
+// Static export uyumlu: fs tabanlı content taraması (agent YOK — ORCHESTRATOR.md §4.3 K8)
 import type { MetadataRoute } from "next";
-import { locales } from "@/lib/i18n";
+import fs from "fs";
+import path from "path";
 
 const BASE = "https://bdimexport.com";
 
-// Statik sayfa envanteri — yeni sayfa PR merge'ünde build otomatik yeniler (agent müdahalesi yok)
-// Not: content koleksiyonları bağlandığında dinamik üretimle genişler (FAZ 2+)
-const staticRoutes: Record<string, string[]> = {
-  tr: ["", "ithalat", "ihracat",
-       // FAZ_1 içerik sayfaları (content/tr'den)
-       "ithalat/tedarik", "ithalat/fabrika-denetimi", "ithalat/lojistik", "ithalat/gumruk",
-       "ihracat/e-ihracat", "ihracat/b2b-pazarlama", "ihracat/ucretsiz-destek-basvuru",
-       "ithalat/rehberler/tekstil", "ithalat/rehberler/elektronik", "ithalat/rehberler/makine-parcalari",
-       "ithalat/rehberler/ev-yasam", "ithalat/rehberler/ambalaj", "ithalat/rehberler/mobilya"],
-  en: [],
-  de: [],
-  zh: [],
-};
+export const dynamic = "force-static";
+
+// Statik sayfa envanteri — build'de content/tr'den otomatik türetilir
+function listMd(dir: string): string[] {
+  const full = path.join(process.cwd(), "content", "tr", dir);
+  if (!fs.existsSync(full)) return [];
+  return fs.readdirSync(full).filter(f => f.endsWith(".md")).map(f => f.replace(/\.md$/, ""));
+}
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const trRoutes = ["", "ithalat", "ihracat", "kvkk-riza", "ihracat/ucretsiz-destek-basvuru"];
+  for (const s of listMd("ithalat")) if (s !== "danismanlik-talebi") trRoutes.push(`ithalat/${s}`);
+  for (const s of listMd("ihracat")) if (s !== "ucretsiz-destek-basvuru") trRoutes.push(`ihracat/${s}`);
+  for (const g of listMd(path.join("ithalat", "rehberler"))) trRoutes.push(`ithalat/rehberler/${g}`);
+
   const entries: MetadataRoute.Sitemap = [];
-  for (const loc of locales) {
-    for (const route of staticRoutes[loc] ?? []) {
-      const url = loc === "tr" ? `${BASE}/${route}` : `${BASE}/${loc}/${route}`;
-      entries.push({ url, lastModified: new Date(), changeFrequency: "weekly", priority: route === "" ? 1 : 0.8 });
-    }
+  for (const route of trRoutes) {
+    const url = `${BASE}/${route}`;
+    entries.push({ url, lastModified: new Date(), changeFrequency: "weekly", priority: route === "" ? 1 : 0.8 });
   }
   return entries;
 }
+

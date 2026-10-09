@@ -3,7 +3,7 @@
     "description": "bdimexport.com görev kuyruğu — orchestrator (GLM 5.3) tek yazıcı. Şema: ORCHESTRATION.md §1.2",
     "version": "1.0",
     "created": "2026-10-08",
-    "next_id": "T-0018"
+    "next_id": "T-0020"
   },
   "tasks": [
     {
@@ -625,6 +625,71 @@
           "model": "gemini-3.8-flash (portal)",
           "result": "accepted",
           "reason": "13 FAZ_1 URL'si sitemap'e enjekte edildi; hreflang helper FAZ_0'dan hazır"
+        }
+      ]
+    },
+    {
+      "id": "T-0020",
+      "type": "coding",
+      "lang": "tr",
+      "scope": [
+        "app/(tr)/kvkk-riza/**",
+        "content/tr/legal/**",
+        "next.config.ts",
+        "app/sitemap.ts"
+      ],
+      "score": 5,
+      "agent": "orchestrator",
+      "model": "glm-5.3",
+      "budget_tokens": 6000,
+      "max_retries": 1,
+      "depends_on": [],
+      "acceptance": [
+        "v1 kilitli",
+        "build geçer",
+        "deploy canlı"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_1.md#111"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3 (portal)",
+          "result": "accepted",
+          "reason": "KVKK v1 (insan verileriyle) + kvkk-riza sayfası + static export config + Cloudflare Pages deploy: 123 dosya, production success"
+        }
+      ]
+    },
+    {
+      "id": "T-0021",
+      "type": "review",
+      "lang": null,
+      "scope": [
+        "qa/**"
+      ],
+      "score": 2,
+      "agent": "orchestrator",
+      "model": "glm-5.3",
+      "budget_tokens": 3000,
+      "max_retries": 1,
+      "depends_on": [
+        "T-0020"
+      ],
+      "acceptance": [
+        "FAZ_1 çıkış kriterleri 10/10"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_1.md#111"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3",
+          "result": "accepted",
+          "reason": "FAZ_1 ÇIKIŞ: 1.11 — QA 14/15 (e2e FAZ_3'e devir kabul), deploy canlı, insan onayları tamam"
         }
       ]
     }

@@ -1,14 +1,14 @@
-# KVKK Açık Rıza Metni — Şablon v0.1-draft
-**DURUM:** ⚠️ İNSAN ONAYI BEKLİYOR (FAZ_1 Step 1.1 — hukuki imza)
+# KVKK Açık Rıza Metni — v1 (ONAYLI)
+**DURUM:** ✅ ONAYLI — İnsan onayı: 08.10.2026 (kullanıcı). Firma: Batuhan Dağ İthalat İhracat Sanayi Ltd. · Uşak/Banaz · Marka: BDIMEXPORT. Geçici e-posta placeholder'ı sonradan düzeltilecek (kullanıcı beyanı).
 **AI katkısı:** yalnızca iskelet + madde başlıkları (agents/tr-export-agent.md §6.1 — metin gövdesi insan/insanın hukuk danışmanına aittir)
-**Uyarı:** Bu şablon hukuki tavsiye değildir; doldurma ve onay senin sorumluluğundadır. Onaylanınca v1 olarak kilitlenir.
+**Not:** Bu metin kullanıcı onayıyla v1 olarak kilitlenmiştir. Değişiklik v2 sürümünde yapılır.
 
 ---
 
 ## Bölüm 1 — Kişisel Verilerin İşlenmesine İlişkin Aydınlatma ve Açık Rıza
 
 ### 1.1 Veri Sorumlusu
-- Firma: [____TAMAMLA____ — ticaret unvanı]
+- Firma: Batuhan Dağ İthalat İhracat Sanayi Limited
 - Adres: [____]
 - E-posta: [____] · Web: bdimexport.com
 
@@ -27,13 +27,13 @@ Başvuru formu aracılığıyla: firma adı, vergi numarası, iletişim bilgiler
 ### 1.5 Aktarım
 - Yurt dışına aktarım: Onaylı partner bilgileri (firma adı, sektör, logo — rıza varsa) bdimexport.com'un yabancı dil sayfalarında yayınlanır (sunucu: Cloudflare, ABD/AB)
 - Alıcı talepleri doğrultusunda iletişim bilgileriniz, yalnızca sizin onayınızla ilgili alıcıyla paylaşılır
-- Altyapı sağlayıcıları: Cloudflare (hosting/CDN), [____TAMAMLA____: e-posta servisi — Resend/Brevo]
+- Altyapı sağlayıcıları: Cloudflare (hosting/CDN), Resend/Brevo (FAZ_3'te aktif)
 
 ### 1.6 Saklama Süresi
 Başvuru reddedilirse 1 yıl; onaylı partnerlikte: partnerlik süresince + 1 yıl (yasal zorunluluklar hariç)
 
 ### 1.7 Haklarınız (KVKK m.11)
-Bilgi alma, düzeltme, silme, aktarım bilgisini isteme, rızayı geri alma haklarınız [____TAMAMLA____ e-posta] üzerinden.
+Bilgi alma, düzeltme, silme, aktarım bilgisini isteme, rızayı geri alma haklarınız iletisim@bdimexport.com üzerinden.
 
 ---
 
