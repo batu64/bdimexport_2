@@ -3,86 +3,237 @@
     "description": "bdimexport.com görev kuyruğu — orchestrator (GLM 5.3) tek yazıcı. Şema: ORCHESTRATION.md §1.2",
     "version": "1.0",
     "created": "2026-10-08",
-    "next_id": "T-0001"
+    "next_id": "T-0011"
   },
   "tasks": [
     {
       "id": "T-0001",
       "type": "coding",
       "lang": null,
-      "scope": ["app/**", "lib/**", "package.json", "tsconfig.json", ".gitignore"],
+      "scope": [
+        "app/**",
+        "lib/**",
+        "package.json",
+        "tsconfig.json",
+        ".gitignore"
+      ],
       "score": 5,
       "agent": "fe-agent",
       "model": "gemini-argon-4",
       "budget_tokens": 15000,
       "max_retries": 2,
       "depends_on": [],
-      "acceptance": ["pnpm build geçer", "4 route group render ediyor", "dizin yapısı mimari.md §8 ile birebir"],
-      "input_refs": ["fazlar/FAZ_0.md#01"],
+      "acceptance": [
+        "pnpm build geçer",
+        "4 route group render ediyor",
+        "dizin yapısı mimari.md §8 ile birebir"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_0.md#01"
+      ],
       "status": "accepted",
-      "attempts": [{ "ts": "2026-10-08", "model": "hermes-session", "result": "accepted", "reason": "FAZ_0 §0.1 gerçek uygulandı" }]
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "FAZ_0 §0.1 gerçek uygulandı"
+        }
+      ]
     },
     {
       "id": "T-0002",
       "type": "mekanik",
       "lang": null,
-      "scope": ["AGENTS.md", "tasks/ping-report.json"],
+      "scope": [
+        "AGENTS.md",
+        "tasks/ping-report.json"
+      ],
       "score": 1,
       "agent": "orchestrator",
       "model": "glm-5.3",
       "budget_tokens": 3000,
       "max_retries": 1,
       "depends_on": [],
-      "acceptance": ["0 model bilinmiyor durumda", "fallback zincirleri işaretli"],
-      "input_refs": ["AGENTS.md#7", "fazlar/FAZ_0.md#02"],
+      "acceptance": [
+        "0 model bilinmiyor durumda",
+        "fallback zincirleri işaretli"
+      ],
+      "input_refs": [
+        "AGENTS.md#7",
+        "fazlar/FAZ_0.md#02"
+      ],
       "status": "accepted",
-      "attempts": [{ "ts": "2026-10-08", "model": "hermes-session", "result": "accepted", "reason": "Ping testi koşuldu; 11 model ortamda key yok → fallback işaretli. İnsan key girişi sonrası yeniden koşulacak" }]
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "Ping testi koşuldu; 11 model ortamda key yok → fallback işaretli. İnsan key girişi sonrası yeniden koşulacak"
+        }
+      ]
     },
     {
       "id": "T-0003",
       "type": "mekanik",
       "lang": null,
-      "scope": ["tasks/**"],
+      "scope": [
+        "tasks/**"
+      ],
       "score": 1,
       "agent": "orchestrator",
       "model": "glm-5.3",
       "budget_tokens": 3000,
       "max_retries": 1,
       "depends_on": [],
-      "acceptance": ["kuyruk şeması geçerli", "ledger ilk kaydı var"],
-      "input_refs": ["fazlar/FAZ_0.md#03"],
+      "acceptance": [
+        "kuyruk şeması geçerli",
+        "ledger ilk kaydı var"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_0.md#03"
+      ],
       "status": "accepted",
-      "attempts": [{ "ts": "2026-10-08", "model": "hermes-session", "result": "accepted", "reason": "tasks/ aktif, bu kayıt T-0003'ün kendisi" }]
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "tasks/ aktif, bu kayıt T-0003'ün kendisi"
+        }
+      ]
     },
     {
       "id": "T-0004",
       "type": "design",
       "lang": null,
-      "scope": ["design/**"],
+      "scope": [
+        "design/**"
+      ],
       "score": 4,
       "agent": "design-agent",
       "model": "qwen-3.8-max",
       "budget_tokens": 16000,
       "max_retries": 2,
       "depends_on": [],
-      "acceptance": ["palet hex'li", "4 breakpoint", "komponent envanteri sayılı", "visual-brand paletiyle tutarlı"],
-      "input_refs": ["fazlar/FAZ_0.md#04", "prompts/visual-brand.md"],
+      "acceptance": [
+        "palet hex'li",
+        "4 breakpoint",
+        "komponent envanteri sayılı",
+        "visual-brand paletiyle tutarlı"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_0.md#04",
+        "prompts/visual-brand.md"
+      ],
       "status": "accepted",
-      "attempts": [{ "ts": "2026-10-08", "model": "hermes-session", "result": "accepted", "reason": "design-tokens.md taslağı oluşturuldu — İNSAN PALET ONAYI BEKLİYOR (Step 0.5 kapısı)" }]
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "design-tokens.md taslağı oluşturuldu — İNSAN PALET ONAYI BEKLİYOR (Step 0.5 kapısı)"
+        },
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "Taslak v0.1 tamamlandı"
+        }
+      ]
+    },
+    {
+      "id": "T-0005",
+      "type": "design",
+      "lang": null,
+      "scope": [
+        "design/design-tokens.md",
+        "design/hero-copy.md"
+      ],
+      "score": 9,
+      "agent": "design-agent",
+      "model": "claude-opus-5",
+      "budget_tokens": 8000,
+      "max_retries": 1,
+      "depends_on": [
+        "T-0004"
+      ],
+      "acceptance": [
+        "insan palet seçimi alındı",
+        "karar başına ≤10 satır gerekçe",
+        "4 dil hero TEK batch"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_0.md#05",
+        "design/design-tokens.md"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "İnsan seçimi Varyant A; 8 UX kararı; hero copy 4 dil tek batch"
+        }
+      ],
+      "note": "💰 İnsan onay kapısı tamam"
+    },
+    {
+      "id": "T-0006",
+      "type": "design",
+      "lang": null,
+      "scope": [
+        "design/components/**"
+      ],
+      "score": 4,
+      "agent": "design-agent",
+      "model": "qwen-3.8-max",
+      "budget_tokens": 16000,
+      "max_retries": 2,
+      "depends_on": [
+        "T-0005"
+      ],
+      "acceptance": [
+        "4 breakpoint her komponentte",
+        "tokens referanslı (hardcoded yok)",
+        "a11y bölümü dolu"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_0.md#06",
+        "design/design-tokens.md"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "8 komponent brief'i üretildi"
+        }
+      ]
     },
     {
       "id": "T-0007",
       "type": "coding",
       "lang": null,
-      "scope": [".github/workflows/**"],
+      "scope": [
+        ".github/workflows/**"
+      ],
       "score": 5,
       "agent": "api-agent",
       "model": "gemini-argon-4",
       "budget_tokens": 12000,
       "max_retries": 2,
-      "depends_on": ["T-0001"],
-      "acceptance": ["workflow syntax valid", "secret'lar env referanslı"],
-      "input_refs": ["fazlar/FAZ_0.md#07"],
+      "depends_on": [
+        "T-0001"
+      ],
+      "acceptance": [
+        "workflow syntax valid",
+        "secret'lar env referanslı"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_0.md#07"
+      ],
       "status": "pending",
       "attempts": [],
       "note": "Yazılacak — 0.7: enabled 0.10 provası öncesi açılır (FAZ_0 çakışma kuralı)"
@@ -91,15 +242,27 @@
       "id": "T-0008",
       "type": "coding",
       "lang": null,
-      "scope": ["db/migrations/**", "workers/api/**"],
+      "scope": [
+        "db/migrations/**",
+        "workers/api/**"
+      ],
       "score": 9,
       "agent": "api-agent",
       "model": "claude-sonnet-5.5",
       "budget_tokens": 8000,
       "max_retries": 2,
-      "depends_on": ["T-0001"],
-      "acceptance": ["migration lokal D1'de koşuyor", "şema mimari.md §5 ile satır satır eşleşiyor", "İNSAN REVIEW ŞART"],
-      "input_refs": ["fazlar/FAZ_0.md#08", "mimari.md#5"],
+      "depends_on": [
+        "T-0001"
+      ],
+      "acceptance": [
+        "migration lokal D1'de koşuyor",
+        "şema mimari.md §5 ile satır satır eşleşiyor",
+        "İNSAN REVIEW ŞART"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_0.md#08",
+        "mimari.md#5"
+      ],
       "status": "pending",
       "attempts": [],
       "note": "🔒 GÜVENLİK-KRİTİK: [ŞART] Claude Sonnet 5.5 + İNSAN REVIEW — bu ortamda Anthropic key yok; insan kararı bekliyor (aşağıda şablon hazırlandı)"
@@ -108,31 +271,62 @@
       "id": "T-0009",
       "type": "coding",
       "lang": null,
-      "scope": ["app/sitemap.ts", "lib/hreflang.ts", "public/llms.txt", "public/robots.txt"],
+      "scope": [
+        "app/sitemap.ts",
+        "lib/hreflang.ts",
+        "public/llms.txt",
+        "public/robots.txt"
+      ],
       "score": 3,
       "agent": "orchestrator",
       "model": "glm-5.3",
       "budget_tokens": 8000,
       "max_retries": 2,
-      "depends_on": ["T-0001"],
-      "acceptance": ["SEO_PLAYBOOK §1.4 kuralları helper'da gömülü", "build'de sitemap üretiliyor"],
-      "input_refs": ["fazlar/FAZ_0.md#09"],
+      "depends_on": [
+        "T-0001"
+      ],
+      "acceptance": [
+        "SEO_PLAYBOOK §1.4 kuralları helper'da gömülü",
+        "build'de sitemap üretiliyor"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_0.md#09"
+      ],
       "status": "accepted",
-      "attempts": [{ "ts": "2026-10-08", "model": "hermes-session", "result": "accepted", "reason": "hreflang helper + sitemap + llms.txt + robots.txt gerçek dosyalarla oluşturuldu" }]
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "hreflang helper + sitemap + llms.txt + robots.txt gerçek dosyalarla oluşturuldu"
+        }
+      ]
     },
     {
       "id": "T-0010",
       "type": "review",
       "lang": null,
-      "scope": ["tasks/**", "qa/**"],
+      "scope": [
+        "tasks/**",
+        "qa/**"
+      ],
       "score": 2,
       "agent": "orchestrator",
       "model": "glm-5.3",
       "budget_tokens": 6000,
       "max_retries": 1,
-      "depends_on": ["T-0004", "T-0007", "T-0008"],
-      "acceptance": ["FAZ_0 çıkış kriterleri 8/8 doğrulanmış", "İNSAN ONAY KAPISI"],
-      "input_refs": ["fazlar/FAZ_0.md#10"],
+      "depends_on": [
+        "T-0004",
+        "T-0007",
+        "T-0008"
+      ],
+      "acceptance": [
+        "FAZ_0 çıkış kriterleri 8/8 doğrulanmış",
+        "İNSAN ONAY KAPISI"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_0.md#10"
+      ],
       "status": "pending",
       "attempts": [],
       "note": "🚦 İnsan onay kapısı — T-0004 palet onayı + T-0007/8 sonrası"
