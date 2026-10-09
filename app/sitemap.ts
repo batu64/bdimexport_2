@@ -9,7 +9,12 @@ const BASE = "https://bdimexport.com";
 // Statik sayfa envanteri — yeni sayfa PR merge'ünde build otomatik yeniler (agent müdahalesi yok)
 // Not: content koleksiyonları bağlandığında dinamik üretimle genişler (FAZ 2+)
 const staticRoutes: Record<string, string[]> = {
-  tr: ["", "ithalat", "ihracat"],
+  tr: ["", "ithalat", "ihracat",
+       // FAZ_1 içerik sayfaları (content/tr'den)
+       "ithalat/tedarik", "ithalat/fabrika-denetimi", "ithalat/lojistik", "ithalat/gumruk",
+       "ihracat/e-ihracat", "ihracat/b2b-pazarlama", "ihracat/ucretsiz-destek-basvuru",
+       "ithalat/rehberler/tekstil", "ithalat/rehberler/elektronik", "ithalat/rehberler/makine-parcalari",
+       "ithalat/rehberler/ev-yasam", "ithalat/rehberler/ambalaj", "ithalat/rehberler/mobilya"],
   en: [],
   de: [],
   zh: [],
