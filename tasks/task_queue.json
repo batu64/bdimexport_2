@@ -3,7 +3,7 @@
     "description": "bdimexport.com görev kuyruğu — orchestrator (GLM 5.3) tek yazıcı. Şema: ORCHESTRATION.md §1.2",
     "version": "1.0",
     "created": "2026-10-08",
-    "next_id": "T-0020"
+    "next_id": "T-0022"
   },
   "tasks": [
     {
@@ -395,34 +395,77 @@
       "note": "PROVA — silinebilir geçici görev"
     },
     {
-      "id": "T-0011",
-      "type": "content",
+      "id": "T-0015",
+      "type": "coding",
       "lang": "tr",
       "scope": [
-        "content/tr/legal/**"
+        "app/(tr)/**"
       ],
-      "score": 2,
-      "agent": "orchestrator",
-      "model": "glm-5.3",
-      "budget_tokens": 4000,
+      "score": 5,
+      "agent": "fe-agent",
+      "model": "qwen-3.8",
+      "budget_tokens": 8000,
       "max_retries": 2,
-      "depends_on": [],
+      "depends_on": [
+        "T-0012",
+        "T-0013",
+        "T-0014"
+      ],
       "acceptance": [
-        "insan onayı bekliyor",
-        "iki ayrı checkbox tanımlı"
+        "content/*.md render ediliyor",
+        "design tokens dışı renk yok",
+        "schema + generateMetadata geçerli"
       ],
       "input_refs": [
-        "fazlar/FAZ_1.md#11"
+        "fazlar/FAZ_1.md#1.5"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "1.5 content render route'ları üretildi — commit 3ddfc7c (build geçti, 13 sayfa eşiği geçti). Kayıt 10.10 bütünlük denetimiyle retroaktif eklendi"
+        }
+      ],
+      "note": "10.10 denetim: T-0015 kuyruğa hiç yazılmamıştı — iş gerçekten yapılmış, kayıt tamamlandı"
+    },
+    {
+      "id": "T-0016",
+      "type": "coding",
+      "lang": "tr",
+      "scope": [
+        "app/components/ApplicationForm.tsx",
+        "workers/api/**",
+        "app/(tr)/ihracat/ucretsiz-destek-basvuru/**"
+      ],
+      "score": 9,
+      "agent": "api-agent",
+      "model": "claude-sonnet-5.5",
+      "budget_tokens": 8000,
+      "max_retries": 2,
+      "depends_on": [
+        "T-0011",
+        "T-0015"
+      ],
+      "acceptance": [
+        "rızasız submit 400",
+        "Turnstile'sız istek 403",
+        "İNSAN CODE REVIEW kaydı"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_1.md#1.6"
       ],
       "status": "needs_human",
       "attempts": [
         {
           "ts": "2026-10-08",
-          "model": "glm-5.3",
+          "model": "hermes-session",
           "result": "needs_human",
-          "reason": "KVKK v0.1-draft hazır — insan doldurma+onay bekliyor (1.1)"
+          "reason": "🔒 GÜVENLİK-KRİTİK (score 9): ApplicationForm form şablonu + endpoint üretildi (commit 20ddbe2); [ŞART] Claude Sonnet 5.5 kod pass'i + İNSAN CODE REVIEW — a1e4453 çıkış commit'i 'form review onaylı' bildiriyor; kalıcı insan review kaydı bu görev kapatılarak sabitlenecek. Kayıt 10.10 bütünlük denetimiyle retroaktif eklendi"
         }
-      ]
+      ],
+      "note": "10.10 denetim: T-0016 kuyruğa hiç yazılmamıştı — needs_human olarak tamamlandı; tasks/blocked/T-0016.md gerekçe notuna bak"
     },
     {
       "id": "T-0012",

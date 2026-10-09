@@ -92,6 +92,50 @@
       "cache_hit": true,
       "cost_est_usd": 0.0,
       "note": "1.4: 6 rehber (2 batch)"
+    },
+    {
+      "ts": "2026-10-08T14:00Z",
+      "task_id": "T-0017",
+      "agent": "fe-agent",
+      "model": "gemini-3.8-flash (portal)",
+      "in_tok": 3200,
+      "out_tok": 5800,
+      "cache_hit": true,
+      "cost_est_usd": 0.0,
+      "note": "1.7: PartnerGrid bileşeni (consent filtresi + boş durum + 4 dil). Token tahmini — Portal oturum sayaçsız; 10.10 bütünlük onarımında retroaktif kayıt (ORCHESTRATOR §11 K8 'her çağrı deftere')"
+    },
+    {
+      "ts": "2026-10-08T15:30Z",
+      "task_id": "T-0018",
+      "agent": "api-agent",
+      "model": "gemini-3.8-flash (portal)",
+      "in_tok": 4100,
+      "out_tok": 6200,
+      "cache_hit": true,
+      "cost_est_usd": 0.0,
+      "note": "1.8: Turnstile widget Cloudflare API ile oluşturuldu + form entegrasyonu. Not: ilk tercih qwen-3.8 429 döndü → fallback zinciri gemini-3.8-flash'e düştü. Token tahmini — retroaktif kayıt"
+    },
+    {
+      "ts": "2026-10-08T16:30Z",
+      "task_id": "T-0019",
+      "agent": "orchestrator",
+      "model": "glm-5.3 (portal)",
+      "in_tok": 2400,
+      "out_tok": 1500,
+      "cache_hit": true,
+      "cost_est_usd": 0.0,
+      "note": "1.9: sitemap + hreflang FAZ_1 URL enjeksiyonu (13 URL). Token tahmini — retroaktif kayıt"
+    },
+    {
+      "ts": "2026-10-08T18:00Z",
+      "task_id": "T-0021",
+      "agent": "qa-agent",
+      "model": "glm-5.3 (portal)",
+      "in_tok": 5200,
+      "out_tok": 2800,
+      "cache_hit": true,
+      "cost_est_usd": 0.0,
+      "note": "1.10+1.11 QA turu: 14/15 PASS (e2e FAZ_3'e devir), FAZ_1 çıkış onayı + Cloudflare Pages deploy canlı. Token tahmini — retroaktif kayıt"
     }
   ]
 }
