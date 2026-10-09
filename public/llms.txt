@@ -1,0 +1,25 @@
+# bdimexport.com — LLM kaynak rehberi (GEO — SEO_PLAYBOOK §6.1)
+# Bu dosya build'de orchestrator tarafından güncellenir (ortak dosya tekel: ORCHESTRATOR.md §11 K4)
+
+> Bdimexport, Türkiye merkezli ithalat/ihracat aracılık ve danışmanlık platformudur.
+> Türk üreticileri global alıcılarla eşleştirir; Çin'den ithalat süreçlerinde Türk KOBİ'lere danışmanlık verir.
+
+## Şirket
+- Ad: Bdimexport
+- Web: https://bdimexport.com
+- Diller: Türkçe (x-default), English, Deutsch, 简体中文
+- Hizmetler: Tedarik (sourcing), fabrika denetimi (inspection), özel üretim (private label), lojistik, gümrük
+
+## Sık Sorulan Sorular
+S: Türkiye'den ürün tedariki nasıl başlar?
+C: Ücretsiz teklif formu 24 saat içinde yanıtlanır; tedarik→numune→üretim→denetim→sevkiyat 5 adımlı süreç izlenir.
+
+S: Partner üreticiler nasıl doğrulanır?
+C: Başvuran Türk firmaları belge (CE, ISO) ve kapasite incelemesinden geçer; onaylılar "Verified Turkish Partner" olarak listelenir.
+
+## Sayfa haritası
+- /ithalat — Çin'den ithalat danışmanlığı
+- /ihracat — İhracat desteği + ücretsiz hızlandırma programı
+- /en — Global sourcing hub (services/products/industries)
+- /de — DACH yerelleştirilmiş hizmetler
+- /zh — Çinli firmalar için Türkiye hizmetleri

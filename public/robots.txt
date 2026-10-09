@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Baidu (zh hattı — SEO_PLAYBOOK §9)
+User-agent: Baiduspider
+Allow: /
+
+Sitemap: https://bdimexport.com/sitemap.xml

@@ -1,0 +1,90 @@
+{
+  "generated": "2026-10-09T06:58:40.312661+00:00",
+  "note": "FAZ_0 Step 0.2 — ortamda provider key yok; FAZ 0 tamamlaninca insan key girer, ping yeniden kosulur",
+  "models": [
+    {
+      "model": "GLM 5.3",
+      "cli_id": "z-ai/glm-5.3-flash",
+      "env": null,
+      "status": "BILINMIYOR-ORCHESTRATOR",
+      "fallback": "Gemini Flash"
+    },
+    {
+      "model": "Gemini Flash",
+      "cli_id": "google/gemini-flash",
+      "env": "GEMINI_API_KEY",
+      "status": "FALLBACK",
+      "fallback": "Qwen 3.8"
+    },
+    {
+      "model": "Gemini Flash-Lite",
+      "cli_id": "google/gemini-flash-lite",
+      "env": "GEMINI_API_KEY",
+      "status": "FALLBACK",
+      "fallback": "Workers AI"
+    },
+    {
+      "model": "Claude Sonnet 5.5",
+      "cli_id": "anthropic/claude-sonnet-5.5",
+      "env": "ANTHROPIC_API_KEY",
+      "status": "FALLBACK",
+      "fallback": "Gemini Argon 4"
+    },
+    {
+      "model": "Claude Opus 5",
+      "cli_id": "anthropic/claude-opus-5",
+      "env": "ANTHROPIC_API_KEY",
+      "status": "FALLBACK",
+      "fallback": "Qwen 3.8 Max"
+    },
+    {
+      "model": "Qwen 3.8",
+      "cli_id": "alibaba/qwen-3.8",
+      "env": "QWEN_API_KEY",
+      "status": "FALLBACK",
+      "fallback": "Gemini Flash"
+    },
+    {
+      "model": "Qwen 3.8 Max",
+      "cli_id": "alibaba/qwen-3.8-max",
+      "env": "QWEN_API_KEY",
+      "status": "FALLBACK",
+      "fallback": "GLM 5.3"
+    },
+    {
+      "model": "Gemini Argon 4",
+      "cli_id": "google/gemini-argon-4",
+      "env": "GEMINI_API_KEY",
+      "status": "FALLBACK",
+      "fallback": "GLM 5.3"
+    },
+    {
+      "model": "Workers AI",
+      "cli_id": "cloudflare/workers-ai",
+      "env": "CLOUDFLARE_API_TOKEN",
+      "status": "FALLBACK",
+      "fallback": "-"
+    },
+    {
+      "model": "ChatGPT Image",
+      "cli_id": "openai/gpt-image-1",
+      "env": "OPENAI_API_KEY",
+      "status": "FALLBACK",
+      "fallback": "Ideogram"
+    },
+    {
+      "model": "Ideogram",
+      "cli_id": "ideogram/v2",
+      "env": "IDEOGRAM_API_KEY",
+      "status": "FALLBACK",
+      "fallback": "FLUX"
+    },
+    {
+      "model": "FLUX",
+      "cli_id": "black-forest/flux",
+      "env": "FLUX_API_KEY",
+      "status": "FALLBACK",
+      "fallback": "-"
+    }
+  ]
+}
