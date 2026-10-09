@@ -29,6 +29,14 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
     kvkkConsent: false, logoConsent: false, turnstileToken: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Turnstile script — widget render için (1.8)
+  if (typeof window !== "undefined" && !document.querySelector('script[src*="challenges.cloudflare.com"]')) {
+    const sc = document.createElement("script");
+    sc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    sc.async = true;
+    document.head.appendChild(sc);
+  }
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -149,7 +157,7 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
       </div>
 
       {/* Turnstile — FAZ_1 1.8'de aktif (site key env'den) */}
-      <div className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "PLACEHOLDER_1x00000000000000000000AA"} />
+      <div className="cf-turnstile" data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "0x4AAAAAAFSsQDSM5SFySCaB"} />
 
       <button type="submit" disabled={submitting || !f.kvkkConsent}
         style={{ padding: "12px 24px", background: "#E8A13D", color: "#1A2B4A", border: "none", borderRadius: 8, fontWeight: 600, cursor: submitting ? "wait" : "pointer" }}>

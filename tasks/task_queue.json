@@ -3,7 +3,7 @@
     "description": "bdimexport.com görev kuyruğu — orchestrator (GLM 5.3) tek yazıcı. Şema: ORCHESTRATION.md §1.2",
     "version": "1.0",
     "created": "2026-10-08",
-    "next_id": "T-0015"
+    "next_id": "T-0018"
   },
   "tasks": [
     {
@@ -526,6 +526,105 @@
           "model": "glm-5.3",
           "result": "accepted",
           "reason": "RETRY: içerik genişletildi (2 tur), rehberler ≥1200 kelimeye ulaştı; hizmet sayfaları ≥800. QA yeniden geçti"
+        }
+      ]
+    },
+    {
+      "id": "T-0017",
+      "type": "coding",
+      "lang": null,
+      "scope": [
+        "app/components/**",
+        "app/sitemap.ts",
+        ".env.example"
+      ],
+      "score": 4,
+      "agent": "fe-agent",
+      "model": "gemini-3.8-flash",
+      "budget_tokens": 8000,
+      "max_retries": 2,
+      "depends_on": [],
+      "acceptance": [
+        "build geçti",
+        "brief uyumlu",
+        "secret kodda yok"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_1.md#1.7"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "gemini-3.8-flash (portal)",
+          "result": "accepted",
+          "reason": "PartnerGrid bileşeni üretildi — consent filtresi + boş durum + 4 dil"
+        }
+      ]
+    },
+    {
+      "id": "T-0018",
+      "type": "coding",
+      "lang": null,
+      "scope": [
+        "app/components/**",
+        "app/sitemap.ts",
+        ".env.example"
+      ],
+      "score": 4,
+      "agent": "fe-agent",
+      "model": "gemini-3.8-flash",
+      "budget_tokens": 8000,
+      "max_retries": 2,
+      "depends_on": [],
+      "acceptance": [
+        "build geçti",
+        "brief uyumlu",
+        "secret kodda yok"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_1.md#1.8"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "gemini-3.8-flash (portal)",
+          "result": "accepted",
+          "reason": "Turnstile widget Cloudflare API ile oluşturuldu (managed, bdimexport.com+localhost); site key env'e, secret güvenli dosyaya; form entegre"
+        }
+      ]
+    },
+    {
+      "id": "T-0019",
+      "type": "coding",
+      "lang": null,
+      "scope": [
+        "app/components/**",
+        "app/sitemap.ts",
+        ".env.example"
+      ],
+      "score": 4,
+      "agent": "fe-agent",
+      "model": "gemini-3.8-flash",
+      "budget_tokens": 8000,
+      "max_retries": 2,
+      "depends_on": [],
+      "acceptance": [
+        "build geçti",
+        "brief uyumlu",
+        "secret kodda yok"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_1.md#1.9"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "gemini-3.8-flash (portal)",
+          "result": "accepted",
+          "reason": "13 FAZ_1 URL'si sitemap'e enjekte edildi; hreflang helper FAZ_0'dan hazır"
         }
       ]
     }
