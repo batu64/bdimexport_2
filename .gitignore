@@ -7,3 +7,6 @@ node_modules/
 dist/
 *.log
 keys.txt
+keys.md
+keys.txt
+*.keys.md
