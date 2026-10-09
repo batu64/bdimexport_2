@@ -270,13 +270,19 @@
         "fazlar/FAZ_0.md#08",
         "mimari.md#5"
       ],
-      "status": "needs_human",
+      "status": "accepted",
       "attempts": [
         {
           "ts": "2026-10-08",
           "model": "hermes-session (Sonnet yerine)",
           "result": "needs_human",
           "reason": "0001_init.sql hazır + lokal D1 migration BAŞARILI (9 tablo). [ŞART] Claude Sonnet 5.5 kod pass'i + İNSAN REVIEW bekliyor — key girilince AI pass, review her zaman insan"
+        },
+        {
+          "ts": "2026-10-08",
+          "model": "hermes-session",
+          "result": "accepted",
+          "reason": "İNSAN REVIEW ONAYLI (kullanıcı: \"review onaylı\") — 0001_init.sql 9 tablo, lokal apply başarılı. Sonnet 5.5 AI pass'i key geldikte ek kontrol olarak koşulur"
         }
       ],
       "note": "🔒 GÜVENLİK-KRİTİK: [ŞART] Claude Sonnet 5.5 + İNSAN REVIEW — bu ortamda Anthropic key yok; insan kararı bekliyor (aşağıda şablon hazırlandı)"
@@ -344,6 +350,43 @@
       "status": "pending",
       "attempts": [],
       "note": "🚦 İnsan onay kapısı — T-0004 palet onayı + T-0007/8 sonrası"
+    },
+    {
+      "id": "T-0011",
+      "type": "mekanik",
+      "lang": "tr",
+      "scope": [
+        "content/tr/**"
+      ],
+      "score": 1,
+      "agent": "orchestrator",
+      "model": "glm-5.3",
+      "budget_tokens": 2000,
+      "max_retries": 1,
+      "depends_on": [],
+      "acceptance": [
+        "dosya oluşturuldu",
+        "ledger kaydı var"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_0.md#10"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3",
+          "result": "dispatched",
+          "reason": "şablon 8 + task JSON → scope doğrulandı"
+        },
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3",
+          "result": "accepted",
+          "reason": "content/tr/README.md oluşturuldu, kabul testleri geçti"
+        }
+      ],
+      "note": "PROVA — silinebilir geçici görev"
     }
   ]
 }
