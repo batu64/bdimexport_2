@@ -3,7 +3,7 @@
     "description": "bdimexport.com görev kuyruğu — orchestrator (GLM 5.3) tek yazıcı. Şema: ORCHESTRATION.md §1.2",
     "version": "1.0",
     "created": "2026-10-08",
-    "next_id": "T-0011"
+    "next_id": "T-0015"
   },
   "tasks": [
     {
@@ -393,6 +393,141 @@
         }
       ],
       "note": "PROVA — silinebilir geçici görev"
+    },
+    {
+      "id": "T-0011",
+      "type": "content",
+      "lang": "tr",
+      "scope": [
+        "content/tr/legal/**"
+      ],
+      "score": 2,
+      "agent": "orchestrator",
+      "model": "glm-5.3",
+      "budget_tokens": 4000,
+      "max_retries": 2,
+      "depends_on": [],
+      "acceptance": [
+        "insan onayı bekliyor",
+        "iki ayrı checkbox tanımlı"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_1.md#11"
+      ],
+      "status": "needs_human",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3",
+          "result": "needs_human",
+          "reason": "KVKK v0.1-draft hazır — insan doldurma+onay bekliyor (1.1)"
+        }
+      ]
+    },
+    {
+      "id": "T-0012",
+      "type": "content",
+      "lang": "tr",
+      "scope": [
+        "content/tr/ithalat/{tedarik,fabrika-denetimi,lojistik,gumruk}.md"
+      ],
+      "score": 3,
+      "agent": "tr-import-agent",
+      "model": "glm-5.3",
+      "budget_tokens": 12000,
+      "max_retries": 2,
+      "depends_on": [],
+      "acceptance": [
+        "≥800 kelime",
+        "FAQ ≥5",
+        "CTA /ithalat/danismanlik-talebi",
+        "kaynak notu (vergi sayfası)"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_1.md#12"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3",
+          "result": "accepted",
+          "reason": "4 hizmet sayfası üretildi (1.2)"
+        }
+      ]
+    },
+    {
+      "id": "T-0013",
+      "type": "content",
+      "lang": "tr",
+      "scope": [
+        "content/tr/ihracat/{e-ihracat,b2b-pazarlama,program-tanitim}.md"
+      ],
+      "score": 3,
+      "agent": "tr-export-agent",
+      "model": "glm-5.3",
+      "budget_tokens": 10000,
+      "max_retries": 2,
+      "depends_on": [],
+      "acceptance": [
+        "CONTENT_STYLE şablonu",
+        "CTA form sayfasına"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_1.md#13"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3",
+          "result": "failed",
+          "reason": "3 ihracat sayfası üretildi (1.3) → QA FAIL: kelime eşikleri aşıldı (hizmet 800/rehber 1200). Kaynak: qa/FAZ-1/kelime-kontrol.md. Retry: içerik genişletme"
+        },
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3",
+          "result": "accepted",
+          "reason": "RETRY: içerik genişletildi (2 tur), rehberler ≥1200 kelimeye ulaştı; hizmet sayfaları ≥800. QA yeniden geçti"
+        }
+      ]
+    },
+    {
+      "id": "T-0014",
+      "type": "content",
+      "lang": "tr",
+      "scope": [
+        "content/tr/ithalat/rehberler/*.md"
+      ],
+      "score": 3,
+      "agent": "tr-import-agent",
+      "model": "glm-5.3",
+      "budget_tokens": 16000,
+      "max_retries": 2,
+      "depends_on": [],
+      "acceptance": [
+        "≥1200 kelime",
+        "iç link ≥2",
+        "FAQ ≥6"
+      ],
+      "input_refs": [
+        "fazlar/FAZ_1.md#14"
+      ],
+      "status": "accepted",
+      "attempts": [
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3",
+          "result": "failed",
+          "reason": "6 rehber (2 batch × 3) üretildi (1.4) — kelime sayıları yukarıda → QA FAIL: kelime eşikleri aşıldı (hizmet 800/rehber 1200). Kaynak: qa/FAZ-1/kelime-kontrol.md. Retry: içerik genişletme"
+        },
+        {
+          "ts": "2026-10-08",
+          "model": "glm-5.3",
+          "result": "accepted",
+          "reason": "RETRY: içerik genişletildi (2 tur), rehberler ≥1200 kelimeye ulaştı; hizmet sayfaları ≥800. QA yeniden geçti"
+        }
+      ]
     }
   ]
 }
