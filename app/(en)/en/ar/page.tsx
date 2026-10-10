@@ -4,8 +4,8 @@
 import fs from "fs";
 import path from "path";
 import type { Metadata } from "next";
-import Link from "next/link";
-import { renderVariantMd } from "./md";
+import { renderVariantMd } from "@/lib/ui/md";
+import VariantPageBody from "@/lib/ui/VariantPageBody";
 
 const BASE = "https://bdimexport.com";
 const RTL = true;
@@ -21,23 +21,6 @@ export const metadata: Metadata = {
   alternates: { canonical: `${BASE}/en/ar` },
 };
 
-export default function ArHomePage() {
-  return (
-    <main style={{ maxWidth: 760, margin: "0 auto", padding: "32px 16px" }}>
-      <h1 style={{ color: "#1A2B4A", lineHeight: 1.2 }}>{parsed.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: parsed.html }} />
-      <section
-        id="contact"
-        style={{ marginTop: 48, borderInlineStart: "4px solid #E8A13D", paddingInlineStart: 16 }}
-      >
-        <h2 style={{ color: "#1A2B4A" }}>تواصلوا معنا</h2>
-        <p>قناتنا الرئيسية هي واتساب للأعمال (WhatsApp Business). سيتم تفعيل الروابط المباشرة فور تشغيل القناة، وستُحدَّث هذه الصفحة. أرسلوا طلبكم مع وصف المنتج والسعر المستهدف، وسنرد خلال 24 ساعة. الأسعار بالدولار الأمريكي مع إمكانية الإشارة إلى الدرهم الإماراتي (AED) أو الريال السعودي (SAR) حسب سوقكم.</p>
-      </section>
-      <nav aria-label="التنقل" style={{ marginTop: 32, fontSize: 14 }}>
-        <Link href="/en/ar/services/sourcing" style={{ color: "#0E7C7B" }}>التوريد</Link>
-        {" · "}
-        <Link href="/en" style={{ color: "#0E7C7B" }}>English</Link>
-      </nav>
-    </main>
-  );
+export default function Page() {
+  return <VariantPageBody variant="ar" kind="home" title={parsed.title} html={parsed.html} />;
 }

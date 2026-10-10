@@ -1,44 +1,7 @@
-// /en/nl varyant layout — FAZ_2 Step 2.5 iskelet (en-l10n-agent)
-// Bölge kanalı: Email tek birincil kanal; doğrudan/öz ton (Hollanda ticaret kültürü)
-// dir="ltr" — LTR; EUR, telefon formatı +31
+// /en/nl varyant layout — FAZ_2 Step 2.7: ortak VariantShell (dir/lang/CTA/switcher/footer lib/ui'da tek kaynak)
 // hreflang VERİSİ bu dosyaya yazılmaz → manifest (Step 2.8 orchestrator enjeksiyonu)
-import type { CSSProperties } from "react";
-import Link from "next/link";
-import ChannelCta from "./ChannelCta";
-
-const shell: CSSProperties = {
-  background: "#FAF8F5",
-  color: "#1F2937",
-  minHeight: "100vh",
-  fontFamily: '"Inter", system-ui, sans-serif',
-};
-
-const footerStyle: CSSProperties = {
-  background: "#1A2B4A",
-  color: "#FAF8F5",
-  padding: "32px 16px",
-  fontSize: 14,
-  textAlign: "start", // mantıksal hizalama — RTL'de otomatik aynalanır
-};
+import VariantShell from "@/lib/ui/VariantShell";
 
 export default function NlVariantLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div lang="nl" dir="ltr" style={shell}>
-      <ChannelCta />
-      {children}
-      <footer style={footerStyle}>
-        <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <strong>Bdimexport</strong> — B2B-inkoop en export uit Turkije
-          <div style={{ marginTop: 8 }}>
-            <Link href="/en/nl" style={{ color: "#E8A13D" }}>Start</Link>
-            {" · "}
-            <Link href="/en" style={{ color: "#E8A13D" }}>English</Link>
-          </div>
-          <div style={{ marginTop: 8, color: "rgba(250,248,245,0.7)" }}>
-            © Bdimexport
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
+  return <VariantShell variant="nl">{children}</VariantShell>;
 }
