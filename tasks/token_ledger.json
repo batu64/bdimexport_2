@@ -136,6 +136,30 @@
       "cache_hit": true,
       "cost_est_usd": 0.0,
       "note": "1.10+1.11 QA turu: 14/15 PASS (e2e FAZ_3'e devir), FAZ_1 çıkış onayı + Cloudflare Pages deploy canlı. Token tahmini — retroaktif kayıt"
+    },
+    {
+      "ts": "2026-10-10T00:41Z",
+      "task_id": "t_25da6f51",
+      "agent": "image-agent",
+      "model": "fal-image-gen (portal image_generate)",
+      "in_tok": 0,
+      "out_tok": 0,
+      "images": 8,
+      "est_usd": 0.4,
+      "cost_est_usd": 0.4,
+      "cache_hit": false,
+      "note": "FAZ_2 2.6 görsel turu: 8 final master (3 hero + 5 kategori infografik). 5 infografik ilk denemede rozet rakam hatası → yeniden üretim (13 toplam çağrı, 8 final sayıldı). Türevler crop script (kota dışı): heroes 3'lü (master/OG/1920), infografikler 1080. media-manifest.json üretildi"
+    },
+    {
+      "ts": "2026-10-10T01:17Z",
+      "task_id": "loop",
+      "agent": "orchestrator",
+      "model": "glm-5.3-flash (portal)",
+      "in_tok": 9000,
+      "out_tok": 1500,
+      "cache_hit": true,
+      "cost_est_usd": 0.0,
+      "note": "Orchestrator dongu turu: board denetimi + FAZ_2/3 push (8e6d4ba..32f22bf + working tree), PROGRESS.md olusturma"
     }
   ]
 }
