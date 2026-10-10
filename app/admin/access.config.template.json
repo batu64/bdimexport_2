@@ -1,0 +1,46 @@
+{
+  "_comment": "Cloudflare Zero Trust > Access > Applications şablonu. Agent üretti; İNSAN panelde uygular (docs/access-setup.md). <...> alanlarını doldur. Değer/secret içermez.",
+  "application": {
+    "name": "bdimexport-admin",
+    "type": "self_hosted",
+    "domain": "bdimexport.com/admin",
+    "additional_domains": ["bdimexport.com/admin/*", "staging.bdimexport.com/admin*"],
+    "session_duration": "8h",
+    "app_launcher_visible": false,
+    "auto_redirect_to_identity": true,
+    "allowed_idps": ["<GOOGLE_IDP_ID>"],
+    "http_only_cookie_attribute": true,
+    "same_site_cookie_attribute": "lax",
+    "enable_binding_cookie": true,
+    "service_auth_401_redirect": false
+  },
+  "policies": [
+    {
+      "name": "allow-admins",
+      "decision": "allow",
+      "precedence": 1,
+      "include": [
+        { "email": { "email": "<ADMIN_EMAIL_1>" } },
+        { "email": { "email": "<ADMIN_EMAIL_2>" } }
+      ],
+      "require": [
+        { "ip": { "ip": "<OFIS_VEYA_EV_IP>/32" } },
+        { "login_method": { "id": "<GOOGLE_IDP_ID>" } }
+      ],
+      "session_duration": "8h"
+    },
+    {
+      "name": "deny-everyone-else",
+      "decision": "deny",
+      "precedence": 2,
+      "include": [{ "everyone": {} }]
+    }
+  ],
+  "worker_env": {
+    "_comment": "Workers vars (secret değil, ama repo'ya gerçek değer yazma; wrangler env'e 3.9'da bağlanır)",
+    "ACCESS_TEAM_DOMAIN": "<team>.cloudflareaccess.com",
+    "ACCESS_AUD": "<Application Audience (AUD) Tag — panelde Overview sekmesi>",
+    "ADMIN_EMAILS": "<ADMIN_EMAIL_1>,<ADMIN_EMAIL_2>",
+    "VIEWER_EMAILS": ""
+  }
+}

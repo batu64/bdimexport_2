@@ -12,3 +12,4 @@ keys.txt
 *.keys.md
 out/
 build_log.txt
+scripts-deploy.sh

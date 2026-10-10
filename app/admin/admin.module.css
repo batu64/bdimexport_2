@@ -1,0 +1,22 @@
+/* Admin koyu varyantı — değerler layout'ta tokens.ts'den CSS değişkeni olarak enjekte edilir; hex/px literal yok. */
+.shell { display: flex; min-height: 100vh; background: var(--a-primary); color: var(--a-bg); font-family: var(--a-font); font-size: var(--a-fs-sm); }
+.side { width: var(--a-side); flex: none; padding: var(--a-s6) var(--a-s4); border-inline-end: 1px solid color-mix(in srgb, var(--a-bg) 15%, transparent); }
+.brand { font-size: var(--a-fs-lg); font-weight: 600; margin-bottom: var(--a-s6); }
+.nav { display: flex; flex-direction: column; gap: var(--a-s1); }
+.link { display: flex; align-items: center; min-height: var(--a-touch); padding: 0 var(--a-s3); border-radius: var(--a-radius); color: inherit; text-decoration: none; }
+.link:hover { background: color-mix(in srgb, var(--a-bg) 10%, transparent); }
+.active { background: color-mix(in srgb, var(--a-accent) 45%, transparent); }
+.main { flex: 1; padding: var(--a-s8); max-width: var(--a-container); }
+.h1 { font-size: var(--a-fs-xl); margin: 0 0 var(--a-s6); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--a-card), 1fr)); gap: var(--a-s4); }
+.card { padding: var(--a-s6); border-radius: var(--a-radius); background: color-mix(in srgb, var(--a-bg) 8%, transparent); border: 1px solid color-mix(in srgb, var(--a-bg) 15%, transparent); }
+.cardTitle { margin: 0 0 var(--a-s3); font-size: var(--a-fs-sm); color: var(--a-highlight); text-transform: uppercase; }
+.big { font-size: var(--a-fs-xl); font-weight: 600; margin: 0 0 var(--a-s2); }
+.rows { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--a-s1); }
+.row { display: flex; justify-content: space-between; }
+.muted { opacity: .7; }
+.empty { text-align: center; padding: var(--a-s4) 0; }
+.emptyIcon { font-size: var(--a-fs-xl); }
+.err { color: var(--a-highlight); }
+.skel { height: var(--a-s16); }
+.note { margin-top: var(--a-s6); opacity: .7; }
