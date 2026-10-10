@@ -1,0 +1,120 @@
+{
+  "step": "FAZ_2 Step 2.5",
+  "task": "t_db4a5d85",
+  "agent": "en-l10n-agent",
+  "date": "2026-10-10",
+  "note": "hreflang VERİSİ — enjeksiyon Step 2.8'de orchestrator'a ait (lib/hreflang.ts + sitemap'e agent yazmaz). Kanal linkleri FAZ_8'de leads.channel_pref üzerinden gerçek handle'lara bağlanır; iskelet #contact çapası kullanır.",
+  "variants": [
+    {
+      "variant": "ru",
+      "dir": "ltr",
+      "lang": "ru",
+      "pages": [
+        { "slug": "/en/ru", "content": "content/en/ru/home.md" },
+        { "slug": "/en/ru/services/sourcing", "content": "content/en/ru/services/sourcing.md" }
+      ],
+      "channel_cta": { "primary": "telegram", "secondary": "whatsapp" },
+      "currency": "USD + RUB referansı",
+      "phone_format": "+7",
+      "hreflang_proposal": { "en-RU": "https://bdimexport.com/en/ru", "en-RU-services-sourcing": "https://bdimexport.com/en/ru/services/sourcing" },
+      "glossary_compliance": "I18N_RULES §3.1 RU kolonu birebir kullanıldı (Подбор поставщиков, Аудит завода, Контрактное производство, Логистика, Таможенное оформление)",
+      "glossary_proposal": [
+        { "concept": "Verified Turkish Partner", "ru": "Подтверждённый турецкий партнёр" },
+        { "concept": "Get Free Quotation in 24h", "ru": "Бесплатное коммерческое предложение за 24 часа" }
+      ]
+    },
+    {
+      "variant": "fr",
+      "dir": "ltr",
+      "lang": "fr",
+      "pages": [
+        { "slug": "/en/fr", "content": "content/en/fr/home.md" },
+        { "slug": "/en/fr/services/sourcing", "content": "content/en/fr/services/sourcing.md" }
+      ],
+      "channel_cta": { "primary": "email", "secondary": "whatsapp" },
+      "currency": "EUR",
+      "phone_format": "+33",
+      "hreflang_proposal": { "en-FR": "https://bdimexport.com/en/fr", "en-FR-services-sourcing": "https://bdimexport.com/en/fr/services/sourcing" },
+      "glossary_compliance": "§3.1'de FR kolonu YOK — öneriler glossary_proposal'da; onaylanana kadar bu manifestteki terimler bağlayıcı",
+      "glossary_proposal": [
+        { "concept": "Sourcing", "fr": "Approvisionnement (sourcing)" },
+        { "concept": "Factory Inspection", "fr": "Audit d'usine" },
+        { "concept": "Private Label / Manufacturing", "fr": "Production sous marque privée" },
+        { "concept": "Logistics", "fr": "Logistique" },
+        { "concept": "Customs", "fr": "Dédouanement" },
+        { "concept": "Verified Turkish Partner", "fr": "Partenaire turc vérifié" },
+        { "concept": "Get Free Quotation in 24h", "fr": "Devis gratuit sous 24 heures" }
+      ]
+    },
+    {
+      "variant": "nl",
+      "dir": "ltr",
+      "lang": "nl",
+      "pages": [
+        { "slug": "/en/nl", "content": "content/en/nl/home.md" },
+        { "slug": "/en/nl/services/sourcing", "content": "content/en/nl/services/sourcing.md" }
+      ],
+      "channel_cta": { "primary": "email", "secondary": null },
+      "currency": "EUR",
+      "phone_format": "+31",
+      "hreflang_proposal": { "en-NL": "https://bdimexport.com/en/nl", "en-NL-services-sourcing": "https://bdimexport.com/en/nl/services/sourcing" },
+      "glossary_compliance": "§3.1'de NL kolonu YOK — öneriler glossary_proposal'da",
+      "glossary_proposal": [
+        { "concept": "Sourcing", "nl": "Inkoop (sourcing)" },
+        { "concept": "Factory Inspection", "nl": "Fabrieksinspectie" },
+        { "concept": "Private Label / Manufacturing", "nl": "Private label productie" },
+        { "concept": "Logistics", "nl": "Logistiek" },
+        { "concept": "Customs", "nl": "Douane" },
+        { "concept": "Verified Turkish Partner", "nl": "Geverifieerde Turkse partner" },
+        { "concept": "Get Free Quotation in 24h", "nl": "Gratis offerte binnen 24 uur" }
+      ]
+    },
+    {
+      "variant": "es",
+      "dir": "ltr",
+      "lang": "es",
+      "pages": [
+        { "slug": "/en/es", "content": "content/en/es/home.md" },
+        { "slug": "/en/es/services/sourcing", "content": "content/en/es/services/sourcing.md" }
+      ],
+      "channel_cta": { "primary": "whatsapp", "secondary": null },
+      "currency": "EUR + LATAM notu",
+      "phone_format": "+34",
+      "hreflang_proposal": { "en-ES": "https://bdimexport.com/en/es", "en-ES-services-sourcing": "https://bdimexport.com/en/es/services/sourcing" },
+      "glossary_compliance": "§3.1'de ES kolonu YOK — öneriler glossary_proposal'da; neutral ustedes tutuldu (vosotros yok)",
+      "glossary_proposal": [
+        { "concept": "Sourcing", "es": "Abastecimiento (sourcing)" },
+        { "concept": "Factory Inspection", "es": "Auditoría de fábrica" },
+        { "concept": "Private Label / Manufacturing", "es": "Producción de marca privada" },
+        { "concept": "Logistics", "es": "Logística" },
+        { "concept": "Customs", "es": "Aduanas" },
+        { "concept": "Verified Turkish Partner", "es": "Socio turco verificado" },
+        { "concept": "Get Free Quotation in 24h", "es": "Presupuesto gratuito en 24 horas" }
+      ]
+    },
+    {
+      "variant": "ar",
+      "dir": "rtl",
+      "lang": "ar",
+      "pages": [
+        { "slug": "/en/ar", "content": "content/en/ar/home.md" },
+        { "slug": "/en/ar/services/sourcing", "content": "content/en/ar/services/sourcing.md" }
+      ],
+      "channel_cta": { "primary": "whatsapp-business", "secondary": null },
+      "currency": "USD + AED/SAR bağlamı",
+      "phone_format": "bölgesel (MENA)",
+      "hreflang_proposal": { "en-AR": "https://bdimexport.com/en/ar", "en-AR-services-sourcing": "https://bdimexport.com/en/ar/services/sourcing" },
+      "rtl_compliance": "dir=rtl layout'ta; CSS mantıksal özellikler (borderInlineStart, paddingInlineStart, marginInlineEnd, textAlign start, flex-end) — ml/mr/pl/pr fiziksel kalıntı taraması 0 eşleşme; sayı/telefon token'ları md.tsx'te <bdi dir=ltr> ile sarılı (out/en/ar.html'de doğrulandı); font Noto Sans Arabic",
+      "glossary_compliance": "§3.1'de AR kolonu YOK — öneriler glossary_proposal'da",
+      "glossary_proposal": [
+        { "concept": "Sourcing", "ar": "التوريد" },
+        { "concept": "Factory Inspection", "ar": "التفتيش على المصانع" },
+        { "concept": "Private Label / Manufacturing", "ar": "الإنتاج بالعلامة التجارية الخاصة" },
+        { "concept": "Logistics", "ar": "اللوجستيات" },
+        { "concept": "Customs", "ar": "التخليص الجمركي" },
+        { "concept": "Verified Turkish Partner", "ar": "الشريك التركي المعتمد" },
+        { "concept": "Get Free Quotation in 24h", "ar": "عرض سعر مجاني خلال 24 ساعة" }
+      ]
+    }
+  ]
+}
