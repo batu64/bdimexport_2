@@ -10,3 +10,5 @@ keys.txt
 keys.md
 keys.txt
 *.keys.md
+out/
+build_log.txt
