@@ -1,10 +1,12 @@
 name: Nightly Maintenance
+# FAZ 4'te aktifleşecek — şimdilik devre dışı (schedule kapalı; yalnız elle workflow_dispatch).
+# TTL silme + D1→R2 yedek iş mantığı FAZ 4.2 / FAZ 3.9 ile Workers cron'a taşınır; açarken schedule satırlarını geri getir.
 # FAZ_0 Step 0.7 — gece 02:00 TR (23:00 UTC kış / 23:00 UTC yaz notu: TR=UTC+3 sabit)
 # ORCHESTRATION.md §7.2: TTL silme + ücretsiz kota gece batch'i + hafta içi D1→R2 yedek
 
 on:
-  schedule:
-    - cron: "0 23 * * *"   # 02:00 Türkiye saati (UTC+3)
+  # schedule:
+  #   - cron: "0 23 * * *"   # 02:00 Türkiye saati (UTC+3) — FAZ 4'te aç
   workflow_dispatch:
 
 jobs:

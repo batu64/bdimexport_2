@@ -1,5 +1,6 @@
 name: QA Gate
-# FAZ_0 Step 0.7 — her PR'da qa envanteri + gitleaks (ORCHESTRATION.md §7.2)
+# FAZ_0 Step 0.7 — her PR'da build + gitleaks + workflow lint + D1 şema doğrulaması.
+# v2.0: eski task_queue şema kontrolü kaldırıldı (kuyruk/dispatch yok). Secret gömülü değil; yalnızca GITHUB_TOKEN.
 
 on:
   pull_request:
@@ -10,9 +11,17 @@ permissions:
   contents: read
   pull-requests: read
 
+concurrency:
+  group: qa-gate-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
   gitleaks:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,29 +31,34 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  build:
+  workflow-lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 12
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
-      - name: Schema validasyonu (task kuyruğu)
+      - name: actionlint
+        uses: raven-actions/actionlint@v2
+
+  d1-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Migration'lar boş SQLite'a sırayla uygulanır ve beklenen tablolar oluşur
         run: |
-          node -e "
-            const q=require('./tasks/task_queue.json');
-            if(!Array.isArray(q.tasks)) throw new Error('tasks dizi değil');
-            for(const t of q.tasks){
-              for(const f of ['id','type','scope','agent','model','acceptance','status'])
-                if(t[f]===undefined) throw new Error(t.id+': '+f+' eksik');
-              if(!['pending','dispatched','in_review','accepted','failed','blocked','needs_human'].includes(t.status))
-                throw new Error(t.id+': geçersiz status '+t.status);
-            }
-            console.log('task_queue şeması OK —', q.tasks.length, 'görev');
-          "
+          python3 - <<'PY'
+          import glob, sqlite3, sys
+          required = {"partners", "leads", "contents", "rss_news", "keywords", "ai_jobs", "analytics_daily"}
+          db = sqlite3.connect(":memory:")
+          files = sorted(glob.glob("db/migrations/*.sql"))
+          if not files:
+              sys.exit("db/migrations/ is empty")
+          for f in files:
+              db.executescript(open(f, encoding="utf-8").read())
+              print("OK", f)
+          tables = {r[0] for r in db.execute("select name from sqlite_master where type='table'")}
+          missing = required - tables
+          if missing:
+              sys.exit("missing tables: " + ", ".join(sorted(missing)))
+          print("schema OK -", len(tables), "tables")
+          PY

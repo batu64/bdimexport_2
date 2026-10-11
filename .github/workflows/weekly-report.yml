@@ -1,10 +1,12 @@
 name: Weekly Report
+# FAZ 6'da aktifleşecek — şimdilik devre dışı (schedule kapalı; yalnız elle workflow_dispatch).
+# Rapor üretimi FAZ 6.4 (Haiku 5.5); bu iskeletteki GLM_API_KEY / token_ledger referansları v1 kalıntısıdır, 6.4'te v2.0'a göre yeniden yazılır.
 # FAZ_0 Step 0.7 — Pzt 09:00 TR (ORCHESTRATION.md §7.3)
 # İçerik: trafik/lead özeti + en iyi/kötü 5 sayfa + token/maliyet + FAZ_6'da tam otomatik
 
 on:
-  schedule:
-    - cron: "0 6 * * 1"   # Pazartesi 09:00 TR
+  # schedule:
+  #   - cron: "0 6 * * 1"   # Pazartesi 09:00 TR — FAZ 6'da aç
   workflow_dispatch:
 
 jobs:
