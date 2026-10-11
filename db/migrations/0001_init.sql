@@ -1,7 +1,10 @@
 -- ============================================================================
 -- Bdimexport D1 Schema v1 — migration 0001_init
 -- FAZ_0 Step 0.8 | Kaynak: mimari.md §5 (satır satır eşleşme zorunlu — qa testi)
--- STATUS: 🔒 İNSAN REVIEW BEKLİYOR (ORCHESTRATOR.md §9: D1/auth = Sonnet 5.5 + insan)
+-- STATUS: 🔒 İNSAN REVIEW BEKLİYOR (AGENTS.md v2.0 §8 K4: D1 şema = Opus 5.5 + insan)
+-- v1.1 (2026-10-11, Opus 5.5 review): keywords.priority (mimari §5 eksiği), boolean/enum CHECK'leri,
+--   leads.partner_id ON DELETE SET NULL, leads KVKK/GDPR rıza kanıt kolonları, mükerrer index kaldırıldı.
+--   Remote D1 henüz yok (database_id=local-dev) → v1 yerinde düzeltildi; remote ilk apply'dan sonra 0001 DONDURULUR.
 -- Uygulama: wrangler d1 migrations apply bdimexport-db --local  (önce --local!)
 -- ============================================================================
 
@@ -15,8 +18,8 @@ CREATE TABLE IF NOT EXISTS partners (
   certs_json    TEXT DEFAULT '[]',                   -- ["CE","ISO9001",...]
   capacity      TEXT,
   catalog_r2_key TEXT,                               -- başvuru PDF'i
-  consent_logo_en INTEGER NOT NULL DEFAULT 0,        -- 0/1 — admin değiştiremez, partner yeniden rıza verir
-  approved      INTEGER NOT NULL DEFAULT 0,          -- admin onayı
+  consent_logo_en INTEGER NOT NULL DEFAULT 0 CHECK (consent_logo_en IN (0,1)), -- admin değiştiremez, partner yeniden rıza verir
+  approved      INTEGER NOT NULL DEFAULT 0 CHECK (approved IN (0,1)),         -- admin onayı
   contact_json  TEXT,                                -- {name,email,phone,whatsapp} — KVKK maskeleme UI'da
   created_at    TEXT NOT NULL DEFAULT (datetime('now')),
   approved_at   TEXT
@@ -29,12 +32,16 @@ CREATE TABLE IF NOT EXISTS leads (
   id           TEXT PRIMARY KEY,
   source_page  TEXT NOT NULL,                        -- attribution (FAZ_6 6.1) için kritik
   locale       TEXT NOT NULL,                        -- tr/en/de/zh/en-ru...
-  form_type    TEXT NOT NULL DEFAULT 'lead',         -- lead|application|quotation
-  channel_pref TEXT,                                 -- whatsapp|telegram|wechat|email
+  form_type    TEXT NOT NULL DEFAULT 'lead' CHECK (form_type IN ('lead','application','quotation')),
+  channel_pref TEXT CHECK (channel_pref IS NULL OR channel_pref IN ('whatsapp','telegram','wechat','email')),
   payload_json TEXT NOT NULL,                        -- {name,company,email,...} — maskeleme UI'da
   status       TEXT NOT NULL DEFAULT 'new' CHECK (status IN ('new','contacted','qualified','closed')),
-  partner_id   TEXT REFERENCES partners(id),         -- eşleştirme (Proje.md flywheel 5. adım)
+  partner_id   TEXT REFERENCES partners(id) ON DELETE SET NULL, -- eşleştirme (flywheel 5. adım); partner silinirse (KVKK) lead korunur
   utm_json     TEXT,                                 -- campaign kaynak takibi
+  -- KVKK/GDPR rıza kanıtı (mimari §11.4) — sunucu tarafı yazılır (partners.kvkk_consent_* ile aynı desen, 0002)
+  consent_version  TEXT,                             -- kabul edilen rıza metni sürümü (FAZ_1 1.1 kilidi)
+  consent_at       TEXT,                             -- rıza zamanı (sunucu saati, ISO)
+  double_optin_at  TEXT,                             -- EN/DE double opt-in teyidi; NULL = teyitsiz (pazarlama iletişimi yapılmaz)
   created_at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
 CREATE INDEX IF NOT EXISTS idx_leads_status ON leads(status, created_at);
@@ -46,7 +53,7 @@ CREATE TABLE IF NOT EXISTS contents (
   id             TEXT PRIMARY KEY,
   slug           TEXT NOT NULL,
   locale         TEXT NOT NULL,
-  page_type      TEXT NOT NULL,                      -- product|industry|service|article|news_card
+  page_type      TEXT NOT NULL CHECK (page_type IN ('product','industry','service','article','news_card')), -- = app/admin/content/types.ts PAGE_TYPES
   title          TEXT NOT NULL,
   body_md        TEXT NOT NULL,
   target_keyword TEXT,
@@ -59,7 +66,7 @@ CREATE TABLE IF NOT EXISTS contents (
   UNIQUE(slug, locale)
 );
 CREATE INDEX IF NOT EXISTS idx_contents_status ON contents(status, locale);
-CREATE INDEX IF NOT EXISTS idx_contents_slug ON contents(slug, locale);       -- unique ile birlikte
+-- (slug, locale) araması UNIQUE kısıtının otomatik index'ini kullanır — ayrı index gereksiz (yazma maliyeti)
 CREATE INDEX IF NOT EXISTS idx_contents_type ON contents(page_type, locale);
 
 -- RSS_NEWS: 3 gün TTL buffer (Proje.md §5.1 Input B)
@@ -81,14 +88,16 @@ CREATE TABLE IF NOT EXISTS keywords (
   id           TEXT PRIMARY KEY,
   phrase       TEXT NOT NULL,
   locale       TEXT,
-  intent       TEXT,                                 -- informational|commercial|transactional
+  intent       TEXT CHECK (intent IS NULL OR intent IN ('informational','commercial','transactional')),
+  priority     INTEGER NOT NULL DEFAULT 0,           -- mimari §5; büyük = önce işlenir (kuyruk sırası)
   volume       INTEGER,                              -- yalnızca gerçek GSC/API verisi; tahmin ise flagged
-  volume_estimated INTEGER NOT NULL DEFAULT 0,
+  volume_estimated INTEGER NOT NULL DEFAULT 0 CHECK (volume_estimated IN (0,1)),
   target_page  TEXT,                                 -- GLM karar: yeni sayfa slug'ı veya güncellenecek sayfa
   status       TEXT NOT NULL DEFAULT 'queued' CHECK (status IN ('queued','analyzed','job_created','done')),
   created_at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
 CREATE INDEX IF NOT EXISTS idx_keywords_status ON keywords(status, locale);
+CREATE INDEX IF NOT EXISTS idx_keywords_queue ON keywords(status, priority DESC, created_at);
 
 -- AI_JOBS: D1 tabanlı ücretsiz kuyruk (Cloudflare Queues ücretli — mimari.md kararı)
 CREATE TABLE IF NOT EXISTS ai_jobs (
@@ -98,7 +107,7 @@ CREATE TABLE IF NOT EXISTS ai_jobs (
   status     TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','running','done','failed','blocked')),
   agent      TEXT,
   model      TEXT,
-  retries    INTEGER NOT NULL DEFAULT 0,             -- max 2 (ORCHESTRATION.md §6)
+  retries    INTEGER NOT NULL DEFAULT 0 CHECK (retries >= 0), -- üst sınır uygulama katmanında (FAZ_4 4.7)
   last_error TEXT,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   finished_at TEXT
@@ -123,7 +132,7 @@ CREATE TABLE IF NOT EXISTS api_keys (
   key_hash   TEXT NOT NULL UNIQUE,                  -- SHA-256; key yalnızca hash (ilk gösterim tek seferlik)
   tier       TEXT NOT NULL DEFAULT 'read-only' CHECK (tier IN ('read-only','partner','admin-internal')),
   rate_limit INTEGER NOT NULL DEFAULT 60,           -- req/dk
-  revoked    INTEGER NOT NULL DEFAULT 0,
+  revoked    INTEGER NOT NULL DEFAULT 0 CHECK (revoked IN (0,1)),
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   revoked_at TEXT
 );
