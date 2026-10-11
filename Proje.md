@@ -83,6 +83,8 @@ bdimexport.com/de/lieferanten
 
 ## 4. VIBE CODING - ÇOK AJANLI ORKESTRASYON
 
+> **⚠️ v2.0 güncellemesi:** Bu bölümdeki çok-ajanlı / çok-modelli (GLM/Qwen/Gemini/ChatGPT Image…) yapı **kaldırıldı**. Artık tüm işler **tek yürütücüyle: Claude Code** yapılır; model seçimi adım adım **AGENTS.md §7**'de sabittir (Haiku/Sonnet/Opus). Harici/runtime AI gerektiğinde yalnızca **Gemini** kullanılır, ayarı en sonadır. Aşağıdaki metin tarihsel/kavramsal referanstır.
+
 ### 4.1. Yönetici Ajan (Manager / Orchestrator Agent)
 
 - **Orkestratör Modeli:** **GLM 5.3** (düşük maliyet, yüksek yetenek) — tam kurallar: `ORCHESTRATOR.md`

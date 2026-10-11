@@ -9,6 +9,26 @@
 
 ---
 
+## 🎛️ Claude Code Yürütme Katmanı (FAZ 8 — lansman + büyüme)
+> **v2.0:** Eski "Ajan / Model" satırları yalnızca **scope kilidi**. **Yürütücü = Claude Code**; model tablosu aşağıdadır (AGENTS.md §7). Bu faz operasyon ağırlıklı → **insan katılımı en yoğun**. Sıralı çalış.
+
+| Adım | İş | Model | Not |
+| :-- | :-- | :-- | :-- |
+| 8.1 | Lansman denetimi (regresyon) | **Sonnet 5.5** | |
+| 8.2 | Lansman | **Haiku 5.5** (koordinasyon) | 👤 tetikleme + DNS |
+| 8.3 | Partner kampanyası materyal | **Haiku 5.5 (ucuz)/Sonnet 5.5** | 👤 hedef liste + İYS |
+| 8.4 | İçerik ölçekleme | runtime **Gemini** 🟡 (FAZ 4 hattı) | ayar en sonda |
+| 8.5 | Kanal operasyonları (çok dilli) | **Haiku 5.5 (ucuz)/Sonnet 5.5** | 👤 kanal hesapları |
+| 8.6 | İlk partner yayına alma | **Haiku 5.5** | 👤 onay + eşleştirme |
+| 8.7 | Büyüme deneyleri A/B | **Haiku 5.5** | 👤 karar |
+| 8.8 | Operasyonel QA | **Haiku 5.5** | |
+| 8.9 | faz çıkışı | **Haiku 5.5** | 👤 onay |
+
+**Sıralı yürütme:** 8.1 → 8.2 → 8.3 → 8.5 → 8.6 → 8.4 → 8.7 → 8.8 → 8.9
+**Senin görevlerin (👤):** 8.2 lansman tetikleme + DNS · 8.3 hedef kurum listesi + İYS kaydı · 8.5 kanal hesapları (WeChat vb.) · 8.6 partner onay + lead eşleştirme · 8.9 faz çıkışı.
+
+---
+
 ## Step 8.1 — Lansman Denetimi (canlıya çıkış öncesi son tur)
 | Alan | Değer |
 | :--- | :--- |

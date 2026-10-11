@@ -8,6 +8,28 @@
 
 ---
 
+## 🎛️ Claude Code Yürütme Katmanı (FAZ 1)
+> **v2.0:** Eski "Ajan / Model" satırları yalnızca **scope kilidi**. **Yürütücü = Claude Code**; model tablosu aşağıdadır (AGENTS.md §7). Sıralı çalış.
+
+| Adım | İş | Model | Not |
+| :-- | :-- | :-- | :-- |
+| 1.1 | KVKK rıza metni iskeleti | **Opus 5.5** ⚖️ | 👤 metin + hukuki onay |
+| 1.2 | /ithalat hizmet (4) | **Haiku 5.5** | şablon içerik |
+| 1.3 | /ihracat hizmet (3) | **Haiku 5.5** | şablon içerik |
+| 1.4 | Çin ithalat rehber serisi (6, ≥1200) | **Sonnet 5.5** | uzun SEO (ucuz alt: Haiku 5.5) |
+| 1.5 | TR frontend + sayfa bağlamları | **Sonnet 5.5** | |
+| 1.6 | Başvuru formu + endpoint | **Opus 5.5** 🔒 | 👤 code review |
+| 1.7 | Partner listeleme komponenti | **Haiku 5.5** | |
+| 1.8 | Turnstile + rate-limit | **Sonnet 5.5** | |
+| 1.9 | hreflang/sitemap enjeksiyonu | **Haiku 5.5** | ortak dosya tekeli |
+| 1.10 | QA turu | **Haiku 5.5** | |
+| 1.11 | çıkış + lansman ön kontrol | **Haiku 5.5** | 👤 onay + deploy |
+
+**Sıralı yürütme:** 1.1 → 1.2 → 1.3 → 1.4 → 1.5 → 1.6 → 1.7 → 1.8 → 1.9 → 1.10 → 1.11 · *(1.6, 1.1 KVKK onayı gelmeden başlamaz)*
+**Senin görevlerin (👤):** 1.1 KVKK metni doldur+onayla · 1.6 form güvenlik review · 1.11 faz çıkış onayı + deploy kararı.
+
+---
+
 ## Step 1.1 — KVKK Rıza Metni Hazırlığı (insan girdisi toplanır) ⚖️ HUKUKİ
 | Alan | Değer |
 | :--- | :--- |

@@ -12,6 +12,27 @@
 
 ---
 
+## 🎛️ Claude Code Yürütme Katmanı (FAZ 0)
+> **v2.0:** Aşağıdaki adımlardaki eski "Ajan / Model" satırları artık yalnızca **scope kilidi** (hangi dizine yazılacağı) olarak geçerlidir. **Yürütücü = Claude Code**; geçerli model aşağıdaki tablodur (AGENTS.md §7 ile birebir). Eş zamanlılık yok → **sıralı** çalış.
+
+| Adım | İş | Model | Not |
+| :-- | :-- | :-- | :-- |
+| 0.1 | Repo iskeleti | **Sonnet 5.5** | |
+| 0.2 | ~~Model ping~~ | **ATLANDI** | Claude Code'da gereksiz; Gemini testi §en sonda |
+| 0.3 | tasks/ kuyruk iskeleti | **Haiku 5.5** | hafif/opsiyonel |
+| 0.4 | design-tokens taslağı | **Sonnet 5.5** | |
+| 0.5 | design-tokens nihai + hero copy | **Opus 5.5** | 👤 palet seçimi |
+| 0.6 | komponent brief'leri | **Sonnet 5.5** | |
+| 0.7 | CI workflow (build+qa-gate+gitleaks) | **Sonnet 5.5** | cron-orchestrator workflow'u kaldırıldı |
+| 0.8 | D1 şema + migration | **Opus 5.5** 🔒 | 👤 review |
+| 0.9 | sitemap/hreflang helper + llms/robots | **Haiku 5.5** | ortak dosya tekeli |
+| 0.10 | çıkış denetimi | **Haiku 5.5** | 👤 "devam et" |
+
+**Sıralı yürütme:** 0.1 → 0.3 → 0.4 → 0.5 → 0.6 → 0.7 → 0.9 → 0.8 → 0.10
+**Senin görevlerin (👤):** 0.5 palet/tipografi seçimi · 0.8 şema güvenlik review · 0.10 faz çıkış "devam et" onayı.
+
+---
+
 ## Step 0.1 — Repo İskeleti
 | Alan | Değer |
 | :--- | :--- |

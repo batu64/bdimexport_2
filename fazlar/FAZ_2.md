@@ -9,6 +9,27 @@
 
 ---
 
+## 🎛️ Claude Code Yürütme Katmanı (FAZ 2)
+> **v2.0:** Eski "Ajan / Model" satırları yalnızca **scope kilidi**. **Yürütücü = Claude Code**; model tablosu aşağıdadır (AGENTS.md §7). Sıralı çalış.
+
+| Adım | İş | Model | Not |
+| :-- | :-- | :-- | :-- |
+| 2.1 | /en route + 5 hizmet | **Sonnet 5.5** | |
+| 2.2 | ürün liste + kategori | **Sonnet 5.5** | |
+| 2.3 | 20 ürün SEO/GEO (ilk üretim) | **Sonnet 5.5** | (ucuz alt: Haiku 5.5) · süreklisi FAZ 4 🟡 |
+| 2.4 | industries (5) | **Sonnet 5.5** | (ucuz alt: Haiku 5.5) |
+| 2.5 | varyant iskeletleri + RTL | kod **Sonnet 5.5** · içerik **Haiku 5.5 (ucuz)/Sonnet 5.5** | |
+| 2.6 | görsel üretim turu | **Gemini görsel** 🟡 + **Haiku 5.5** (crop/manifest) | ayar en sonda |
+| 2.7 | komplex varyant layout (score 8) | **Opus 5.5** | tek karmaşık FE |
+| 2.8 | hreflang/sitemap/llms enjeksiyonu | **Haiku 5.5** | ortak dosya tekeli |
+| 2.9 | QA turu | **Haiku 5.5** | |
+| 2.10 | faz çıkışı | **Haiku 5.5** | 👤 onay |
+
+**Sıralı yürütme:** 2.1 → 2.2 → 2.3 → 2.4 → 2.5 → 2.7 → 2.6 → 2.8 → 2.9 → 2.10 · *(ön koşul: onaylı partner ≥ 3, yoksa 2.3 bekler)*
+**Senin görevlerin (👤):** 2.10 faz çıkış onayı. · *2.6 görsel: Gemini ayarı en sonda olduğundan şimdilik stub/placeholder ile geç.*
+
+---
+
 ## Step 2.1 — /en Route İskeleti + Hizmet Sayfaları (5)
 | Alan | Değer |
 | :--- | :--- |

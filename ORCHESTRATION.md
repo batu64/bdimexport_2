@@ -2,8 +2,8 @@
 **Sürüm:** 1.0 | **Tarih:** 08.10.2026 | **Proje:** bdimexport.com
 **Amaç:** Orchestrator'ın (GLM 5.3) görevleri nasıl aldığını, sınıflandırdığını, dağıttığını, takip ettiğini ve raporladığını tanımlar. Tüm agent dosyaları (`agents/*.md`) bu protokole bağlıdır.
 
-> **Çelişki hiyerarşisi:** ORCHESTRATOR.md §11 (değişmez kurallar) > AGENTS.md §7 (model kayıt) > bu dosya > agent dosyaları.
-> **Uyumluluk:** Proje.md §4 (vibe coding orkestrasyonu) + mimari.md §8 ile birebir; oradaki `git worktree` + paralel agent modeli burada operasyonel kurallara çevrilir.
+> **⚠️ v2.0 geçişi:** Yürütücü artık tek: **Claude Code**. Bu dosyadaki çok-ajanlı / `git worktree` / token_ledger / otomatik dispatch mekanizması **artık kullanılmıyor** — tarihsel referans olarak durur. Geçerli model/adım ataması **AGENTS.md §7**, yürütme kuralı **AGENTS.md §4–§5**, süreç kuralı **ORCHESTRATOR.md**'dedir.
+> **Çelişki hiyerarşisi (v2.0):** AGENTS.md (model/adım + scope) > ORCHESTRATOR.md (süreç) > bu dosya.
 
 ---
 

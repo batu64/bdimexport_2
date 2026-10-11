@@ -9,6 +9,27 @@
 
 ---
 
+## 🎛️ Claude Code Yürütme Katmanı (FAZ 4 — kod Claude, runtime Gemini)
+> **v2.0:** Eski "Ajan / Model" satırları yalnızca **scope kilidi**. **Yürütücü = Claude Code**; model tablosu aşağıdadır (AGENTS.md §7). Bu fazda uygulamanın **runtime AI** çağrıları (özet/üretim) **Gemini** ile yapılır — ayarı **en sonda**; o ana kadar kod stub ile hazır bekler.
+
+| Adım | İş | Model | Not |
+| :-- | :-- | :-- | :-- |
+| 4.1 | RSS cron script | **Sonnet 5.5** | worker kodu |
+| 4.2 | TTL silme + bakım cron | **Haiku 5.5** | basit SQL cron |
+| 4.3 | Trends toplama | **Haiku 5.5** | pattern tekrarı |
+| 4.4 | Batch özet/etiketleme pipeline | kod **Sonnet 5.5** · runtime **Gemini** 🟡 | ayar en sonda |
+| 4.5 | Makale üretim akışı (ai_jobs→draft) | kod **Sonnet 5.5** · runtime **Gemini** 🟡 | ayar en sonda |
+| 4.6 | Onay→yayın otomasyonu | **Sonnet 5.5** | ortak dosya |
+| 4.7 | Hata izleme/fallback/kota | **Sonnet 5.5** | |
+| 4.8 | Baidu hazırlık | **Haiku 5.5** | 👤 Baidu hesabı |
+| 4.9 | QA | **Haiku 5.5** | |
+| 4.10 | faz çıkışı | **Haiku 5.5** | 👤 onay + hız hedefi |
+
+**Sıralı yürütme:** 4.1 → 4.2 → 4.3 → 4.4 → 4.5 → 4.6 → 4.7 → 4.8 → 4.9 → 4.10
+**Senin görevlerin (👤):** 4.8 Baidu Webmaster hesabı/doğrulama · 4.10 faz çıkışı + günlük üretim hız hedefi. · *Runtime Gemini anahtarı/model adı: projenin en sonunda (AGENTS.md §9).*
+
+---
+
 ## Step 4.1 — RSS Toplama Cron Script'i (saatlik)
 | Alan | Değer |
 | :--- | :--- |

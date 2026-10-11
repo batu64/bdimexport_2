@@ -9,6 +9,28 @@
 
 ---
 
+## 🎛️ Claude Code Yürütme Katmanı (FAZ 5 — ZH + DE)
+> **v2.0:** Eski "Ajan / Model" satırları yalnızca **scope kilidi**. **Yürütücü = Claude Code**; model tablosu aşağıdadır (AGENTS.md §7). zh içeriğinde ucuz seçenek Haiku 5.5 (kalite gerekince Sonnet), de hukuk metni için Opus 5.5. Tek yürütücü → iki hat (zh/de) **sıralı** yapılır (eş zamanlı değil).
+
+| Adım | İş | Model | Not |
+| :-- | :-- | :-- | :-- |
+| 5.1 | /de Impressum + Datenschutz | **Opus 5.5** 🔒⚖️ | 👤 veri + hukuk imzası |
+| 5.2 | /zh iskelet + kimlik | kod **Sonnet 5.5** · içerik **Haiku 5.5 (ucuz)/Sonnet 5.5** | |
+| 5.3 | /zh hizmet sayfaları | **Haiku 5.5 (ucuz)/Sonnet 5.5** · kontrol **Haiku** | |
+| 5.4 | /de hizmet sayfaları | **Sonnet 5.5** (taslak: Haiku 5.5) | |
+| 5.5 | /zh Baidu SEO | **Haiku 5.5** | 👤 doğrulama kodu |
+| 5.6 | /de + /zh kod bağlamları | **Sonnet 5.5** | |
+| 5.7 | dil kalite turu | **Sonnet 5.5** | 👤 zh kültür onayı |
+| 5.8 | hreflang/sitemap enjeksiyonu | **Haiku 5.5** | ortak dosya |
+| 5.9 | QA | **Haiku 5.5** | |
+| 5.10 | hukuk/kültür imza | **Haiku 5.5** (hazırlık) | 👤 imza |
+| 5.11 | faz çıkışı | **Haiku 5.5** | 👤 onay |
+
+**Sıralı yürütme:** 5.1 → 5.2 → 5.3 → 5.5 → 5.4 → 5.6 → 5.7 → 5.8 → 5.9 → 5.10 → 5.11
+**Senin görevlerin (👤):** 5.1 şirket verileri + hukuk imzası · 5.5 Baidu doğrulama kodu · 5.7 zh kültür/marka onayı · 5.10 imza · 5.11 faz çıkışı.
+
+---
+
 ## ZH HATTI (Qwen 3.8 ağırlıklı)
 
 ## Step 5.1 — /de Impressum + Datenschutz 🔒⚖️ HUKUKİ — FAZIN EN SERT KAPISI

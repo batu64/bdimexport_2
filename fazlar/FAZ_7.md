@@ -9,6 +9,25 @@
 
 ---
 
+## 🎛️ Claude Code Yürütme Katmanı (FAZ 7 — sertleştirme)
+> **v2.0:** Eski "Ajan / Model" satırları yalnızca **scope kilidi**. **Yürütücü = Claude Code**; model tablosu aşağıdadır (AGENTS.md §7). API sözleşmesi + auth sertleştirme = **Opus 5.5 + insan review**. Sıralı çalış.
+
+| Adım | İş | Model | Not |
+| :-- | :-- | :-- | :-- |
+| 7.1 | API sürümleme + sözleşme dondurma | **Opus 5.5** 🔒 | 👤 sözleşme onayı |
+| 7.2 | Dış erişim güvenlik sertleştirme | **Opus 5.5** 🔒 | 👤 imza + WAF |
+| 7.3 | API docs sitesi | içerik **Haiku 5.5** · kod **Sonnet 5.5** | |
+| 7.4 | n8n / entegrasyon | **Sonnet 5.5** | |
+| 7.5 | Performans/yük testi | test **Haiku 5.5** · düzeltme **Sonnet 5.5** | |
+| 7.6 | .cn değerlendirme raporu | **Sonnet 5.5** | 👤 karar |
+| 7.7 | QA | **Haiku 5.5** | |
+| 7.8 | faz çıkışı | **Haiku 5.5** | 👤 onay |
+
+**Sıralı yürütme:** 7.1 → 7.2 → 7.3 → 7.4 → 7.5 → 7.6 → 7.7 → 7.8
+**Senin görevlerin (👤):** 7.1 API sözleşme onayı · 7.2 güvenlik imzası + WAF aktivasyonu · 7.6 .cn senaryo kararı · 7.8 faz çıkışı.
+
+---
+
 ## Step 7.1 — API Sürümleme ve Sözleşme Dondurma
 | Alan | Değer |
 | :--- | :--- |

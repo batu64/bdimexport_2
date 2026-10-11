@@ -9,6 +9,29 @@
 
 ---
 
+## 🎛️ Claude Code Yürütme Katmanı (FAZ 3 — güvenlik ağırlıklı)
+> **v2.0:** Eski "Ajan / Model" satırları yalnızca **scope kilidi**. **Yürütücü = Claude Code**; model tablosu aşağıdadır (AGENTS.md §7). auth/admin kodu = **Opus 5.5 + insan review** (pazarlıksız). Sıralı çalış.
+
+| Adım | İş | Model | Not |
+| :-- | :-- | :-- | :-- |
+| 3.1 | Cloudflare Access + admin auth | **Opus 5.5** 🔒 | 👤 Access kurulumu |
+| 3.2 | Admin iskelet + Dashboard | **Sonnet 5.5** | salt-okunur dashboard |
+| 3.3 | Lead Kanban (KVKK verisi) | **Opus 5.5** 🔒 | 👤 review |
+| 3.4 | /api/v1 gateway + API key | **Opus 5.5** 🔒 (read: Sonnet) | 👤 key politikası |
+| 3.5 | Partner CRUD + logo onay | **Opus 5.5** 🔒 | |
+| 3.6 | İçerik Fabrikası UI | **Opus 5.5** 🔒 (rss okuma: Sonnet) | 👤 review |
+| 3.7 | Analitik çekim cron + dashboard | **Sonnet 5.5** | 👤 OAuth |
+| 3.8 | Turnstile/rate-limit + Ayarlar | **Sonnet 5.5** | |
+| 3.9 | staging/prod + credential | **Opus 5.5** 🔒 | 👤 secret girişi |
+| 3.10 | QA (güvenlik) | **Sonnet 5.5** | |
+| 3.11 | güvenlik insan review | **Haiku 5.5** (hazırlık) | 👤 imza |
+| 3.12 | faz çıkışı | **Haiku 5.5** | 👤 onay |
+
+**Sıralı yürütme:** 3.1 → 3.2 → 3.4 → 3.3 → 3.5 → 3.6 → 3.7 → 3.8 → 3.9 → 3.10 → 3.11 → 3.12 · *(admin UI serisi aynı dizine yazar → kesin sıralı)*
+**Senin görevlerin (👤):** 3.1 Access+OAuth kurulumu · 3.4 key politikası onayı · 3.7 GSC/GA4/Meta OAuth · 3.9 Cloudflare secret girişleri · 3.11 güvenlik imzası · 3.12 faz çıkışı.
+
+---
+
 ## Step 3.1 — Cloudflare Access + Admin Kimlik Doğrulama Katmanı 🔒
 | Alan | Değer |
 | :--- | :--- |

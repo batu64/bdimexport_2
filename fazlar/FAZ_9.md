@@ -10,6 +10,25 @@
 
 ---
 
+## 🎛️ Claude Code Yürütme Katmanı (FAZ 9 — sürekli operasyon)
+> **v2.0:** Eski "Ajan / Model" satırları yalnızca **scope kilidi**. **Yürütücü = Claude Code**; model tablosu aşağıdadır (AGENTS.md §7). Bu faz "bitmez", aylık ritimle döner. Sıralı kurulum + kalıcı rutin.
+
+| Adım | İş | Model | Not |
+| :-- | :-- | :-- | :-- |
+| 9.1 | Maliyet optimizasyon motoru | **Sonnet 5.5** | analiz |
+| 9.2 | Katman sınır izleme | **Sonnet 5.5** | 👤 geçiş kararı |
+| 9.3 | Ölçekleme tetikleyicileri | **Sonnet 5.5** | 👤 uygulama |
+| 9.4 | İçerik kalite denetimi | **Haiku 5.5** | |
+| 9.5 | Güvenlik/uyum periyodik denetim | QA **Haiku 5.5** · düzeltme **Opus 5.5** 🔒 | 👤 revizyon |
+| 9.6 | Agent/kural dosyaları evrimi | **Sonnet 5.5** | 👤 PR onayı |
+| 9.7 | Aylık ritim | **Haiku 5.5** | |
+| 9.8 | Yıllık değerlendirme | **Sonnet 5.5** | 👤 strateji |
+
+**Sıralı yürütme (ilk kurulum):** 9.1 → 9.2 → 9.3 → 9.4 → 9.5 → 9.6 → 9.7 → 9.8 → sonra aylık ritim.
+**Senin görevlerin (👤):** tetikleyici eşik kararları (9.2/9.3) · aylık Access/key revizyonu onayı (9.5) · evrim PR onayları (9.6) · yıllık strateji kararı (9.8).
+
+---
+
 ## Step 9.1 — Maliyet Optimizasyonu Motorunun Kurulumu (ledger → aksiyon)
 | Alan | Değer |
 | :--- | :--- |

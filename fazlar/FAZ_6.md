@@ -9,6 +9,25 @@
 
 ---
 
+## 🎛️ Claude Code Yürütme Katmanı (FAZ 6)
+> **v2.0:** Eski "Ajan / Model" satırları yalnızca **scope kilidi**. **Yürütücü = Claude Code**; model tablosu aşağıdadır (AGENTS.md §7). Sıralı çalış.
+
+| Adım | İş | Model | Not |
+| :-- | :-- | :-- | :-- |
+| 6.1 | Dönüşüm atıf modeli (JOIN/SQL) | **Sonnet 5.5** | |
+| 6.2 | Dashboard tamamlama | **Sonnet 5.5** | salt-okunur |
+| 6.3 | Keyword motoru | kod **Sonnet 5.5** · runtime analiz **Gemini** 🟡 | ayar en sonda |
+| 6.4 | Haftalık rapor üretimi | **Haiku 5.5** | |
+| 6.5 | Meta API entegrasyonu | **Sonnet 5.5** | |
+| 6.6 | Sistem sağlık panosu | **Sonnet 5.5** | |
+| 6.7 | QA | **Haiku 5.5** | |
+| 6.8 | faz çıkışı | **Haiku 5.5** | 👤 onay + tercihler |
+
+**Sıralı yürütme:** 6.1 → 6.2 → 6.3 → 6.5 → 6.6 → 6.4 → 6.7 → 6.8
+**Senin görevlerin (👤):** 6.8 faz çıkışı + reklam bütçesi/haftalık rapor tercihleri. · *6.3 runtime keyword analizi Gemini — ayar en sonda, şimdilik stub.*
+
+---
+
 ## Step 6.1 — Dönüşüm Atıf Modeli (source_page → lead eşlemesi)
 | Alan | Değer |
 | :--- | :--- |

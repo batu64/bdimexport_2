@@ -2,6 +2,8 @@
 **Sürüm:** 1.1 | **Tarih:** 08.10.2026 | **Proje:** bdimexport.com
 **Amaç:** Proje.md §9 (4 hafta) + mimari.md §10 (Faz 0–7) planlarını orchestrator'ın kuyruğa yazacağı somut görevlere bağlar. Bu dosya = backlog kaynağı (ORCHESTRATION.md §2 tablo 1. satır). Orchestrator her faz başında ilgili bölümü görev dosyalarına böler.
 
+> **⚠️ v2.0:** Yürütücü = **Claude Code** (çok-ajanlı/çok-sağlayıcılı model kaldırıldı). Her faz/adımın modeli **AGENTS.md §7** + her FAZ dosyasının başındaki "Claude Code Yürütme Katmanı" tablosundadır. Bu dosyadaki "Model" sütunları (GLM/Qwen/Gemini/Sonnet…) **tarihseldir** — geçerli değil.
+>
 > **v1.1:** Faz 0–7 burada özet olarak kalır; **yetkili adım detayı `fazlar/FAZ_0.md … FAZ_9.md` dosyalarıdır** (10 faz: 0–7 + Faz 8 Lansman/Partner Büyütme + Faz 9 Ölçekleme/Sürekli Optimizasyon). Çelişki halinde FAZ dosyası kazanır; bu dosya yalnızca üst plan ve metrik kaynağıdır. Her faz sonu İnsan Onay Kapısı: FAZ dosyasındaki çıkış kriterleri qa-agent raporu + kullanıcının "devam et" talimatı olmadan sonraki faz kuyruğa yazılmaz.
 
 > **Zamanlamayı değil sırayı tanımlar:** Proje.md 4 haftalık tempo hedefidir; kuyruk akışı ORCHESTRATION.md §4.3 sıralama kurallarıyla (depends_on + kilit matrisi) yönetilir.

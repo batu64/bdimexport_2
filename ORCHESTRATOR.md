@@ -1,7 +1,9 @@
-# ORKESTRATÖR AGENT — GLM 5.3
-**Proje:** bdimexport.com | **Sürüm:** 1.0 | **Tarih:** 08.10.2026
-**Çalışma Modeli:** GLM 5.3 (Orkestratör) — mimari.md'deki "Orchestrator" rolünün çok modelli güncel hali
-**Kural:** Bu dosya repo kökünde `ORCHESTRATOR.md` olarak durur; tüm agent tanım dosyaları ve CI bu dosyayı okur. Çelişki durumunda bu dosya > ORCHESTRATION.md > diğer .md.
+# ORKESTRATÖR — Claude Code Yürütme Rejimi
+**Proje:** bdimexport.com | **Sürüm:** 2.0 | **Tarih:** 11.10.2026
+**Çalışma Modeli:** Tek yürütücü **Claude Code**; model seçimi adım adım `AGENTS.md` §7'de sabittir.
+**Kural:** Bu dosya süreç kurallarını tanımlar. **Model/adım ataması çelişirse `AGENTS.md` kazanır.** Diğer süreç çelişkilerinde: bu dosya > ORCHESTRATION.md > diğer .md.
+
+> **v2.0 notu:** Çok-ajanlı / çok-sağlayıcılı (GLM/Qwen/Gemini) orkestrasyon kaldırıldı. "Orchestrator/agent" artık **ayrı model değil**, Claude Code'un üstlendiği **roller ve scope kilitleridir** (AGENTS.md §4). Eş zamanlı worktree yürütmesi yoktur → her şey **sıralıdır** (AGENTS.md §5). Runtime AI yalnızca Gemini'dir ve ayarı en sonadır (AGENTS.md §3, §9).
 
 ---
 
@@ -22,32 +24,22 @@ Orkestratör **kod yazmaz, içerik üretmez**. Yalnızca:
 
 ## 2. AGENT KADROSU VE MODEL EKONOMİSİ
 
-### 2.1. Model Katmanları
+### 2.1. Model Katmanları (Claude Code paleti — AGENTS.md §1 ile aynı)
 
-| Katman | Modeller | Birim Maliyet | Kullanım Alanı |
+| Katman | Model | Birim Maliyet | Kullanım Alanı |
 | :--- | :--- | :--- | :--- |
-| **T0 — Ücretsiz/En ucuz** | Gemini Flash-Lite, Workers AI, Gemini Flash (küçük varyant), Qwen küçük varyant | ~$0 | RSS özetleme, etiketleme, format/lint, basit çeviri taslağı, dosya listeleme, ölü link kontrolü |
-| **T1 — Ucuz/Verimli** | **GLM 5.3**, Qwen 3.8, Gemini Flash | $ | Orkestrasyon, standart sayfa kodlama, SEO metin, uzun çeviri, test yazımı |
-| **T2 — Orta** | Claude Sonnet 5.5, Gemini Argon 4 | $$ | Komponent/sayfa kodlama (kalite kritik), çeviri final pass |
-| **T3 — Pahalı/Nadir** | Claude Opus 5 | $$$ | Sadece: tasarım sistemi, mimari karar, karmaşık debug, güvenlik kritik kod. **Orkestratör onayı olmadan çağrılamaz.** |
+| **T0 — En ucuz** | **Haiku 5.5** (`claude-haiku-5-5`) | $ | Mekanik iş, şablon sayfa, deterministik enjeksiyon (sitemap/hreflang/llms), QA koşumu, rapor derleme |
+| **T1 — Güçlü kod + kalite içerik** | **Sonnet 5.5** (`claude-sonnet-5-5`) | $$ | Komponent, form, Workers/D1/cron/API, i18n, analitik, orta–yüksek karmaşık kod, uzun/hassas içerik |
+| **T2 — En iyi** | **Opus 5.5** (`claude-opus-5-5`) | $$$ | Tasarım sistemi, mimari, API sözleşmesi, **auth/admin/ödeme/KVKK-GDPR**, hukuki metin, karmaşık debug. Güvenlik kilidi — pazarlıksız |
+| **Runtime AI** | **Gemini (yeni modeller)** | — | Yalnızca uygulamanın çalışma-zamanı AI'ı (içerik fabrikası, RSS özet, keyword, görsel). Ayar en sonda (AGENTS.md §3) |
 
-### 2.2. Uzman Agentlar (agent → model eşlemesi)
+### 2.2. Roller = Scope Kilitleri (yürütücü değil, sınır)
 
-| Agent ID | Alan | Birincil Model | Yedek Model | Skill Dosyası |
-| :--- | :--- | :--- | :--- | :--- |
-| `orchestrator` | Görev dağıtımı, karar, review | **GLM 5.3** | Gemini Flash | bu dosya |
-| `zh-agent` | /zh içerik, Baidu SEO, WeChat UX | **Qwen 3.8** (zh-native güçlü) | Gemini Argon 4 | agents/zh-agent.md |
-| `tr-import-agent` | /ithalat sayfaları | GLM 5.3 | Claude Sonnet 5.5 | agents/tr-import-agent.md |
-| `tr-export-agent` | /ihracat, destek hunisi, form UX | GLM 5.3 | Claude Sonnet 5.5 | agents/tr-export-agent.md |
-| `en-expert-agent` | /en yapı, ürün/industri sayfaları | Claude Sonnet 5.5 (kompleks kod) + Gemini Flash (içerik) | GLM 5.3 | agents/en-expert-agent.md |
-| `en-l10n-agent` | /en/ru fr nl es ar yerelleştirme | **Qwen 3.8** (ru/ar güçlü) | Gemini Flash (fr/nl/es) | agents/en-l10n-agent.md |
-| `de-agent` | `/de` DACH, Impressum/DSGVO | Claude Sonnet 5.5 | Qwen 3.8 (de) | agents/de-agent.md |
-| `seo-geo-agent` | SEO/GEO metin, schema, llms.txt | Gemini Flash (üretim) + GLM 5.3 (kontrol) | — | agents/seo-geo-agent.md |
-| `rss-trends-agent` | RSS ingestion, TTL, Trends | Gemini Flash-Lite / Workers AI | Gemini Flash | agents/rss-trends-agent.md |
-| `admin-agent` | Admin panel (Access korumalı), audit log | Claude Sonnet 5.5 + insan review | Gemini Argon 4 (salt-okunur dashboard) | agents/admin-agent.md |
-| `qa-agent` | Test, build, lint, link kontrolü | GLM 5.3 | Gemini Flash | agents/qa-agent.md |
+Agent'lar artık ayrı model/süreç değil; Claude Code'un adım başına üstlendiği **scope kilitleridir**. Tam tablo (rol → yazılabilir dizin → varsayılan model) **AGENTS.md §4**'tedir. Özet kural:
 
-**Dil-model eşleşmesi kuralı:** zh → Qwen 3.8 öncelikli (Çince kalite/maliyet üstünlüğü). ar/ru → Qwen 3.8. de/tr/en → GLM 5.3. Final kalite pass'i: /de → Claude Sonnet 5.5, diğer diller → GLM 5.3 (yalnızca yayın öncesi, §6 kalite kapısı). Tam kayıt defteri: `AGENTS.md` §2.
+- `fe`/`en-expert`/`de` → Sonnet 5.5 (basit: Haiku) · `tr-import`/`tr-export` → Haiku 5.5 (uzun rehber: Sonnet) · `zh`/`en-l10n` → Haiku 5.5 (ucuz) / Sonnet 5.5 (kalite) · `admin`/`api` güvenlik kısmı → **Opus 5.5 + insan review** · `orchestrator`/`qa` → Haiku 5.5 · `image` → Gemini görsel (en sonda).
+- **Tek scope / tek commit:** Bir adım yalnızca kendi rolünün dizinlerine yazar; başka rolün adımını aynı anda yapmaz.
+- İçerik: kısa/şablon → Haiku 5.5; uzun/hassas (SEO makale, çok dilli prose) → Sonnet 5.5; de hukuk metni her zaman Opus 5.5.
 
 ---
 
@@ -89,22 +81,17 @@ score = 0
 ### 4.2. Yönlendirme Tablosu
 
 ```
-IF task.type == "mekanik"                        → T0 (Gemini Flash-Lite / Workers AI)
-IF task.type == "cikiri"  AND score <= 2          → GLM 5.3  (tek modelle bitir, model değiştirme maliyeti yok)
-IF task.type == "cikiri"  AND score in [3..4]     → Qwen 3.8 / Gemini Flash
-IF task.type == "cikiri"  AND score in [5..6]     → Gemini Argon 4 → başarısızsa GLM 5.3
-IF task.type == "cikiri"  AND score in [7..10]    → Claude Sonnet 5.5 → hâlâ başarısızsa insan
-IF task.type == "tasarim" (hero, tasarım sistemi) → Claude Opus 5 (sınırlı: sprintte max 3 çağrı) + Qwen 3.8 Max (uygulama brief'i)
-IF task.type == "image"                           → ChatGPT Image (final) / Ideogram (yazılı) / FLUX (taslak) — AGENTS.md §5
-IF task.type == "ceviri"  AND lang in [zh]        → Qwen 3.8 → GLM 5.3 kontrol
-IF task.type == "ceviri"  AND lang in [ru, ar]    → Qwen 3.8 → GLM 5.3 kontrol
-IF task.type == "ceviri"  AND lang in [de, tr, en]→ Gemini Flash (taslak) → Claude Sonnet 5.5 (final pass, sadece yayın öncesi)
-IF task.type == "seo-icerik"                      → Gemini Flash üretir → GLM 5.3 schema/kalite kontrol eder
-IF task.type == "rss/trends"                      → T0, insan müdahalesi yok (admin onayı zaten akışta var)
-IF task.type == "review"                          → GLM 5.3 (her PR); score >= 7 ise + Claude Sonnet 5.5 ikinci göz
+IF iş == mekanik / şablon / deterministik            → Haiku 5.5
+IF iş == standart kod + orta içerik (score 3–6)      → Sonnet 5.5
+IF iş == karmaşık kod / state / debug (score 7–8)    → Sonnet 5.5 (çok ağırsa Opus 5.5) → hâlâ olmazsa insan
+IF iş == tasarım sistemi / hero / mimari karar       → Opus 5.5
+IF iş == auth / admin / ödeme / KVKK-GDPR / hukuki    → Opus 5.5 + ZORUNLU insan review  (değişmez)
+IF iş == içerik: kısa/şablon → Haiku 5.5 · uzun/hassas (SEO/çok dilli) → Sonnet 5.5
+IF iş == runtime AI (içerik fabrikası/RSS/keyword/görsel) → Gemini (yeni modeller) — kod Claude yazar, çağrı Gemini, ayar en sonda
+IF iş == review / QA                                  → Haiku 5.5 (güvenlik QA: Sonnet 5.5)
 ```
 
-> **Model adları ve fallback zincirleri:** `AGENTS.md` §1 Model Kayıt Defteri tek doğruluk kaynağıdır; bu tablo özet niteliğindedir, çelişki halinde AGENTS.md kazanır (kod ataması) / ORCHESTRATOR.md kazanır (süreç kuralları).
+> **Tek doğruluk kaynağı:** Her adımın modeli `AGENTS.md` §7 "Tam Model Haritası"ndadır; bu blok yalnızca yeni/ara görevler için karar kuralıdır. Çelişki halinde AGENTS.md kazanır.
 
 ### 4.3. Katı Maliyet Kuralları
 
@@ -174,7 +161,7 @@ Başarısızlık sınıfları:
 ## 9. GÜVENLİK
 
 - API anahtarları prompt'a ASLA girmez; agent CLI'lara env olarak verilir.
-- Admin panel, D1 migration, auth kodu → **yalnızca** Claude Sonnet 5.5/Opus 5 ve insan review. Bu dosyalar T0/T1 modellere devredilemez (satır 4.2 tablosu bu konuda değiştirilemez).
+- Admin panel, D1 migration, auth kodu → **yalnızca Claude Opus 5.5 + insan review**. Bu dosyalar Haiku/Sonnet'e devredilemez (§4.2 güvenlik satırı değiştirilemez).
 - Üretilen her PR otomatik secret-scan (gitleaks) geçer; geçmeyen merge edilmez.
 - Prompt injection: agent'a gelen dış içerik (RSS, web) görev prompt'una ham gömülmez; önce `rss-trends-agent` özetler + yönerge taramasından geçirilir.
 
