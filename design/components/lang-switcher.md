@@ -1,5 +1,5 @@
 # lang-switcher — Komponent Brief
-**Kaynak:** design-tokens.md v1.0 (UX Karar 2) · lib/hreflang.ts · **Kod:** fe-agent (Qwen 3.8)
+**Kaynak:** design-tokens.md v2.0 (Varyant A onaylı) · `_derived-tokens.md` (UX Karar 2) · lib/hreflang.ts · **Kod:** fe-agent (Sonnet 5.5)
 
 ## Props
 ```ts
@@ -16,8 +16,10 @@ Button (globe SVG + mevcut dil etiketi) + listbox: dil adları **kendi dilinde**
 
 ## Davranış
 - Seçim → `href`'e navigation (mevcut sayfanın karşılığı; karşılık yoksa alternate set'te olmaz → listede görünmez — 404-hreflang yasağı UI'da da geçerli)
-- 360: navbar sheet menüsünün en altında statik liste (dropdown dar ekranda sığmaz)
-- 768+: dropdown (nav sağ uç)
+- **360:** navbar sheet menüsünün en altında statik liste (dropdown dar ekranda sığmaz); satır yüksekliği ≥ `touchMin`
+- **768:** hamburger menü içinde statik liste (navbar.md ile aynı)
+- **1280:** dropdown (nav sağ uç); EN varyantları alt bölümde
+- **1920:** 1280 ile aynı; `container` sınırı içinde
 
 ## Erişilebilirlik [kritik]
 - Button `aria-haspopup="listbox"` + `aria-expanded`; listbox `role="listbox"` + `aria-activedescendant`

@@ -1,5 +1,5 @@
 # partner-grid — Komponent Brief
-**Kaynak:** design-tokens.md v1.0 · card.md (partner variant) · **Kod:** fe-agent (Qwen 3.8) · FAZ_1 Step 1.7 — 3 kez yazma yasağı: tr/en/de AYNI bileşeni kullanır
+**Kaynak:** design-tokens.md v2.0 (Varyant A onaylı) · `_derived-tokens.md` · card.md (partner variant) · **Kod:** fe-agent (Haiku 5.5 — AGENTS.md §7 adım 1.7) · FAZ_1 Step 1.7 — 3 kez yazma yasağı: tr/en/de AYNI bileşeni kullanır
 
 ## Props
 ```ts
@@ -19,11 +19,13 @@ interface PartnerGridProps {
 grid-3 / grid-4 (1920) — card.md partner variant'ı kullanır. Ürün sayfası kullanımında: yatay şerit (scrollable, 360) / flex (1280+), limit 3–5, başlık: locale bazlı "Verified Turkish Partners" şeridi (hero güven bandıyla aynı metin kaynağı)
 
 ## Responsive (4 BP)
-360: 1 kolon / yatay scroll şerit modu · 768: 2 · 1280: 3 · 1920: 4
+360: 1 kolon / yatay scroll şerit modu · 768: 2 · 1280: 3 · 1920: 4 (`container` sınırı içinde; kolon aralığı `space.s6`, 360'ta `space.s4`)
 
 ## Erişilebilirlik
 - `<section aria-labelledby>`; liste `<ul>`; her kart card.md a11y kurallarını miras alır
 - Yükleme durumu: skeleton (aria-busy); hata: sessiz boşluk değil locale bazlı hata metni
+- Yatay scroll şeridi (360): `tabindex=0` + `role="list"`, klavye ok tuşlarıyla kaydırılır; kart odak halkası `accent`
+- Boş durum metni `aria-live="polite"` bölgesinde; `muted` üstü `bg` 4.6:1 (AA)
 
 ## Notlar
 - Bu bileşen 3 yerde kullanılacak (tr ana, /en/suppliers, /de/lieferanten) — locale text'leri dictionary'den, bileşen tek

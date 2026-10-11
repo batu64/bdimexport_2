@@ -1,5 +1,5 @@
 # cta — Komponent Brief
-**Kaynak:** design-tokens.md v1.0 (UX Karar 3) · CONTENT_STYLE §5 (metin kuralı) · **Kod:** fe-agent (Qwen 3.8)
+**Kaynak:** design-tokens.md v2.0 (Varyant A onaylı) · `_derived-tokens.md` (UX Karar 3) · CONTENT_STYLE §5 (metin kuralı) · **Kod:** fe-agent (Sonnet 5.5)
 
 ## Props
 ```ts
@@ -20,15 +20,25 @@ Fiil + SLA + bedel netliği. Şablonlar (dictionary, locale bazlı):
 ## Stiller
 | Variant | Görünüm |
 | :--- | :--- |
-| primary | `highlight` dolgu + `primary` metin, radius 8, px 24 py 12, weight 600 — **sayfa başına 1** |
-| secondary | kontur 1.5px `primary` (açık bg) / `bg` (koyu bg), şeffaf dolgu, hover: dolgu %8 |
+| primary | `highlight` dolgu + `primary` metin, `radius`, px `space.s6` py `space.s3`, weight 600 — **sayfa başına 1** |
+| secondary | kontur `space.s1`/2 `primary` (açık bg) / `bg` (koyu bg), şeffaf dolgu, hover: dolgu %8 |
 | inline | text link `accent` + "→", alt çizgi hover — içerik içinde |
 
-Responsive: 360 tam genişlik; 768+ auto genişlik. Basınç alanı min 44px.
+## Responsive (4 BP)
+| BP | Davranış |
+| :--- | :--- |
+| 360 | tam genişlik, stacked (primary üstte); yükseklik ≥ `touchMin` |
+| 768 | auto genişlik; primary + secondary yan yana, aralık `space.s4` |
+| 1280 | auto genişlik; hero ve içerik sonu konumlarında aynı boyut; inline varyant satır içi |
+| 1920 | 1280 ile aynı (büyütme yok); `container` sınırı içinde |
+
+Basınç alanı min `touchMin`.
 
 ## Erişilebilirlik
 - `<Link>` semantik; hedef form sayfası; dış rota yok
-- Kontrast AA (highlight+primary çifti tokens'ta doğrulanmış)
+- Kontrast AA: `primary` metin üstü `highlight` 6.4:1; `accent` inline link üstü `bg` 4.7:1 (design-tokens §1.4)
+- Odak görünür (`accent` outline); `prefers-reduced-motion`'da hover geçişi yok
+- Gezinti yapan öğe `<a>`/`<Link>`; `role="button"` kullanılmaz
 - Tekrarlı CTA'lar sayfada farklı aria-label alabilir (bağlam: "…- olive oil sayfasında")
 
 ## Notlar

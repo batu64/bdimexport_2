@@ -1,5 +1,5 @@
 # footer — Komponent Brief
-**Kaynak:** design-tokens.md v1.0 · **Kod:** fe-agent (Qwen 3.8)
+**Kaynak:** design-tokens.md v2.0 (Varyant A onaylı) · `_derived-tokens.md` · **Kod:** fe-agent (Sonnet 5.5)
 
 ## Props
 ```ts
@@ -17,14 +17,15 @@ interface FooterProps {
 Alt bant: © yıl (dinamik) + Bdimexport
 
 ## Renk/Stil
-bg `primary`, metin `bg`/70, başlıklar `bg` 14/600 uppercase, link hover `highlight`; py 48px (mobil 32)
+bg `primary`, metin `onDarkMuted`, başlıklar `bg` `fontSize.sm`/600 uppercase, link hover `highlight`; py `space.s12` (mobil `space.s8`)
 
 ## Responsive (4 BP)
-360: tek kolon akordeon (details/summary — JS'siz) · 768: 2 kolon · 1280: 4 kolon · 1920: container sınırlı
+360: tek kolon akordeon (details/summary — JS'siz) · 768: 2 kolon (akordeon kalkar) · 1280: 4 kolon · 1920: `container` sınırlı, 1280 düzeniyle aynı
 
 ## Erişilebilirlik
 - `<footer role="contentinfo">`; nav'lar aria-label'lı; akordeon details/summary native (keyboard bedava)
-- Dış linkler (kanal): rel="noopener"; ikon linkleri aria-label'lı
+- Dış linkler (kanal): rel="noopener"; ikon linkleri aria-label'lı, min `touchMin`
+- Kontrast: `onDarkMuted` ve `bg` metin üstü `primary` AA; link odağı `highlight` outline (koyu zeminde `accent` yetersiz)
 
 ## Notlar
 - Dil linkleri hreflang setiyle SENKRON — sayfada olmayan dil footer'da da olmaz (404-hreflang yasağı mantığı)
