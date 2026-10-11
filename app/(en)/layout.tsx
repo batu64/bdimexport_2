@@ -1,5 +1,6 @@
 // EN global hub placeholder — FAZ 2'de tam içerik (Proje.md segment EN)
 import type { Metadata } from "next";
+import { IntlProvider } from "@/lib/intl";
 
 export const metadata: Metadata = {
   title: "B2B Sourcing, Inspection & Manufacturing in Turkey",
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function EnLayout({ children }: { children: React.ReactNode }) {
-  return <div lang="en">{children}</div>;
+  return (
+    <IntlProvider locale="en">
+      <div lang="en">{children}</div>
+    </IntlProvider>
+  );
 }
