@@ -2,10 +2,12 @@
 import fs from "fs";
 import path from "path";
 import type { Metadata } from "next";
+import { pageMainStyle, trAlternates } from "../_lib/content";
 
 export const metadata: Metadata = {
   title: "KVKK Aydınlatma Metni ve Açık Rıza — v1",
   description: "Bdimexport kişisel verilerin işlenmesi ve logo yayın rızası metni (v1).",
+  alternates: trAlternates("/kvkk-riza"),
 };
 
 function renderSimple(md: string): string {
@@ -25,7 +27,7 @@ export default function KvkkPage() {
   const file = path.join(process.cwd(), "content", "tr", "legal", "kvkk-riza-v1.md");
   const md = fs.readFileSync(file, "utf-8");
   return (
-    <main style={{ maxWidth: 720, margin: "0 auto", padding: "2rem 1rem" }}>
+    <main style={pageMainStyle()}>
       <div dangerouslySetInnerHTML={{ __html: renderSimple(md) }} />
     </main>
   );

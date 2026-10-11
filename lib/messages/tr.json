@@ -1,3 +1,33 @@
 {
-  "site": { "name": "Bdimexport" }
+  "site": {
+    "name": "Bdimexport"
+  },
+  "content": {
+    "home": "Ana Sayfa",
+    "ithalat": "İthalat",
+    "ihracat": "İhracat",
+    "guides": "Rehberler",
+    "notFound": "Sayfa bulunamadı",
+    "applyCta": "Ücretsiz İhracat Hızlandırma Başvurusu — 48 saatte ön değerlendirme"
+  },
+  "indexes": {
+    "ithalat": {
+      "title": "Çin'den İthalat Danışmanlığı | Bdimexport",
+      "h1": "Çin'den İthalat Danışmanlığı",
+      "desc": "Çin'den ithalatta tedarik, fabrika denetimi, lojistik ve gümrük hizmetlerini tek yerden yönetin. Hizmetleri ve rehberleri inceleyin.",
+      "intro": "Tedarikçi bulmaktan gümrük beyanına kadar ithalat sürecinin her adımı için hizmet ve rehberlerimiz:"
+    },
+    "ihracat": {
+      "title": "İhracat Danışmanlığı ve Ücretsiz Program | Bdimexport",
+      "h1": "İhracat Danışmanlığı",
+      "desc": "E-ihracat ve B2B pazarlama danışmanlığı ile üreticiler için Ücretsiz İhracat Hızlandırma Programı. Hizmetleri inceleyin, başvurunuzu bırakın.",
+      "intro": "İhracata başlayan veya büyüten üreticiler için hizmetlerimiz ve ücretsiz program:"
+    },
+    "rehberler": {
+      "title": "Çin İthalat Rehberleri | Ürün Bazlı Süreç ve Risk Rehberi",
+      "h1": "Çin İthalat Rehberleri",
+      "desc": "Tekstil, elektronik, makine parçaları, ev ve yaşam, ambalaj ve mobilya ithalatı için adım adım süreç, maliyet ve risk rehberleri.",
+      "intro": "Ürün grubuna göre hazırlanmış, adım adım ithalat rehberleri:"
+    }
+  }
 }
