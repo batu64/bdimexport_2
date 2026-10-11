@@ -1,0 +1,50 @@
+name = "bdimexport-api"
+main = "src/index.ts"
+compatibility_date = "2026-01-01"
+
+# FAZ_3 3.4 — staging/production ayrımı 3.9'da tamamlanır. Gerçek ID'ler İNSAN tarafından girilir
+# (wrangler d1 create / kv namespace create / r2 bucket create). Secret'lar KODDA YOK:
+#   wrangler secret put TURNSTILE_SECRET --env staging
+# Migration: yalnızca ileri yönlü (db/migrations); önce --local, sonra staging.
+
+[vars]
+ALLOWED_ORIGINS = "http://localhost:3000"
+TURNSTILE_HOSTNAMES = "localhost"
+KVKK_VERSIONS = "v1 (47ac2ef0a5b43264)"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bdimexport-db"
+database_id = "local-dev"
+migrations_dir = "../../db/migrations"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "bdimexport-media"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "local-dev"
+
+# ---- staging ----
+[env.staging]
+name = "bdimexport-api-staging"
+
+[env.staging.vars]
+ALLOWED_ORIGINS = "https://staging.bdimexport.com"
+TURNSTILE_HOSTNAMES = "staging.bdimexport.com"
+KVKK_VERSIONS = "v1 (47ac2ef0a5b43264)"
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "bdimexport-db-staging"
+database_id = "REPLACE_ME_STAGING_D1_ID"      # İNSAN (3.9)
+migrations_dir = "../../db/migrations"
+
+[[env.staging.r2_buckets]]
+binding = "MEDIA"
+bucket_name = "bdimexport-media-staging"
+
+[[env.staging.kv_namespaces]]
+binding = "CACHE"
+id = "REPLACE_ME_STAGING_KV_ID"               # İNSAN (3.9)
