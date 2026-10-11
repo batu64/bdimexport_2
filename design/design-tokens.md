@@ -1,150 +1,176 @@
-# Bdimexport Design Tokens — v2.0 TASLAK (Step 0.4 — 3 palet varyantı)
-**Durum:** 🟡 TASLAK — **İNSAN SEÇİMİ BEKLİYOR (Step 0.5)**. Aşağıdaki 3 varyanttan biri seçilir; seçilene kadar `lib/ui/tokens.ts` ve `prompts/visual-brand.md` **dokunulmaz** (ikisi şu an Varyant A hex'leriyle birebir).
-**Scope / model:** `design/**` · Sonnet 5.5 (AGENTS.md §7, adım 0.4) · **Sonraki:** 0.5 — Opus 5.5 seçilen varyantı nihailer + hero copy.
-**Önceki sürüm:** v1.0 (Varyant A onaylı) bu taslakla **geçersiz kılındı**; git geçmişinde `bbb8578`. Varyant A = v1.0 paletiyle aynı → geri dönüş maliyeti sıfır.
-
-> **Ortak kural (3 varyant için de geçerli):** yapı, tipografi, spacing, breakpoint ve komponent envanteri **varyanttan bağımsız**dır (§2–§6). Varyantlar yalnızca **renk (§1) ve ton** farkıdır. Komponentlerde hardcoded hex/px yasak; yalnızca token.
+# Bdimexport Design Tokens — v2.1 NİHAİ (Step 0.5)
+**Durum:** ✅ ONAYLI — Palet: **Varyant A "Ticaret Güveni"** (👤 insan seçimi, 11.10.2026). Bu dosya **tüm projenin görsel kalıbıdır**; değişiklik yalnızca insan onaylı yeni sürümle.
+**Scope / model:** `design/**` · Opus 5.5 (AGENTS.md §7, adım 0.5) · **Önceki:** v2.0 taslak (`2e0c0be`, 3 varyant) → bu sürüm. Elenen B/C varyantları git geçmişinde (`2e0c0be` §1.2–§1.3); bu dosyada arşivlenmez.
+**Kod karşılığı:** `lib/ui/tokens.ts` + CSS değişkenleri `--c-<rol>` (mevcut adlandırma). Komponentlerde hardcoded hex/px **yasak**; yalnızca token.
 
 ---
 
-## 0. Üç Seçeneğin Özeti (karar tablosu)
+## 0. Tokens Diff (v2.0 taslak → v2.1 nihai)
 
-| | **A — Ticaret Güveni** | **B — Endüstriyel** | **C — Anadolu Sıcak** |
-| :-- | :-- | :-- | :-- |
-| Karakter | Kurumsal, dengeli, sıcak-profesyonel | Soğuk, teknik, SaaS/fabrika hissi | Sıcak, el yapımı, kökenli (Türk üretici hikâyesi) |
-| Ana renk | Lacivert `#1A2B4A` | Koyu slate `#0F172A` | Koyu kahve `#3E2723` |
-| Accent | Teal `#0E7C7B` | Mavi `#2563EB` | Kiremit kırmızı `#C0392B` |
-| Highlight (CTA) | Amber `#E8A13D` | Turuncu-amber `#F59E0B` | Altın `#D4A017` |
-| Zemin | Kırık beyaz `#FAF8F5` | Saf beyaz `#FFFFFF` | Krem `#FDF6EC` |
-| En güçlü olduğu yer | TR/EN/DE üçünde nötr; /de güveni | EN global B2B alıcı, admin/panel | TR üretici + flywheel hikâyesi |
-| Risk | Üçü içinde en "ortalama" | Genel/jenerik SaaS görünüm riski; Çin kırmızısıyla bağı zayıf | /zh kırmızı-altın ile **yakın akraba** → /zh ayrışması düşük; /de'de sıcaklık fazla |
-| Görsel uyum | `visual-brand.md` §1 ile **birebir** (değişiklik yok) | `visual-brand.md` §1 hex'leri değişir → image-agent prefix güncelleme + insan onayı | Aynı: prefix güncelleme gerekir |
-| Kod etkisi | **Yok** (`lib/ui/tokens.ts` zaten A) | `tokens.ts` 6 değer + admin/varyant CSS yeniden doğrulanır | `tokens.ts` 6 değer + aynı |
-| Tavsiye | ✅ **Varsayılan öneri** (en düşük maliyet, 3 dilde nötr) | Global EN odağı ağır basarsa | TR üretici toplama kampanyası ağır basarsa |
-
----
-
-## 1. Renk Paletleri
-
-### 1.1 Varyant A — "Ticaret Güveni"  *(v1.0 onaylı palet; kodda aktif)*
-| Rol | Hex | Kullanım |
-| :-- | :-- | :-- |
-| primary | `#1A2B4A` | Header, başlıklar, secondary CTA kontur/metin |
-| accent | `#0E7C7B` | Linkler, ikonlar, vurgu |
-| highlight | `#E8A13D` | Primary CTA dolgu (sayfa başına max 1), rozetler |
-| bg | `#FAF8F5` | Sayfa zemini |
-| surface | `#FFFFFF` | Kart, form alanı |
-| border | `#E5E1DA` | Ayırıcı, input kenarlık |
-| ink / muted | `#1F2937` / `#6B7280` | Gövde / ikincil metin |
-| success / warning / danger | `#2E7D32` / `#C77700` / `#C62828` | Form durumları |
-
-### 1.2 Varyant B — "Endüstriyel"
-| Rol | Hex | Kullanım |
-| :-- | :-- | :-- |
-| primary | `#0F172A` | Header, başlıklar |
-| accent | `#2563EB` | Linkler, ikonlar, vurgu |
-| highlight | `#F59E0B` | Primary CTA dolgu (sayfa başına max 1), rozetler |
-| bg | `#FFFFFF` | Sayfa zemini |
-| surface | `#F1F5F9` | Kart, bölüm zemini |
-| border | `#CBD5E1` | Ayırıcı, input kenarlık |
-| ink / muted | `#1E293B` / `#64748B` | Gövde / ikincil metin |
-| success / warning / danger | `#15803D` / `#B45309` / `#B91C1C` | Form durumları |
-
-### 1.3 Varyant C — "Anadolu Sıcak"
-| Rol | Hex | Kullanım |
-| :-- | :-- | :-- |
-| primary | `#3E2723` | Header, başlıklar |
-| accent | `#C0392B` | Linkler, ikonlar, vurgu |
-| highlight | `#D4A017` | Primary CTA dolgu (sayfa başına max 1), rozetler |
-| bg | `#FDF6EC` | Sayfa zemini |
-| surface | `#FFFFFF` | Kart, form alanı |
-| border | `#E8D9C3` | Ayırıcı, input kenarlık |
-| ink / muted | `#2B1B17` / `#7A6A62` | Gövde / ikincil metin |
-| success / warning / danger | `#2E7D32` / `#B26A00` / `#A61B1B` | Form durumları |
-
-### 1.4 Kontrast kanıtı (WCAG, hesaplanmış)
-| Çift | A | B | C | Eşik |
+| # | Değişiklik | Önce | Sonra | Kod etkisi |
 | :-- | :-- | :-- | :-- | :-- |
-| ink / bg | 13.8 | 14.6 | 15.4 | ≥ 4.5 ✅ |
-| primary / bg | 13.3 | 17.9 | 12.9 | ≥ 4.5 ✅ |
-| accent / bg (link) | 4.7 | 5.2 | 5.1 | ≥ 4.5 ✅ |
-| muted / bg | 4.6 | 4.8 | 4.8 | ≥ 4.5 ✅ |
-| primary metin / highlight dolgu (CTA) | 6.4 | 8.3 | 5.8 | ≥ 4.5 ✅ |
+| D1 | Palet seçimi | A / B / C | **A** onaylı; B, C kaldırıldı | Yok (`tokens.ts` zaten A) |
+| D2 | `warning` değeri | `#C77700` | **`#A15F00`** | `tokens.ts`'te yok → eklenecek (fe) |
+| D3 | Yeni: `accent-on-dark` | — | **`#5FD3CF`** | eklenecek (fe) |
+| D4 | Yeni: `border-strong` | — | **`#8A8478`** | eklenecek (fe) |
+| D5 | Yeni: `on-dark` / `on-dark-muted` | hero.md'de serbest "`bg`/80" | **`bg`** / **`bg` @ %80** adlandırıldı | eklenecek (fe) |
+| D6 | Yeni: `focus-ring` (açık/koyu) | — | **`accent`** / **`highlight`** | eklenecek (fe) |
+| D7 | Kural: CTA metni | örtük | **highlight üstünde metin daima `primary`; beyaz YASAK** | Mevcut kod uyumlu |
+| D8 | Kural: /zh kırmızısı | zemin belirtilmemiş | **yalnızca açık zemin**; koyu `primary` üstünde altın | — |
+| D9 | §1.2–§1.3, §2 B/C sütunları, §7 seçim planı, §8 karar | taslak | silindi (karar verildi) | — |
+
+Tipografi (§3), spacing/grid (§4), breakpoint (§5), komponent envanteri (§6) **taslaktan değişmeden** nihaileşti.
 
 ---
 
-## 2. Locale Varyantları (her palet için)
+## 1. Renk — Varyant A "Ticaret Güveni" ✅
 
-### 2.1 /zh — kırmızı-altın (Proje.md; visual-brand §3). primary + bg paletten gelir, yalnızca accent/highlight swap edilir
-| | A | B | C |
+### 1.1 Temel roller
+| Rol (`--c-*`) | Hex | Kullanım |
+| :-- | :-- | :-- |
+| `primary` | `#1A2B4A` | Header, başlıklar, koyu hero zemini, secondary CTA kontur/metin, CTA metni |
+| `accent` | `#0E7C7B` | Linkler, ikonlar, vurgu (yalnızca açık zeminde) |
+| `highlight` | `#E8A13D` | Primary CTA dolgu (sayfa başına max 1), rozet |
+| `bg` | `#FAF8F5` | Sayfa zemini |
+| `surface` | `#FFFFFF` | Kart, form alanı |
+| `border` | `#E5E1DA` | **Dekoratif** ayırıcı (bilgi taşımayan çizgi) |
+| `border-strong` | `#8A8478` | **Input/checkbox kenarlığı**, bilgi taşıyan sınır |
+| `ink` | `#1F2937` | Gövde metni |
+| `muted` | `#6B7280` | İkincil metin |
+| `success` / `warning` / `danger` | `#2E7D32` / `#A15F00` / `#C62828` | Form durumları (metin + ikon) |
+
+### 1.2 Koyu zemin rolleri (hero `home`/`campaign`, footer)
+| Rol | Değer | Kullanım |
+| :-- | :-- | :-- |
+| `on-dark` | = `bg` | `primary` zemin üstünde başlık/gövde |
+| `on-dark-muted` | `bg` @ %80 opaklık | Hero alt başlığı |
+| `accent-on-dark` | `#5FD3CF` | `primary` zemin üstünde link/ikon |
+| `focus-ring` | açık zeminde `accent`, koyu zeminde `highlight`; 2px kalınlık + 2px offset | Klavye odağı (tüm etkileşimli öğeler) |
+
+### 1.3 Kontrast kanıtı (WCAG 2.2, hesaplanmış — relatif luminans formülü)
+| Çift | Oran | Eşik | Durum |
 | :-- | :-- | :-- | :-- |
-| accent (kırmızı) | `#B91C1C` | `#B91C1C` | `#A61B1B` *(C zaten kırmızı; ayrışmak için daha koyu)* |
-| highlight (altın) | `#D4A017` | `#D4A017` | `#C99700` |
-| Kontrast (accent/bg · primary/altın) | 6.1 · 5.9 | 6.5 · 7.5 | 7.0 · 5.2 |
+| ink / bg · ink / surface | 13.85 · 14.68 | 4.5 | ✅ |
+| primary / bg | 13.31 | 4.5 | ✅ |
+| accent / bg · accent / surface | 4.73 · 5.01 | 4.5 | ✅ |
+| muted / bg · muted / surface | 4.56 · 4.83 | 4.5 | ✅ |
+| primary metin / highlight dolgu (CTA) | 6.45 | 4.5 | ✅ |
+| on-dark / primary · on-dark-muted / primary | 13.31 · 9.04 | 4.5 | ✅ |
+| accent-on-dark / primary | 7.86 | 4.5 | ✅ |
+| success · warning · danger / surface | 5.13 · 5.06 · 5.62 | 4.5 | ✅ |
+| success · warning · danger / bg | 4.84 · 4.77 · 5.30 | 4.5 | ✅ |
+| border-strong / surface (non-text) | 3.72 | 3.0 | ✅ |
+| focus: accent / bg · highlight / primary (non-text) | 4.73 · 6.45 | 3.0 | ✅ |
+| **Yasak çiftler** | beyaz/highlight **2.19** · accent/primary **2.81** · eski warning/surface **3.46** · border/surface **1.30** (input için) | — | ❌ kullanılmaz |
 
-Kurallar (3 varyant ortak): hero **simetrik merkez**; sayısal güven vurgusu (rakam öne); **4-sayısı gruplaması yasak** (4 kart yerine 3 veya 5–6); ICP vaadi yok. *Not: C'de /tr ile /zh arasında accent farkı küçüktür (`#C0392B` ↔ `#A61B1B`) — /zh'nin "izole site" hissi zayıflar.*
+---
+
+## 2. Locale Varyantları (A üzerine)
+
+### 2.1 /zh — kırmızı-altın
+`primary`, `bg`, `surface`, `ink`, `muted` A'dan gelir; yalnızca accent/highlight swap edilir.
+| Rol | Hex | Kontrast |
+| :-- | :-- | :-- |
+| `accent` (kırmızı) | `#B91C1C` | bg 6.10 · surface 6.47 ✅ — **koyu primary üstünde 2.18 ❌ → kullanılmaz** |
+| `highlight` (altın) | `#D4A017` | primary metin 5.94 ✅ (CTA) |
+| `accent-on-dark` | = altın `#D4A017` | primary üstünde 5.94 ✅ |
+
+Kurallar: hero **simetrik merkez**; sayısal güven (rakam öne); **4-sayısı gruplaması yasak** (3 veya 5–6 kart); ICP vaadi yok.
 
 ### 2.2 /de — güven odaklı, sade
-| | A | B | C |
-| :-- | :-- | :-- | :-- |
-| highlight (muted) | `#C98A2B` | `#D9930D` | `#CFA024` |
-| trust-badge zemin | `#E6F2F1` | `#E7EFFD` | `#F3E7E4` |
-| trust-badge metin | `#0B6665` | `#1D4ED8` | `#8E2A20` |
+| Rol | Hex | Kontrast |
+| :-- | :-- | :-- |
+| `highlight` (muted) | `#C98A2B` | primary metin 4.81 ✅ |
+| `trust-badge-bg` / `trust-badge-ink` | `#E6F2F1` / `#0B6665` | 5.91 ✅ |
 
-Rozet metin/zemin kontrastı: A 5.9 · B 5.8 · C 6.9 (≥ 4.5). Kurallar (ortak): highlight kullanımı **%50 azaltılır** (CTA dışında yok); rozet + kanıt metni (belge, checkmark) öne; formal Sie; Impressum/Datenschutz footer'da; oyuncu/duygusal görsel yok.
+Kurallar: highlight yalnızca primary CTA'da (rozet/vurgu dolgusu yok); rozet + kanıt metni öne; formal Sie; Impressum/Datenschutz footer'da; oyuncu/duygusal görsel yok.
 
-### 2.3 /en/ar (FAZ 2)
+### 2.3 /en/ar
 Renk değişmez; `dir="rtl"` + mantıksal CSS (margin-inline vb.) ile ayna layout. Font: Noto Sans Arabic.
 
 ---
 
-## 3. Tipografi (3 varyant ortak)
+## 3. Tipografi
 | Token | Değer |
 | :-- | :-- |
 | font-sans | Inter (latin) · Noto Sans SC (zh) · Noto Sans Arabic (ar) · fallback `system-ui, sans-serif` |
 | Ölçek (px / rem @16) | 12 `.75` · 14 `.875` · 16 `1` · 18 `1.125` · 20 `1.25` · 24 `1.5` · 30 `1.875` · 36 `2.25` · 48 `3` · 60 `3.75` |
 | Rol eşlemesi (mobil → masaüstü) | H1 36→60 · H2 30→48 · H3 24→36 · H4 20→24 · gövde 16 · küçük 14 · caption 12 |
-| Weight | 400 gövde · 500 etiket · 600 başlık (B2B ciddiyet; 700 yalnızca stat rakamı) |
+| Weight | 400 gövde · 500 etiket · 600 başlık (700 yalnızca stat rakamı) |
 | Line-height | başlık 1.2 · gövde 1.6 · caption 1.4 |
-| Okuma ölçüsü | `72ch` (makale/rehber gövdesi) |
+| Okuma ölçüsü | `72ch` |
 
-## 4. Spacing & Grid (ortak)
+## 4. Spacing & Grid
 - Spacing ölçeği (4px taban): **4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96** px
 - Container: max-width **1280px**; yan boşluk 16px (360) / 24px (768+)
 - Grid: **12 kolon**, gap 24px (360'ta 4 kolon/gap 16, 768'de 8 kolon/gap 24)
 - Radius: 8px (kart/CTA/input) · 999px (rozet) · Dokunma alanı min **44×44px**
-- Elevation: 3 seviye — 0 (düz) · 1 `0 1px 3px` · 2 `0 4px 12px` (renk: ink %8–12 alfa)
+- Elevation: 0 (düz) · 1 `0 1px 3px` · 2 `0 4px 12px` (renk: ink %8–12 alfa)
 
-## 5. Breakpoint'ler (4 — kabul şartı)
+## 5. Breakpoint'ler
 | Ad | Min genişlik | Kolon | Davranış |
 | :-- | :-- | :-- | :-- |
 | **xs / mobil** | 360 | 4 | tek sütun, hamburger navbar, dil seçici menü içinde |
 | **md / tablet** | 768 | 8 | 2 sütun kartlar, navbar yatay (kısaltılmış) |
-| **lg / desktop** | 1280 | 12 | hero 2 kolon (sol 5/12 başlık, sağ 7/12 görsel), tam navbar |
-| **xl / geniş** | 1920 | 12 | container 1280'de sabit, yanlar boş; partner-grid 4 kolon |
+| **lg / desktop** | 1280 | 12 | hero 2 kolon (metin 5/12, görsel 7/12), tam navbar |
+| **xl / geniş** | 1920 | 12 | container 1280'de sabit; partner-grid 4 kolon (/zh hariç — §2.1) |
 
-Mobile-first (min-width sorguları). Her komponent briefi bu 4 genişlikte davranışını tanımlar (`design/components/*.md`).
+Mobile-first (min-width sorguları).
 
-## 6. Komponent Envanteri (8 komponent — sayılı)
+## 6. Komponent Envanteri (8)
 | # | Komponent | Varyantlar | Not |
 | :-- | :-- | :-- | :-- |
 | 1 | navbar | default · transparent-hero | dil seçici zorunlu; sticky; mobil hamburger |
-| 2 | hero | home · product · campaign (+ zh simetrik) | sol başlık/sağ görsel; altında güven bandı |
+| 2 | hero | home · product · campaign (+ zh simetrik) | metin + görsel; altında güven bandı |
 | 3 | card | service · product · partner | partner kartında `consent_logo_en` kontrolü |
-| 4 | form | lead · application | KVKK checkbox + Turnstile slot; hata durumları success/warning/danger |
-| 5 | footer | tr · en · de (+Impressum) · zh | dil ailesi linkleri |
-| 6 | cta | primary · secondary · inline | highlight dolgu, sayfa başına max 1 primary; "Fiil + SLA" metni |
+| 4 | form | lead · application | KVKK checkbox + Turnstile slot; kenarlık `border-strong` |
+| 5 | footer | tr · en · de (+Impressum) · zh | koyu zemin → §1.2 rolleri |
+| 6 | cta | primary · secondary · inline | highlight dolgu + primary metin; sayfa başına max 1 primary |
 | 7 | partner-grid | grid-3 · grid-4 (1920) | `approved=true` filtresi; boş durum metni |
 | 8 | lang-switcher | dropdown · inline | hreflang seti ile senkron |
 
-*(Brief'ler mevcut: `design/components/` altında 8 dosya. Seçim sonrası hex referansları token adına bağlı kaldığı için brief değişmez; yalnızca Varyant B/C seçilirse §1 değişir.)*
+---
+
+## 7. Karar Gerekçeleri (her biri ≤ 10 satır)
+
+**K1 — Varyant A seçimi.**
+İnsan seçimi (11.10.2026). Lacivert + teal TR/EN/DE'de nötr, kurumsal-güvenli; /zh kırmızısıyla ve /de sade tonuyla en net ayrışan baz.
+Kod (`tokens.ts`) ve görsel prefix (`visual-brand.md` §1) zaten A → sıfır geçiş maliyeti, görsel tutarlılık riski yok.
+B'deki surface AA ihlali ve C'deki /zh akrabalığı riskleri bu seçimle ortadan kalktı.
+
+**K2 — `warning` `#C77700` → `#A15F00`.**
+Eski değer metin olarak AA'yı geçmiyordu (surface 3.46, bg 3.27). Form hata/uyarı mesajları metindir → 4.5 şart.
+`#A15F00` aynı amber ailesinde (ton korunur), surface 5.06 / bg 4.77. `highlight` ile karışmaz: daha koyu ve yalnızca durum metninde.
+
+**K3 — `accent-on-dark` eklendi.**
+Hero `home` ve footer `primary` zeminli; teal link orada 2.81 → okunmaz. Teal'in açık tonu `#5FD3CF` marka rengini korur, 7.86 verir.
+Kural: koyu zeminde `accent` kullanılmaz, `accent-on-dark` kullanılır.
+
+**K4 — `border-strong` ayrımı.**
+`border` (1.30) ayırıcı çizgi için yeterli ama input sınırı bilgi taşır → WCAG 1.4.11 non-text 3:1 şart.
+Ayrı token sayesinde dekoratif çizgiler hafif kalır, form alanları erişilebilir olur (`#8A8478`, 3.72 — sıcak gri, bg tonuyla uyumlu).
+
+**K5 — `on-dark` / `on-dark-muted` adlandırıldı.**
+hero.md'deki "`bg`/80" serbest ifadeydi; fe tarafında farklı yorumlanma riski vardı. Token adı tek yorum sağlar.
+%80 opaklık 9.04 verir (AA rahat); daha düşük opaklık gerekirse %72'ye kadar AA korunur (7.64) — altına inilmez.
+
+**K6 — `focus-ring` iki bağlamlı.**
+Klavye kullanıcısı için görünür odak şart (WCAG 2.4.7/2.4.11). Tek renk her iki zeminde çalışmıyor: amber açık zeminde 2.2'de kalır.
+Açık zeminde `accent` (4.73), koyu zeminde `highlight` (6.45); 2px + 2px offset.
+
+**K7 — CTA metni daima `primary`.**
+Beyaz metin amber üstünde 2.19 → okunmaz. `primary` 6.45 (A), /de 4.81, /zh 5.94 → tüm locale'lerde AA.
+Tek kural, tüm CTA varyantlarında tutarlılık; cta.md ve hero.md zaten bu çifti kullanıyor (kod değişikliği gerekmez).
+
+**K8 — /zh kırmızısı yalnızca açık zeminde.**
+`#B91C1C` koyu `primary` üstünde 2.18. /zh hero simetrik ve rakam vurgulu; koyu zeminde vurgu rengi altın (5.94).
+Böylece kırmızı-altın kimliği korunur, erişilebilirlik bozulmaz.
 
 ---
 
-## 7. Seçim Sonrası Uygulama Planı (0.5 sonrası, bu adımda YAPILMAZ)
-1. Seçilen varyantın §1 + §2 sütunu "ONAYLI" olarak işaretlenir, diğer iki varyant arşive taşınır.
-2. A dışı seçilirse: `lib/ui/tokens.ts` (6 hex), `prompts/visual-brand.md` §1 prefix (orchestrator + insan onayı), `app/admin/layout.tsx` ve varyant CSS'lerinin görsel doğrulaması ayrı adımlarda.
-3. `design/hero-copy.md` ve `design/components/*.md` token adlarıyla yazıldığı için etkilenmez.
-
-## 8. Senin Kararın (👤 Step 0.5)
-Tek cümleyle yanıtla: **"A"**, **"B"** veya **"C"** (isteğe bağlı: /zh veya /de sütunu için itiraz).
+## 8. Uygulama Takibi (bu adımda YAPILMAZ — scope dışı)
+| İş | Scope / rol | Adım |
+| :-- | :-- | :-- |
+| D2–D6 yeni token'ları `lib/ui/tokens.ts` + CSS değişkenlerine eklemek | `fe` (`lib/ui/**`) | ayrı adım/commit (Sonnet 5.5) |
+| hero.md "`bg`/80" → `on-dark-muted`; form.md kenarlık → `border-strong`; footer.md koyu rolleri | `design/components/**` (0.6 kapsamı) | 0.6 revizyonu |
+| `prompts/visual-brand.md` | değişiklik **gerekmez** (A ile birebir) | — |
