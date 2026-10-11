@@ -1,5 +1,33 @@
-# PROGRESS.md — Otomatik faz panosu
-**Canlı üretici:** orchestrator-loop cron (her 15 dk). Son elle tohumlama: 2026-10-10 04:10 TR
+# PROGRESS.md — Faz Panosu
+
+**Yürütücü:** Claude Code (tek yürütücü, AGENTS.md v2.0). Bu pano elle güncellenir; otomatik cron üretimi kaldırıldı.
+**Model kaynağı:** AGENTS.md §7 (FAZ 0 tablosu).
+**Son güncelleme:** 2026-10-11
+
+## FAZ 0 — Foundation
+
+| Step | İş | Model | Durum | Not |
+| :-- | :-- | :-- | :-- | :-- |
+| 0.1 | Repo iskeleti (route groups + workers + db) | Sonnet 5.5 | ⏳ todo | Sıra 1 |
+| 0.2 | ~~Model ping~~ | — | ⛔ atlandı | Claude Code'da gereksiz; Gemini testi en sonda (AGENTS.md §9) |
+| 0.3 | tasks/ kuyruk + muhasebe iskeleti | Haiku 5.5 | ⏳ todo | Sıra 2 · hafif pano |
+| 0.4 | design-tokens taslağı | Sonnet 5.5 | ⏳ todo | Sıra 3 |
+| 0.5 | design-tokens nihai + hero copy | Opus 5.5 | ⏳ todo | Sıra 4 · 👤 palet/tipografi seçimi + onay |
+| 0.6 | komponent brief'leri | Sonnet 5.5 | ⏳ todo | Sıra 5 |
+| 0.7 | CI workflow (build + qa-gate + gitleaks) | Sonnet 5.5 | ⏳ todo | Sıra 6 |
+| 0.8 | D1 şema v1 + migration | Opus 5.5 🔒 | ⏳ todo | Sıra 8 · 👤 güvenlik review |
+| 0.9 | sitemap/hreflang helper + llms/robots | Haiku 5.5 | ⏳ todo | Sıra 7 · ortak dosya |
+| 0.10 | Faz çıkış denetimi | Haiku 5.5 | ⏳ todo | Sıra 9 · 👤 "devam et" onayı |
+
+**Sıralı yürütme:** 0.1 → 0.3 → 0.4 → 0.5 → 0.6 → 0.7 → 0.9 → 0.8 → 0.10
+
+**Durum notu:** Adım durumları bu panoda doğrulanmadan yazıldı (`⏳ todo`). Repo'da bazı Faz 0 çıktıları zaten bulunabilir; her adım başlamadan mevcut dosyalar kontrol edilip durum güncellenecek.
+
+**Açık insan aksiyonları (FAZ 0):** 0.5 palet/tipografi seçimi · 0.8 şema güvenlik review · 0.10 "devam et" onayı.
+
+## Tarihsel pano (v1 — orkestrator cron, 2026-10-10)
+
+> Bu bölüm eski panonun kaydıdır; v2.0 ile cron üretimi kaldırıldığı için artık güncellenmez. Kart ID'leri (`t_*`) ve `hermes` komutları yalnızca tarihsel referanstır.
 
 | Faz | Step | Durum | Kart | Ajan | İş |
 | :-- | :-- | :-- | :-- | :-- | :-- |
@@ -26,9 +54,4 @@
 | F3 | 3.8 | ⏳ todo | t_61de7751 | admin-agent | 3.8 — Turnstile/rate-limit admin tarafı + ayarlar |
 | F3 | 3.9 | ⏳ todo | t_01113302 | api-agent | 3.9 — Staging/production ayrımı + credential yönetimi 🔒 |
 
-## Bekleyen insan aksiyonları
-- **t_7acf8fb1 (3.11 Güvenlik review toplantısı)** — FAZ_3 QA bitince gelecek; ONAY + unblock bekler
-- **t_5f29dd5a (2.10 / F2 çıkışı)** — standing 'devam et' yetkili: parent'lar done olunca cron otomatik unblock+complete eder
-- **3.7 analytics OAuth** — GSC/GA4 credential'ları hazır olduğunda: `hermes kanban comment <kart> 'OAuth hazır'` + unblock
-
-_Not: bu dosyayı yalnızca orchestrator cron günceller; kart id'leri `hermes kanban show <id>` ile açılır._
+**Eski insan aksiyonları:** t_7acf8fb1 (3.11 güvenlik review) · t_5f29dd5a (2.10 çıkış onayı) · 3.7 analytics OAuth (GSC/GA4 credential).
