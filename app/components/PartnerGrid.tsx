@@ -3,6 +3,7 @@
 // KVKK kuralı: consent_logo_en=false → logoUrl API'de hiç dönmez; bileşen logoUrl null ise avatar gösterir
 
 import Link from "next/link";
+import { color } from "@/lib/ui/tokens";
 
 export interface PartnerItem {
   id: string;
@@ -35,23 +36,23 @@ export default function PartnerGrid({
     <section aria-labelledby="partner-grid-title" style={{ padding: "2rem 1rem" }}>
       <h2 id="partner-grid-title">{t.title}</h2>
       {shown.length === 0 ? (
-        <p style={{ color: "#6B7280" }}>{t.empty}</p>
+        <p aria-live="polite" style={{ color: color.muted }}>{t.empty}</p>
       ) : (
         <ul style={{ listStyle: "none", display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "1rem", padding: 0 }}>
           {shown.map(p => (
-            <li key={p.id} style={{ border: "1px solid #E5E7EB", borderRadius: 12, padding: "1rem", background: "#fff" }}>
+            <li key={p.id} style={{ border: `1px solid ${color.muted}`, borderRadius: 12, padding: "1rem", background: color.bg }}>
               {p.logoUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={p.logoUrl} alt={p.name} width={64} height={64} style={{ objectFit: "contain" }} />
               ) : (
-                <div aria-hidden="true" style={{ width: 64, height: 64, borderRadius: 8, background: "#1A2B4A", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, fontWeight: 600 }}>
+                <div aria-hidden="true" style={{ width: 64, height: 64, borderRadius: 8, background: color.primary, color: color.bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, fontWeight: 600 }}>
                   {p.name.charAt(0).toUpperCase()}
                 </div>
               )}
               <div style={{ fontWeight: 600, marginTop: ".5rem" }}>{p.name}</div>
-              {p.sector && <div style={{ color: "#6B7280", fontSize: 13 }}>{p.sector}</div>}
+              {p.sector && <div style={{ color: color.muted, fontSize: 13 }}>{p.sector}</div>}
               {p.verified && (
-                <span aria-label={t.verified} style={{ color: "#2E7D32", fontSize: 12 }}>✔ {t.verified}</span>
+                <span aria-label={t.verified} style={{ color: color.accent, fontSize: 12 }}>✔ {t.verified}</span>
               )}
             </li>
           ))}
