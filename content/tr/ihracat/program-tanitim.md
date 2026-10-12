@@ -92,6 +92,10 @@ Bu şeffaflık bilinçlidir: başvurunun nasıl değerlendirileceğini bilmek, s
 **Programdan çıkabilir miyim?** Dilediğiniz zaman; yayın rızanız geri alınır, listelerden kaldırılırsınız.
 
 
+## Başvuru Öncesi Hazırlık Listesi
+
+Başvuru formu beş dakikada doldurulabilir, ama sonucu güçlendiren hazırlık formdan önce yapılır. Ürün kataloğunu tek bir PDF dosyasında toplayın ve ürün gruplarını kategori bazında ayırın. Kapasiteyi yazarken genel ifadeler yerine somut bilgi kullanın: aylık üretim, vardiya düzeni ve hammadde tedarik kaynakları, değerlendirmede genel bir cümleden daha değerlidir. Sertifika belgelerinizin taranmış kopyasını hazır tutun; değerlendirme görüşmesinde istenebilir. Son olarak, başvuruda kullandığınız e-posta adresini düzenli kontrol ettiğiniz bir adres olarak seçin, çünkü onay ve görüşme daveti bu kanal üzerinden iletilir.
+
 ## Sık Sorulan Sorular
 
 ### Gerçekten ücretsiz mi? Sonradan ne çıkar?

@@ -85,6 +85,10 @@ Bu yedi alanın standart kalıbı bir kez kurulur, her sorguda 10 dakikada doldu
 | Ambalaj | B2B web + sektör ağları | Müşteri uzun döngülü, tekrar eden |
 
 
+## Yanıt Süresi: Alıcı İlk Talebe Ne Bekler?
+
+Yabancı alıcılar ilk talebe verilen yanıtı hem hız hem içerik açısından değerlendirir. Yanıt üç parçadan oluşmalıdır: talebi doğrulayan kısa bir giriş, sorulan her sorunun karşılığı ve bir sonraki adımın net tarihi. Tek satırlık "inceliyoruz" yanıtı, alıcıyı aynı gün başka bir tedarikçiye yöneltebilir. Yanıt kalıbı önceden hazırlanır; her talepte değişen yalnızca ürüne özgü bilgidir. Takip ritmi de tanımlıdır: yanıt verilmeyen bir talep, planlanmış hatırlatmalardan sonra arşivlenir ve huniye "kayıp" olarak işlenir.
+
 ## Sık Sorulan Sorular
 
 ### İlk sonuç ne zaman görülür?
