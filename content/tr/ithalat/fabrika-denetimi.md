@@ -2,7 +2,7 @@
 **Sayfa tipi:** TR İthalat hizmet sayfası · **Hedef keyword:** çin fabrika denetimi
 **Durum:** FAZ_1 Step 1.2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'de Fabrika Denetimi | Sipariş Öncesi ve Yükleme Öncesi Kontrol" (63 kar — kısalt) desc="Sipariş öncesi fabrika denetimi, üretim sırası kontrol ve yükleme öncesi son kontrol. Fotoğraflı ölçümlü Türkçe rapor 48 saatte teslim." (128 kar) -->
+<!-- META: title="Çin'de Fabrika Denetimi | Sipariş ve Yükleme Öncesi" (63 kar — kısalt) desc="Sipariş öncesi fabrika denetimi, üretim sırası kontrol ve yükleme öncesi son kontrol. Fotoğraflı ölçümlü Türkçe rapor 48 saatte teslim." (128 kar) -->
 
 # Çin'de Fabrika Denetimi: Paranın Arkasındaki Üretimi Görün
 

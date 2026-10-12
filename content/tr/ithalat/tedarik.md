@@ -2,7 +2,7 @@
 **Sayfa tipi:** TR İthalat hizmet sayfası · **Şablon:** CONTENT_STYLE §1 kanıt zinciri · **Hedef keyword:** çin'den tedarik firması
 **Durum:** FAZ_1 Step 1.2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den Tedarik Hizmeti | Fabrika Bulma ve Numune Süreci" (58 kar) desc="Çin'den ürün tedarikinin tamamını yönetiyoruz: fabrika araştırması, numune, fiyat pazarlığı ve sipariş takibi. Ücretsiz ön değerlendirme 24 saatte." (147 kar) -->
+<!-- META: title="Çin'den Tedarik Hizmeti | Fabrika ve Numune Süreci" (58 kar) desc="Çin'den ürün tedarikinin tamamını yönetiyoruz: fabrika araştırması, numune, fiyat pazarlığı ve sipariş takibi. Ücretsiz ön değerlendirme 24 saatte." (147 kar) -->
 
 # Çin'den Tedarik Hizmeti: Fabrika Bulmadan Siparişe
 
@@ -67,6 +67,10 @@ Bu maddeler tek seferde kurulan standarttır; her siparişte yeniden pazarlık e
 | Mobilya | Konteyner planı ve montaj kalitesi | [Mobilya rehberi](/ithalat/rehberler/mobilya) |
 
 Her rehber, o grubun kendi risk dilini ve kontrol noktalarını ayrıntılar; tedarik hizmeti bu süreçlerin ortak omurgasıdır.
+
+## Numune Onayı: Referans Numunenin Kayıt Altına Alınması
+
+Numune onayı, sipariş sürecinin en çok atlanan adımıdır. Onaylanan numune tek bir örnek değil, sözleşmenin ekidir: ölçüler, malzeme bileşimi, renk referansı ve dikiş ya da yüzey kalitesi fotoğrafla ve yazılı tanımla belgelenir. Numunenin mühürlü bir kopyası tedarikçide, bir kopyası alıcıda tutulur (seal sample). Seri üretim sırasında sapma görüldüğünde tartışma hafızaya değil, mühürlü numuneye ve yazılı spesifikasyona dayanır. Bu yöntem, "numune güzeldi, parti farklı" cümlesini ölçülebilir bir uyuşmazlığa dönüştürür. Onay tutanağı tarih ve imza taşır; numune değiştiğinde yeni bir referans oluşturulur, eskisi arşivde saklanır.
 
 ## Hizmetin Sınırları: Neleri Yapmıyoruz?
 

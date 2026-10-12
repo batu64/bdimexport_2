@@ -78,6 +78,10 @@ Her grubun rehberi bu detayları süreç içinde işler; gümrük hizmeti, ürü
 
 Bu liste, ilk ithalatta en çok atlanan altı noktayı kapatır; deneyimli ithalatçılar için de dönemsel hatırlatma değeridir.
 
+## Beyanname Öncesi Son Kontrol: Dört Eşleşme
+
+Beyanname verilmeden önce dört belge birbiriyle eşleşmelidir. Fatura ile packing list'teki adet ve brüt-net ağırlık aynı olmalı; B/L üzerindeki ürün tanımı ile faturadaki kalem açıklaması aynı dili konuşmalı; seçilen GTİP, ürünün gerçek teknik özelliğiyle uyuşmalı; izin ya da uygunluk belgesi gerektiren bir kalem varsa belgenin geçerlilik süresi beyan tarihini kapsamalı. Bu dört eşleşmeden biri eksikse beyan değil düzeltme süreci başlar ve düzeltme, ilk beyandan çoğu zaman daha uzun sürer. Her eşleşme, beyannameden önce ayrı bir kişi tarafından okunur; tek bir gözün kaçırdığı hata bu sayede yakalanır. Kontrol sırası yazılı tutulur ve her ithalatta aynı sırayla uygulanır.
+
 ## Sınırlar ve Şeffaflık
 
 Gümrük hizmeti resmi beyan disipliniyle çalışır: "vergisiz yollar", "gri gümrükleme" önerilmez; mevzuat kaynaklı kesin oranlar ürün bazında resmi kaynaklardan teyit edilir. Bu sayfa genel bilgilendirmedir; bağlayıcı vergi hesabı ürününüz için talep aşamasında kaynaklı yapılır.

@@ -2,7 +2,7 @@
 **Sayfa tipi:** TR İthalat hizmet sayfası · **Hedef keyword:** çinden ithalat lojistik
 **Durum:** FAZ_1 Step 1.2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den İthalat Lojistiği | Deniz, Hava ve Demiryolu Seçenekleri" (60 kar) desc="Fabrika kapısından Türkiye depo kapısına: deniz/hava/demiryolu taşıma, gümrük evrak takibi ve sigorta. Süreç planı 24 saatte." (137 kar) -->
+<!-- META: title="Çin'den İthalat Lojistiği | Deniz, Hava, Demiryolu" (60 kar) desc="Fabrika kapısından Türkiye depo kapısına: deniz/hava/demiryolu taşıma, gümrük evrak takibi ve sigorta. Süreç planı 24 saatte." (137 kar) -->
 
 # Çin'den Lojistik: Fabrika Kapısından Depo Kapısına
 
@@ -86,6 +86,10 @@ Takvimi yazılı tutmak, "geçen yıl da bu dönemde gecikmişti" bilgisini kuru
 - Varış limanı/depoda yükleme planı hazır
 - Acil durum: gümrük kontrolü senaryosunda kim karar verecek
 
+
+## Varış Sonrası: Depo Kapısında Ne Olur?
+
+Gemi limana ya da uçak havalimanına ulaştığında iş bitmez; depo kapısına kadar yeni bir gecikme riski başlar. Varıştan önce üç adım planlanmalıdır. Birincisi, konteynerin ya da koli partisinin limandan çekilmesi için taşıyıcıyla takvim netleştirilir. İkincisi, gümrük çıkışı tamamlandığında araç randevusu önceden alınır. Üçüncüsü, boşaltmada sayım ile evrak tutarlılığı kontrol edilir ve bir farklılık görülürse hasar tutanağı o an düzenlenir. Teslim belgesine "çekince" notu düşmek, sonradan itiraz hakkını korur; tutanak ve bu not, sigorta ve taşıyıcı sorumluluğu tartışmalarında en önemli ispat belgeleridir. Boşaltma günü için ekip ve forklift planı önceden konuşulur; plansız boşaltma hem süreyi uzatır hem de ürünün zarar görme riskini artırır. Varıştan sonraki ilk hafta içinde stok girişi ile fatura kalemleri karşılaştırılır ve muhasebe kaydı bu karşılaştırmayla kapatılır.
 
 ## Sık Sorulan Sorular
 
