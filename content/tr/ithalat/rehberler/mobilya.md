@@ -58,11 +58,6 @@ Mobilya deniz yolu belirgindir; nem hassasiyeti için konteyner içi nem korumas
 | Konteyner boşluğu | Birim nakliye artışı | İstif planı + konsolidasyon |
 | ISPM-15 eksik | Gümrükte ambalaj sorunu | Palet standardı baştan yazılır |
 
-## İlk Adım
-
-Koleksiyon fikriniz (görseller/adet) ve kullanım senaryosu (ofis/otel/ev) ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; malzeme standardı önerisi ve konteyner planı 24 saatte döner.
-
-
 ## Mobilya Malzeme Tablosu: Sözleşmeye Girecek Format
 
 ```
@@ -90,34 +85,63 @@ Proje mobilyası (oteller, ofisler, yurtlar) kendi disiplinine sahiptir: adet y�
 
 Ahşap/panel mobilya, konteyner içinde nem değişiminden etkilenir: kıyıdan içeri, mevsimden mevsime nem farkı panelde şişme/kıvrılma yapabilir. Panzehir: düşük nem hassasiyetli panel (E1 standartta daha stabil), konteyner içi nem emici (silika), hedef pazar iklimine göre aklimatizasyon süresi (teslimde hemen montaj değil, 48 saat ortamda dinlendirme). Bu maddeler çoğu ithalatçının ilk partiden sonra öğrendiği maliyettir — baştan yazmak bedava.
 
-
-
 ## Flat-Pack Kalite Testi: Numune Kutusunu Açın
 
 Flat-pack numunesi, fotoğrafla değil montajla kabul edilir: kutuyu açın — parça listesi tam mı, delikler hizalı mı, aletler talimatta tanımlı mı, tek kişi 20 dakikada montajı bitirebiliyor mu, bitmiş ürün sallanıyor mu. Bu 30 dakikalık test, konteyner dolusu ürünün montaj kalitesi hakkında en yüksek sinyali verir — üreticinin kendi montaj videosu ile karşılaştırın.
-
-
-
-## Flat-Pack Kalite Testi: Numune Kutusunu Açın
-
-Flat-pack numunesi fotoğrafla değil montajla kabul edilir: kutuyu açın — parça listesi tam mı, delikler hizalı mı, tek kişi 20 dakikada bitirebiliyor mu, bitmiş ürün sallanıyor mu. Bu 30 dakikalık test, konteyner dolusu ürünün montaj kalitesi hakkında en yüksek sinyali verir.
 
 ## Ödeme Yapısı: Tipik Kalıp
 
 Mobilyada ödeme üç dilimlidir: %30 sipariş onayı, %60 üretim tamamlanınca (**denetim sonrası** — bu şart sizin kaldıracınız), %10 B/L kopyası ile. Orta dilimin denetim şartına bağlanması kalite sorunlarında en güçlü kaldıraçtır; "denetim raporunu gördükten sonra" cümlesi sözleşmede yer alır. İlişki olgunlaştıkça oranlar müzakere edilir ama kaldıraç mantığı korunur.
 
-
-
 ## Görsel Sunum: Mobilya İthalatının E-Ticaret Yüzü
 
 Mobilya satışı görselle satılır: üreticiden gelen stüdyo görselleri yeterli değildir — gerçek ürünün (numune) gerçek mekânda fotoğraflanması, dönüşümü belirgin yükseltir. Numune maliyeti bu nedenle pazarlama yatırımıdır: 1–2 numune (öncelikli modeller) Türkiye'de çekilir; çekim seti (beyaz arka + mekân + detay) koleksiyonun katalog standardı olur. Üretici görselleri + gerçek çekim kombinasyonu, e-ticaret vitrininin minimum profesyonel setidir.
-
-
 
 ## Konteyner Planı Örneği: 40ft HC İçin Doluluk Hesabı
 
 40ft yüksek konteyner ~67 m³ kullanılabilir hacim sunar. Flat-pack model örneği: K-101 koltuk paketi 0.24 m³, 200 adet = 48 m³ (%72); K-102 kanepe paketi 0.35 m³, 40 adet = 14 m³ (toplam %92 — hedef aşılır, adet kısıtlanır). Plan, istif sırasıyla birlikte yapılır: ağır/düz kutular alta, hassas üstte. %85+ doluluk iyi plandır; bu hesap yapılmadan verilen sipariş, konteynerin yarısı boş giderek birim nakliyeyi iki katına çıkarabilir.
 
+## Yük ve Dayanım Testleri: Sandalyeden Yatağa
+
+Mobilyada güvenlik, görünümden önce gelir. Ürün tipine göre test türleri değişir:
+
+- **Statik yük:** Oturma yüzeyi ve raflar belirlenen yükü taşıyor mu?
+- **Tekrarlı kullanım:** Oturma-kalkma, çekmece açma-kapama, kapak menteşesi döngüsü
+- **Devrilme:** Yüksek dolap ve kitaplıkta yük altında denge
+- **Kenar ve köşe:** Çocuk kullanımına açık üründe keskin kenar kontrolü
+
+Test yöntemi spesifikasyonda yazılı olmalıdır; "dayanıklı" kelimesi test değildir. Testi bağımsız taraf yapıyorsa raporu isteyin. Üretici kendi testini yapıyorsa, siz numune üzerinde ayrıca doğrulayın.
+
+## Montaj Talimatı ve Parça Etiketleme: Müşteri Deneyiminin Yarısı
+
+Flat-pack mobilyada ürünü müşteriye ulaştıran şey, montaj deneyimidir. Talimat ve etiketleme üretim kalitesi kadar önemlidir:
+
+1. Her parçanın üzerinde talimatla eşleşen bir kod bulunsun
+2. Vida ve bağlantı elemanları numaralı poşetlerde, doğru sayıda olsun
+3. Talimat resimli olsun ve gerekirse Türkçe metin içersin
+4. Gereken el aleti pakete dahil edilsin veya talimatta açıkça yazılsın
+
+Talimatı sizin yazdırmanız, tedarikçinin genel şablonunu kullanmasından çok daha iyi sonuç verir. Numune montajını talimat ile yapın; talimatı izleyerek monte edilemeyen ürün müşteri şikâyeti üretir.
+
+## Teslimat Sonrası: Hasar ve Eksik Parça Yönetimi
+
+Kaç dikkatli planlanırsa planlansın, bazı kolilerde hasar veya eksik parça çıkar. Süreci önceden kurun:
+
+- Yedek parça paketi sipariş sırasında ayrıca isteyin
+- Müşteri talebi için fotoğraflı bir başvuru yöntemi belirleyin
+- Hasar nedenini kaydedin: taşıma, depolama veya üretim hatası
+- Tekrarlayan hata varsa tedarikçiye parti numarasıyla bildirin
+- Sigorta kapsamındaki hasar için belgeyi süresi içinde hazırlayın
+
+Bu kayıt, bir sonraki siparişte paketleme standardını iyileştirmenin ve tedarikçiyle kalite konuşmasının dayanağıdır. Kayıt tutmayan ithalatçı, aynı hatayı her partide yeniden öder.
+
+## Takvimi Geriye Doğru Kurun
+
+Satışa çıkmak istediğiniz tarihten geriye sayın: nakliye süresi, sevkiyat öncesi denetim, seri üretim, numune onayı. Çin Yeni Yılı üretimi durdurduğu için bu pencere takvime ayrıca yazılır. Her aşamaya tarih verin ve gecikme durumunda kimin ne yapacağını önceden belirleyin. Tarihsiz plan, sezonu kaçırmanın en sık sebebidir.
+
+## İlk Adım
+
+Koleksiyon fikriniz (görseller/adet) ve kullanım senaryosu (ofis/otel/ev) ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; malzeme standardı önerisi ve konteyner planı 24 saatte döner.
 
 ## Sık Sorulan Sorular
 

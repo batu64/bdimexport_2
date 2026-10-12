@@ -61,11 +61,6 @@ Gıda ile temas eden ambalajda (poşet, kap, iç dolgu) malzeme güvenlik uygunl
 | Mevzuat uyumsuz stok | Eski etiketli büyük stok | Sipariş partilerini kısa tutmak |
 | Kalıp kaybı | Tedarikçi değişikliğinde yeniden kalıp | Kalıp mülkiyeti + muhafaza şartı sözleşmede |
 
-## İlk Adım
-
-Ürününüzün ölçüleri + marka rengi (pantone) + hedef adet ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; malzeme-yapı önerisi ve dijital/ofset eşiği analizi 24 saatte döner.
-
-
 ## Ambalaj Malzemesi Kataloğu: Hangi Ürün Hangi Malzeme?
 
 | Malzeme | Tipik kullanım | Dayanım/Not |
@@ -102,13 +97,9 @@ Kutu kalitesinin yarı görünmez halidir: yapıştırma (glue) düzgünlüğü,
 
 Ambalajda tedarikçi değişimi yaygındır (fiyat/mesafe/kapasite). Kesintisiz geçiş için hazırlık: kalıp mülkiyeti sizde veya muhafaza taahhütlü, muhafaza standart numune iki tarafta, malzeme spec sheet yazılı (gsm, dalga tipi, mürekkep tipi), son 3 partinin fotoğraf arşivi. Bu dörtlü hazır değilse tedarikçi değişimi = sıfırdan numune turu = 4–6 hafta kayıp.
 
-
-
 ## Maliyet Kırılımı Örneği: Tipik Özel Kutu Siparişi
 
 5.000 adet baskılı katlanır kutu için tipik maliyet kırılımı (oranlar örnektir — gerçek teklif ürünle yapılır): kutu üretimi ~%55, baskı (renk sayısına göre) ~%15, kalıp (tek sefer) ~%10, kurulum ~%5, navlun payı ~%10, sigorta+gümrük ~%5. Kalıp+kurulum ilk partide ~%15, ikinci partide %0'a düşer — birim maliyet belirgin düşer. Bu kırılım, "ilk siparişte beklenmedik fatura" olayının panzehiridir: kalemler baştan görünür.
-
-
 
 ## Yapı Kataloğu: Kutu Tipleri ve Kullanımları
 
@@ -122,10 +113,43 @@ Ambalajda tedarikçi değişimi yaygındır (fiyat/mesafe/kapasite). Kesintisiz 
 
 Yapı seçimi ürün ağırlığı + vitrin etkisi + birim maliyet üçlüsünden çıkar; yapı değişikliği kalıp değişikliği demektir — numune onayı öncesi sabitlenir.
 
-## Maliyet Kırılımı Örneği: 5.000 Adet Özel Kutu
+## Baskı Dosyası Hazırlığı: Tasarımdan Üretime Hata Payı
 
-Tipik kırılım (oranlar örnektir): kutu üretimi ~%55, baskı ~%15, kalıp (tek sefer) ~%10, kurulum ~%5, navlun payı ~%10, sigorta+gümrük ~%5. Kalıp+kurulum ilk partide ~%15, ikinci partide %0'a düşer — birim maliyet belirgin düşer. Bu kırılım "ilk siparişte beklenmedik fatura" olayının panzehiridir: kalemler baştan görünür.
+Baskıya giden dosya (artwork), ekran tasarımından farklı kurallarla hazırlanır. Dört noktaya dikkat edin:
 
+- **Taşma payı (bleed) ve güvenli alan:** Kesim kayarsa kenarda beyazlık kalmasın, metin de kesilmesin
+- **Vektör yazı tipleri:** Yazılar eğriye çevrilmiş (outline) olmalı, aksi halde baskıcıda yazı tipi değişir
+- **Renk ayrımı:** CMYK katmanları ile pantone spot renkler ayrı tanımlanır
+- **Barkod ve yasal metin:** Kesim kenarından yeterince içeride durur
+
+Tedarikçiden diyalog (dieline) şablonu isteyin ve tasarımı bu şablonun üstüne yerleştirin. Kendi ölçünüzle çizilmiş şablon, kalıba uymayan baskı demektir. Dijital provada metni, barkodu ve renk kodunu tek tek okuyun. Baskıdan sonra yazım hatası düzeltilemez.
+
+## Baskı Sonrası Teslim Kontrolü: Parti Geldiğinde Neye Bakılır?
+
+Gelen partide aşağıdaki sırayla ilerleyin:
+
+1. Koli etiketini siparişle karşılaştırın
+2. Rastgele seçtiğiniz kolilerden adet sayımı yapın
+3. Rengi muhafaza standartla doğal ışıkta karşılaştırın
+4. Kesim ve katlama hizasına bakın
+5. Yapıştırma dayanımını kutuyu açıp kapatarak deneyin
+6. Barkodu okutun, güçlü mürekkep veya yapıştırıcı kokusunu not edin
+
+Sorun varsa fotoğraf, parti numarası ve ölçümle kayıt açın. İtiraz süresi sözleşmede yazılıdır; süreyi kaçırmak hakkı zayıflatır.
+
+## Sürdürülebilirlik Talepleri: Belgesiz İddia Etikete Girmez
+
+Bazı alıcılar geri dönüştürülebilir veya sertifikalı kâğıt ister (orman yönetimi sertifikalı karton gibi). Bu talep malzeme özelliği olarak sözleşmeye yazılır ve tedarikçiden belge istenir.
+
+Belgesiz "çevre dostu" ifadesi ambalaja basılmamalıdır. Sertifikalı malzeme maliyeti ve teslim süresini değiştirebilir; etkisi değişkendir. Bu yüzden teklifte ayrı kalem olarak isteyin. İhracat yapıyorsanız hedef pazarın etiket kuralları da ayrıca kontrol edilir.
+
+## İlk Sipariş Stratejisi: Küçük Başlayın, Kalıbı Koruyun
+
+İlk siparişte hedef, en büyük adet değil, doğru yapıdır. Yapıyı ve rengi küçük ekonomik adetle doğrulayın. Kalıp mülkiyetini ve muhafaza standardını ilk sözleşmede yazın. İkinci siparişte adedi artırın; kalıp ve kurulum maliyeti artık tekrarlanmaz, birim maliyet düşer.
+
+## İlk Adım
+
+Ürününüzün ölçüleri + marka rengi (pantone) + hedef adet ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; malzeme-yapı önerisi ve dijital/ofset eşiği analizi 24 saatte döner.
 
 ## Sık Sorulan Sorular
 

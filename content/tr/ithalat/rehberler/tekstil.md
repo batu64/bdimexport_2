@@ -54,11 +54,6 @@ Tekstilde lojistikte hacim ağırlığı belirgindir: kumaş ruloları konteyner
 | Renk tutarsızlık | Parti içi ton farkı | Pantone standardı + lot bazlı kontrol |
 | MOQ baskısı | Fazla stok | Küçük MOQ'lu tedarikçi araması veya kombin sipariş |
 
-## İlk Adım
-
-Ürününüzü (kumaş tipi/ürün grubu, adet, hedef fiyat) [danışmanlık talebi](/ithalat/danismanlik-talebi) formunda paylaşın; tedarik edilebilirlik ve süreç planı 24 saatte döner.
-
-
 ## Tekstilde Tedarikçi Bölgesel Haritası
 
 Çin'in tekstil üretimi bölgesel kümelenmiştir; doğru bölge, hem fiyat hem uzmanlık demektir:
@@ -92,24 +87,53 @@ Tekstilde gümrükten sonra satış tarafında etiket kuralları devreye girer: 
 
 İkisinin karışımı (kumaş al, Türkiye'de dik) yaygın bir modeldir; ithalat maliyeti düşer, yerli işçilik katma değer sağlar.
 
-
-
 ## Dikiş Kalitesi: Denetçiye Yazılacak Maddeler
 
 Konfeksiyon denetiminde görsel kontrolün standart maddeleri: dikiş yoğunluğu (SPI) belirlenen değerde mi, dikiş düzlüğü, kenar temizliği (overlok bitişleri), düğme/fermuar fonksiyon testi (her örnekte), etiket doğru yerde ve okunur mu. Bu maddeler AQL örnekleminde sınıflandırılır: fonksiyon bozan dikiş majör, görsel sapma minör/majör. Talimat yazılı olmadan denetçi kendi standardını uygular — talimat, kaliteyi sizin tanımınıza bağlayan köprüdür.
 
-
-
 ## Sözleşme Eki: Seal Sample ve Revizyon Yönetimi
 
 Seal sample (mühürlü referans) iki kopya üretilir: biri tedarikçide, biri sizde; her ikisi de etiketlenir ve tarihlenir. Sonraki anlaşmazlıkta tek referans budur. Ürün değişikliği (renk, kumaş, donanım) yeni revizyon demektir: v2 numunesi yeniden onaylanır — eski seal geçersiz olur. Bu disiplin, "geçen sene kumaş farklıydı" tartışmalarını tarihle kapatır.
 
+## Numune Onayından Üretime: Yazılı Onay Kapısı
 
+Numune onayı sözlü bir "tamam" olmamalıdır. Üretim başlamadan önce şu beş madde yazılı olarak netleşir:
 
-## Sözleşme Eki: Seal Sample ve Revizyon Yönetimi
+- Onaylanan numunenin kumaş bileşimi, gramajı ve renk kodu kayıtta yer alır
+- Seal sample'ın iki kopyası etiketlenir, tarihlenir ve iki tarafa teslim edilir
+- Yıkama sonrası ölçü değişimi için kabul sınırı sözleşme ekine girer
+- Etiket, askı ve ambalaj metinlerinin onaylı dosyası tedarikçide bulunur
+- Teslim tarihi ve gecikme koşulu net bir tarihle yazılır
 
-Seal sample (mühürlü referans) iki kopya üretilir: biri tedarikçide, biri sizde; her ikisi de etiketlenir ve tarihlenir. Sonraki anlaşmazlıkta tek referans budur. Ürün değişikliği (renk, kumaş, donanım) yeni revizyon demektir: v2 numunesi yeniden onaylanır — eski seal geçersiz olur. Bu disiplin, "geçen sene kumaş farklıydı" tartışmalarını tarihle kapatır.
+Bu maddeler üretimden önce tamamlanmazsa sorun üretim sırasında ortaya çıkar. O noktada düzeltmek, partinin tamamını etkiler.
 
+## Lot Tutarlılığı: Aynı Kumaş, Farklı Ton Sorunu
+
+Kumaşta renk, boya banyosuna ve partiye göre değişebilir. Buna lot farkı denir. Aynı model iki ayrı lottan üretilirse, ürünler yan yana durduğunda ton farkı hemen görünür.
+
+Önlem basittir. Sözleşmeye "tüm sipariş tek lottan üretilir" şartını yazın. Bu mümkün değilse lot numaraları etikette ve paketleme listesinde kayıtlı olsun. Kesimden önce her ruloda renk karşılaştırması yapılsın.
+
+Takım ürünlerde (üst-alt gibi) parçaların aynı lottan çıkması gerekir. Bu madde yazılmazsa tedarikçi, stoktaki en uygun rulodan keser.
+
+## Teslimde Giriş Kontrolü: Depoda İlk 48 Saat
+
+Mal Türkiye'ye vardığında kontrol bitmez. Giriş kontrolü, tedarikçiye itiraz hakkınızı koruyan belgeyi üretir:
+
+1. Konteyner açılırken fotoğraf ve video çekin
+2. Koli sayısını paketleme listesiyle karşılaştırın
+3. Rastgele seçtiğiniz kolilerde ölçü, renk ve etiket kontrolü yapın
+4. Farkları tarih, fotoğraf ve koli numarasıyla kayda alın
+5. Hasar şüphesi varsa sigortacıyı ve nakliyeciyi ilk günlerde bilgilendirin
+
+Kayıtsız itiraz zayıf kalır. Tedarikçi de sigorta şirketi de belge ister, sözlü anlatım yetmez.
+
+## Üretim Sürecinde Haftalık Rapor
+
+Sipariş verdikten sonra tedarikçiyi kendi haline bırakmayın. Kısa bir haftalık rapor isteyin: kesim başladı mı, dikim hattı hangi aşamada, ara denetim hangi tarihte. Raporu fotoğrafla destekletin. Rapor düzenli gelmiyorsa bu, gecikmenin ilk işaretidir ve takvim kaymadan önce müdahale etmenizi sağlar.
+
+## İlk Adım
+
+Ürününüzü (kumaş tipi/ürün grubu, adet, hedef fiyat) [danışmanlık talebi](/ithalat/danismanlik-talebi) formunda paylaşın; tedarik edilebilirlik ve süreç planı 24 saatte döner.
 
 ## Sık Sorulan Sorular
 

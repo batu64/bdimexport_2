@@ -58,11 +58,6 @@ Hacimli-hafif ürünler (plastik saklama, dekorasyon) denizde **hacim ağırlık
 | Malzeme kokusu | Müşteri şikâyeti | Gıda teması testleri + havalandırma süresi |
 | Karışık parti hataları | Kalem bazlı karışıklık | Koli bazlı paketleme listesi + denetim |
 
-## İlk Adım
-
-Koleksiyon fikriniz (ürün listesi veya referans görseller) ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; güvenlik filtresi ve tedarik edilebilirlik 24 saatte döner.
-
-
 ## Ürün Güvenlik Filtresi: Kaynaklar ve Yöntem
 
 Güvenlik filtresi boş bir uyarı değil, çalıştırılabilir bir kontrol listesidir:
@@ -70,7 +65,7 @@ Güvenlik filtresi boş bir uyarı değil, çalıştırılabilir bir kontrol lis
 1. **Ürün tanımı kontrolü:** Gıda teması var mı? Elektrik var mı? Çocuk kullanabilir mi? Isınan yüzey var mı?
 2. **İlgili kural seti:** Her "evet" cevabı ilgili kural kümesini çeker (gıda teması → malzeme uyumu; elektrik → güvenlik standardı; çocuk → ek kısıtlar)
 3. **Belge talebi:** Üreticiden malzeme güvenlik veri sayfası/test raporu — "güvenlidir" ifadesi değil, belge
-4. **Numune kokulum/kimyasal kontrol:** Açık ambalajda koku, keskinlik — sensör testi olarak sizin deneyiminiz
+4. **Numunede koku ve kimyasal kontrol:** Açık ambalajda koku, keskinlik — sensör testi olarak sizin deneyiminiz
 5. **Şüphede reddet:** Belgesiz güvenlik iddiası, en cazip fiyatla bile reddedilir
 
 Bu filtre, koleksiyon onayından ÖNCE çalışır — onay sonrası bulunan güvenlik sorunu, partinin tamamını vurur.
@@ -94,26 +89,55 @@ Perakende raf ambalajı vitrini kazanırsa, e-ticaret ambalajı kargoyu kazanır
 
 Kural: kampanya takviminden geriye doğru üretim takvimi; Çin Yeni Yılı penceresi her plana yazılır.
 
-
-
 ## Kalem Bazlı Kâr Testi: Koleksiyonu Veriyle Kurmak
 
 Koleksiyon planı duygusal değil, sayısal kurulur: her kalem için tahmini satış fiyatı − (ürün + navlun payı + gümrük + pazaryeri komisyonu) = tahmini birim kâr; kâr × tahmini adet = kalem katkısı. Katkısı düşük ve hacmi yüksek kalemler navlunu şişirir — koleksiyon, "her kalemi kâr eden" set olarak daraltılır. Bu test, geniş koleksiyon hevesini veriye çevirir; ilk siparişte koleksiyon küçük, ikinci sipariş veriye göre büyüktür.
-
-
-
-## Ürün Güvenlik Filtresi: Kaynaklar ve Yöntem
-
-Güvenlik filtresi boş uyarı değil, çalıştırılabilir kontrol listesidir: (1) ürün tanımı kontrolü — gıda teması? elektrik? çocuk kullanımı? ısınan yüzey? (2) her "evet" ilgili kural setini çeker, (3) üreticiden malzeme güvenlik veri sayfası/test raporu istenir — "güvenlidir" ifadesi değil belge, (4) numunede koku/kimyasal kontrol — kendi deneyiminiz sensör gibidir, (5) şüphede reddet — belgesiz güvenlik iddiası en cazip fiyatla bile reddedilir. Filtre koleksiyon onayından ÖNCE çalışır; onay sonrası bulunan güvenlik sorunu partinin tamamını vurur.
-
-## Kalem Bazlı Kâr Testi: Koleksiyonu Veriyle Kurmak
-
-Her kalem için: tahmini satış fiyatı − (ürün + navlun payı + gümrük + komisyon) = birim kâr; kâr × tahmini adet = kalem katkısı. Katkısı düşük ama hacmi yüksek kalemler navlunu şişirir — koleksiyon "her kalemi kâr eden" set olarak daraltılır. İlk siparişte koleksiyon küçük, ikinci sipariş veriye göre büyüktür.
 
 ## Tedarikçi Kategorizasyonu: Gerçek Üretici mi, Aracı mı?
 
 B2B platform profillerinin önemli kısmı trading company'dir — üretmez, toplar. Ayırt etme: fabrika ziyaret/denetim talebine açıklık, yelpazenin darlığı (tek kategori üreten = gerçek üretici olasılığı yüksek), canlı fabrika turu istekliliği. Trading company yanlış değildir — küçük adetlerde pratiktir — ama OEM marka kurarken aracısız üretici fiyat ve kontrol avantajı verir. Karar adet ve marka hedefine göre verilir.
 
+## Malzeme Soruları: Paslanmaz, Plastik, Silikon, Cam
+
+Mutfak ve saklama ürünlerinde "güvenli malzeme" beyanı tek başına yetmez. Malzemeye göre şunları sorun:
+
+- **Paslanmaz çelik:** Çelik sınıfı yazılı mı? Mıknatıs denemesi tek başına kaliteyi kanıtlamaz, malzeme belgesi gerekir
+- **Plastik:** Hangi plastik türü kullanılıyor (PP, PET vb.)? Sıcak gıdaya ve bulaşık makinesine uygunluğu belgeli mi?
+- **Silikon:** Gıda sınıfı malzeme mi? Numunede koku ve yüzeyde yapışkanlık var mı?
+- **Cam ve seramik:** Kırılma davranışı nasıl? Sır ve boya için emisyon test raporu var mı?
+
+Her malzeme için test raporunu isteyin ve raporun kapsadığı ürün ile siparişteki ürünün aynı olduğunu kontrol edin.
+
+## Ürün Fotoğrafı ve Katalog Disiplini: İadeyi Önleyen Hazırlık
+
+E-ticarette iade nedenlerinin önemli kısmı "ürün fotoğraftaki gibi değil" şikâyetidir. Önlem satış öncesinde başlar:
+
+1. Numuneyi kendi ortamınızda, doğal ışıkta çekin
+2. Renk farkını ekranda değil, yan yana numune ile kontrol edin
+3. Ölçüleri ve kapasiteyi açıkça yazın, fotoğrafa ölçek ekleyin
+4. Üretici görselini yalnızca gerçek üründen farkı olmadığında kullanın
+
+Katalog bilgisi ile ürün arasındaki fark, kâr marjını iadeler üzerinden eritir. Fotoğraf bir pazarlama maliyeti değil, iade sigortasıdır.
+
+## Stok ve Nakit Akışı: Küçük Başlayın, Hızlı Dönün
+
+Ev ve yaşam koleksiyonunda en yaygın hata, ilk siparişte fazla kalem ve fazla adet almaktır. Üretim ve nakliye süresi boyunca paranız stokta bekler.
+
+Pratik yöntem şöyledir. İlk partiyi dar tutun ve hızlı dönen kalemleri belirleyin. Hızlı kalemi tekrar sipariş edin, yavaş kalemi kampanya ile eritin. Sipariş verdiğiniz günden satışa çıkış gününe kadar geçen süreyi hesaba katın; bu süre nakit planının asıl uzunluğudur.
+
+## Satış Sonrası: İade ve Garanti Akışını Baştan Kurun
+
+İade verisi tedarikçi kalitesinin en dürüst göstergesidir. Her iadeyi nedeniyle kaydedin: kırık, eksik parça, renk farkı, koku, kullanım hatası. Aylık özet çıkarın ve tedarikçiye fotoğraflı geri bildirim verin.
+
+Sözleşmede hatalı parti için yeniden üretim veya indirim şartı bulunsun. Aksesuar ve yedek parça gerektiren ürünlerde, yedek parçayı ilk siparişe ekleyin. Sonradan tek parça için yeni sipariş vermek çoğu zaman ekonomik değildir.
+
+## Koleksiyon Belge Klasörü
+
+Her kalem için tek bir dijital klasör tutun: test raporu, malzeme beyanı, numune fotoğrafı, onaylı spesifikasyon ve parti numarası. Pazaryeri bir belge istediğinde ya da bir müşteri şikâyeti geldiğinde, aradığınızı dakikalar içinde bulursunuz. Dağınık belge, kaliteli üründe bile kanıt eksikliği doğurur.
+
+## İlk Adım
+
+Koleksiyon fikriniz (ürün listesi veya referans görseller) ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; güvenlik filtresi ve tedarik edilebilirlik 24 saatte döner.
 
 ## Sık Sorulan Sorular
 

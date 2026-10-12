@@ -60,11 +60,6 @@ Sözleşmede elektroniğe özel maddeler: BOM sabitlemesi (bileşen değişikli�
 | Pil taşıma engeli | Kargo red | UN38.3 + doğru paketleme önceden |
 | DOA artışı | Müşteri iadesi | Swap payı sözleşmesi + pre-shipment test |
 
-## İlk Adım
-
-Ürün (model/işlev, adet, hedef fiyat) ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; regülasyon haritası ve tedarik edilebilirlik 24 saatte döner.
-
-
 ## Elektronikte Sertifikasyon Kataloğu (Türkiye Girişi)
 
 | Belge | Kapsam | Kim alır |
@@ -89,30 +84,66 @@ Elektronikte donanım kadar firmware de kalite determinanıdır: dil desteği (T
 
 Elektronik ambalajı üç iş görür: koruma (darbe), uyum (etiket/uyarı metinleri), takip (seri numarası). Seri numarası DB kaydı yapılmadıysa garanti süreçleri kör işler — üreticiye seri aralığı talebi yazılır; garanti iddialarında seri bazlı doğrulama yapılır.
 
-
-
 ## Ortak Hatalar Listesi: İlk Elektronik Siparişinde Kırmızı Bayraklar
 
 Tedarikçi görüşmesinde bu işaretler görülürse hız yavaşlatılır: "rapor yok ama ürün iyi" (belge disiplini yok), "her ürünü yapıyoruz" (uzmanlık yok), "numune bedeli yok, direkt sipariş" (prosesiz acele), şematik/BOM paylaşmayı reddetme (şeffaflık yok), fiyat rakiplerden belirgin düşük (bileşen kalitesi düşük demektir). Tek bayrak eleme değildir; ikisi birlikte görülürse tedarikçi kümeden çıkar.
 
-
-
 ## Test Laboratuvarı Seçimi ve Maliyet Gerçekçiliği
 
 Bilinen bağımsız laboratuvarlar (SGS, Intertek, TÜV vb.) Çin içi şubelerde çalışır; test süresi ürün kapsamına göre 1–3 haftadır. Maliyet kalem bazlıdır; CE kapsamındaki bir tüketici ürünü için temel set tipik birkaç yüz ile birkaç bin $ arasındadır (test sayısına göre). Bu maliyet ilk partide yoğunlaşır; ürün değişmedikçe tekrar gerektirmez — seribaşıyla yeni model yeni test demektir. Bütçe planına bu kalemin baştan yazılması, sertifikasyon sürprizini önler.
-
-
-
-## Test Laboratuvarı Seçimi ve Maliyet Gerçekçiliği
-
-Bilinen bağımsız laboratuvarlar (SGS, Intertek, TÜV vb.) Çin içi şubelerde çalışır; test süresi ürün kapsamına göre 1–3 haftadır. Maliyet kalem bazlıdır; CE kapsamındaki bir tüketici ürünü için temel set tipik birkaç yüz ile birkaç bin $ arasındadır (test sayısına göre). Bu maliyet ilk partide yoğunlaşır; ürün değişmedikçe tekrar gerektirmez — seribaşıyla yeni model yeni test demektir. Bütçe planına bu kalemin baştan yazılması, sertifikasyon sürprizini önler.
-
-
 
 ## Sipariş Sonrası: Garanti/DOA Sürecinin İşletilmesi
 
 İlk sevkiyatta DOA (dead-on-arrival) oranı, tedarikçi kalitesinin en dürüst metriğidir: ilk 100 üründe arıza sayısını kaydedin — %1 üstü, sözleşmedeki swap payına rağmen uyarı sinyalidir. Süreç: arızalı ürün fotoğraflı rapor → toplu listede aylık dosyalama → swap (yeni ürün) veya kredi (fiyat indirimi) talebi → tedarikçi tepkisi ölçülür. Bu veri, ikinci siparişte pazarlık gücünüzün sayısal temelidir — "kalite kötüydü" değil "DOA %1.4, sözleşme payı %1, fark 40 adet" dersiyle oturulur.
 
+## Bağlantılı Ürünlerde Ek Sorular: Uygulama, Bulut ve Veri
+
+Wi-Fi, Bluetooth veya mobil uygulama ile çalışan ürünlerde donanım sorusu yetmez. Tedarikçiden yazılı yanıt isteyin:
+
+- Bulut sunucusu nerede ve kimin kontrolünde?
+- Uygulama mağazası hesabı kimin adına açılı?
+- Uygulama güncellenmezse ürün temel işlevini sürdürür mü?
+- Kullanıcıdan hangi kişisel veriler toplanıyor, nerede saklanıyor?
+
+Bulut hizmeti üreticinin kontrolündeyse, üretici hizmeti kapattığında ürün işlevsiz kalabilir. Kişisel veri toplayan ürünlerde veri işleme sorumluluğu satıcı olarak size düşebilir; bu nedenle konuyu ürünü satışa vermeden önce değerlendirin.
+
+## Ürün Dokümantasyonu: Türkçe Kılavuz, Etiket ve Garanti
+
+Türkiye'de satılacak elektronik ürünler için Türkçe kullanım kılavuzu, uyarılar ve garanti belgesi hazırlanması beklenir. Kesin kapsam ürün grubuna göre doğrulanır.
+
+Kılavuzu üretim sırasında pakete girecek şekilde planlayın. Sonradan ekletmek, koli koli açıp elle işçilik demektir. Türkçe kılavuz dosyasını tedarikçiye siz verin; çeviri hatası riski böylece azalır. Ürün etiketinde model, seri numarası ve çalışma voltajı okunaklı olmalıdır.
+
+## Depolama ve Varış Kontrolü
+
+Pilli ürünler serin ve kuru ortamda saklanır. Uzun süre bekleyen stokta pil şarj seviyesi kontrol edilir. Varışta şu adımları izleyin:
+
+1. Ambalaj hasarını ve pil şişmesi belirtilerini kontrol edin
+2. Seri numaralarını kayıt sistemine girin
+3. Rastgele seçtiğiniz ürünleri açıp temel işlev testi yapın
+4. Sonuçları tarihle kaydedin; satışa vermeden önce hatalı ürünleri ayırın
+
+Bu kayıt, garanti ve iade süreçlerinde tedarikçiye karşı en güçlü delildir.
+
+## Tedarikçi Görüşmesinde Sorulacak Sekiz Soru
+
+1. Ürünü hangi bağımsız laboratuvar test etti, rapor kimin adına?
+2. Bileşen listesini (BOM) paylaşır mısınız?
+3. Test edilen numune ile seri üretim ürünü aynı mı?
+4. Yazılım güncellemelerini kim, ne kadar süreyle yapacak?
+5. Garanti ve swap oranı yazılı olarak taahhüt edilecek mi?
+6. Pil kaynağı kim, taşıma test raporu var mı?
+7. Üretim kapasitesi ve takvim nedir?
+8. Benzer ürün için referans müşteriniz var mı?
+
+Soruları yazılı gönderin. Yanıtın net olması, tedarikçinin disiplini hakkında en erken ipucunu verir.
+
+## Sertifika ve Test Maliyetini Paylaşmak
+
+Test ve sertifika maliyetinin kimin üstüne kalacağını teklif aşamasında netleştirin. Maliyeti ürün fiyatına gizlemek yerine ayrı kalem olarak isteyin. Böylece teklifleri karşılaştırabilir, ikinci partide neyin tekrarlanmayacağını görebilirsiniz. Üründe bileşen veya tasarım değişirse yeniden test gerekebilir; bu nedenle değişiklik bildirimini sözleşmeye yazın.
+
+## İlk Adım
+
+Ürün (model/işlev, adet, hedef fiyat) ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; regülasyon haritası ve tedarik edilebilirlik 24 saatte döner.
 
 ## Sık Sorulan Sorular
 
