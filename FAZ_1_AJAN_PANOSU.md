@@ -51,7 +51,7 @@
 | 7 | 1.7 Partner listeleme komponenti | **Haiku 5.5** | 1.5 | ✅ hex=0 (tokens'a çevrildi), build yeşil | Haiku 5.5 · 2026-10-12 |
 | 8 | 1.8 Turnstile + rate-limit | **Sonnet 5.5** | 1.6 | ✅ commit `04c737d` (kod 1.6'da `bda3bce`; 52/52 test) | Sonnet 5.5 · 2026-10-12 |
 | 9 | 1.9 hreflang/sitemap enjeksiyonu | **Haiku 5.5** | 1.2–1.8 | ✅ doğrulandı (değişiklik yok): 18/18 sitemap URL çıktı dosyası var; 31 alternate hedefi 404 değil; TR = tr + x-default | Haiku 5.5 · 2026-10-12 |
-| 10 | 1.10 QA turu | **Haiku 5.5** | 1–9 hepsi ✅ | ⛔ kapı kapalı — 16 kriterden 3 FAIL (kelime 9/13, meta title 9/13, lint config yok) + 1 ölçülmedi (scope). Detay: qa/FAZ-1/rapor.md | Haiku 5.5 · 2026-10-12 |
+| 10 | 1.10 QA turu | **Haiku 5.5** | 1–9 hepsi ✅ | ⛔ içerik retry + ESLint config bekliyor — kelime 9/13 (1.2/1.3 Haiku + 1.4 Sonnet), meta title 9/13, lint config yok (Sonnet). Lighthouse canlı URL'de (PageSpeed/8.1). Tam liste: qa/FAZ-1/rapor.md | Haiku 5.5 · 2026-10-12 |
 | 11 | 1.11 çıkış + lansman 🚦 | **Haiku 5.5** | 1.10 + 👤 | ⏸ 1.10 kapısı geçmeden başlamaz; "devam et" verilmedi | — |
 
 **Bu turda açık işler (sıra):** 1.5 hex → 1.6 review+commit+hex → 1.7 hex → 1.8 commit → 1.9 doğrula → 1.10 QA → 1.11 çıkış.
