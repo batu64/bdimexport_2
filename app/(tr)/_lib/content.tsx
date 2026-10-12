@@ -4,6 +4,7 @@
 import fs from "fs";
 import path from "path";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { space, prose } from "@/lib/ui/tokens";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 import dict from "@/lib/messages/tr.json";
@@ -233,7 +234,7 @@ export function ContentPage({ kind, slug }: { kind: Kind; slug: string }) {
       <div dangerouslySetInnerHTML={{ __html: md2html(doc.body) }} />
       {kind === "ihracat" && (
         <p style={{ marginTop: space.s8 }}>
-          <a href="/ihracat/ucretsiz-destek-basvuru">{t.applyCta}</a>
+          <Link href="/ihracat/ucretsiz-destek-basvuru">{t.applyCta}</Link>
         </p>
       )}
     </main>
@@ -270,19 +271,19 @@ export function IndexPage({ kind, section }: { kind: Kind; section: "ithalat" | 
       <ul>
         {items.map(({ slug, doc }) => (
           <li key={slug}>
-            <a href={`${CFG[kind].base}/${slug}`}>{doc.title}</a>
+            <Link href={`${CFG[kind].base}/${slug}`}>{doc.title}</Link>
             {doc.desc ? <> — {doc.desc}</> : null}
           </li>
         ))}
       </ul>
       {section === "ithalat" && (
         <p>
-          <a href="/ithalat/rehberler">{t.guides}</a>
+          <Link href="/ithalat/rehberler">{t.guides}</Link>
         </p>
       )}
       {section === "ihracat" && (
         <p>
-          <a href="/ihracat/ucretsiz-destek-basvuru">{t.applyCta}</a>
+          <Link href="/ihracat/ucretsiz-destek-basvuru">{t.applyCta}</Link>
         </p>
       )}
     </main>
