@@ -69,5 +69,20 @@ Toplam title FAIL: 9 sayfa = A tablosundaki 6 + B tablosundaki 3 (yukarıdaki 9 
 
 Retry + eslint bittikten sonra 1.10 bu rapor baştan koşulacak.
 
+## Retry sonucu — 1.2 / 1.3 (2026-10-12)
+
+Hizmet sayfalarında hedef: gövde ≥850 kelime, meta title ≤60. Ölçüm yöntemi aynı (md gövdesi token sayımı, build'de `<title>`).
+
+| Dosya | Kelime (önce → sonra) | Title (önce → sonra) | Durum |
+| :-- | :-- | :-- | :-- |
+| `ithalat/gumruk.md` | 762 → **865** | 60 → 60 | ✅ |
+| `ithalat/lojistik.md` | 739 → **862** | 69 → **55** | ✅ |
+| `ithalat/tedarik.md` | 774 → **864** | 61 → **55** | ✅ |
+| `ihracat/b2b-pazarlama.md` | 785 → **862** | 59 → 59 | ✅ |
+| `ihracat/program-tanitim.md` | 790 → **873** | 47 → 47 | ✅ |
+| `ithalat/fabrika-denetimi.md` | 821 → 821 | 71 → **56** | ✅ (title) |
+
+Eklenen bölümler yeni rakam/iddia içermez; mevcut sayfanın konusuna bağlı süreç açıklamasıdır. Kalan açık eşik işleri: **rehberler** (Sonnet 1.4: elektronik 1146, ev-yasam 1197, makine-parcalari 1141, tekstil 1159 kelime; ambalaj 1220 / mobilya 1209 geçiyor) ve rehber title'ları (ambalaj 63, elektronik 64, ev-yasam 68, makine-parcalari 63, mobilya 64, tekstil 64). **1.10 hâlâ ⛔; ESLint config (Sonnet) ve rehber retry'ı bitince yeniden koşulacak.**
+
 ## Önceki iddialar hakkında
 Eski rapordaki "12/15 PASS, 13/13 kelime (min 813), 3 retry turu → tüm testler geçti" ifadeleri bu ölçümle **tutmuyor**. Retry kayıtları bu raporda sayılmaz.
