@@ -1,0 +1,5 @@
+# wrangler yerel secret/state — ASLA commit'lenmez (secret'lar: wrangler secret put)
+.dev.vars
+.dev.vars.*
+.wrangler/
+node_modules/
