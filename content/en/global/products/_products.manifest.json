@@ -1,0 +1,528 @@
+{
+  "step": "FAZ_2 Step 2.3",
+  "agent": "en-expert-agent (Sonnet 5.5)",
+  "date": "2026-10-15",
+  "note": "hreflang/sitemap/llms VERİSİ — enjeksiyon Step 2.8'de (ortak dosya tekeli). Bu adım app/sitemap.ts, lib/hreflang.*, public/llms.txt'e YAZMADI.",
+  "for_2_8": {
+    "sitemap_en": "/en/products (indeks) + 5 kategori (/en/products/category/*; artık hepsi indexable: her birinde 4 yayımlanmış ürün var) + 20 ürün (/en/products/{slug}). Hepsi indexable.",
+    "hreflang": "Yalnız `en` (varyant sayfası yok → en-RU/FR/NL/ES/AR YAZILMAZ, 404-hreflang yasağı); TR karşılığı yok (bilinçli, farklı niyet).",
+    "llms_txt": "20 ürün sayfası eklenmeli (ad + URL + 1 cümle); kategori ve hizmet sayfalarıyla birlikte."
+  },
+  "partner_block": {
+    "state": "PLACEHOLDER (Seçenek A, 👤 onaylı 2026-10-15)",
+    "text": "Approved partners are being onboarded…",
+    "data_source": "content/en/global/products/_partners.json (D1 dışa aktarımı; YOK → placeholder)",
+    "rules": "yalnız approved; logo yalnız consent_logo_en=true; sektör=kategori slug/adı; agent partner UYDURMAZ",
+    "products_with_real_partners": 0
+  },
+  "stats_provenance": {
+    "file": "content/en/global/products/_stats.json",
+    "source": "UN Comtrade public API (preview), reporter Türkiye (792), flow X (exports), partner 0 (World), annual, HS",
+    "retrieved": "15 October 2026",
+    "years": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "rule": "Sayfalardaki her sayı hücresi kendi sorgu URL'sine linkli; çoklu HS kodu değerleri toplanmıştır; sayılar elle YAZILMAMIŞTIR, üretici betik _stats.json'dan basar.",
+    "caveat": "İlk teknik sınır: UN Comtrade kamu önizleme API'si (anahtarsız). Resmi TÜİK/TİM bülteniyle çapraz doğrulama insan kararı (yenileme: yılda bir)."
+  },
+  "pages": [
+    {
+      "slug": "/en/products/apparel",
+      "content": "content/en/global/products/apparel.md",
+      "canonical": "https://bdimexport.com/en/products/apparel",
+      "category": "textile",
+      "keyword": "apparel manufacturers in Turkey",
+      "title": "Apparel Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source apparel from verified Turkish manufacturers: knitwear, woven garments and private label. Samples, AQL inspection and shipping. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "61",
+        "62"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/apparel"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/home-textiles",
+      "content": "content/en/global/products/home-textiles.md",
+      "canonical": "https://bdimexport.com/en/products/home-textiles",
+      "category": "textile",
+      "keyword": "home textile manufacturers in Turkey",
+      "title": "Home Textiles Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source bed linen, towels, bathrobes and soft furnishings from verified Turkish manufacturers. Samples, testing and inspection. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "6301",
+        "6302",
+        "6303",
+        "6304"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/home-textiles"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/denim",
+      "content": "content/en/global/products/denim.md",
+      "canonical": "https://bdimexport.com/en/products/denim",
+      "category": "textile",
+      "keyword": "denim manufacturers in Turkey",
+      "title": "Denim Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source denim and jeans from verified Turkish manufacturers: fabric, washes, finishing and private label. Samples and AQL inspection. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "620342",
+        "620462"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/denim"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/fabrics",
+      "content": "content/en/global/products/fabrics.md",
+      "canonical": "https://bdimexport.com/en/products/fabrics",
+      "category": "textile",
+      "keyword": "technical fabric manufacturers in Turkey",
+      "title": "Technical Fabrics Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source technical and nonwoven fabrics from verified Turkish manufacturers. Specification checks, lab tests and inspection. Free quotation in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "5407",
+        "5603"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/fabrics"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/olive-oil",
+      "content": "content/en/global/products/olive-oil.md",
+      "canonical": "https://bdimexport.com/en/products/olive-oil",
+      "category": "food",
+      "keyword": "olive oil manufacturers in Turkey",
+      "title": "Olive Oil Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source Turkish olive oil in bulk or bottled, with private label options. Supplier checks, lab analysis and inspection. Free quotation in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "1509",
+        "1510"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/olive-oil"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/dried-fruits",
+      "content": "content/en/global/products/dried-fruits.md",
+      "canonical": "https://bdimexport.com/en/products/dried-fruits",
+      "category": "food",
+      "keyword": "dried fruit manufacturers in Turkey",
+      "title": "Dried Fruits Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source dried figs, apricots and raisins from verified Turkish producers. Quality grading, lab tests and inspection, bulk or retail packs. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "080420",
+        "080620",
+        "081310"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/dried-fruits"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/hazelnuts",
+      "content": "content/en/global/products/hazelnuts.md",
+      "canonical": "https://bdimexport.com/en/products/hazelnuts",
+      "category": "food",
+      "keyword": "hazelnut manufacturers in Turkey",
+      "title": "Hazelnuts Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source Turkish hazelnuts: in shell, kernels, roasted and paste. Quality grading, aflatoxin testing and inspection before shipment. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "080221",
+        "080222"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/hazelnuts"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/pasta-cereals",
+      "content": "content/en/global/products/pasta-cereals.md",
+      "canonical": "https://bdimexport.com/en/products/pasta-cereals",
+      "category": "food",
+      "keyword": "pasta and cereal manufacturers in Turkey",
+      "title": "Pasta and Cereals Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source pasta, pulses, bulgur and cereal products from verified Turkish producers. Food safety checks, private label and inspection. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "0713",
+        "1902",
+        "1904"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/pasta-cereals"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/cnc-machinery",
+      "content": "content/en/global/products/cnc-machinery.md",
+      "canonical": "https://bdimexport.com/en/products/cnc-machinery",
+      "category": "machinery",
+      "keyword": "CNC machinery manufacturers in Turkey",
+      "title": "CNC Machinery Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source CNC machine tools, lasers and sheet metal machines from verified Turkish builders. Technical vetting, factory acceptance tests. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "8456",
+        "8457",
+        "8458",
+        "8459",
+        "8462"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/cnc-machinery"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/hvac-systems",
+      "content": "content/en/global/products/hvac-systems.md",
+      "canonical": "https://bdimexport.com/en/products/hvac-systems",
+      "category": "machinery",
+      "keyword": "industrial HVAC manufacturers in Turkey",
+      "title": "Industrial HVAC Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source industrial HVAC, chillers and heating equipment from verified Turkish manufacturers. Technical vetting, testing and inspection. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "8403",
+        "8415",
+        "8418"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/hvac-systems"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/pumps-valves",
+      "content": "content/en/global/products/pumps-valves.md",
+      "canonical": "https://bdimexport.com/en/products/pumps-valves",
+      "category": "machinery",
+      "keyword": "pump and valve manufacturers in Turkey",
+      "title": "Pumps and Valves Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source industrial pumps, valves and fluid handling equipment from verified Turkish manufacturers. Material certificates, testing, inspection. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "8413",
+        "8481"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/pumps-valves"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/agricultural-machinery",
+      "content": "content/en/global/products/agricultural-machinery.md",
+      "canonical": "https://bdimexport.com/en/products/agricultural-machinery",
+      "category": "machinery",
+      "keyword": "agricultural machinery manufacturers in Turkey",
+      "title": "Agricultural Machinery Manufacturers in Turkey | B2B",
+      "description": "Source tractors, implements and farm machinery from verified Turkish manufacturers. Technical vetting, inspection and spare parts planning. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "8432",
+        "8433",
+        "8436",
+        "8701"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/agricultural-machinery"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/marble",
+      "content": "content/en/global/products/marble.md",
+      "canonical": "https://bdimexport.com/en/products/marble",
+      "category": "construction",
+      "keyword": "marble and natural stone manufacturers in Turkey",
+      "title": "Marble and Natural Stone Manufacturers in Turkey | B2B",
+      "description": "Source marble, travertine and natural stone slabs and tiles from verified Turkish producers. Sample approval, batch control and inspection. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "2515",
+        "6802"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/marble"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/ceramics",
+      "content": "content/en/global/products/ceramics.md",
+      "canonical": "https://bdimexport.com/en/products/ceramics",
+      "category": "construction",
+      "keyword": "ceramic tile manufacturers in Turkey",
+      "title": "Ceramic Tiles Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source ceramic and porcelain tiles from verified Turkish manufacturers. Shade and size control, testing and inspection before loading. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "6907"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/ceramics"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/steel",
+      "content": "content/en/global/products/steel.md",
+      "canonical": "https://bdimexport.com/en/products/steel",
+      "category": "construction",
+      "keyword": "steel manufacturers in Turkey",
+      "title": "Steel Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source rebar, structural steel and steel products from verified Turkish suppliers. Mill certificates, inspection and loading supervision. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "7213",
+        "7214",
+        "7216",
+        "7308"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/steel"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/sanitaryware",
+      "content": "content/en/global/products/sanitaryware.md",
+      "canonical": "https://bdimexport.com/en/products/sanitaryware",
+      "category": "construction",
+      "keyword": "sanitaryware manufacturers in Turkey",
+      "title": "Sanitaryware Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source sanitaryware, washbasins, toilets and bathroom fittings from verified Turkish manufacturers. Testing, breakage-safe packing, inspection. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "6910",
+        "7324"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/sanitaryware"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/furniture",
+      "content": "content/en/global/products/furniture.md",
+      "canonical": "https://bdimexport.com/en/products/furniture",
+      "category": "home-living",
+      "keyword": "furniture manufacturers in Turkey",
+      "title": "Furniture Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source living room, bedroom and modular furniture from verified Turkish manufacturers. Flat-pack or assembled, sampling and inspection. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "9401",
+        "9403"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/furniture"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/hospitality-furniture",
+      "content": "content/en/global/products/hospitality-furniture.md",
+      "canonical": "https://bdimexport.com/en/products/hospitality-furniture",
+      "category": "home-living",
+      "keyword": "hospitality furniture manufacturers in Turkey",
+      "title": "Hospitality Furniture Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source contract furniture for hotels, restaurants and offices from verified Turkish makers. Room samples, durability checks and inspection. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "940161",
+        "940169",
+        "940350",
+        "940360"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/hospitality-furniture"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/kitchenware",
+      "content": "content/en/global/products/kitchenware.md",
+      "canonical": "https://bdimexport.com/en/products/kitchenware",
+      "category": "home-living",
+      "keyword": "kitchenware manufacturers in Turkey",
+      "title": "Kitchenware Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source cookware, tableware and kitchen products from verified Turkish manufacturers. Food contact checks, private label and inspection. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "6911",
+        "6912",
+        "7323",
+        "7615"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/kitchenware"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/carpets-rugs",
+      "content": "content/en/global/products/carpets-rugs.md",
+      "canonical": "https://bdimexport.com/en/products/carpets-rugs",
+      "category": "home-living",
+      "keyword": "carpet manufacturers in Turkey",
+      "title": "Carpets and Rugs Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source machine-made and handmade carpets and rugs from verified Turkish manufacturers. Quality checks, samples and inspection before shipment. Quote in 24h.",
+      "schema": [
+        "Product",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hs_codes": [
+        "5701",
+        "5702",
+        "5703"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/carpets-rugs"
+      },
+      "tr_counterpart": null
+    }
+  ]
+}

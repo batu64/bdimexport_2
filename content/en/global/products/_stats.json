@@ -1,0 +1,1234 @@
+{
+ "retrieved": "15 October 2026",
+ "source": "UN Comtrade public API (preview), reporter Türkiye (792), flow X (exports), partner 0 (World), annual, HS",
+ "products": {
+  "apparel": {
+   "scope": "apparel and clothing accessories, HS chapters 61 (knitted or crocheted) and 62 (not knitted or crocheted)",
+   "hs_codes": [
+    "61",
+    "62"
+   ],
+   "years": {
+    "2023": {
+     "usd": 18314943780.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=61,62&flowCode=X",
+     "rows": [
+      {
+       "hs": "61",
+       "usd": 10277565649.0
+      },
+      {
+       "hs": "62",
+       "usd": 8037378131.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 17489814813.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=61,62&flowCode=X",
+     "rows": [
+      {
+       "hs": "61",
+       "usd": 10105657119.0
+      },
+      {
+       "hs": "62",
+       "usd": 7384157694.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 16394338074.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=61,62&flowCode=X",
+     "rows": [
+      {
+       "hs": "61",
+       "usd": 9618849127.0
+      },
+      {
+       "hs": "62",
+       "usd": 6775488947.0
+      }
+     ]
+    }
+   }
+  },
+  "home-textiles": {
+   "scope": "made-up textile articles for the home, HS headings 6301 (blankets), 6302 (bed, table, toilet and kitchen linen), 6303 (curtains and blinds) and 6304 (other furnishing articles)",
+   "hs_codes": [
+    "6301",
+    "6302",
+    "6303",
+    "6304"
+   ],
+   "years": {
+    "2023": {
+     "usd": 1573952404.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=6301,6302,6303,6304&flowCode=X",
+     "rows": [
+      {
+       "hs": "6301",
+       "usd": 58564778.0
+      },
+      {
+       "hs": "6302",
+       "usd": 1124395742.0
+      },
+      {
+       "hs": "6303",
+       "usd": 157335170.0
+      },
+      {
+       "hs": "6304",
+       "usd": 233656714.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 1472507306.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=6301,6302,6303,6304&flowCode=X",
+     "rows": [
+      {
+       "hs": "6301",
+       "usd": 48491575.0
+      },
+      {
+       "hs": "6302",
+       "usd": 1081857029.0
+      },
+      {
+       "hs": "6303",
+       "usd": 144746507.0
+      },
+      {
+       "hs": "6304",
+       "usd": 197412195.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 1423604430.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=6301,6302,6303,6304&flowCode=X",
+     "rows": [
+      {
+       "hs": "6301",
+       "usd": 43941622.0
+      },
+      {
+       "hs": "6302",
+       "usd": 1059630458.0
+      },
+      {
+       "hs": "6303",
+       "usd": 140620031.0
+      },
+      {
+       "hs": "6304",
+       "usd": 179412319.0
+      }
+     ]
+    }
+   }
+  },
+  "denim": {
+   "scope": "men's and women's trousers of cotton, which include jeans, HS subheadings 620342 and 620462 (a proxy for denim garments)",
+   "hs_codes": [
+    "620342",
+    "620462"
+   ],
+   "years": {
+    "2023": {
+     "usd": 2475808823.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=620342,620462&flowCode=X",
+     "rows": [
+      {
+       "hs": "620342",
+       "usd": 1064890869.0
+      },
+      {
+       "hs": "620462",
+       "usd": 1410917954.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 2348059336.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=620342,620462&flowCode=X",
+     "rows": [
+      {
+       "hs": "620342",
+       "usd": 948796946.0
+      },
+      {
+       "hs": "620462",
+       "usd": 1399262390.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 2111479912.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=620342,620462&flowCode=X",
+     "rows": [
+      {
+       "hs": "620342",
+       "usd": 811927181.0
+      },
+      {
+       "hs": "620462",
+       "usd": 1299552731.0
+      }
+     ]
+    }
+   }
+  },
+  "fabrics": {
+   "scope": "nonwovens (HS 5603) and woven fabrics of synthetic filament yarn (HS 5407)",
+   "hs_codes": [
+    "5407",
+    "5603"
+   ],
+   "years": {
+    "2023": {
+     "usd": 1550009021.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=5603,5407&flowCode=X",
+     "rows": [
+      {
+       "hs": "5407",
+       "usd": 884347490.0
+      },
+      {
+       "hs": "5603",
+       "usd": 665661531.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 1570968449.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=5603,5407&flowCode=X",
+     "rows": [
+      {
+       "hs": "5407",
+       "usd": 808827412.0
+      },
+      {
+       "hs": "5603",
+       "usd": 762141037.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 1654093411.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=5603,5407&flowCode=X",
+     "rows": [
+      {
+       "hs": "5407",
+       "usd": 819188645.0
+      },
+      {
+       "hs": "5603",
+       "usd": 834904766.0
+      }
+     ]
+    }
+   }
+  },
+  "olive-oil": {
+   "scope": "olive oil and its fractions, HS 1509 (olive oil and its fractions) and HS 1510 (other oils obtained solely from olives)",
+   "hs_codes": [
+    "1509",
+    "1510"
+   ],
+   "years": {
+    "2023": {
+     "usd": 774752126.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=1509,1510&flowCode=X",
+     "rows": [
+      {
+       "hs": "1509",
+       "usd": 733141661.0
+      },
+      {
+       "hs": "1510",
+       "usd": 41610465.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 704834240.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=1509,1510&flowCode=X",
+     "rows": [
+      {
+       "hs": "1509",
+       "usd": 649292836.0
+      },
+      {
+       "hs": "1510",
+       "usd": 55541404.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 267896268.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=1509,1510&flowCode=X",
+     "rows": [
+      {
+       "hs": "1509",
+       "usd": 218711466.0
+      },
+      {
+       "hs": "1510",
+       "usd": 49184802.0
+      }
+     ]
+    }
+   }
+  },
+  "dried-fruits": {
+   "scope": "dried or fresh figs (HS 080420), dried grapes or raisins (HS 080620) and dried apricots (HS 081310)",
+   "hs_codes": [
+    "080420",
+    "080620",
+    "081310"
+   ],
+   "years": {
+    "2023": {
+     "usd": 1243596137.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=080420,080620,081310&flowCode=X",
+     "rows": [
+      {
+       "hs": "080420",
+       "usd": 339853334.0
+      },
+      {
+       "hs": "080620",
+       "usd": 508209393.0
+      },
+      {
+       "hs": "081310",
+       "usd": 395533410.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 1423136306.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=080420,080620,081310&flowCode=X",
+     "rows": [
+      {
+       "hs": "080420",
+       "usd": 419315716.0
+      },
+      {
+       "hs": "080620",
+       "usd": 599329217.0
+      },
+      {
+       "hs": "081310",
+       "usd": 404491373.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 1371071315.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=080420,080620,081310&flowCode=X",
+     "rows": [
+      {
+       "hs": "080420",
+       "usd": 458575904.0
+      },
+      {
+       "hs": "080620",
+       "usd": 583391244.0
+      },
+      {
+       "hs": "081310",
+       "usd": 329104167.0
+      }
+     ]
+    }
+   }
+  },
+  "hazelnuts": {
+   "scope": "hazelnuts or filberts, in shell (HS 080221) and shelled (HS 080222)",
+   "hs_codes": [
+    "080221",
+    "080222"
+   ],
+   "years": {
+    "2023": {
+     "usd": 996571324.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=080221,080222&flowCode=X",
+     "rows": [
+      {
+       "hs": "080221",
+       "usd": 1241050.0
+      },
+      {
+       "hs": "080222",
+       "usd": 995330274.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 1507434208.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=080221,080222&flowCode=X",
+     "rows": [
+      {
+       "hs": "080221",
+       "usd": 4195008.0
+      },
+      {
+       "hs": "080222",
+       "usd": 1503239200.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 1065443953.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=080221,080222&flowCode=X",
+     "rows": [
+      {
+       "hs": "080221",
+       "usd": 969017.0
+      },
+      {
+       "hs": "080222",
+       "usd": 1064474936.0
+      }
+     ]
+    }
+   }
+  },
+  "pasta-cereals": {
+   "scope": "pasta (HS 1902), dried leguminous vegetables (HS 0713) and cereal preparations including bulgur (HS 1904)",
+   "hs_codes": [
+    "0713",
+    "1902",
+    "1904"
+   ],
+   "years": {
+    "2023": {
+     "usd": 2255163766.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=1902,0713,1904&flowCode=X",
+     "rows": [
+      {
+       "hs": "0713",
+       "usd": 1132817056.0
+      },
+      {
+       "hs": "1902",
+       "usd": 907496912.0
+      },
+      {
+       "hs": "1904",
+       "usd": 214849798.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 2420352929.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=1902,0713,1904&flowCode=X",
+     "rows": [
+      {
+       "hs": "0713",
+       "usd": 1273741894.0
+      },
+      {
+       "hs": "1902",
+       "usd": 934203279.0
+      },
+      {
+       "hs": "1904",
+       "usd": 212407756.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 2136056286.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=1902,0713,1904&flowCode=X",
+     "rows": [
+      {
+       "hs": "0713",
+       "usd": 997456137.0
+      },
+      {
+       "hs": "1902",
+       "usd": 911584234.0
+      },
+      {
+       "hs": "1904",
+       "usd": 227015915.0
+      }
+     ]
+    }
+   }
+  },
+  "cnc-machinery": {
+   "scope": "metal-working machine tools: laser and other energy-beam machines (HS 8456), machining centres (8457), lathes (8458), drilling and milling machines (8459) and sheet metal forming machines (8462)",
+   "hs_codes": [
+    "8456",
+    "8457",
+    "8458",
+    "8459",
+    "8462"
+   ],
+   "years": {
+    "2023": {
+     "usd": 887052859.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=8456,8457,8458,8459,8462&flowCode=X",
+     "rows": [
+      {
+       "hs": "8456",
+       "usd": 115419558.0
+      },
+      {
+       "hs": "8457",
+       "usd": 69053541.0
+      },
+      {
+       "hs": "8458",
+       "usd": 109323750.0
+      },
+      {
+       "hs": "8459",
+       "usd": 22023609.0
+      },
+      {
+       "hs": "8462",
+       "usd": 571232401.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 697701658.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=8456,8457,8458,8459,8462&flowCode=X",
+     "rows": [
+      {
+       "hs": "8456",
+       "usd": 89230391.0
+      },
+      {
+       "hs": "8457",
+       "usd": 57792634.0
+      },
+      {
+       "hs": "8458",
+       "usd": 70469933.0
+      },
+      {
+       "hs": "8459",
+       "usd": 26689389.0
+      },
+      {
+       "hs": "8462",
+       "usd": 453519311.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 649311588.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=8456,8457,8458,8459,8462&flowCode=X",
+     "rows": [
+      {
+       "hs": "8456",
+       "usd": 78754717.0
+      },
+      {
+       "hs": "8457",
+       "usd": 50501868.0
+      },
+      {
+       "hs": "8458",
+       "usd": 49222605.0
+      },
+      {
+       "hs": "8459",
+       "usd": 21966797.0
+      },
+      {
+       "hs": "8462",
+       "usd": 448865601.0
+      }
+     ]
+    }
+   }
+  },
+  "hvac-systems": {
+   "scope": "central heating boilers (HS 8403), air conditioning machines (HS 8415) and refrigerating or freezing equipment and heat pumps (HS 8418)",
+   "hs_codes": [
+    "8403",
+    "8415",
+    "8418"
+   ],
+   "years": {
+    "2023": {
+     "usd": 4137081646.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=8415,8418,8403&flowCode=X",
+     "rows": [
+      {
+       "hs": "8403",
+       "usd": 647574223.0
+      },
+      {
+       "hs": "8415",
+       "usd": 910569183.0
+      },
+      {
+       "hs": "8418",
+       "usd": 2578938240.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 3915810002.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=8415,8418,8403&flowCode=X",
+     "rows": [
+      {
+       "hs": "8403",
+       "usd": 550306743.0
+      },
+      {
+       "hs": "8415",
+       "usd": 831269593.0
+      },
+      {
+       "hs": "8418",
+       "usd": 2534233666.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 4108299819.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=8415,8418,8403&flowCode=X",
+     "rows": [
+      {
+       "hs": "8403",
+       "usd": 569584185.0
+      },
+      {
+       "hs": "8415",
+       "usd": 951707923.0
+      },
+      {
+       "hs": "8418",
+       "usd": 2587007711.0
+      }
+     ]
+    }
+   }
+  },
+  "pumps-valves": {
+   "scope": "pumps for liquids (HS 8413) and taps, cocks, valves and similar appliances (HS 8481)",
+   "hs_codes": [
+    "8413",
+    "8481"
+   ],
+   "years": {
+    "2023": {
+     "usd": 2097055523.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=8413,8481&flowCode=X",
+     "rows": [
+      {
+       "hs": "8413",
+       "usd": 1116039147.0
+      },
+      {
+       "hs": "8481",
+       "usd": 981016376.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 2096716150.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=8413,8481&flowCode=X",
+     "rows": [
+      {
+       "hs": "8413",
+       "usd": 1064248101.0
+      },
+      {
+       "hs": "8481",
+       "usd": 1032468049.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 2200773558.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=8413,8481&flowCode=X",
+     "rows": [
+      {
+       "hs": "8413",
+       "usd": 1153769597.0
+      },
+      {
+       "hs": "8481",
+       "usd": 1047003961.0
+      }
+     ]
+    }
+   }
+  },
+  "agricultural-machinery": {
+   "scope": "tractors (HS 8701), soil preparation and cultivation machinery (HS 8432), harvesting and threshing machinery (HS 8433) and other agricultural machinery (HS 8436)",
+   "hs_codes": [
+    "8432",
+    "8433",
+    "8436",
+    "8701"
+   ],
+   "years": {
+    "2023": {
+     "usd": 2618273527.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=8701,8432,8433,8436&flowCode=X",
+     "rows": [
+      {
+       "hs": "8432",
+       "usd": 230836846.0
+      },
+      {
+       "hs": "8433",
+       "usd": 131248914.0
+      },
+      {
+       "hs": "8436",
+       "usd": 124591947.0
+      },
+      {
+       "hs": "8701",
+       "usd": 2131595820.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 1723848298.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=8701,8432,8433,8436&flowCode=X",
+     "rows": [
+      {
+       "hs": "8432",
+       "usd": 212546024.0
+      },
+      {
+       "hs": "8433",
+       "usd": 135189770.0
+      },
+      {
+       "hs": "8436",
+       "usd": 176839147.0
+      },
+      {
+       "hs": "8701",
+       "usd": 1199273357.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 1770254240.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=8701,8432,8433,8436&flowCode=X",
+     "rows": [
+      {
+       "hs": "8432",
+       "usd": 191060386.0
+      },
+      {
+       "hs": "8433",
+       "usd": 151487461.0
+      },
+      {
+       "hs": "8436",
+       "usd": 143125507.0
+      },
+      {
+       "hs": "8701",
+       "usd": 1284580886.0
+      }
+     ]
+    }
+   }
+  },
+  "marble": {
+   "scope": "marble, travertine and other calcareous monumental stone (HS 2515) and worked monumental or building stone and articles thereof (HS 6802)",
+   "hs_codes": [
+    "2515",
+    "6802"
+   ],
+   "years": {
+    "2023": {
+     "usd": 1897743739.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=2515,6802&flowCode=X",
+     "rows": [
+      {
+       "hs": "2515",
+       "usd": 666275950.0
+      },
+      {
+       "hs": "6802",
+       "usd": 1231467789.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 1897963594.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=2515,6802&flowCode=X",
+     "rows": [
+      {
+       "hs": "2515",
+       "usd": 615977545.0
+      },
+      {
+       "hs": "6802",
+       "usd": 1281986049.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 2051002021.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=2515,6802&flowCode=X",
+     "rows": [
+      {
+       "hs": "2515",
+       "usd": 647066935.0
+      },
+      {
+       "hs": "6802",
+       "usd": 1403935086.0
+      }
+     ]
+    }
+   }
+  },
+  "ceramics": {
+   "scope": "ceramic tiles, cubes and similar articles (HS 6907)",
+   "hs_codes": [
+    "6907"
+   ],
+   "years": {
+    "2023": {
+     "usd": 665273847.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=6907&flowCode=X",
+     "rows": [
+      {
+       "hs": "6907",
+       "usd": 665273847.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 726080573.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=6907&flowCode=X",
+     "rows": [
+      {
+       "hs": "6907",
+       "usd": 726080573.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 662225860.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=6907&flowCode=X",
+     "rows": [
+      {
+       "hs": "6907",
+       "usd": 662225860.0
+      }
+     ]
+    }
+   }
+  },
+  "steel": {
+   "scope": "hot-rolled bars and rods in coils (HS 7213), other bars and rods including rebar (HS 7214), angles, shapes and sections (HS 7216) and structures and parts of structures (HS 7308)",
+   "hs_codes": [
+    "7213",
+    "7214",
+    "7216",
+    "7308"
+   ],
+   "years": {
+    "2023": {
+     "usd": 6701972809.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=7213,7214,7216,7308&flowCode=X",
+     "rows": [
+      {
+       "hs": "7213",
+       "usd": 455071822.0
+      },
+      {
+       "hs": "7214",
+       "usd": 2303155447.0
+      },
+      {
+       "hs": "7216",
+       "usd": 1305279779.0
+      },
+      {
+       "hs": "7308",
+       "usd": 2638465761.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 6694454684.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=7213,7214,7216,7308&flowCode=X",
+     "rows": [
+      {
+       "hs": "7213",
+       "usd": 560899744.0
+      },
+      {
+       "hs": "7214",
+       "usd": 2164043366.0
+      },
+      {
+       "hs": "7216",
+       "usd": 1332958892.0
+      },
+      {
+       "hs": "7308",
+       "usd": 2636552682.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 6889562421.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=7213,7214,7216,7308&flowCode=X",
+     "rows": [
+      {
+       "hs": "7213",
+       "usd": 518928908.0
+      },
+      {
+       "hs": "7214",
+       "usd": 2459567629.0
+      },
+      {
+       "hs": "7216",
+       "usd": 1347442309.0
+      },
+      {
+       "hs": "7308",
+       "usd": 2563623575.0
+      }
+     ]
+    }
+   }
+  },
+  "sanitaryware": {
+   "scope": "ceramic sinks, baths, toilet bowls and similar sanitary fixtures (HS 6910) and sanitary ware of iron or steel, including stainless steel (HS 7324)",
+   "hs_codes": [
+    "6910",
+    "7324"
+   ],
+   "years": {
+    "2023": {
+     "usd": 397673490.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=6910,7324&flowCode=X",
+     "rows": [
+      {
+       "hs": "6910",
+       "usd": 315341006.0
+      },
+      {
+       "hs": "7324",
+       "usd": 82332484.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 344434985.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=6910,7324&flowCode=X",
+     "rows": [
+      {
+       "hs": "6910",
+       "usd": 256805626.0
+      },
+      {
+       "hs": "7324",
+       "usd": 87629359.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 332331733.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=6910,7324&flowCode=X",
+     "rows": [
+      {
+       "hs": "6910",
+       "usd": 242561237.0
+      },
+      {
+       "hs": "7324",
+       "usd": 89770496.0
+      }
+     ]
+    }
+   }
+  },
+  "furniture": {
+   "scope": "seats (HS 9401) and other furniture and parts (HS 9403)",
+   "hs_codes": [
+    "9401",
+    "9403"
+   ],
+   "years": {
+    "2023": {
+     "usd": 4071778502.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=9401,9403&flowCode=X",
+     "rows": [
+      {
+       "hs": "9401",
+       "usd": 1693088661.0
+      },
+      {
+       "hs": "9403",
+       "usd": 2378689841.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 4026240647.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=9401,9403&flowCode=X",
+     "rows": [
+      {
+       "hs": "9401",
+       "usd": 1719816034.0
+      },
+      {
+       "hs": "9403",
+       "usd": 2306424613.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 4095981506.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=9401,9403&flowCode=X",
+     "rows": [
+      {
+       "hs": "9401",
+       "usd": 1774689862.0
+      },
+      {
+       "hs": "9403",
+       "usd": 2321291644.0
+      }
+     ]
+    }
+   }
+  },
+  "hospitality-furniture": {
+   "scope": "wooden-frame upholstered seats (HS 940161), other wooden-frame seats (HS 940169), wooden bedroom furniture (HS 940350) and other wooden furniture (HS 940360)",
+   "hs_codes": [
+    "940161",
+    "940169",
+    "940350",
+    "940360"
+   ],
+   "years": {
+    "2023": {
+     "usd": 1957649125.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=940161,940169,940350,940360&flowCode=X",
+     "rows": [
+      {
+       "hs": "940161",
+       "usd": 492379693.0
+      },
+      {
+       "hs": "940169",
+       "usd": 75180063.0
+      },
+      {
+       "hs": "940350",
+       "usd": 725951746.0
+      },
+      {
+       "hs": "940360",
+       "usd": 664137623.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 1930019262.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=940161,940169,940350,940360&flowCode=X",
+     "rows": [
+      {
+       "hs": "940161",
+       "usd": 473542571.0
+      },
+      {
+       "hs": "940169",
+       "usd": 79203840.0
+      },
+      {
+       "hs": "940350",
+       "usd": 743897940.0
+      },
+      {
+       "hs": "940360",
+       "usd": 633374911.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 1964037971.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=940161,940169,940350,940360&flowCode=X",
+     "rows": [
+      {
+       "hs": "940161",
+       "usd": 484766092.0
+      },
+      {
+       "hs": "940169",
+       "usd": 68376025.0
+      },
+      {
+       "hs": "940350",
+       "usd": 779276907.0
+      },
+      {
+       "hs": "940360",
+       "usd": 631618947.0
+      }
+     ]
+    }
+   }
+  },
+  "kitchenware": {
+   "scope": "table, kitchen or other household articles of iron or steel (HS 7323), ceramic tableware (HS 6911 and 6912) and household articles of aluminium (HS 7615)",
+   "hs_codes": [
+    "6911",
+    "6912",
+    "7323",
+    "7615"
+   ],
+   "years": {
+    "2023": {
+     "usd": 709240648.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=7323,6911,6912,7615&flowCode=X",
+     "rows": [
+      {
+       "hs": "6911",
+       "usd": 154552565.0
+      },
+      {
+       "hs": "6912",
+       "usd": 51457711.0
+      },
+      {
+       "hs": "7323",
+       "usd": 335034508.0
+      },
+      {
+       "hs": "7615",
+       "usd": 168195864.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 718055040.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=7323,6911,6912,7615&flowCode=X",
+     "rows": [
+      {
+       "hs": "6911",
+       "usd": 141390179.0
+      },
+      {
+       "hs": "6912",
+       "usd": 65035030.0
+      },
+      {
+       "hs": "7323",
+       "usd": 368504562.0
+      },
+      {
+       "hs": "7615",
+       "usd": 143125269.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 665196830.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=7323,6911,6912,7615&flowCode=X",
+     "rows": [
+      {
+       "hs": "6911",
+       "usd": 145791936.0
+      },
+      {
+       "hs": "6912",
+       "usd": 47445714.0
+      },
+      {
+       "hs": "7323",
+       "usd": 346643113.0
+      },
+      {
+       "hs": "7615",
+       "usd": 125316067.0
+      }
+     ]
+    }
+   }
+  },
+  "carpets-rugs": {
+   "scope": "knotted carpets (HS 5701), woven carpets (HS 5702) and tufted carpets (HS 5703)",
+   "hs_codes": [
+    "5701",
+    "5702",
+    "5703"
+   ],
+   "years": {
+    "2023": {
+     "usd": 2764924723.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2023&partnerCode=0&cmdCode=5701,5702,5703&flowCode=X",
+     "rows": [
+      {
+       "hs": "5701",
+       "usd": 57936699.0
+      },
+      {
+       "hs": "5702",
+       "usd": 2214914676.0
+      },
+      {
+       "hs": "5703",
+       "usd": 492073348.0
+      }
+     ]
+    },
+    "2024": {
+     "usd": 2854994797.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2024&partnerCode=0&cmdCode=5701,5702,5703&flowCode=X",
+     "rows": [
+      {
+       "hs": "5701",
+       "usd": 68423854.0
+      },
+      {
+       "hs": "5702",
+       "usd": 2242998353.0
+      },
+      {
+       "hs": "5703",
+       "usd": 543572590.0
+      }
+     ]
+    },
+    "2025": {
+     "usd": 2800165197.0,
+     "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=5701,5702,5703&flowCode=X",
+     "rows": [
+      {
+       "hs": "5701",
+       "usd": 74024394.0
+      },
+      {
+       "hs": "5702",
+       "usd": 2176525462.0
+      },
+      {
+       "hs": "5703",
+       "usd": 549615341.0
+      }
+     ]
+    }
+   }
+  }
+ }
+}
