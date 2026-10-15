@@ -1,0 +1,127 @@
+{
+  "step": "FAZ_2 Step 2.1",
+  "agent": "en-expert-agent (Sonnet 5.5)",
+  "date": "2026-10-15",
+  "note": "hreflang VERİSİ — enjeksiyon Step 2.8'de (app/sitemap.ts, lib/hreflang.*, public/llms.txt yalnız orchestrator-rolü). Bu adım hiçbirine yazmadı; sayfalar yalnızca self-canonical taşır ve kök layout'un TR/x-default hreflang mirasını `alternates` ile ezer.",
+  "hreflang_rules": {
+    "family": "en",
+    "variants_included_only_if_page_exists": "sourcing için /en/{ru,fr,nl,es,ar}/services/sourcing sayfaları MEVCUT (2.5) → en-RU/FR/NL/ES/AR eklenebilir; manufacturing/inspection/logistics/customs için varyant sayfası YOK → yalnız en (404-hreflang yasağı, SEO_PLAYBOOK §1.4).",
+    "tr_counterpart": "YOK — bilinçli. /ithalat/{tedarik,fabrika-denetimi,lojistik,gumruk} Çin'den TR'ye ITHALAT anlatır; bu sayfalar TR'den ihracat alıcısına hizmet verir (farklı niyet, çeviri değil). Eşdeğer olmayan sayfalar arası hreflang yazılmaz.",
+    "reciprocity": "sourcing: /en/{v}/services/sourcing sayfaları da /en/services/sourcing'e hreflang=en vermeli (2.8 karşılıklılık testi)."
+  },
+  "pages": [
+    {
+      "slug": "/en/services",
+      "content": "content/en/global/services/index.md",
+      "canonical": "https://bdimexport.com/en/services",
+      "title": "Export Services from Turkey for Global B2B Buyers",
+      "description": "Sourcing, private label manufacturing, factory inspection, freight logistics and export customs documents from Turkey. Free quotation in 24h.",
+      "schema": [
+        "BreadcrumbList",
+        "ItemList"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/services"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/services/sourcing",
+      "content": "content/en/global/services/sourcing.md",
+      "canonical": "https://bdimexport.com/en/services/sourcing",
+      "title": "Sourcing in Turkey: Verified Suppliers and Samples",
+      "description": "Find and verify Turkish factories for your product. Shortlist within 5 working days, sample comparison and negotiation support. Free quotation in 24h.",
+      "schema": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/services/sourcing",
+        "en-RU": "https://bdimexport.com/en/ru/services/sourcing",
+        "en-FR": "https://bdimexport.com/en/fr/services/sourcing",
+        "en-NL": "https://bdimexport.com/en/nl/services/sourcing",
+        "en-ES": "https://bdimexport.com/en/es/services/sourcing",
+        "en-AR": "https://bdimexport.com/en/ar/services/sourcing"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/services/manufacturing",
+      "content": "content/en/global/services/manufacturing.md",
+      "canonical": "https://bdimexport.com/en/services/manufacturing",
+      "title": "Private Label Manufacturing in Turkey: OEM and ODM",
+      "description": "Launch your own brand with Turkish OEM and ODM manufacturers. Development plan within 5 working days, sampling, packaging and quality control. Quote in 24h.",
+      "schema": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/services/manufacturing"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/services/inspection",
+      "content": "content/en/global/services/inspection.md",
+      "canonical": "https://bdimexport.com/en/services/inspection",
+      "title": "Factory Inspection in Turkey: AQL, Audits, Reports",
+      "description": "Independent pre-shipment, in-production and factory audit services in Turkey. Photographed, measured report within 48 hours of the visit. Quote in 24h.",
+      "schema": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/services/inspection"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/services/logistics",
+      "content": "content/en/global/services/logistics.md",
+      "canonical": "https://bdimexport.com/en/services/logistics",
+      "title": "Freight Logistics from Turkey: Road, Sea, Air, Rail",
+      "description": "Door-to-door freight from Turkish factories to your warehouse by road, sea, air or rail. Route options and costs within 24h, tracking and cargo insurance.",
+      "schema": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/services/logistics"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/services/customs",
+      "content": "content/en/global/services/customs.md",
+      "canonical": "https://bdimexport.com/en/services/customs",
+      "title": "Turkish Export Customs Clearance and Documents",
+      "description": "Export declaration, commercial documents and origin certificates for goods leaving Turkey. Document checklist within 24h and review before shipment.",
+      "schema": [
+        "Service",
+        "FAQPage",
+        "BreadcrumbList"
+      ],
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/services/customs"
+      },
+      "tr_counterpart": null
+    }
+  ],
+  "cta": {
+    "layout_cta": "GlobalShell üst bar + sayfa altı #get-quote bloğu (app/(en)/en/_lib/)",
+    "channel": "mailto (geçici). Teklif FORMU/endpoint yok: lead POST FAZ 3'te. Adres env: NEXT_PUBLIC_QUOTE_EMAIL (varsayılan iletisim@bdimexport.com — KVKK metninde \"geçici\" etiketli)."
+  },
+  "sla_statements_to_confirm": [
+    "Free quotation in 24h (tüm hizmetler; CONTENT_STYLE §5 ile aynı)",
+    "Sourcing: shortlist within 5 working days of confirming the brief",
+    "Manufacturing: development plan within 5 working days of receiving the brief",
+    "Inspection: report within 48 hours of the visit (TR fabrika-denetimi sayfasıyla uyumlu)",
+    "Logistics: route and cost options within 24h",
+    "Customs: document checklist within 24h"
+  ],
+  "claims_policy": "İstatistik/rakam/partner adı/müşteri yorumu YOK (uydurma = hard-red). AB–Türkiye gümrük birliği ve ATR/EUR.1 ifadeleri genel, \"ürün kapsamı ve menşe kurallarına bağlı\" notlu."
+}
