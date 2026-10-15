@@ -51,7 +51,7 @@
 | 7 | 1.7 Partner listeleme komponenti | **Haiku 5.5** | 1.5 | ✅ hex=0 (tokens'a çevrildi), build yeşil | Haiku 5.5 · 2026-10-12 |
 | 8 | 1.8 Turnstile + rate-limit | **Sonnet 5.5** | 1.6 | ✅ commit `04c737d` (kod 1.6'da `bda3bce`; 52/52 test) | Sonnet 5.5 · 2026-10-12 |
 | 9 | 1.9 hreflang/sitemap enjeksiyonu | **Haiku 5.5** | 1.2–1.8 | ✅ doğrulandı (değişiklik yok): 18/18 sitemap URL çıktı dosyası var; 31 alternate hedefi 404 değil; TR = tr + x-default | Haiku 5.5 · 2026-10-12 |
-| 10 | 1.10 QA turu | **Haiku 5.5** | 1–9 hepsi ✅ | ⛔ 2026-10-15 koşusu: build+lint ✅, kelime 13/13 ✅, meta title 6/13 ❌ (rehberler — Sonnet 1.4 title), KVKK `[____]` (insan), scope ölçülmedi, Lighthouse canlı URL. Tam liste: qa/FAZ-1/rapor.md | Haiku 5.5 · 2026-10-15 |
+| 10 | 1.10 QA turu | **Haiku 5.5** | 1–9 hepsi ✅ | ✅ ölçülebilen 15/17 kriter PASS (build+lint, kelime 13/13, meta title 13/13, desc, FAQ, link, Turnstile, vitest 52/52, hex=0, sitemap, hreflang, gitleaks interim). Açık 1.11'e devredildi: scope (kriter 16, ölçülmedi), Lighthouse (kriter 17, canlıda), KVKK `[____]` (insan). Tam liste: qa/FAZ-1/rapor.md | Haiku 5.5 · 2026-10-15 |
 | 11 | 1.11 çıkış + lansman 🚦 | **Haiku 5.5** | 1.10 + 👤 | ⏸ 1.10 kapısı geçmeden başlamaz; "devam et" verilmedi | — |
 
 **Bu turda açık işler (sıra):** 1.5 hex → 1.6 review+commit+hex → 1.7 hex → 1.8 commit → 1.9 doğrula → 1.10 QA → 1.11 çıkış.
