@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "note": "FAZ_2 Step 2.2 — kategori/ürün kataloğu (URL yapısı: /en/products/category/{slug} ve /en/products/{product-slug}). Ürün sayfası YAYIMLANMIŞ sayılır ⇔ content/en/global/products/{slug}.md mevcut (Step 2.3). Dosya yoksa 'coming soon' (link verilmez). 'category' bir ürün slug'ı OLAMAZ (rota çakışması). Anchor kuralı: bağlantı metni = ürünün keyword'ü (CONTENT_STYLE §5: 'buraya tıklayın' yasak).",
+  "categories": [
+    {
+      "slug": "textile",
+      "name": "Textile & Apparel",
+      "industry": "/en/industries/textile",
+      "products": [
+        {
+          "slug": "apparel",
+          "name": "Apparel & Ready-to-Wear",
+          "keyword": "apparel manufacturers in Turkey",
+          "blurb": "Knitwear, woven garments and ready-to-wear made to your design or under your private label."
+        },
+        {
+          "slug": "home-textiles",
+          "name": "Home Textiles, Bedding & Towels",
+          "keyword": "home textile manufacturers in Turkey",
+          "blurb": "Bed linen, towels, bathrobes and soft furnishings for retail, hotel and contract buyers."
+        },
+        {
+          "slug": "denim",
+          "name": "Denim & Jeans",
+          "keyword": "denim manufacturers in Turkey",
+          "blurb": "Denim fabric and jeans, from washes and finishing to retail-ready packaging."
+        },
+        {
+          "slug": "fabrics",
+          "name": "Technical & Nonwoven Fabrics",
+          "keyword": "technical fabric manufacturers in Turkey",
+          "blurb": "Woven, knitted and nonwoven fabrics for industrial, medical, automotive and home uses."
+        }
+      ],
+      "intro": "_categories/textile.md"
+    },
+    {
+      "slug": "food",
+      "name": "Food & Agriculture",
+      "industry": "/en/industries/food",
+      "products": [
+        {
+          "slug": "olive-oil",
+          "name": "Extra Virgin Olive Oil",
+          "keyword": "olive oil manufacturers in Turkey",
+          "blurb": "Bulk and bottled olive oil, with private label packaging options."
+        },
+        {
+          "slug": "dried-fruits",
+          "name": "Dried Fruits (Figs, Apricots, Raisins)",
+          "keyword": "dried fruit manufacturers in Turkey",
+          "blurb": "Figs, apricots and raisins in bulk or retail packs."
+        },
+        {
+          "slug": "hazelnuts",
+          "name": "Hazelnuts & Nut Ingredients",
+          "keyword": "hazelnut manufacturers in Turkey",
+          "blurb": "Natural, roasted and processed hazelnuts and nut ingredients for industry and retail."
+        },
+        {
+          "slug": "pasta-cereals",
+          "name": "Pasta, Pulses & Cereals",
+          "keyword": "pasta and cereal manufacturers in Turkey",
+          "blurb": "Pasta, pulses and cereal products in retail and food-service packaging."
+        }
+      ],
+      "intro": "_categories/food.md"
+    },
+    {
+      "slug": "machinery",
+      "name": "Industrial Machinery & Engineering",
+      "industry": "/en/industries/machinery",
+      "products": [
+        {
+          "slug": "cnc-machinery",
+          "name": "CNC Machine Tools & Lasers",
+          "keyword": "CNC machinery manufacturers in Turkey",
+          "blurb": "CNC machining, sheet metal and laser equipment from established machine builders."
+        },
+        {
+          "slug": "hvac-systems",
+          "name": "Industrial HVAC & Chillers",
+          "keyword": "industrial HVAC manufacturers in Turkey",
+          "blurb": "Heating, ventilation, air conditioning and chiller systems for industrial and commercial buildings."
+        },
+        {
+          "slug": "pumps-valves",
+          "name": "Pumps, Valves & Fluid Engineering",
+          "keyword": "pump and valve manufacturers in Turkey",
+          "blurb": "Pumps, valves and fluid handling components for industry, water and energy projects."
+        },
+        {
+          "slug": "agricultural-machinery",
+          "name": "Agricultural Machinery & Tractors",
+          "keyword": "agricultural machinery manufacturers in Turkey",
+          "blurb": "Tractors, implements and farm equipment for different crops and farm sizes."
+        }
+      ],
+      "intro": "_categories/machinery.md"
+    },
+    {
+      "slug": "construction",
+      "name": "Construction Materials & Building Supplies",
+      "industry": "/en/industries/construction",
+      "products": [
+        {
+          "slug": "marble",
+          "name": "Natural Stone, Marble & Travertine",
+          "keyword": "marble and natural stone manufacturers in Turkey",
+          "blurb": "Blocks, slabs and tiles in marble, travertine and other natural stone."
+        },
+        {
+          "slug": "ceramics",
+          "name": "Ceramic & Porcelain Stoneware",
+          "keyword": "ceramic tile manufacturers in Turkey",
+          "blurb": "Wall and floor tiles in ceramic and porcelain stoneware, in many sizes and finishes."
+        },
+        {
+          "slug": "steel",
+          "name": "Structural Steel & Rebar",
+          "keyword": "steel manufacturers in Turkey",
+          "blurb": "Structural sections, rebar and steel products for building and infrastructure projects."
+        },
+        {
+          "slug": "sanitaryware",
+          "name": "Sanitaryware & Architectural Fittings",
+          "keyword": "sanitaryware manufacturers in Turkey",
+          "blurb": "Bathroom ceramics, fittings and architectural hardware for residential and commercial projects."
+        }
+      ],
+      "intro": "_categories/construction.md"
+    },
+    {
+      "slug": "home-living",
+      "name": "Home & Living, Furniture & Decor",
+      "industry": "/en/industries/home-living",
+      "products": [
+        {
+          "slug": "furniture",
+          "name": "Modular Living & Bedroom Furniture",
+          "keyword": "furniture manufacturers in Turkey",
+          "blurb": "Living room, bedroom and modular furniture, including flat-pack and assembled ranges."
+        },
+        {
+          "slug": "hospitality-furniture",
+          "name": "Contract Hospitality Furniture",
+          "keyword": "hospitality furniture manufacturers in Turkey",
+          "blurb": "Furniture produced in volume for hotels, restaurants, offices and student housing projects."
+        },
+        {
+          "slug": "kitchenware",
+          "name": "Kitchenware & Tabletop Decor",
+          "keyword": "kitchenware manufacturers in Turkey",
+          "blurb": "Cookware, tableware and decorative items for retail and hospitality buyers."
+        },
+        {
+          "slug": "carpets-rugs",
+          "name": "Carpets & Rugs",
+          "keyword": "carpet manufacturers in Turkey",
+          "blurb": "Machine-made and handmade carpets and rugs in many designs, sizes and qualities."
+        }
+      ],
+      "intro": "_categories/home-living.md"
+    }
+  ]
+}

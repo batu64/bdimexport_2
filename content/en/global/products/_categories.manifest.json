@@ -1,0 +1,122 @@
+{
+  "step": "FAZ_2 Step 2.2",
+  "agent": "en-expert-agent (Sonnet 5.5)",
+  "date": "2026-10-15",
+  "note": "hreflang/sitemap VERİSİ — enjeksiyon Step 2.8'de. Bu adım app/sitemap.ts, lib/hreflang.*, public/llms.txt'e YAZMADI.",
+  "url_structure": {
+    "index": "/en/products",
+    "category": "/en/products/category/{textile|food|machinery|construction|home-living}",
+    "product": "/en/products/{slug} (Step 2.3; \"category\" slug'ı yasak)"
+  },
+  "product_state_rule": "Ürün LIVE ⇔ content/en/global/products/{slug}.md mevcut. Yoksa \"Coming soon\" ve link yok. Bu kural 2.3 dosyaları eklenince listeyi/ItemList'i/indexable bayrağını otomatik günceller.",
+  "catalog": "content/en/global/products/_categories.json (20 ürün; her ürünün keyword'ü kategori→ürün anchor metnidir)",
+  "partners": {
+    "source": "D1 dışa aktarımı: content/en/global/products/_partners.json (YOK → boş liste, \"coming soon\" bloğu)",
+    "shape": "[{id,name,sector,approved,consent_logo_en,logo_url}] — workers/api/src/read.ts şemasıyla uyumlu",
+    "rules": "yalnız approved; logo yalnız consent_logo_en=true; sektör kategori slug'ı veya adıyla eşleşir; agent partner UYDURMAZ"
+  },
+  "pages": [
+    {
+      "slug": "/en/products",
+      "content": "content/en/global/products/_categories/index.md",
+      "canonical": "https://bdimexport.com/en/products",
+      "title": "Products from Turkish Manufacturers for B2B Buyers",
+      "description": "Browse five product categories from Turkish manufacturers: textile, food, machinery, construction and home. Request a free quotation in 24h.",
+      "schema": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ItemList"
+      ],
+      "indexable": true,
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/category/textile",
+      "content": "content/en/global/products/_categories/textile.md",
+      "canonical": "https://bdimexport.com/en/products/category/textile",
+      "title": "Textile and Apparel Manufacturers in Turkey | B2B",
+      "description": "Source apparel, home textiles, denim and technical fabrics from Turkish manufacturers. Verified suppliers, sample control and inspection. Quote in 24h.",
+      "schema": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ItemList (yalnız live ürün varsa)"
+      ],
+      "indexable": "DİNAMİK: yayımlanmış ürün sayısı ≥1 ise true (build'de robots noindex otomatik kalkar). 2.8 sitemap'e YALNIZ indexable olanları yazmalı.",
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/category/textile"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/category/food",
+      "content": "content/en/global/products/_categories/food.md",
+      "canonical": "https://bdimexport.com/en/products/category/food",
+      "title": "Food and Agriculture Suppliers in Turkey | B2B Sourcing",
+      "description": "Source olive oil, dried fruits, hazelnuts, pasta and cereals from Turkish producers. Supplier checks, quality control and export documents. Quote in 24h.",
+      "schema": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ItemList (yalnız live ürün varsa)"
+      ],
+      "indexable": "DİNAMİK: yayımlanmış ürün sayısı ≥1 ise true (build'de robots noindex otomatik kalkar). 2.8 sitemap'e YALNIZ indexable olanları yazmalı.",
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/category/food"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/category/machinery",
+      "content": "content/en/global/products/_categories/machinery.md",
+      "canonical": "https://bdimexport.com/en/products/category/machinery",
+      "title": "Machinery Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source CNC machine tools, HVAC, pumps, valves and agricultural machinery from Turkish builders. Technical vetting and inspection. Quote in 24h.",
+      "schema": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ItemList (yalnız live ürün varsa)"
+      ],
+      "indexable": "DİNAMİK: yayımlanmış ürün sayısı ≥1 ise true (build'de robots noindex otomatik kalkar). 2.8 sitemap'e YALNIZ indexable olanları yazmalı.",
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/category/machinery"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/category/construction",
+      "content": "content/en/global/products/_categories/construction.md",
+      "canonical": "https://bdimexport.com/en/products/category/construction",
+      "title": "Construction Materials Manufacturers in Turkey | B2B",
+      "description": "Source natural stone, ceramics, steel and sanitaryware from Turkish manufacturers. Sample approval, batch control and loading supervision. Quote in 24h.",
+      "schema": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ItemList (yalnız live ürün varsa)"
+      ],
+      "indexable": "DİNAMİK: yayımlanmış ürün sayısı ≥1 ise true (build'de robots noindex otomatik kalkar). 2.8 sitemap'e YALNIZ indexable olanları yazmalı.",
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/category/construction"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/products/category/home-living",
+      "content": "content/en/global/products/_categories/home-living.md",
+      "canonical": "https://bdimexport.com/en/products/category/home-living",
+      "title": "Home and Living Manufacturers in Turkey | B2B Sourcing",
+      "description": "Source furniture, hospitality furniture, kitchenware and carpets from Turkish manufacturers. Sampling, packaging and inspection. Quote in 24h.",
+      "schema": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ItemList (yalnız live ürün varsa)"
+      ],
+      "indexable": "DİNAMİK: yayımlanmış ürün sayısı ≥1 ise true (build'de robots noindex otomatik kalkar). 2.8 sitemap'e YALNIZ indexable olanları yazmalı.",
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/products/category/home-living"
+      },
+      "tr_counterpart": null
+    }
+  ]
+}
