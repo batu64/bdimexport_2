@@ -1,0 +1,136 @@
+{
+  "step": "FAZ_2 Step 2.4 REWORK",
+  "agent": "en-expert-agent (Sonnet 5.5)",
+  "date": "2026-10-16",
+  "note": "hreflang/sitemap/llms VERİSİ — enjeksiyon Step 2.8'de (ortak dosya tekeli). Bu adım app/sitemap.ts, lib/hreflang.*, public/llms.txt'e YAZMADI.",
+  "for_2_8": {
+    "sitemap_en": "/en/industries + 5 sektör sayfası (hepsi indexable)",
+    "hreflang": "Yalnız `en`; varyant sayfası ve TR karşılığı yok (404-hreflang yasağı)."
+  },
+  "removed_from_v1": [
+    "uydurma vaka çalışması",
+    "kaynaksız sıralama/yüzde/tablo rakamları",
+    "kendi kendine verilmiş 5/5 ClaimReview + 'ClaimReview Verified' rozeti",
+    "uydurma yayın tarihleri",
+    "var olmayan hero görsel yolları"
+  ],
+  "case_study_block": "OMITTED — CONTENT_STYLE §3 blok 6 'anonimleştirilmiş GERÇEK proje' ister; henüz gerçek proje yok. Yerine açıkça 'illustrative' etiketli süreç özeti kondu.",
+  "data": {
+    "source": "content/en/global/products/_stats.json (UN Comtrade, 2.3'te doğrulandı)",
+    "claims": "content/en/global/industries/_claims.json"
+  },
+  "pages": [
+    {
+      "slug": "/en/industries",
+      "content": "content/en/global/industries/index.md",
+      "canonical": "https://bdimexport.com/en/industries",
+      "title": "Export Industries of Turkey for Global B2B Buyers",
+      "description": "Explore five Turkish export industries: textile, food, machinery, construction materials and home and living. Official data, buyer checks, sourcing support.",
+      "schema": [
+        "CollectionPage",
+        "ItemList",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/industries"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/industries/textile",
+      "content": "content/en/global/industries/textile.md",
+      "canonical": "https://bdimexport.com/en/industries/textile",
+      "title": "Textile Exports from Turkey: 2025 Data and Trends",
+      "description": "Official export data for Turkish apparel, home textiles and technical fabrics, with trends, buyer checks and sourcing support. Free quotation in 24h.",
+      "schema": [
+        "Article",
+        "ClaimReview",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/industries/textile"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/industries/food",
+      "content": "content/en/global/industries/food.md",
+      "canonical": "https://bdimexport.com/en/industries/food",
+      "title": "Food Exports from Turkey: 2025 Data and Trends",
+      "description": "Official export data for Turkish olive oil, dried fruits, hazelnuts, pasta and pulses, with food safety checks and sourcing support. Quote in 24h.",
+      "schema": [
+        "Article",
+        "ClaimReview",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/industries/food"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/industries/machinery",
+      "content": "content/en/global/industries/machinery.md",
+      "canonical": "https://bdimexport.com/en/industries/machinery",
+      "title": "Machinery Exports from Turkey: 2025 Data and Trends",
+      "description": "Official export data for Turkish machine tools, HVAC, pumps, valves and agricultural machinery, with acceptance-test guidance. Free quotation in 24h.",
+      "schema": [
+        "Article",
+        "ClaimReview",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/industries/machinery"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/industries/construction",
+      "content": "content/en/global/industries/construction.md",
+      "canonical": "https://bdimexport.com/en/industries/construction",
+      "title": "Construction Materials Exports from Turkey: 2025 Data",
+      "description": "Official export data for Turkish natural stone, ceramic tiles, steel and sanitaryware, with batch control and loading checks. Free quotation in 24h.",
+      "schema": [
+        "Article",
+        "ClaimReview",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/industries/construction"
+      },
+      "tr_counterpart": null
+    },
+    {
+      "slug": "/en/industries/home-living",
+      "content": "content/en/global/industries/home-living.md",
+      "canonical": "https://bdimexport.com/en/industries/home-living",
+      "title": "Home and Living Exports from Turkey: 2025 Data and Trends",
+      "description": "Official export data for Turkish furniture, hospitality furniture, kitchenware and carpets, with sampling and packing checks. Free quotation in 24h.",
+      "schema": [
+        "Article",
+        "ClaimReview",
+        "FAQPage",
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "indexable": true,
+      "hreflang_proposal": {
+        "en": "https://bdimexport.com/en/industries/home-living"
+      },
+      "tr_counterpart": null
+    }
+  ]
+}

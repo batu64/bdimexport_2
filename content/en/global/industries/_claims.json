@@ -1,0 +1,256 @@
+{
+  "textile": {
+    "year": 2025,
+    "claim": "Türkiye's exports of the product groups listed in the table (Apparel & Ready-to-Wear; Home Textiles, Bedding & Towels; Technical & Nonwoven Fabrics) were US$ 19,472.0 million in 2025, the sum of the linked UN Comtrade values.",
+    "total_usd_million": {
+      "2023": 21438.9,
+      "2024": 20533.3,
+      "2025": 19472.0
+    },
+    "components": [
+      {
+        "slug": "apparel",
+        "name": "Apparel & Ready-to-Wear",
+        "hs": [
+          "61",
+          "62"
+        ],
+        "2025_usd_million": 16394.3,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=61,62&flowCode=X"
+      },
+      {
+        "slug": "home-textiles",
+        "name": "Home Textiles, Bedding & Towels",
+        "hs": [
+          "6301",
+          "6302",
+          "6303",
+          "6304"
+        ],
+        "2025_usd_million": 1423.6,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=6301,6302,6303,6304&flowCode=X"
+      },
+      {
+        "slug": "fabrics",
+        "name": "Technical & Nonwoven Fabrics",
+        "hs": [
+          "5407",
+          "5603"
+        ],
+        "2025_usd_million": 1654.1,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=5603,5407&flowCode=X"
+      }
+    ],
+    "verified_on": "2026-10-15"
+  },
+  "food": {
+    "year": 2025,
+    "claim": "Türkiye's exports of the product groups listed in the table (Extra Virgin Olive Oil; Dried Fruits (Figs, Apricots, Raisins); Hazelnuts & Nut Ingredients; Pasta, Pulses & Cereals) were US$ 4,840.5 million in 2025, the sum of the linked UN Comtrade values.",
+    "total_usd_million": {
+      "2023": 5270.1,
+      "2024": 6055.8,
+      "2025": 4840.5
+    },
+    "components": [
+      {
+        "slug": "olive-oil",
+        "name": "Extra Virgin Olive Oil",
+        "hs": [
+          "1509",
+          "1510"
+        ],
+        "2025_usd_million": 267.9,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=1509,1510&flowCode=X"
+      },
+      {
+        "slug": "dried-fruits",
+        "name": "Dried Fruits (Figs, Apricots, Raisins)",
+        "hs": [
+          "080420",
+          "080620",
+          "081310"
+        ],
+        "2025_usd_million": 1371.1,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=080420,080620,081310&flowCode=X"
+      },
+      {
+        "slug": "hazelnuts",
+        "name": "Hazelnuts & Nut Ingredients",
+        "hs": [
+          "080221",
+          "080222"
+        ],
+        "2025_usd_million": 1065.4,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=080221,080222&flowCode=X"
+      },
+      {
+        "slug": "pasta-cereals",
+        "name": "Pasta, Pulses & Cereals",
+        "hs": [
+          "0713",
+          "1902",
+          "1904"
+        ],
+        "2025_usd_million": 2136.1,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=1902,0713,1904&flowCode=X"
+      }
+    ],
+    "verified_on": "2026-10-15"
+  },
+  "machinery": {
+    "year": 2025,
+    "claim": "Türkiye's exports of the product groups listed in the table (CNC Machine Tools & Lasers; Industrial HVAC & Chillers; Pumps, Valves & Fluid Engineering; Agricultural Machinery & Tractors) were US$ 8,728.6 million in 2025, the sum of the linked UN Comtrade values.",
+    "total_usd_million": {
+      "2023": 9739.5,
+      "2024": 8434.1,
+      "2025": 8728.6
+    },
+    "components": [
+      {
+        "slug": "cnc-machinery",
+        "name": "CNC Machine Tools & Lasers",
+        "hs": [
+          "8456",
+          "8457",
+          "8458",
+          "8459",
+          "8462"
+        ],
+        "2025_usd_million": 649.3,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=8456,8457,8458,8459,8462&flowCode=X"
+      },
+      {
+        "slug": "hvac-systems",
+        "name": "Industrial HVAC & Chillers",
+        "hs": [
+          "8403",
+          "8415",
+          "8418"
+        ],
+        "2025_usd_million": 4108.3,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=8415,8418,8403&flowCode=X"
+      },
+      {
+        "slug": "pumps-valves",
+        "name": "Pumps, Valves & Fluid Engineering",
+        "hs": [
+          "8413",
+          "8481"
+        ],
+        "2025_usd_million": 2200.8,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=8413,8481&flowCode=X"
+      },
+      {
+        "slug": "agricultural-machinery",
+        "name": "Agricultural Machinery & Tractors",
+        "hs": [
+          "8432",
+          "8433",
+          "8436",
+          "8701"
+        ],
+        "2025_usd_million": 1770.3,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=8701,8432,8433,8436&flowCode=X"
+      }
+    ],
+    "verified_on": "2026-10-15"
+  },
+  "construction": {
+    "year": 2025,
+    "claim": "Türkiye's exports of the product groups listed in the table (Natural Stone, Marble & Travertine; Ceramic & Porcelain Stoneware; Structural Steel & Rebar; Sanitaryware & Architectural Fittings) were US$ 9,935.1 million in 2025, the sum of the linked UN Comtrade values.",
+    "total_usd_million": {
+      "2023": 9662.7,
+      "2024": 9662.9,
+      "2025": 9935.1
+    },
+    "components": [
+      {
+        "slug": "marble",
+        "name": "Natural Stone, Marble & Travertine",
+        "hs": [
+          "2515",
+          "6802"
+        ],
+        "2025_usd_million": 2051.0,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=2515,6802&flowCode=X"
+      },
+      {
+        "slug": "ceramics",
+        "name": "Ceramic & Porcelain Stoneware",
+        "hs": [
+          "6907"
+        ],
+        "2025_usd_million": 662.2,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=6907&flowCode=X"
+      },
+      {
+        "slug": "steel",
+        "name": "Structural Steel & Rebar",
+        "hs": [
+          "7213",
+          "7214",
+          "7216",
+          "7308"
+        ],
+        "2025_usd_million": 6889.6,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=7213,7214,7216,7308&flowCode=X"
+      },
+      {
+        "slug": "sanitaryware",
+        "name": "Sanitaryware & Architectural Fittings",
+        "hs": [
+          "6910",
+          "7324"
+        ],
+        "2025_usd_million": 332.3,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=6910,7324&flowCode=X"
+      }
+    ],
+    "verified_on": "2026-10-15"
+  },
+  "home-living": {
+    "year": 2025,
+    "claim": "Türkiye's exports of the product groups listed in the table (Modular Living & Bedroom Furniture; Kitchenware & Tabletop Decor; Carpets & Rugs) were US$ 7,561.3 million in 2025, the sum of the linked UN Comtrade values.",
+    "total_usd_million": {
+      "2023": 7545.9,
+      "2024": 7599.3,
+      "2025": 7561.3
+    },
+    "components": [
+      {
+        "slug": "furniture",
+        "name": "Modular Living & Bedroom Furniture",
+        "hs": [
+          "9401",
+          "9403"
+        ],
+        "2025_usd_million": 4096.0,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=9401,9403&flowCode=X"
+      },
+      {
+        "slug": "kitchenware",
+        "name": "Kitchenware & Tabletop Decor",
+        "hs": [
+          "6911",
+          "6912",
+          "7323",
+          "7615"
+        ],
+        "2025_usd_million": 665.2,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=7323,6911,6912,7615&flowCode=X"
+      },
+      {
+        "slug": "carpets-rugs",
+        "name": "Carpets & Rugs",
+        "hs": [
+          "5701",
+          "5702",
+          "5703"
+        ],
+        "2025_usd_million": 2800.2,
+        "source_url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=792&period=2025&partnerCode=0&cmdCode=5701,5702,5703&flowCode=X"
+      }
+    ],
+    "verified_on": "2026-10-15"
+  }
+}
