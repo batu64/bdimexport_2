@@ -2,7 +2,7 @@
 **Sayfa tipi:** TR İthalat rehberi · **Hedef keyword:** çin'den ev ürünleri ithalatı
 **Durum:** FAZ_1 Step 1.4 · Batch 2/2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den Ev & Yaşam Ürünleri İthalatı: Mutfaktan Dekorasyona" (57 kar) desc="Mutfak gereçleri, dekorasyon ve günlük yaşam ürünleri: ürün güvenlik filtresi, numune testi, konsolidasyon ve e-ticaret ambalajı rehberi." (126 kar) -->
+<!-- META: title="Çin'den Ev Ürünleri İthalatı: Mutfak ve Dekorasyon" (50 kar) desc="Mutfak gereçleri, dekorasyon ve günlük yaşam ürünleri: ürün güvenlik filtresi, numune testi, konsolidasyon ve e-ticaret ambalajı rehberi." (126 kar) -->
 
 # Çin'den Ev & Yaşam Ürünleri İthalatı Rehberi
 

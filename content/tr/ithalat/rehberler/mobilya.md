@@ -2,7 +2,7 @@
 **Sayfa tipi:** TR İthalat rehberi · **Hedef keyword:** çin'den mobilya ithalatı
 **Durum:** FAZ_1 Step 1.4 · Batch 2/2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den Mobilya İthalatı: Ofis, Otel ve Ev Mobilyası Süreci" (56 kar) desc="Flat-pack ve dökme mobilya ithalatı: malzeme tablosu, montaj kalitesi testi, konteyner istif planlaması ve ödeme kaldıracı süreci." (128 kar) -->
+<!-- META: title="Çin'den Mobilya İthalatı: Ofis, Otel ve Ev Süreci" (49 kar) desc="Flat-pack ve dökme mobilya ithalatı: malzeme tablosu, montaj kalitesi testi, konteyner istif planlaması ve ödeme kaldıracı süreci." (128 kar) -->
 
 # Çin'den Mobilya İthalatı Rehberi
 

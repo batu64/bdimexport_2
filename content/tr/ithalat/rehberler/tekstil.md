@@ -2,7 +2,7 @@
 **Sayfa tipi:** TR İthalat rehberi (hedef ≥1200 kelime) · **Hedef keyword:** çin'den tekstil ithalatı
 **Durum:** FAZ_1 Step 1.4 · Batch 1/2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den Tekstil İthalatı Rehberi: Süreç, Maliyet ve Riskler" (59 kar) desc="Tekstil ithalatında tedarikçi seçimi, kumaş kalite kontrolü, numune yönetimi, MOQ pazarlığı ve sevkiyat süreci adım adım — kaynaklı bilgi." (128 kar) -->
+<!-- META: title="Çin'den Tekstil İthalatı: Süreç, Maliyet ve Riskler" (51 kar) desc="Tekstil ithalatında tedarikçi seçimi, kumaş kalite kontrolü, numune yönetimi, MOQ pazarlığı ve sevkiyat süreci adım adım — kaynaklı bilgi." (128 kar) -->
 
 # Çin'den Tekstil İthalatı Rehberi
 

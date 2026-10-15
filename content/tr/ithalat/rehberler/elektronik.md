@@ -2,7 +2,7 @@
 **Sayfa tipi:** TR İthalat rehberi · **Hedef keyword:** çin'den elektronik ithalatı
 **Durum:** FAZ_1 Step 1.4 · Batch 1/2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den Elektronik İthalatı: Sertifikasyon, Kalite ve Süreç" (57 kar) desc="Elektronik ithalatında TSE/CE sertifikasyonu, pil taşıma kuralları, OEM-ODM ürün seçimi, bileşen şeffaflığı ve sevkiyat süreci — adım adım." (129 kar) -->
+<!-- META: title="Çin'den Elektronik İthalatı: Sertifikasyon ve Kalite" (52 kar) desc="Elektronik ithalatında TSE/CE sertifikasyonu, pil taşıma kuralları, OEM-ODM ürün seçimi, bileşen şeffaflığı ve sevkiyat süreci — adım adım." (129 kar) -->
 
 # Çin'den Elektronik İthalatı Rehberi
 

@@ -2,7 +2,7 @@
 **Sayfa tipi:** TR İthalat rehberi · **Hedef keyword:** çin'den makine parçası ithalatı
 **Durum:** FAZ_1 Step 1.4 · Batch 1/2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den Makine Parçası İthalatı: Teknik Çizimden Teslimata" (55 kar) desc="Teknik çizim, tolerans ve malzeme standardı ile tedarikçi seçimi, FAI numune doğrulama, %100 kritik ölçüm ve denetimli üretim süreci." (127 kar) -->
+<!-- META: title="Çin'den Makine Parçası İthalatı: Çizimden Teslimata" (51 kar) desc="Teknik çizim, tolerans ve malzeme standardı ile tedarikçi seçimi, FAI numune doğrulama, %100 kritik ölçüm ve denetimli üretim süreci." (127 kar) -->
 
 # Çin'den Makine Parçası İthalatı Rehberi
 

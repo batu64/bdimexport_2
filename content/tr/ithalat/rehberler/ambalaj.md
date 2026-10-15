@@ -2,7 +2,7 @@
 **Sayfa tipi:** TR İthalat rehberi · **Hedef keyword:** çin'den ambalaj ithalatı
 **Durum:** FAZ_1 Step 1.4 · Batch 2/2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den Ambalaj İthalatı: Kutu, Poşet ve Özel Baskı Süreci" (56 kar) desc="Özel baskılı kutu, poşet ve etiket ithalatı: kalıp maliyetleri, pantone renk yönetimi, food-grade uyum ve tedarikçi geçişi süreç rehberi." (124 kar) -->
+<!-- META: title="Çin'den Ambalaj İthalatı: Kutu, Poşet ve Özel Baskı" (51 kar) desc="Özel baskılı kutu, poşet ve etiket ithalatı: kalıp maliyetleri, pantone renk yönetimi, food-grade uyum ve tedarikçi geçişi süreç rehberi." (124 kar) -->
 
 # Çin'den Ambalaj İthalatı Rehberi
 
