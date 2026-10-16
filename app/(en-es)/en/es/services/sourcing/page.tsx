@@ -6,8 +6,8 @@ import path from "path";
 import type { Metadata } from "next";
 import { renderVariantMd } from "@/lib/ui/md";
 import VariantPageBody from "@/lib/ui/VariantPageBody";
+import { variantAlternates } from "@/app/(en)/en/_lib/hreflang";
 
-const BASE = "https://bdimexport.com";
 const RTL = false;
 
 const parsed = renderVariantMd(
@@ -21,7 +21,7 @@ const parsed = renderVariantMd(
 export const metadata: Metadata = {
   title: parsed.metaTitle ?? parsed.title,
   description: parsed.desc,
-  alternates: { canonical: `${BASE}/en/es/services/sourcing` },
+  alternates: variantAlternates("es", "services/sourcing"),
 };
 
 export default function Page() {

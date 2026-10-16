@@ -10,6 +10,7 @@ import styles from "@/lib/ui/variant.module.css";
 import { color, fontSize, space } from "@/lib/ui/tokens";
 import { renderVariantMd } from "@/lib/ui/md";
 import { QuoteCta } from "../../_lib/services";
+import { enAlternates } from "../../_lib/hreflang";
 import { PRODUCTS_ROOT, composeCatalog, loadPartners, partnersForCategory, type CategoryView, type PublicPartner } from "./catalog";
 
 const SITE = "https://bdimexport.com";
@@ -22,11 +23,9 @@ export function categorySlugs(): string[] {
   return composeCatalog().map((c) => c.slug);
 }
 
-const canonical = (p: string): Metadata["alternates"] => ({ canonical: `${SITE}${p}` });
-
 export function indexMetadata(): Metadata {
   const d = readIntro("index");
-  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: canonical("/en/products") };
+  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: enAlternates("products") };
 }
 
 export function categoryMetadata(slug: string): Metadata {
@@ -36,7 +35,7 @@ export function categoryMetadata(slug: string): Metadata {
   return {
     title: { absolute: d.metaTitle ?? d.title },
     description: d.desc,
-    alternates: canonical(`/en/products/category/${slug}`),
+    alternates: enAlternates(`products/category/${slug}`),
     // yayımlanmış ürünü olmayan kategori = ince içerik → noindex (ilk ürün yayımlanınca build'de otomatik indekslenir)
     robots: cat.indexable ? undefined : { index: false, follow: true },
   };

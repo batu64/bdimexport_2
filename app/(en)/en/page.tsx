@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SERVICES } from "./_lib/services";
+import { enAlternates } from "./_lib/hreflang";
+
+// canonical + hreflang (en ailesi); başlık/açıklama (en) layout'tan
+export const metadata: Metadata = { alternates: enAlternates("") };
 
 export default function EnHomePage() {
   return (

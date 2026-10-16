@@ -8,6 +8,7 @@ import Link from "next/link";
 import styles from "@/lib/ui/variant.module.css";
 import { renderVariantMd } from "@/lib/ui/md";
 import { QuoteCta } from "../../_lib/services";
+import { enAlternates } from "../../_lib/hreflang";
 
 const SITE = "https://bdimexport.com";
 const ROOT = path.join(process.cwd(), "content", "en", "global", "industries");
@@ -79,18 +80,16 @@ export function industrySlugs(): string[] {
   return INDUSTRIES.map((i) => i.slug).filter((s) => fs.existsSync(path.join(ROOT, `${s}.md`)));
 }
 
-const canonical = (p: string): Metadata["alternates"] => ({ canonical: `${SITE}${p}` });
-
 export function industryMetadata(slug: string): Metadata {
   const d = readDoc(slug);
   if (!d) return {};
-  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: canonical(`/en/industries/${slug}`) };
+  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: enAlternates(`industries/${slug}`) };
 }
 
 export function indexMetadata(): Metadata {
   const d = readDoc("index");
   if (!d) return {};
-  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: canonical("/en/industries") };
+  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: enAlternates("industries") };
 }
 
 const ORG = { "@type": "Organization", name: "Bdimexport", url: SITE };

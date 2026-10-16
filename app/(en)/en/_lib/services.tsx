@@ -8,6 +8,7 @@ import Link from "next/link";
 import styles from "@/lib/ui/variant.module.css";
 import { color } from "@/lib/ui/tokens";
 import { renderVariantMd } from "@/lib/ui/md";
+import { enAlternates } from "./hreflang";
 
 const SITE = "https://bdimexport.com";
 const ROOT = path.join(process.cwd(), "content", "en", "global", "services");
@@ -57,19 +58,16 @@ function readDoc(slug: string) {
   return { ...parsed, faq: parseFaq(raw) };
 }
 
-/** canonical yalnız kendi URL'si; `alternates` nesnesi kök layout'un TR/x-default hreflang'ını da ezer (yanlış hreflang yok). */
-const canonical = (p: string): Metadata["alternates"] => ({ canonical: `${SITE}${p}` });
-
 export function serviceMetadata(slug: string): Metadata {
   const d = readDoc(slug);
   if (!d) return {};
-  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: canonical(`/en/services/${slug}`) };
+  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: enAlternates(`services/${slug}`) };
 }
 
 export function indexMetadata(): Metadata {
   const d = readDoc("index");
   if (!d) return {};
-  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: canonical("/en/services") };
+  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: enAlternates("services") };
 }
 
 const ORG = { "@type": "Organization", name: "Bdimexport", url: SITE };

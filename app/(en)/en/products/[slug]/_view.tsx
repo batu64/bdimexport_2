@@ -11,6 +11,7 @@ import styles from "@/lib/ui/variant.module.css";
 import { space } from "@/lib/ui/tokens";
 import { renderVariantMd } from "@/lib/ui/md";
 import { QuoteCta } from "../../_lib/services";
+import { enAlternates } from "../../_lib/hreflang";
 import { PRODUCTS_ROOT, composeCatalog, loadPartners, partnersForCategory } from "../_lib/catalog";
 
 const SITE = "https://bdimexport.com";
@@ -56,7 +57,7 @@ export function productMetadata(slug: string): Metadata {
   return {
     title: { absolute: d.metaTitle ?? d.title },
     description: d.desc,
-    alternates: { canonical: `${SITE}/en/products/${slug}` },
+    alternates: enAlternates(`products/${slug}`),
   };
 }
 
