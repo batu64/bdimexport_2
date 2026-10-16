@@ -136,6 +136,10 @@ export async function verifyAccessJwt(
     jwk = keys.find((k) => k.kid === header.kid);
   }
   if (!jwk) throw new AccessJwtError("unknown_kid");
+  // Anahtarın kendisi de RS256 imza anahtarı olmalı (JWKS'e enjekte edilmiş farklı tür anahtar kabul edilmez)
+  if (jwk.kty !== "RSA" || (jwk.alg !== undefined && jwk.alg !== "RS256") || (jwk.use !== undefined && jwk.use !== "sig")) {
+    throw new AccessJwtError("bad_key");
+  }
 
   const key = await crypto.subtle.importKey(
     "jwk",

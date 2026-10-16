@@ -11,6 +11,13 @@ compatibility_date = "2026-01-01"
 ALLOWED_ORIGINS = "http://localhost:3000"
 TURNSTILE_HOSTNAMES = "localhost"
 KVKK_VERSIONS = "v1 (47ac2ef0a5b43264)"
+# Cloudflare Access (FAZ_3 3.1) — app/admin/middleware.ts guard'ı. PUBLIC config: JWT doğrulamasının
+# girdisidir, gizli değildir (AUD tag tek başına erişim sağlamaz; imzalı token Access'ten gelir).
+# App: bdimexport-admin · domain şu an bdimexport.pages.dev/admin (custom domain sonra — docs/access-setup.md §12)
+ACCESS_TEAM_DOMAIN = "bdimexport.cloudflareaccess.com"
+ACCESS_AUD = "a75b6ebb930d4c5b56b63e811bb7ca719ae2a78b916d7239477290ffda542fea"
+# ADMIN_EMAILS / VIEWER_EMAILS burada YOK (kişisel veri): prod → `wrangler secret put ADMIN_EMAILS`,
+# yerel → workers/api/.dev.vars (gitignore'lu). Boşsa guard herkesi 403'ler (fail-closed).
 
 [[d1_databases]]
 binding = "DB"
@@ -34,6 +41,10 @@ name = "bdimexport-api-staging"
 ALLOWED_ORIGINS = "https://staging.bdimexport.com"
 TURNSTILE_HOSTNAMES = "staging.bdimexport.com"
 KVKK_VERSIONS = "v1 (47ac2ef0a5b43264)"
+# [vars] env'lere miras GEÇMEZ. Staging'in kendi Access app'i yok → AUD boş = admin API fail-closed 403.
+# Staging Access app kurulunca (3.9) kendi AUD'u buraya; e-postalar `wrangler secret put … --env staging`.
+ACCESS_TEAM_DOMAIN = "bdimexport.cloudflareaccess.com"
+ACCESS_AUD = ""
 
 [[env.staging.d1_databases]]
 binding = "DB"

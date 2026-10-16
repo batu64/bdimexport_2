@@ -1,10 +1,26 @@
 # Cloudflare Access Kurulum Rehberi — /admin (FAZ_3 Step 3.1)
 
-**Sürüm:** 2.0 · 2026-10-16 · Opus 5.5 güvenlik review'ı ile yeniden yazıldı
+**Sürüm:** 2.1 · 2026-10-17 · Opus 5.5 — kurulum yapıldı, config bağlandı (v2.0: 2026-10-16 review)
 **Uygulayan:** İNSAN (Cloudflare + Google hesabı sahibi). Agent yalnızca bu rehberi ve şablonu üretir; panele giriş yapmaz.
 **İlgili dosyalar:** `app/admin/middleware.ts` (JWT doğrulama) · `app/admin/audit.ts` (audit) · `app/admin/access.config.template.json` (panel şablonu) · `db/migrations/0002_admin_audit_integrity.sql`
 
 > **Kural:** Bu rehberde geçen hiçbir **değeri** (Client Secret, e-posta listesi, AUD) sohbete, repoya veya commit mesajına yazma. Yalnızca §8'deki test tablosunu doldurup "kurulum tamam" de; doğrulamayı agent `curl` ile yapar.
+
+---
+
+## ✅ Mevcut kurulum durumu (2026-10-17)
+
+| Öğe | Değer / durum |
+| :-- | :-- |
+| Zero Trust team domain | `bdimexport.cloudflareaccess.com` (JWKS canlı: 2 RS256 anahtar — `…/cdn-cgi/access/certs`) |
+| Access app | `bdimexport-admin` · self-hosted · **edge gate aktif** (👤 kuruldu) |
+| App domain (geçici) | `bdimexport.pages.dev/admin` — custom domain bağlanınca §12 |
+| AUD tag | `a75b6ebb930d4c5b56b63e811bb7ca719ae2a78b916d7239477290ffda542fea` |
+| Admin allowlist | 1 e-posta — **değer repoda yok** (kişisel veri; §7) |
+| Viewer allowlist | boş |
+| Guard config | `workers/api/wrangler.toml` `[vars]`: `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` bağlı · `ADMIN_EMAILS` → secret (§7) |
+| Admin API Worker | henüz yok — `/admin/api/*` bağlama + guard kullanımı FAZ 3.4 / 3.9 |
+| Canlı edge testi | 👤 §8 tablosu (insan) |
 
 ---
 
@@ -158,6 +174,10 @@ Uygulama kendi oturumunu tutmaz; her API isteğinde Access JWT'sini yeniden doğ
 
 `app/admin/middleware.ts` şu 4 değişkeni okur. Herhangi biri boşsa tüm admin API **403** döner (fail-closed).
 
+**Bağlama kararı (2026-10-17):**
+- `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` → **public config**, `workers/api/wrangler.toml` `[vars]`'ta gerçek değerle. Gerekçe: JWT doğrulamasının girdisidir; bilinmesi erişim sağlamaz (imzalı token yalnız Access'ten gelir; JWKS zaten herkese açık). Staging `[env.staging.vars]`'ta AUD **bilerek boş** → staging admin API fail-closed (kendi Access app'i yok).
+- `ADMIN_EMAILS`, `VIEWER_EMAILS` → **repoya girmez**, prod'da **Worker secret**. Gerekçe: (1) gerçek kişisel e-posta = KVKK kapsamında kişisel veri; repo ileride public/paylaşımlı olursa geri alınamaz (git geçmişi); (2) admin hesabını hedef olarak ifşa eder (phishing); (3) secret değiştirmek kod commit'i gerektirmez. Yerel geliştirme: `workers/api/.dev.vars` (`workers/api/.gitignore`'da). Secret girilmezse guard herkesi `403 not_allowlisted` ile reddeder — güvenli varsayılan.
+
 | Değişken | Değer | Nereden kopyalanır | Hassasiyet |
 | :-- | :-- | :-- | :-- |
 | `ACCESS_TEAM_DOMAIN` | `<team>.cloudflareaccess.com` | §2 | Gizli değil |
@@ -165,7 +185,15 @@ Uygulama kendi oturumunu tutmaz; her API isteğinde Access JWT'sini yeniden doğ
 | `ADMIN_EMAILS` | `a@x.com,b@y.com` — virgülle, boşluksuz | Policy 1 ile **aynı liste** | Kişisel veri → Secret olarak gir |
 | `VIEWER_EMAILS` | Yalnız Dashboard görecekler (boş olabilir) | — | Kişisel veri → Secret olarak gir |
 
-**Nereye girilir:** Admin API Worker'ı FAZ 3.9'da oluşturulduğunda → **Workers & Pages → (admin API worker) → Settings → Variables and Secrets → Add**:
+**Komutlar** (değer komut satırına yazılmaz; wrangler interaktif sorar):
+```
+cd workers/api
+npx wrangler secret put ADMIN_EMAILS              # prod
+npx wrangler secret put ADMIN_EMAILS --env staging
+# yerel: workers/api/.dev.vars dosyasına  ADMIN_EMAILS=ad@ornek.com  (commit'lenmez)
+```
+
+**Panelden girmek istersen:** Admin API Worker'ı FAZ 3.9'da oluşturulduğunda → **Workers & Pages → (admin API worker) → Settings → Variables and Secrets → Add**:
 - `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` → Type: **Text**
 - `ADMIN_EMAILS`, `VIEWER_EMAILS` → Type: **Secret**
 
@@ -235,3 +263,46 @@ node --experimental-strip-types --test app/admin/e2e/access.test.mjs
 | API `403 not_allowlisted` | E-posta Policy'de var, `ADMIN_EMAILS`'te yok (veya büyük/küçük harf / boşluk) | §7 listesini düzelt (virgülle, boşluksuz) |
 | API `403 misconfigured` | Worker'da değişken eksik | §7 dört değişkeni gir |
 | IP değişti, girilemiyor | Policy'de IP Require var | Cloudflare panelinden IP'yi güncelle veya Require'ı kaldır |
+
+---
+
+## 12. Custom domain'e geçiş (`bdimexport.com` bağlanınca)
+
+Sıra önemli: önce korumayı genişlet, sonra trafiği taşı — arada korumasız an olmasın.
+
+1. **DNS:** `bdimexport.com` Pages projesine custom domain olarak bağlı ve **Proxied** (§1).
+2. **Access app'e hostname ekle** (AUD **değişmez** — aynı app'e ekleme yapıyoruz, yeni app YOK):
+   Zero Trust → Access → Applications → `bdimexport-admin` → **Configure → Public hostnames → Add**
+   - `bdimexport.com` · path `admin`
+   - `bdimexport.com` · path `admin/*`
+   `bdimexport.pages.dev/admin` satırlarını **silme** (pages.dev açık kalırsa korumasız ikinci kapı olur — §4.3).
+3. **Google OAuth:** değişiklik **gerekmez** — redirect URI team domain'e bağlı (`<team>.cloudflareaccess.com/cdn-cgi/access/callback`), site domain'ine değil.
+4. **pages.dev → custom domain yönlendirmesi (önerilir):** Cloudflare → **Rules → Redirect Rules / Bulk Redirects**: `bdimexport.pages.dev/*` → `https://bdimexport.com/$1` **301**. Access hostname'leri yine kalsın (savunma derinliği).
+5. **Kod tarafı (agent):** `ALLOWED_ORIGINS` / `TURNSTILE_HOSTNAMES` prod değerleri (3.9) + admin API route `bdimexport.com/admin/api/*`.
+6. **Doğrula:** §8 testleri 1–5'i `bdimexport.com` için tekrarla + §9 `curl` kontrolleri.
+7. Script ile yapacaksan: `ACCESS_APP_DOMAINS="bdimexport.com/admin,bdimexport.com/admin/*,bdimexport.pages.dev/admin,bdimexport.pages.dev/admin/*" node scripts/setup-access.mjs` (önce dry-run, §13).
+
+---
+
+## 13. Ops: `scripts/setup-access.mjs` ile yeniden kurma / hizalama
+
+Paneldeki app + policy'leri bu rehberdeki desired state'e (§4–§6) **idempotent** hizalar. Felaket kurtarma veya domain ekleme için.
+
+```
+# env'i terminal oturumunda ver (dosyaya/commit'e YAZMA):
+#   CLOUDFLARE_API_TOKEN   izin: Account › Access: Apps and Policies › Edit
+#                          + Access: Organizations, Identity Providers, and Groups › Read
+#   CLOUDFLARE_ACCOUNT_ID  dash.cloudflare.com → sağ panel "Account ID"
+#   ADMIN_EMAILS           virgülle (allowlist ile AYNI liste)
+#   ACCESS_AUD             (ops.) wrangler.toml'daki değer — uyuşmazlık kontrolü
+node scripts/setup-access.mjs            # DRY-RUN: yalnız okur, farkları listeler
+node scripts/setup-access.mjs --apply    # farkları uygular
+```
+
+Davranış:
+- Var olan app **asla silinmez/yeniden yaratılmaz** (yeni app = yeni AUD = guard 403). Yalnız `PUT` ile hizalanır.
+- App yoksa `--apply` oluşturur ve **yeni AUD'u yazdırır** → `wrangler.toml` `[vars] ACCESS_AUD` güncellenmeli.
+- `ACCESS_AUD` verilirse ve app'inkiyle uyuşmazsa uyarır, çıkış kodu `2`.
+- Beklenmeyen ek policy'leri silmez, uyarır. Token hiçbir çıktıya yazılmaz; e-postalar maskelenir.
+- ⚠️ Cloudflare API alan adları (`destinations`, app-scoped policies) canlı hesapta **henüz denenmedi** — ilk kullanımda mutlaka önce dry-run; panelde elle yapılan kurulumla farkları "GÜNCELLE" olarak görebilirsin (API'nin ek alanları). Hata olursa çıktıyı agent'a ver.
+
