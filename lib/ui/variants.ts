@@ -90,8 +90,13 @@ export interface SwitcherItem { code: string; hreflang: string; label: string; h
 
 export function switcherItems(page: VariantPage): SwitcherItem[] {
   const items: SwitcherItem[] = [];
-  // /en/services/sourcing henüz yok (Step 2.1) → yalnızca home için EN kök listelenir
-  if (page === "home") items.push({ code: "en", hreflang: "en", label: "English", href: "/en", lang: "en" });
+  // İngilizce karşılık: home → /en, sourcing → /en/services/sourcing (Step 2.1 ✅ mevcut). Karşılık VAR ise listelenir;
+  // her switcher hedefinin out/'ta bulunduğunu lib/ui/variants.smoke.test.mjs doğrular (404'a link yok).
+  items.push(
+    page === "home"
+      ? { code: "en", hreflang: "en", label: "English", href: "/en", lang: "en" }
+      : { code: "en", hreflang: "en", label: "English", href: "/en/services/sourcing", lang: "en" },
+  );
   for (const v of enVariants) {
     const path = page === "home" ? `/en/${v}` : `/en/${v}/services/sourcing`;
     items.push({ code: v, hreflang: v, label: VARIANTS[v].label, href: path, lang: VARIANTS[v].lang });

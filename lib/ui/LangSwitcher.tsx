@@ -40,7 +40,7 @@ export default function LangSwitcher({
   // Odak seçeneğe taşınır → Enter doğal Link aktivasyonu (JS router navigation)
   useEffect(() => {
     if (open) document.getElementById(optId(active))?.focus();
-  }); // eslint-disable-line react-hooks/exhaustive-deps
+  }); // bağımlılık dizisi bilerek yok: her render'da odak aktif seçeneğe taşınır
 
   const onKey = (e: KeyboardEvent) => {
     if (e.key === "Escape") {

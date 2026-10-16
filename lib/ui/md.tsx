@@ -23,7 +23,14 @@ export function renderVariantMd(raw: string, opts: { rtl?: boolean } = {}) {
   const rtl = !!opts.rtl;
   const titleM = raw.match(/^# (.+)$/m);
   const metaM = raw.match(/<!-- META: title="([^"]+)" desc="([^"]+)" -->/);
-  const body = raw.replace(/<!-- META:[^>]+ -->/, "").replace(/^# .+$/m, "").trim();
+  // Herkese açık çıktıya GİRMEZ: tüm HTML yorumları (META dahil), tüm H1 satırları (başlık h1 olarak ayrıca basılır) ve
+  // üretim notu satırları (**Sayfa tipi:** / **Durum:**). Önceden yalnız META + ilk H1 siliniyor, geri kalanı sızıyordu (FAZ_2 2.7 smoke testi).
+  const body = raw
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .split("\n")
+    .filter((l) => !/^# /.test(l) && !/^\*\*(Sayfa tipi|Durum):\*\*/.test(l.trim()))
+    .join("\n")
+    .trim();
   let html = "", inUl = false, inOl = false, inTable = false;
   const closeLists = () => {
     if (inUl) { html += "</ul>"; inUl = false; }
