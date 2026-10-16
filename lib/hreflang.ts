@@ -4,8 +4,15 @@
 // K4: varyantlar /en-ru DEĞİL /en/ru/
 // K5: bu helper'a veri agent manifest'lerinden gelir; dosyaya yalnızca orchestrator yazar
 import { localeConfig, enVariants, enVariantHreflang, type Locale, type EnVariant } from "./i18n";
+import manifest from "./hreflang.manifest.json";
 
 const BASE = "https://bdimexport.com";
+
+/** Boş parçaları atlar: joinUrl("en", "") → BASE/en (sondaki "/" yok — canonical ile aynı) */
+export const joinUrl = (...parts: string[]) => [BASE, ...parts.filter(Boolean)].join("/");
+
+/** EN ailesinin sayfa yolları (manifest) — sitemap ve sayfa metadata'sı buradan okur */
+export const EN_PATHS: readonly string[] = manifest.en;
 
 export type AlternateSet = {
   hreflang: string;
@@ -24,18 +31,18 @@ export function buildAlternateSet(
   const clean = pathInLocale.replace(/^\//, "");
   for (const loc of existingLanguages) {
     const cfg = localeConfig[loc];
-    const href = loc === "tr" ? `${BASE}/${clean}` : `${BASE}/${loc}/${clean}`;
+    const href = loc === "tr" ? joinUrl(clean) : joinUrl(loc, clean);
     set.push({ hreflang: cfg.hreflang, href });
     if (cfg.xDefault) set.push({ hreflang: "x-default", href });
   }
   // EN varyantları yalnızca /en/... yolları için
   if (existingLanguages.includes("en")) {
-    const enHref = `${BASE}/en/${clean}`;
+    const enHref = joinUrl("en", clean);
     if (!set.some((s) => s.href === enHref)) {
       set.push({ hreflang: "en", href: enHref });
     }
     for (const v of existingEnVariants) {
-      set.push({ hreflang: enVariantHreflang[v], href: `${BASE}/en/${v}/${clean}` });
+      set.push({ hreflang: enVariantHreflang[v], href: joinUrl("en", v, clean) });
     }
   }
   // K1 karşılıklılık: set içinde hreflang + href çiftleri benzersiz olmalı
@@ -46,6 +53,12 @@ export function buildAlternateSet(
     seen.add(k);
     return true;
   });
+}
+
+/** EN ailesi için tam set: en + manifest'te bu yolu içeren varyantlar. TR/x-default YOK (karşılığı yok — 404-yasağı). */
+export function enFamilyAlternates(pathInEn: string): AlternateSet {
+  const present = enVariants.filter((v) => (manifest.variants[v] as string[]).includes(pathInEn));
+  return buildAlternateSet(pathInEn, ["en"], present);
 }
 
 /** Next.js Metadata API alternate dizisine çevirir */

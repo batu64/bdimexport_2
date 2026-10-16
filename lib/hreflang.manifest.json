@@ -1,0 +1,66 @@
+{
+  "_note": "EN ailesi hreflang verisi (SEO_PLAYBOOK §1.2). Sayfa yolu /en/ altına göre; varyant listesi yalnız mevcut içerik dosyası olan yolları içerir (404-hreflang yasağı). Üretildi: scripts ile content/en taraması.",
+  "en": [
+    "",
+    "products",
+    "services",
+    "industries",
+    "products/agricultural-machinery",
+    "products/apparel",
+    "products/carpets-rugs",
+    "products/ceramics",
+    "products/cnc-machinery",
+    "products/denim",
+    "products/dried-fruits",
+    "products/fabrics",
+    "products/furniture",
+    "products/hazelnuts",
+    "products/home-textiles",
+    "products/hospitality-furniture",
+    "products/hvac-systems",
+    "products/kitchenware",
+    "products/marble",
+    "products/olive-oil",
+    "products/pasta-cereals",
+    "products/pumps-valves",
+    "products/sanitaryware",
+    "products/steel",
+    "services/customs",
+    "services/inspection",
+    "services/logistics",
+    "services/manufacturing",
+    "services/sourcing",
+    "industries/construction",
+    "industries/food",
+    "industries/home-living",
+    "industries/machinery",
+    "industries/textile",
+    "products/category/construction",
+    "products/category/food",
+    "products/category/home-living",
+    "products/category/machinery",
+    "products/category/textile"
+  ],
+  "variants": {
+    "ru": [
+      "",
+      "services/sourcing"
+    ],
+    "fr": [
+      "",
+      "services/sourcing"
+    ],
+    "nl": [
+      "",
+      "services/sourcing"
+    ],
+    "es": [
+      "",
+      "services/sourcing"
+    ],
+    "ar": [
+      "",
+      "services/sourcing"
+    ]
+  }
+}
