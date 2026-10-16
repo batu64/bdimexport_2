@@ -38,6 +38,10 @@ type JwksFetcher = (url: string) => Promise<{ keys: Jwk[] }>;
 export const ACCESS_JWT_HEADER = "cf-access-jwt-assertion";
 const CLOCK_SKEW_S = 30;
 const JWKS_TTL_MS = 10 * 60 * 1000;
+/** Bilinmeyen kid ile zorla yenileme en fazla bu aralıkla (rastgele kid'li isteklerle JWKS'e yük bindirmeyi engeller) */
+const JWKS_FORCE_MIN_MS = 60 * 1000;
+/** Access JWT'leri ~1–2 KB; üstü işlenmeden reddedilir (aşırı büyük başlıkla decode/CPU yükü) */
+const MAX_TOKEN_LEN = 8192;
 
 let jwksCache: { url: string; at: number; keys: Jwk[] } | null = null;
 
@@ -67,9 +71,9 @@ const defaultFetcher: JwksFetcher = async (url) => {
 async function getKeys(teamDomain: string, fetcher: JwksFetcher, force = false): Promise<Jwk[]> {
   const url = `https://${teamDomain}/cdn-cgi/access/certs`;
   const now = Date.now();
-  if (!force && jwksCache && jwksCache.url === url && now - jwksCache.at < JWKS_TTL_MS) {
-    return jwksCache.keys;
-  }
+  const fresh = jwksCache && jwksCache.url === url;
+  if (fresh && !force && now - jwksCache!.at < JWKS_TTL_MS) return jwksCache!.keys;
+  if (fresh && force && now - jwksCache!.at < JWKS_FORCE_MIN_MS) return jwksCache!.keys;
   const { keys } = await fetcher(url);
   jwksCache = { url, at: now, keys };
   return keys;
@@ -107,6 +111,7 @@ export async function verifyAccessJwt(
   const fetcher = opts.fetcher ?? defaultFetcher;
   const nowS = Math.floor((opts.now ?? Date.now()) / 1000);
 
+  if (token.length > MAX_TOKEN_LEN) throw new AccessJwtError("malformed");
   const parts = token.split(".");
   if (parts.length !== 3 || parts.some((p) => p.length === 0)) throw new AccessJwtError("malformed");
 
