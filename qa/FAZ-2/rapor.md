@@ -1,56 +1,66 @@
-# FAZ_2 QA Turu Raporu (Step 2.9)
+# FAZ_2 QA Turu Raporu (Step 2.9) — kapanış
 **Tarih:** 2026-10-16 | **Denetleyen:** Claude Code (Haiku 5.5) | **Kaynak:** FAZ_2_AJAN_PANOSU.md §3 Step 2.9
 **Ön koşul:** §2 1–8 (2.6 hariç) ✅ — karşılandı (2.1, 2.2, 2.3, 2.4, 2.5, 2.7, 2.8a, 2.8b).
 **Ölçüm kaynağı:** `pnpm build` (EXIT=0, **82/82** sayfa) + `pnpm lint` (EXIT=0) + `out/` HTML + `out/sitemap.xml` + `content/en/**` md + `app/(en)`, `lib/ui` kaynağı.
 
-## Sonuç: 8 / 10 PASS · 2 FAIL
+## Sonuç: 10 / 10 — 8 PASS, 2 kapanış kaydı (çözüldü / belgeli muafiyet)
 
 | # | Test | Sonuç | Kanıt |
 | :-- | :-- | :-- | :-- |
-| 1 | H1 kalıbı — 20 ürün sayfası | ✅ PASS 20/20 | md H1 = `{Product} Manufacturers in Turkey \| B2B Sourcing` (regex ile 20/20); `out/en/products/*.html` `<h1>` md H1 ile birebir. |
-| 2 | Partner bloğu placeholder + consent | ✅ PASS | 20/20 ürün sayfasında "Verified Turkish Partners" bölümü; metin: "Approved partners are being onboarded…" (placeholder). `<img>` 0 (her sayfada). Partner adı yok (`_partners.json` yok → `loadPartners()` boş). Consent kodu: `app/(en)/en/products/_lib/catalog.ts:102` (`consent_logo_en` yoksa logo `null`). |
+| 1 | H1 kalıbı — 20 ürün sayfası | ✅ PASS 20/20 | md H1 = `{Product} Manufacturers in Turkey \| B2B Sourcing` (regex 20/20); `out/en/products/*.html` `<h1>` md H1 ile birebir. |
+| 2 | Partner bloğu placeholder + consent | ✅ PASS | 20/20 ürün sayfasında "Verified Turkish Partners" bölümü, metin: "Approved partners are being onboarded…" (placeholder). `<img>` 0. Partner adı yok (`_partners.json` yok → `loadPartners()` boş). Consent: `app/(en)/en/products/_lib/catalog.ts:102`. |
 | 3 | RTL DOM — `/en/ar` | ✅ PASS | `out/en/ar.html`: `<html lang="ar" dir="rtl">`; `<bdi dir="ltr">` ≥1. |
-| 4 | Kanal CTA matrisi | ✅ PASS | ru: Telegram (ana kanal) ✅ · ar: WhatsApp ✅ · fr: "Vos canaux" (vous) ✅ · nl: e-posta, "direct" ✅ · es: "Envíen / reciban" (ustedes çekimi) ✅. Kaynak: `lib/ui/variants.ts`. |
-| 5 | Batch kalıp tutarlılığı | ✅ PASS | 20/20 ürün sayfasında H2 sayısı = 8 (tek kalıp); H1 kalıbı tutarlı; FAQ ≥5 her sayfada (`FAQPage` soru sayısı). |
-| 6 | hreflang: karşılıklılık · 404 · sitemap↔sayfa | ✅ PASS | Sitemap 67 URL = build'de 67/67 dosya. EN-ailesi 49/49 sayfada sayfa-düzeyi `<link hrefLang>` seti = sitemap seti (birebir). Karşılıklılık ihlali **0**. 404-hreflang hedefi **0**. Canonical = kendi URL (49/49). |
-| 7 | Kelime / meta eşikleri | ❌ FAIL | Ürünler ≥1200: **20/20 ✅**. Hizmetler (en global) ≥800: **5/5 ✅** (949–1033). Industry ≥1000: **5/5 ✅** (1413–1563). **Varyant ana sayfa/sourcing ≥800: 0/10 ❌** (ana: ru 220, fr 247, nl 200, es 241, ar 205; sourcing: ru 226, fr 268, nl 217, es 264, ar 217). **Meta title ≤60: 1 ❌** (`out/en.html` = 67). **Meta desc 120–158: 4 ❌** (`out/en.html` 108 · `out/en/nl.html` 102 · `out/en/ar/services/sourcing.html` 116 · `out/en/nl/services/sourcing.html` 116). |
-| 8 | Hardcoded hex = 0 (`app/(en)`, `lib/ui`) | ✅ PASS | `grep -E '#[0-9A-Fa-f]{3,6}\b'` → **0 satır** (`lib/ui/tokens.ts` tanım dosyası hariç, beklenen). |
-| 9 | Scope ihlali = 0 | ❌ FAIL (kayıt eksik) | Aşağıdaki "Scope bulguları" bölümü. |
+| 4 | Kanal CTA matrisi | ✅ PASS | ru: Telegram · ar: WhatsApp · fr: "Vos canaux" (vous) · nl: e-posta, "direct" · es: "Envíen / reciban" (ustedes çekimi). Kaynak: `lib/ui/variants.ts`. |
+| 5 | Batch kalıp tutarlılığı | ✅ PASS | 20/20 ürün sayfasında H2 = 8 (tek kalıp); FAQ ≥5 her sayfada. |
+| 6 | hreflang: karşılıklılık · 404 · sitemap↔sayfa | ✅ PASS | Sitemap 67 URL = build'de 67/67 dosya. EN ailesi 49/49 sayfada sayfa-düzeyi `<link hrefLang>` seti = sitemap seti. Karşılıklılık ihlali **0**. 404-hreflang **0**. Canonical = kendi URL (49/49). |
+| 7 | Kelime / meta eşikleri | ✅ PASS (kapanış) | Ürün ≥1200 **20/20**; hizmet ≥800 **5/5** (949–1033); industry ≥1000 **5/5** (1413–1563). **Meta title ≤60 49/49** ve **desc 120–158 49/49** (Sonnet düzeltmesi `a98e549`; önceki 1+4 ihlal kapandı). Varyant ana/sourcing ≥800 → **muaf (belgeli)** — aşağıda. |
+| 8 | Hardcoded hex = 0 (`app/(en)`, `lib/ui`) | ✅ PASS | `grep -E '#[0-9A-Fa-f]{3,6}\b'` → **0 satır** (`lib/ui/tokens.ts` tanım dosyası hariç). |
+| 9 | Scope ihlali = 0 | ✅ PASS (belgeli istisna) | Aşağıda "Scope istisnaları" — gerekçe, dosyalar, onay ve kalıcı kayıt. |
 | 10 | Build + lint | ✅ PASS | `pnpm build` EXIT=0, 82/82 sayfa. `pnpm lint` EXIT=0. |
 
-**Notlar (test değil, devir kaydı):**
-- **2.6 görsel:** "Gemini'ye ertelendi" (kullanıcı kararı, FAZ 2 ön koşulundan muaf).
+**Devir kaydı (test değil):**
+- **2.6 görsel:** "Gemini'ye ertelendi" (kullanıcı kararı).
 - **Lighthouse ≥ 90:** "canlı URL / 8.1'e devredildi" (yerelde ölçülmedi).
 
-## FAIL'lerin ayrıntısı
+## Muafiyetler (kalıcı kayıt)
 
-### 7 — Eşik ihlalleri (içerik / meta; QA düzeltmez)
-1. **Varyant ana sayfa + sourcing (10 dosya, ≥800):** `content/en/{ru,fr,nl,es,ar}/home.md` ve `services/sourcing.md` 200–268 kelime. Bunlar 2.5'te **iskelet** olarak üretildi; içerik genişletme adımı tanımlı değil. Sahip: en-l10n (Sonnet kod / Haiku içerik) — karar gerekli: genişletme adımı açılsın mı, yoksa eşik iskelet varyantlar için mi gevşetilsin?
-2. **Meta title (1):** `out/en.html` (`/en` hub) 67 karakter: `B2B Sourcing, Inspection & Manufacturing in Turkey | Bdimexport`. Sahip: fe (`app/(en)/en/page.tsx` metadata).
-3. **Meta description (4):** `/en` 108, `/en/nl` 102, `/en/ar/services/sourcing` 116, `/en/nl/services/sourcing` 116 — hepsi 120 altında. Sahip: en-l10n / fe.
+### M1 — Varyant içerik eşiği (test 7): MUAF (FAZ 2)
+- **Kapsam:** `content/en/{ru,fr,nl,es,ar}/home.md` ve `services/sourcing.md` (10 dosya, 200–268 kelime).
+- **Neden:** 2.5 varyant **iskelet** olarak tanımlı (FAZ_2.md 2.5). Tam içerik **FAZ 5** adımlarında üretilecek.
+- **Kayıt:** kullanıcı kararı (2026-10-16). Genişletme bu adımda yapılmadı.
+- **Kapsam dışı bırakılan eşik:** varyant ana/sourcing ≥800. Diğer tüm eşikler (ürün, hizmet, industry, meta) geçerli kalır.
 
-### 9 — Scope bulguları (2.5 kök layout bölünmesi ve varyant gruplama)
-FAZ 2 commit'lerinde (2.5 rework `a691b02` ve ilgili) şu dosyalar **panelde tanımlı scope dışında** değişti:
-- **Kök layout bölünmesi (kayıtlı istisna):** `app/layout.tsx` silindi (19 satır). Panel 2.5 satırı "KÖK LAYOUT PARÇALANDI (scope istisnası 👤 onaylı)" diyor. Onay kaydı bu turda sohbet dışından doğrulanamadı.
-- **Kayıt dışı komşu dosyalar:** `app/(tr)/layout.tsx` (+23/−4), `app/(tr)/page.tsx` (+2/−1), `app/(zh)/layout.tsx` (+7), `app/(de)/layout.tsx`, `app/admin/layout.tsx` (13 satır değişti — **admin scope**: `app/admin/**` yalnız admin ajanı). Bunlar kök layout bölünmesinin zorunlu sonucu olabilir ama panelde kaydı yok.
-- **Varyant route-group taşıması:** `app/(en)/en/{ru,fr,nl,es,ar}/**` → `app/(en-ru)/en/ru/**`, `app/(en-fr)/…`, `app/(en-nl)/…`, `app/(en-es)/…`, `app/(en-ar)/…` (+ her grupta `layout.tsx`). URL'ler değişmedi (route group), ama panel 2.5 scope'u `app/(en)/en/{ru,fr,nl,es,ar}/**` olarak tanımlıyor; taşıma istisnada yazılı değil.
+### M2 — Scope istisnaları (test 9): BELGELİ İSTİSNA
+Kullanıcı kararı (2026-10-16): gerekçeli, zararsız, onaylı. Dosyalar:
 
-**Karar gerekli (insan):** (a) kök layout istisnasının onay kaydı panele yazılsın mı; (b) `(tr)`, `(zh)`, `(de)`, `admin` layout'larındaki değişikliklerin istisna kapsamına alınması; (c) varyant route-group taşımasının kabulü.
+| Dosya | Değişiklik | Neden | Onay / kanıt |
+| :-- | :-- | :-- | :-- |
+| `app/layout.tsx` | silindi (19 satır) | Tek kök layout `<html lang="tr">` basıyordu; `<html>` yalnız kök layout'tan değiştirilebiliyor. Varyantların kendi `lang`'ı için zorunlu. | Commit `a691b02` mesajı: "SCOPE İSTİSNASI (👤 onaylı)". |
+| `app/(tr)/layout.tsx` | yeni kök layout (lang=tr + eski kök metadata) | Kök layout bölünmesinin sonucu. TR çıktısı aynı (27 sayfa title/desc/canonical korundu). | `a691b02` + kullanıcı onayı. |
+| `app/(tr)/page.tsx` | başlık absolute yapıldı | Yeni kök layout'ta şablon yok; çıktı aynı. | `a691b02`. |
+| `app/(zh)/layout.tsx` | kök layout (lang=zh-CN) | Aynı bölünme. | `a691b02`. |
+| `app/(de)/layout.tsx` | kök layout (lang=de) | Aynı bölünme. | `a691b02`. |
+| `app/(en)/layout.tsx` | kök layout (lang=en) | Aynı bölünme. | `a691b02`. |
+| `app/admin/layout.tsx` | kök layout (lang=tr), `<html>`/`<body>` sarmalayıcı | Admin scope'u; **güvenlik mantığı DEĞİŞMEDİ**: `AdminShell` aynen render ediliyor, `robots: noindex, nofollow` ve `nocache` korunuyor. Değişen yalnızca metadata (`metadataBase`, marka başlığı) ve `<html>` sarmalayıcısı. Doğrulama: `git show a691b02 -- app/admin/layout.tsx`. | Kullanıcı doğruladı + bu rapor diff'i inceledi. |
+| `app/(en-ru)`, `(en-fr)`, `(en-nl)`, `(en-es)`, `(en-ar)` | `app/(en)/en/{v}/**` → route-group taşıması (`git mv`, R100) | Her varyant kendi kök layout'una (lang/dir) sahip olsun diye. **URL'ler AYNI** (route group URL'yi etkilemez). | `a691b02` ("git mv … R100, geçmiş korunur"). |
 
-## 2.8b / 2.8a doğrulaması (bu turda)
-- Sayfa-düzeyi hreflang: 49/49 EN sayfası sitemap ile birebir.
-- Sitemap: 67 URL = 18 TR + 39 EN + 10 varyant. Dil-split (`sitemap-en.xml`) yok — tek dosya (kullanıcı kararı).
+**Not:** Panelin 2.5 satırı yalnız "kök layout" istisnasını yazıyordu; bu rapor komşu dosyalar ve route-group taşımasını da kalıcı olarak kaydeder.
+
+## Kapanan FAIL'ler (kanıt)
+- **Meta title ≤60:** `out/en.html` 67 → kapandı; 49/49 ≤60.
+- **Meta desc 120–158:** `/en` 108, `/en/nl` 102, `/en/ar/services/sourcing` 116, `/en/nl/services/sourcing` 116 → kapandı; 49/49 aralıkta. Düzeltme: `a98e549` (Sonnet).
 
 ## Kapı kararı
-**2.9: 8/10 PASS, 2 FAIL.** Kapı açılmadı. 2.10 (faz çıkışı) bu FAIL'lerin kapanmasını bekler:
-1. Varyant içerik genişletme veya eşik kararı (7.1).
-2. `/en` title ve dört description düzeltmesi (7.2–7.3).
-3. Scope istisnalarının kaydı veya düzeltilmesi (9).
+**2.9: 10/10 — kapandı.** 2.9 ✅. Sonraki adım 2.10 çıkış kontrol listesi (insan onayı).
+
+## 2.8a / 2.8b doğrulaması (bu turda)
+- Sayfa-düzeyi hreflang: 49/49 EN sayfası sitemap ile birebir.
+- Sitemap: 67 URL = 18 TR + 39 EN + 10 varyant. Dil-split (`sitemap-en.xml`) yok — tek dosya (kullanıcı kararı).
 
 ## Ölçüm yöntemi
 - H1/H2/FAQ: `out/en/products/*.html` + `content/en/global/products/*.md`.
 - Hreflang/canonical/sitemap: `out/sitemap.xml` ve `out/en**/*.html`; karşılıklılık ve 404 betiği.
 - Kelime: md gövdesi, frontmatter hariç, token sayımı.
-- Meta: `<title>` ve `<meta name="description">` uzunluğu, build HTML'i.
+- Meta: `<title>` ve `<meta name="description">` uzunluğu, build HTML'i (49 EN sayfası).
 - Hex: `app/(en)` + `lib/ui` (tokens.ts hariç).
-- Scope: `git log` FAZ 2 commit'lerinin dosya listesi (16 commit, 138 yol) ↔ panel scope tanımları.
+- Scope: `git log` FAZ 2 commit'lerinin dosya listesi ↔ panel scope tanımları + M2 istisna tablosu.
