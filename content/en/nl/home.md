@@ -1,7 +1,7 @@
 # Inkoop en export uit Turkije — geverifieerde fabrikanten
 **Sayfa tipi:** /en/nl varyant ana sayfa (iskelet — FAZ_2 Step 2.5) · **Ton:** I18N_RULES §2 en-NL: doğrudan, öz (Hollanda ticaret kültürü)
 
-<!-- META: title="Inkoop en export uit Turkije | Bdimexport" desc="Inkoop, fabrieksinspectie, private label productie, logistiek en douane. Gratis offerte binnen 24 uur." -->
+<!-- META: title="Inkoop en export uit Turkije | Bdimexport" desc="Inkoop, fabrieksinspectie, private label productie, logistiek en douane uit Turkije voor B2B-kopers. Gratis offerte binnen 24 uur." -->
 
 # Inkoop en export uit Turkije — geverifieerde fabrikanten
 

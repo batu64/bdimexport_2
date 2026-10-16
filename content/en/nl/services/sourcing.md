@@ -1,7 +1,7 @@
 # Inkoop (sourcing) in Turkije
 **Sayfa tipi:** /en/nl varyant hizmet sayfası (iskelet — FAZ_2 Step 2.5) · **Ton:** doğrudan, öz — geen opsmuk
 
-<!-- META: title="Inkoop (sourcing) in Turkije | B2B-inkoop" desc="Zoeken en controleren van Turkse fabrieken, monsters, prijsafspraken en ordercontrole. Gratis offerte binnen 24 uur." -->
+<!-- META: title="Inkoop (sourcing) in Turkije | B2B-inkoop" desc="Zoeken en controleren van Turkse fabrieken, monsters, prijsafspraken en ordercontrole voor B2B-kopers. Gratis offerte binnen 24 uur." -->
 
 # Inkoop (sourcing) in Turkije
 

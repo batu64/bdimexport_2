@@ -4,9 +4,9 @@ import { IntlProvider } from "@/lib/intl";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bdimexport.com"),
-  title: "B2B Sourcing, Inspection & Manufacturing in Turkey | Bdimexport", // eskiden kök şablonuyla gelen marka açık yazıldı
+  title: "B2B Sourcing and Manufacturing in Turkey | Bdimexport", // marka açık yazılı (kök şablon yok); ≤60 ve "&" yok → ham HTML = gerçek uzunluk
   description:
-    "Sourcing, factory inspection, private label manufacturing, logistics and customs. Get free quotation in 24h.",
+    "Sourcing, factory inspection, private label manufacturing, logistics and customs from Turkey for global B2B buyers. Get a free quotation in 24h.",
 };
 
 export default function EnLayout({ children }: { children: React.ReactNode }) {
