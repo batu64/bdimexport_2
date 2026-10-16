@@ -23,3 +23,36 @@ C: Başvuran Türk firmaları belge (CE, ISO) ve kapasite incelemesinden geçer;
 - /en — Global sourcing hub (services/products/industries)
 - /de — DACH yerelleştirilmiş hizmetler
 - /zh — Çinli firmalar için Türkiye hizmetleri
+
+## EN global hub — hizmetler (5)
+- /en/services/sourcing — Sourcing in Turkey: find and verify the right factory
+- /en/services/manufacturing — Private label manufacturing in Turkey
+- /en/services/inspection — Factory inspection in Turkey before payment
+- /en/services/logistics — Freight logistics from Turkey, factory gate to warehouse
+- /en/services/customs — Turkish export customs clearance documents
+
+## EN global hub — sektörler (5)
+- /en/industries/construction — Construction materials exports from Turkey
+- /en/industries/food — Food and agriculture exports from Turkey
+- /en/industries/home-living — Home and living exports from Turkey
+- /en/industries/machinery — Industrial machinery and engineering exports from Turkey
+- /en/industries/textile — Textile and apparel exports from Turkey
+
+## EN global hub — ürünler (20)
+Her ürün sayfası "Manufacturers in Turkey | B2B Sourcing" kalıbındadır; kategori sayfaları /en/products/category/{construction,food,home-living,machinery,textile}.
+- /en/products/agricultural-machinery · /en/products/apparel · /en/products/carpets-rugs · /en/products/ceramics
+- /en/products/cnc-machinery · /en/products/denim · /en/products/dried-fruits · /en/products/fabrics
+- /en/products/furniture · /en/products/hazelnuts · /en/products/home-textiles · /en/products/hospitality-furniture
+- /en/products/hvac-systems · /en/products/kitchenware · /en/products/marble · /en/products/olive-oil
+- /en/products/pasta-cereals · /en/products/pumps-valves · /en/products/sanitaryware · /en/products/steel
+
+## EN varyantları (iskelet)
+- /en/ru — Telegram birincil kanal, RUB referansı
+- /en/fr — e-posta birincil kanal, EUR fiyat
+- /en/nl — e-posta, doğrudan iletişim, EUR fiyat
+- /en/es — WhatsApp birincil kanal, EUR fiyat
+- /en/ar — WhatsApp Business birincil kanal, RTL (dir="rtl")
+Varyant sayfaları şimdilik yalnız ana sayfa ve sourcing hizmetini içerir.
+
+## Kaynak notu
+Sayısal iddialar (ihracat hacimleri, kategori büyüklükleri) ilgili sayfalarda kaynaklı linklerle verilir; bu dosya rakam taşımaz.
