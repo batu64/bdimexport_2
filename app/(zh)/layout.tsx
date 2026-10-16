@@ -4,16 +4,21 @@ import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
 
 export const metadata: Metadata = {
-  title: "土耳其贸易服务 — 采购、验厂、物流",
+  metadataBase: new URL("https://bdimexport.com"),
+  title: "土耳其贸易服务 — 采购、验厂、物流 | Bdimexport", // eskiden kök şablonuyla gelen marka açık yazıldı
   description: "为在土耳其开展业务的中国企业提供本地化销售、营销与公司设立服务。",
 };
 
 export default function ZhLayout({ children }: { children: React.ReactNode }) {
   return (
+    <html lang="zh-CN">
+      <body>
     <IntlProvider locale="zh">
       <div lang="zh-CN" dir="ltr">
         {children}
       </div>
     </IntlProvider>
+      </body>
+    </html>
   );
 }

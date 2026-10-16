@@ -4,7 +4,7 @@ import Link from "next/link";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 
 export const metadata: Metadata = {
-  title: "İthalat & İhracat Danışmanlığı",
+  title: { absolute: "İthalat & İhracat Danışmanlığı | Bdimexport" }, // kök layout aynı segmentte: şablon uygulanmaz
   description:
     "Çin'den ithalatta tedarik, denetim, lojistik ve gümrük; ihracatta e-ihracat ve B2B danışmanlık. Ücretsiz teklif alın.",
   alternates: toMetadataAlternates(buildAlternateSet("", ["tr"])),

@@ -7,7 +7,8 @@ import AdminShell from "./AdminShell";
 import styles from "./admin.module.css";
 
 export const metadata: Metadata = {
-  title: "Admin",
+  metadataBase: new URL("https://bdimexport.com"),
+  title: "Admin | Bdimexport", // kök layout artık yok: marka açık
   robots: { index: false, follow: false, nocache: true },
 };
 
@@ -22,8 +23,12 @@ const vars = {
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={styles.shell} style={vars}>
-      <AdminShell>{children}</AdminShell>
-    </div>
+    <html lang="tr">
+      <body>
+        <div className={styles.shell} style={vars}>
+          <AdminShell>{children}</AdminShell>
+        </div>
+      </body>
+    </html>
   );
 }
