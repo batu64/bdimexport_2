@@ -1,11 +1,14 @@
-// DENEME VERİSİ — uydurma kişiler (.example alan adları). Gerçek lead'ler D1'den gelir (3.4 endpoint'i bağlanınca).
-import type { Lead } from "./lib";
+// DENEME VERİSİ — uydurma kişiler (.example alan adları). YALNIZ testler (leads.test.mjs) seed eder; UI bunu import ETMEZ.
+// Rıza artık leads.consent_* kolonlarında: seed sırasında `payload.consent` → consent_version/consent_at kolonuna taşınır.
+import type { Lead } from "./lib.ts";
+
+export type DemoLead = Omit<Lead, "consent_version" | "consent_at" | "double_optin_at">;
 
 /** content/tr/legal/kvkk-riza-v1.md SHA-256 (sha256sum ile doğrulandı) */
 export const KVKK_V1_SHA256 = "47ac2ef0a5b432649f313be7f04cf5349433c8ccd516f5769ee8dfcec5c74764";
 const consent = { version: "v1", sha256: KVKK_V1_SHA256, at: "2026-10-09T10:00:00Z" };
 
-export const DEMO_LEADS: Lead[] = [
+export const DEMO_LEADS: DemoLead[] = [
   { id: "L-DEMO-001", source_page: "/ihracat/ucretsiz-destek-basvuru", locale: "tr", form_type: "application", channel_pref: "whatsapp",
     payload: { name: "Ayşe Örnek", company: "Örnek Tekstil A.Ş.", email: "ayse@ornek-tekstil.example", whatsapp: "+905550000001", product: "Pamuklu kumaş", catalog_r2_key: "media/tr/katalog/demo-001/katalog.pdf", consent },
     status: "new", partner_id: null, created_at: "2026-10-09 09:12:00" },

@@ -1,0 +1,20 @@
+/* Lead Kanban — yalnız admin CSS değişkenleri (layout'ta tokens.ts'den enjekte); hex/px literal yok (kenarlık 1px hariç — admin.module.css emsali). */
+.filters { display: flex; flex-wrap: wrap; gap: var(--a-s4); margin-bottom: var(--a-s4); }
+.filter, .move { display: inline-flex; flex-direction: column; gap: var(--a-s1); }
+.filter select, .move select { min-height: var(--a-touch); border-radius: var(--a-radius); padding: 0 var(--a-s2); }
+.board { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--a-card), 1fr)); gap: var(--a-s4); align-items: start; }
+.col { padding: var(--a-s4); border-radius: var(--a-radius); background: color-mix(in srgb, var(--a-bg) 6%, transparent); border: 1px dashed color-mix(in srgb, var(--a-bg) 15%, transparent); min-height: var(--a-s16); }
+.dropReady { border-color: var(--a-accent); }
+.lead { display: flex; flex-direction: column; gap: var(--a-s2); padding: var(--a-s3); margin-bottom: var(--a-s3); border-radius: var(--a-radius); background: color-mix(in srgb, var(--a-bg) 10%, transparent); border: 1px solid color-mix(in srgb, var(--a-bg) 15%, transparent); cursor: grab; }
+.lead[aria-busy="true"] { opacity: .6; cursor: wait; }
+.meta { opacity: .7; word-break: break-word; }
+.badges { display: flex; flex-wrap: wrap; gap: var(--a-s1); }
+.ok, .warn { padding: 0 var(--a-s2); border-radius: var(--a-radius); }
+.ok { background: color-mix(in srgb, var(--a-accent) 35%, transparent); }
+.warn { background: color-mix(in srgb, var(--a-highlight) 35%, transparent); }
+.contact { display: grid; grid-template-columns: auto 1fr; gap: 0 var(--a-s2); margin: 0; word-break: break-all; }
+.contact dt { opacity: .7; }
+.contact dd { margin: 0; }
+.actions { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--a-s2); }
+.actions button, .actions a { min-height: var(--a-touch); display: inline-flex; align-items: center; padding: 0 var(--a-s3); border-radius: var(--a-radius); color: inherit; }
+.actions a { background: color-mix(in srgb, var(--a-accent) 45%, transparent); text-decoration: none; }

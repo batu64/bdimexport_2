@@ -1,5 +1,7 @@
 // FAZ_3 3.3 — Tek-tık kanal lib'i (I18N_RULES §2 / Proje.md §5.1 wa.me kalıbı).
-// KURAL: kanal YALNIZCA leads.channel_pref'ten gelir; kişi bilgisi yoksa link üretilmez (null) — tahmin/uydurma YOK.
+// KURAL: kanal YALNIZCA leads.channel_pref'ten gelir; kişi bilgisi yoksa / biçim belirsizse link üretilmez (null).
+// Tahmin YOK: başka kanalın bilgisi olsa bile ona düşülmez; yerel numaraya ülke kodu eklenmez.
+// Link ham iletişim verisi içerdiğinden yalnız "göster" (reveal, audit'li) yanıtında üretilir — handler.ts.
 export type ChannelId = "whatsapp" | "telegram" | "wechat" | "email";
 
 export interface ChannelContact {
@@ -40,8 +42,12 @@ export function buildChannelAction(
   const text = encodeURIComponent(greeting(locale, c));
   switch (channelPref) {
     case "whatsapp": {
-      const num = (c.whatsapp ?? "").replace(/\D/g, "");
-      return num ? { channel: "whatsapp", href: `https://wa.me/${num}?text=${text}`, label: "WhatsApp" } : null;
+      // Proje.md §5.1: https://wa.me/{number}?text=… — {number} uluslararası biçim, yalnız rakam (E.164: 8–15 hane).
+      // "0555…" gibi yerel numara → ülke kodu tahmin edilmez → link yok.
+      const num = (c.whatsapp ?? "").trim().replace(/[\s().-]/g, "").replace(/^(\+|00)/, "");
+      return /^[1-9]\d{7,14}$/.test(num)
+        ? { channel: "whatsapp", href: `https://wa.me/${num}?text=${text}`, label: "WhatsApp" }
+        : null;
     }
     case "telegram": {
       const u = (c.telegram ?? "").replace(/^@/, "").trim();
@@ -55,7 +61,8 @@ export function buildChannelAction(
     }
     case "email": {
       const e = (c.email ?? "").trim();
-      return /^[^@\s]+@[^@\s]+$/.test(e)
+      // Katı biçim: '?', '&', '#' vb. ile mailto parametre enjeksiyonu (cc/bcc) engellenir
+      return /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(e)
         ? { channel: "email", href: `mailto:${e}?subject=${encodeURIComponent("Bdimexport")}&body=${text}`, label: "E-posta" }
         : null;
     }
