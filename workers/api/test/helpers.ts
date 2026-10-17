@@ -10,14 +10,21 @@ class Stmt {
   bind(...a: unknown[]) { this.args = a; return this; }
   async first<T>() { return (this.db.prepare(this.sql).get(...(this.args as never[])) as T) ?? null; }
   async all<T>() { return { results: this.db.prepare(this.sql).all(...(this.args as never[])) as T[] }; }
-  async run() { this.db.prepare(this.sql).run(...(this.args as never[])); return { success: true }; }
+  async run() { return this.runSync(); }
+  runSync() { const r = this.db.prepare(this.sql).run(...(this.args as never[])); return { success: true, meta: { changes: Number(r.changes) } }; }
 }
 
 export function makeDb(): { d1: D1Database; raw: DatabaseSync } {
   const raw = new DatabaseSync(":memory:");
   const dir = resolve(__dirname, "../../../db/migrations");
-  for (const f of ["0001_init.sql", "0002_partners_apply.sql"]) raw.exec(readFileSync(resolve(dir, f), "utf8"));
-  return { d1: { prepare: (s: string) => new Stmt(raw, s) } as unknown as D1Database, raw };
+  for (const f of ["0001_init.sql", "0002_admin_audit_integrity.sql", "0002_partners_apply.sql"]) raw.exec(readFileSync(resolve(dir, f), "utf8"));
+  // D1 batch = tek transaction (biri düşerse hepsi geri alınır); her statement için meta.changes
+  const batch = async (sts: Stmt[]) => {
+    raw.exec("BEGIN");
+    try { const out = sts.map((s) => s.runSync()); raw.exec("COMMIT"); return out; }
+    catch (e) { raw.exec("ROLLBACK"); throw e; }
+  };
+  return { d1: { prepare: (s: string) => new Stmt(raw, s), batch } as unknown as D1Database, raw };
 }
 
 export function makeKv(): KVNamespace {

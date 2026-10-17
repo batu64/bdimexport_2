@@ -18,9 +18,14 @@ export function extractKey(req: Request): string | null {
 }
 
 /**
- * Key doğrulama: format → hash → KV cache → D1. Anahtarın kendisi hiçbir yerde saklanmaz/loglanmaz.
- * Cache: yalnız POZİTİF sonuç, KEY_CACHE_TTL_S (min 60 sn — KV sınırı). Revoke D1'i günceller ve
- * cache girişini siler; KV global yayılımı nedeniyle diğer colo'larda en fazla TTL kadar gecikme olabilir.
+ * Key doğrulama: format → hash → (KV cache) → D1. Anahtarın kendisi hiçbir yerde saklanmaz/loglanmaz.
+ * Hash: SHA-256 — anahtar 256 bit rastgele olduğundan yavaş hash/pepper gerekmez (DB sızsa bile brute-force imkânsız).
+ * Karşılaştırma: ham key hiç karşılaştırılmaz; hash'in D1 index araması yapılır (zamanlama bilgisi bir
+ * önimaj vermez) → timing-safe compare'e gerek yok.
+ * Cache (yalnız POZİTİF sonuç, KEY_CACHE_TTL_S, min 60 sn):
+ *   - admin-internal ASLA cache'lenmez → revoke her colo'da ANINDA (her istek D1).
+ *   - read-only/partner cache'lenir → revoke aynı colo'da anında (girdi silinir); KV global yayılımı
+ *     nedeniyle diğer colo'larda en fazla TTL (60 sn) gecikebilir. (Onaylı politika: "KV cache'li doğrulama".)
  */
 export async function authenticate(env: Env, req: Request, ip: string): Promise<AuthedKey> {
   const key = extractKey(req);
@@ -36,12 +41,15 @@ export async function authenticate(env: Env, req: Request, ip: string): Promise<
   const hash = await sha256Hex(key);
   const ck = `ak:${hash}`;
   let k = (await env.CACHE.get(ck, "json")) as AuthedKey | null;
+  if (k?.tier === "admin-internal") k = null; // eski/enjekte cache girdisine güvenme — admin her zaman D1'den
   if (!k) {
     const row = await env.DB.prepare("SELECT id, tier, rate_limit FROM api_keys WHERE key_hash = ? AND revoked = 0")
       .bind(hash).first<{ id: string; tier: Tier; rate_limit: number }>();
     if (!row) throw await bad();
     k = { id: row.id, tier: row.tier, rate_limit: row.rate_limit };
-    await env.CACHE.put(ck, JSON.stringify(k), { expirationTtl: Math.max(60, intVar(env.KEY_CACHE_TTL_S, 60)) });
+    if (k.tier !== "admin-internal") {
+      await env.CACHE.put(ck, JSON.stringify(k), { expirationTtl: Math.max(60, intVar(env.KEY_CACHE_TTL_S, 60)) });
+    }
   }
   await rateLimit(env.CACHE, "key", k.id, k.rate_limit); // key bazlı (req/dk)
   return k;

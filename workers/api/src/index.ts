@@ -6,10 +6,14 @@ import { authenticate, extractKey, requireTier } from "./auth";
 import { handleApply } from "./apply";
 import { createKey, listKeys, revokeKey } from "./keys";
 import { listContents, listLeads, listPartners } from "./read";
+import { ADMIN_PREFIX, routeAdmin } from "./admin";
 
 async function route(req: Request, env: Env, url: URL, ip: string): Promise<Response> {
   const path = url.pathname.replace(/\/+$/, "");
   const m = req.method;
+
+  // Admin paneli API'si: guard (Access JWT) ÖNCE, rota SONRA — varsayılan red
+  if (path === ADMIN_PREFIX || path.startsWith(ADMIN_PREFIX + "/")) return routeAdmin(req, env, path);
 
   if (path === "/api/v1/partners/apply") return handleApply(req, env);
 

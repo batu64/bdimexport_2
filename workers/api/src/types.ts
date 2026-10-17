@@ -16,7 +16,13 @@ export interface Env {
   RL_IP_PER_MIN?: string;           // IP başına genel limit (default 120)
   RL_PUBLIC_READ_PER_MIN?: string;  // anahtarsız public read (default 60)
   RL_BAD_AUTH_PER_MIN?: string;     // IP başına geçersiz anahtar denemesi (default 20)
-  KEY_CACHE_TTL_S?: string;         // doğrulanmış key KV cache süresi (default 60)
+  KEY_CACHE_TTL_S?: string;         // doğrulanmış key KV cache süresi (default 60; admin-internal cache'lenmez)
+
+  // Cloudflare Access — /admin/api/* guard'ı (app/admin/middleware.ts). Boş/eksik → 403 (fail-closed).
+  ACCESS_TEAM_DOMAIN?: string;      // var (public)
+  ACCESS_AUD?: string;              // var (public)
+  ADMIN_EMAILS?: string;            // secret (kişisel veri)
+  VIEWER_EMAILS?: string;           // secret (kişisel veri)
 }
 
 export type Tier = "read-only" | "partner" | "admin-internal";
