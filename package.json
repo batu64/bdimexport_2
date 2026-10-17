@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "chart.js": "^4.5.1",
     "next": "15.5.4",
     "next-intl": "^4.3.0",
     "react": "19.1.0",

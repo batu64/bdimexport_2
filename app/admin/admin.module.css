@@ -20,3 +20,12 @@
 .err { color: var(--a-highlight); }
 .skel { height: var(--a-s16); }
 .note { margin-top: var(--a-s6); opacity: .7; }
+/* Analitik (3.7) */
+.twoCol { display: grid; grid-template-columns: repeat(auto-fit, minmax(calc(var(--a-card) * 1.5), 1fr)); gap: var(--a-s4); margin-top: var(--a-s6); }
+.section { margin-top: var(--a-s6); }
+.chartBox { position: relative; height: calc(var(--a-s16) * 3); }
+.tableWrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; text-align: start; font-size: var(--a-fs-sm); }
+.table th, .table td { padding: var(--a-s2); }
+.table thead tr { border-bottom: 1px solid color-mix(in srgb, var(--a-bg) 15%, transparent); }
+.table tbody tr { border-bottom: 1px solid color-mix(in srgb, var(--a-bg) 5%, transparent); }

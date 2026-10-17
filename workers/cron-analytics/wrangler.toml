@@ -1,0 +1,26 @@
+name = "bdimexport-cron-analytics"
+main = "src/index.ts"
+compatibility_date = "2026-01-01"
+
+# Gece 03:00 TR saati (00:00 UTC) günlük çekim
+[triggers]
+crons = ["0 0 * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bdimexport-db"
+database_id = "local-dev"
+migrations_dir = "../../db/migrations"
+
+# Staging ortamı
+[env.staging]
+name = "bdimexport-cron-analytics-staging"
+
+[env.staging.triggers]
+crons = ["0 0 * * *"]
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "bdimexport-db-staging"
+database_id = "REPLACE_ME_STAGING_D1_ID"
+migrations_dir = "../../db/migrations"
