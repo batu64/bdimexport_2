@@ -55,7 +55,7 @@ CONTENT_MOCK_PRODUCE = "1"                    # yalnız staging: İçerik Fabrik
 [[env.staging.d1_databases]]
 binding = "DB"
 database_name = "bdimexport-db-staging"
-database_id = "REPLACE_ME_STAGING_D1_ID"      # İNSAN (3.9)
+database_id = "4090989a-1122-4eaa-bb77-5f41a8ac8f16"   # bdimexport-db-staging (3.9)
 migrations_dir = "../../db/migrations"
 
 [[env.staging.r2_buckets]]
@@ -64,7 +64,7 @@ bucket_name = "bdimexport-media-staging"
 
 [[env.staging.kv_namespaces]]
 binding = "CACHE"
-id = "REPLACE_ME_STAGING_KV_ID"               # İNSAN (3.9)
+id = "0779efae094d42e68a9b6addd62bd706"       # staging-CACHE (3.9)
 # ---- production (👤 tetik — docs/deploy.md §5) ----
 [env.production]
 name = "bdimexport-api"
@@ -85,7 +85,7 @@ ACCESS_AUD = "a75b6ebb930d4c5b56b63e811bb7ca719ae2a78b916d7239477290ffda542fea"
 [[env.production.d1_databases]]
 binding = "DB"
 database_name = "bdimexport-db"
-database_id = "REPLACE_ME_PROD_D1_ID"         # İNSAN — `wrangler d1 create bdimexport-db` çıktısı (docs/deploy.md §2)
+database_id = "01c87f5e-f4b4-4cd7-a831-4c2971f05c64"   # bdimexport-db (prod) (docs/deploy.md §2)
 migrations_dir = "../../db/migrations"
 
 [[env.production.r2_buckets]]
@@ -94,5 +94,5 @@ bucket_name = "bdimexport-media"              # İNSAN — `wrangler r2 bucket c
 
 [[env.production.kv_namespaces]]
 binding = "CACHE"
-id = "REPLACE_ME_PROD_KV_ID"                  # İNSAN — `wrangler kv namespace create CACHE --env production` çıktısı
+id = "458ce6c8b3814814b720651ed6636b0c"       # production-CACHE
 
