@@ -1,0 +1,24 @@
+DOSYA:SATIR | İŞLEM | TABLO | AUDIT-KAPSAMI
+app/admin/audit.ts:61 | INSERT | admin_actions | ✔ withAudit/writeAudit yakınında
+app/admin/content/service.ts:71 | UPDATE | contents | ✔ withAudit/writeAudit yakınında
+app/admin/content/service.ts:155 | INSERT | keywords | ✔ withAudit/writeAudit yakınında
+app/admin/content/service.ts:162 | INSERT | ai_jobs | ✔ withAudit/writeAudit yakınında
+app/admin/content/service.ts:184 | UPDATE | contents | ✔ withAudit/writeAudit yakınında
+app/admin/content/service.ts:212 | DELETE | contents | ✔ withAudit/writeAudit yakınında
+app/admin/content/service.ts:236 | UPDATE | ai_jobs | ✘ KAPSAMSIZ
+app/admin/content/service.ts:243 | INSERT | contents | ✘ KAPSAMSIZ
+app/admin/leads/lib.ts:146 | UPDATE | leads | ✔ withAudit/writeAudit yakınında
+app/admin/partners/handler.ts:132 | UPDATE | partners | ✔ withAudit/writeAudit yakınında
+app/admin/partners/handler.ts:157 | UPDATE | partners | ✔ withAudit/writeAudit yakınında
+app/admin/partners/handler.ts:176 | UPDATE | partners | ✔ withAudit/writeAudit yakınında
+app/admin/partners/handler.ts:187 | UPDATE | partners | ✔ withAudit/writeAudit yakınında
+app/admin/partners/handler.ts:194 | UPDATE | partners | ✔ withAudit/writeAudit yakınında
+app/admin/settings/store.ts:34 | INSERT | settings | ✔ withAudit/writeAudit yakınında
+workers/api/src/apply.ts:114 | INSERT | partners | ○ İSTİSNA — PUBLIC self-servis başvuru (admin aktörü yok); approved=0 sabit, Turnstile+rate-limit+KVKK rızası; KVKK rıza kaydı satırın kendisidir
+workers/api/src/keys.ts:26 | INSERT | api_keys | ✔ withAudit/writeAudit yakınında
+workers/api/src/keys.ts:49 | UPDATE | api_keys | ✔ withAudit/writeAudit yakınında
+workers/cron-analytics/src/sync.ts:94 | INSERT | analytics_daily | ○ İSTİSNA — sistem cron'u (insan aktörü yok); idempotent upsert; kaynak verisi, yönetici kararı değil
+
+AUDIT AKSİYON ADLARI (kodda): approve (app/admin/content/ContentFactory.tsx), mock_produce (app/admin/content/handler.ts), create_ai_job (app/admin/content/service.ts), update_content (app/admin/content/service.ts), reject_content (app/admin/content/service.ts), lead_pii_reveal (app/admin/leads/handler.ts), lead_status_change (app/admin/leads/lib.ts), update_partner (app/admin/partners/handler.ts), upload_partner_logo (app/admin/partners/handler.ts), approve_partner (app/admin/partners/handler.ts), reject_partner (app/admin/partners/handler.ts), unapprove_partner (app/admin/partners/handler.ts), update_setting (app/admin/settings/store.ts), create_key (workers/api/src/keys.ts), revoke_key (workers/api/src/keys.ts)
+
+Toplam yazma noktası: 19 · kapsamlı: 15 · istisna: 2 · KAPSAMSIZ: 2

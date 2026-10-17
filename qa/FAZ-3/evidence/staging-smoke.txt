@@ -1,0 +1,16 @@
+✔ GET /api/v1/health → 200 {ok:true}
+✔ health yanıtında x-content-type-options: nosniff
+✔ GET /api/v1/contents (anahtarsız) → 200, draft YOK
+✔ GET /api/v1/partners anahtarsız → 401
+✔ GET /api/v1/partners geçersiz key → 401
+✔ GET /api/v1/leads anahtarsız → 401 (PII ucu)
+✔ GET /api/v1/keys anahtarsız → 401
+✔ GET /admin/api/me Access JWT'siz → 401
+✔ GET /admin/api/me sahte JWT → 403 (fail-closed)
+✔ GET /admin/api/dashboard/summary JWT'siz → 401 (PII yok, rota keşfi yok)
+✔ CORS: izinsiz origin → 403, ACAO yok
+✔ CORS preflight: izinli origin (https://staging.bdimexport.com) → 204 + ACAO yansır
+✔ bilinmeyen rota → 404 JSON, yığın izi/ham hata YOK
+
+Hedef: https://bdimexport-api-staging.banazcepte.workers.dev
+Sonuç: 13/13 geçti

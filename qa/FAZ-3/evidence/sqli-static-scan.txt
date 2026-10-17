@@ -1,0 +1,24 @@
+✔ app/admin/audit.ts:73 ${AUDIT_COLS} — sabit INSERT başlığı (modül sabiti)
+✔ app/admin/content/service.ts:61 ${inList(ids)} — inList = '?,?,?' yer tutucu üretir; id'ler bind
+✔ app/admin/content/service.ts:71 ${set} — set = 2 sabit dizeden biri (status=? | status=?, published_at=datetime('now')); değerler bind
+✔ app/admin/content/service.ts:140 ${inList(ids)} — inList = '?,?,?' yer tutucu üretir; id'ler bind
+✔ app/admin/content/service.ts:204 ${inList(ids)} — inList = '?,?,?' yer tutucu üretir; id'ler bind
+✔ app/admin/leads/handler.ts:74 ${COLS} — sabit kolon listesi (modül sabiti)
+✔ app/admin/leads/handler.ts:74 ${where.length ? "WHERE " + where.join(" AND ") : ""} — where parçaları yalnız 'status = ?' ve ${k} = ? (k ∈ sabit ['locale','source_page','channel_pref']); değerler bind
+✔ app/admin/leads/handler.ts:74 ${LIST_LIMIT} — sayısal sabit
+✔ app/admin/leads/handler.ts:87 ${COLS} — sabit kolon listesi (modül sabiti)
+✔ app/admin/partners/handler.ts:73 ${PARTNER_COLS} — sabit kolon listesi
+✔ app/admin/partners/handler.ts:73 ${REJECTED_EXPR} — sabit SQL ifadesi
+✔ app/admin/partners/handler.ts:100 ${PARTNER_COLS} — sabit kolon listesi
+✔ app/admin/partners/handler.ts:100 ${REJECTED_EXPR} — sabit SQL ifadesi
+✔ app/admin/partners/handler.ts:100 ${where} — where = 4 sabit dizeden biri (ternary); status LIST_STATUSES beyaz listesinden
+✔ app/admin/partners/handler.ts:100 ${LIST_LIMIT} — sayısal sabit
+✔ app/admin/partners/handler.ts:132 ${set.join(", ")} — set parçaları `${col} = ?`; col yalnız EDITABLE=[sector,certs,capacity,export_history] beyaz listesinden (lib.ts validatePatch; FORBIDDEN/bilinmeyen alan 400)
+✔ workers/api/src/read.ts:31 ${statuses.map(() => "?").join(",")} — yalnız '?' yer tutucuları; statuses beyaz listeden
+✔ workers/api/src/read.ts:31 ${locale ? "AND locale = ?" : ""} — sabit dize; locale bind
+✔ workers/api/src/read.ts:31 ${cursor ? "AND id > ?" : ""} — sabit dize; cursor bind
+✔ workers/api/src/read.ts:61 ${cols} — iki sabit kolon listesinden biri (ternary, tier'a göre)
+✔ workers/api/src/read.ts:61 ${where.length ? "WHERE " + where.join(" AND ") : ""} — sabit where parçaları + ?
+✔ workers/api/src/read.ts:84 ${where.length ? "WHERE " + where.join(" AND ") : ""} — sabit where parçaları + ?
+
+SQL içeren şablon dizesi: 17 · enterpolasyon noktası: 22 · gerekçesiz: 0

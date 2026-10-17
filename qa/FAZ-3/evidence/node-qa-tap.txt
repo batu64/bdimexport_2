@@ -1,0 +1,107 @@
+TAP version 13
+# (node:10384) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:10384) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/root/Desktop/bdimexportcom/app/admin/leads/handler.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\root\\Desktop\\bdimexportcom\\package.json.
+# (node:10384) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# Subtest: LEADS status geçişi: audit (eski/yeni, actor=admin e-postası); bayat 'from' → 409 + audit YOK
+ok 1 - LEADS status geçişi: audit (eski/yeni, actor=admin e-postası); bayat 'from' → 409 + audit YOK
+  ---
+  duration_ms: 55.5268
+  ...
+# Subtest: LEADS maske-açma (reveal): audit ÖNCE yazılır, DEĞER audit'e girmez; liste maskeli; viewer 403 + iz yok
+ok 2 - LEADS maske-açma (reveal): audit ÖNCE yazılır, DEĞER audit'e girmez; liste maskeli; viewer 403 + iz yok
+  ---
+  duration_ms: 11.4007
+  ...
+# Subtest: LEADS fail-closed audit: audit INSERT düşerse reveal veri DÖNMEZ, status değişmez (mutasyon+audit atomik)
+ok 3 - LEADS fail-closed audit: audit INSERT düşerse reveal veri DÖNMEZ, status değişmez (mutasyon+audit atomik)
+  ---
+  duration_ms: 9.8822
+  ...
+# Subtest: PARTNERS onay/red: audit; KVKK rızasız onay 422 + iz yok; çift onay 409 + ikinci iz yok; reddetme gerekçe ister
+ok 4 - PARTNERS onay/red: audit; KVKK rızasız onay 422 + iz yok; çift onay 409 + ikinci iz yok; reddetme gerekçe ister
+  ---
+  duration_ms: 20.6881
+  ...
+# Subtest: PARTNERS: consent_logo_en admin tarafından DEĞİŞTİRİLEMEZ (PATCH 400, değer ve audit değişmez); viewer onaylayamaz
+ok 5 - PARTNERS: consent_logo_en admin tarafından DEĞİŞTİRİLEMEZ (PATCH 400, değer ve audit değişmez); viewer onaylayamaz
+  ---
+  duration_ms: 10.0436
+  ...
+# Subtest: CONTENT: onay ≠ yayın (draft→published doğrudan YOK), her geçiş audit'li
+ok 6 - CONTENT: onay ≠ yayın (draft→published doğrudan YOK), her geçiş audit'li
+  ---
+  duration_ms: 12.0145
+  ...
+# Subtest: SETTINGS: değişiklik audit'li (eski/yeni); secret içeren istek 422 + ayar/audit YOK; viewer 403
+ok 7 - SETTINGS: değişiklik audit'li (eski/yeni); secret içeren istek 422 + ayar/audit YOK; viewer 403
+  ---
+  duration_ms: 22.7
+  ...
+# Subtest: admin_actions APPEND-ONLY: UPDATE/DELETE trigger ile reddedilir (kurcalama koruması)
+ok 8 - admin_actions APPEND-ONLY: UPDATE/DELETE trigger ile reddedilir (kurcalama koruması)
+  ---
+  duration_ms: 7.6361
+  ...
+# Subtest: CSRF: lead/partner/content mutasyonu JSON olmayan content-type ile 415, mutasyon+audit YOK
+ok 9 - CSRF: lead/partner/content mutasyonu JSON olmayan content-type ile 415, mutasyon+audit YOK
+  ---
+  duration_ms: 15.8618
+  ...
+# Subtest: F-03: mock-produce audit düşerse draft de oluşmamalı (atomik)
+not ok 10 - F-03: mock-produce audit düşerse draft de oluşmamalı (atomik) # TODO F-03 — seedMockDraftForJob + writeAudit tek batch değil
+  ---
+  duration_ms: 11.5511
+  location: 'C:\\Users\\root\\Desktop\\bdimexportcom\\qa\\FAZ-3\\audit-behavior.test.mjs:166:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    audit yazılamadıysa üretilen draft kalmamalı
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/root/Desktop/bdimexportcom/qa/FAZ-3/audit-behavior.test.mjs:171:10)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# (node:21156) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:21156) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/root/Desktop/bdimexportcom/app/admin/leads/handler.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\root\\Desktop\\bdimexportcom\\package.json.
+# handleAnalyticsSummary error: Error: PROBE_TOUCHED
+#     at Object.boom (file:///C:/Users/root/Desktop/bdimexportcom/qa/FAZ-3/authz-matrix.test.mjs:18:37)
+#     at handleAnalyticsSummary (file:///C:/Users/root/Desktop/bdimexportcom/app/admin/analytics/handler.ts:44:37)
+#     at async TestContext.<anonymous> (file:///C:/Users/root/Desktop/bdimexportcom/qa/FAZ-3/authz-matrix.test.mjs:53:23)
+#     at async Test.run (node:internal/test_runner/test:980:9)
+#     at async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+# handleRateLimitView error: PROBE_TOUCHED
+# MATRIS_BEGIN
+# [{"name":"leads GET liste","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (DB'ye ulaştı)"},{"name":"leads POST status","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (DB'ye ulaştı)"},{"name":"leads POST reveal (PII)","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (DB'ye ulaştı)"},{"name":"partners GET liste","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (DB'ye ulaştı)"},{"name":"partners POST approve","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (DB'ye ulaştı)"},{"name":"content GET drafts","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (DB'ye ulaştı)"},{"name":"content POST drafts/approve","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (DB'ye ulaştı)"},{"name":"settings GET","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (DB'ye ulaştı)"},{"name":"settings PUT","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (500)"},{"name":"analytics GET","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (500)"},{"name":"rate-limit görünümü GET","anon":"401","çöp token":"403","expire JWT":"403","yanlış aud":"403","allowlist dışı":"403","viewer":"403","admin":"izin (500)"}]
+# MATRIS_END
+# Subtest: yetkilendirme matrisi: 11 admin rotası × 7 kimlik (77 hücre)
+ok 11 - yetkilendirme matrisi: 11 admin rotası × 7 kimlik (77 hücre)
+  ---
+  duration_ms: 317.5924
+  ...
+# Subtest: fail-closed yapılandırma: ACCESS_AUD / ADMIN_EMAILS boşsa admin bile 403 (her handler)
+ok 12 - fail-closed yapılandırma: ACCESS_AUD / ADMIN_EMAILS boşsa admin bile 403 (her handler)
+  ---
+  duration_ms: 232.6023
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 1
+# duration_ms 989.4501
