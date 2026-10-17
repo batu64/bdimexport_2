@@ -1,0 +1,19 @@
+/* Partner Yönetimi — yalnız admin CSS değişkenleri (layout'ta tokens.ts'den enjekte); hex literal yok (kenarlık 1px hariç — admin.module.css emsali). */
+.tabs { display: flex; flex-wrap: wrap; gap: var(--a-s2); margin-bottom: var(--a-s4); }
+.tab, .tabOn { min-height: var(--a-touch); padding: 0 var(--a-s4); border-radius: var(--a-radius); color: inherit; background: transparent; border: 1px solid color-mix(in srgb, var(--a-bg) 25%, transparent); }
+.tabOn { background: color-mix(in srgb, var(--a-accent) 45%, transparent); }
+.list { display: flex; flex-direction: column; gap: var(--a-s4); }
+.head { display: flex; justify-content: space-between; align-items: center; gap: var(--a-s2); }
+.name { margin: 0; font-size: var(--a-fs-lg); }
+.badges { display: flex; flex-wrap: wrap; gap: var(--a-s1); margin: var(--a-s2) 0; }
+.ok, .warn { padding: 0 var(--a-s2); border-radius: var(--a-radius); }
+.ok { background: color-mix(in srgb, var(--a-accent) 35%, transparent); }
+.warn { background: color-mix(in srgb, var(--a-highlight) 35%, transparent); }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: var(--a-s1) var(--a-s3); margin: 0 0 var(--a-s3); }
+.facts dt { opacity: .7; }
+.facts dd { margin: 0; word-break: break-word; }
+.form { display: grid; gap: var(--a-s2); margin-bottom: var(--a-s3); }
+.form label, .reason, .upload { display: inline-flex; flex-direction: column; gap: var(--a-s1); }
+.form input, .reason input { min-height: var(--a-touch); border-radius: var(--a-radius); padding: 0 var(--a-s2); }
+.actions { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--a-s2); }
+.actions button { min-height: var(--a-touch); padding: 0 var(--a-s3); border-radius: var(--a-radius); }
