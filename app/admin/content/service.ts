@@ -1,7 +1,7 @@
 // FAZ_3 3.6 — ContentApi'nin D1 uygulaması (Workers tarafında çalışır; UI'dan doğrudan import edilmez).
 // Kural: HER yazma `withAudit` ile aynı D1 batch'inde (mutasyon + admin_actions atomik).
 // Sözleşme: ai_jobs + contents (0001_init.sql). Yazma yetkisi çağıran handler'da (admin rolü) denetlenir.
-import { ulid, withAudit, type D1Like, type D1PreparedLike } from "../audit";
+import { ulid, withAudit, type D1Like, type D1PreparedLike } from "../audit.ts";
 import {
   ApiError,
   CONTENT_LOCALES,
@@ -17,7 +17,7 @@ import {
   type JobInput,
   type JobItem,
   type NewsItem,
-} from "./types";
+} from "./types.ts";
 
 /** Okuma için D1 yüzeyi (audit.ts'deki yazma yüzeyini genişletir) */
 export interface D1ReadLike extends D1Like {
@@ -69,7 +69,7 @@ export function createContentService(db: D1ReadLike, actor: string, now: () => n
         // WHERE status=from: yarış durumunda (başka admin) çift geçiş olmaz
         const set = to === "published" ? "status=?, published_at=datetime('now')" : "status=?";
         const stmt = db.prepare(`UPDATE contents SET ${set} WHERE id=? AND status=?`).bind(to, id, from);
-        await withAudit(db, [stmt], {
+        const applied = await withAudit(db, [stmt], {
           actor,
           action,
           entity_type: "content",
@@ -77,7 +77,9 @@ export function createContentService(db: D1ReadLike, actor: string, now: () => n
           old_value: { status: from },
           new_value: { status: to, slug: c.slug, locale: c.locale },
         });
-        result.changed.push(id);
+        // 0 satır → başka admin araya girdi; audit yazılmadı → "değişti" RAPORLANMAZ
+        if (applied) result.changed.push(id);
+        else result.skipped.push({ id, reason: "stale" });
       }
     }
     return result;
@@ -86,7 +88,9 @@ export function createContentService(db: D1ReadLike, actor: string, now: () => n
   return {
     async listNews() {
       const list = await rows<Omit<NewsItem, "hours_left" | "ttl_warning" | "tags"> & { tags_json: string | null }>(
-        "SELECT id, source, title, url, summary, tags_json, fetched_at, expires_at FROM rss_news WHERE expires_at > datetime('now') ORDER BY expires_at ASC LIMIT 200",
+        // Tek saat kaynağı: filtre de kalan-saat hesabı da now() — D1 datetime('now') ile karışırsa liste ve TTL rozeti çelişebilir
+        "SELECT id, source, title, url, summary, tags_json, fetched_at, expires_at FROM rss_news WHERE expires_at > ? ORDER BY expires_at ASC LIMIT 200",
+        new Date(now()).toISOString().slice(0, 19).replace("T", " "),
       );
       return list.map(({ tags_json, ...n }) => {
         const h = hoursLeft(n.expires_at, now());
@@ -179,7 +183,7 @@ export function createContentService(db: D1ReadLike, actor: string, now: () => n
       const stmt = db
         .prepare("UPDATE contents SET title=?, body_md=?, target_keyword=? WHERE id=? AND status='draft'")
         .bind(title, body, kw, id);
-      await withAudit(db, [stmt], {
+      const applied = await withAudit(db, [stmt], {
         actor,
         action: "update_content",
         entity_type: "content",
@@ -187,6 +191,7 @@ export function createContentService(db: D1ReadLike, actor: string, now: () => n
         old_value: { title: cur.title, body_len: cur.body_md.length, target_keyword: cur.target_keyword },
         new_value: { title, body_len: body.length, target_keyword: kw },
       });
+      if (!applied) throw new ApiError(409, "only_draft_editable"); // okuma ile yazma arasında onaylandı/silindi
     },
 
     approve: (ids) => bulkTransition(ids, "draft", "approved", "approve_content"),
@@ -204,7 +209,7 @@ export function createContentService(db: D1ReadLike, actor: string, now: () => n
         if (!c) result.skipped.push({ id, reason: "not_found" });
         else if (c.status !== "draft") result.skipped.push({ id, reason: `status_is_${c.status}` });
         else {
-          await withAudit(db, [db.prepare("DELETE FROM contents WHERE id=? AND status='draft'").bind(id)], {
+          const applied = await withAudit(db, [db.prepare("DELETE FROM contents WHERE id=? AND status='draft'").bind(id)], {
             actor,
             action: "reject_content",
             entity_type: "content",
@@ -212,7 +217,8 @@ export function createContentService(db: D1ReadLike, actor: string, now: () => n
             old_value: { status: "draft", slug: c.slug, locale: c.locale, title: c.title, model: c.model },
             new_value: { reason: why },
           });
-          result.changed.push(id);
+          if (applied) result.changed.push(id);
+          else result.skipped.push({ id, reason: "stale" });
         }
       }
       return result;

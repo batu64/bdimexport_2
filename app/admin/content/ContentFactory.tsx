@@ -1,8 +1,13 @@
 "use client";
 // FAZ_3 3.6 — AI İçerik Fabrikası kontrol kulesi (Input A/B/C + draft kuyruğu + toplu onay + yayın + audit akışı)
-// UI yalnızca ContentApi sözleşmesine bağlıdır. Şimdilik bellek-içi mock; Workers/D1 bağlanınca `api` prop'u değişir (Step 3.9).
+// UI yalnızca ContentApi sözleşmesine bağlıdır: varsayılan HTTP istemcisi (handler.ts); NEXT_PUBLIC_CONTENT_MOCK="1" → bellek-içi mock.
+// ONAY ≠ YAYIN: draft → approved (onay) ve approved → published (yayın) iki ayrı aksiyon/buton (ORCHESTRATOR §6).
+// Renkler/aralıklar yalnız admin CSS değişkenleri (content.module.css); hex/px literal yok.
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { createMockContentApi } from "./mock";
+import styles from "../admin.module.css";
+import k from "./content.module.css";
+import { createMockContentApi } from "./mock.ts";
+import { createHttpContentApi } from "./api-client.ts";
 import {
   CONTENT_LOCALES,
   PAGE_TYPES,
@@ -13,7 +18,7 @@ import {
   type Intent,
   type JobItem,
   type NewsItem,
-} from "./types";
+} from "./types.ts";
 
 type Tab = "A" | "B" | "C";
 type Queue = "draft" | "approved" | "published";
@@ -22,18 +27,14 @@ const LOCALE_LABEL: Record<string, string> = {
   tr: "Türkçe", en: "English", de: "Deutsch", zh: "简体中文",
   "en-ru": "EN·RU", "en-fr": "EN·FR", "en-nl": "EN·NL", "en-es": "EN·ES", "en-ar": "EN·AR",
 };
-
-const box: React.CSSProperties = { border: "1px solid #d1d5db", borderRadius: 8, padding: 16, marginBottom: 16, background: "#fff" };
-const btn: React.CSSProperties = { minHeight: 44, padding: "0 16px", borderRadius: 8, border: "1px solid #1A2B4A", background: "#1A2B4A", color: "#fff", cursor: "pointer" };
-const btnGhost: React.CSSProperties = { ...btn, background: "#fff", color: "#1A2B4A" };
-const input: React.CSSProperties = { width: "100%", minHeight: 44, padding: 8, borderRadius: 8, border: "1px solid #d1d5db", boxSizing: "border-box" };
+const QUEUE_LABEL: Record<Queue, string> = { draft: "Taslak", approved: "Onaylı (yayında değil)", published: "Yayında" };
 
 function LocalePicker({ value, onChange }: { value: string[]; onChange: (v: string[]) => void }) {
   return (
-    <fieldset style={{ border: 0, padding: 0, margin: "12px 0" }}>
+    <fieldset className={k.fieldset}>
       <legend>Hedef diller (I18N)</legend>
       {CONTENT_LOCALES.map((l) => (
-        <label key={l} style={{ marginRight: 12, whiteSpace: "nowrap" }}>
+        <label key={l} className={k.check}>
           <input
             type="checkbox"
             checked={value.includes(l)}
@@ -46,8 +47,12 @@ function LocalePicker({ value, onChange }: { value: string[]; onChange: (v: stri
   );
 }
 
-export default function ContentFactory({ api: apiProp, mockMode = true }: { api?: ContentApi; mockMode?: boolean }) {
-  const api = useMemo(() => apiProp ?? createMockContentApi(), [apiProp]);
+export default function ContentFactory({
+  api: apiProp,
+  mockMode = process.env.NEXT_PUBLIC_CONTENT_MOCK === "1",
+  allowMockProduce = mockMode,
+}: { api?: ContentApi; mockMode?: boolean; allowMockProduce?: boolean }) {
+  const api = useMemo(() => apiProp ?? (mockMode ? createMockContentApi() : createHttpContentApi()), [apiProp, mockMode]);
   const [tab, setTab] = useState<Tab>("A");
   const [queue, setQueue] = useState<Queue>("draft");
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -66,9 +71,13 @@ export default function ContentFactory({ api: apiProp, mockMode = true }: { api?
   const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
   const refresh = useCallback(async () => {
-    const [n, j, c, a] = await Promise.all([api.listNews(), api.listJobs(), api.listDrafts(queue), api.listAudit()]);
-    setNews(n); setJobs(j); setItems(c); setAudit(a);
-    setSel((s) => new Set([...s].filter((id) => c.some((x) => x.id === id))));
+    try {
+      const [n, j, c, a] = await Promise.all([api.listNews(), api.listJobs(), api.listDrafts(queue), api.listAudit()]);
+      setNews(n); setJobs(j); setItems(c); setAudit(a);
+      setSel((s) => new Set([...s].filter((id) => c.some((x) => x.id === id))));
+    } catch (e) {
+      setMsg({ ok: false, text: `Veri alınamadı — ${(e as Error).message}` });
+    }
   }, [api, queue]);
 
   useEffect(() => { void refresh(); }, [refresh]);
@@ -121,42 +130,44 @@ export default function ContentFactory({ api: apiProp, mockMode = true }: { api?
   const canSubmitA = text.trim().length > 0 && locales.length > 0;
   const canSubmitB = newsSel.size > 0 && locales.length > 0;
   const canSubmitC = phrase.trim().length >= 3 && locales.length > 0;
+  const canSubmit = tab === "A" ? canSubmitA : tab === "B" ? canSubmitB : canSubmitC;
 
   return (
-    <main style={{ maxWidth: 1280, margin: "0 auto", padding: 24 }}>
-      <h1>AI İçerik Fabrikası</h1>
+    <>
+      <h1 className={styles.h1}>AI İçerik Fabrikası</h1>
       {mockMode && (
-        <p role="note" style={{ background: "#fef3c7", padding: 8, borderRadius: 8 }}>
-          MOCK modu — veriler bellek-içi; D1/Workers bağlantısı Step 3.9&apos;da. Üretim isteği ai_jobs kaydı oluşturur; model seçimi Faz 4&apos;te orchestrator&apos;da.
+        <p role="note" className={k.warnNote}>
+          MOCK modu — veriler bellek-içi (NEXT_PUBLIC_CONTENT_MOCK=1). Üretim isteği ai_jobs kaydı oluşturur; gerçek üretim FAZ 4&apos;te (Gemini, en sonda).
         </p>
       )}
-      {msg && (
-        <p role="status" style={{ background: msg.ok ? "#d1fae5" : "#fee2e2", padding: 8, borderRadius: 8 }}>{msg.text}</p>
-      )}
+      {msg && <p role="status" className={msg.ok ? k.okNote : k.errNote}>{msg.text}</p>}
 
-      <section style={box} aria-label="Girdi">
-        <div role="tablist" style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-          {([["A", "A · Metin yapıştır"], ["B", "B · RSS havuzu"], ["C", "C · Keyword"]] as [Tab, string][]).map(([k, l]) => (
-            <button key={k} role="tab" aria-selected={tab === k} onClick={() => setTab(k)} style={tab === k ? btn : btnGhost}>{l}</button>
+      <section className={`${styles.card} ${k.block}`} aria-label="Girdi">
+        <div role="tablist" className={k.tabs}>
+          {([["A", "A · Metin yapıştır"], ["B", "B · RSS havuzu"], ["C", "C · Keyword"]] as [Tab, string][]).map(([t, l]) => (
+            <button key={t} role="tab" aria-selected={tab === t} onClick={() => setTab(t)} className={tab === t ? k.btn : k.ghost}>{l}</button>
           ))}
         </div>
 
         {tab === "A" && (
           <div role="tabpanel">
             <label>Ham metin (güvenilmeyen girdi sayılır)
-              <textarea value={text} onChange={(e) => setText(e.target.value)} rows={6} maxLength={20000} style={{ ...input, minHeight: 120 }} />
+              <textarea value={text} onChange={(e) => setText(e.target.value)} rows={6} maxLength={20000} className={k.input} />
             </label>
           </div>
         )}
 
         {tab === "B" && (
           <div role="tabpanel">
-            <p>RSS kaynak CRUD → Ayarlar modülü (3.8, ortak). Haber TTL 72s; &lt;{TTL_WARN_HOURS}s olanlar uyarılı.</p>
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
-              <thead><tr><th /><th align="left">Haber</th><th align="left">Kaynak</th><th align="left">Kalan TTL</th></tr></thead>
+            <p className={styles.muted}>
+              Haber TTL 72 saat; kalan süresi {TTL_WARN_HOURS} saatin altındakiler uyarılı. RSS kaynak ekleme/düzenleme: kaynak tablosu
+              henüz yok — FAZ 4.1 (RSS cron) ile gelecek; o zamana kadar havuz salt-okunur.
+            </p>
+            <table className={k.table}>
+              <thead><tr><th /><th>Haber</th><th>Kaynak</th><th>Kalan TTL</th></tr></thead>
               <tbody>
                 {news.map((n) => (
-                  <tr key={n.id} style={{ background: n.ttl_warning ? "#fef3c7" : undefined }}>
+                  <tr key={n.id} className={n.ttl_warning ? k.ttlWarn : undefined}>
                     <td><input type="checkbox" aria-label={`Seç: ${n.title}`} checked={newsSel.has(n.id)} onChange={() => toggle(newsSel, n.id, setNewsSel)} /></td>
                     <td>{n.title}</td>
                     <td>{n.source}</td>
@@ -170,12 +181,12 @@ export default function ContentFactory({ api: apiProp, mockMode = true }: { api?
         )}
 
         {tab === "C" && (
-          <div role="tabpanel" style={{ display: "grid", gap: 8, gridTemplateColumns: "2fr 1fr 1fr" }}>
+          <div role="tabpanel" className={k.kwGrid}>
             <label>Keyword (uzun kuyruk)
-              <input value={phrase} onChange={(e) => setPhrase(e.target.value)} maxLength={200} style={input} />
+              <input value={phrase} onChange={(e) => setPhrase(e.target.value)} maxLength={200} className={k.input} />
             </label>
             <label>Intent
-              <select value={intent} onChange={(e) => setIntent(e.target.value as Intent | "")} style={input}>
+              <select value={intent} onChange={(e) => setIntent(e.target.value as Intent | "")} className={k.input}>
                 <option value="">—</option>
                 <option value="informational">informational</option>
                 <option value="commercial">commercial</option>
@@ -183,30 +194,28 @@ export default function ContentFactory({ api: apiProp, mockMode = true }: { api?
               </select>
             </label>
             <label>Volume (elle girilen = tahmin)
-              <input value={volume} inputMode="numeric" onChange={(e) => setVolume(e.target.value.replace(/\D/g, ""))} style={input} />
+              <input value={volume} inputMode="numeric" onChange={(e) => setVolume(e.target.value.replace(/\D/g, ""))} className={k.input} />
             </label>
           </div>
         )}
 
         <LocalePicker value={locales} onChange={setLocales} />
-        <label>Sayfa tipi{" "}
-          <select value={pageType} onChange={(e) => setPageType(e.target.value as typeof pageType)}>
-            {PAGE_TYPES.map((p) => <option key={p}>{p}</option>)}
-          </select>
-        </label>{" "}
-        <button
-          style={{ ...btn, opacity: (tab === "A" ? canSubmitA : tab === "B" ? canSubmitB : canSubmitC) ? 1 : 0.5 }}
-          disabled={!(tab === "A" ? canSubmitA : tab === "B" ? canSubmitB : canSubmitC)}
-          onClick={() => submit(tab)}
-        >
-          {tab === "A" ? "SEO/GEO Metne Dönüştür" : tab === "B" ? `Seçilenlerden Üret (${newsSel.size})` : "Keyword'den Üret"}
-        </button>
+        <div className={k.tabs}>
+          <label>Sayfa tipi{" "}
+            <select value={pageType} onChange={(e) => setPageType(e.target.value as typeof pageType)} className={k.input}>
+              {PAGE_TYPES.map((p) => <option key={p}>{p}</option>)}
+            </select>
+          </label>
+          <button className={k.btn} disabled={!canSubmit} onClick={() => submit(tab)}>
+            {tab === "A" ? "SEO/GEO Metne Dönüştür" : tab === "B" ? `Seçilenlerden Üret (${newsSel.size})` : "Keyword'den Üret"}
+          </button>
+        </div>
       </section>
 
-      <section style={box} aria-label="Üretim kuyruğu">
-        <h2>ai_jobs kuyruğu</h2>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead><tr><th align="left">ID</th><th align="left">Girdi</th><th align="left">Diller</th><th align="left">Durum</th><th /></tr></thead>
+      <section className={`${styles.card} ${k.block}`} aria-label="Üretim kuyruğu">
+        <h2 className={styles.cardTitle}>ai_jobs kuyruğu</h2>
+        <table className={k.table}>
+          <thead><tr><th>ID</th><th>Girdi</th><th>Diller</th><th>Durum</th><th>Model</th><th /></tr></thead>
           <tbody>
             {jobs.map((j) => (
               <tr key={j.id}>
@@ -214,49 +223,51 @@ export default function ContentFactory({ api: apiProp, mockMode = true }: { api?
                 <td>{String(j.payload.input ?? "")}</td>
                 <td>{Array.isArray(j.payload.locales) ? (j.payload.locales as string[]).join(", ") : ""}</td>
                 <td>{j.status}{j.last_error ? ` — ${j.last_error}` : ""}</td>
+                <td>{j.model ?? "— (FAZ 4)"}</td>
                 <td>
-                  {mockMode && j.status === "pending" && (
-                    <button style={btnGhost} onClick={() => run("Mock üretim", async () => { const r = await api.mockProduce(j.id); return `${r.content_ids.length} draft`; })}>
+                  {allowMockProduce && j.status === "pending" && (
+                    <button className={k.ghost} onClick={() => run("Mock üretim", async () => { const r = await api.mockProduce(j.id); return `${r.content_ids.length} draft`; })}>
                       Mock üretimi çalıştır
                     </button>
                   )}
                 </td>
               </tr>
             ))}
-            {jobs.length === 0 && <tr><td colSpan={5}>Kayıt yok.</td></tr>}
+            {jobs.length === 0 && <tr><td colSpan={6}>Kayıt yok.</td></tr>}
           </tbody>
         </table>
       </section>
 
-      <section style={box} aria-label="Onay kuyruğu">
-        <h2>İçerik kuyruğu</h2>
-        <div role="tablist" style={{ display: "flex", gap: 8, marginBottom: 12 }}>
+      <section className={`${styles.card} ${k.block}`} aria-label="Onay kuyruğu">
+        <h2 className={styles.cardTitle}>İçerik kuyruğu</h2>
+        <div role="tablist" className={k.tabs}>
           {(["draft", "approved", "published"] as Queue[]).map((q) => (
-            <button key={q} role="tab" aria-selected={queue === q} style={queue === q ? btn : btnGhost} onClick={() => { setQueue(q); setSel(new Set()); }}>{q}</button>
+            <button key={q} role="tab" aria-selected={queue === q} className={queue === q ? k.btn : k.ghost} onClick={() => { setQueue(q); setSel(new Set()); }}>{QUEUE_LABEL[q]}</button>
           ))}
         </div>
-        <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-          <button style={btnGhost} onClick={() => setSel(sel.size === items.length ? new Set() : new Set(items.map((i) => i.id)))}>
+        <p className={styles.muted}>Onay içeriği yayınlamaz: onaylanan içerik &quot;Onaylı&quot; sekmesinde bekler, yayın ayrı bir aksiyondur.</p>
+        <div className={k.tabs}>
+          <button className={k.ghost} onClick={() => setSel(sel.size === items.length ? new Set() : new Set(items.map((i) => i.id)))}>
             {sel.size === items.length && items.length > 0 ? "Seçimi kaldır" : "Tümünü seç"}
           </button>
           {queue === "draft" && (
             <>
-              <button style={btn} disabled={sel.size === 0} onClick={() => bulk("approve")}>Seçilenleri onayla ({sel.size})</button>
-              <button style={btnGhost} disabled={sel.size === 0} onClick={() => bulk("reject")}>Reddet</button>
+              <button className={k.btn} disabled={sel.size === 0} onClick={() => bulk("approve")}>Seçilenleri onayla ({sel.size}) — yayınlamaz</button>
+              <button className={k.ghost} disabled={sel.size === 0} onClick={() => bulk("reject")}>Reddet</button>
             </>
           )}
           {queue === "approved" && (
-            <button style={btn} disabled={sel.size === 0} onClick={() => bulk("publish")}>Yayınla ({sel.size}) — ayrı aksiyon</button>
+            <button className={k.btn} disabled={sel.size === 0} onClick={() => bulk("publish")}>Yayınla ({sel.size}) — ayrı aksiyon</button>
           )}
         </div>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead><tr><th /><th align="left">Başlık</th><th align="left">Dil</th><th align="left">Tip</th><th align="left">Model</th><th /></tr></thead>
+        <table className={k.table}>
+          <thead><tr><th /><th>Başlık</th><th>Dil</th><th>Tip</th><th>Model</th><th /></tr></thead>
           <tbody>
             {items.map((c) => (
               <tr key={c.id}>
                 <td><input type="checkbox" aria-label={`Seç: ${c.title}`} checked={sel.has(c.id)} onChange={() => toggle(sel, c.id, setSel)} /></td>
                 <td>{c.title}</td><td>{LOCALE_LABEL[c.locale] ?? c.locale}</td><td>{c.page_type}</td><td>{c.model ?? "—"}</td>
-                <td>{c.status === "draft" && <button style={btnGhost} onClick={() => setEditing(c)}>Düzenle</button>}</td>
+                <td>{c.status === "draft" && <button className={k.ghost} onClick={() => setEditing(c)}>Düzenle</button>}</td>
               </tr>
             ))}
             {items.length === 0 && <tr><td colSpan={6}>Bu kuyrukta içerik yok.</td></tr>}
@@ -265,17 +276,19 @@ export default function ContentFactory({ api: apiProp, mockMode = true }: { api?
       </section>
 
       {editing && (
-        <section style={box} aria-label="Düzenle">
-          <h2>Düzenle — {editing.slug} ({editing.locale})</h2>
-          <label>Başlık<input value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value })} style={input} /></label>
-          <label>Gövde (markdown)<textarea value={editing.body_md} rows={10} onChange={(e) => setEditing({ ...editing, body_md: e.target.value })} style={{ ...input, minHeight: 200 }} /></label>
-          <button style={btn} onClick={() => run("Kaydet", async () => { await api.updateDraft(editing.id, { title: editing.title, body_md: editing.body_md }); setEditing(null); })}>Kaydet</button>{" "}
-          <button style={btnGhost} onClick={() => setEditing(null)}>Vazgeç</button>
+        <section className={`${styles.card} ${k.block}`} aria-label="Düzenle">
+          <h2 className={styles.cardTitle}>Düzenle — {editing.slug} ({editing.locale})</h2>
+          <label>Başlık<input value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value })} className={k.input} /></label>
+          <label>Gövde (markdown)<textarea value={editing.body_md} rows={10} onChange={(e) => setEditing({ ...editing, body_md: e.target.value })} className={k.input} /></label>
+          <div className={k.tabs}>
+            <button className={k.btn} onClick={() => run("Kaydet", async () => { await api.updateDraft(editing.id, { title: editing.title, body_md: editing.body_md }); setEditing(null); })}>Kaydet</button>
+            <button className={k.ghost} onClick={() => setEditing(null)}>Vazgeç</button>
+          </div>
         </section>
       )}
 
-      <section style={box} aria-label="Audit">
-        <h2>Son aksiyonlar (audit)</h2>
+      <section className={`${styles.card} ${k.block}`} aria-label="Audit">
+        <h2 className={styles.cardTitle}>Son aksiyonlar (audit)</h2>
         <ul>
           {audit.slice(0, 15).map((a) => (
             <li key={a.id}>{a.created_at} · {a.actor} · <b>{a.action}</b> · {a.entity_type}:{a.entity_id}</li>
@@ -283,6 +296,6 @@ export default function ContentFactory({ api: apiProp, mockMode = true }: { api?
           {audit.length === 0 && <li>Henüz kayıt yok.</li>}
         </ul>
       </section>
-    </main>
+    </>
   );
 }

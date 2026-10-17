@@ -14,7 +14,7 @@ import {
   type JobInput,
   type JobItem,
   type NewsItem,
-} from "./types";
+} from "./types.ts";
 
 let seq = 0;
 const nid = (p: string) => `${p}_${Date.now().toString(36)}${(seq++).toString(36)}`;

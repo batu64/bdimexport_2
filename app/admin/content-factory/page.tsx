@@ -1,15 +1,13 @@
-import styles from "../admin.module.css";
+// FAZ_3 3.6 — /admin/content-factory (menü hedefi, _lib/nav.ts). Erişim: Cloudflare Access + guard (3.1), admin-only (3.2 + handler.ts).
+// Bileşen ve sunucu mantığı app/admin/content/** altında (tek kaynak).
+import type { Metadata } from "next";
+import ContentFactory from "../content/ContentFactory";
 
-export default function Page() {
-  return (
-    <>
-      <h1 className={styles.h1}>İçerik Fabrikası</h1>
-      <section className={styles.card}>
-        <div className={styles.empty}>
-          <div className={styles.emptyIcon} aria-hidden>∅</div>
-          <p className={styles.muted}>Bu modül FAZ_3 step 3.6 kapsamında eklenecek.</p>
-        </div>
-      </section>
-    </>
-  );
+export const metadata: Metadata = {
+  title: "AI İçerik Fabrikası",
+  robots: { index: false, follow: false },
+};
+
+export default function ContentFactoryPage() {
+  return <ContentFactory />;
 }

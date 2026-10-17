@@ -1,0 +1,18 @@
+/* İçerik Fabrikası — yalnız admin CSS değişkenleri (layout'ta tokens.ts'den enjekte); hex literal yok (kenarlık 1px hariç — admin.module.css emsali). */
+.block { margin-bottom: var(--a-s4); }
+.tabs { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--a-s2); margin-bottom: var(--a-s3); }
+.btn, .ghost { min-height: var(--a-touch); padding: 0 var(--a-s4); border-radius: var(--a-radius); color: inherit; cursor: pointer; border: 1px solid color-mix(in srgb, var(--a-bg) 25%, transparent); }
+.btn { background: color-mix(in srgb, var(--a-accent) 55%, transparent); }
+.ghost { background: transparent; }
+.btn:disabled, .ghost:disabled { opacity: .5; cursor: not-allowed; }
+.input { display: block; width: 100%; min-height: var(--a-touch); padding: var(--a-s2); border-radius: var(--a-radius); box-sizing: border-box; }
+.fieldset { border: 0; padding: 0; margin: var(--a-s3) 0; }
+.check { margin-inline-end: var(--a-s3); white-space: nowrap; }
+.kwGrid { display: grid; gap: var(--a-s2); grid-template-columns: repeat(auto-fit, minmax(var(--a-card), 1fr)); }
+.table { width: 100%; border-collapse: collapse; }
+.table th { text-align: start; opacity: .7; }
+.table td, .table th { padding: var(--a-s1) var(--a-s2); border-block-end: 1px solid color-mix(in srgb, var(--a-bg) 12%, transparent); }
+.ttlWarn { background: color-mix(in srgb, var(--a-highlight) 30%, transparent); }
+.warnNote, .okNote, .errNote { padding: var(--a-s2); border-radius: var(--a-radius); }
+.warnNote, .errNote { background: color-mix(in srgb, var(--a-highlight) 30%, transparent); }
+.okNote { background: color-mix(in srgb, var(--a-accent) 30%, transparent); }
