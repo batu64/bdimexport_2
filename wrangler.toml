@@ -1,9 +1,10 @@
+# KÖK wrangler.toml — YALNIZ YEREL migration/geliştirme (FAZ_0 0.8: `wrangler d1 migrations apply bdimexport-db --local`).
+# DEPLOY İÇİN DEĞİL. Remote ortamların TEK kaynağı workers/api/wrangler.toml ([env.staging] / [env.production]);
+# ID'ler iki yerde tutulmasın diye burada staging/production bloğu YOK (FAZ_3 3.9 — docs/deploy.md).
 name = "bdimexport"
-main = "workers/api/index.ts"
+main = "workers/api/src/index.ts"
 compatibility_date = "2026-01-01"
 
-# D1 binding — staging/production ayrımı FAZ_3 3.9'da (wrangler env'leri)
-# Şimdilik yalnızca local dev binding (FAZ_0 0.8 kabul: lokalde koşmalı)
 [[d1_databases]]
 binding = "DB"
 database_name = "bdimexport-db"

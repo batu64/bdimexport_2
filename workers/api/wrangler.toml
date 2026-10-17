@@ -2,10 +2,15 @@ name = "bdimexport-api"
 main = "src/index.ts"
 compatibility_date = "2026-01-01"
 
-# FAZ_3 3.4 — staging/production ayrımı 3.9'da tamamlanır. Gerçek ID'ler İNSAN tarafından girilir
-# (wrangler d1 create / kv namespace create / r2 bucket create). Secret'lar KODDA YOK:
-#   wrangler secret put TURNSTILE_SECRET --env staging
-# Migration: yalnızca ileri yönlü (db/migrations); önce --local, sonra staging.
+# FAZ_3 3.9 — ortam ayrımı (Opus 5.5). Rehber: docs/deploy.md · secret listesi: docs/secret-envanteri.md
+#   üst seviye  = YEREL GELİŞTİRME (`wrangler dev`, `--local`). database_id/kv id "local-dev" → bu blokla remote
+#                 deploy/migration BAŞARISIZ olur (bilinçli: env'siz `wrangler deploy` prod'a gidemez).
+#   --env staging     = test ortamı (e2e yazımı serbest)
+#   --env production  = canlı (👤 tetik; e2e YAZIMI YASAK — yalnız salt-okunur smoke)
+# Gerçek ID'ler İNSAN tarafından `wrangler d1 create` / `wrangler kv namespace create` çıktısından REPLACE_ME_* yerine yazılır
+# (ID gizli değildir; erişim API token'ı ister). Secret DEĞERLERİ ASLA burada: `wrangler secret put <AD> --env <env>`.
+# [vars] ve binding'ler env'lere MİRAS GEÇMEZ → her env kendi bloğunu taşır.
+# Migration: yalnız ileri yönlü (db/migrations): --local → --env staging --remote → (👤) --env production --remote.
 
 [vars]
 ALLOWED_ORIGINS = "http://localhost:3000"
@@ -45,6 +50,7 @@ KVKK_VERSIONS = "v1 (47ac2ef0a5b43264)"
 # Staging Access app kurulunca (3.9) kendi AUD'u buraya; e-postalar `wrangler secret put … --env staging`.
 ACCESS_TEAM_DOMAIN = "bdimexport.cloudflareaccess.com"
 ACCESS_AUD = ""
+CONTENT_MOCK_PRODUCE = "1"                    # yalnız staging: İçerik Fabrikası mock üretim ucu (3.6)
 
 [[env.staging.d1_databases]]
 binding = "DB"
@@ -59,3 +65,34 @@ bucket_name = "bdimexport-media-staging"
 [[env.staging.kv_namespaces]]
 binding = "CACHE"
 id = "REPLACE_ME_STAGING_KV_ID"               # İNSAN (3.9)
+# ---- production (👤 tetik — docs/deploy.md §5) ----
+[env.production]
+name = "bdimexport-api"
+# workers.dev URL'i şimdilik açık: public API custom domain (api.bdimexport.com) gelene kadar tek adres.
+# /admin/api/* workers.dev'de Access JWT'si almaz → guard her zaman 401 (güvenli varsayılan).
+workers_dev = true
+
+[env.production.vars]
+# Site şu an bdimexport.pages.dev'de (geçici); custom domain bağlanınca yalnız bdimexport.com + www kalır (docs/access-setup.md §12).
+ALLOWED_ORIGINS = "https://bdimexport.com,https://www.bdimexport.com,https://bdimexport.pages.dev"
+TURNSTILE_HOSTNAMES = "bdimexport.com,www.bdimexport.com,bdimexport.pages.dev"
+KVKK_VERSIONS = "v1 (47ac2ef0a5b43264)"
+ACCESS_TEAM_DOMAIN = "bdimexport.cloudflareaccess.com"
+ACCESS_AUD = "a75b6ebb930d4c5b56b63e811bb7ca719ae2a78b916d7239477290ffda542fea"
+# CONTENT_MOCK_PRODUCE prod'da TANIMLANMAZ (mock üretim ucu 404 kalır — 3.6).
+# Secret (değer yok — `wrangler secret put … --env production`): TURNSTILE_SECRET, ADMIN_EMAILS, VIEWER_EMAILS
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "bdimexport-db"
+database_id = "REPLACE_ME_PROD_D1_ID"         # İNSAN — `wrangler d1 create bdimexport-db` çıktısı (docs/deploy.md §2)
+migrations_dir = "../../db/migrations"
+
+[[env.production.r2_buckets]]
+binding = "MEDIA"
+bucket_name = "bdimexport-media"              # İNSAN — `wrangler r2 bucket create bdimexport-media` (yoksa)
+
+[[env.production.kv_namespaces]]
+binding = "CACHE"
+id = "REPLACE_ME_PROD_KV_ID"                  # İNSAN — `wrangler kv namespace create CACHE --env production` çıktısı
+
