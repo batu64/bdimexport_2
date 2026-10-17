@@ -29,3 +29,8 @@
 .table th, .table td { padding: var(--a-s2); }
 .table thead tr { border-bottom: 1px solid color-mix(in srgb, var(--a-bg) 15%, transparent); }
 .table tbody tr { border-bottom: 1px solid color-mix(in srgb, var(--a-bg) 5%, transparent); }
+/* Ayarlar (3.8) */
+.stack { display: flex; flex-direction: column; gap: var(--a-s4); }
+.fs { border: 0; padding: 0; margin: var(--a-s2) 0; }
+.opt { margin-inline-end: var(--a-s3); }
+.rowForm { display: flex; flex-wrap: wrap; gap: var(--a-s2); align-items: center; margin: var(--a-s2) 0; }

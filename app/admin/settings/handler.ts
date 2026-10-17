@@ -1,8 +1,9 @@
 // FAZ_3 3.8 — /admin/api/settings (GET: tüm ayarlar · PUT: {key, value}). Workers'ta çalışır (static-export'ta Next route yok).
-// Auth: guardAdminRequest (Access JWT + allowlist). Viewer mutasyonu guard'da 403; burada ek savunma olarak rol yine kontrol edilir.
-import { guardAdminRequest, type AdminEnv } from "../middleware";
-import { ValidationError, SETTING_KEYS, type SettingKey } from "./schema";
-import { loadSettings, updateSetting, type D1ReadLike } from "./store";
+// Auth: guardAdminRequest (Access JWT + allowlist) + ADMIN-ONLY (GET dahil: viewer yalnız Dashboard görür — 3.2). Viewer PUT zaten guard'da 403.
+// Secret reddi: store.updateSetting → schema.assertNoSecrets (alan adı + değer biçimi, tüm anahtarlar). Audit: store → withAudit (atomik).
+import { guardAdminRequest, type AdminEnv } from "../middleware.ts";
+import { ValidationError, SETTING_KEYS, type SettingKey } from "./schema.ts";
+import { loadSettings, updateSetting, type D1ReadLike } from "./store.ts";
 
 export interface SettingsEnv extends AdminEnv {
   DB: D1ReadLike;
@@ -24,6 +25,7 @@ export async function handleSettings(
   const g = await guardAdminRequest(request, env, opts);
   if (!g.ok) return g.response;
   const { identity } = g;
+  if (identity.role !== "admin") return json({ error: "forbidden", code: "admin_only" }, 403);
 
   if (request.method === "GET") {
     return json({ settings: await loadSettings(env.DB), turnstileSecretConfigured: Boolean(env.TURNSTILE_SECRET) });

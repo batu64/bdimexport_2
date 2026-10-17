@@ -1,6 +1,6 @@
 // FAZ_3 3.8 — Ayarlar okuma/yazma. Her yazma withAudit ile atomik (ayar + audit aynı D1 batch).
-import { withAudit, type D1Like, type D1PreparedLike } from "../audit";
-import { DEFAULTS, SETTING_KEYS, VALIDATORS, type Settings, type SettingKey } from "./schema";
+import { withAudit, type D1Like, type D1PreparedLike } from "../audit.ts";
+import { DEFAULTS, SETTING_KEYS, VALIDATORS, assertNoSecrets, type Settings, type SettingKey } from "./schema.ts";
 
 export interface D1ReadLike extends D1Like {
   prepare(sql: string): D1PreparedLike & { all<T = unknown>(): Promise<{ results: T[] }> };
@@ -24,6 +24,9 @@ export async function loadSettings(db: D1ReadLike): Promise<Settings> {
 /** Tek ayar anahtarını doğrulayıp yazar; audit'e eski/yeni değer düşer (redact audit.ts'te). */
 export async function updateSetting(db: D1ReadLike, actor: string, key: SettingKey, raw: unknown): Promise<unknown> {
   if (!(SETTING_KEYS as readonly string[]).includes(key)) throw new Error(`unknown_setting:${key}`);
+  // GENEL secret reddi: doğrulayıcıdan ÖNCE, tüm anahtarlarda (fazladan/bilinmeyen alanlar sessizce atılmaz, reddedilir).
+  // Turnstile'da siteKey değeri secret ile aynı biçimde olduğundan o doğrulayıcı kendi alan-adı taramasını yapar.
+  if (key !== "turnstile") assertNoSecrets(raw, key);
   const value = VALIDATORS[key](raw);
   const old = (await loadSettings(db))[key];
   const upsert = db
