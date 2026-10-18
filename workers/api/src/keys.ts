@@ -4,9 +4,17 @@ import { json, sha256Hex, ulid } from "./util";
 import { generateKey } from "./auth";
 import { withAudit, type D1Like } from "../../../app/admin/audit";
 
+/**
+ * F-02 (3.10, privilege escalation): API üzerinden yalnız dış tüketici tier'ları üretilebilir.
+ * admin-internal ASLA POST /v1/keys ile üretilmez — ele geçirilmiş tek admin key'in kendini çoğaltmasını engeller.
+ * admin-internal yalnız: (1) bootstrap betiği workers/api/scripts/new-key.mjs (SQL'i insan D1'e uygular) veya
+ * (2) ileride Access korumalı admin paneli yolu (FAZ 7.2). partner = rezerve (3.4 kararı).
+ */
+export const MINTABLE_TIERS = ["read-only", "partner"] as const;
+
 const createSchema = z.object({
   name: z.string().trim().min(1).max(100),
-  tier: z.enum(["read-only", "partner", "admin-internal"]).default("read-only"),
+  tier: z.enum(MINTABLE_TIERS).default("read-only"),
   rate_limit: z.number().int().min(1).max(10_000).default(60),
 });
 
@@ -17,6 +25,10 @@ const actorOf = (k: AuthedKey) => `api_key:${k.id}`;
 /** POST /v1/keys — yalnız admin-internal. Ham key YALNIZ bu yanıtta döner (tek seferlik). */
 export async function createKey(req: Request, env: Env, actor: AuthedKey): Promise<Response> {
   const body = await req.json().catch(() => null);
+  // Açık red (400 validation değil 403): istek sözdizimsel olarak geçerli ama yetki dışı — QA/izleme için ayırt edilir
+  if (body && typeof body === "object" && (body as { tier?: unknown }).tier === "admin-internal") {
+    throw new HttpError(403, "tier_not_mintable", "admin-internal anahtar API üzerinden üretilemez");
+  }
   const p = createSchema.safeParse(body);
   if (!p.success) {
     throw new HttpError(400, "validation_failed", "Geçersiz istek", p.error.issues.map((i) => ({ field: i.path.join("."), message: i.message })));

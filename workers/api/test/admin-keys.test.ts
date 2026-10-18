@@ -158,9 +158,10 @@ describe("API key: cache + revoke + audit", () => {
   it("admin key revoke → başka colo'da bile ANINDA 401 (cache yok)", async () => {
     const c = makeEnv();
     const a1 = seedAdmin(c, "ADMIN00000000000000000000A");
-    const a2 = (await mint(c, a1, { name: "ikinci-admin", tier: "admin-internal" })).key;
+    // F-02: ikinci admin-internal key API'den üretilemez → bootstrap yoluyla (doğrudan D1) eklenir
+    const a2 = seedAdmin(c, "ADMIN00000000000000000000B");
     expect((await call(api("/api/v1/keys", a2), c)).status).toBe(200);
-    const id2 = (c.raw.prepare("SELECT id FROM api_keys WHERE key_hash=?").get(hashOf(a2)) as { id: string }).id;
+    const id2 = "ADMIN00000000000000000000B";
     expect((await call(api(`/api/v1/keys/${id2}`, a1, { method: "DELETE" }), c)).status).toBe(200);
     expect((await call(api("/api/v1/keys", a2), c)).status).toBe(401);
   });
@@ -189,6 +190,21 @@ describe("API key: cache + revoke + audit", () => {
     const dump = JSON.stringify(rows);
     expect(dump).not.toContain(m.key);
     expect(dump).not.toContain(hashOf(m.key));
+  });
+  it("F-02: admin-internal API'den ÜRETİLEMEZ (403 tier_not_mintable, kayıt/audit yok); read-only + partner üretilebilir", async () => {
+    const c = makeEnv();
+    const admin = seedAdmin(c);
+    const r = await call(api("/api/v1/keys", admin, { method: "POST", body: JSON.stringify({ name: "x", tier: "admin-internal" }), headers: { "content-type": "application/json" } }), c);
+    expect(r.status).toBe(403);
+    expect(((await r.json()) as { error: { code: string } }).error.code).toBe("tier_not_mintable");
+    expect(c.raw.prepare("SELECT count(*) n FROM api_keys").get()).toEqual({ n: 1 }); // yalnız bootstrap
+    expect(c.raw.prepare("SELECT count(*) n FROM admin_actions").get()).toEqual({ n: 0 });
+    for (const tier of ["read-only", "partner"]) {
+      const ok = await call(api("/api/v1/keys", admin, { method: "POST", body: JSON.stringify({ name: tier, tier }), headers: { "content-type": "application/json" } }), c);
+      expect(ok.status, tier).toBe(201);
+    }
+    const bad = await call(api("/api/v1/keys", admin, { method: "POST", body: JSON.stringify({ name: "y", tier: "superuser" }), headers: { "content-type": "application/json" } }), c);
+    expect(bad.status).toBe(400);
   });
   it("audit yazılamazsa key de OLUŞMAZ (atomik batch)", async () => {
     const c = makeEnv();

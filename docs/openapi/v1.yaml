@@ -1,0 +1,151 @@
+openapi: 3.0.3
+info:
+  title: bdimexport API
+  version: 1.0.0-draft
+  description: |
+    FAZ_3 3.4 sözleşme parçası (kod önce bu sözleşmeye uyar; admin UI 3.5/3.6 buna bağlanır).
+    Hata zarfı: {"error":{"code","message","details?"}}. Hata mesajları girdi değerlerini YANKILAMAZ (PII).
+servers:
+  - url: https://api.bdimexport.com
+    description: production (3.9'da)
+  - url: https://bdimexport-api-staging.workers.dev
+    description: staging
+components:
+  securitySchemes:
+    ApiKey:
+      type: http
+      scheme: bearer
+      description: "`Authorization: Bearer bdx_...` veya `X-API-Key`. Yalnız SHA-256 hash saklanır; ham key oluşturma yanıtında BİR KEZ gösterilir."
+  schemas:
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: { type: string }
+            message: { type: string }
+            details: {}
+    Tier: { type: string, enum: [read-only, partner, admin-internal] }
+    MintableTier:
+      type: string
+      enum: [read-only, partner]
+      default: read-only
+      description: >-
+        POST /api/v1/keys ile üretilebilen tier'lar (F-02, privilege escalation kısıtı).
+        admin-internal API üzerinden ASLA üretilmez — yalnız bootstrap betiği (workers/api/scripts/new-key.mjs,
+        çıktı SQL'i insan D1'e uygular) veya ileride Access korumalı admin paneli yolu (FAZ 7.2).
+        admin-internal dış API tüketicisine verilmez. partner = rezerve (gelecekteki partner erişimi).
+  responses:
+    Err:
+      description: Hata
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+paths:
+  /api/v1/partners/apply:
+    post:
+      summary: Partner başvurusu (public; Turnstile + rate limit)
+      description: |
+        Sıra: rate limit(IP) → boyut → Turnstile (token bağlama: action=partner_apply, hostname beyaz liste, tek kullanım) → dosya → zod → mükerrer.
+        Kayıt `approved=0`; `consent_logo_en` yalnız logoConsent ile 1 olur. approved client'tan alınmaz.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [firmaAdi, vergiNo, kvkkConsent, kvkkVersion, turnstileToken]
+              properties:
+                firmaAdi: { type: string, maxLength: 200 }
+                vergiNo: { type: string, pattern: '^\d{10,11}$' }
+                kapasite: { type: string, maxLength: 300 }
+                sertifikalar: { type: array, items: { type: string }, maxItems: 12 }
+                ihracatGecmisi: { type: string, maxLength: 2000 }
+                sektor: { type: string, maxLength: 120 }
+                katalogFile: { type: string, format: binary, description: "PDF (application/pdf + %PDF- magic), max 25MB" }
+                kvkkConsent: { type: string, enum: ["true", "on", "1"], description: "ZORUNLU — sunucu doğrular" }
+                kvkkVersion: { type: string, description: "KVKK_VERSIONS listesinde olmalı" }
+                logoConsent: { type: string, description: "opsiyonel; true/on/1 → consent_logo_en=1" }
+                contactName: { type: string }
+                contactEmail: { type: string, format: email }
+                contactPhone: { type: string }
+                turnstileToken: { type: string }
+      responses:
+        '201':
+          description: Alındı
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  status: { type: string, enum: [pending_review] }
+                  approved: { type: boolean, enum: [false] }
+        '400': { description: "Validasyon / KVKK rızası yok / PDF değil", content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '403': { description: "Turnstile yok / başarısız / replay / bağlam uyumsuz / origin izinsiz", content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '409': { description: Mükerrer vergi no }
+        '413': { description: "Gövde veya dosya > 25MB" }
+        '415': { description: multipart değil }
+        '429': { description: Rate limit (Retry-After) }
+  /api/v1/contents:
+    get:
+      summary: İçerik listesi (anahtarsız public; draft HARİÇ)
+      description: Anahtarsız → IP limitli, yalnız approved/published. admin-internal key ile `status` filtresi çalışır.
+      security: [{}, { ApiKey: [] }]
+      parameters:
+        - { name: locale, in: query, schema: { type: string } }
+        - { name: status, in: query, schema: { type: string, enum: [draft, approved, published] }, description: "yalnız admin-internal" }
+        - { name: limit, in: query, schema: { type: integer, minimum: 1, maximum: 100, default: 20 } }
+        - { name: cursor, in: query, schema: { type: string } }
+      responses: { '200': { description: "{data:[...], next_cursor}" }, '429': { description: Rate limit } }
+  /api/v1/partners:
+    get:
+      summary: Partner listesi
+      description: "read-only/partner: yalnız approved=1, PII yok (contact/tax_id/katalog yok), logo yalnız consent_logo_en=1. admin-internal: tüm alanlar + ?approved=0|1."
+      security: [{ ApiKey: [] }]
+      parameters:
+        - { name: approved, in: query, schema: { type: integer, enum: [0, 1] }, description: "yalnız admin-internal" }
+        - { name: limit, in: query, schema: { type: integer, maximum: 100 } }
+        - { name: cursor, in: query, schema: { type: string } }
+      responses: { '200': { description: OK }, '401': { description: Key yok/geçersiz/revoke }, '429': { description: Rate limit } }
+  /api/v1/leads:
+    get:
+      summary: Lead listesi (yalnız admin-internal — PII)
+      security: [{ ApiKey: [] }]
+      parameters:
+        - { name: status, in: query, schema: { type: string, enum: [new, contacted, qualified, closed] } }
+        - { name: limit, in: query, schema: { type: integer, maximum: 100 } }
+        - { name: cursor, in: query, schema: { type: string } }
+      responses: { '200': { description: OK }, '401': { description: Key }, '403': { description: Tier yetersiz } }
+  /api/v1/keys:
+    post:
+      summary: API key üret (çağıran admin-internal olmalı). Ham key yalnız bu yanıtta.
+      description: >-
+        Üretilebilen tier'lar yalnız read-only ve partner. tier=admin-internal istenirse 403 tier_not_mintable
+        (doğrulamadan önce reddedilir, kayıt/audit oluşmaz).
+      security: [{ ApiKey: [] }]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name: { type: string }
+                tier: { $ref: '#/components/schemas/MintableTier' }
+                rate_limit: { type: integer, minimum: 1, maximum: 10000, default: 60, description: req/dk (onaylı varsayılan 60) }
+      responses:
+        '201': { description: "{id,name,tier,rate_limit,key,notice}" }
+        '400': { description: validation_failed (bilinmeyen tier dahil) }
+        '403': { description: "forbidden (çağıran admin-internal değil) · tier_not_mintable (admin-internal istendi — F-02)" }
+    get:
+      summary: Key listesi (hash/ham key DÖNMEZ)
+      security: [{ ApiKey: [] }]
+      responses: { '200': { description: OK } }
+  /api/v1/keys/{id}:
+    delete:
+      summary: Revoke (D1 anında + KV cache silinir; audit log'lanır)
+      security: [{ ApiKey: [] }]
+      parameters: [{ name: id, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: "{id,revoked:true}" }, '404': { description: Yok } }
