@@ -33,7 +33,7 @@
 | C1 | **/v1/leads endpoint** (public, PII) | 3.4 | EN/DE GDPR rıza metni + çağıran form hazır değil | FAZ 5 (Datenschutz) civarı |
 | C2 | **KVKK rıza metni placeholder'ları** (adres / e-posta) | 1.1 | Gerçek şirket verisi insan tarafından sonra girilecek | Form canlıya alınmadan önce (FAZ 8 öncesi) |
 | C3 | **Lead saklama süresi (365 gün) kesinleştirme + otomatik silme cron** | 3.3/4 | KVKK metnindeki saklama süresiyle eşitlenecek | FAZ 4 bakım cron'u |
-| C4 | **RSS kaynak CRUD kalıcı depolama** | 3.6 | İçerik fabrikası arayüzü mock; gerçek depolama FAZ 4 hattında | FAZ 4.1 |
+| C4 ✅ | ~~**RSS kaynak CRUD kalıcı depolama**~~ (4.1: `settings.rssSources` + cron-rss, 2026-10-19) | 3.6 | İçerik fabrikası arayüzü mock; gerçek depolama FAZ 4 hattında | FAZ 4.1 |
 | C5 | **Lighthouse canlı ölçüm (≥90)** | 2/8 | Canlı URL + gerçek ortam gerek | FAZ 8.1 lansman denetimi (canlı URL / PageSpeed) |
 | C6 | **/en/{ru,fr,nl,es,ar} varyant tam içeriği** (şu an iskelet) | 2.5 | Tasarım gereği FAZ 2 iskelet; tam çeviri FAZ 5 | FAZ 5 |
 

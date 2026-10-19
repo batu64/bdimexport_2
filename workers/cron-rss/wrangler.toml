@@ -1,0 +1,39 @@
+name = "bdimexport-cron-rss"
+main = "src/index.ts"
+compatibility_date = "2026-01-01"
+
+# FAZ_4 4.1 — saatlik RSS toplama. Ortam disiplini FAZ_3 3.9 ile aynı (docs/deploy.md):
+#   üst seviye = YEREL (`wrangler dev --local --test-scheduled`); database_id "local-dev" → env'siz remote deploy BAŞARISIZ olur (bilinçli).
+#   --env staging = test ortamı (D1 id'si PUBLIC config: workers/api/wrangler.toml ile aynı staging DB).
+#   --env production = YOK: prod go-live ertelendi (ERTELENEN E1/E2, FAZ 8). Eklenirken: prod D1 id + 👤 tetik (docs/deploy.md §6).
+# Secret YOK. Aşağıdaki değişkenler opsiyonel ayar (varsayılanlar kodda).
+
+[triggers]
+crons = ["0 * * * *"] # her saat başı (UTC)
+
+[vars]
+RSS_FETCH_TIMEOUT_MS = "10000"
+RSS_MAX_ITEMS_PER_FEED = "50"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bdimexport-db"
+database_id = "local-dev"
+migrations_dir = "../../db/migrations"
+
+# ---- staging ----
+[env.staging]
+name = "bdimexport-cron-rss-staging"
+
+[env.staging.triggers]
+crons = ["0 * * * *"]
+
+[env.staging.vars]
+RSS_FETCH_TIMEOUT_MS = "10000"
+RSS_MAX_ITEMS_PER_FEED = "50"
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "bdimexport-db-staging"
+database_id = "4090989a-1122-4eaa-bb77-5f41a8ac8f16" # bdimexport-db-staging (3.9; workers/api/wrangler.toml ile aynı)
+migrations_dir = "../../db/migrations"
