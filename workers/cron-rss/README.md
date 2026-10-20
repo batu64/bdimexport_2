@@ -24,3 +24,10 @@ npx wrangler tail bdimexport-cron-rss-staging --env staging   # rss_source / rss
 npx wrangler d1 execute bdimexport-db-staging --env staging --remote --command "SELECT source,title,expires_at FROM rss_news ORDER BY fetched_at DESC LIMIT 10"
 ```
 Production: **yok** (go-live ertelendi — E1/E2, FAZ 8). Prod D1'e doğrudan yazım yasak (FAZ 3.9 disiplini).
+
+## 4.4 — Batch özet/etiket (Gemini STUB, E3)
+Saatlik cron: önce ingest, sonra `runEnrich` (yeni `rss_news` → `summary` + `tags_json {sector, product_candidate, locale_suggestion[], urgency}`; batch 20).
+- **`ENRICH_MODE`**: `off` (kod varsayılanı, hiçbir şey yapmaz) · `mock` (yerel/staging; özetler `[MOCK]` ile başlar) · `gemini` (**gerçek çağrı henüz YOK** — `GeminiModel.enrich` TODO(E3); anahtar/model yoksa ya da çağrı yazılmadıysa o çalışma **hiçbir şey yazmaz**).
+- **Placeholder'lar:** `GEMINI_API_KEY` (Workers secret) + `GEMINI_MODEL` (var) — E3'te (proje sonu, AGENTS §9) `wrangler secret put GEMINI_API_KEY --env <env>`. Repoda DEĞER yok.
+- **Prompt injection savunması (katmanlı):** (1) `sanitize.ts`: görünmez/bidi/"tag" karakterleri silinir, NFKC, ayraç karakterleri atılır, 200 karakter; (2) yönerge benzeri başlık (EN/TR/DE/RU/ZH kalıpları + sohbet şablonu belirteçleri) **karantina** → prompt'a hiç girmez, özet üretilmez; (3) sabit sistem talimatı + veri yalnız JSON (`prompt.ts`); (4) **çıktı doğrulaması** (`schema.ts`): sıkı şema, kapalı sözlükler, özette yönerge/URL/HTML/şablon karakteri yok — geçmeyen öğe yazılmaz (3 denemede bırakılır); (5) çıktı yayına gitmez, yalnız admin havuzuna (insan onayı). **Sınır:** regex listesi her saldırıyı yakalamaz; savunma derinliğiyle birlikte çalışır.
+- Model hatası → fail-closed (yazma yok, çalışma durur; öğeler sonraki saatte tekrar aday). Mevcut `tags_json` (örn. `kind=trends`, 4.3) korunur.

@@ -230,13 +230,15 @@ describe("güvenlik / sözleşme", () => {
     expect(readFileSync(resolve(__dirname, "../src/ingest.ts"), "utf8")).not.toMatch(/DELETE\s+FROM/i);
   });
 
-  it("AI çağrısı YOK: kaynak kodda model/LLM sağlayıcı referansı ve secret yok; yalnız D1 + RSS fetch", () => {
+  it("AI çağrısı YOK (ingest yolu): deterministik dosyalarda model/LLM/secret referansı yok ve enrich modüllerini içe aktarmaz; fetch yalnız fetch.ts'te", () => {
     const dir = resolve(__dirname, "../src");
-    for (const f of readdirSync(dir)) {
+    // 4.4 enrich-ailesi (model/prompt/schema/sanitize/enrich) AYRI modüllerdir; ingest/bakım/çekme yolu onlara bağımlı OLMAMALI
+    const deterministic = ["fetch.ts", "ingest.ts", "maintenance.ts", "parse.ts", "sources.ts"];
+    for (const f of deterministic) {
       const code = readFileSync(resolve(dir, f), "utf8").split("\n").filter((l) => !l.trim().startsWith("//")).join("\n");
       expect(code, f).not.toMatch(/gemini|openai|anthropic|claude|generativelanguage|api[_-]?key|secret|authorization/i);
+      expect(code, f).not.toMatch(/from "\.\/(enrich|model|prompt|schema|sanitize)"/);
     }
-    // fetch yalnız fetch.ts'te (tek çıkış kapısı)
     const callers = readdirSync(dir).filter((f) => /\bfetch\(/.test(readFileSync(resolve(dir, f), "utf8").replace(/\/\/.*$/gm, "")) && f !== "index.ts");
     expect(callers).toEqual(["fetch.ts"]);
   });

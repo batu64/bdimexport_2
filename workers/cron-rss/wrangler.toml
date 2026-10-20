@@ -14,6 +14,8 @@ crons = ["0 * * * *", "0 23 * * *"] # saatlik ingest (4.1) + gece bakım 02:00 T
 [vars]
 RSS_FETCH_TIMEOUT_MS = "10000"
 RSS_MAX_ITEMS_PER_FEED = "50"
+ENRICH_MODE = "mock" # 4.4: Gemini STUB (E3). Kodda varsayılan "off"; prod env eklenirken "mock" KOPYALANMAZ.
+# GEMINI_API_KEY (secret) + GEMINI_MODEL (var): E3'te (proje sonu) — `wrangler secret put GEMINI_API_KEY --env <env>`. Şimdilik YOK.
 
 [[d1_databases]]
 binding = "DB"
@@ -31,6 +33,7 @@ crons = ["0 * * * *", "0 23 * * *"]
 [env.staging.vars]
 RSS_FETCH_TIMEOUT_MS = "10000"
 RSS_MAX_ITEMS_PER_FEED = "50"
+ENRICH_MODE = "mock"
 
 [[env.staging.d1_databases]]
 binding = "DB"

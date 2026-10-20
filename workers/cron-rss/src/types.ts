@@ -8,6 +8,15 @@ export interface Env {
   RSS_MAX_BYTES?: string; // feed gövdesi üst sınırı (default 2 MB)
   RSS_RETRY_DELAY_MS?: string; // yeniden deneme öncesi bekleme (default 500)
   RSS_CONCURRENCY?: string; // aynı anda çekilen kaynak sayısı (default 3)
+
+  // FAZ_4 4.4 — batch özet/etiket (runtime AI = Gemini, STUB — ERTELENEN E3)
+  ENRICH_MODE?: string; // "off" (varsayılan) | "mock" | "gemini"
+  ENRICH_BATCH_SIZE?: string; // çağrı başına haber (default 20, en çok 20)
+  ENRICH_MAX_PER_RUN?: string; // çalışma başına en çok haber (default 100)
+  ENRICH_MAX_ATTEMPTS?: string; // doğrulaması başarısız öğe için en çok deneme (default 3)
+  // PLACEHOLDER'lar — DEĞER KODDA/REPODA YOK. E3'te (proje sonu, AGENTS §9) `wrangler secret put GEMINI_API_KEY --env <env>` + GEMINI_MODEL var'ı.
+  GEMINI_API_KEY?: string; // SECRET (Workers secret)
+  GEMINI_MODEL?: string; // var (model adı E3'te sabitlenir)
 }
 
 /** settings.rssSources öğesi (app/admin/settings/schema.ts RssSource ile aynı sözleşme). */
