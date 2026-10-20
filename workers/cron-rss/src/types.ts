@@ -15,6 +15,9 @@ export interface Env {
   ENRICH_MAX_PER_RUN?: string; // çalışma başına en çok haber (default 100)
   ENRICH_MAX_ATTEMPTS?: string; // doğrulaması başarısız öğe için en çok deneme (default 3)
   // PLACEHOLDER'lar — DEĞER KODDA/REPODA YOK. E3'te (proje sonu, AGENTS §9) `wrangler secret put GEMINI_API_KEY --env <env>` + GEMINI_MODEL var'ı.
+  // FAZ_4 4.5 — ai_jobs consumer (makale üretimi; runtime AI = Gemini STUB, E3)
+  ARTICLE_MODE?: string; // "off" (varsayılan) | "mock" | "gemini"
+  ARTICLE_MAX_JOBS_PER_RUN?: string; // çalışma başına en çok iş (default 5)
   GEMINI_API_KEY?: string; // SECRET (Workers secret)
   GEMINI_MODEL?: string; // var (model adı E3'te sabitlenir)
 }

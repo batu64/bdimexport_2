@@ -5,11 +5,13 @@ import type { Env } from "./types";
 import { runIngest } from "./ingest";
 import { isNightly, runMaintenance } from "./maintenance";
 import { runEnrich } from "./enrich";
+import { runArticleJobs } from "./jobs";
 
-/** Saatlik iş: önce ingest (4.1), sonra yeni haberlerin özet/etiketi (4.4). Enrich asla fırlatmaz; ingest sonucunu etkilemez. */
+/** Saatlik iş: ingest (4.1) → yeni haberlerin özet/etiketi (4.4) → bekleyen makale işleri (4.5). Enrich asla fırlatmaz; ingest sonucunu etkilemez. */
 async function hourly(env: Env, at: Date): Promise<void> {
   await runIngest(env, at);
   await runEnrich(env, at); // ENRICH_MODE=off (varsayılan) → no-op
+  await runArticleJobs(env, at); // 4.5: bekleyen ai_jobs → draft (ARTICLE_MODE=off → no-op)
 }
 
 export default {
