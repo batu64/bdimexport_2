@@ -1,0 +1,29 @@
+name = "bdimexport-cron-trends"
+main = "src/index.ts"
+compatibility_date = "2026-01-01"
+
+# FAZ_4 4.3 — günlük Google Trends (geo=TR/RU/DE). Ortam disiplini 4.1/4.2 ile aynı (docs/deploy.md):
+#   üst seviye = YEREL; database_id "local-dev" → env'siz remote deploy BAŞARISIZ (bilinçli).
+#   --env staging = test ortamı (D1 id PUBLIC config). --env production YOK (ERTELENEN E1/E2).
+# Secret YOK. Deterministik: AI çağrısı YOK.
+
+[triggers]
+crons = ["0 6 * * *"] # her gün 06:00 UTC = 09:00 TR
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bdimexport-db"
+database_id = "local-dev"
+migrations_dir = "../../db/migrations"
+
+[env.staging]
+name = "bdimexport-cron-trends-staging"
+
+[env.staging.triggers]
+crons = ["0 6 * * *"]
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "bdimexport-db-staging"
+database_id = "4090989a-1122-4eaa-bb77-5f41a8ac8f16" # bdimexport-db-staging (cron-rss/api ile aynı)
+migrations_dir = "../../db/migrations"
