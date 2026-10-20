@@ -9,7 +9,7 @@ compatibility_date = "2026-01-01"
 # Secret YOK. Aşağıdaki değişkenler opsiyonel ayar (varsayılanlar kodda).
 
 [triggers]
-crons = ["0 * * * *"] # her saat başı (UTC)
+crons = ["0 * * * *", "0 23 * * *"] # saatlik ingest (4.1) + gece bakım 02:00 TR (4.2)
 
 [vars]
 RSS_FETCH_TIMEOUT_MS = "10000"
@@ -26,7 +26,7 @@ migrations_dir = "../../db/migrations"
 name = "bdimexport-cron-rss-staging"
 
 [env.staging.triggers]
-crons = ["0 * * * *"]
+crons = ["0 * * * *", "0 23 * * *"]
 
 [env.staging.vars]
 RSS_FETCH_TIMEOUT_MS = "10000"

@@ -3,10 +3,13 @@
 // TTL silme + bakım: 4.2 (gece job). Özet/etiket: 4.4. Bu worker AI çağırmaz.
 import type { Env } from "./types";
 import { runIngest } from "./ingest";
+import { isNightly, runMaintenance } from "./maintenance";
 
 export default {
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
-    ctx.waitUntil(runIngest(env, new Date(controller.scheduledTime)));
+    const at = new Date(controller.scheduledTime);
+    // 4.2: gece cron'u (23:00 UTC) bakım job'ı; saatlik cron ingest. Ayrım cron ifadesiyle.
+    ctx.waitUntil(isNightly(controller.cron) ? runMaintenance(env, at) : runIngest(env, at));
   },
 
   async fetch(req: Request): Promise<Response> {
