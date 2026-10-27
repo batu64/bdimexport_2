@@ -1,0 +1,47 @@
+PASS  S1a  api wrangler'da prod D1 id bulundu (referans)
+        · prod database_id = 01c87f5e…
+PASS  S1-cron-rss  cron-rss: [env.production] yok + prod D1 id yok
+        · env blokları: staging
+        · database_id: local-dev, 4090989a-1122-4eaa-bb77-5f41a8ac8f16
+PASS  S1-cron-trends  cron-trends: [env.production] yok + prod D1 id yok
+        · env blokları: staging
+        · database_id: local-dev, 4090989a-1122-4eaa-bb77-5f41a8ac8f16
+PASS  S1-cron-analytics  cron-analytics: [env.production] yok + prod D1 id yok
+        · env blokları: staging
+        · database_id: local-dev, REPLACE_ME_STAGING_D1_ID
+PASS  S1b  test/QA (41 dosya) + package.json betikleri (5): prod uzak yazım/prod D1 id YOK
+        · 0 eşleşme
+PASS  S2a  contents→'published' yazımı yalnız workers/api/src/publish/publish.ts
+        · workers/api/src/publish/publish.ts:138
+        · workers/api/src/publish/publish.ts:158
+PASS  S2b  her 'published' UPDATE: WHERE status='approved' AND publications.state='live'
+        · workers/api/src/publish/publish.ts:138
+        · workers/api/src/publish/publish.ts:158
+PASS  S2c  dinamik status UPDATE (service.bulkTransition) yalnız draft→approved için çağrılıyor
+        · app/admin/content/service.ts:74: const stmt = db.prepare(`UPDATE contents SET ${set} WHERE id=? AND status=?`).bind(to, id, from);
+        · app/admin/content/service.ts:200: approve: (ids) => bulkTransition(ids, "draft", "approved", "approve_content"),
+PASS  S2d  PATCH status/published_at alanları salt-okunur (field_read_only) kodda mevcut
+        · service/handler: field_read_only
+PASS  S2e  public GET /v1/contents: anahtarsız/partner → yalnız published; başka durum yalnız admin-internal tier
+        · workers/api/src/read.ts:23: * GET /v1/contents — anahtarsız public: YALNIZ published (FAZ_4 4.6: "approved" ≠ "published" — onay
+        · workers/api/src/read.ts:31: const statuses = key?.tier === "admin-internal" && st ? [st] : ["published"];
+        · workers/api/src/read.ts:36: if (!statuses.every((s) => ["draft", "approved", "published"].includes(s))) {
+        · workers/api/src/read.ts:39: const sql = `SELECT id, slug, locale, page_type, title, body_md, target_keyword, status, created_at,
+PASS  S3  cron worker'ları (31 dosya): contents INSERT hep 'draft'; approved/published literali 0
+        · workers/cron-rss/src/jobs.ts:175 INSERT … 'draft'
+        · approved/published literali: 0
+PASS  S4  runtime AI: Gemini dışı sağlayıcı 0 (kod satırı) · Gemini uç noktası mevcut
+        · gemini: workers/cron-rss/src/model.ts:48
+PASS  S5  TODO(E3) işaretleri + yapılandırılmamış Gemini → ModelNotConfigured (sessiz başarı yok)
+        · workers/cron-rss/src/article-model.ts:181
+        · workers/cron-rss/src/model.ts:47
+        · workers/cron-rss/src/model.ts:61
+        · workers/cron-rss/src/quota.ts:15
+        · workers/cron-rss/src/article-model.ts:193
+        · workers/cron-rss/src/article-model.ts:202
+        · workers/cron-rss/src/article-model.ts:205
+        · workers/cron-rss/src/model.ts:62
+        · workers/cron-rss/src/model.ts:78
+        · workers/cron-rss/src/model.ts:81
+
+SONUÇ: 13/13 PASS · KIRMIZI 0

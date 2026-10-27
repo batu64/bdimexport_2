@@ -26,6 +26,8 @@ const REVIEWED = [
   ["workers/api/src/read.ts", 'statuses.map(() => "?")', "yalnız '?' yer tutucuları; statuses beyaz listeden"],
   ["workers/api/src/read.ts", 'locale ? "AND locale = ?"', "sabit dize; locale bind"],
   ["workers/api/src/read.ts", 'cursor ? "AND id > ?"', "sabit dize; cursor bind"],
+  ["workers/api/src/read.ts", 'pageType ? "AND page_type = ?"', "sabit dize; page_type önce 5'li beyaz listeden doğrulanır (aksi 400), değer bind (FAZ_4 4.6; 4.9 QA'da okundu)"],
+  ["workers/api/src/publish/publish.ts", "COLS", "sabit kolon listesi (modül sabiti publish.ts:28); id bind (FAZ_4 4.6; 4.9 QA'da okundu)"],
   ["workers/api/src/read.ts", "where.length", "sabit where parçaları + ?"],
   ["workers/api/src/read.ts", "cols", "iki sabit kolon listesinden biri (ternary, tier'a göre)"],
 ];

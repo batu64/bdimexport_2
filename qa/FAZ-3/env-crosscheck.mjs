@@ -23,7 +23,8 @@ const code = new Map(); // ad → [kaynaklar]
 const add = (n, src) => { if (BINDINGS.has(n)) return; code.set(n, [...(code.get(n) ?? []), src]); };
 
 // 1) Env arayüzleri
-for (const f of ["workers/api/src/types.ts", "workers/cron-analytics/src/types.ts"]) {
+// FAZ_4 4.9 QA: cron-rss + cron-trends kapsama alındı (önceki sürüm taramadığı için 4.4–4.7 env'leri "hayalet" görünüyordu)
+for (const f of ["workers/api/src/types.ts", "workers/cron-analytics/src/types.ts", "workers/cron-rss/src/types.ts", "workers/cron-trends/src/trends.ts"]) {
   const src = read(f);
   const body = src.slice(src.indexOf("export interface Env"));
   for (const m of body.slice(0, body.indexOf("\n}\n")).matchAll(/^\s+([A-Z][A-Z0-9_]+)\??:/gm)) add(m[1], f);
@@ -33,11 +34,11 @@ for (const f of walk("app/admin")) {
   for (const m of src.matchAll(/interface\s+\w*Env\b[^{]*\{([^}]*)\}/g)) for (const x of m[1].matchAll(/^\s*([A-Z][A-Z0-9_]+)\??:/gm)) add(x[1], f);
 }
 // 2) process.env.X
-for (const d of ["app", "lib", "scripts", "workers/api/src", "workers/api/scripts", "workers/cron-analytics/src", "workers/cron-analytics/scripts", "next.config.ts"]) {
+for (const d of ["app", "lib", "scripts", "workers/api/src", "workers/api/scripts", "workers/cron-analytics/src", "workers/cron-analytics/scripts", "workers/cron-rss/src", "workers/cron-trends/src", "next.config.ts"]) {
   for (const f of d.endsWith(".ts") ? [d] : walk(d)) for (const m of read(f).matchAll(/process\.env\.([A-Z][A-Z0-9_]+)/g)) add(m[1], f);
 }
 // 3) wrangler.toml [vars]
-for (const f of ["workers/api/wrangler.toml", "workers/cron-analytics/wrangler.toml", "wrangler.toml"]) {
+for (const f of ["workers/api/wrangler.toml", "workers/cron-analytics/wrangler.toml", "workers/cron-rss/wrangler.toml", "workers/cron-trends/wrangler.toml", "wrangler.toml"]) {
   if (!fs.existsSync(path.join(ROOT, f))) continue;
   for (const m of read(f).matchAll(/^([A-Z][A-Z0-9_]+)\s*=\s*/gm)) add(m[1], f);
 }
@@ -47,7 +48,7 @@ for (const f of walk(".github/workflows")) for (const m of read(f).matchAll(/sec
 // Envanter: backtick içindeki UPPER_CASE adlar (ve `A`, `B`, `C_*` sözdizimi)
 const doc = read("docs/secret-envanteri.md");
 const docNames = new Set();
-for (const m of doc.matchAll(/`([^`]+)`/g)) for (const t of m[1].split(/[,\s/]+/)) { const n = t.replace(/[^A-Z0-9_*]/g, ""); if (/^[A-Z][A-Z0-9_]{2,}\*?$/.test(n)) docNames.add(n); }
+for (const m of doc.matchAll(/`([^`]+)`/g)) for (const t of m[1].split(/[,\s/]+/)) { const n = t.replace(/[^A-Z0-9_*]/g, ""); if (/^[A-Z][A-Z0-9_]{2,}\*?$/.test(n) && !/^TODO/.test(n)) docNames.add(n); }
 const inDoc = (n) => docNames.has(n) || [...docNames].some((d) => d.endsWith("*") && n.startsWith(d.slice(0, -1)));
 
 // Kod tarafında olup envanterin amacı dışında kalan (ortam/derleme değişkeni) adlar
@@ -61,8 +62,9 @@ console.log("\nKODDA VAR / ENVANTERDE YOK (EKSİK KAYIT):" + (missing.length ? "
 for (const [n, src] of missing) console.log(`  ✘ ${n}  ← ${[...new Set(src)].join(", ")}`);
 console.log("\nENVANTERDE VAR / KODDA YOK (hayalet kayıt; bilinçli ertelenenler hariç):" + (ghost.length ? "" : " yok ✔"));
 for (const n of ghost) console.log(`  ? ${n}`);
-console.log("\nBilinçli ertelenen (kodda referansı olmaması BEKLENEN): GEMINI_API_KEY (AGENTS §9), RESEND_API_KEY/BREVO_API_KEY (E5, FAZ 8)");
-const exp = ["RESEND_API_KEY", "BREVO_API_KEY", "GEMINI_API_KEY"].filter((n) => code.has(n));
+// GEMINI_API_KEY: FAZ_4 4.4'ten beri kodda REFERANSLI (cron-rss TODO(E3) stub; envanter §3 bunu belirtir) — yalnız DEĞERİ ertelenmiştir (AGENTS §9).
+console.log("\nBilinçli ertelenen (kodda referansı olmaması BEKLENEN): RESEND_API_KEY/BREVO_API_KEY (E5, FAZ 8) · GEMINI_API_KEY kodda referanslı, değeri E3");
+const exp = ["RESEND_API_KEY", "BREVO_API_KEY"].filter((n) => code.has(n));
 console.log(exp.length ? `  ✘ ertelenen ad kodda BULUNDU: ${exp.join(",")}` : "  ✔ ertelenen adların hiçbiri kodda yok (envanter 'kodda referans YOK' iddiası doğru)");
 console.log("\nTÜM KOD ADLARI: " + [...code.keys()].sort().join(", "));
 process.exit(missing.length ? 1 : 0);

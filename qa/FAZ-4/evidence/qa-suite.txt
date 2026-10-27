@@ -1,0 +1,9 @@
+ RUN  v5.0.5 C:/Users/root/Desktop/bdimexportcom/workers/cron-rss
+(node:14732) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19948) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11852) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ Test Files  3 passed (3)
+      Tests  13 passed (13)

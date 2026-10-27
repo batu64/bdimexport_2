@@ -1,0 +1,66 @@
+# FAZ-4 4.9 negatif kontroller (mutasyon): kod geçici bozulur → QA paketi koşar → git checkout ile HEAD'e döner. 2026-10-27T18:50:03Z · HEAD a2aafc1
+=== M1 public API approved sızıntısı (4.6 öncesi hata)  (workers/api/src/read.ts: s/: \["published"\];/: ["approved", "published"];/)
+     × APPROVED (onaylı ama yayınlanmamış): public API'de YOK; makale PR'sız/merge'süz 'yayınlandı' yapılamaz
+     × haber → özet → ai_jobs (B) → MOCK taslak → onay → mock HİÇBİR yoldan yayına çıkamaz (güvenlik kemeri)
+     × KALICI yol: haber → üretim (stub-gemini) → draft → onay (public'te YOK) → PR → merge → 'yayınlandı' → public'te VAR
+     × GEÇİCİ yol: news_card taslağı → onay → 'Yayınla (edge)' → public ?page_type=news_card'da anında; PR açılmaz
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected [ '01M5YCTV80EEPV7P05FS35EJN3', …(1) ] to deeply equal []
+AssertionError: expected [ '01M5YCTV80SQGY11SN1ZQQRW6G' ] to deeply equal []
+AssertionError: expected [ '01M5YCTV80S4FS3NXPXY45XF4Y' ] to deeply equal []
+AssertionError: expected [ '01M5YCTV805S5NSPVWSXK9FQ5V' ] to deeply equal []
+      Tests  4 failed | 9 passed (13)
+  geri yüklendi (HEAD ile birebir)
+=== M2a edge: yalnız SQL koşulu kaldırıldı (JS ön-kontrol kalır)  (workers/api/src/publish/publish.ts: s/ AND status = 'approved')")/)")/g)
+      Tests  13 passed (13)
+  geri yüklendi (HEAD ile birebir)
+=== M2b edge: yalnız JS ön-kontrol kaldırıldı (SQL koşulu kalır)  (workers/api/src/publish/publish.ts: s/  if (c.status !== "approved") return fail("not_approved", c.status);//g)
+     × DRAFT: servis (publish/prepare/mark), çekirdek (publishEdge/preparePublication/markPublished — 'merge edildi' diyen GitHub ile bile) → hepsi red
+     × DRAFT: admin HTTP uçları (publish, prepare-pr, mark-published, PATCH status/published_at) → red; durum değişmez
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected 'stale' to be 'not_approved' // Object.is equality
+AssertionError: expected 'no_open_pr' to be 'not_approved' // Object.is equality
+      Tests  2 failed | 11 passed (13)
+  geri yüklendi (HEAD ile birebir)
+=== M2c edge: İKİ katman birden kaldırıldı  (workers/api/src/publish/publish.ts: s/ AND status = 'approved')")/)")/g; s/  if (c.status !== "approved") return fail("not_approved", c.status);//g)
+     × DRAFT: servis (publish/prepare/mark), çekirdek (publishEdge/preparePublication/markPublished — 'merge edildi' diyen GitHub ile bile) → hepsi red
+     × DRAFT: admin HTTP uçları (publish, prepare-pr, mark-published, PATCH status/published_at) → red; durum değişmez
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected 'stale' to be 'not_approved' // Object.is equality
+AssertionError: expected 'no_open_pr' to be 'not_approved' // Object.is equality
+AssertionError: expected { n: 2 } to deeply equal { n: +0 }
+      Tests  2 failed | 11 passed (13)
+  geri yüklendi (HEAD ile birebir)
+=== M3 TTL 72 → 70 saat  (workers/cron-rss/src/ingest.ts: s/export const TTL_HOURS = 72;/export const TTL_HOURS = 70;/)
+     × ingest expires_at = fetched_at + 72 saat; bakım 71. saatte TUTAR, 73. saatte SİLER (audit'li)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected 70 to be 72 // Object.is equality
+      Tests  1 failed | 12 passed (13)
+  geri yüklendi (HEAD ile birebir)
+=== M4 tüketici approved yazar  (workers/cron-rss/src/jobs.ts: s/VALUES (?,?,?,?,?,?,?,?, 'draft', ?,?)/VALUES (?,?,?,?,?,?,?,?, 'approved', ?,?)/)
+     × DRAFT: servis (publish/prepare/mark), çekirdek (publishEdge/preparePublication/markPublished — 'merge edildi' diyen GitHub ile bile) → hepsi red
+     × DRAFT: admin HTTP uçları (publish, prepare-pr, mark-published, PATCH status/published_at) → red; durum değişmez
+     × APPROVED (onaylı ama yayınlanmamış): public API'de YOK; makale PR'sız/merge'süz 'yayınlandı' yapılamaz
+     × üretim tüketicisi (4.5) asla draft dışı yazamaz: önceden approved/published olan içerik değişmez, yeni satırlar hep draft
+     × haber → özet → ai_jobs (B) → MOCK taslak → onay → mock HİÇBİR yoldan yayına çıkamaz (güvenlik kemeri)
+     × KALICI yol: haber → üretim (stub-gemini) → draft → onay (public'te YOK) → PR → merge → 'yayınlandı' → public'te VAR
+     × GEÇİCİ yol: news_card taslağı → onay → 'Yayınla (edge)' → public ?page_type=news_card'da anında; PR açılmaz
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected +0 to be 2 // Object.is equality
+AssertionError: expected false to be true // Object.is equality
+      Tests  7 failed | 6 passed (13)
+  geri yüklendi (HEAD ile birebir)
+=== M5 kota eşiği < yerine <=  (workers/cron-rss/src/quota.ts: s/p.calls < lp \* ratio/p.calls <= lp * ratio/)
+     × eşik tablosu: limit 10, oran 0.8 → 0–7 ana · 8–9 yedek · yedek dolu → durdur; tükendi bayrağı limitten bağımsız
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected [ '0:primary', '7:primary', …(4) ] to deeply equal [ '0:primary', '7:primary', …(4) ]
+      Tests  1 failed | 12 passed (13)
+  geri yüklendi (HEAD ile birebir)
+=== M6 retry tükenince blocked yerine failed (4.7 öncesi)  (workers/cron-rss/src/jobs.ts: s/>= MAX_RETRIES ? "blocked" : "pending"/>= MAX_RETRIES ? "failed" : "pending"/)
+     × model sürekli hata → 3 deneme (1 + 2 retry), arada pending, sonunda blocked; taslak yazılmaz
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected [ Array(4) ] to deeply equal [ 'pending', 'pending', …(2) ]
+      Tests  1 failed | 12 passed (13)
+  geri yüklendi (HEAD ile birebir)
+=== temiz (mutasyonsuz) koşu
+      Tests  13 passed (13)

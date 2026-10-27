@@ -1,12 +1,13 @@
 // QA yardımcısı: node:sqlite üzerinde GERÇEK SQL ile D1 benzeri sahte (prepare/bind/first/all/run/batch + meta.changes).
 // batch = tek transaction (D1 semantiği). Migration'lar repodaki gerçek dosyalardır (sıra ile).
 import { DatabaseSync } from "node:sqlite";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const MIG = resolve(dirname(fileURLToPath(import.meta.url)), "../../../db/migrations");
-export const MIGRATIONS = ["0001_init.sql", "0002_admin_audit_integrity.sql", "0002_partners_apply.sql", "0003_settings.sql"];
+// TÜM migration'lar, ad sırası (wrangler sırası) — sabit liste FAZ 4'te (0004_publications, 0005_ai_usage) eskidi (4.9 QA).
+export const MIGRATIONS = readdirSync(MIG).filter((f) => f.endsWith(".sql")).sort();
 
 class Stmt {
   constructor(db, sql) { this.db = db; this.sql = sql; this.args = []; }

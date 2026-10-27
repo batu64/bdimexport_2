@@ -137,8 +137,8 @@ describe("API key: hash-only saklama, tier matrisi, revoke→KV invalidation", (
 
   // BULGU F-02 (MEDIUM): admin-internal tier "dışarıya ASLA verilemez" kuralı (fazlar/FAZ_7.md) TEKNİK OLARAK ZORLANMIYOR:
   // POST /v1/keys şeması tier=admin-internal kabul eder → ele geçirilmiş tek admin-internal key kalıcı yeni admin key üretebilir.
-  // it.fails = "düzeltilene kadar BEKLENEN kırmızı": bugün 201 döndüğü için bu iddia (403) tutmuyor; düzelince test yeşile döner ve .fails'i kaldırmak gerekir.
-  it.fails("F-02: admin-internal key API üzerinden admin-internal key MINT EDEMEMELİ (beklenen 403; bugün 201)", async () => {
+  // DÜZELDİ: 6fe34c2 (F-02 fix) → 403. FAZ_4 4.9 QA regresyonunda it.fails → it çevrildi (artık kalıcı regresyon kapısı).
+  it("F-02: admin-internal key API üzerinden admin-internal key MINT EDEMEMELİ (403; 6fe34c2 öncesi 201)", async () => {
     const { env, raw } = world();
     const ad = seedKey(raw, "admin-internal");
     const r = await call(req("/api/v1/keys", { method: "POST", headers: { ...bearer(ad.key), "content-type": "application/json" }, body: JSON.stringify({ name: "x", tier: "admin-internal" }) }), env);

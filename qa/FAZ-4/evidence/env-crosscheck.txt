@@ -1,0 +1,22 @@
+Kodda okunan ad: 58 · envanterde geçen ad: 43
+
+KODDA VAR / ENVANTERDE YOK (EKSİK KAYIT):
+  ✘ TURNSTILE_ACTION_APPLY  ← workers/api/src/types.ts
+  ✘ GA4_PROPERTY_ID  ← workers/cron-analytics/src/types.ts
+  ✘ RSS_FETCH_TIMEOUT_MS  ← workers/cron-rss/src/types.ts, workers/cron-trends/src/trends.ts, workers/cron-rss/wrangler.toml
+  ✘ RSS_MAX_ITEMS_PER_FEED  ← workers/cron-rss/src/types.ts, workers/cron-trends/src/trends.ts, workers/cron-rss/wrangler.toml
+  ✘ RSS_MAX_BYTES  ← workers/cron-rss/src/types.ts
+  ✘ RSS_RETRY_DELAY_MS  ← workers/cron-rss/src/types.ts, workers/cron-trends/src/trends.ts
+  ✘ RSS_CONCURRENCY  ← workers/cron-rss/src/types.ts
+  ✘ ENRICH_BATCH_SIZE  ← workers/cron-rss/src/types.ts
+  ✘ ENRICH_MAX_PER_RUN  ← workers/cron-rss/src/types.ts
+  ✘ ENRICH_MAX_ATTEMPTS  ← workers/cron-rss/src/types.ts
+  ✘ ARTICLE_MAX_JOBS_PER_RUN  ← workers/cron-rss/src/types.ts
+  ✘ GLM_API_KEY  ← .github/workflows/weekly-report.yml
+
+ENVANTERDE VAR / KODDA YOK (hayalet kayıt; bilinçli ertelenenler hariç): yok ✔
+
+Bilinçli ertelenen (kodda referansı olmaması BEKLENEN): RESEND_API_KEY/BREVO_API_KEY (E5, FAZ 8) · GEMINI_API_KEY kodda referanslı, değeri E3
+  ✔ ertelenen adların hiçbiri kodda yok (envanter 'kodda referans YOK' iddiası doğru)
+
+TÜM KOD ADLARI: ACCESS_AUD, ACCESS_TEAM_DOMAIN, ADMIN_EMAILS, AI_DAILY_LIMIT, AI_FALLBACK_DAILY_LIMIT, AI_QUOTA_WARN_RATIO, ALLOWED_ORIGINS, ANALYTICS_ALERT_WEBHOOK_URL, ARTICLE_MAX_JOBS_PER_RUN, ARTICLE_MODE, CF_ACCOUNT_ID, CF_API_TOKEN, CF_PAGES_PROJECT, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_API_TOKEN, CONTENT_MOCK_PRODUCE, CRON_ANALYTICS_URL, ENRICH_BATCH_SIZE, ENRICH_MAX_ATTEMPTS, ENRICH_MAX_PER_RUN, ENRICH_MODE, GA4_PROPERTY_ID, GEMINI_API_KEY, GEMINI_FALLBACK_MODEL, GEMINI_MODEL, GITHUB_BASE_BRANCH, GITHUB_PUBLISH_TOKEN, GITHUB_REPO, GITHUB_TOKEN, GLM_API_KEY, GOOGLE_PRIVATE_KEY, GOOGLE_SERVICE_ACCOUNT_EMAIL, GSC_SITE_URL, KEY_CACHE_TTL_S, KVKK_VERSIONS, META_ACCESS_TOKEN, META_AD_ACCOUNT_ID, NEXT_PUBLIC_ADMIN_API_BASE, NEXT_PUBLIC_API_BASE, NEXT_PUBLIC_BAIDU_SITE_VERIFICATION, NEXT_PUBLIC_CONTENT_MOCK, NEXT_PUBLIC_QUOTE_EMAIL, NEXT_PUBLIC_TURNSTILE_SITE_KEY, PIPELINE_ALERT_WEBHOOK_URL, RL_APPLY_PER_MIN, RL_BAD_AUTH_PER_MIN, RL_IP_PER_MIN, RL_PUBLIC_READ_PER_MIN, RSS_CONCURRENCY, RSS_FETCH_TIMEOUT_MS, RSS_MAX_BYTES, RSS_MAX_ITEMS_PER_FEED, RSS_RETRY_DELAY_MS, SYNC_TOKEN, TURNSTILE_ACTION_APPLY, TURNSTILE_HOSTNAMES, TURNSTILE_SECRET, VIEWER_EMAILS

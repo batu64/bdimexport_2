@@ -105,18 +105,24 @@ test("PARTNERS: consent_logo_en admin tarafından DEĞİŞTİRİLEMEZ (PATCH 400
   assert.equal(auditRows(raw).length, 0);
 });
 
-test("CONTENT: onay ≠ yayın (draft→published doğrudan YOK), her geçiş audit'li", async () => {
+// FAZ_4 4.6 sözleşmesi (4.9 QA'da güncellendi): "Yayınla" yalnız news_card'ı edge'e alır; makale (kalıcı) PR yolundan geçmek ZORUNDA (pr_required).
+test("CONTENT: onay ≠ yayın (draft→published doğrudan YOK), her geçiş audit'li; makale PR'sız yayınlanamaz", async () => {
   const { raw, env } = world(); seedDraft(raw);
-  const pub = await call(handleContent, env, "POST", "/admin/api/content/drafts/publish", ADMIN, { ids: ["C1"] });
-  assert.equal(raw.prepare("SELECT status FROM contents WHERE id='C1'").get().status, "draft", `draft doğrudan yayına alınmamalı (status ${pub.status})`);
+  raw.prepare("INSERT INTO contents (id, slug, locale, page_type, title, body_md, status, model) VALUES ('N1','n-1','en','news_card','Kart','B','draft','stub-gemini')").run();
+  const pub = await call(handleContent, env, "POST", "/admin/api/content/drafts/publish", ADMIN, { ids: ["C1", "N1"] });
+  assert.deepEqual(raw.prepare("SELECT status FROM contents ORDER BY id").all().map((r) => r.status), ["draft", "draft"], `draft doğrudan yayına alınmamalı (status ${pub.status})`);
   assert.equal(auditRows(raw).length, 0, "yayın reddedildi → audit yok");
-  assert.equal((await call(handleContent, env, "POST", "/admin/api/content/drafts/approve", ADMIN, { ids: ["C1"] })).status, 200);
-  assert.equal(raw.prepare("SELECT status FROM contents WHERE id='C1'").get().status, "approved");
-  assert.equal((await call(handleContent, env, "POST", "/admin/api/content/drafts/publish", ADMIN, { ids: ["C1"] })).status, 200);
-  assert.equal(raw.prepare("SELECT status FROM contents WHERE id='C1'").get().status, "published");
+  assert.equal((await call(handleContent, env, "POST", "/admin/api/content/drafts/approve", ADMIN, { ids: ["C1", "N1"] })).status, 200);
+  assert.deepEqual(raw.prepare("SELECT status FROM contents ORDER BY id").all().map((r) => r.status), ["approved", "approved"]);
+  const r = await call(handleContent, env, "POST", "/admin/api/content/drafts/publish", ADMIN, { ids: ["C1", "N1"] });
+  assert.equal(r.status, 200);
+  const rb = await r.json();
+  assert.deepEqual(rb.changed, ["N1"]);
+  assert.deepEqual(rb.skipped, [{ id: "C1", reason: "pr_required" }]);
+  assert.equal(raw.prepare("SELECT status FROM contents WHERE id='C1'").get().status, "approved", "makale PR'sız yayınlanmamalı");
+  assert.equal(raw.prepare("SELECT status FROM contents WHERE id='N1'").get().status, "published");
   const acts = auditRows(raw).map((a) => a.action);
-  assert.equal(acts.length, 2);
-  assert.ok(acts.every((x) => /approve|publish/.test(x)), acts.join(","));
+  assert.deepEqual(acts, ["approve_content", "approve_content", "publish_content"]);
 });
 
 test("SETTINGS: değişiklik audit'li (eski/yeni); secret içeren istek 422 + ayar/audit YOK; viewer 403", async () => {
