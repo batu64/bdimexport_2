@@ -24,6 +24,7 @@
 | E5 | **Mail provider (Resend/Brevo) secret + entegrasyon** | 3.9/8 | E-posta gönderimi (partner davet/lead bildirim) FAZ 8'de başlar | FAZ 8 |
 | E6 | **R2 `bdimexport-backups`: private teyit + 90 gün lifecycle** | 3.9 | Dashboard işi, kolay | Yakında (kısa) |
 | E7 | **Yayın botu `GITHUB_PUBLISH_TOKEN`** (fine-grained PAT: yalnız batu64/bdimexport, Contents + Pull requests R/W, ≤90 gün) → `wrangler secret put … --env staging/production` + `GITHUB_BASE_BRANCH`'in Pages production dalı olduğunu teyit | 4.6 | Kod hazır, token yokken 'Yayına hazırla' DRY-RUN planı kaydeder (hat bloklanmaz) | İlk gerçek makale yayınından önce (FAZ 8.4 / E3 ile) |
+| E9 | **Baidu Webmaster hesabı + HTML etiketi doğrulaması** (`NEXT_PUBLIC_BAIDU_SITE_VERIFICATION` Pages env) + sitemap-zh gönderimi | 4.8 | Kod/sitemap/rehber hazır (docs/baidu.md); doğrulama bdimexport.com ister (E2 önce) ve /zh içeriği FAZ 5'te dolar | FAZ 5.5 (E2 sonrası) |
 | E8 | **Admin API router bağlaması** (handleLeads/handlePartners/handleContent → workers/api `/admin/api/*` + Pages Functions proxy veya custom domain route) | 3.3–3.6/4.6 (F-06) | Handler'lar + testler hazır; canlı yönlendirme deploy/domain işine bağlı | FAZ 8.2 (E1/E2 ile) |
 
 ---
@@ -56,4 +57,4 @@
 - **Proje sonunda:** bu listeyi yukarıdan aşağı gez; S (güvenlik) → E (altyapı) → C (içerik) → T (temizlik) sırasıyla kapat.
 - Bir madde yapıldığında satırın başına ✅ koy veya sil.
 
-_Son güncelleme: 2026-10-27 — FAZ 4.6: E7 (yayın botu token), E8 (admin router bağlama), C7 (de/zh makale rotaları) eklendi._
+_Son güncelleme: 2026-10-27 — FAZ 4.6: E7 (yayın botu token), E8 (admin router bağlama), C7 (de/zh makale rotaları); FAZ 4.8: E9 (Baidu hesabı) eklendi._
