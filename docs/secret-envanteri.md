@@ -47,6 +47,8 @@ Yerel geliştirme: aynı adlar `workers/api/.dev.vars` (gitignore'lu: `workers/a
 | `GEMINI_MODEL`, `GEMINI_FALLBACK_MODEL` | var | agent (E3) | ⚪ | yedek = aynı sağlayıcının hızlı varyantı (4.7) |
 | `AI_DAILY_LIMIT`, `AI_FALLBACK_DAILY_LIMIT`, `AI_QUOTA_WARN_RATIO` | var | agent/👤 (E3) | ⚪ | kota yönlendirmesi; yoksa yalnız sağlayıcı 429'u |
 | `ENRICH_MODE`, `ARTICLE_MODE` | var | agent | ⚪ | off / mock / gemini |
+| `RSS_FETCH_TIMEOUT_MS`, `RSS_MAX_ITEMS_PER_FEED`, `RSS_MAX_BYTES`, `RSS_RETRY_DELAY_MS`, `RSS_CONCURRENCY` | var | agent | ⚪ | cron-rss ayarı (cron-trends da `RSS_FETCH_TIMEOUT_MS`, `RSS_RETRY_DELAY_MS`, `RSS_MAX_ITEMS_PER_FEED` okur); hepsi varsayılanlı (types.ts yorumları) — secret DEĞİL (4.9 F4-02) |
+| `ENRICH_BATCH_SIZE`, `ENRICH_MAX_PER_RUN`, `ENRICH_MAX_ATTEMPTS`, `ARTICLE_MAX_JOBS_PER_RUN` | var | agent | ⚪ | 4.4/4.5 çalışma başına sınırlar; varsayılanlı — secret DEĞİL (4.9 F4-02) |
 
 ⚠️ `workers/cron-analytics/wrangler.toml`'da henüz `[env.production]` YOK (bu adımın scope'u dışında; FAZ 6 credential adımında eklenecek).
 
