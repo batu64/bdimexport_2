@@ -15,8 +15,12 @@ export interface GitHubConfig {
 }
 
 export class GitHubError extends Error {
-  constructor(public status: number, public op: string) {
+  status: number;
+  op: string;
+  constructor(status: number, op: string) {
     super(`github_${op}_${status}`); // token / gövde içermez
+    this.status = status;
+    this.op = op;
   }
 }
 

@@ -6,9 +6,9 @@
 //
 // Kurallar: draft hiçbir yoldan yayına gitmez (yalnız approved); mock içerik yayınlanmaz; her geçiş koşullu UPDATE + audit
 // AYNI batch'te (yarışta 0 satır → audit yok → "stale"); token yoksa PR yerine DRY-RUN planı kaydedilir (ağ çağrısı yok).
-import { ulid, withAudit, type D1Like } from "../../../../app/admin/audit";
-import { renderArticle, type ContentRow, type RenderError } from "./render";
-import { GitHubError, type GitHubClient } from "./github";
+import { ulid, withAudit, type D1Like } from "../../../../app/admin/audit.ts";
+import { renderArticle, type ContentRow, type RenderError } from "./render.ts";
+import { GitHubError, type GitHubClient } from "./github.ts";
 
 export type PublishError =
   | RenderError | "not_found" | "not_approved" | "pr_already_open" | "file_exists" | "github_error"

@@ -1,5 +1,5 @@
 // FAZ_4 4.6 — env → GitHub istemcisi. Token yoksa null (yayın hattı DRY-RUN'a düşer; hata değil).
-import { githubClient, type FetchLike, type GitHubClient } from "./github";
+import { githubClient, type FetchLike, type GitHubClient } from "./github.ts";
 
 export interface PublishEnv {
   GITHUB_PUBLISH_TOKEN?: string;
