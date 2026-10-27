@@ -7,6 +7,7 @@ import path from "path";
 import { EN_PATHS, enFamilyAlternates, joinUrl, toMetadataAlternates } from "@/lib/hreflang";
 import manifest from "@/lib/hreflang.manifest.json";
 import { enVariants } from "@/lib/i18n";
+import { insightBase, listInsights, type InsightScope } from "@/lib/ui/insights";
 
 const BASE = "https://bdimexport.com";
 
@@ -52,6 +53,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: p === "" ? 0.8 : 0.6,
         alternates: toMetadataAlternates(enFamilyAlternates(p)),
       });
+    }
+  }
+  // FAZ_4 4.6 — makaleler: dizin sayfaları + yayınlanmış makaleler. Liste build anında dosya sisteminden okunur
+  // (content/**/makaleler|insights/*.md — yalnız merge edilmiş yayın PR'ı ile gelir) → yeni makale merge + build ile
+  // kendiliğinden girer; ortak dosyaya elle dokunulmaz. Makaleler tek dillidir → hreflang alternates YAZILMAZ
+  // (karşılığı olmayan dile hreflang = 404-hreflang yasağı, SEO_PLAYBOOK §1.4). _yok yer tutucusu listede yoktur.
+  const scopes: InsightScope[] = ["tr", "en", ...enVariants];
+  for (const scope of scopes) {
+    const base = insightBase(scope);
+    entries.push({ url: `${BASE}${base}`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.6 });
+    for (const slug of listInsights(scope)) {
+      entries.push({ url: `${BASE}${base}/${slug}`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 });
     }
   }
   return entries;

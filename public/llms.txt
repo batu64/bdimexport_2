@@ -54,5 +54,11 @@ Her ürün sayfası "Manufacturers in Turkey | B2B Sourcing" kalıbındadır; ka
 - /en/ar — WhatsApp Business birincil kanal, RTL (dir="rtl")
 Varyant sayfaları şimdilik yalnız ana sayfa ve sourcing hizmetini içerir.
 
+## Makaleler / Insights (İçerik Fabrikası — insan onaylı)
+- /makaleler — Türkçe rehberler (ithalat, ihracat, tedarik)
+- /en/insights — English sourcing and export guides
+- /en/ru/insights · /en/fr/insights · /en/nl/insights · /en/es/insights · /en/ar/insights — bölge varyantı makaleleri
+Her makale yapay zekâ taslağından insan onayı ve Git incelemesi (PR merge) ile yayına girer; güncel liste sitemap.xml'dedir.
+
 ## Kaynak notu
 Sayısal iddialar (ihracat hacimleri, kategori büyüklükleri) ilgili sayfalarda kaynaklı linklerle verilir; bu dosya rakam taşımaz.
