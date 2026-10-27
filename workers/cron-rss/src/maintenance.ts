@@ -5,6 +5,8 @@
 import { withAudit, type D1Like, type D1PreparedLike } from "../../../app/admin/audit";
 import type { Env } from "./types";
 import { sqlTime } from "./ingest";
+import { usageForDay } from "./quota";
+import { sendAlert } from "./alert";
 
 /** rss_news satırı expires_at (fetched_at + 72h) geçtiğinde silinir — ingest.ts TTL_HOURS ile aynı kural. */
 export const RSS_TTL_HOURS = 72;
@@ -12,6 +14,8 @@ export const RSS_TTL_HOURS = 72;
 export const LEAD_RETENTION_DAYS = 365;
 /** Tamamlanmış (done/failed/blocked) ai_jobs kayıtları bu kadar gün sonra silinir. ai_jobs'ta expires_at YOK; varsayım. */
 export const AI_JOB_RETENTION_DAYS = 30;
+/** 4.7: kota sayaçları (metin içermez) bu süreden sonra silinir. */
+export const AI_USAGE_RETENTION_DAYS = 90;
 
 /** Yalnız gece job'ını tetikleyen cron ifadesi (02:00 TR = 23:00 UTC). Diğer cron'lar ingest'e gider. */
 export const NIGHTLY_CRON = "0 23 * * *";
@@ -26,10 +30,48 @@ export interface PurgeResult {
   audited: boolean;
 }
 
+export interface DayReport {
+  window_from: string;
+  rss_fetched: number;
+  rss_enriched: number;
+  rss_quarantined: number;
+  jobs_done: number;
+  jobs_blocked: number;
+  jobs_failed: number;
+  jobs_pending: number;
+  drafts_created: number;
+  alerts: number;
+  ai_usage: { model: string; calls: number; failures: number; exhausted: number }[];
+}
+
 export interface MaintenanceSummary {
   started_at: string;
   purges: PurgeResult[];
   weekly_report: Record<string, number> | null;
+  day_report: DayReport;
+}
+
+/**
+ * 4.7 — hat günü raporu (son 24 saat): toplanan / özetlenen / karantina haber, iş sonuçları, oluşan taslak, alert sayısı,
+ * günün AI kullanımı. Yalnız SAYI (metin/kişisel veri yok). Log + günde bir webhook özeti.
+ */
+async function dayReport(d1: D1Database, now: Date): Promise<DayReport> {
+  const from = sqlTime(now.getTime() - DAY_MS);
+  const n = async (sql: string, ...args: unknown[]) => Number((await d1.prepare(sql).bind(...args).first<{ n: number }>())?.n ?? 0);
+  const jobs = async (status: string) => n("SELECT COUNT(*) AS n FROM ai_jobs WHERE status = ? AND finished_at >= ?", status, from);
+  return {
+    window_from: from,
+    rss_fetched: await n("SELECT COUNT(*) AS n FROM rss_news WHERE fetched_at >= ?", from),
+    rss_enriched: await n("SELECT COUNT(*) AS n FROM rss_news WHERE fetched_at >= ? AND summary IS NOT NULL", from),
+    rss_quarantined: await n("SELECT COUNT(*) AS n FROM rss_news WHERE fetched_at >= ? AND json_valid(tags_json) AND json_extract(tags_json, '$.enrich_state') = 'quarantined'", from),
+    jobs_done: await jobs("done"),
+    jobs_blocked: await jobs("blocked"),
+    jobs_failed: await jobs("failed"),
+    jobs_pending: await n("SELECT COUNT(*) AS n FROM ai_jobs WHERE status = 'pending'"),
+    drafts_created: await n("SELECT COUNT(*) AS n FROM contents WHERE status = 'draft' AND created_at >= ?", from),
+    alerts: await n("SELECT COUNT(*) AS n FROM admin_actions WHERE action = 'pipeline_alert' AND created_at >= ?", from),
+    ai_usage: await usageForDay({ DB: d1 } as Env, now.toISOString().slice(0, 10)),
+  };
 }
 
 /**
@@ -120,13 +162,29 @@ export async function runMaintenance(env: Env, now = new Date()): Promise<Mainte
     ),
   );
 
-  // 4) Haftalık D1 satır raporu — Türkiye saatine göre Pazartesi'nin gece job'ında (Pazartesi 02:00 TR).
+  // 4) 4.7 — AI kota sayaçları: 90 günden eski satırlar (metin içermez; audit'siz, ama sayı özette)
+  const usageCut = new Date(now.getTime() - AI_USAGE_RETENTION_DAYS * DAY_MS).toISOString().slice(0, 10);
+  const oldUsage = await d1.prepare("DELETE FROM ai_usage_daily WHERE day < ?").bind(usageCut).run();
+  purges.push({ table: "ai_usage_daily", deleted: Number(oldUsage.meta?.changes ?? 0), cutoff: usageCut, audited: false });
+
+  // 5) Haftalık D1 satır raporu — Türkiye saatine göre Pazartesi'nin gece job'ında (Pazartesi 02:00 TR).
   const trDay = new Date(now.getTime() + TR_OFFSET_MS).getUTCDay();
   const weekly = trDay === 1 ? await weeklyReport(d1) : null;
   if (weekly) console.log(JSON.stringify({ event: "d1_row_report", at: nowIso, rows: weekly }));
   for (const p of purges) console.log(JSON.stringify({ event: "purge", at: nowIso, ...p }));
 
-  return { started_at: nowIso, purges, weekly_report: weekly };
+  // 6) 4.7 — hat günü raporu: log + günde bir webhook özeti (anahtar güne bağlı → aynı gün ikinci gönderim olmaz)
+  const day = await dayReport(d1, now);
+  console.log(JSON.stringify({ event: "pipeline_day_report", at: nowIso, ...day }));
+  const usageTxt = day.ai_usage.length ? day.ai_usage.map((u) => `${u.model} ${u.calls} çağrı/${u.failures} hata${u.exhausted ? " (kota doldu)" : ""}`).join("; ") : "AI çağrısı yok";
+  await sendAlert(env, now, {
+    key: `pipeline_day_report:${nowIso.slice(0, 10)}`,
+    level: day.jobs_blocked + day.jobs_failed > 0 ? "warn" : "info",
+    title: "Günlük içerik hattı raporu (son 24 saat)",
+    details: `RSS ${day.rss_fetched} yeni · özet ${day.rss_enriched} · karantina ${day.rss_quarantined} | işler: ${day.jobs_done} tamam · ${day.jobs_blocked} blocked · ${day.jobs_failed} failed · ${day.jobs_pending} bekleyen | ${day.drafts_created} taslak (onay bekliyor) | ${day.alerts} alert | ${usageTxt}`,
+  });
+
+  return { started_at: nowIso, purges, weekly_report: weekly, day_report: day };
 }
 
 /** Cron ifadesine göre yönlendirme: gece job'ı → bakım, diğerleri → ingest (saatlik). */

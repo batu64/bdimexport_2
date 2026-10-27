@@ -9,14 +9,17 @@ import type { Env } from "./types";
 import { ModelNotConfigured } from "./model";
 import { sanitizeForPrompt, detectInjection } from "./sanitize";
 import { suggestLocales, type LocaleSuggestion } from "./locales";
-import { buildArticleRequest, selectArticleModel, type ArticleModel } from "./article-model";
+import { buildArticleRequest, selectArticleFallback, selectArticleModel, type ArticleModel } from "./article-model";
+import { callWithQuota, QuotaPaused } from "./quota";
+import { sendAlert } from "./alert";
 import { buildJsonLd, controlPass, similarity, validateArticle, type Article, type Fact, type Qa } from "./article";
 import { sqlTime } from "./ingest";
 
 export const ACTOR = "system:article-consumer";
 const AGENT_PREFIX = "article-consumer:";
 const STALE_RUNNING_MS = 30 * 60_000; // 30 dk'dan eski 'running' = çöken işçi → pending'e döner
-const MAX_RETRIES = 3;
+/** 1 deneme + 2 yeniden deneme (ORCHESTRATION §6: max 2 retry). Tükenirse iş BLOCKED + alert (4.7). */
+export const MAX_RETRIES = 3;
 const LOCALE_COPY_MAX = 0.7; // SEO_PLAYBOOK §7: iki locale arası >%70 benzerlik = red
 
 const int = (v: string | undefined, def: number, min: number, max: number) => {
@@ -41,7 +44,8 @@ type Outcome =
   | { kind: "blocked"; reason: string }
   | { kind: "failed"; reason: string }
   | { kind: "retry"; reason: string }
-  | { kind: "unconfigured" };
+  | { kind: "unconfigured" }
+  | { kind: "quota_paused" };
 
 const SECTION: Record<string, string> = { article: "Insights", product: "Products", industry: "Industries", service: "Services", news_card: "News" };
 const db = (env: Env) => env.DB as unknown as D1Like;
@@ -115,7 +119,7 @@ async function uniqueSlug(env: Env, base: string, locale: string, jobId: string,
   return last;
 }
 
-async function processJob(env: Env, job: JobRow, model: ArticleModel, now: Date, stats: JobsSummary): Promise<Outcome> {
+async function processJob(env: Env, job: JobRow, model: ArticleModel, fallback: ArticleModel | null, now: Date, stats: JobsSummary): Promise<Outcome> {
   const p = parsePayload(job.payload_json);
   if (!p) return { kind: "failed", reason: "bad_payload" };
   const g = await gather(env, p);
@@ -124,20 +128,25 @@ async function processJob(env: Env, job: JobRow, model: ArticleModel, now: Date,
   const suggestion: LocaleSuggestion = suggestLocales(g.facts.map((f) => f.text).join(" "), g.tagLocales, g.tagSector);
 
   // 1) her locale için üret + doğrula + KONTROL PASS'i — hiçbir şey yazılmadan
-  const made: { locale: string; article: Article; qa: Qa }[] = [];
+  const made: { locale: string; article: Article; qa: Qa; model: string }[] = [];
   for (const locale of p.locales) {
     let raw: unknown;
+    let used = model.name;
     try {
-      raw = await model.generate(buildArticleRequest({ page_type: p.page_type, locale, keyword: g.keyword }, g.facts));
+      // 4.7: kota korumalı — ana model eşikte ise yedek (aynı sağlayıcı); ikisi de dolu → QuotaPaused (çağrı yok)
+      const r = await callWithQuota(env, now, model, fallback, (m) => m.generate(buildArticleRequest({ page_type: p.page_type, locale, keyword: g.keyword }, g.facts)));
+      raw = r.result;
+      used = r.used.name;
     } catch (e) {
       if (e instanceof ModelNotConfigured) return { kind: "unconfigured" };
+      if (e instanceof QuotaPaused) return { kind: "quota_paused" };
       return { kind: "retry", reason: "model_call_failed" };
     }
     const v = validateArticle(raw);
     if (!v.ok) return { kind: "retry", reason: `invalid_model_output:${v.reason}` };
     const article: Article = { ...v.value, keyword: g.keyword ?? v.value.keyword }; // C: hedef keyword = görev keyword'ü
     const qa = controlPass(article, { locale, keyword: article.keyword, facts: g.facts });
-    made.push({ locale, article, qa });
+    made.push({ locale, article, qa, model: used });
   }
   const hard = made.flatMap((m) => m.qa.hard.map((h) => `${m.locale}:${h}`));
   if (hard.length) return { kind: "blocked", reason: `hard_red:${hard.slice(0, 6).join(",")}`.slice(0, 480) };
@@ -160,22 +169,23 @@ async function processJob(env: Env, job: JobRow, model: ArticleModel, now: Date,
     const id = ulid(now.getTime());
     contentIds.push(id);
     const slug = await uniqueSlug(env, slugify(m.article.keyword ?? m.article.title), m.locale, job.id, taken);
-    const title = (model.name === "mock" ? "[MOCK] " : "") + m.article.title;
+    const title = (m.model.startsWith("mock") ? "[MOCK] " : "") + m.article.title;
     const schema = buildJsonLd(m.article, m.locale, g.facts, SECTION[p.page_type] ?? "Insights", now);
     stmts.push(stmt(env,
       "INSERT INTO contents (id, slug, locale, page_type, title, body_md, target_keyword, schema_json, status, model, source_job_id) VALUES (?,?,?,?,?,?,?,?, 'draft', ?,?)",
-      id, slug, m.locale, p.page_type, title.slice(0, 300), m.article.body_md, m.article.keyword, schema, model.name, job.id));
-    stmts.push(auditStatement(db(env), { actor: ACTOR, action: "create_draft", entity_type: "content", entity_id: id, new_value: { locale: m.locale, model: model.name, job_id: job.id, soft: m.qa.soft.length } }) as unknown as D1PreparedStatementLike);
+      id, slug, m.locale, p.page_type, title.slice(0, 300), m.article.body_md, m.article.keyword, schema, m.model, job.id));
+    stmts.push(auditStatement(db(env), { actor: ACTOR, action: "create_draft", entity_type: "content", entity_id: id, new_value: { locale: m.locale, model: m.model, job_id: job.id, soft: m.qa.soft.length } }) as unknown as D1PreparedStatementLike);
   }
+  const usedModels = [...new Set(made.map((m) => m.model))].join(",");
   const payload = { ...JSON.parse(job.payload_json), result: {
-    content_ids: contentIds, model: model.name, finished_at: nowSql,
+    content_ids: contentIds, model: usedModels, finished_at: nowSql,
     locale_suggestion: suggestion, // gerekçeli öneri (yönetici seçimiyle karşılaştırır)
     requested_locales: p.locales,
     qa: Object.fromEntries(made.map((m) => [m.locale, { soft: m.qa.soft, metrics: m.qa.metrics }])),
     sources_excluded: g.excluded,
   } };
-  stmts.push(stmt(env, "UPDATE ai_jobs SET status='done', model=?, finished_at=?, last_error=NULL, payload_json=? WHERE id=? AND status='running'", model.name, nowSql, JSON.stringify(payload), job.id));
-  stmts.push(auditStatement(db(env), { actor: ACTOR, action: "ai_job_done", entity_type: "ai_job", entity_id: job.id, new_value: { content_ids: contentIds, model: model.name, locale_suggestion: suggestion.locales, soft_total: made.reduce((a, m) => a + m.qa.soft.length, 0) } }) as unknown as D1PreparedStatementLike);
+  stmts.push(stmt(env, "UPDATE ai_jobs SET status='done', model=?, finished_at=?, last_error=NULL, payload_json=? WHERE id=? AND status='running'", usedModels, nowSql, JSON.stringify(payload), job.id));
+  stmts.push(auditStatement(db(env), { actor: ACTOR, action: "ai_job_done", entity_type: "ai_job", entity_id: job.id, new_value: { content_ids: contentIds, model: usedModels, locale_suggestion: suggestion.locales, soft_total: made.reduce((a, m) => a + m.qa.soft.length, 0) } }) as unknown as D1PreparedStatementLike);
   if (p.input === "C" && p.keyword_id) stmts.push(stmt(env, "UPDATE keywords SET status='done' WHERE id=?", p.keyword_id));
   try {
     await env.DB.batch(stmts as unknown as D1PreparedStatement[]);
@@ -191,15 +201,17 @@ type D1PreparedStatementLike = D1PreparedStatement;
 /** Başarısız/engelli/yeniden-dene durumlarını TEK batch'te (UPDATE + audit) yazar. */
 async function settle(env: Env, job: JobRow, o: Exclude<Outcome, { kind: "done" }>, now: Date): Promise<"blocked" | "failed" | "retried" | "released"> {
   const nowSql = sqlTime(now.getTime());
-  if (o.kind === "unconfigured") {
-    await env.DB.prepare("UPDATE ai_jobs SET status='pending', agent=NULL WHERE id=? AND status='running'").bind(job.id).run(); // yapılandırma bekler; deneme hakkı yanmaz
+  if (o.kind === "unconfigured" || o.kind === "quota_paused") {
+    // yapılandırma / kota bekler; deneme hakkı YANMAZ (kota sıfırlanınca ya da E3 yapılandırılınca kendiliğinden devam)
+    await env.DB.prepare("UPDATE ai_jobs SET status='pending', agent=NULL WHERE id=? AND status='running'").bind(job.id).run();
     return "released";
   }
   let status: "blocked" | "failed" | "pending";
   let reason = o.reason;
-  if (o.kind === "retry") status = job.retries + 1 >= MAX_RETRIES ? "failed" : "pending";
+  // 4.7: kalıcı hata (denemeler tükendi) → BLOCKED (insan bakar; ORCHESTRATION §6) — failed yalnız işlenemez payload
+  if (o.kind === "retry") status = job.retries + 1 >= MAX_RETRIES ? "blocked" : "pending";
   else status = o.kind === "blocked" ? "blocked" : "failed";
-  if (o.kind === "retry" && status === "failed") reason = `retries_exhausted:${reason}`;
+  if (o.kind === "retry" && status === "blocked") reason = `retries_exhausted:${reason}`;
   const upd = status === "pending"
     ? stmt(env, "UPDATE ai_jobs SET status='pending', agent=NULL, retries=retries+1, last_error=? WHERE id=? AND status='running'", reason.slice(0, 500), job.id)
     : stmt(env, "UPDATE ai_jobs SET status=?, finished_at=?, last_error=? WHERE id=? AND status='running'", status, nowSql, reason.slice(0, 500), job.id);
@@ -208,15 +220,25 @@ async function settle(env: Env, job: JobRow, o: Exclude<Outcome, { kind: "done" 
   } catch (e) {
     console.error(JSON.stringify({ evt: "jobs_settle_failed", job: job.id, msg: e instanceof Error ? e.message.slice(0, 100) : "?" }));
   }
+  if (status !== "pending") {
+    // aynı hata türü saatte 1 bildirim (anahtar = durum + neden kodu; iş id'si anahtarda YOK → spam yok)
+    const code = reason.split(":").slice(0, 2).join(":").slice(0, 80);
+    await sendAlert(env, now, {
+      key: `ai_job_${status}:${code}`, level: status === "blocked" ? "error" : "warn",
+      title: status === "blocked" ? "Makale işi engellendi (blocked)" : "Makale işi başarısız (failed)",
+      details: `iş ${job.id} · neden ${code} · deneme ${job.retries + 1}. Admin → İçerik Fabrikası → iş kuyruğundan incele.`,
+    });
+  }
   return status === "pending" ? "retried" : status;
 }
 
-export async function runArticleJobs(env: Env, now = new Date(), modelOverride?: ArticleModel | null): Promise<JobsSummary> {
+export async function runArticleJobs(env: Env, now = new Date(), modelOverride?: ArticleModel | null, fallbackOverride?: ArticleModel | null): Promise<JobsSummary> {
   const out: JobsSummary = { mode: (env.ARTICLE_MODE ?? "off").toLowerCase(), picked: 0, done: 0, blocked: 0, failed: 0, retried: 0, drafts: 0 };
   try {
     const model = modelOverride === undefined ? selectArticleModel(env) : modelOverride;
     if (!model) return out; // ARTICLE_MODE=off → kuyruk dokunulmaz
     out.mode = model.name;
+    const fallback = fallbackOverride === undefined ? selectArticleFallback(env) : fallbackOverride;
 
     // çöken işçinin 'running' bıraktığı işleri geri al (agent = "article-consumer:<ISO>")
     const cutoff = new Date(now.getTime() - STALE_RUNNING_MS).toISOString();
@@ -232,7 +254,7 @@ export async function runArticleJobs(env: Env, now = new Date(), modelOverride?:
       out.picked++;
       let o: Outcome;
       try {
-        o = await processJob(env, job, model, now, out);
+        o = await processJob(env, job, model, fallback, now, out);
       } catch (e) {
         console.error(JSON.stringify({ evt: "jobs_unexpected", job: job.id, msg: e instanceof Error ? e.message.slice(0, 120) : "?" }));
         o = { kind: "retry", reason: "unexpected_error" };
@@ -242,7 +264,7 @@ export async function runArticleJobs(env: Env, now = new Date(), modelOverride?:
       if (r === "blocked") out.blocked++;
       else if (r === "failed") out.failed++;
       else if (r === "retried") out.retried++;
-      else { out.model_error = "not_configured"; break; } // yapılandırma yok: diğer işlere de ısrar etme
+      else { out.model_error = o.kind === "quota_paused" ? "quota_paused" : "not_configured"; break; } // yapılandırma/kota yok: diğer işlere ısrar etme
       console.error(JSON.stringify({ evt: "job_not_done", job: job.id, outcome: r, reason: "reason" in o ? o.reason.slice(0, 160) : "" }));
     }
   } catch (e) {

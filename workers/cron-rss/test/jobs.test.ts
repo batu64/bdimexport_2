@@ -318,14 +318,14 @@ describe("fail-closed / yeniden deneme / atomiklik / yarış", () => {
     expect(() => selectArticleModel({ ...env, ARTICLE_MODE: "bogus" })).toThrow(ModelNotConfigured);
   });
 
-  it("geçersiz model çıktısı → 3 deneme sonunda failed (retries_exhausted); model hatası da aynı; arada pending", async () => {
+  it("geçersiz model çıktısı → 3 deneme (1 + 2 retry) sonunda BLOCKED (retries_exhausted, 4.7); model hatası da aynı; arada pending", async () => {
     const { env, raw, svc } = world();
     const j = await svc.submitJob({ input: "C", phrase: "tiles", locales: ["en"], page_type: "article" });
     quiet();
     const garbage: ArticleModel = { name: "bad", generate: async () => ({ title: "x" }) };
     const seen: string[] = [];
     for (let i = 0; i < 4; i++) { await runArticleJobs(env, NOW, garbage); seen.push(`${job(raw, j.job_id).status}/${job(raw, j.job_id).retries}`); }
-    expect(seen).toEqual(["pending/1", "pending/2", "failed/2", "failed/2"]);
+    expect(seen).toEqual(["pending/1", "pending/2", "blocked/2", "blocked/2"]);
     expect(job(raw, j.job_id).last_error).toMatch(/retries_exhausted:invalid_model_output:bad_keys/);
     const down: ArticleModel = { name: "down", generate: async () => { throw new Error("503"); } };
     const k = await svc.submitJob({ input: "C", phrase: "tiles again", locales: ["en"], page_type: "article" });

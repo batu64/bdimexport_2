@@ -38,6 +38,16 @@ Yerel geliştirme: aynı adlar `workers/api/.dev.vars` (gitignore'lu: `workers/a
 | `SYNC_TOKEN` | Workers Secret | 👤 (rastgele üret: `openssl rand -base64 32`) | 🟡 | Elle tetikleme ucunun korunması |
 | `ANALYTICS_ALERT_WEBHOOK_URL` | Workers Secret | 👤 | 🟡 | Slack/Discord URL'i secret'tır — **ayarlar paneline yazılmaz** (0003 + schema.ts reddeder); panelde yalnız ADI tutulur |
 
+## 2b. `workers/cron-rss` (FAZ_4 içerik hattı)
+
+| Ad | Tür | Kim girer | Durum | Not |
+| :-- | :-- | :-- | :-- | :-- |
+| `PIPELINE_ALERT_WEBHOOK_URL` | Workers Secret | 👤 | 🟡 | 4.7 hat alert'leri (Slack/Discord URL secret'tır); yoksa yalnız log + audit |
+| `GEMINI_API_KEY` | Workers Secret | 👤 | 🟡 (E3) | 4.4/4.5 runtime — proje sonunda |
+| `GEMINI_MODEL`, `GEMINI_FALLBACK_MODEL` | var | agent (E3) | ⚪ | yedek = aynı sağlayıcının hızlı varyantı (4.7) |
+| `AI_DAILY_LIMIT`, `AI_FALLBACK_DAILY_LIMIT`, `AI_QUOTA_WARN_RATIO` | var | agent/👤 (E3) | ⚪ | kota yönlendirmesi; yoksa yalnız sağlayıcı 429'u |
+| `ENRICH_MODE`, `ARTICLE_MODE` | var | agent | ⚪ | off / mock / gemini |
+
 ⚠️ `workers/cron-analytics/wrangler.toml`'da henüz `[env.production]` YOK (bu adımın scope'u dışında; FAZ 6 credential adımında eklenecek).
 
 ## 3. Cloudflare Pages (bdimexport projesi) — build env (hepsi PUBLIC, build'e gömülür)

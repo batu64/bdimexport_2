@@ -204,3 +204,10 @@ export function selectArticleModel(env: Env): ArticleModel | null {
   }
   throw new ModelNotConfigured(`bilinmeyen ARTICLE_MODE: ${mode.slice(0, 20)}`);
 }
+
+/** 4.7: kota eşiğinde geçilecek yedek (AYNI sağlayıcı — Gemini hızlı varyant). mock/off modunda yedek yok. */
+export function selectArticleFallback(env: Env): ArticleModel | null {
+  const mode = (env.ARTICLE_MODE ?? "off").toLowerCase();
+  if (mode !== "gemini" || !env.GEMINI_API_KEY || !env.GEMINI_FALLBACK_MODEL) return null;
+  return new GeminiArticleModel(env.GEMINI_API_KEY, env.GEMINI_FALLBACK_MODEL);
+}

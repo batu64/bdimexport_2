@@ -58,8 +58,16 @@ export class GeminiModel implements EnrichModel {
   }
   async enrich(_req: BatchRequest): Promise<unknown> {
     void this.apiKey;
+    // TODO(E3): HTTP 429 / status RESOURCE_EXHAUSTED → `throw new QuotaExceeded()` (quota.ts) — kota yönlendirmesi buna dayanır.
     throw new ModelNotConfigured("gemini_call_not_implemented (E3: proje sonunda yazılacak)");
   }
+}
+
+/** 4.7: kota eşiğinde geçilecek yedek (AYNI sağlayıcı — Gemini hızlı varyant). mock/off modunda yedek yok. */
+export function selectEnrichFallback(env: Env): EnrichModel | null {
+  const mode = (env.ENRICH_MODE ?? "off").toLowerCase();
+  if (mode !== "gemini" || !env.GEMINI_API_KEY || !env.GEMINI_FALLBACK_MODEL) return null;
+  return new GeminiModel(env.GEMINI_API_KEY, env.GEMINI_FALLBACK_MODEL);
 }
 
 export function selectModel(env: Env): EnrichModel | null {

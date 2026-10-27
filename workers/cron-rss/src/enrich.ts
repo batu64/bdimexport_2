@@ -5,7 +5,9 @@
 // UPDATE … WHERE summary IS NULL (idempotent/yarışsız); mevcut tags (örn. kind=trends) KORUNUR; çıktı ASLA yayına gitmez (yalnız admin havuzu — onay insanda).
 import type { Env } from "./types";
 import { buildBatchRequest, type PromptItem } from "./prompt";
-import { ModelNotConfigured, selectModel, type EnrichModel } from "./model";
+import { ModelNotConfigured, selectEnrichFallback, selectModel, type EnrichModel } from "./model";
+import { callWithQuota, QuotaPaused } from "./quota";
+import { sendAlert } from "./alert";
 import { validateBatch, type Reject } from "./schema";
 import { detectInjection, sanitizeForPrompt } from "./sanitize";
 import { sqlTime } from "./ingest";
@@ -44,12 +46,13 @@ const parseTags = (s: string | null): Record<string, unknown> => {
 
 const JV = "CASE WHEN json_valid(tags_json) THEN"; // bozuk JSON json_extract'ı patlatır → önce json_valid
 
-export async function runEnrich(env: Env, now = new Date(), modelOverride?: EnrichModel | null): Promise<EnrichSummary> {
+export async function runEnrich(env: Env, now = new Date(), modelOverride?: EnrichModel | null, fallbackOverride?: EnrichModel | null): Promise<EnrichSummary> {
   const out: EnrichSummary = { mode: (env.ENRICH_MODE ?? "off").toLowerCase(), candidates: 0, quarantined: 0, sent: 0, batches: 0, enriched: 0, rejected: 0 };
   try {
     const model = modelOverride === undefined ? selectModel(env) : modelOverride;
     if (!model) return out; // ENRICH_MODE=off → no-op
     out.mode = model.name;
+    const fallback = fallbackOverride === undefined ? selectEnrichFallback(env) : fallbackOverride;
 
     const batchSize = int(env.ENRICH_BATCH_SIZE, 20, 1, 20);
     const perRun = int(env.ENRICH_MAX_PER_RUN, 100, 1, 1000);
@@ -89,11 +92,14 @@ export async function runEnrich(env: Env, now = new Date(), modelOverride?: Enri
       const items: PromptItem[] = chunk.map((c, idx) => ({ id: idx, title: c.title }));
       let raw: unknown;
       try {
-        raw = await model.enrich(buildBatchRequest(items));
+        raw = (await callWithQuota(env, now, model, fallback, (m) => m.enrich(buildBatchRequest(items)))).result; // 4.7 kota korumalı
       } catch (e) {
         // fail-closed: yazma yok, sonraki batch'ler denenmez (arızalı modeli/kotayı yormayalım); öğeler sonraki çalışmada yeniden aday
-        out.model_error = e instanceof ModelNotConfigured ? "not_configured" : "call_failed";
+        out.model_error = e instanceof ModelNotConfigured ? "not_configured" : e instanceof QuotaPaused ? "quota_paused" : "call_failed";
         console.error(JSON.stringify({ evt: "enrich_model_error", kind: out.model_error, msg: e instanceof Error ? e.message.slice(0, 120) : "?" }));
+        if (out.model_error === "call_failed") {
+          await sendAlert(env, now, { key: "enrich_call_failed", level: "warn", title: "Haber özet/etiket modeli hata verdi", details: "Bu çalışmada özet yazılmadı; haberler sonraki saatlik çalışmada yeniden denenir." });
+        }
         return out;
       }
       out.batches++;

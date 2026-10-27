@@ -20,6 +20,13 @@ export interface Env {
   ARTICLE_MAX_JOBS_PER_RUN?: string; // çalışma başına en çok iş (default 5)
   GEMINI_API_KEY?: string; // SECRET (Workers secret)
   GEMINI_MODEL?: string; // var (model adı E3'te sabitlenir)
+
+  // FAZ_4 4.7 — hata izleme / kota (runtime AI yalnız Gemini — fallback AYNI sağlayıcının hızlı/ucuz varyantı)
+  GEMINI_FALLBACK_MODEL?: string; // var — kota eşiğinde geçilecek Gemini varyantı (E3'te sabitlenir); yoksa fallback yok
+  AI_DAILY_LIMIT?: string; // var — ana model günlük çağrı limiti (yoksa yalnız sağlayıcının 429'u kotayı belirler)
+  AI_FALLBACK_DAILY_LIMIT?: string; // var — yedek model günlük limiti
+  AI_QUOTA_WARN_RATIO?: string; // var — ana modelden yedeğe geçiş eşiği (varsayılan 0.8)
+  PIPELINE_ALERT_WEBHOOK_URL?: string; // SECRET — Slack/Discord webhook (yoksa alert yalnız log + audit)
 }
 
 /** settings.rssSources öğesi (app/admin/settings/schema.ts RssSource ile aynı sözleşme). */

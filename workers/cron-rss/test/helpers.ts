@@ -1,7 +1,7 @@
 // Test yardımcıları: node:sqlite ile GERÇEK SQL (repodaki migration'lar 0001–0003), D1 benzeri prepare/bind/first/all/run/batch.
 // batch = tek transaction (D1 semantiği); her statement için meta.changes.
 import { DatabaseSync } from "node:sqlite";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { vi } from "vitest";
 import type { Env } from "../src/types";
@@ -19,7 +19,7 @@ class Stmt {
 export function makeEnv(over: Partial<Env> = {}) {
   const raw = new DatabaseSync(":memory:");
   const dir = resolve(__dirname, "../../../db/migrations");
-  for (const f of ["0001_init.sql", "0002_admin_audit_integrity.sql", "0002_partners_apply.sql", "0003_settings.sql"]) raw.exec(readFileSync(resolve(dir, f), "utf8"));
+  for (const f of readdirSync(dir).filter((x) => x.endsWith(".sql")).sort()) raw.exec(readFileSync(resolve(dir, f), "utf8")); // tüm migration'lar (wrangler sırası)
   const batch = async (sts: Stmt[]) => {
     raw.exec("BEGIN");
     try { const out = sts.map((s) => s.runSync()); raw.exec("COMMIT"); return out; }
