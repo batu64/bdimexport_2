@@ -104,20 +104,20 @@ describe("API key yaşam döngüsü", () => {
 });
 
 describe("read endpoint'leri", () => {
-  it("GET /contents anahtarsız: draft HARİÇ; admin status=draft görebilir", async () => {
+  it("GET /contents anahtarsız: YALNIZ published (draft + approved HARİÇ); admin status=draft görebilir", async () => {
     const { env, raw } = makeEnv();
     const ins = raw.prepare("INSERT INTO contents (id,slug,locale,page_type,title,body_md,status) VALUES (?,?,?,?,?,?,?)");
     ins.run("01A", "a", "tr", "article", "A", "x", "draft");
     ins.run("01B", "b", "tr", "article", "B", "x", "published");
     ins.run("01C", "c", "tr", "article", "C", "x", "approved");
     const pub = (await (await call(req("/api/v1/contents"), env)).json()) as { data: { id: string }[] };
-    expect(pub.data.map((d) => d.id)).toEqual(["01B", "01C"]);
+    expect(pub.data.map((d) => d.id)).toEqual(["01B"]); // FAZ_4 4.6: approved ≠ published — onaylı ama yayınlanmamış (01C) public'te YOK
     const admin = await bootstrapAdmin(env, raw);
     const drafts = (await (await call(req("/api/v1/contents?status=draft", { headers: auth(admin) }), env)).json()) as { data: { id: string }[] };
     expect(drafts.data.map((d) => d.id)).toEqual(["01A"]);
     // status paramı anahtarsız yok sayılır
     const sneaky = (await (await call(req("/api/v1/contents?status=draft"), env)).json()) as { data: { id: string }[] };
-    expect(sneaky.data.map((d) => d.id)).toEqual(["01B", "01C"]);
+    expect(sneaky.data.map((d) => d.id)).toEqual(["01B"]);
   });
 
   it("GET /contents anahtarsız IP rate limit → 429", async () => {

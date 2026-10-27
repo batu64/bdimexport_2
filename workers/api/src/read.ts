@@ -19,19 +19,27 @@ function envelope(rows: { id: string }[], limit: number) {
   return { data: rows, next_cursor: rows.length === limit ? rows[rows.length - 1].id : null };
 }
 
-/** GET /v1/contents — anahtarsız public; draft HARİÇ (admin-internal ?status ile görebilir). */
+/**
+ * GET /v1/contents — anahtarsız public: YALNIZ published (FAZ_4 4.6: "approved" ≠ "published" — onaylı ama yayınlanmamış
+ * içerik public'e sızmaz; önceden approved da dönüyordu). admin-internal ?status ile draft/approved görebilir.
+ * ?page_type=news_card → edge render bloğu (haber kartları).
+ */
 export async function listContents(env: Env, url: URL, key: AuthedKey | null): Promise<Response> {
   const { limit, cursor } = q(url);
   const locale = url.searchParams.get("locale");
   const st = url.searchParams.get("status");
-  const statuses = key?.tier === "admin-internal" && st ? [st] : ["approved", "published"];
+  const statuses = key?.tier === "admin-internal" && st ? [st] : ["published"];
+  const pageType = url.searchParams.get("page_type");
+  if (pageType && !["product", "industry", "service", "article", "news_card"].includes(pageType)) {
+    throw new HttpError(400, "validation_failed", "Geçersiz page_type");
+  }
   if (!statuses.every((s) => ["draft", "approved", "published"].includes(s))) {
     throw new HttpError(400, "validation_failed", "Geçersiz status");
   }
   const sql = `SELECT id, slug, locale, page_type, title, body_md, target_keyword, status, created_at, published_at
                FROM contents WHERE status IN (${statuses.map(() => "?").join(",")})
-               ${locale ? "AND locale = ?" : ""} ${cursor ? "AND id > ?" : ""} ORDER BY id LIMIT ?`;
-  const args: unknown[] = [...statuses, ...(locale ? [locale] : []), ...(cursor ? [cursor] : []), limit];
+               ${locale ? "AND locale = ?" : ""} ${pageType ? "AND page_type = ?" : ""} ${cursor ? "AND id > ?" : ""} ORDER BY id LIMIT ?`;
+  const args: unknown[] = [...statuses, ...(locale ? [locale] : []), ...(pageType ? [pageType] : []), ...(cursor ? [cursor] : []), limit];
   const r = await env.DB.prepare(sql).bind(...args).all<{ id: string }>();
   return json(envelope(r.results, limit));
 }

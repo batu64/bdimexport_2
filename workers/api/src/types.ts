@@ -23,6 +23,11 @@ export interface Env {
   ACCESS_AUD?: string;              // var (public)
   ADMIN_EMAILS?: string;            // secret (kişisel veri)
   VIEWER_EMAILS?: string;           // secret (kişisel veri)
+
+  // FAZ_4 4.6 yayın botu — token yoksa PR açılmaz, DRY-RUN planı kaydedilir
+  GITHUB_PUBLISH_TOKEN?: string;    // secret — fine-grained PAT: yalnız bu repo, Contents + Pull requests (read/write)
+  GITHUB_REPO?: string;             // var — "batu64/bdimexport"
+  GITHUB_BASE_BRANCH?: string;      // var — PR hedef dalı (Pages'in build ettiği dal)
 }
 
 export type Tier = "read-only" | "partner" | "admin-internal";

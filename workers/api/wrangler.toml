@@ -51,6 +51,9 @@ KVKK_VERSIONS = "v1 (47ac2ef0a5b43264)"
 ACCESS_TEAM_DOMAIN = "bdimexport.cloudflareaccess.com"
 ACCESS_AUD = ""
 CONTENT_MOCK_PRODUCE = "1"                    # yalnız staging: İçerik Fabrikası mock üretim ucu (3.6)
+# FAZ_4 4.6 yayın botu — token (secret GITHUB_PUBLISH_TOKEN) yoksa PR açılmaz, DRY-RUN planı kaydedilir
+GITHUB_REPO = "batu64/bdimexport"
+GITHUB_BASE_BRANCH = "main"                   # 👤 Pages'in production build dalı ile AYNI olmalı (docs/deploy.md §8)
 
 [[env.staging.d1_databases]]
 binding = "DB"
@@ -80,7 +83,9 @@ KVKK_VERSIONS = "v1 (47ac2ef0a5b43264)"
 ACCESS_TEAM_DOMAIN = "bdimexport.cloudflareaccess.com"
 ACCESS_AUD = "a75b6ebb930d4c5b56b63e811bb7ca719ae2a78b916d7239477290ffda542fea"
 # CONTENT_MOCK_PRODUCE prod'da TANIMLANMAZ (mock üretim ucu 404 kalır — 3.6).
-# Secret (değer yok — `wrangler secret put … --env production`): TURNSTILE_SECRET, ADMIN_EMAILS, VIEWER_EMAILS
+GITHUB_REPO = "batu64/bdimexport"             # FAZ_4 4.6 yayın botu
+GITHUB_BASE_BRANCH = "main"                   # 👤 Pages production dalı ile aynı olmalı
+# Secret (değer yok — `wrangler secret put … --env production`): TURNSTILE_SECRET, ADMIN_EMAILS, VIEWER_EMAILS, GITHUB_PUBLISH_TOKEN
 
 [[env.production.d1_databases]]
 binding = "DB"

@@ -19,6 +19,8 @@ Durum: 🔴 zorunlu (yoksa özellik kapalı/403) · 🟡 opsiyonel/ertelenebilir
 | `ACCESS_AUD` | var (wrangler.toml) | production (staging bilinçli boş) | agent (girildi) | ⚪ | 403 `misconfigured` |
 | `ALLOWED_ORIGINS`, `TURNSTILE_HOSTNAMES`, `KVKK_VERSIONS`, `RL_*`, `KEY_CACHE_TTL_S` | var | her env | agent | ⚪ | — |
 | `CONTENT_MOCK_PRODUCE` | var | **yalnız staging** (`"1"`) | agent | ⚪ | prod'da tanımlanmaz → mock üretim ucu 404 |
+| `GITHUB_PUBLISH_TOKEN` | Workers Secret | staging, production | 👤 insan (GitHub → Settings → Developer settings → **Fine-grained token**: yalnız `batu64/bdimexport`, izin **Contents: Read and write** + **Pull requests: Read and write**, süre ≤ 90 gün) | 🟡 (yoksa DRY-RUN) | FAZ_4 4.6 yayın botu PR açamaz → "Yayına hazırla" yalnız PR planı kaydeder (`publications.state=dry_run`) |
+| `GITHUB_REPO`, `GITHUB_BASE_BRANCH` | var (wrangler.toml) | staging, production | agent | ⚪ | base dal = Pages production dalı (👤 doğrula) |
 
 Yerel geliştirme: aynı adlar `workers/api/.dev.vars` (gitignore'lu: `workers/api/.gitignore`).
 
@@ -70,7 +72,7 @@ Yerel geliştirme: aynı adlar `workers/api/.dev.vars` (gitignore'lu: `workers/a
 | Ad | Ne zaman |
 | :-- | :-- |
 | `RESEND_API_KEY` / `BREVO_API_KEY` (mail) | Bildirim e-postası kodu yazılınca — kodda referans YOK (🟡 ertelendi) |
-| `GEMINI_API_KEY` + model adları | AGENTS.md §9 — projenin EN SONUNDA |
+| `GEMINI_API_KEY` (secret) + `GEMINI_MODEL` (var) | Kodda **referanslı** (workers/cron-rss — 4.4/4.5, `TODO(E3)` stub); DEĞER projenin EN SONUNDA (AGENTS.md §9, ERTELENEN E3). `ENRICH_MODE`/`ARTICLE_MODE` = `off`/`mock` (secret değil) |
 
 ## 7. Hijyen kuralları
 1. Her token tek amaçlı ve en az yetkili; deploy · analitik · Access-ops token'ları **ayrı**.

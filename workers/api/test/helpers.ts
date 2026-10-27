@@ -1,6 +1,6 @@
 // Test yardımcıları: node:sqlite ile GERÇEK SQL (migrations 0001+0002 uygulanır), bellek içi KV/R2.
 import { DatabaseSync } from "node:sqlite";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import type { Env } from "../src/types";
 
@@ -17,7 +17,8 @@ class Stmt {
 export function makeDb(): { d1: D1Database; raw: DatabaseSync } {
   const raw = new DatabaseSync(":memory:");
   const dir = resolve(__dirname, "../../../db/migrations");
-  for (const f of ["0001_init.sql", "0002_admin_audit_integrity.sql", "0002_partners_apply.sql"]) raw.exec(readFileSync(resolve(dir, f), "utf8"));
+  // TÜM migration'lar dosya adı sırasıyla (wrangler ile aynı sıra) — yeni migration testlere otomatik girer
+  for (const f of readdirSync(dir).filter((x) => x.endsWith(".sql")).sort()) raw.exec(readFileSync(resolve(dir, f), "utf8"));
   // D1 batch = tek transaction (biri düşerse hepsi geri alınır); her statement için meta.changes
   const batch = async (sts: Stmt[]) => {
     raw.exec("BEGIN");
