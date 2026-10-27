@@ -6,3 +6,5 @@ User-agent: Baiduspider
 Allow: /
 
 Sitemap: https://bdimexport.com/sitemap.xml
+Sitemap: https://bdimexport.com/sitemaps/sitemap-index.xml
+Sitemap: https://bdimexport.com/sitemaps/sitemap-zh.xml
