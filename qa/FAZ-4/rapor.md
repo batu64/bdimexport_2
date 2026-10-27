@@ -12,7 +12,7 @@
 | Soru | Cevap |
 | :-- | :-- |
 | **Kritik bulgu var mı?** | **HAYIR — 0 kritik, 0 yüksek, 0 orta.** |
-| Düşük / Bilgi | F4-01 … F4-04 (4 madde; hiçbiri çıkışı engellemez) |
+| Düşük / Bilgi | F4-01 … F4-04 (4 madde; hiçbiri çıkışı engellemez; F4-02 kapandı `2848f2b`) |
 | Onaysız yayın negatif testi | **TEMİZ** — bilinen 17 zorlama çağrısının hepsi reddedildi; mutasyonla kanıtlı (§3) |
 | Sonuç sayımı | `node qa/FAZ-4/run-all.mjs` → **TOPLAM 194 · geçti 194 · KIRMIZI 0** (`evidence/run-all.txt`) |
 | FAZ-3 güvenlik regresyonu | `node qa/FAZ-3/run-all.mjs` → **209 · geçti 205 · KIRMIZI 0 · bilinen bulgu 4** (F-02 artık kalıcı yeşil kapı; `evidence/regression-faz3-run-all.txt`) |
@@ -98,7 +98,7 @@ Son durum (`draft` kalır, `publications` 0 satır) **sert** assert; hata kodlar
 | # | Şiddet | Bulgu | Kanıt | Öneri / sahip |
 | :-- | :-- | :-- | :-- | :-- |
 | F4-01 | Bilgi | `app/admin/content/service.ts` `bulkTransition` içindeki `to === "published"` dalı **ölü kod** (tek çağıran `approve`: draft→approved). Bugün zararsız; ileride biri `bulkTransition(…,"published")` çağırırsa PR/edge kapısını atlar. | `static-checks.txt` S2c (dalın çağrılmadığını her koşuda doğrular — regresyon kapısı) | admin scope: dalı kaldır (sonraki admin adımı / FAZ 9.5). S2c kırmızıya dönerse yakalanır. |
-| F4-02 | Düşük | cron-rss/cron-trends **ayar** değişkenleri `docs/secret-envanteri.md`'de yok: `RSS_FETCH_TIMEOUT_MS, RSS_MAX_ITEMS_PER_FEED, RSS_MAX_BYTES, RSS_RETRY_DELAY_MS, RSS_CONCURRENCY, ENRICH_BATCH_SIZE, ENRICH_MAX_PER_RUN, ENRICH_MAX_ATTEMPTS, ARTICLE_MAX_JOBS_PER_RUN` (secret değil, hepsi varsayılanlı). FAZ-3 env-crosscheck cron-rss'i taramadığı için görünmüyordu; 4.9'da kapsam genişletildi. | `evidence/env-crosscheck.txt` | docs: envantere tek satır (`RSS_*`, `ENRICH_*`, `ARTICLE_MAX_JOBS_PER_RUN` = var, agent, ⚪). Ayrı docs commit'i (qa scope dışı). F-05'in 3 kalemi (FAZ-3) hâlâ açık. |
+| F4-02 | Düşük | cron-rss/cron-trends **ayar** değişkenleri `docs/secret-envanteri.md`'de yok: `RSS_FETCH_TIMEOUT_MS, RSS_MAX_ITEMS_PER_FEED, RSS_MAX_BYTES, RSS_RETRY_DELAY_MS, RSS_CONCURRENCY, ENRICH_BATCH_SIZE, ENRICH_MAX_PER_RUN, ENRICH_MAX_ATTEMPTS, ARTICLE_MAX_JOBS_PER_RUN` (secret değil, hepsi varsayılanlı). FAZ-3 env-crosscheck cron-rss'i taramadığı için görünmüyordu; 4.9'da kapsam genişletildi. | `evidence/env-crosscheck.txt` | ✅ **KAPANDI** `2848f2b` (docs: envantere 2 satır; ayrı commit, qa scope dışı). Kalan eksik yalnız F-05'in 3 kalemi (FAZ-3). |
 | F4-03 | Bilgi | FAZ-3 QA paketinde **beklenti kayması** (FAZ 4'ün bilinçli değişiklikleri yüzünden 3 kırmızı): (a) CONTENT audit testi makalenin doğrudan yayınlanmasını bekliyordu — 4.6'dan beri `pr_required` · (b) F-02 düzeldiği (6fe34c2) hâlde `it.fails` duruyordu · (c) QA D1 yardımcısı sabit migration listesi (0004/0005 yok) · (d) SQLi taramasında 2 yeni enterpolasyonun gerekçesi yoktu (okundu: `publish.ts` `COLS` sabit; `read.ts` page_type 5'li beyaz liste + bind). | bu commit'te düzeltildi; `regression-faz3-run-all.txt` KIRMIZI 0 | QA (bu adım). Gerçek kod hatası değil. |
 | F4-04 | Bilgi | Pano 4.10 kriteri "**canlı kaynaklarla 48 saat kesintisiz** saatlik RSS" ve "ilk makale TAM TUR **gerçek içerikle**" bu turda kanıtlanamaz: cron worker'ları staging'e deploy edilmedi, staging'de 0004/0005 migration'ları uygulanmadı (👤), gerçek içerik = Gemini (E3). | — | 4.10'da 👤 karar: staging deploy + 48 s gözlem şimdi mi, E3 ile mi? |
 

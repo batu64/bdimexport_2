@@ -1,17 +1,8 @@
-Kodda okunan ad: 58 · envanterde geçen ad: 43
+Kodda okunan ad: 58 · envanterde geçen ad: 52
 
 KODDA VAR / ENVANTERDE YOK (EKSİK KAYIT):
   ✘ TURNSTILE_ACTION_APPLY  ← workers/api/src/types.ts
   ✘ GA4_PROPERTY_ID  ← workers/cron-analytics/src/types.ts
-  ✘ RSS_FETCH_TIMEOUT_MS  ← workers/cron-rss/src/types.ts, workers/cron-trends/src/trends.ts, workers/cron-rss/wrangler.toml
-  ✘ RSS_MAX_ITEMS_PER_FEED  ← workers/cron-rss/src/types.ts, workers/cron-trends/src/trends.ts, workers/cron-rss/wrangler.toml
-  ✘ RSS_MAX_BYTES  ← workers/cron-rss/src/types.ts
-  ✘ RSS_RETRY_DELAY_MS  ← workers/cron-rss/src/types.ts, workers/cron-trends/src/trends.ts
-  ✘ RSS_CONCURRENCY  ← workers/cron-rss/src/types.ts
-  ✘ ENRICH_BATCH_SIZE  ← workers/cron-rss/src/types.ts
-  ✘ ENRICH_MAX_PER_RUN  ← workers/cron-rss/src/types.ts
-  ✘ ENRICH_MAX_ATTEMPTS  ← workers/cron-rss/src/types.ts
-  ✘ ARTICLE_MAX_JOBS_PER_RUN  ← workers/cron-rss/src/types.ts
   ✘ GLM_API_KEY  ← .github/workflows/weekly-report.yml
 
 ENVANTERDE VAR / KODDA YOK (hayalet kayıt; bilinçli ertelenenler hariç): yok ✔

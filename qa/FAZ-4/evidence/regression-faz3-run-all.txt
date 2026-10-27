@@ -16,6 +16,6 @@ QA   api: key/tier/CORS/rate-limit/SQLi fuzz | vitest | 13 | 12 | 0 | 1
 QA   audit kod taraması | script | 1 | 0 | 0 | 1 — F-03 (2 kapsamsız yazma: seedMockDraftForJob)
 QA   SQLi statik tarama | script | 1 | 1 | 0 | 0
 QA   secret taraması (gitleaks eşdeğeri) | script | 1 | 1 | 0 | 0
-QA   env/secret envanter çapraz kontrol | script | 1 | 0 | 0 | 1 — F-05 (3 eksik kayıt) + F4-02 (cron-rss ayar var'ları envantersiz; 4.9 kapsam genişlemesi)
+QA   env/secret envanter çapraz kontrol | script | 1 | 0 | 0 | 1 — F-05 (3 eksik kayıt; F4-02 2848f2b ile kapandı)
 
 TOPLAM: 209 · geçti 205 · KIRMIZI 0 · bilinen bulgu (todo/expected-fail) 4

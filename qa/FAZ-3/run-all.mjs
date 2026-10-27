@@ -39,7 +39,7 @@ vitest("QA   api: key/tier/CORS/rate-limit/SQLi fuzz", "workers/api", ["--config
 script("QA   audit kod taraması", "qa/FAZ-3/audit-scan.mjs", "F-03 (2 kapsamsız yazma: seedMockDraftForJob)");
 script("QA   SQLi statik tarama", "qa/FAZ-3/sqli-static-scan.mjs");
 script("QA   secret taraması (gitleaks eşdeğeri)", "qa/FAZ-3/secret-scan.mjs");
-script("QA   env/secret envanter çapraz kontrol", "qa/FAZ-3/env-crosscheck.mjs", "F-05 (3 eksik kayıt) + F4-02 (cron-rss ayar var'ları envantersiz; 4.9 kapsam genişlemesi)");
+script("QA   env/secret envanter çapraz kontrol", "qa/FAZ-3/env-crosscheck.mjs", "F-05 (3 eksik kayıt; F4-02 2848f2b ile kapandı)");
 if (smoke) script("QA   staging salt-okunur smoke", "qa/FAZ-3/staging-smoke.mjs");
 
 let T = 0, P = 0, F = 0, X = 0;
