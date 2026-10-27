@@ -5,7 +5,10 @@
 //   POST  /admin/api/content/jobs                 JobInput (A/B/C) → ai_jobs (pending, model NULL — FAZ 4 Gemini)
 //   PATCH /admin/api/content/drafts/:id           {title?, body_md?, target_keyword?}  (yalnız draft)
 //   POST  /admin/api/content/drafts/approve       {ids}            draft → approved   (YAYIN DEĞİL)
-//   POST  /admin/api/content/drafts/publish       {ids}            approved → published (AYRI aksiyon)
+//   POST  /admin/api/content/drafts/publish       {ids}            YALNIZ news_card: approved → published (edge; 4.6)
+//   POST  /admin/api/content/drafts/:id/prepare-pr  {}             makale: approved → bot PR (token yoksa DRY-RUN); içerik approved kalır
+//   POST  /admin/api/content/drafts/:id/mark-published {}          merge+build sonrası → published (token varsa merge doğrulanır)
+//   GET   /admin/api/content/publications?ids=a,b                  içerik başına son yayın kaydı
 //   POST  /admin/api/content/drafts/reject        {ids, reason}    draft → silinir (audit old_value'da kalır)
 //   POST  /admin/api/content/jobs/:id/mock-produce                 YALNIZ env CONTENT_MOCK_PRODUCE="1" (staging); aksi 404
 //
@@ -13,9 +16,11 @@
 import { guardAdminRequest, type AdminEnv } from "../middleware.ts";
 import { writeAudit } from "../audit.ts";
 import { createContentService, seedMockDraftForJob, type D1ReadLike } from "./service.ts";
-import { ApiError, type ContentStatus, type JobInput } from "./types.ts";
+import { ApiError, type ContentStatus, type JobInput, type PublishOutcome } from "./types.ts";
+import { githubFromEnv, type PublishEnv } from "../../../workers/api/src/publish/env.ts";
+import type { FetchLike } from "../../../workers/api/src/publish/github.ts";
 
-export interface ContentEnv extends AdminEnv {
+export interface ContentEnv extends AdminEnv, PublishEnv {
   DB: D1ReadLike;
   /** "1" → mock üretim ucu açık (yalnız staging/dev). Varsayılan KAPALI. */
   CONTENT_MOCK_PRODUCE?: string;
@@ -43,14 +48,14 @@ const ids = (b: Record<string, unknown>) =>
 export async function handleContent(
   request: Request,
   env: ContentEnv,
-  opts?: Parameters<typeof guardAdminRequest>[2],
+  opts?: Parameters<typeof guardAdminRequest>[2] & { githubFetch?: FetchLike },
   now: () => number = Date.now,
 ): Promise<Response> {
   const g = await guardAdminRequest(request, env, opts);
   if (!g.ok) return g.response;
   if (g.identity.role !== "admin") return err(403, "admin_only");
   const actor = g.identity.email;
-  const svc = createContentService(env.DB, actor, now);
+  const svc = createContentService(env.DB, actor, now, githubFromEnv(env, opts?.githubFetch));
 
   const url = new URL(request.url);
   const sub = url.pathname.replace(/\/+$/, "").slice(CONTENT_PREFIX.length);
@@ -65,6 +70,11 @@ export async function handleContent(
         const st = (url.searchParams.get("status") ?? "draft") as ContentStatus;
         if (!STATUSES.includes(st)) return err(400, "bad_status");
         return json(await svc.listDrafts(st));
+      }
+      if (sub === "/publications") {
+        const list = (url.searchParams.get("ids") ?? "").split(",").filter(Boolean);
+        if (list.length > 200 || !list.every((x) => ID_RE.test(x))) return err(400, "bad_ids");
+        return json(await svc.listPublications(list));
       }
       return err(404, "not_found");
     }
@@ -94,6 +104,14 @@ export async function handleContent(
       if (bulk[1] === "approve") return json(await svc.approve(list));
       if (bulk[1] === "publish") return json(await svc.publish(list));
       return json(await svc.reject(list, typeof body.reason === "string" ? body.reason : ""));
+    }
+
+    const pubAct = sub.match(/^\/drafts\/([^/]+)\/(prepare-pr|mark-published)$/);
+    if (pubAct && m === "POST" && ID_RE.test(pubAct[1])) {
+      const r: PublishOutcome = pubAct[2] === "prepare-pr" ? await svc.preparePublication(pubAct[1]) : await svc.markPublished(pubAct[1]);
+      if (r.ok) return json(r);
+      const code = r.error === "github_error" ? 502 : ["bad_slug", "mock_not_publishable", "empty_body"].includes(r.error) ? 422 : 409;
+      return json({ error: r.error, detail: r.detail, pr_url: r.pr_url }, code);
     }
 
     const edit = sub.match(/^\/drafts\/([^/]+)$/);

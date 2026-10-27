@@ -14,6 +14,7 @@ import {
   type JobInput,
   type JobItem,
   type NewsItem,
+  type PublicationInfo,
 } from "./types.ts";
 
 let seq = 0;
@@ -30,6 +31,7 @@ export function createMockContentApi(actor = "mock@local", now: () => number = D
   const jobs: JobItem[] = [];
   const contents: ContentItem[] = [];
   const audit: AuditItem[] = [];
+  const pubs: Record<string, PublicationInfo> = {};
   const log = (action: string, entity_type: string, entity_id: string) =>
     audit.unshift({ id: nid("a"), actor, action, entity_type, entity_id, created_at: ts(now()) });
 
@@ -105,8 +107,35 @@ export function createMockContentApi(actor = "mock@local", now: () => number = D
     async approve(ids) {
       return transition(ids, "draft", "approved", "approve_content");
     },
+    // 4.6 kuralları service.ts ile aynı: doğrudan yayın yalnız news_card; mock içerik hiçbir yoldan yayınlanmaz
     async publish(ids) {
-      return transition(ids, "approved", "published", "publish_content");
+      const r: BulkResult = { changed: [], skipped: [] };
+      for (const id of ids) {
+        const c = contents.find((x) => x.id === id);
+        if (!c) r.skipped.push({ id, reason: "not_found" });
+        else if (c.page_type !== "news_card") r.skipped.push({ id, reason: "pr_required" });
+        else if (c.status !== "approved") r.skipped.push({ id, reason: "not_approved" });
+        else if (c.model === "mock") r.skipped.push({ id, reason: "mock_not_publishable" });
+        else r.changed.push(...transition([id], "approved", "published", "publish_content").changed);
+      }
+      return r;
+    },
+    async preparePublication(id) {
+      const c = contents.find((x) => x.id === id);
+      if (!c) throw new ApiError(404, "not_found");
+      if (c.status !== "approved") return { ok: false, error: "not_approved" };
+      if (c.page_type === "news_card") return { ok: false, error: "use_edge" };
+      if (c.model === "mock") return { ok: false, error: "mock_not_publishable" };
+      pubs[id] = { kind: "pr", state: "dry_run", pr_url: null, updated_at: ts(now()), error: null };
+      log("publish_dry_run", "content", id);
+      return { ok: true, kind: "pr", state: "dry_run" };
+    },
+    async markPublished(id) {
+      if (!contents.find((x) => x.id === id)) throw new ApiError(404, "not_found");
+      return { ok: false, error: "no_open_pr" }; // mock'ta gerçek PR yok
+    },
+    async listPublications(ids) {
+      return Object.fromEntries(ids.filter((i) => pubs[i]).map((i) => [i, pubs[i]]));
     },
     async reject(ids, reason) {
       if (!reason.trim()) throw new ApiError(400, "reason_required");

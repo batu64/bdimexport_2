@@ -1,6 +1,6 @@
 // FAZ_3 3.6 — ContentApi'nin HTTP istemcisi (tarayıcı → /admin/api/content/*; Access cookie same-origin).
 // Sunucu tarafı: handler.ts. Mock (mock.ts) yalnız NEXT_PUBLIC_CONTENT_MOCK="1" iken kullanılır.
-import { ApiError, type ContentApi, type ContentStatus } from "./types.ts";
+import { ApiError, type ContentApi, type ContentStatus, type PublishOutcome } from "./types.ts";
 
 const BASE = `${process.env.NEXT_PUBLIC_ADMIN_API_BASE ?? "/admin/api"}/content`;
 
@@ -16,6 +16,14 @@ async function call<T>(path: string, init: RequestInit = {}): Promise<T> {
 }
 const post = <T>(path: string, body: object, method = "POST") => call<T>(path, { method, body: JSON.stringify(body) });
 
+async function outcome(path: string): Promise<PublishOutcome> {
+  const r = await fetch(`${BASE}${path}`, { method: "POST", credentials: "same-origin", headers: { "content-type": "application/json" }, body: "{}" });
+  const body = (await r.json().catch(() => null)) as (PublishOutcome & { error?: string }) | null;
+  if (r.ok && body) return body;
+  if ([409, 422, 502].includes(r.status) && body?.error) return { ok: false, error: body.error, detail: (body as { detail?: string }).detail, pr_url: (body as { pr_url?: string }).pr_url };
+  throw new ApiError(r.status, body?.error ?? `http_${r.status}`);
+}
+
 export function createHttpContentApi(): ContentApi {
   return {
     listNews: () => call("/news"),
@@ -28,5 +36,9 @@ export function createHttpContentApi(): ContentApi {
     publish: (ids) => post("/drafts/publish", { ids }),
     reject: (ids, reason) => post("/drafts/reject", { ids, reason }),
     mockProduce: (jobId) => post(`/jobs/${encodeURIComponent(jobId)}/mock-produce`, {}),
+    // 4.6: 409/422/502 iş kuralı yanıtları istisna değil sonuç olarak döner (UI nedenini gösterir)
+    preparePublication: (id) => outcome(`/drafts/${encodeURIComponent(id)}/prepare-pr`),
+    markPublished: (id) => outcome(`/drafts/${encodeURIComponent(id)}/mark-published`),
+    listPublications: (ids) => (ids.length ? call(`/publications?ids=${ids.map(encodeURIComponent).join(",")}`) : Promise.resolve({})),
   };
 }

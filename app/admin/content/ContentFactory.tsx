@@ -18,6 +18,8 @@ import {
   type Intent,
   type JobItem,
   type NewsItem,
+  type PublicationInfo,
+  type PublishOutcome,
 } from "./types.ts";
 
 type Tab = "A" | "B" | "C";
@@ -27,6 +29,22 @@ const LOCALE_LABEL: Record<string, string> = {
   tr: "Türkçe", en: "English", de: "Deutsch", zh: "简体中文",
   "en-ru": "EN·RU", "en-fr": "EN·FR", "en-nl": "EN·NL", "en-es": "EN·ES", "en-ar": "EN·AR",
 };
+// FAZ_4 4.6 — yayın hattı durumları / hata kodları (kullanıcıya açıklama)
+const PUB_STATE: Record<string, string> = {
+  dry_run: "PR planı kaydedildi (bot token'ı yok — PR açılmadı)", pr_open: "PR açık — GitHub'da incele ve merge et",
+  live: "Yayında", failed: "PR açılamadı", closed: "PR merge edilmeden kapatıldı",
+};
+const PUB_ERR: Record<string, string> = {
+  route_pending: "Bu dilin makale rotası FAZ 5'te kurulacak", mock_not_publishable: "Mock içerik yayınlanamaz",
+  use_edge: "Haber kartı — 'Yayınla (edge)' kullan", pr_already_open: "Bu içerik için zaten açık bir PR var",
+  file_exists: "Aynı adreste yayınlı dosya var — slug'ı değiştir", github_error: "GitHub hatası", not_approved: "İçerik onaylı değil",
+  no_open_pr: "Açık PR yok — önce 'Yayına hazırla'", pr_not_merged: "PR henüz merge edilmedi", pr_closed: "PR merge edilmeden kapatıldı",
+  stale: "Başka bir oturumda değişti", pr_required: "makale — PR yolu", bad_slug: "Geçersiz slug",
+};
+const outcomeText = (r: PublishOutcome) =>
+  r.ok ? (r.state === "pr_open" ? `PR açıldı: ${r.pr_url}` : r.state === "dry_run" ? `PR planı kaydedildi (${(r.files ?? []).length} dosya) — GITHUB_PUBLISH_TOKEN girilince gerçek PR açılır` : r.verified === false ? "Yayınlandı (merge doğrulanamadı — token yok)" : "Yayınlandı")
+    : `${PUB_ERR[r.error] ?? r.error}${r.detail ? ` (${r.detail})` : ""}`;
+
 const QUEUE_LABEL: Record<Queue, string> = { draft: "Taslak", approved: "Onaylı (yayında değil)", published: "Yayında" };
 
 function LocalePicker({ value, onChange }: { value: string[]; onChange: (v: string[]) => void }) {
@@ -59,6 +77,7 @@ export default function ContentFactory({
   const [jobs, setJobs] = useState<JobItem[]>([]);
   const [items, setItems] = useState<ContentItem[]>([]);
   const [audit, setAudit] = useState<AuditItem[]>([]);
+  const [pubs, setPubs] = useState<Record<string, PublicationInfo>>({});
   const [sel, setSel] = useState<Set<string>>(new Set());
   const [newsSel, setNewsSel] = useState<Set<string>>(new Set());
   const [locales, setLocales] = useState<string[]>(["tr"]);
@@ -74,6 +93,7 @@ export default function ContentFactory({
     try {
       const [n, j, c, a] = await Promise.all([api.listNews(), api.listJobs(), api.listDrafts(queue), api.listAudit()]);
       setNews(n); setJobs(j); setItems(c); setAudit(a);
+      setPubs(queue === "draft" ? {} : await api.listPublications(c.map((x) => x.id)));
       setSel((s) => new Set([...s].filter((id) => c.some((x) => x.id === id))));
     } catch (e) {
       setMsg({ ok: false, text: `Veri alınamadı — ${(e as Error).message}` });
@@ -245,7 +265,10 @@ export default function ContentFactory({
             <button key={q} role="tab" aria-selected={queue === q} className={queue === q ? k.btn : k.ghost} onClick={() => { setQueue(q); setSel(new Set()); }}>{QUEUE_LABEL[q]}</button>
           ))}
         </div>
-        <p className={styles.muted}>Onay içeriği yayınlamaz: onaylanan içerik &quot;Onaylı&quot; sekmesinde bekler, yayın ayrı bir aksiyondur.</p>
+        <p className={styles.muted}>
+          Onay içeriği yayınlamaz. Makale: &quot;Yayına hazırla&quot; → bot Git PR açar → GitHub&apos;da merge + build → &quot;Yayınlandı işaretle&quot;.
+          Haber kartı: &quot;Yayınla (edge)&quot; ile anında. Mock içerik hiçbir yoldan yayınlanmaz.
+        </p>
         <div className={k.tabs}>
           <button className={k.ghost} onClick={() => setSel(sel.size === items.length ? new Set() : new Set(items.map((i) => i.id)))}>
             {sel.size === items.length && items.length > 0 ? "Seçimi kaldır" : "Tümünü seç"}
@@ -257,20 +280,33 @@ export default function ContentFactory({
             </>
           )}
           {queue === "approved" && (
-            <button className={k.btn} disabled={sel.size === 0} onClick={() => bulk("publish")}>Yayınla ({sel.size}) — ayrı aksiyon</button>
+            <button className={k.btn} disabled={sel.size === 0} onClick={() => bulk("publish")}>Seçili haber kartlarını yayınla ({sel.size}) — edge</button>
           )}
         </div>
         <table className={k.table}>
-          <thead><tr><th /><th>Başlık</th><th>Dil</th><th>Tip</th><th>Model</th><th /></tr></thead>
+          <thead><tr><th /><th>Başlık</th><th>Dil</th><th>Tip</th><th>Model</th><th>Yayın</th><th /></tr></thead>
           <tbody>
             {items.map((c) => (
               <tr key={c.id}>
                 <td><input type="checkbox" aria-label={`Seç: ${c.title}`} checked={sel.has(c.id)} onChange={() => toggle(sel, c.id, setSel)} /></td>
                 <td>{c.title}</td><td>{LOCALE_LABEL[c.locale] ?? c.locale}</td><td>{c.page_type}</td><td>{c.model ?? "—"}</td>
-                <td>{c.status === "draft" && <button className={k.ghost} onClick={() => setEditing(c)}>Düzenle</button>}</td>
+                <td>
+                  {pubs[c.id] ? PUB_STATE[pubs[c.id].state] ?? pubs[c.id].state : c.status === "approved" ? "Yayında değil" : "—"}
+                  {pubs[c.id]?.pr_url && <> · <a href={pubs[c.id].pr_url!} target="_blank" rel="noopener noreferrer">PR</a></>}
+                  {pubs[c.id]?.error && <> · {pubs[c.id].error}</>}
+                </td>
+                <td>
+                  {c.status === "draft" && <button className={k.ghost} onClick={() => setEditing(c)}>Düzenle</button>}
+                  {c.status === "approved" && c.page_type !== "news_card" && pubs[c.id]?.state !== "pr_open" && (
+                    <button className={k.btn} onClick={() => run("Yayına hazırla", async () => outcomeText(await api.preparePublication(c.id)))}>Yayına hazırla (PR)</button>
+                  )}
+                  {c.status === "approved" && pubs[c.id]?.state === "pr_open" && (
+                    <button className={k.btn} onClick={() => run("Yayın işareti", async () => outcomeText(await api.markPublished(c.id)))}>Merge + build bitti → Yayınlandı işaretle</button>
+                  )}
+                </td>
               </tr>
             ))}
-            {items.length === 0 && <tr><td colSpan={6}>Bu kuyrukta içerik yok.</td></tr>}
+            {items.length === 0 && <tr><td colSpan={7}>Bu kuyrukta içerik yok.</td></tr>}
           </tbody>
         </table>
       </section>

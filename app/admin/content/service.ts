@@ -2,6 +2,8 @@
 // Kural: HER yazma `withAudit` ile aynı D1 batch'inde (mutasyon + admin_actions atomik).
 // Sözleşme: ai_jobs + contents (0001_init.sql). Yazma yetkisi çağıran handler'da (admin rolü) denetlenir.
 import { ulid, withAudit, type D1Like, type D1PreparedLike } from "../audit.ts";
+import { latestPublications, markPublished, preparePublication, publishEdge } from "../../../workers/api/src/publish/publish.ts";
+import type { GitHubClient } from "../../../workers/api/src/publish/github.ts";
 import {
   ApiError,
   CONTENT_LOCALES,
@@ -48,7 +50,8 @@ function inList(ids: string[]): string {
   return ids.map(() => "?").join(",");
 }
 
-export function createContentService(db: D1ReadLike, actor: string, now: () => number = Date.now): ContentApi {
+/** gh: yayın botu istemcisi (GITHUB_PUBLISH_TOKEN yoksa null → PR yerine DRY-RUN). */
+export function createContentService(db: D1ReadLike, actor: string, now: () => number = Date.now, gh: GitHubClient | null = null): ContentApi {
   if (!actor) throw new Error("actor zorunlu");
 
   async function rows<T>(sql: string, ...binds: unknown[]): Promise<T[]> {
@@ -195,7 +198,29 @@ export function createContentService(db: D1ReadLike, actor: string, now: () => n
     },
 
     approve: (ids) => bulkTransition(ids, "draft", "approved", "approve_content"),
-    publish: (ids) => bulkTransition(ids, "approved", "published", "publish_content"),
+    // FAZ_4 4.6: doğrudan approved→published geçişi YALNIZ haber kartına (edge). Makaleler PR yolundan gider —
+    // böylece repoya girmemiş (build edilmemiş) bir makale "published" görünemez.
+    async publish(ids) {
+      if (ids.length === 0 || ids.length > MAX_BULK) throw new ApiError(400, "bad_bulk_size");
+      const result: BulkResult = { changed: [], skipped: [] };
+      for (const id of ids) {
+        const r = await publishEdge(db, id, actor, now());
+        if (r.ok) result.changed.push(id);
+        else result.skipped.push({ id, reason: r.error === "not_news_card" ? "pr_required" : r.error });
+      }
+      return result;
+    },
+    async preparePublication(id) {
+      const r = await preparePublication(db, gh, id, actor, now());
+      if (!r.ok && r.error === "not_found") throw new ApiError(404, "not_found");
+      return r.ok ? r : { ok: false, error: r.error, detail: r.detail, pr_url: r.pr_url };
+    },
+    async markPublished(id) {
+      const r = await markPublished(db, gh, id, actor, now());
+      if (!r.ok && r.error === "not_found") throw new ApiError(404, "not_found");
+      return r.ok ? r : { ok: false, error: r.error, detail: r.detail, pr_url: r.pr_url };
+    },
+    listPublications: (ids) => latestPublications(db, ids),
 
     async reject(ids, reason) {
       const why = reason.trim();

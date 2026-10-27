@@ -21,7 +21,7 @@ const opts = { now: NOW, fetcher: async () => ({ keys: [jwk] }) };
 
 function makeEnv(extra = {}) {
   const raw = new DatabaseSync(":memory:");
-  for (const f of ["0001_init.sql", "0002_admin_audit_integrity.sql"]) raw.exec(readFileSync(new URL(`../../../../db/migrations/${f}`, import.meta.url), "utf8"));
+  for (const f of ["0001_init.sql", "0002_admin_audit_integrity.sql", "0004_publications.sql"]) raw.exec(readFileSync(new URL(`../../../../db/migrations/${f}`, import.meta.url), "utf8"));
   const stmt = (sql, args = []) => ({ bind: (...a) => stmt(sql, a), first: async () => raw.prepare(sql).get(...args) ?? null, all: async () => ({ results: raw.prepare(sql).all(...args) }), _run: () => ({ meta: { changes: Number(raw.prepare(sql).run(...args).changes) } }) });
   const DB = { prepare: (s) => stmt(s), batch: async (sts) => { raw.exec("BEGIN"); try { const o = sts.map((s) => s._run()); raw.exec("COMMIT"); return o; } catch (e) { raw.exec("ROLLBACK"); throw e; } } };
   return { raw, DB, env: { ACCESS_TEAM_DOMAIN: TEAM, ACCESS_AUD: AUD, ADMIN_EMAILS: "boss@example.com", VIEWER_EMAILS: "view@example.com", DB, ...extra } };
@@ -64,10 +64,50 @@ test("E2E (mock üretim): keyword → ai_jobs (model NULL) → mock → draft �
   // onaylı içerik tekrar onaylanmaz / taslak doğrudan yayınlanmaz
   assert.equal((await call(env, "/drafts/approve", { method: "POST", body: { ids } })).body.changed.length, 0);
 
+  // 4.6: makale doğrudan yayına gitmez (PR yolu); MOCK içerik PR'a da giremez
   const pb = await call(env, "/drafts/publish", { method: "POST", body: { ids: [ids[0]] } });
-  assert.deepEqual(pb.body.changed, [ids[0]]);
-  assert.equal((await call(env, "/drafts?status=published")).body.length, 1);
-  assert.deepEqual(actions(raw), ["create_ai_job", "mock_produce", "approve_content", "approve_content", "publish_content"]);
+  assert.deepEqual([pb.body.changed, pb.body.skipped[0].reason], [[], "pr_required"]);
+  const pr = await call(env, `/drafts/${ids[0]}/prepare-pr`, { method: "POST", body: {} });
+  assert.deepEqual([pr.status, pr.body.error], [422, "mock_not_publishable"]);
+  assert.equal((await call(env, "/drafts?status=published")).body.length, 0);
+  assert.deepEqual(actions(raw), ["create_ai_job", "mock_produce", "approve_content", "approve_content"]);
+});
+
+test("4.6 PR yolu (gerçek içerik, sahte GitHub): hazırla → PR açık (approved kalır) → merge yok 409 → merge → published", async () => {
+  const TOKEN = "github_pat_HANDLER_TEST_GIZLI";
+  let pr = { state: "open", merged: false };
+  const calls = [];
+  const githubFetch = async (url, init) => {
+    calls.push(init.method + " " + url + " " + JSON.stringify(init.body ?? ""));
+    const ok = (status, data = {}) => ({ ok: status < 300, status, json: async () => data });
+    if (init.method === "GET" && url.includes("/contents/")) return ok(404);
+    if (url.endsWith("/git/ref/heads/main")) return ok(200, { object: { sha: "S" } });
+    if (url.endsWith("/git/refs") || init.method === "PUT") return ok(201);
+    if (url.endsWith("/pulls") && init.method === "POST") return ok(201, { number: 7, html_url: "https://github.com/batu64/bdimexport/pull/7" });
+    if (url.endsWith("/pulls/7")) return ok(200, pr);
+    return ok(404);
+  };
+  const { env, raw } = makeEnv({ GITHUB_PUBLISH_TOKEN: TOKEN, GITHUB_REPO: "batu64/bdimexport", GITHUB_BASE_BRANCH: "main" });
+  raw.prepare("INSERT INTO contents (id,slug,locale,page_type,title,body_md,status,model) VALUES ('A1','olive-oil-export-guide','en','article','Olive Oil Export Guide','# Olive Oil Export Guide\n\nBody.','approved','gemini-x')").run();
+  const go = async (path, body) => {
+    _resetJwksCache();
+    const headers = { "cf-access-jwt-assertion": await jwt("boss@example.com") };
+    if (body) headers["content-type"] = "application/json";
+    const r = await handleContent(new Request(`https://bdimexport.pages.dev/admin/api/content${path}`, { method: body ? "POST" : "GET", headers, body: body ? JSON.stringify(body) : undefined }), env, { ...opts, githubFetch }, () => NOW);
+    return { status: r.status, body: await r.json() };
+  };
+  const p = await go("/drafts/A1/prepare-pr", {});
+  assert.deepEqual([p.status, p.body.state, p.body.pr_url], [200, "pr_open", "https://github.com/batu64/bdimexport/pull/7"]);
+  assert.equal(raw.prepare("SELECT status FROM contents").get().status, "approved");
+  assert.equal((await go("/publications?ids=A1")).body.A1.state, "pr_open");
+  const nm = await go("/drafts/A1/mark-published", {});
+  assert.deepEqual([nm.status, nm.body.error], [409, "pr_not_merged"]);
+  pr = { state: "closed", merged: true };
+  const done = await go("/drafts/A1/mark-published", {});
+  assert.deepEqual([done.status, done.body.state, done.body.verified], [200, "live", true]);
+  assert.equal(raw.prepare("SELECT status FROM contents").get().status, "published");
+  assert.ok(calls.every((c) => !c.includes(TOKEN)));
+  assert.ok(!JSON.stringify(raw.prepare("SELECT * FROM admin_actions").all()).includes(TOKEN));
 });
 
 test("taslak doğrudan yayınlanamaz (draft → publish atlanır)", async () => {
@@ -76,7 +116,8 @@ test("taslak doğrudan yayınlanamaz (draft → publish atlanır)", async () => 
   await call(env, `/jobs/${j.body.job_id}/mock-produce`, { method: "POST", body: {} });
   const [d] = (await call(env, "/drafts")).body;
   const r = await call(env, "/drafts/publish", { method: "POST", body: { ids: [d.id] } });
-  assert.deepEqual([r.body.changed, r.body.skipped], [[], [{ id: d.id, reason: "status_is_draft" }]]);
+  assert.deepEqual([r.body.changed, r.body.skipped], [[], [{ id: d.id, reason: "pr_required" }]]);
+  assert.equal((await call(env, `/drafts/${d.id}/prepare-pr`, { method: "POST", body: {} })).body.error, "not_approved");
 });
 
 test("mock üretim VARSAYILAN KAPALI (prod): 404 mock_disabled, job pending kalır", async () => {

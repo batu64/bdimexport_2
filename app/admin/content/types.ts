@@ -76,6 +76,18 @@ export interface BulkResult {
   skipped: { id: string; reason: string }[];
 }
 
+/** FAZ_4 4.6 — içerik başına son yayın kaydı (publications). */
+export interface PublicationInfo {
+  kind: "pr" | "edge" | string;
+  state: "dry_run" | "pr_open" | "live" | "failed" | "closed" | string;
+  pr_url: string | null;
+  updated_at: string;
+  error: string | null;
+}
+export type PublishOutcome =
+  | { ok: true; state: string; kind: string; url?: string; pr_url?: string; files?: string[]; verified?: boolean }
+  | { ok: false; error: string; detail?: string; pr_url?: string };
+
 export interface ContentApi {
   listNews(): Promise<NewsItem[]>;
   listJobs(): Promise<JobItem[]>;
@@ -87,8 +99,16 @@ export interface ContentApi {
   approve(ids: string[]): Promise<BulkResult>;
   /** draft → silinir (şemada 'rejected' status yok); eski satır audit old_value'da kalır */
   reject(ids: string[], reason: string): Promise<BulkResult>;
-  /** approved → published — onaydan AYRI aksiyon (admin-agent §4.3). PR/build tetikleme Faz 4 orchestrator'ında. */
+  /**
+   * FAZ_4 4.6 — YALNIZ haber kartı (news_card): approved → published, edge render (PR yok).
+   * Diğer tipler atlanır (reason "pr_required") → kalıcı yol preparePublication + markPublished.
+   */
   publish(ids: string[]): Promise<BulkResult>;
+  /** 👤 "Yayına hazırla": approved makale → bot Git PR açar (token yoksa DRY-RUN planı). İçerik approved KALIR. */
+  preparePublication(id: string): Promise<PublishOutcome>;
+  /** 👤 "Yayınlandı işaretle": PR merge + build sonrası → published (token varsa merge doğrulanır). */
+  markPublished(id: string): Promise<PublishOutcome>;
+  listPublications(ids: string[]): Promise<Record<string, PublicationInfo>>;
   /** YALNIZCA mock/dev: üretimi simüle eder (pending job → done + draft). Prod'da kapalı. */
   mockProduce(jobId: string): Promise<{ content_ids: string[] }>;
 }

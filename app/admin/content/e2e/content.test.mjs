@@ -19,27 +19,27 @@ function d1(sqlite) {
     bind: (...b) => mk(sql, b),
     all: async () => ({ results: sqlite.prepare(sql).all(...binds) }),
     first: async () => sqlite.prepare(sql).get(...binds) ?? null,
-    run: () => sqlite.prepare(sql).run(...binds),
+    run: () => ({ meta: { changes: Number(sqlite.prepare(sql).run(...binds).changes) } }),
   });
   return {
     prepare: (sql) => mk(sql),
     batch: async (stmts) => {
       sqlite.exec("BEGIN");
       try {
-        for (const s of stmts) s.run();
+        const out = stmts.map((s) => s.run());
         sqlite.exec("COMMIT");
+        return out; // D1 gibi: statement başına meta.changes (koşullu geçişler gerçekten sınanır)
       } catch (e) {
         sqlite.exec("ROLLBACK");
         throw e;
       }
-      return [];
     },
   };
 }
 
 function fresh() {
   const sqlite = new DatabaseSync(":memory:");
-  for (const f of ["0001_init.sql", "0002_admin_audit_integrity.sql"]) sqlite.exec(readFileSync(new URL(`../../../../db/migrations/${f}`, import.meta.url), "utf8"));
+  for (const f of ["0001_init.sql", "0002_admin_audit_integrity.sql", "0004_publications.sql"]) sqlite.exec(readFileSync(new URL(`../../../../db/migrations/${f}`, import.meta.url), "utf8"));
   const db = d1(sqlite);
   return { sqlite, db, svc: createContentService(db, ACTOR, () => NOW) };
 }
@@ -63,10 +63,10 @@ test("Input C: keyword → ai_jobs(pending) + keywords + audit; draft → onay �
   const drafts = await svc.listDrafts("draft");
   assert.equal(drafts.length, 2);
 
-  // yayın, onaysız ilerlemez
+  // yayın, onaysız ilerlemez (makale doğrudan yayına hiç gitmez: PR yolu — 4.6)
   let r = await svc.publish(ids);
   assert.deepEqual(r.changed, []);
-  assert.equal(r.skipped[0].reason, "status_is_draft");
+  assert.equal(r.skipped[0].reason, "pr_required");
 
   // toplu onay → approved (published DEĞİL)
   r = await svc.approve(ids);
@@ -79,13 +79,30 @@ test("Input C: keyword → ai_jobs(pending) + keywords + audit; draft → onay �
   r = await svc.approve([ids[0]]);
   assert.equal(r.skipped[0].reason, "status_is_approved");
 
-  // ayrı yayın aksiyonu
+  // 4.6: onaylı MOCK makale hiçbir yoldan yayınlanmaz (ne edge ne PR)
   r = await svc.publish([ids[0]]);
-  assert.equal(r.changed.length, 1);
-  const pub = sqlite.prepare("SELECT status, published_at FROM contents WHERE id=?").get(ids[0]);
-  assert.equal(pub.status, "published");
-  assert.ok(pub.published_at);
-  assert.equal(audits(sqlite, "publish_content").length, 1);
+  assert.deepEqual([r.changed, r.skipped[0].reason], [[], "pr_required"]);
+  assert.equal((await svc.preparePublication(ids[0])).error, "mock_not_publishable");
+  assert.equal(sqlite.prepare("SELECT status FROM contents WHERE id=?").get(ids[0]).status, "approved");
+  assert.equal(audits(sqlite, "publish_content").length, 0);
+});
+
+test("4.6 iki yol (gerçek içerik): news_card → edge yayın · makale → PR planı (token yok) → işaretleme açık PR ister", async () => {
+  const { sqlite, svc } = fresh();
+  const ins = sqlite.prepare("INSERT INTO contents (id,slug,locale,page_type,title,body_md,status,model) VALUES (?,?,?,?,?,?,?,?)");
+  ins.run("N1", "haber-1", "tr", "news_card", "Haber", "Kısa haber.", "approved", "gemini-x");
+  ins.run("A1", "zeytinyagi-ihracati-rehberi", "tr", "article", "Zeytinyağı İhracatı Rehberi", "# Zeytinyağı İhracatı Rehberi\n\nGövde.", "approved", "gemini-x");
+  const e = await svc.publish(["N1", "A1"]);
+  assert.deepEqual([e.changed, e.skipped], [["N1"], [{ id: "A1", reason: "pr_required" }]]);
+  assert.equal(sqlite.prepare("SELECT status FROM contents WHERE id='N1'").get().status, "published");
+  const p = await svc.preparePublication("A1");
+  assert.equal(p.ok, true);
+  assert.equal(p.state, "dry_run");
+  assert.deepEqual(p.files, ["content/tr/makaleler/zeytinyagi-ihracati-rehberi.md", "content/tr/makaleler/zeytinyagi-ihracati-rehberi.schema.json"]);
+  assert.equal(sqlite.prepare("SELECT status FROM contents WHERE id='A1'").get().status, "approved"); // onay ≠ yayın
+  assert.equal((await svc.markPublished("A1")).error, "no_open_pr");
+  const pubs = await svc.listPublications(["N1", "A1"]);
+  assert.deepEqual([pubs.N1.kind, pubs.N1.state, pubs.A1.kind, pubs.A1.state], ["edge", "live", "pr", "dry_run"]);
 });
 
 test("reject: gerekçe zorunlu, yalnız draft; audit old_value'da eski satır kalır", async () => {
@@ -163,8 +180,11 @@ test("Mock API (UI backend): keyword → job → mock üretim → draft → onay
   await assert.rejects(() => api.mockProduce(job_id), (e) => e.code === "job_not_pending");
   assert.equal((await api.publish(content_ids)).changed.length, 0); // onaysız yayın yok
   assert.equal((await api.approve(content_ids)).changed.length, 2);
-  assert.equal((await api.publish(content_ids)).changed.length, 2);
-  assert.equal((await api.listDrafts("published")).length, 2);
+  // 4.6: mock makale doğrudan yayınlanmaz (PR yolu) ve PR'a da giremez
+  assert.deepEqual((await api.publish(content_ids)).skipped.map((s) => s.reason), ["pr_required", "pr_required"]);
+  assert.equal((await api.preparePublication(content_ids[0])).error, "mock_not_publishable");
+  assert.equal((await api.listDrafts("published")).length, 0);
   const actions = (await api.listAudit()).map((a) => a.action);
-  for (const a of ["create_ai_job", "create_keyword", "mock_produce", "approve_content", "publish_content"]) assert.ok(actions.includes(a), a);
+  for (const a of ["create_ai_job", "create_keyword", "mock_produce", "approve_content"]) assert.ok(actions.includes(a), a);
+  assert.ok(!actions.includes("publish_content"));
 });
