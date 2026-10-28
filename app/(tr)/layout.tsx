@@ -5,6 +5,10 @@ import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import type { Metadata } from "next";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 import { IntlProvider } from "@/lib/intl";
+import Navbar from "@/lib/ui/Navbar";
+import Footer from "@/lib/ui/Footer";
+import dict from "@/lib/messages/tr.json";
+import { footerProps, navbarProps } from "./_lib/chrome";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bdimexport.com"),
@@ -19,10 +23,16 @@ export default function TrLayout({ children }: { children: React.ReactNode }) {
     <html {...htmlAttrs("tr")}>
       <head>
         <ThemeStyle />
+        <noscript>
+          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
       </head>
       <body>
+        <a href="#icerik" className="skip-link">{dict.nav.skip}</a>
         <IntlProvider locale="tr">
-          <div lang="tr">{children}</div>
+          <Navbar {...navbarProps()} />
+          <div lang="tr" id="icerik" tabIndex={-1}>{children}</div>
+          <Footer {...footerProps()} />
         </IntlProvider>
       </body>
     </html>

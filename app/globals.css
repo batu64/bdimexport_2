@@ -110,6 +110,7 @@ a:hover { text-decoration-thickness: var(--bw-2); }
 
 /* ── hareket azaltma: tüm geçiş/animasyonlar kapanır (WCAG 2.3.3) */
 @media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -117,3 +118,4 @@ a:hover { text-decoration-thickness: var(--bw-2); }
     scroll-behavior: auto !important;
   }
 }
+[tabindex="-1"]:focus { outline: none; }

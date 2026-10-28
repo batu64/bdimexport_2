@@ -43,7 +43,7 @@ function scaleVars(): Record<string, string | number> {
     "section-y": fluid(sectionY.sm, sectionY.lg),
     "dur-fast": `${motion.fast}ms`, "dur-base": `${motion.base}ms`, "dur-slow": `${motion.slow}ms`,
     "ease-out": bezier(motion.easeOut), "ease-in-out": bezier(motion.easeInOut),
-    "motion-distance": px(motion.distance),
+    "motion-distance": px(motion.distance), stagger: `${motion.stagger * 1000}ms`,
   });
   return v;
 }

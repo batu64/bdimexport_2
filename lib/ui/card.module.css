@@ -1,0 +1,55 @@
+/* card.md — surface + border + radius; hover: -bw yukarı + elevation 3 + accent kenar. */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  padding: var(--s-6);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  box-shadow: var(--e-1);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+}
+.card:hover, .card:focus-within {
+  transform: translateY(calc(-1 * var(--s-1)));
+  box-shadow: var(--e-3);
+  border-color: color-mix(in srgb, var(--c-accent) 45%, var(--c-border));
+}
+.icon {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--s-12);
+  block-size: var(--s-12);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+  color: var(--c-accent);
+  transition: transform var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease-out);
+}
+.icon svg { inline-size: var(--s-6); block-size: var(--s-6); }
+.card:hover .icon { transform: scale(1.06) rotate(-3deg); background: color-mix(in srgb, var(--c-accent) 16%, transparent); }
+.eyebrow { color: var(--c-muted); font-size: var(--fs-xs); font-weight: var(--fw-heading); letter-spacing: var(--track-caps); text-transform: uppercase; }
+.title { font-size: var(--fs-xl); letter-spacing: var(--track-tight); }
+.titleLink { color: var(--c-heading); text-decoration: none; }
+/* başlık linki kartın tamamını kaplar (görsel), ama okuma sırası/hedef tek link — brief: "kart başlığı link" */
+.titleLink::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.titleLink:focus-visible { outline: none; }
+.card:has(.titleLink:focus-visible) { outline: var(--bw-2) solid var(--c-focus); outline-offset: var(--bw-2); }
+.desc { color: var(--c-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-block-start: auto;
+  padding-block-start: var(--s-2);
+  color: var(--c-link);
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-sm);
+}
+.arrow { inline-size: var(--s-4); block-size: var(--s-4); transition: transform var(--dur-fast) var(--ease-out); }
+.card:hover .arrow { transform: translateX(var(--s-1)); }
+[dir="rtl"] .arrow { transform: scaleX(-1); }
+[dir="rtl"] .card:hover .arrow { transform: scaleX(-1) translateX(var(--s-1)); }

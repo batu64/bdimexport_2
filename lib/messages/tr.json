@@ -29,5 +29,108 @@
       "desc": "Tekstil, elektronik, makine parçaları, ev ve yaşam, ambalaj ve mobilya ithalatı için adım adım süreç, maliyet ve risk rehberleri.",
       "intro": "Ürün grubuna göre hazırlanmış, adım adım ithalat rehberleri:"
     }
+  },
+  "nav": {
+    "label": "Ana menü",
+    "skip": "İçeriğe geç",
+    "home": "Bdimexport ana sayfa",
+    "links": [
+      { "label": "İthalat", "href": "/ithalat" },
+      { "label": "İhracat", "href": "/ihracat" },
+      { "label": "Rehberler", "href": "/ithalat/rehberler" },
+      { "label": "Makaleler", "href": "/makaleler" }
+    ],
+    "cta": "Teklif Alın",
+    "menuOpen": "Menüyü aç",
+    "menuClose": "Menüyü kapat",
+    "sites": "Pazar / dil"
+  },
+  "quote": {
+    "subject": "Teklif talebi (bdimexport.com)"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Çin'den ithalat · Global ihracat",
+      "h1": "Çin'den İthalat ve Global İhracat: Tedarikten Gümrüğe Tek Ekip",
+      "sub": "Yanlış tedarikçi, kalite sürprizi ve gümrük gecikmesi riskini fabrika denetimi ve adım adım takiple azaltıyoruz. İhracata açılmak isteyen üreticiler için ücretsiz hızlandırma programı sunuyoruz.",
+      "ctaPrimary": "Ücretsiz İhracat Hızlandırma Başvurusu",
+      "ctaSecondary": "Ücretsiz Teklif Alın — 24 saatte yanıt",
+      "trust": ["Yerinde fabrika denetimi", "Adım adım süreç takibi", "24 saatte teklif yanıtı"],
+      "visual": {
+        "title": "Sipariş süreci",
+        "caption": "Örnek görünüm",
+        "route": "Çin → Türkiye",
+        "steps": ["Tedarikçi doğrulama", "Fabrika denetimi", "Üretim takibi", "Lojistik ve gümrük"],
+        "done": "Tamamlandı",
+        "active": "Sürüyor",
+        "next": "Sırada"
+      }
+    },
+    "stats": {
+      "label": "Taahhütlerimiz",
+      "items": [
+        { "value": 24, "unit": "saat", "label": "içinde teklif yanıtı" },
+        { "value": 48, "unit": "saat", "label": "içinde başvuru ön değerlendirmesi" },
+        { "key": "importServices", "label": "ithalat hizmeti: tedarikten gümrüğe" },
+        { "key": "guides", "label": "ürün bazlı ithalat rehberi" }
+      ]
+    },
+    "services": {
+      "eyebrow": "Hizmetler",
+      "title": "İki yönde, tek ekip",
+      "lead": "İthalatta tedarikten gümrüğe, ihracatta ilk alıcı talebine kadar süreci birlikte yürütüyoruz.",
+      "import": { "title": "Çin'den İthalat", "more": "Tüm ithalat hizmetleri" },
+      "export": { "title": "Global İhracat", "more": "Tüm ihracat hizmetleri" }
+    },
+    "process": {
+      "eyebrow": "Süreç",
+      "title": "İthalatınız beş adımda, şeffaf ilerler",
+      "steps": [
+        { "title": "Talep ve teklif", "text": "İhtiyacınızı paylaşın; 24 saat içinde kapsam ve teklifle dönelim." },
+        { "title": "Tedarikçi bulma", "text": "Çin'de uygun üreticileri bulur, belgelerini ve geçmişini doğrularız." },
+        { "title": "Fabrika denetimi", "text": "Üretim öncesi ve sırasında yerinde denetimle kalite riskini azaltırız." },
+        { "title": "Lojistik", "text": "Sevkiyatı planlar, süreci her adımda size raporlarız." },
+        { "title": "Gümrük ve teslim", "text": "Gümrük işlemlerini tamamlar, ürünü teslim noktasına ulaştırırız." }
+      ]
+    },
+    "program": {
+      "eyebrow": "İhracat Hızlandırma Programı",
+      "title": "Üreticiden global alıcıya: ücretsiz program",
+      "lead": "Üreticiler ücretsiz sisteme alınır, ürünleri global alıcı sayfalarında sergilenir, gelen talepler doğru üreticiye yönlendirilir.",
+      "steps": [
+        { "title": "Başvuru", "text": "Formu doldurun; 48 saat içinde ön değerlendirme yapılır." },
+        { "title": "Onaylı Türk İş Ortağı", "text": "Onay sonrası firmanız global listelerde yer alır. Logo yayını ayrı rızanıza bağlıdır." },
+        { "title": "Alıcı eşleştirmesi", "text": "Global alıcı talepleri ürün grubunuza yönlendirilir; bağlantıyı siz kabul edersiniz." }
+      ],
+      "more": "Programı inceleyin"
+    },
+    "guides": {
+      "eyebrow": "Rehberler",
+      "title": "Ürün bazlı Çin ithalat rehberleri",
+      "lead": "Süreç, maliyet kalemleri ve riskler — ürün grubunuza göre adım adım.",
+      "more": "Tüm rehberler",
+      "read": "Rehberi oku"
+    },
+    "partners": {
+      "eyebrow": "Güven",
+      "title": "Onaylı Türk İş Ortakları",
+      "badge": "Onaylı Türk İş Ortağı",
+      "empty": "İlk Onaylı Türk İş Ortaklarımız yakında burada."
+    },
+    "cta": {
+      "title": "Üretiminiz hazırsa, ihracat adımını birlikte atalım",
+      "lead": "Başvurunuzu bırakın; 48 saat içinde ön değerlendirmeyle dönelim."
+    }
+  },
+  "footer": {
+    "tagline": "Çin'den ithalat ve global ihracat için tedarikten gümrüğe tek ekip.",
+    "import": "İthalat",
+    "export": "İhracat",
+    "sites": "Pazarlar",
+    "legal": "Yasal",
+    "kvkk": "KVKK Açık Rıza Metni",
+    "contact": "İletişim",
+    "email": "E-posta ile yazın",
+    "rights": "Tüm hakları saklıdır."
   }
 }

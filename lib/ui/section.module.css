@@ -1,0 +1,9 @@
+.header { display: grid; gap: var(--s-6); margin-block-end: var(--s-12); }
+.text { display: grid; gap: var(--s-3); max-inline-size: 64ch; }
+.title { font-size: var(--type-h2); }
+.center { justify-items: center; text-align: center; }
+.center .text { justify-items: center; }
+@media (min-width: 768px) {
+  .withAction { grid-template-columns: 1fr auto; align-items: end; }
+}
+.action { display: flex; }

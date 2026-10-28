@@ -1,0 +1,65 @@
+/* footer.md — brand zemin; metin on-brand-muted, başlık on-brand caps; link hover highlight; odak highlight (.on-brand). */
+.footer {
+  position: relative;
+  padding-block: var(--s-16) var(--s-6);
+  color: var(--c-on-brand-muted);
+  font-size: var(--fs-sm);
+  overflow: hidden;
+}
+/* ince üst çizgi ışıltısı (dekoratif) */
+.footer::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  block-size: var(--bw-1);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--c-highlight) 60%, transparent), transparent);
+}
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-8) var(--s-6); }
+.brandCol { grid-column: 1 / -1; max-inline-size: 40ch; }
+@media (min-width: 1280px) {
+  .grid { grid-template-columns: 2fr repeat(3, minmax(0, 1fr)); gap: var(--s-12); }
+  .brandCol { grid-column: auto; }
+}
+.brand { color: var(--c-on-brand); font-size: var(--fs-x2); font-weight: var(--fw-stat); letter-spacing: var(--track-tight); }
+.tagline { margin-block: var(--s-3) var(--s-6); font-size: var(--fs-base); }
+.colTitle {
+  margin-block-end: var(--s-3);
+  color: var(--c-on-brand);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+}
+.col ul { display: grid; gap: var(--s-1); }
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--touch);
+  color: var(--c-on-brand-muted) !important;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+@media (min-width: 768px) { .link { min-block-size: calc(var(--touch) - var(--s-3)); } }
+.link:hover, .link[aria-current="true"] { color: var(--c-highlight) !important; text-decoration: none; }
+.legal { margin-block-start: var(--s-6); }
+.channel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  padding-inline: var(--s-4);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 25%, transparent);
+  border-radius: var(--radius-pill);
+  color: var(--c-on-brand) !important;
+  text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+.channel:hover { border-color: var(--c-highlight); background: color-mix(in srgb, var(--c-highlight) 10%, transparent); text-decoration: none; }
+.icon { inline-size: var(--s-4); block-size: var(--s-4); }
+.bottom {
+  margin-block-start: var(--s-12);
+  padding-block-start: var(--s-6);
+  border-block-start: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 15%, transparent);
+  font-size: var(--fs-xs);
+}
