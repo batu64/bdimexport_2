@@ -213,23 +213,3 @@
   animation-delay: calc(var(--i) * var(--stagger) * 2);
 }
 @keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
-
-/* ── Kapanış CTA bandı */
-.ctaBand { position: relative; isolation: isolate; overflow: hidden; padding-block: var(--section-y); }
-.ctaBg {
-  position: absolute;
-  inset: -50%;
-  z-index: -1;
-  background:
-    radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--c-highlight) 22%, transparent), transparent 40%),
-    radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--c-accent-on-brand) 22%, transparent), transparent 45%);
-  animation: sway 18s var(--ease-in-out) infinite alternate;
-}
-@keyframes sway { to { transform: rotate(8deg) scale(1.05); } }
-.ctaInner { display: grid; gap: var(--s-8); align-items: center; }
-@media (min-width: 1280px) { .ctaInner { grid-template-columns: 1.2fr 1fr; } }
-.ctaTitle { font-size: var(--type-h2); color: var(--c-on-brand); }
-.ctaLead { margin-block-start: var(--s-4); }
-.ctaActions { display: flex; flex-direction: column; gap: var(--s-3); }
-@media (min-width: 768px) { .ctaActions { flex-direction: row; flex-wrap: wrap; } }
-@media (min-width: 1280px) { .ctaActions { justify-content: flex-end; } }

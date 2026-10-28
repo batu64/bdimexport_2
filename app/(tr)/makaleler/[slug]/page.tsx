@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { InsightArticle, insightParams, readInsight } from "@/lib/ui/insights";
-import { pageMainStyle, trAlternates } from "../../_lib/content";
+import { trAlternates } from "../../_lib/content";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -20,5 +20,5 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   const it = readInsight("tr", slug);
   if (!it) notFound();
-  return <InsightArticle insight={it} style={pageMainStyle()} crumbs={[{ label: "Ana Sayfa", href: "/" }, { label: "Makaleler", href: "/makaleler" }]} />;
+  return <InsightArticle insight={it} crumbs={[{ label: "Ana Sayfa", href: "/" }, { label: "Makaleler", href: "/makaleler" }]} />;
 }

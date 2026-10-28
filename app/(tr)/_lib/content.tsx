@@ -4,8 +4,17 @@
 import fs from "fs";
 import path from "path";
 import type { Metadata } from "next";
-import Link from "next/link";
-import { space, prose } from "@/lib/ui/tokens";
+import { Clock } from "lucide-react";
+import ArticleLayout, { AsideCta, type TocItem } from "@/lib/ui/ArticleLayout";
+import PageHeader, { type Crumb } from "@/lib/ui/PageHeader";
+import CtaBand from "@/lib/ui/CtaBand";
+import Card from "@/lib/ui/Card";
+import Button from "@/lib/ui/Button";
+import Reveal from "@/lib/ui/motion/Reveal";
+import { Section, SectionHeader } from "@/lib/ui/Section";
+import cardGrid from "@/lib/ui/cardgrid.module.css";
+import { iconFor } from "./icons";
+import { APPLY_PATH, quoteHref } from "./links";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 import dict from "@/lib/messages/tr.json";
 
@@ -88,15 +97,39 @@ const inline = (s: string) =>
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/`([^`]+)`/g, "<code>$1</code>");
 
-// Basit markdown→HTML (FAZ_2'de content collections/remark ile değişir)
-function md2html(md: string): string {
+// Basit markdown→HTML (FAZ_2'de content collections/remark ile değişir).
+// D4: h2 → id (içindekiler + #bağlantı), tablo → .table-wrap (dar ekranda yatay kaydırma), "## Sık Sorulan Sorular"
+// altındaki ### → <details> akordeon (JS'siz). Metin aynen korunur; FAQPage JSON-LD ayrıca parseFaq'tan üretilir.
+const TR_ASCII: Record<string, string> = { ç: "c", ğ: "g", ı: "i", İ: "i", ö: "o", ş: "s", ü: "u", Ç: "c", Ğ: "g", Ö: "o", Ş: "s", Ü: "u" };
+const slugify = (t: string) =>
+  t.replace(/[çğıİöşüÇĞÖŞÜ]/g, (c) => TR_ASCII[c]).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
+const plainText = (t: string) => t.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*([^*]+)\*\*/g, "$1").replace(/`/g, "");
+
+function md2html(md: string): { html: string; toc: TocItem[] } {
   let html = "";
+  const toc: TocItem[] = [];
+  const used = new Set<string>();
   let inList: "ul" | "ol" | null = null;
   let inTable = false;
   let inCode = false;
+  let inFaq = false;
+  let inDetails = false;
   const closeList = () => {
     if (inList) html += `</${inList}>`;
     inList = null;
+  };
+  const closeTable = () => {
+    if (inTable) html += "</table></div>";
+    inTable = false;
+  };
+  const closeDetails = () => {
+    if (inDetails) html += "</div></details>";
+    inDetails = false;
+  };
+  const closeFaq = () => {
+    closeDetails();
+    if (inFaq) html += "</div>";
+    inFaq = false;
   };
   for (const line of md.split("\n")) {
     const tl = line.trim();
@@ -116,17 +149,32 @@ function md2html(md: string): string {
       const cells = tl.split("|").slice(1, -1).map((c) => c.trim());
       if (!inTable) {
         inTable = true;
-        html += "<table><tr>" + cells.map((c) => `<th>${inline(c)}</th>`).join("") + "</tr>";
+        html += '<div class="table-wrap"><table><tr>' + cells.map((c) => `<th>${inline(c)}</th>`).join("") + "</tr>";
       } else html += "<tr>" + cells.map((c) => `<td>${inline(c)}</td>`).join("") + "</tr>";
       continue;
     }
-    if (inTable) {
-      html += "</table>";
-      inTable = false;
-    }
-    if (tl.startsWith("### ")) { closeList(); html += `<h3>${inline(tl.slice(4))}</h3>`; }
-    else if (tl.startsWith("## ")) { closeList(); html += `<h2>${inline(tl.slice(3))}</h2>`; }
-    else if (tl.startsWith("- ")) {
+    closeTable();
+    if (tl.startsWith("### ")) {
+      closeList();
+      if (inFaq) {
+        closeDetails();
+        html += `<details><summary>${inline(tl.slice(4))}</summary><div>`;
+        inDetails = true;
+      } else html += `<h3>${inline(tl.slice(4))}</h3>`;
+    } else if (tl.startsWith("## ")) {
+      closeList();
+      closeFaq();
+      const text = tl.slice(3);
+      let id = slugify(plainText(text)) || `bolum-${toc.length + 1}`;
+      while (used.has(id)) id += "-2";
+      used.add(id);
+      toc.push({ id, text: plainText(text) });
+      html += `<h2 id="${id}">${inline(text)}</h2>`;
+      if (text === "Sık Sorulan Sorular") {
+        html += '<div class="faq">';
+        inFaq = true;
+      }
+    } else if (tl.startsWith("- ")) {
       if (inList !== "ul") { closeList(); html += "<ul>"; inList = "ul"; }
       html += `<li>${inline(tl.slice(2))}</li>`;
     } else if (/^\d+\. /.test(tl)) {
@@ -138,9 +186,10 @@ function md2html(md: string): string {
     }
   }
   closeList();
-  if (inTable) html += "</table>";
+  closeTable();
   if (inCode) html += "</code></pre>";
-  return html;
+  closeFaq();
+  return { html, toc };
 }
 
 /** canonical + hreflang: yalnız tr + x-default (en/de/zh karşılıkları yok → 404-hreflang yasağı, SEO_PLAYBOOK §1.4) */
@@ -178,20 +227,38 @@ function JsonLd({ graph }: { graph: object[] }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />;
 }
 
-const mainStyle = { maxWidth: prose, margin: "0 auto", padding: `${space.s8}px ${space.s4}px` } as const;
+export { JsonLd };
 
-export function pageMainStyle() {
-  return mainStyle;
+const pg = dict.page;
+const readMinutes = (body: string) => Math.max(1, Math.round(body.split(/\s+/).length / 200));
+
+/** Breadcrumb (görünür) — JSON-LD crumbs() ile aynı sıra */
+function visibleCrumbs(kind: Kind, title: string): Crumb[] {
+  const c: Crumb[] = [{ label: t.home, href: "/" }];
+  if (kind === "ihracat") c.push({ label: t.ihracat, href: "/ihracat" });
+  else c.push({ label: t.ithalat, href: "/ithalat" });
+  if (kind === "rehber") c.push({ label: t.guides, href: "/ithalat/rehberler" });
+  c.push({ label: title });
+  return c;
 }
 
-export { JsonLd };
+/** Aynı türdeki diğer sayfalar (ilgili kartlar) */
+function related(kind: Kind, slug: string) {
+  return listSlugs(kind)
+    .filter((x) => x !== slug)
+    .flatMap((x) => {
+      const d = readDoc(kind, x);
+      return d ? [{ slug: x, title: d.title, desc: d.desc ?? "" }] : [];
+    })
+    .slice(0, 3);
+}
 
 export function ContentPage({ kind, slug }: { kind: Kind; slug: string }) {
   const doc = readDoc(kind, slug);
   if (!doc) {
     return (
-      <main style={mainStyle}>
-        <h1>{t.notFound}</h1>
+      <main>
+        <PageHeader crumbs={[{ label: t.home, href: "/" }, { label: t.notFound }]} crumbsLabel={pg.crumbs} title={t.notFound} />
       </main>
     );
   }
@@ -227,16 +294,73 @@ export function ContentPage({ kind, slug }: { kind: Kind; slug: string }) {
     });
   }
   graph.push(crumbs(kind, doc.title, url));
+  const { html, toc } = md2html(doc.body);
+  const isExport = kind === "ihracat";
+  const isProgram = slug === "program-tanitim";
+  const rel = related(kind, slug);
+  const cta = isExport ? pg.cta.export : pg.cta.import;
   return (
-    <main style={mainStyle}>
+    <main>
       <JsonLd graph={graph} />
-      <h1>{doc.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: md2html(doc.body) }} />
-      {kind === "ihracat" && (
-        <p style={{ marginTop: space.s8 }}>
-          <Link href="/ihracat/ucretsiz-destek-basvuru">{t.applyCta}</Link>
-        </p>
+      <PageHeader
+        crumbs={visibleCrumbs(kind, doc.title)}
+        crumbsLabel={pg.crumbs}
+        eyebrow={pg.eyebrow[kind]}
+        title={doc.title}
+        lead={doc.desc}
+        meta={
+          <span className="chip">
+            <Clock aria-hidden="true" className="chip-icon" />
+            {pg.readTime.replace("{n}", String(readMinutes(doc.body)))}
+          </span>
+        }
+        actions={
+          isExport ? (
+            <Button href={APPLY_PATH} variant="primary" size="lg" arrow>{dict.home.hero.ctaPrimary}</Button>
+          ) : (
+            <Button href={quoteHref} variant="primary" size="lg" arrow>{dict.home.hero.ctaSecondary}</Button>
+          )
+        }
+      />
+      <ArticleLayout
+        toc={toc}
+        tocLabel={pg.toc}
+        aside={
+          isExport ? (
+            <AsideCta
+              title={pg.aside.applyTitle}
+              text={pg.aside.applyText}
+              cta={{ label: pg.aside.applyCta, href: APPLY_PATH }}
+              secondary={isProgram ? undefined : { label: pg.aside.programLink, href: "/ihracat/program-tanitim" }}
+            />
+          ) : (
+            <AsideCta title={pg.aside.quoteTitle} text={pg.aside.quoteText} cta={{ label: pg.aside.quoteCta, href: quoteHref }} />
+          )
+        }
+      >
+        <div className="prose" dangerouslySetInnerHTML={{ __html: html }} />
+      </ArticleLayout>
+      {rel.length > 0 && (
+        <Section id="ilgili" tone="alt">
+          <SectionHeader id="ilgili" title={pg.related[kind]} />
+          <ul role="list" className={cardGrid.grid}>
+            {rel.map((r, i) => {
+              const Icon = iconFor(r.slug);
+              return (
+                <Reveal as="li" key={r.slug} index={i}>
+                  <Card title={r.title} href={`${CFG[kind].base}/${r.slug}`} description={r.desc} icon={<Icon />} more={pg.read} />
+                </Reveal>
+              );
+            })}
+          </ul>
+        </Section>
       )}
+      <CtaBand
+        title={cta.title}
+        lead={cta.lead}
+        primary={isExport ? { label: dict.home.hero.ctaPrimary, href: APPLY_PATH } : { label: dict.home.hero.ctaSecondary, href: quoteHref }}
+        secondary={isExport ? { label: dict.home.hero.ctaSecondary, href: quoteHref } : undefined}
+      />
     </main>
   );
 }
@@ -263,29 +387,44 @@ export function IndexPage({ kind, section }: { kind: Kind; section: "ithalat" | 
       itemListElement: crumbItems.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.item })),
     },
   ];
+  const isExport = section === "ihracat";
+  const cta = isExport ? pg.cta.export : pg.cta.import;
+  const crumbList: Crumb[] = crumbItems.map((c, i) => ({ label: c.name, href: i < crumbItems.length - 1 ? c.item.replace(SITE, "") || "/" : undefined }));
   return (
-    <main style={mainStyle}>
+    <main>
       <JsonLd graph={graph} />
-      <h1>{m.h1}</h1>
-      <p>{m.intro}</p>
-      <ul>
-        {items.map(({ slug, doc }) => (
-          <li key={slug}>
-            <Link href={`${CFG[kind].base}/${slug}`}>{doc.title}</Link>
-            {doc.desc ? <> — {doc.desc}</> : null}
-          </li>
-        ))}
-      </ul>
-      {section === "ithalat" && (
-        <p>
-          <Link href="/ithalat/rehberler">{t.guides}</Link>
-        </p>
-      )}
-      {section === "ihracat" && (
-        <p>
-          <Link href="/ihracat/ucretsiz-destek-basvuru">{t.applyCta}</Link>
-        </p>
-      )}
+      <PageHeader
+        crumbs={crumbList}
+        crumbsLabel={pg.crumbs}
+        eyebrow={section === "rehberler" ? t.ithalat : t[section]}
+        title={m.h1}
+        lead={m.desc}
+        meta={<span className="chip">{pg.index.count.replace("{n}", String(items.length))}</span>}
+      />
+      <Section id="liste">
+        <h2 id="liste-title" className="visually-hidden">{m.intro.replace(/:$/, "")}</h2>
+        <ul role="list" className={cardGrid.grid}>
+          {items.map(({ slug, doc }, i) => {
+            const Icon = iconFor(slug);
+            return (
+              <Reveal as="li" key={slug} index={i % 3}>
+                <Card title={doc.title} href={`${CFG[kind].base}/${slug}`} description={doc.desc} icon={<Icon />} more={pg.read} />
+              </Reveal>
+            );
+          })}
+        </ul>
+        {section === "ithalat" && (
+          <p className={cardGrid.more}>
+            <Button href="/ithalat/rehberler" variant="ghost">{t.guides}</Button>
+          </p>
+        )}
+      </Section>
+      <CtaBand
+        title={cta.title}
+        lead={cta.lead}
+        primary={isExport ? { label: dict.home.hero.ctaPrimary, href: APPLY_PATH } : { label: dict.home.hero.ctaSecondary, href: quoteHref }}
+        secondary={isExport ? { label: dict.home.hero.ctaSecondary, href: quoteHref } : undefined}
+      />
     </main>
   );
 }

@@ -78,6 +78,21 @@ a:hover { text-decoration-thickness: var(--bw-2); }
 .lead { font-size: var(--fs-lg); color: var(--c-muted); max-inline-size: 60ch; }
 .on-brand .lead { color: var(--c-on-brand-muted); }
 
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-pill);
+  color: var(--c-muted);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-label);
+}
+.on-brand .chip { border-color: color-mix(in srgb, var(--c-on-brand) 18%, transparent); color: var(--c-on-brand); }
+.chip-icon { inline-size: var(--s-4); block-size: var(--s-4); }
+
 .visually-hidden {
   position: absolute !important;
   inline-size: var(--bw-1); block-size: var(--bw-1); /* standart sr-only kalıbı */
@@ -97,16 +112,123 @@ a:hover { text-decoration-thickness: var(--bw-2); }
 }
 .skip-link:focus { inset-block-start: var(--s-4); }
 
-/* ── uzun içerik (md render) — D4'te genişler */
-.prose { max-inline-size: var(--prose); }
+/* ── uzun içerik (md render: lib/ui md + app/(tr)/_lib/content) — markalı tipografi */
+.prose { max-inline-size: var(--prose); color: var(--c-ink); font-size: var(--fs-lg); line-height: var(--lh-body); }
+@media (min-width: 768px) { .prose { font-size: var(--fs-base); } }
 .prose > * + * { margin-block-start: var(--s-4); }
-.prose h2 { margin-block-start: var(--s-12); font-size: var(--type-h3); }
-.prose h3 { margin-block-start: var(--s-8); font-size: var(--type-h4); }
-.prose ul, .prose ol { padding-inline-start: var(--s-6); }
-.prose li + li { margin-block-start: var(--s-2); }
+.prose > :first-child { margin-block-start: 0; }
+.prose h2 {
+  position: relative;
+  margin-block-start: var(--s-16);
+  padding-block-start: var(--s-4);
+  font-size: var(--type-h3);
+  scroll-margin-block-start: calc(var(--nav-h) + var(--s-6));
+}
+.prose h2::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: var(--s-8);
+  block-size: var(--s-1);
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--c-accent), var(--c-highlight));
+}
+.prose h3 { margin-block-start: var(--s-8); font-size: var(--type-h4); scroll-margin-block-start: calc(var(--nav-h) + var(--s-6)); }
+.prose h2 + *, .prose h3 + * { margin-block-start: var(--s-3); }
+.prose a { color: var(--c-link); font-weight: var(--fw-label); text-decoration-color: color-mix(in srgb, var(--c-link) 40%, transparent); }
+.prose a:hover { text-decoration-color: currentColor; }
+.prose strong { color: var(--c-heading); }
+.prose ul, .prose ol { display: grid; gap: var(--s-2); padding-inline-start: var(--s-6); }
+.prose ul { list-style: none; padding-inline-start: var(--s-6); }
+.prose ul > li { position: relative; }
+.prose ul > li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: calc(-1 * var(--s-4));
+  inset-block-start: 0.7em;
+  inline-size: var(--s-2);
+  block-size: var(--s-2);
+  border-radius: 50%;
+  background: var(--c-accent);
+  opacity: 0.8;
+}
+.prose ol > li::marker { color: var(--c-accent); font-weight: var(--fw-heading); font-variant-numeric: tabular-nums; }
+.prose code {
+  padding: calc(var(--s-1) / 2) var(--s-1);
+  border-radius: calc(var(--radius) / 2);
+  background: color-mix(in srgb, var(--c-accent) 9%, transparent);
+  color: var(--c-heading);
+  font-size: 0.9em;
+}
+.prose pre {
+  overflow-x: auto;
+  padding: var(--s-4) var(--s-6);
+  border: var(--bw-1) solid var(--c-border);
+  border-inline-start: var(--s-1) solid var(--c-accent);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+}
+.prose pre code { padding: 0; background: none; color: var(--c-ink); white-space: pre-wrap; }
+.prose blockquote {
+  padding: var(--s-4) var(--s-6);
+  border-inline-start: var(--s-1) solid var(--c-highlight);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: color-mix(in srgb, var(--c-highlight) 8%, transparent);
+  color: var(--c-heading);
+}
+/* tablolar: md2html .table-wrap ile sarar → dar ekranda yatay kaydırma, sayfa taşmaz */
+.prose .table-wrap {
+  overflow-x: auto;
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  box-shadow: var(--e-1);
+}
 .prose table { inline-size: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
-.prose th, .prose td { padding: var(--s-3); border-block-end: var(--bw-1) solid var(--c-border); text-align: start; }
-.prose th { color: var(--c-heading); font-weight: var(--fw-heading); background: var(--c-surface); }
+.prose th, .prose td { padding: var(--s-3) var(--s-4); border-block-end: var(--bw-1) solid var(--c-border); text-align: start; vertical-align: top; }
+.prose th { background: color-mix(in srgb, var(--c-heading) 5%, var(--c-surface)); color: var(--c-heading); font-weight: var(--fw-heading); white-space: nowrap; }
+.prose tr:last-child td { border-block-end: 0; }
+.prose tbody tr:nth-child(even) td, .prose tr:nth-child(even) td { background: color-mix(in srgb, var(--c-heading) 2%, transparent); }
+/* SSS akordeonu: md2html "## Sık Sorulan Sorular" altındaki ### → <details> (JS'siz, klavye doğal) */
+.prose .faq { display: grid; gap: var(--s-2); }
+.prose details {
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+.prose details[open] { border-color: color-mix(in srgb, var(--c-accent) 45%, var(--c-border)); box-shadow: var(--e-2); }
+.prose summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  min-block-size: var(--touch);
+  padding: var(--s-3) var(--s-4);
+  color: var(--c-heading);
+  font-weight: var(--fw-heading);
+  cursor: pointer;
+  list-style: none;
+}
+.prose summary::-webkit-details-marker { display: none; }
+.prose summary::after {
+  content: "+";
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: var(--s-6);
+  block-size: var(--s-6);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+  color: var(--c-accent);
+  font-weight: var(--fw-heading);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.prose details[open] summary::after { transform: rotate(45deg); }
+.prose details > :not(summary) { padding: 0 var(--s-4) var(--s-4); color: var(--c-ink); }
 
 /* ── scroll reveal (lib/ui/motion/Reveal): varsayılan görünür; yalnız JS ekran dışını "hidden" yapar */
 [data-reveal="hidden"] { opacity: 0; transform: translateY(var(--motion-distance)); }

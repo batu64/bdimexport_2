@@ -1,0 +1,136 @@
+/* form.md — label ÜSTTE (float-label değil: brief + erişilebilirlik), input h ≥ touchMin, kenarlık border-strong (K4),
+   odak accent halkası, hata: danger kenar + ikon + metin (renk tek başına anlam taşımaz), submit'te/blurda. */
+.form { display: grid; gap: var(--s-6); }
+@media (min-width: 768px) {
+  .form { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-4); }
+  .form > * { grid-column: 1 / -1; }
+  .form > .field { grid-column: auto; }
+  .form > .field:has(textarea), .form > .field:has(.file) { grid-column: 1 / -1; }
+}
+
+.field { display: grid; gap: var(--s-2); align-content: start; }
+.label { display: inline-flex; align-items: center; gap: var(--s-2); color: var(--c-heading); font-size: var(--fs-sm); font-weight: var(--fw-label); }
+.labelIcon { inline-size: var(--s-4); block-size: var(--s-4); color: var(--c-accent); }
+
+.input {
+  inline-size: 100%;
+  min-block-size: var(--touch);
+  padding: var(--s-3) var(--s-4);
+  border: var(--bw-1) solid var(--c-border-strong);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  font-size: var(--fs-base);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+.input::placeholder { color: var(--c-muted); opacity: 1; }
+.input:hover { border-color: var(--c-heading); }
+.input:focus { outline: none; border-color: var(--c-accent); box-shadow: 0 0 0 var(--s-1) color-mix(in srgb, var(--c-accent) 22%, transparent); }
+.input[aria-invalid="true"] { border-color: var(--c-danger); background: color-mix(in srgb, var(--c-danger) 4%, var(--c-surface)); animation: shake var(--dur-slow) var(--ease-out); }
+@keyframes shake { 20%, 60% { transform: translateX(calc(-1 * var(--s-1))); } 40%, 80% { transform: translateX(var(--s-1)); } }
+textarea.input { resize: vertical; min-block-size: calc(var(--touch) * 2.5); }
+.file { padding-block: var(--s-2); cursor: pointer; }
+.file::file-selector-button {
+  margin-inline-end: var(--s-3);
+  padding: var(--s-2) var(--s-4);
+  border: 0;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--c-accent) 12%, transparent);
+  color: var(--c-heading);
+  font-weight: var(--fw-heading);
+  cursor: pointer;
+}
+
+.err {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-2);
+  color: var(--c-danger);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+}
+.errIcon { flex: none; inline-size: var(--s-4); block-size: var(--s-4); margin-block-start: calc(var(--s-1) / 2); }
+.formErr {
+  padding: var(--s-3) var(--s-4);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-danger) 40%, transparent);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--c-danger) 6%, var(--c-surface));
+}
+
+.fieldset { display: flex; flex-wrap: wrap; gap: var(--s-2); min-inline-size: 0; padding: 0; border: 0; }
+.fieldset > .pair { flex-basis: 100%; }
+.legend { margin-block-end: var(--s-2); padding: 0; color: var(--c-heading); font-size: var(--fs-sm); font-weight: var(--fw-heading); }
+.pair { display: grid; gap: var(--s-4); }
+@media (min-width: 768px) { .pair { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* sertifikalar: seçilebilir çipler (yerel checkbox korunur — klavye/ekran okuyucu doğal) */
+.cert {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  padding-inline: var(--s-4);
+  border: var(--bw-1) solid var(--c-border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+.cert:hover { border-color: var(--c-accent); }
+.cert:has(input:checked) { border-color: var(--c-accent); background: color-mix(in srgb, var(--c-accent) 10%, var(--c-surface)); color: var(--c-heading); font-weight: var(--fw-label); }
+.cert input, .checkRow input { inline-size: var(--s-4); block-size: var(--s-4); accent-color: var(--c-accent); flex: none; }
+
+/* KVKK (zorunlu) / logo (ayrı, opsiyonel) rıza kutuları */
+.consent {
+  padding: var(--s-4);
+  border: var(--bw-1) solid var(--c-border-strong);
+  border-inline-start: var(--s-1) solid var(--c-accent);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+}
+.optional { border-style: dashed; border-inline-start-style: solid; border-inline-start-color: var(--c-highlight); }
+.checkRow { display: flex; gap: var(--s-3); align-items: flex-start; font-size: var(--fs-sm); line-height: var(--lh-body); cursor: pointer; }
+.checkRow input { margin-block-start: var(--s-1); }
+
+.turnstile:empty { display: none; }
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  inline-size: 100%;
+  min-block-size: calc(var(--touch) + var(--s-2));
+  padding-inline: var(--s-8);
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--c-highlight);
+  color: var(--c-on-highlight);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-heading);
+  box-shadow: var(--e-1);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+}
+@media (min-width: 768px) { .submit { inline-size: auto; justify-self: start; } }
+.submit:hover:not(:disabled) { transform: translateY(calc(-1 * var(--bw-1))); box-shadow: 0 var(--s-2) var(--s-6) color-mix(in srgb, var(--c-highlight) 35%, transparent); }
+.submit:disabled { opacity: 0.55; cursor: not-allowed; }
+.submit[data-busy] { cursor: wait; opacity: 0.85; }
+.submitIcon { inline-size: var(--s-6); block-size: var(--s-6); }
+.spin { inline-size: var(--s-6); block-size: var(--s-6); animation: spin 0.9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.hint { color: var(--c-muted); font-size: var(--fs-xs); }
+
+.notice, .done {
+  display: grid;
+  gap: var(--s-3);
+  padding: var(--s-8);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+}
+.notice { border-inline-start: var(--s-1) solid var(--c-warning); }
+.done { border-inline-start: var(--s-1) solid var(--c-success); text-align: start; }
+.doneIcon { inline-size: var(--s-12); block-size: var(--s-12); color: var(--c-success); }

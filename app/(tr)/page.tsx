@@ -3,10 +3,7 @@
 // Primary (amber) CTA iki konumda: hero + son bölüm (cta.md). Navbar CTA secondary görünümde.
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowRight, BadgeCheck, Cog, Cpu, Factory, FileSearch, Globe2, Handshake, House, Megaphone, Package,
-  PackageSearch, Rocket, Shirt, Ship, Sofa, Store, Truck, Landmark,
-} from "lucide-react";
+import { ArrowRight, BadgeCheck, Factory, FileSearch, Globe2, Handshake, Landmark, Package, PackageSearch, Rocket, Ship } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 import dict from "@/lib/messages/tr.json";
@@ -16,9 +13,12 @@ import StatBand from "@/lib/ui/StatBand";
 import { Section, SectionHeader } from "@/lib/ui/Section";
 import Card from "@/lib/ui/Card";
 import Button from "@/lib/ui/Button";
+import CtaBand from "@/lib/ui/CtaBand";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { listSlugs, readDoc } from "./_lib/content";
 import { quoteHref, services } from "./_lib/chrome";
+import { GUIDE_ICON, SERVICE_ICON } from "./_lib/icons";
+import { APPLY_PATH as APPLY } from "./_lib/links";
 import s from "./home.module.css";
 
 export const metadata: Metadata = {
@@ -28,14 +28,6 @@ export const metadata: Metadata = {
   alternates: toMetadataAlternates(buildAlternateSet("", ["tr"])),
 };
 
-const APPLY = "/ihracat/ucretsiz-destek-basvuru";
-const SERVICE_ICON: Record<string, LucideIcon> = {
-  tedarik: PackageSearch, "fabrika-denetimi": Factory, lojistik: Truck, gumruk: Landmark,
-  "e-ihracat": Store, "b2b-pazarlama": Megaphone, "program-tanitim": Rocket,
-};
-const GUIDE_ICON: Record<string, LucideIcon> = {
-  tekstil: Shirt, elektronik: Cpu, "makine-parcalari": Cog, "ev-yasam": House, ambalaj: Package, mobilya: Sofa,
-};
 const STEP_ICON: LucideIcon[] = [FileSearch, PackageSearch, Factory, Ship, Landmark];
 
 export default function TrHomePage() {
@@ -205,19 +197,12 @@ export default function TrHomePage() {
       </Section>
 
       {/* ── Kapanış CTA */}
-      <section aria-labelledby="cta-title" className={`on-brand ${s.ctaBand}`}>
-        <div className={s.ctaBg} aria-hidden="true" />
-        <div className={`container ${s.ctaInner}`}>
-          <Reveal>
-            <h2 id="cta-title" className={s.ctaTitle}>{h.cta.title}</h2>
-            <p className={`lead ${s.ctaLead}`}>{h.cta.lead}</p>
-          </Reveal>
-          <Reveal index={1} className={s.ctaActions}>
-            <Button href={APPLY} variant="primary" size="lg" arrow>{h.hero.ctaPrimary}</Button>
-            <Button href={quoteHref} variant="secondary" tone="brand" size="lg">{h.hero.ctaSecondary}</Button>
-          </Reveal>
-        </div>
-      </section>
+      <CtaBand
+        title={h.cta.title}
+        lead={h.cta.lead}
+        primary={{ label: h.hero.ctaPrimary, href: APPLY }}
+        secondary={{ label: h.hero.ctaSecondary, href: quoteHref }}
+      />
     </main>
   );
 }

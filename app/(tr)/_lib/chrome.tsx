@@ -5,12 +5,12 @@ import type { FooterProps } from "@/lib/ui/Footer";
 import type { NavbarProps, SiteLink } from "@/lib/ui/Navbar";
 import dict from "@/lib/messages/tr.json";
 import { listSlugs, readDoc, type Kind } from "./content";
+import { QUOTE_EMAIL, quoteHref } from "./links";
+
+export { quoteHref };
 
 const SITE_HOME: Record<Locale, string> = { tr: "/", en: "/en", de: "/de", zh: "/zh" };
 const ORDER: Locale[] = ["tr", "en", "de", "zh"];
-
-export const QUOTE_EMAIL = process.env.NEXT_PUBLIC_QUOTE_EMAIL ?? "iletisim@bdimexport.com";
-export const quoteHref = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(dict.quote.subject)}`;
 
 export function sites(current: Locale): SiteLink[] {
   return ORDER.map((l) => ({ label: localeConfig[l].label, href: SITE_HOME[l], lang: localeConfig[l].hreflang, current: l === current }));

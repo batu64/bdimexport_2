@@ -6,7 +6,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { color, fontSize, radius, space, touchMin } from "@/lib/ui/tokens";
+import { AlertCircle, CheckCircle2, FileUp, Loader2, ShieldCheck } from "lucide-react";
+import st from "./form.module.css";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "";
 const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
@@ -49,29 +50,11 @@ declare global {
   }
 }
 
-const s = {
-  form: { maxWidth: 720, display: "grid", gap: space.s4 },
-  input: {
-    width: "100%", minHeight: touchMin, padding: space.s3, borderRadius: radius,
-    border: `1px solid ${color.muted}`, fontSize: fontSize.base, boxSizing: "border-box",
-  },
-  hint: { fontSize: fontSize.xs, color: color.muted },
-  err: { fontSize: fontSize.sm, color: color.ink, fontWeight: 600, marginTop: space.s1 },
-  box: { border: `1px solid ${color.muted}`, borderRadius: radius, padding: space.s4 },
-  boxOptional: { border: `1px dashed ${color.muted}`, borderRadius: radius, padding: space.s4 },
-  checkRow: { display: "flex", gap: space.s2, alignItems: "flex-start" },
-  certLabel: { marginInlineEnd: space.s4, display: "inline-flex", gap: space.s1, minHeight: touchMin, alignItems: "center" },
-  submit: {
-    minHeight: touchMin, padding: `${space.s3}px ${space.s6}px`, background: color.highlight, color: color.primary,
-    border: "none", borderRadius: radius, fontWeight: 600, fontSize: fontSize.base,
-  },
-  notice: { border: `1px solid ${color.primary}`, borderRadius: radius, padding: space.s4 },
-  done: { border: `1px solid ${color.accent}`, borderRadius: radius, padding: space.s8 },
-} as const;
+// Görünüm: form.module.css (design/components/form.md; yalnız token değişkenleri). Bu dosyada mantık D4'te DEĞİŞMEDİ.
 
 function FieldError({ id, msg }: { id: string; msg?: string }) {
   if (!msg) return null;
-  return <div id={id} role="alert" style={s.err}>Hata: {msg}</div>;
+  return <div id={id} role="alert" className={st.err}><AlertCircle aria-hidden="true" className={st.errIcon} />Hata: {msg}</div>;
 }
 
 export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }) {
@@ -190,7 +173,8 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
 
   if (status === "done") {
     return (
-      <div role="status" style={s.done}>
+      <div role="status" className={st.done}>
+        <CheckCircle2 aria-hidden="true" className={st.doneIcon} />
         <h2>Başvurunuz alındı</h2>
         <p>Ön değerlendirme sonucu 48 saat içinde {f.contactEmail.trim()} adresine e-posta ile bildirilir.</p>
       </div>
@@ -199,7 +183,7 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
 
   if (!configured) {
     return (
-      <div role="status" style={s.notice}>
+      <div role="status" className={st.notice}>
         <p>Çevrimiçi başvuru şu an alınamıyor. Lütfen daha sonra tekrar deneyin.</p>
       </div>
     );
@@ -211,46 +195,46 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
   });
 
   return (
-    <form onSubmit={submit} noValidate style={s.form} aria-busy={status === "submitting"}>
-      <div>
-        <label htmlFor="firmaAdi">Firma Adı *</label>
-        <input id="firmaAdi" style={s.input} value={f.firmaAdi} autoComplete="organization" maxLength={200}
+    <form onSubmit={submit} noValidate className={st.form} aria-busy={status === "submitting"}>
+      <div className={st.field}>
+        <label className={st.label} htmlFor="firmaAdi">Firma Adı *</label>
+        <input id="firmaAdi" className={st.input} value={f.firmaAdi} autoComplete="organization" maxLength={200}
           onChange={(e) => set("firmaAdi", e.target.value)} aria-required="true" {...aria("firmaAdi")} />
         <FieldError id="err-firmaAdi" msg={errors.firmaAdi} />
       </div>
 
-      <div>
-        <label htmlFor="vergiNo">Vergi No *</label>
-        <input id="vergiNo" style={s.input} inputMode="numeric" value={f.vergiNo} maxLength={14}
+      <div className={st.field}>
+        <label className={st.label} htmlFor="vergiNo">Vergi No *</label>
+        <input id="vergiNo" className={st.input} inputMode="numeric" value={f.vergiNo} maxLength={14}
           onChange={(e) => set("vergiNo", e.target.value)} aria-required="true" {...aria("vergiNo")} />
         <FieldError id="err-vergiNo" msg={errors.vergiNo} />
       </div>
 
-      <div>
-        <label htmlFor="sektor">Sektör</label>
-        <input id="sektor" style={s.input} value={f.sektor} maxLength={120} placeholder="Örn: Tekstil, Gıda, Mobilya"
+      <div className={st.field}>
+        <label className={st.label} htmlFor="sektor">Sektör</label>
+        <input id="sektor" className={st.input} value={f.sektor} maxLength={120} placeholder="Örn: Tekstil, Gıda, Mobilya"
           onChange={(e) => set("sektor", e.target.value)} {...aria("sektor")} />
         <FieldError id="err-sektor" msg={errors.sektor} />
       </div>
 
-      <div>
-        <label htmlFor="katalog">Ürün Kataloğu (PDF, en fazla 25 MB)</label>
-        <input id="katalog" type="file" accept="application/pdf" style={s.input}
+      <div className={st.field}>
+        <label className={st.label} htmlFor="katalog"><FileUp aria-hidden="true" className={st.labelIcon} />Ürün Kataloğu (PDF, en fazla 25 MB)</label>
+        <input id="katalog" type="file" accept="application/pdf" className={`${st.input} ${st.file}`}
           onChange={(e) => set("katalogFile", e.target.files?.[0] ?? null)} {...aria("katalogFile")} />
         <FieldError id="err-katalogFile" msg={errors.katalogFile} />
       </div>
 
-      <div>
-        <label htmlFor="kapasite">Üretim Kapasitesi</label>
-        <input id="kapasite" style={s.input} value={f.kapasite} maxLength={300} placeholder="Örn: ayda 5.000 adet"
+      <div className={st.field}>
+        <label className={st.label} htmlFor="kapasite">Üretim Kapasitesi</label>
+        <input id="kapasite" className={st.input} value={f.kapasite} maxLength={300} placeholder="Örn: ayda 5.000 adet"
           onChange={(e) => set("kapasite", e.target.value)} {...aria("kapasite")} />
         <FieldError id="err-kapasite" msg={errors.kapasite} />
       </div>
 
-      <fieldset>
-        <legend>Sertifikalar</legend>
+      <fieldset className={st.fieldset}>
+        <legend className={st.legend}>Sertifikalar</legend>
         {CERT_OPTIONS.map((c) => (
-          <label key={c} style={s.certLabel}>
+          <label key={c} className={st.cert}>
             <input type="checkbox" checked={f.sertifikalar.includes(c)}
               onChange={(e) => set("sertifikalar", e.target.checked ? [...f.sertifikalar, c] : f.sertifikalar.filter((x) => x !== c))} />
             {c}
@@ -258,31 +242,31 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
         ))}
       </fieldset>
 
-      <div>
-        <label htmlFor="gecmis">İhracat Geçmişi</label>
-        <textarea id="gecmis" rows={3} style={s.input} value={f.ihracatGecmisi} maxLength={2000}
+      <div className={st.field}>
+        <label className={st.label} htmlFor="gecmis">İhracat Geçmişi</label>
+        <textarea id="gecmis" rows={3} className={st.input} value={f.ihracatGecmisi} maxLength={2000}
           placeholder="Varsa ülke, ürün ve yıl bilgisi" onChange={(e) => set("ihracatGecmisi", e.target.value)} {...aria("ihracatGecmisi")} />
         <FieldError id="err-ihracatGecmisi" msg={errors.ihracatGecmisi} />
       </div>
 
-      <fieldset>
-        <legend>İletişim</legend>
-        <div style={{ display: "grid", gap: space.s4 }}>
-          <div>
-            <label htmlFor="contactName">Yetkili Adı Soyadı</label>
-            <input id="contactName" style={s.input} value={f.contactName} autoComplete="name" maxLength={120}
+      <fieldset className={st.fieldset}>
+        <legend className={st.legend}>İletişim</legend>
+        <div className={st.pair}>
+          <div className={st.field}>
+            <label className={st.label} htmlFor="contactName">Yetkili Adı Soyadı</label>
+            <input id="contactName" className={st.input} value={f.contactName} autoComplete="name" maxLength={120}
               onChange={(e) => set("contactName", e.target.value)} {...aria("contactName")} />
             <FieldError id="err-contactName" msg={errors.contactName} />
           </div>
-          <div>
-            <label htmlFor="contactEmail">E-posta *</label>
-            <input id="contactEmail" type="email" style={s.input} value={f.contactEmail} autoComplete="email" maxLength={200}
+          <div className={st.field}>
+            <label className={st.label} htmlFor="contactEmail">E-posta *</label>
+            <input id="contactEmail" type="email" className={st.input} value={f.contactEmail} autoComplete="email" maxLength={200}
               onChange={(e) => set("contactEmail", e.target.value)} aria-required="true" {...aria("contactEmail")} />
             <FieldError id="err-contactEmail" msg={errors.contactEmail} />
           </div>
-          <div>
-            <label htmlFor="contactPhone">Telefon / WhatsApp</label>
-            <input id="contactPhone" type="tel" style={s.input} value={f.contactPhone} autoComplete="tel" maxLength={40}
+          <div className={st.field}>
+            <label className={st.label} htmlFor="contactPhone">Telefon / WhatsApp</label>
+            <input id="contactPhone" type="tel" className={st.input} value={f.contactPhone} autoComplete="tel" maxLength={40}
               onChange={(e) => set("contactPhone", e.target.value)} {...aria("contactPhone")} />
             <FieldError id="err-contactPhone" msg={errors.contactPhone} />
           </div>
@@ -290,8 +274,8 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
       </fieldset>
 
       {/* KVKK açık rızası — zorunlu (Bölüm 1). Sunucu da rızasız isteği 400 ile reddeder. */}
-      <div style={s.box}>
-        <label style={s.checkRow}>
+      <div className={st.consent}>
+        <label className={st.checkRow}>
           <input type="checkbox" checked={f.kvkkConsent} onChange={(e) => set("kvkkConsent", e.target.checked)}
             aria-required="true" {...aria("kvkkConsent")} />
           <span>
@@ -303,8 +287,8 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
       </div>
 
       {/* Logo yayın rızası — ayrı checkbox, opsiyonel (Bölüm 2) */}
-      <div style={s.boxOptional}>
-        <label style={s.checkRow}>
+      <div className={`${st.consent} ${st.optional}`}>
+        <label className={st.checkRow}>
           <input type="checkbox" checked={f.logoConsent} onChange={(e) => set("logoConsent", e.target.checked)} />
           <span>
             Firma adımın, sektörümün ve logomun yabancı dil sayfalarında (İngilizce, Almanca vb.)
@@ -314,14 +298,15 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
         </label>
       </div>
 
-      <div ref={widgetEl} />
-      {errors.form && <div role="alert" style={s.err}>Hata: {errors.form}</div>}
+      <div ref={widgetEl} className={st.turnstile} />
+      {errors.form && <div role="alert" className={`${st.err} ${st.formErr}`}><AlertCircle aria-hidden="true" className={st.errIcon} />Hata: {errors.form}</div>}
 
       <button type="submit" disabled={status === "submitting" || !f.kvkkConsent}
-        style={{ ...s.submit, cursor: status === "submitting" ? "wait" : "pointer" }}>
+        className={st.submit} data-busy={status === "submitting" || undefined}>
+        {status === "submitting" ? <Loader2 aria-hidden="true" className={st.spin} /> : <ShieldCheck aria-hidden="true" className={st.submitIcon} />}
         {status === "submitting" ? "Gönderiliyor…" : "Başvuruyu Gönder"}
       </button>
-      <p style={s.hint}>* işaretli alanlar zorunludur. Logo yayın rızası ayrıdır ve isteğe bağlıdır.</p>
+      <p className={st.hint}>* işaretli alanlar zorunludur. Logo yayın rızası ayrıdır ve isteğe bağlıdır.</p>
     </form>
   );
 }

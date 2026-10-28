@@ -2,7 +2,9 @@
 import type { Metadata } from "next";
 import { InsightList } from "@/lib/ui/insights";
 import NewsCards from "@/app/components/NewsCards";
-import { pageMainStyle, trAlternates } from "../_lib/content";
+import PageHeader from "@/lib/ui/PageHeader";
+import dict from "@/lib/messages/tr.json";
+import { trAlternates } from "../_lib/content";
 
 export const metadata: Metadata = {
   title: { absolute: "Makaleler: İthalat ve İhracat Rehberleri | Bdimexport" },
@@ -12,10 +14,18 @@ export const metadata: Metadata = {
 
 export default function MakalelerPage() {
   return (
-    <main style={pageMainStyle()}>
-      <h1>Makaleler</h1>
-      <InsightList scope="tr" empty="Henüz yayınlanmış makale yok. Yeni rehberler insan onayından geçtikçe burada listelenir." />
-      <NewsCards locale="tr" />
+    <main>
+      <PageHeader
+        crumbs={[{ label: dict.content.home, href: "/" }, { label: dict.articles.title }]}
+        crumbsLabel={dict.page.crumbs}
+        eyebrow={dict.articles.eyebrow}
+        title={dict.articles.title}
+        lead={dict.articles.lead}
+      />
+      <div className="container section">
+        <InsightList scope="tr" empty={dict.articles.empty} />
+        <NewsCards locale="tr" />
+      </div>
     </main>
   );
 }
