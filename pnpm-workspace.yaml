@@ -1,0 +1,10 @@
+# pnpm build-script politikası (pnpm 12: onaylanmamış postinstall = frozen install hatası).
+# esbuild: Remotion bundler'ın platform ikilisini doğrular (offline video render, devDependency).
+# Diğerleri bilinçli KAPALI: sharp (images.unoptimized — static export), @swc/core (next-intl opsiyonel eklentisi),
+# @parcel/watcher (opsiyonel dosya izleyici), unrs-resolver (eslint import çözümleyici; JS yedeği yeterli).
+allowBuilds:
+  esbuild: true
+  sharp: false
+  '@swc/core': false
+  '@parcel/watcher': false
+  unrs-resolver: false
