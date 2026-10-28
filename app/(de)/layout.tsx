@@ -1,5 +1,7 @@
 // DE DACH placeholder — FAZ 5'te tam içerik; footer Impressum/Datenschutz zorunlu konum notu
 // (agents/de-agent.md §3: hukuki sayfalar insan onaylı — bu placeholder hukuki metin İÇERMEZ)
+import "@/app/globals.css";
+import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
 
@@ -11,7 +13,10 @@ export const metadata: Metadata = {
 
 export default function DeLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de">
+    <html {...htmlAttrs("de")}>
+      <head>
+        <ThemeStyle />
+      </head>
       <body>
     <IntlProvider locale="de">
       <div lang="de">{children}</div>

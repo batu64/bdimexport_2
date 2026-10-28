@@ -1,5 +1,7 @@
 // TR route group KÖK layout — FAZ_2 2.5 rework: <html lang> artık grup başına (eski tek app/layout.tsx kaldırıldı).
 // Eski kök metadata (metadataBase, title şablonu, description, x-default: tr) BURADA; (tr) altındaki alt segmentler şablonu eskisi gibi alır.
+import "@/app/globals.css";
+import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import type { Metadata } from "next";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 import { IntlProvider } from "@/lib/intl";
@@ -14,7 +16,10 @@ export const metadata: Metadata = {
 
 export default function TrLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="tr">
+    <html {...htmlAttrs("tr")}>
+      <head>
+        <ThemeStyle />
+      </head>
       <body>
         <IntlProvider locale="tr">
           <div lang="tr">{children}</div>

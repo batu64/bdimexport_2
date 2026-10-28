@@ -1,0 +1,119 @@
+/* Public site temel katmanı — OPUS_TASARIM_TALIMATI D1.
+   Değerlerin TAMAMI lib/ui/tokens.ts → lib/ui/theme.ts ile üretilen var(--…)'dan gelir: bu dosyada hex/px YOK.
+   @media eşikleri tokens.breakpoint ile birebir (CSS'te değişken kullanılamadığı tek yer; qa/TASARIM taraması doğrular).
+   Mantıksal özellikler (inline/block) → /en/ar RTL otomatik aynalanır. */
+
+/* ── reset */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { color-scheme: var(--color-scheme); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  min-block-size: 100vh;
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "cv11", "ss01"; /* Inter: tek katlı a, düz 1 — kurumsal okunuş */
+}
+[dir="rtl"] { font-family: var(--font-sans); }
+img, picture, video, canvas, svg { display: block; max-inline-size: 100%; }
+input, button, textarea, select { font: inherit; color: inherit; }
+p, h1, h2, h3, h4, h5, h6, li, dd, blockquote { overflow-wrap: break-word; }
+ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
+
+/* ── tipografi */
+h1, h2, h3, h4 {
+  color: var(--c-heading);
+  font-weight: var(--fw-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-tight);
+  text-wrap: balance;
+}
+h1 { font-size: var(--type-h1); }
+h2 { font-size: var(--type-h2); }
+h3 { font-size: var(--type-h3); }
+h4 { font-size: var(--type-h4); }
+p { text-wrap: pretty; }
+small { font-size: var(--fs-sm); }
+strong, b { font-weight: var(--fw-heading); }
+
+a { color: var(--c-link); text-underline-offset: 0.2em; text-decoration-thickness: from-font; }
+a:hover { text-decoration-thickness: var(--bw-2); }
+
+::selection { background: var(--c-highlight); color: var(--c-on-highlight); }
+
+/* ── odak (design-tokens K6: 2px + 2px offset; koyu zeminde highlight) */
+:focus-visible { outline: var(--bw-2) solid var(--c-focus); outline-offset: var(--bw-2); border-radius: var(--bw-2); }
+.on-brand :focus-visible { outline-color: var(--c-focus-on-brand); }
+
+/* ── düzen yardımcıları */
+.container {
+  inline-size: 100%;
+  max-inline-size: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--s-4);
+}
+@media (min-width: 768px) { .container { padding-inline: var(--s-6); } }
+
+.section { padding-block: var(--section-y); }
+.section-alt { background: var(--c-surface-alt); }
+.on-brand { background: var(--c-brand); color: var(--c-on-brand); }
+.on-brand h1, .on-brand h2, .on-brand h3, .on-brand h4 { color: var(--c-on-brand); }
+.on-brand a { color: var(--c-accent-on-brand); }
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+.on-brand .eyebrow { color: var(--c-accent-on-brand); }
+.lead { font-size: var(--fs-lg); color: var(--c-muted); max-inline-size: 60ch; }
+.on-brand .lead { color: var(--c-on-brand-muted); }
+
+.visually-hidden {
+  position: absolute !important;
+  inline-size: var(--bw-1); block-size: var(--bw-1); /* standart sr-only kalıbı */
+  padding: 0; margin: calc(-1 * var(--bw-1)); overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--s-4);
+  inset-block-start: calc(-1 * var(--s-24));
+  z-index: 100;
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--radius);
+  background: var(--c-highlight);
+  color: var(--c-on-highlight);
+  font-weight: var(--fw-heading);
+  text-decoration: none;
+}
+.skip-link:focus { inset-block-start: var(--s-4); }
+
+/* ── uzun içerik (md render) — D4'te genişler */
+.prose { max-inline-size: var(--prose); }
+.prose > * + * { margin-block-start: var(--s-4); }
+.prose h2 { margin-block-start: var(--s-12); font-size: var(--type-h3); }
+.prose h3 { margin-block-start: var(--s-8); font-size: var(--type-h4); }
+.prose ul, .prose ol { padding-inline-start: var(--s-6); }
+.prose li + li { margin-block-start: var(--s-2); }
+.prose table { inline-size: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.prose th, .prose td { padding: var(--s-3); border-block-end: var(--bw-1) solid var(--c-border); text-align: start; }
+.prose th { color: var(--c-heading); font-weight: var(--fw-heading); background: var(--c-surface); }
+
+/* ── hareket azaltma: tüm geçiş/animasyonlar kapanır (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
