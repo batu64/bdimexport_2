@@ -55,7 +55,7 @@
 
 /* ── düzen */
 .inner { display: grid; gap: var(--s-12); align-items: center; }
-@media (min-width: 1280px) { .inner { grid-template-columns: 6fr 5fr; gap: var(--s-12); } }
+@media (min-width: 1280px) { .inner { grid-template-columns: 6fr 5fr; gap: var(--s-12); } .inner.single { grid-template-columns: minmax(0, 1fr); } }
 .copy { display: grid; gap: var(--s-6); max-inline-size: 44em; }
 
 .eyebrow {

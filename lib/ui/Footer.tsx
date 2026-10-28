@@ -12,7 +12,7 @@ export type FooterProps = {
   columns: { title: string; links: NavLink[] }[];
   sites: { title: string; links: SiteLink[] };
   legal?: { title: string; links: NavLink[] };
-  contact: { title: string; email: string; emailLabel: string };
+  contact?: { title: string; email: string; emailLabel: string };
   rights: string;
 };
 
@@ -24,11 +24,13 @@ export default function Footer({ brand, tagline, columns, sites, legal, contact,
         <div className={s.brandCol}>
           <p className={s.brand}>{brand}</p>
           <p className={s.tagline}>{tagline}</p>
-          <p className={s.colTitle}>{contact.title}</p>
-          <a className={s.channel} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>
-            <Mail aria-hidden="true" className={s.icon} />
-            <span>{contact.email}</span>
-          </a>
+          {contact && <>
+            <p className={s.colTitle}>{contact.title}</p>
+            <a className={s.channel} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>
+              <Mail aria-hidden="true" className={s.icon} />
+              <span>{contact.email}</span>
+            </a>
+          </>}
         </div>
         {columns.map((c) => (
           <nav key={c.title} aria-label={c.title} className={s.col}>

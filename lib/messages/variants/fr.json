@@ -1,0 +1,36 @@
+{
+  "label": "Français",
+  "channels": [
+    {
+      "id": "email",
+      "text": "Nous écrire"
+    },
+    {
+      "id": "whatsapp",
+      "text": "WhatsApp"
+    }
+  ],
+  "ctaNote": "Devis gratuit sous 24 heures · Prix en EUR",
+  "tagline": "Approvisionnement et export B2B depuis la Turquie",
+  "home": "Accueil",
+  "navLabel": "Navigation",
+  "switcherLabel": "Langue",
+  "contact": {
+    "title": "Contactez-nous",
+    "body": "Vos canaux : e-mail (principal) et WhatsApp. Les liens directs seront activés dès la mise en service de nos canaux ; cette page sera mise à jour. Envoyez votre demande avec votre produit et votre prix cible : nous vous répondons sous 24 heures. Prix en EUR ; numéros de téléphone acceptés au format +33."
+  },
+  "sourcing": {
+    "label": "Approvisionnement (sourcing)"
+  },
+  "skip": "Aller au contenu",
+  "crumbs": "Fil d'Ariane",
+  "menuOpen": "Ouvrir le menu",
+  "menuClose": "Fermer le menu",
+  "insights": "Articles",
+  "toc": "Sur cette page",
+  "read": "Lire",
+  "languages": "Langues",
+  "rights": "Tous droits réservés.",
+  "insightsLead": "Guides pratiques pour acheter en Turquie. Chaque article est relu par une personne avant publication.",
+  "insightsEmpty": "Aucun article publié pour le moment. Les nouveaux guides apparaîtront ici après relecture."
+}

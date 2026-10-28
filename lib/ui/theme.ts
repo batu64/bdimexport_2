@@ -32,7 +32,7 @@ function scaleVars(): Record<string, string | number> {
   Object.assign(v, {
     "track-tight": tracking.tight, "track-caps": tracking.caps,
     "font-sans": font.latin.replace('"Inter"', 'var(--font-inter), "Inter"'),
-    "font-arabic": font.arabic, "font-zh": font.zh,
+    "font-arabic": font.arabic.replace('"Noto Sans Arabic"', 'var(--font-noto-arabic), "Noto Sans Arabic"'), "font-zh": font.zh,
     radius: px(radius), "radius-lg": px(radiusLg), "radius-pill": px(radiusPill),
     "bw-1": px(borderWidth.hair), "bw-2": px(borderWidth.strong),
     touch: px(touchMin), container: px(container), prose,

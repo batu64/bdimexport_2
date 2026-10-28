@@ -1,6 +1,7 @@
 // /en/nl/insights — FAZ_4 4.6 article index for the NL variant (+ edge news cards). Layout: VariantShell (dir/lang).
 import type { Metadata } from "next";
-import styles from "@/lib/ui/variant.module.css";
+import PageHeader from "@/lib/ui/PageHeader";
+import { VARIANTS } from "@/lib/ui/variants";
 import { InsightList, SITE } from "@/lib/ui/insights";
 import NewsCards from "@/app/components/NewsCards";
 
@@ -11,11 +12,14 @@ export const metadata: Metadata = {
 };
 
 export default function InsightsPage() {
+  const v = VARIANTS.nl;
   return (
-    <main className={styles.main}>
-      <h1>Insights</h1>
-      <InsightList scope="nl" empty="No articles published yet. New guides appear here after human review." />
-      <NewsCards locale="en-nl" className={styles.news} />
+    <main>
+      <PageHeader crumbs={[{ label: v.home, href: "/en/nl" }, { label: v.insights }]} crumbsLabel={v.crumbs} eyebrow={v.tagline} title={v.insights} lead={v.insightsLead} />
+      <div className="container section">
+        <InsightList scope="nl" empty={v.insightsEmpty} more={v.read} />
+        <NewsCards locale="en-nl" />
+      </div>
     </main>
   );
 }

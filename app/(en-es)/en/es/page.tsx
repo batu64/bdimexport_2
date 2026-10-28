@@ -22,5 +22,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <VariantPageBody variant="es" kind="home" title={parsed.title} html={parsed.html} />;
+  return <VariantPageBody variant="es" kind="home" title={parsed.title} html={parsed.html} desc={parsed.desc} />;
 }

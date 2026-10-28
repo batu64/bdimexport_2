@@ -1,5 +1,6 @@
-// Bölge kanal CTA — I18N_RULES §2 matrisi. Tek komponent; kanal listesi lib/ui/variants.ts'ten.
-// Birincil kanal highlight dolgu (sayfada 1), ikincil kontur (cta.md). Gerçek handle FAZ_8'de; şimdilik #contact çapası.
+// Bölge kanal CTA — I18N_RULES §2 matrisi (ru→Telegram · fr/nl→e-posta · es/ar→WhatsApp). Tek komponent; kanal listesi sözlükten.
+// Birincil kanal highlight dolgu, ikincil kontur (cta.md). Gerçek handle FAZ_8'de; şimdilik #contact çapası (uydurma link yok).
+// Markup sözleşmesi (variants.smoke.test): role="region" + <a href data-channel class>metin</a> (ikon/iç div yok).
 import styles from "./variant.module.css";
 import { VARIANTS } from "./variants";
 import type { EnVariant } from "../i18n";

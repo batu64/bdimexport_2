@@ -1,0 +1,32 @@
+{
+  "label": "Nederlands",
+  "channels": [
+    {
+      "id": "email",
+      "text": "E-mail ons"
+    }
+  ],
+  "ctaNote": "Gratis offerte binnen 24 uur · Prijzen in EUR",
+  "tagline": "B2B-inkoop en export uit Turkije",
+  "home": "Start",
+  "navLabel": "Navigatie",
+  "switcherLabel": "Taal",
+  "contact": {
+    "title": "Neem contact op",
+    "body": "Wij werken per e-mail: direct en zonder omwegen. Stuur uw aanvraag met product en doelprijs en ontvang binnen 24 uur een gratis offerte. Prijzen in EUR; telefoonnummers in +31-formaat. De directe contactlink wordt geactiveerd zodra ons kanaal live is."
+  },
+  "sourcing": {
+    "label": "Inkoop (sourcing)"
+  },
+  "skip": "Naar inhoud",
+  "crumbs": "Kruimelpad",
+  "menuOpen": "Menu openen",
+  "menuClose": "Menu sluiten",
+  "insights": "Artikelen",
+  "toc": "Op deze pagina",
+  "read": "Lezen",
+  "languages": "Talen",
+  "rights": "Alle rechten voorbehouden.",
+  "insightsLead": "Praktische gidsen over inkopen in Turkije. Elk artikel wordt vóór publicatie door een mens gecontroleerd.",
+  "insightsEmpty": "Nog geen artikelen gepubliceerd. Nieuwe gidsen verschijnen hier na controle."
+}

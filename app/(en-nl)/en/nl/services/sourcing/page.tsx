@@ -25,5 +25,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <VariantPageBody variant="nl" kind="sourcing" title={parsed.title} html={parsed.html} />;
+  return <VariantPageBody variant="nl" kind="sourcing" title={parsed.title} html={parsed.html} desc={parsed.desc} />;
 }

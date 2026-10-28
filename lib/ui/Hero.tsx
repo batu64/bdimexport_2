@@ -26,7 +26,7 @@ export default function Hero({ id = "hero", eyebrow, title, subtitle, primary, s
         <span className={s.glowB} />
         <span className={s.grid} />
       </div>
-      <div className={`container ${s.inner}`}>
+      <div className={`container ${s.inner} ${visual ? "" : s.single}`}>
         <div className={s.copy}>
           {eyebrow && (
             <p className={`${s.eyebrow} ${s.enter}`} style={{ "--d": 0 } as React.CSSProperties}>

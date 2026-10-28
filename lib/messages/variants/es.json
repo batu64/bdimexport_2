@@ -1,0 +1,32 @@
+{
+  "label": "Español",
+  "channels": [
+    {
+      "id": "whatsapp",
+      "text": "WhatsApp"
+    }
+  ],
+  "ctaNote": "Presupuesto gratuito en 24 horas · Precios en EUR",
+  "tagline": "Abastecimiento B2B y exportación desde Turquía",
+  "home": "Inicio",
+  "navLabel": "Navegación",
+  "switcherLabel": "Idioma",
+  "contact": {
+    "title": "Contáctenos",
+    "body": "Nuestro canal principal es WhatsApp. Los enlaces directos se activarán cuando el canal entre en operación; esta página se actualizará. Envíen su solicitud con el producto y el precio objetivo, y reciban un presupuesto gratuito en 24 horas. Precios en EUR (consulten también opciones para Latinoamérica). Teléfonos en formato +34."
+  },
+  "sourcing": {
+    "label": "Abastecimiento (sourcing)"
+  },
+  "skip": "Ir al contenido",
+  "crumbs": "Ruta de navegación",
+  "menuOpen": "Abrir menú",
+  "menuClose": "Cerrar menú",
+  "insights": "Artículos",
+  "toc": "En esta página",
+  "read": "Leer",
+  "languages": "Idiomas",
+  "rights": "Todos los derechos reservados.",
+  "insightsLead": "Guías prácticas para comprar en Turquía. Cada artículo es revisado por una persona antes de publicarse.",
+  "insightsEmpty": "Todavía no hay artículos publicados. Las nuevas guías aparecerán aquí tras su revisión."
+}
