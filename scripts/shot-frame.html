@@ -1,0 +1,12 @@
+<!doctype html>
+<!-- Mobil ekran görüntüsü çerçevesi: headless Edge minimum pencere genişliği (~500) yüzünden 390 px doğrudan alınamıyor.
+     iframe içindeki sayfa gerçek genişlikte (media query'ler iframe'e göre) çizilir. Kullanım: scripts/shot.sh ... (m: önekiyle) -->
+<meta charset="utf-8">
+<style>html,body{margin:0;background:#fff}iframe{display:block;border:0}</style>
+<iframe id="f"></iframe>
+<script>
+  const q = new URLSearchParams(location.search);
+  const f = document.getElementById("f");
+  f.width = q.get("w"); f.height = q.get("h");
+  f.src = "http://localhost:" + (q.get("port") || "3000") + (q.get("path") || "/");
+</script>

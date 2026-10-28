@@ -2,8 +2,9 @@
 // Çalıştır (repo kökünden): pnpm --dir workers/cron-rss exec vitest run --config ../../qa/FAZ-4/vitest.config.mjs
 import { resolve } from "node:path";
 const here = import.meta.dirname;
-export default {
+const config = {
   root: resolve(here, "../../workers/cron-rss"),
   test: { environment: "node", dir: here, include: ["*.test.mts"], fileParallelism: false },
   server: { fs: { strict: false } },
 };
+export default config;
