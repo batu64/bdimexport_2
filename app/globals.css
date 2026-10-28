@@ -108,9 +108,16 @@ a:hover { text-decoration-thickness: var(--bw-2); }
 .prose th, .prose td { padding: var(--s-3); border-block-end: var(--bw-1) solid var(--c-border); text-align: start; }
 .prose th { color: var(--c-heading); font-weight: var(--fw-heading); background: var(--c-surface); }
 
+/* ── scroll reveal (lib/ui/motion/Reveal): varsayılan görünür; yalnız JS ekran dışını "hidden" yapar */
+[data-reveal="hidden"] { opacity: 0; transform: translateY(var(--motion-distance)); }
+[data-reveal="shown"] {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--dur-slow) var(--ease-out) var(--rd, 0s), transform var(--dur-slow) var(--ease-out) var(--rd, 0s);
+}
+
 /* ── hareket azaltma: tüm geçiş/animasyonlar kapanır (WCAG 2.3.3) */
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1 !important; transform: none !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

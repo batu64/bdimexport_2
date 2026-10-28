@@ -1,0 +1,140 @@
+/* ProcessTracker — hero üstünde yüzey kartı (glassmorphism YOK: düz surface + katmanlı gölge). */
+.wrap { position: relative; margin: 0; max-inline-size: calc(var(--s-24) * 5); margin-inline: auto; }
+@media (min-width: 1280px) { .wrap { margin-inline: auto 0; } }
+
+.card {
+  position: relative;
+  display: grid;
+  gap: var(--s-4);
+  padding: var(--s-6);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 14%, transparent);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  box-shadow:
+    0 var(--s-6) var(--s-16) color-mix(in srgb, var(--c-brand) 55%, transparent),
+    var(--e-3);
+  transform: perspective(var(--container)) rotateY(-4deg) rotateX(2deg);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+[dir="rtl"] .card { transform: perspective(var(--container)) rotateY(4deg) rotateX(2deg); }
+.wrap:hover .card { transform: none; }
+
+.head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-4); }
+.title { color: var(--c-heading); font-weight: var(--fw-heading); font-size: var(--fs-lg); }
+.caption { color: var(--c-muted); font-size: var(--fs-xs); letter-spacing: var(--track-caps); text-transform: uppercase; }
+.route {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--c-accent) 10%, transparent);
+  color: var(--c-accent);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  white-space: nowrap;
+}
+.routeIcon { inline-size: var(--s-4); block-size: var(--s-4); }
+
+/* rota çizgisi */
+.map { inline-size: 100%; block-size: var(--s-16); overflow: visible; }
+.mapBase { fill: none; stroke: var(--c-border); stroke-width: 2; stroke-dasharray: 4 6; }
+.mapLine {
+  fill: none;
+  stroke: var(--c-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw 1.6s var(--ease-out) 0.5s forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 38; } }
+.nodeA { fill: var(--c-accent); }
+.nodeB { fill: var(--c-surface); stroke: var(--c-highlight); stroke-width: 2.5; }
+.mover { fill: var(--c-highlight); filter: drop-shadow(0 0 var(--s-1) var(--c-highlight)); }
+
+/* ilerleme çubuğu */
+.progress { block-size: var(--s-2); border-radius: var(--radius-pill); background: color-mix(in srgb, var(--c-border) 70%, transparent); overflow: hidden; }
+.bar {
+  display: block;
+  block-size: 100%;
+  inline-size: var(--p);
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--c-accent), color-mix(in srgb, var(--c-accent) 50%, var(--c-highlight)));
+  transform-origin: left;
+  animation: grow 1.4s var(--ease-out) 0.4s both;
+}
+[dir="rtl"] .bar { transform-origin: right; }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* adımlar */
+.steps { display: grid; gap: var(--s-1); padding: 0; list-style: none; }
+.step {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--s-3);
+  min-block-size: var(--touch);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius);
+  animation: stepIn var(--dur-slow) var(--ease-out) both;
+  animation-delay: calc(0.6s + var(--i) * var(--stagger) * 2);
+}
+@keyframes stepIn { from { opacity: 0; transform: translateX(calc(-1 * var(--s-3))); } to { opacity: 1; transform: none; } }
+.step[data-state="active"] { background: color-mix(in srgb, var(--c-highlight) 12%, transparent); }
+.mark {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--s-6);
+  block-size: var(--s-6);
+  border-radius: 50%;
+  border: var(--bw-2) solid var(--c-border);
+}
+.markIcon { inline-size: var(--s-3); block-size: var(--s-3); stroke-width: 3; }
+.step[data-state="done"] .mark { border-color: var(--c-success); background: var(--c-success); color: var(--c-surface); }
+.step[data-state="active"] .mark { border-color: var(--c-highlight); color: var(--c-warning); }
+.step[data-state="active"] .mark::after {
+  content: "";
+  position: absolute;
+  inset: calc(-1 * var(--bw-2));
+  border-radius: 50%;
+  border: var(--bw-2) solid var(--c-highlight);
+  animation: ring 2s var(--ease-out) infinite;
+}
+@keyframes ring { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.8); opacity: 0; } }
+.stepName { color: var(--c-heading); font-weight: var(--fw-label); font-size: var(--fs-sm); }
+.step[data-state="next"] .stepName { color: var(--c-muted); }
+.state { color: var(--c-muted); font-size: var(--fs-xs); }
+.step[data-state="done"] .state { color: var(--c-success); }
+.step[data-state="active"] .state { color: var(--c-warning); font-weight: var(--fw-heading); }
+
+/* yüzen rozet */
+.badge {
+  position: absolute;
+  inset-block-end: calc(-1 * var(--s-6));
+  inset-inline-start: calc(-1 * var(--s-4));
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding-block: var(--s-3);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius);
+  background: var(--c-highlight);
+  color: var(--c-on-highlight);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  box-shadow: var(--e-3);
+  animation: float 6s var(--ease-in-out) infinite alternate;
+}
+@media (min-width: 1280px) { .badge { inset-inline-start: calc(-1 * var(--s-8)); } }
+.badgeIcon { inline-size: var(--s-4); block-size: var(--s-4); }
+@keyframes float { from { transform: translateY(0); } to { transform: translateY(calc(-1 * var(--s-2))); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mover { display: none; }
+  .card, [dir="rtl"] .card { transform: none; }
+  .mapLine { stroke-dashoffset: 38; }
+}

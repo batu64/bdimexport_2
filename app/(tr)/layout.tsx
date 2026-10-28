@@ -23,9 +23,6 @@ export default function TrLayout({ children }: { children: React.ReactNode }) {
     <html {...htmlAttrs("tr")}>
       <head>
         <ThemeStyle />
-        <noscript>
-          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
-        </noscript>
       </head>
       <body>
         <a href="#icerik" className="skip-link">{dict.nav.skip}</a>

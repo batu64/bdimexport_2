@@ -1,0 +1,127 @@
+/* hero.md — yalnız token değişkenleri. Navbar şeffaf ve sticky: hero kendi yüksekliği kadar yukarı çekilir. */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-block-start: calc(-1 * var(--nav-h-m));
+  padding-block: calc(var(--nav-h-m) + var(--s-12)) var(--s-24);
+  min-block-size: var(--hero-min-xs);
+}
+@media (min-width: 768px) { .hero { min-block-size: var(--hero-min-md); } }
+@media (min-width: 1280px) {
+  .hero {
+    margin-block-start: calc(-1 * var(--nav-h));
+    padding-block: calc(var(--nav-h) + var(--s-16)) calc(var(--s-24) + var(--s-12));
+    min-block-size: var(--hero-min-lg);
+  }
+}
+
+/* ── arka plan katmanları (dekoratif) */
+.bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.glowA, .glowB {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(var(--s-24));
+  will-change: transform;
+}
+.glowA {
+  inset-block-start: -20%;
+  inset-inline-end: -10%;
+  inline-size: 60vmax;
+  block-size: 60vmax;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c-accent-on-brand) 30%, transparent), transparent);
+  animation: driftA 22s var(--ease-in-out) infinite alternate;
+}
+.glowB {
+  inset-block-end: -35%;
+  inset-inline-start: -15%;
+  inline-size: 50vmax;
+  block-size: 50vmax;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c-highlight) 22%, transparent), transparent);
+  animation: driftB 26s var(--ease-in-out) infinite alternate;
+}
+@keyframes driftA { to { transform: translate3d(-8%, 10%, 0) scale(1.08); } }
+@keyframes driftB { to { transform: translate3d(10%, -6%, 0) scale(1.12); } }
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--c-on-brand) 6%, transparent) var(--bw-1), transparent var(--bw-1)),
+    linear-gradient(90deg, color-mix(in srgb, var(--c-on-brand) 6%, transparent) var(--bw-1), transparent var(--bw-1));
+  background-size: var(--s-16) var(--s-16);
+  mask-image: radial-gradient(ellipse 70% 60% at 60% 40%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 60% 40%, black, transparent);
+}
+
+/* ── düzen */
+.inner { display: grid; gap: var(--s-12); align-items: center; }
+@media (min-width: 1280px) { .inner { grid-template-columns: 6fr 5fr; gap: var(--s-12); } }
+.copy { display: grid; gap: var(--s-6); max-inline-size: 44em; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  justify-self: start;
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 18%, transparent);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--c-on-brand) 6%, transparent);
+  color: var(--c-on-brand);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-label);
+}
+.dot {
+  position: relative;
+  inline-size: var(--s-2);
+  block-size: var(--s-2);
+  border-radius: 50%;
+  background: var(--c-accent-on-brand);
+}
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: ping 2.4s var(--ease-out) infinite;
+}
+@keyframes ping { 0% { transform: scale(1); opacity: 0.7; } 80%, 100% { transform: scale(2.6); opacity: 0; } }
+
+.title {
+  color: var(--c-on-brand);
+  font-size: var(--type-h1);
+  font-weight: var(--fw-heading);
+  letter-spacing: var(--track-tight);
+}
+.sub { color: var(--c-on-brand-muted); font-size: var(--fs-lg); max-inline-size: 58ch; }
+
+.ctas { display: flex; flex-direction: column; gap: var(--s-3); margin-block-start: var(--s-2); }
+/* 768+: uzun TR/DE etiketleri yan yana sığmıyor → tek kolon, iki buton EN GENİŞİ kadar eşit genişlik */
+@media (min-width: 768px) { .ctas { display: grid; grid-template-columns: minmax(0, max-content); } }
+
+.trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-6);
+  margin-block-start: var(--s-2);
+  color: var(--c-on-brand-muted);
+  font-size: var(--fs-sm);
+}
+.trust li { display: inline-flex; align-items: center; gap: var(--s-2); }
+.check {
+  inline-size: var(--s-4);
+  block-size: var(--s-4);
+  padding: calc(var(--s-1) / 2);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--c-accent-on-brand) 18%, transparent);
+  color: var(--c-accent-on-brand);
+  box-sizing: content-box;
+}
+
+.visual { position: relative; }
+
+/* ── giriş: CSS stagger (opacity + translate), H1 hariç */
+.enter { animation: enter var(--dur-slow) var(--ease-out) both; animation-delay: calc(var(--d, 0) * var(--stagger) * 2 + var(--dur-fast)); }
+@keyframes enter { from { opacity: 0; transform: translateY(var(--motion-distance)); } to { opacity: 1; transform: none; } }

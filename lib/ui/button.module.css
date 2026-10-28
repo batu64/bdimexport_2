@@ -1,4 +1,4 @@
-/* cta.md — yalnız token değişkenleri. Basınç alanı ≥ touchMin; 360'ta tam genişlik, 768+ auto. */
+/* cta.md — yalnız token değişkenleri. Varyantlar .btn.x (0,2,0): globals .on-brand a (0,1,1) rengini ezmesin. Basınç alanı ≥ touchMin; 360'ta tam genişlik, 768+ auto. */
 .btn {
   position: relative;
   display: inline-flex;
@@ -29,29 +29,29 @@
 .lg { min-block-size: calc(var(--touch) + var(--s-2)); padding-inline: var(--s-8); font-size: var(--fs-lg); }
 
 /* primary: amber dolgu + navy metin (K7: beyaz YASAK) */
-.primary { background: var(--c-highlight); color: var(--c-on-highlight); box-shadow: var(--e-1); }
-.primary:hover {
+.btn.primary { background: var(--c-highlight); color: var(--c-on-highlight); box-shadow: var(--e-1); }
+.btn.primary:hover {
   background: color-mix(in srgb, var(--c-highlight) 88%, var(--c-on-highlight));
   box-shadow: 0 var(--s-2) var(--s-6) color-mix(in srgb, var(--c-highlight) 35%, transparent);
   transform: translateY(calc(-1 * var(--bw-1)));
 }
 
 /* secondary: kontur */
-.secondary { background: transparent; color: var(--c-heading); border-color: var(--c-heading); }
-.secondary:hover { background: color-mix(in srgb, var(--c-heading) 8%, transparent); }
-.onBrand.secondary { color: var(--c-on-brand); border-color: color-mix(in srgb, var(--c-on-brand) 55%, transparent); }
-.onBrand.secondary:hover { border-color: var(--c-on-brand); background: color-mix(in srgb, var(--c-on-brand) 10%, transparent); }
+.btn.secondary { background: transparent; color: var(--c-heading); border-color: var(--c-heading); }
+.btn.secondary:hover { background: color-mix(in srgb, var(--c-heading) 8%, transparent); }
+.btn.onBrand.secondary { color: var(--c-on-brand); border-color: color-mix(in srgb, var(--c-on-brand) 55%, transparent); }
+.btn.onBrand.secondary:hover { border-color: var(--c-on-brand); background: color-mix(in srgb, var(--c-on-brand) 10%, transparent); }
 
 /* ghost: inline link + ok (cta.md inline) */
-.ghost {
+.btn.ghost {
   inline-size: auto;
   min-block-size: var(--touch);
   padding-inline: 0;
   color: var(--c-link);
   border: 0;
 }
-.onBrand.ghost { color: var(--c-accent-on-brand); }
-.ghost:hover span { text-decoration: underline; text-underline-offset: 0.25em; }
+.btn.onBrand.ghost { color: var(--c-accent-on-brand); }
+.btn.ghost:hover span { text-decoration: underline; text-underline-offset: 0.25em; }
 
 .arrow { inline-size: var(--s-4); block-size: var(--s-4); flex: none; transition: transform var(--dur-fast) var(--ease-out); }
 .btn:hover .arrow { transform: translateX(var(--s-1)); }

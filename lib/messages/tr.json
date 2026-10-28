@@ -63,7 +63,8 @@
         "steps": ["Tedarikçi doğrulama", "Fabrika denetimi", "Üretim takibi", "Lojistik ve gümrük"],
         "done": "Tamamlandı",
         "active": "Sürüyor",
-        "next": "Sırada"
+        "next": "Sırada",
+        "badge": "Fotoğraflı denetim raporu 48 saatte"
       }
     },
     "stats": {

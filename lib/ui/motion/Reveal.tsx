@@ -1,33 +1,49 @@
 "use client";
-// SectionReveal — scroll-tetiklemeli tek seferlik belirme (opacity + kısa translateY; yalnız GPU özellikleri).
-// LazyMotion + domAnimation: tam framer paketi yerine küçük özellik seti.
-// prefers-reduced-motion + JS'siz: globals.css / <noscript> [data-reveal]'i CSS ile görünür kılar — JS dallanması yok
-// (sunucu reduce'u bilemez; dallanma hydration uyuşmazlığı doğururdu). İçerik animasyona bağlı DEĞİL.
-import { LazyMotion, domAnimation, m } from "framer-motion";
-import type { ReactNode } from "react";
+// SectionReveal — scroll-tetiklemeli tek seferlik belirme (opacity + kısa translateY; yalnız GPU özellikleri; CSS geçişi).
+// VARSAYILAN GÖRÜNÜR: SSR/no-JS/yavaş hydration'da içerik hep görünür (LCP, SEO, erişilebilirlik).
+// Hydration'da yalnız ekranın DIŞINDA kalan öğeler gizlenir, görünür alana girince belirir; zaten görünenlere dokunulmaz.
+// prefers-reduced-motion → hiç gizlenmez. Framer yerine IntersectionObserver: ek paket maliyeti yok.
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { motion as t } from "../tokens";
 
-export default function Reveal({ children, delay = 0, index, as = "div", className }: {
+type State = "idle" | "hidden" | "shown";
+
+export default function Reveal({ children, delay = 0, index = 0, as = "div", className }: {
   children: ReactNode;
+  /** saniye */
   delay?: number;
   /** grid öğeleri için stagger sırası (delay'e eklenir) */
   index?: number;
   as?: "div" | "li";
   className?: string;
 }) {
-  const M = as === "li" ? m.li : m.div;
+  const ref = useRef<HTMLElement>(null);
+  const [state, setState] = useState<State>("idle");
+
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) return; // ilk ekranda: olduğu gibi kalır
+    setState("hidden");
+    const io = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setState("shown"); io.disconnect(); } },
+      { threshold: 0.15, rootMargin: "0px 0px -5% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const Tag = as;
   return (
-    <LazyMotion features={domAnimation} strict>
-      <M
-        data-reveal=""
-        className={className}
-        initial={{ opacity: 0, y: t.distance }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: t.slow / 1000, ease: t.easeOut, delay: delay + (index ?? 0) * t.stagger }}
-      >
-        {children}
-      </M>
-    </LazyMotion>
+    <Tag
+      ref={ref as never}
+      data-reveal={state}
+      className={className}
+      style={{ "--rd": `${delay + index * t.stagger}s` } as React.CSSProperties}
+    >
+      {children}
+    </Tag>
   );
 }
