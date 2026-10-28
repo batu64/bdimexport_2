@@ -5,16 +5,19 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "@/lib/ui/variant.module.css";
-import { space } from "@/lib/ui/tokens";
-import { renderVariantMd } from "@/lib/ui/md";
-import { QuoteCta } from "../../_lib/services";
+import { renderVariantMd, tocFromHtml } from "@/lib/ui/md";
+import PageHeader from "@/lib/ui/PageHeader";
+import ArticleLayout from "@/lib/ui/ArticleLayout";
+import Button from "@/lib/ui/Button";
+import dict from "@/lib/messages/en.json";
+import { QuoteAside, QuoteCta } from "../../_lib/services";
+import { PartnerStrip } from "../_lib/views";
+import { quoteHref } from "../../_lib/chrome";
 import { enAlternates } from "../../_lib/hreflang";
 import { PRODUCTS_ROOT, composeCatalog, loadPartners, partnersForCategory } from "../_lib/catalog";
 
 const SITE = "https://bdimexport.com";
+const pg = dict.page;
 const MARKER = "<p>{{partners}}</p>";
 
 const plain = (s: string) =>
@@ -75,11 +78,8 @@ export function ProductPageView({ slug }: { slug: string }) {
   const d = readDoc(slug);
   if (!cat || !prod || !d) {
     return (
-      <main className={styles.main}>
-        <h1>Product not found</h1>
-        <p>
-          See all <Link href="/en/products">product categories</Link>.
-        </p>
+      <main>
+        <PageHeader crumbs={[{ label: pg.home, href: "/en" }, { label: pg.products, href: "/en/products" }, { label: pg.notFound }]} crumbsLabel={pg.crumbs} title={pg.notFound} />
       </main>
     );
   }
@@ -122,37 +122,23 @@ export function ProductPageView({ slug }: { slug: string }) {
   });
 
   return (
-    <main className={styles.main}>
+    <main>
       <JsonLd graph={graph} />
-      <nav aria-label="breadcrumb" className={styles.crumb}>
-        <Link href="/en">Home</Link>
-        <span aria-hidden="true"> → </span>
-        <Link href="/en/products">Products</Link>
-        <span aria-hidden="true"> → </span>
-        <Link href={`/en/products/category/${cat.slug}`}>{cat.name}</Link>
-        <span aria-hidden="true"> → </span>
-        <span>{prod.name}</span>
-      </nav>
-      <h1>{d.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: before }} />
-      <div data-partner-state={partners.length === 0 ? "placeholder" : "listed"} aria-live="polite">
-        {partners.length === 0 ? (
-          <p>
-            Approved partners are being onboarded. Verified manufacturers for this product category will appear here as soon as their
-            review is complete.
-          </p>
-        ) : (
-          <ul style={{ listStyle: "none", padding: 0, display: "flex", flexWrap: "wrap", gap: space.s4 }}>
-            {partners.map((p) => (
-              <li key={p.id} style={{ display: "flex", alignItems: "center", gap: space.s3 }}>
-                {p.logoUrl ? <Image src={p.logoUrl} alt={p.name} width={space.s16} height={space.s16} unoptimized /> : null}
-                <span>{p.name}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <div dangerouslySetInnerHTML={{ __html: after }} />
+      <PageHeader
+        crumbs={[{ label: pg.home, href: "/en" }, { label: pg.products, href: "/en/products" }, { label: cat.name, href: `/en/products/category/${cat.slug}` }, { label: prod.name }]}
+        crumbsLabel={pg.crumbs}
+        eyebrow={cat.name}
+        title={d.title}
+        lead={d.desc}
+        actions={<Button href={quoteHref(prod.name)} variant="primary" size="lg" arrow>{dict.home.hero.ctaPrimary}</Button>}
+      />
+      <ArticleLayout toc={tocFromHtml(d.html)} tocLabel={pg.toc} aside={<QuoteAside context={prod.name} />}>
+        <div className="prose" dangerouslySetInnerHTML={{ __html: before }} />
+        <div data-partner-state={partners.length === 0 ? "placeholder" : "listed"}>
+          <PartnerStrip partners={partners} empty={pg.partnersProduct} compact />
+        </div>
+        <div className="prose" dangerouslySetInnerHTML={{ __html: after }} />
+      </ArticleLayout>
       <QuoteCta context={prod.name} />
     </main>
   );

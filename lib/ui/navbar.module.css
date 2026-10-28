@@ -222,3 +222,6 @@
 .sheetLabel { color: var(--c-muted); font-size: var(--fs-sm); font-weight: var(--fw-label); letter-spacing: var(--track-caps); text-transform: uppercase; }
 .sheetSites { margin-block-start: var(--s-2); }
 .sitesCurrent { font-size: var(--fs-sm); }
+
+/* varyant dil seçici yuvası (LangSwitcher) — her genişlikte görünür */
+.switcher { display: flex; align-items: center; }

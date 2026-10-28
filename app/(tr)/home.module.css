@@ -68,44 +68,6 @@
 .serviceRow:hover .rowArrow { transform: translateX(var(--s-1)); color: var(--c-heading); }
 [dir="rtl"] .rowArrow { transform: scaleX(-1); }
 
-/* ── Süreç: 5 adım zaman çizelgesi */
-.steps { position: relative; display: grid; gap: var(--s-6); padding: 0; list-style: none; counter-reset: step; }
-@media (min-width: 768px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1280px) {
-  .steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-4); }
-  /* bağlayıcı çizgi: ikon merkezlerinden geçer */
-  .steps::before {
-    content: "";
-    position: absolute;
-    inset-inline: 10%;
-    inset-block-start: calc(var(--s-6) + var(--s-1));
-    block-size: var(--bw-2);
-    background: linear-gradient(90deg, var(--c-accent), var(--c-highlight));
-    opacity: 0.35;
-  }
-}
-.step { position: relative; display: grid; justify-items: start; gap: var(--s-2); }
-@media (min-width: 1280px) { .step { justify-items: center; text-align: center; } }
-.stepNum {
-  position: relative;
-  z-index: 1;
-  display: inline-grid;
-  place-items: center;
-  inline-size: calc(var(--s-12) + var(--s-2));
-  block-size: calc(var(--s-12) + var(--s-2));
-  border: var(--bw-1) solid var(--c-border);
-  border-radius: 50%;
-  background: var(--c-bg);
-  color: var(--c-accent);
-  box-shadow: var(--e-2);
-  transition: transform var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
-}
-.step:hover .stepNum { transform: translateY(calc(-1 * var(--s-1))); background: var(--c-accent); color: var(--c-surface); }
-.stepIcon { inline-size: var(--s-6); block-size: var(--s-6); }
-.stepIdx { margin-block-start: var(--s-2); color: var(--c-muted); font-size: var(--fs-xs); font-weight: var(--fw-stat); letter-spacing: var(--track-caps); font-variant-numeric: tabular-nums; }
-.stepTitle { font-size: var(--fs-lg); }
-.stepText { color: var(--c-muted); font-size: var(--fs-sm); }
-
 /* ── Program (flywheel) */
 .program { position: relative; overflow: hidden; }
 .program::before {
@@ -174,42 +136,3 @@
 @media (min-width: 1280px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .cards > li { display: flex; }
 .cards > li > * { flex: 1; }
-
-/* ── Ortaklar (boş durum) */
-.partners {
-  position: relative;
-  display: grid;
-  justify-items: center;
-  gap: var(--s-4);
-  padding: var(--s-12) var(--s-6);
-  border: var(--bw-1) dashed var(--c-border-strong);
-  border-radius: var(--radius-lg);
-  text-align: center;
-}
-.partnerBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-2);
-  padding-block: var(--s-1);
-  padding-inline: var(--s-3);
-  border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--c-success) 12%, transparent);
-  color: var(--c-success);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-heading);
-}
-.partnerIcon { inline-size: var(--s-4); block-size: var(--s-4); }
-.partnersTitle { font-size: var(--type-h3); }
-.partnersEmpty { color: var(--c-muted); }
-.ghostLogos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); inline-size: min(100%, calc(var(--s-24) * 6)); margin-block-start: var(--s-4); }
-@media (min-width: 768px) { .ghostLogos { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
-.ghostLogos li {
-  block-size: var(--s-12);
-  border-radius: var(--radius);
-  background: linear-gradient(90deg, var(--c-border) 0%, color-mix(in srgb, var(--c-border) 40%, var(--c-surface)) 50%, var(--c-border) 100%);
-  background-size: 200% 100%;
-  opacity: 0.6;
-  animation: shimmer 2.4s var(--ease-in-out) infinite;
-  animation-delay: calc(var(--i) * var(--stagger) * 2);
-}
-@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }

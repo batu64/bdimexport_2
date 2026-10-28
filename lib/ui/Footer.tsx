@@ -11,7 +11,7 @@ export type FooterProps = {
   tagline: string;
   columns: { title: string; links: NavLink[] }[];
   sites: { title: string; links: SiteLink[] };
-  legal: { title: string; links: NavLink[] };
+  legal?: { title: string; links: NavLink[] };
   contact: { title: string; email: string; emailLabel: string };
   rights: string;
 };
@@ -51,14 +51,14 @@ export default function Footer({ brand, tagline, columns, sites, legal, contact,
               ))}
             </ul>
           </nav>
-          <nav aria-label={legal.title} className={s.legal}>
+          {legal && <nav aria-label={legal.title} className={s.legal}>
             <p className={s.colTitle}>{legal.title}</p>
             <ul role="list">
               {legal.links.map((l) => (
                 <li key={l.href}><Link href={l.href} className={s.link}>{l.label}</Link></li>
               ))}
             </ul>
-          </nav>
+          </nav>}
         </div>
       </div>
       <div className={`container ${s.bottom}`}>

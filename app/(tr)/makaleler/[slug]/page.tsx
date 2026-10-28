@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { InsightArticle, insightParams, readInsight } from "@/lib/ui/insights";
+import dict from "@/lib/messages/tr.json";
 import { trAlternates } from "../../_lib/content";
 
 export const dynamicParams = false;
@@ -20,5 +21,5 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   const it = readInsight("tr", slug);
   if (!it) notFound();
-  return <InsightArticle insight={it} crumbs={[{ label: "Ana Sayfa", href: "/" }, { label: "Makaleler", href: "/makaleler" }]} />;
+  return <InsightArticle insight={it} crumbs={[{ label: dict.content.home, href: "/" }, { label: dict.articles.title, href: "/makaleler" }]} crumbsLabel={dict.page.crumbs} tocLabel={dict.page.toc} eyebrow={dict.articles.eyebrow} />;
 }

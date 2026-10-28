@@ -6,10 +6,18 @@ import path from "node:path";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "@/lib/ui/variant.module.css";
-import { color, fontSize, space } from "@/lib/ui/tokens";
-import { renderVariantMd } from "@/lib/ui/md";
-import { QuoteCta } from "../../_lib/services";
+import { ArrowRight, BadgeCheck, Clock } from "lucide-react";
+import { renderVariantMd, tocFromHtml } from "@/lib/ui/md";
+import PageHeader from "@/lib/ui/PageHeader";
+import ArticleLayout from "@/lib/ui/ArticleLayout";
+import Reveal from "@/lib/ui/motion/Reveal";
+import Button from "@/lib/ui/Button";
+import { Section, SectionHeader } from "@/lib/ui/Section";
+import { space } from "@/lib/ui/tokens";
+import dict from "@/lib/messages/en.json";
+import { QuoteAside, QuoteCta } from "../../_lib/services";
+import { INDUSTRY_ICON } from "../../industries/_lib/industries";
+import pv from "./products.module.css";
 import { enAlternates } from "../../_lib/hreflang";
 import { PRODUCTS_ROOT, composeCatalog, loadPartners, partnersForCategory, type CategoryView, type PublicPartner } from "./catalog";
 
@@ -52,26 +60,22 @@ const crumbs = (items: { name: string; item: string }[]) => ({
 });
 
 const sentence = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const pg = dict.page;
+const catIcon = (industryHref: string) => INDUSTRY_ICON[industryHref.split("/").pop() ?? ""];
 
-function ComingSoon() {
+/** Onaylı partner şeridi — partner UYDURULMAZ; logo yalnız consent_logo_en=true (catalog.ts filtresi) */
+export function PartnerStrip({ partners, empty, compact }: { partners: PublicPartner[]; empty: string; compact?: boolean }) {
+  // compact: başlığı md içeriği zaten veriyor (ürün sayfası "## Verified Turkish Partners" + {{partners}}) → ikinci başlık yok
   return (
-    <span style={{ color: color.muted, fontSize: fontSize.sm }}>
-      {" "}
-      — Coming soon
-    </span>
-  );
-}
-
-function PartnerStrip({ partners }: { partners: PublicPartner[] }) {
-  return (
-    <section aria-labelledby="partners-title" className={styles.contact}>
-      <h2 id="partners-title">Verified Turkish Partners</h2>
+    <section aria-labelledby={compact ? undefined : "partners-title"} className={pv.partners}>
+      <p className={pv.partnersBadge}><BadgeCheck aria-hidden="true" className={pv.icon} />{dict.home.partners.badge}</p>
+      {!compact && <h2 id="partners-title" className={pv.partnersTitle}>{pg.partnersTitle}</h2>}
       {partners.length === 0 ? (
-        <p aria-live="polite">Approved partners for this category will be listed here after their review is complete.</p>
+        <p aria-live="polite" className={pv.muted}>{empty}</p>
       ) : (
-        <ul style={{ listStyle: "none", padding: 0, display: "flex", flexWrap: "wrap", gap: space.s4 }}>
+        <ul role="list" className={pv.partnerList}>
           {partners.map((p) => (
-            <li key={p.id} style={{ display: "flex", alignItems: "center", gap: space.s3 }}>
+            <li key={p.id}>
               {p.logoUrl ? <Image src={p.logoUrl} alt={p.name} width={space.s16} height={space.s16} unoptimized /> : null}
               <span>{p.name}</span>
             </li>
@@ -82,15 +86,24 @@ function PartnerStrip({ partners }: { partners: PublicPartner[] }) {
   );
 }
 
+/** Kategori ürün listesi: yayımlanmış → link satırı; hazırlanan → "Coming soon" (404'a link yok) */
 function ProductList({ cat }: { cat: CategoryView }) {
   return (
-    <ul>
+    <ul role="list" className={pv.products}>
       {cat.products.map((p) => (
-        <li key={p.slug}>
-          {p.href ? <Link href={p.href}>{sentence(p.keyword)}</Link> : <strong>{p.name}</strong>}
-          {p.live ? null : <ComingSoon />}
-          <br />
-          <span>{p.blurb}</span>
+        <li key={p.slug} className={pv.product} data-live={p.live || undefined}>
+          {p.href ? (
+            <Link href={p.href} className={pv.productLink}>
+              <span className={pv.productName}>{sentence(p.keyword)}</span>
+              <ArrowRight aria-hidden="true" className={pv.arrow} />
+            </Link>
+          ) : (
+            <span className={pv.productName}>
+              {p.name}
+              <span className={pv.soon}><Clock aria-hidden="true" className={pv.icon} />{pg.comingSoon}</span>
+            </span>
+          )}
+          <span className={pv.blurb}>{p.blurb}</span>
         </li>
       ))}
     </ul>
@@ -118,26 +131,34 @@ export function ProductsIndexView() {
     },
   ];
   return (
-    <main className={styles.main}>
+    <main>
       <JsonLd graph={graph} />
-      <nav aria-label="breadcrumb" className={styles.crumb}>
-        <Link href="/en">Home</Link>
-        <span aria-hidden="true"> → </span>
-        <span>Products</span>
-      </nav>
-      <h1>{d.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: d.html }} />
-      {cats.map((c) => (
-        <section key={c.slug} aria-labelledby={`cat-${c.slug}`}>
-          <h2 id={`cat-${c.slug}`}>
-            <Link href={`/en/products/category/${c.slug}`}>{c.name}</Link>
-          </h2>
-          <p style={{ color: color.muted, fontSize: fontSize.sm }}>
-            {c.liveCount} of {c.products.length} product pages published
-          </p>
-          <ProductList cat={c} />
-        </section>
-      ))}
+      <PageHeader crumbs={[{ label: pg.home, href: "/en" }, { label: pg.products }]} crumbsLabel={pg.crumbs} eyebrow={pg.products} title={d.title} lead={d.desc} />
+      <Section id="categories">
+        <h2 id="categories-title" className="visually-hidden">{pg.products}</h2>
+        <div className={pv.catGrid}>
+          {cats.map((c, i) => {
+            const Icon = catIcon(c.industry);
+            return (
+              <Reveal key={c.slug} index={i % 2} className={pv.catWrap}>
+                <section aria-labelledby={`cat-${c.slug}`} className={pv.cat}>
+                  <div className={pv.catHead}>
+                    {Icon && <span className={pv.catIcon} aria-hidden="true"><Icon /></span>}
+                    <div>
+                      <h2 id={`cat-${c.slug}`} className={pv.catTitle}><Link href={`/en/products/category/${c.slug}`}>{c.name}</Link></h2>
+                      <p className={pv.muted}>{pg.published.replace("{n}", String(c.liveCount)).replace("{total}", String(c.products.length))}</p>
+                    </div>
+                  </div>
+                  <ProductList cat={c} />
+                </section>
+              </Reveal>
+            );
+          })}
+        </div>
+      </Section>
+      <ArticleLayout toc={tocFromHtml(d.html)} tocLabel={pg.toc} aside={<QuoteAside context="Products from Turkey" />}>
+        <div className="prose" dangerouslySetInnerHTML={{ __html: d.html }} />
+      </ArticleLayout>
       <QuoteCta context="Products from Turkey" />
     </main>
   );
@@ -148,11 +169,8 @@ export function CategoryPageView({ slug }: { slug: string }) {
   const cat = cats.find((c) => c.slug === slug);
   if (!cat) {
     return (
-      <main className={styles.main}>
-        <h1>Category not found</h1>
-        <p>
-          See all <Link href="/en/products">product categories</Link>.
-        </p>
+      <main>
+        <PageHeader crumbs={[{ label: pg.home, href: "/en" }, { label: pg.products, href: "/en/products" }, { label: pg.notFound }]} crumbsLabel={pg.crumbs} title={pg.notFound} />
       </main>
     );
   }
@@ -176,38 +194,40 @@ export function CategoryPageView({ slug }: { slug: string }) {
     });
   }
   const partners = partnersForCategory(loadPartners(), cat);
+  const others = cats.filter((c) => c.slug !== slug);
   return (
-    <main className={styles.main}>
+    <main>
       <JsonLd graph={graph} />
-      <nav aria-label="breadcrumb" className={styles.crumb}>
-        <Link href="/en">Home</Link>
-        <span aria-hidden="true"> → </span>
-        <Link href="/en/products">Products</Link>
-        <span aria-hidden="true"> → </span>
-        <span>{cat.name}</span>
-      </nav>
-      <h1>{d.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: d.html }} />
-      <h2>Products in this category</h2>
-      {live.length === 0 ? (
-        <p aria-live="polite">Product pages for this category are being prepared. Send your requirements now and we will quote in 24h.</p>
-      ) : null}
-      <ProductList cat={cat} />
-      <p>
-        <Link href={cat.industry}>Read the {cat.name} industry overview</Link>
-      </p>
-      <PartnerStrip partners={partners} />
-      <QuoteCta context={cat.name} />
-      <nav aria-label="Other categories" className={styles.pageNav}>
-        {cats
-          .filter((c) => c.slug !== slug)
-          .map((c, i) => (
-            <span key={c.slug}>
-              {i > 0 ? " · " : ""}
-              <Link href={`/en/products/category/${c.slug}`}>{c.name}</Link>
-            </span>
+      <PageHeader
+        crumbs={[{ label: pg.home, href: "/en" }, { label: pg.products, href: "/en/products" }, { label: cat.name }]}
+        crumbsLabel={pg.crumbs}
+        eyebrow={pg.products}
+        title={d.title}
+        lead={d.desc}
+        meta={<span className="chip">{pg.published.replace("{n}", String(cat.liveCount)).replace("{total}", String(cat.products.length))}</span>}
+      />
+      <Section id="category-products">
+        <SectionHeader
+          id="category-products"
+          title={pg.productsInCategory}
+          lead={live.length === 0 ? pg.preparing : undefined}
+          action={<Button href={cat.industry} variant="ghost">{pg.industryLink.replace("{name}", cat.name)}</Button>}
+        />
+        <ProductList cat={cat} />
+      </Section>
+      <ArticleLayout toc={tocFromHtml(d.html)} tocLabel={pg.toc} aside={<QuoteAside context={cat.name} />}>
+        <div className="prose" dangerouslySetInnerHTML={{ __html: d.html }} />
+        <PartnerStrip partners={partners} empty={pg.partnersEmpty} />
+      </ArticleLayout>
+      <nav aria-label={pg.related.categories} className={`container ${pv.otherCats}`}>
+        <p className={pv.otherTitle}>{pg.related.categories}</p>
+        <ul role="list">
+          {others.map((c) => (
+            <li key={c.slug}><Link href={`/en/products/category/${c.slug}`} className="chip">{c.name}</Link></li>
           ))}
+        </ul>
       </nav>
+      <QuoteCta context={cat.name} />
     </main>
   );
 }

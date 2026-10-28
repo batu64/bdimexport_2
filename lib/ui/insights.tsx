@@ -1,13 +1,16 @@
 // FAZ_4 4.6 — Makale (insights / makaleler) sayfaları ortak katmanı. Kaynak: İçerik Fabrikası yayın botunun PR'ı
 // (workers/api/src/publish/render.ts ile AYNI dizin sözleşmesi): content/tr/makaleler · content/en/global/insights ·
 // content/en/{ru,fr,nl,es,ar}/insights → {slug}.md + {slug}.schema.json. Dosya yalnız merge edilmiş PR ile gelir.
-// Render: lib/ui/md (META/HTML yorumları + üretim notları public'e sızmaz). Stil yalnız tokens/variant.module.css.
+// Render: lib/ui/md (META/HTML yorumları + üretim notları public'e sızmaz). Görünüm: PageHeader + ArticleLayout + Card (D5).
 import fs from "node:fs";
 import path from "node:path";
-import type { CSSProperties } from "react";
-import Link from "next/link";
-import styles from "./variant.module.css";
-import { renderVariantMd } from "./md";
+import { FileText } from "lucide-react";
+import PageHeader from "./PageHeader";
+import ArticleLayout from "./ArticleLayout";
+import Card from "./Card";
+import grid from "./cardgrid.module.css";
+import empty_ from "./empty.module.css";
+import { renderVariantMd, tocFromHtml } from "./md";
 import type { EnVariant } from "../i18n";
 
 export const SITE = "https://bdimexport.com";
@@ -58,33 +61,41 @@ export function readInsight(scope: InsightScope, slug: string): Insight | null {
   return { slug, title: parsed.title, metaTitle: parsed.metaTitle, desc: parsed.desc, html: parsed.html, jsonLd, url: `${SITE}${insightBase(scope)}/${slug}` };
 }
 
-export function InsightArticle({ insight, crumbs, style }: { insight: Insight; crumbs: { label: string; href: string }[]; style?: CSSProperties }) {
+/** Makale sayfası: başlık bandı (breadcrumb + H1 + özet) + prose (içindekiler yan sütunda). Metin/etiketler çağırandan (sözlük). */
+export function InsightArticle({ insight, crumbs, crumbsLabel = "Breadcrumb", tocLabel = "On this page", eyebrow }: {
+  insight: Insight;
+  crumbs: { label: string; href: string }[];
+  crumbsLabel?: string;
+  tocLabel?: string;
+  eyebrow?: string;
+}) {
   return (
-    <main className={style ? undefined : styles.main} style={style}>
+    <main>
       {insight.jsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: insight.jsonLd }} />}
-      <nav aria-label="breadcrumb" className={styles.crumb}>
-        {crumbs.map((c, i) => (
-          <span key={c.href}>
-            {i > 0 && <span aria-hidden="true"> › </span>}
-            <Link href={c.href}>{c.label}</Link>
-          </span>
-        ))}
-      </nav>
-      <h1>{insight.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: insight.html }} />
+      <PageHeader crumbs={[...crumbs, { label: insight.title }]} crumbsLabel={crumbsLabel} eyebrow={eyebrow} title={insight.title} lead={insight.desc} />
+      <ArticleLayout toc={tocFromHtml(insight.html)} tocLabel={tocLabel}>
+        <div className="prose" dangerouslySetInnerHTML={{ __html: insight.html }} />
+      </ArticleLayout>
     </main>
   );
 }
 
-export function InsightList({ scope, empty }: { scope: InsightScope; empty: string }) {
+/** Makale listesi: kart ızgarası; boşsa dürüst boş durum (uydurma içerik yok). */
+export function InsightList({ scope, empty, more = "Read" }: { scope: InsightScope; empty: string; more?: string }) {
   const items = listInsights(scope).map((s) => readInsight(scope, s)).filter((x): x is Insight => !!x);
-  if (items.length === 0) return <p>{empty}</p>;
+  if (items.length === 0) {
+    return (
+      <div className={empty_.box} aria-live="polite">
+        <FileText aria-hidden="true" className={empty_.icon} />
+        <p>{empty}</p>
+      </div>
+    );
+  }
   return (
-    <ul className={styles.list}>
+    <ul role="list" className={grid.grid}>
       {items.map((it) => (
         <li key={it.slug}>
-          <Link href={`${insightBase(scope)}/${it.slug}`}>{it.title}</Link>
-          {it.desc && <p>{it.desc}</p>}
+          <Card title={it.title} href={`${insightBase(scope)}/${it.slug}`} description={it.desc} icon={<FileText />} more={more} />
         </li>
       ))}
     </ul>

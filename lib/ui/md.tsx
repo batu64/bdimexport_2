@@ -19,6 +19,23 @@ function inline(s: string, rtl: boolean): string {
     .join("");
 }
 
+/** SSS bölüm başlıkları (tüm dil ailesi) — altındaki ### soruları <details> akordeona çevrilir (JS'siz). */
+const FAQ_HEADINGS = new Set([
+  "Frequently Asked Questions", "Sık Sorulan Sorular", "Häufig gestellte Fragen", "常见问题",
+  "Часто задаваемые вопросы", "Questions fréquentes", "Foire aux questions", "Veelgestelde vragen", "Preguntas frecuentes", "الأسئلة الشائعة",
+]);
+/** h2 id: industries #calculation-notes çapalarıyla AYNI algoritma (latin); latin dışı başlık → bölüm-N */
+const slugify = (s: string) =>
+  s.toLowerCase().replace(/&amp;/g, "and").replace(/<[^>]+>/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+/** Render edilmiş html'den içindekiler (yalnız id'li h2) */
+export function tocFromHtml(html: string): { id: string; text: string }[] {
+  return [...html.matchAll(/<h2 id="([^"]+)">([\s\S]*?)<\/h2>/g)].map((m) => ({
+    id: m[1],
+    text: m[2].replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">"),
+  }));
+}
+
 export function renderVariantMd(raw: string, opts: { rtl?: boolean } = {}) {
   const rtl = !!opts.rtl;
   const titleM = raw.match(/^# (.+)$/m);
@@ -31,7 +48,10 @@ export function renderVariantMd(raw: string, opts: { rtl?: boolean } = {}) {
     .filter((l) => !/^# /.test(l) && !/^\*\*(Sayfa tipi|Durum):\*\*/.test(l.trim()))
     .join("\n")
     .trim();
-  let html = "", inUl = false, inOl = false, inTable = false;
+  let html = "", inUl = false, inOl = false, inTable = false, inFaq = false, inDetails = false;
+  const used = new Set<string>();
+  const closeDetails = () => { if (inDetails) { html += "</div></details>"; inDetails = false; } };
+  const closeFaq = () => { closeDetails(); if (inFaq) { html += "</div>"; inFaq = false; } };
   const closeLists = () => {
     if (inUl) { html += "</ul>"; inUl = false; }
     if (inOl) { html += "</ol>"; inOl = false; }
@@ -42,19 +62,32 @@ export function renderVariantMd(raw: string, opts: { rtl?: boolean } = {}) {
       closeLists();
       const cells = t.split("|").slice(1, -1).map((c) => c.trim());
       if (/^[-\s|:]+$/.test(t)) continue;
-      if (!inTable) { html += "<table><tr>" + cells.map((c) => `<th>${inline(c, rtl)}</th>`).join("") + "</tr>"; inTable = true; }
+      if (!inTable) { html += '<div class="table-wrap"><table><tr>' + cells.map((c) => `<th>${inline(c, rtl)}</th>`).join("") + "</tr>"; inTable = true; }
       else html += "<tr>" + cells.map((c) => `<td>${inline(c, rtl)}</td>`).join("") + "</tr>";
       continue;
     }
-    if (inTable) { html += "</table>"; inTable = false; }
-    if (t.startsWith("### ")) { closeLists(); html += `<h3>${inline(t.slice(4), rtl)}</h3>`; }
-    else if (t.startsWith("## ")) { closeLists(); html += `<h2>${inline(t.slice(3), rtl)}</h2>`; }
+    if (inTable) { html += "</table></div>"; inTable = false; }
+    if (t.startsWith("### ")) {
+      closeLists();
+      if (inFaq) { closeDetails(); html += `<details><summary>${inline(t.slice(4), rtl)}</summary><div>`; inDetails = true; }
+      else html += `<h3>${inline(t.slice(4), rtl)}</h3>`;
+    } else if (t.startsWith("## ")) {
+      closeLists();
+      closeFaq();
+      const text = t.slice(3);
+      let id = slugify(esc(text)) || `s-${used.size + 1}`;
+      while (used.has(id)) id += "-2";
+      used.add(id);
+      html += `<h2 id="${id}">${inline(text, rtl)}</h2>`;
+      if (FAQ_HEADINGS.has(text.trim())) { html += '<div class="faq">'; inFaq = true; }
+    }
     else if (t.startsWith("- ")) { if (inOl) { html += "</ol>"; inOl = false; } if (!inUl) { html += "<ul>"; inUl = true; } html += `<li>${inline(t.slice(2), rtl)}</li>`; }
     else if (/^\d+\.\s/.test(t)) { if (inUl) { html += "</ul>"; inUl = false; } if (!inOl) { html += "<ol>"; inOl = true; } html += `<li>${inline(t.replace(/^\d+\.\s/, ""), rtl)}</li>`; }
     else if (t) { closeLists(); html += `<p>${inline(t, rtl)}</p>`; }
     else closeLists();
   }
   closeLists();
-  if (inTable) html += "</table>";
+  if (inTable) html += "</table></div>";
+  closeFaq();
   return { title: titleM?.[1] ?? "", metaTitle: metaM?.[1], desc: metaM?.[2], html };
 }

@@ -23,7 +23,7 @@ export default function MakalelerPage() {
         lead={dict.articles.lead}
       />
       <div className="container section">
-        <InsightList scope="tr" empty={dict.articles.empty} />
+        <InsightList scope="tr" empty={dict.articles.empty} more={dict.page.read} />
         <NewsCards locale="tr" />
       </div>
     </main>

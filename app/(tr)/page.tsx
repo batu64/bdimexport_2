@@ -14,6 +14,8 @@ import { Section, SectionHeader } from "@/lib/ui/Section";
 import Card from "@/lib/ui/Card";
 import Button from "@/lib/ui/Button";
 import CtaBand from "@/lib/ui/CtaBand";
+import Steps from "@/lib/ui/Steps";
+import PartnerBand from "@/lib/ui/PartnerBand";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { listSlugs, readDoc } from "./_lib/content";
 import { quoteHref, services } from "./_lib/chrome";
@@ -112,21 +114,7 @@ export default function TrHomePage() {
       {/* ── Süreç: 5 adım */}
       <Section id="surec" tone="alt">
         <Reveal><SectionHeader id="surec" eyebrow={h.process.eyebrow} title={h.process.title} align="center" /></Reveal>
-        <ol className={s.steps}>
-          {h.process.steps.map((st, i) => {
-            const Icon = STEP_ICON[i];
-            return (
-              <Reveal as="li" key={st.title} index={i} className={s.step}>
-                <span className={s.stepNum} aria-hidden="true">
-                  <Icon className={s.stepIcon} />
-                </span>
-                <span className={s.stepIdx} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className={s.stepTitle}>{st.title}</h3>
-                <p className={s.stepText}>{st.text}</p>
-              </Reveal>
-            );
-          })}
-        </ol>
+        <Steps steps={h.process.steps} icons={STEP_ICON} />
       </Section>
 
       {/* ── İhracat Hızlandırma Programı (flywheel) */}
@@ -180,21 +168,7 @@ export default function TrHomePage() {
       </Section>
 
       {/* ── Onaylı Türk İş Ortakları (boş durum: hero-copy TR) */}
-      <Section id="ortaklar" tone="alt">
-        <Reveal>
-          <div className={s.partners}>
-            <span className={s.partnerBadge}>
-              <BadgeCheck aria-hidden="true" className={s.partnerIcon} />
-              {h.partners.badge}
-            </span>
-            <h2 id="ortaklar-title" className={s.partnersTitle}>{h.partners.title}</h2>
-            <p className={s.partnersEmpty} aria-live="polite">{h.partners.empty}</p>
-            <ul role="list" className={s.ghostLogos} aria-hidden="true">
-              {Array.from({ length: 6 }, (_, i) => <li key={i} style={{ "--i": i } as React.CSSProperties} />)}
-            </ul>
-          </div>
-        </Reveal>
-      </Section>
+      <PartnerBand id="ortaklar" badge={h.partners.badge} title={h.partners.title} empty={h.partners.empty} />
 
       {/* ── Kapanış CTA */}
       <CtaBand

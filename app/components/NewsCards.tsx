@@ -13,6 +13,8 @@ interface Card { id: string; title: string; body_md: string; published_at: strin
 const plain = (md: string) =>
   md.replace(/<!--[\s\S]*?-->/g, "").replace(/^#+\s.*$/gm, "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[*_`>#|]/g, "").replace(/\s+/g, " ").trim();
 
+import st from "./news.module.css";
+
 export default function NewsCards({ locale, className }: { locale: string; className?: string }) {
   const [cards, setCards] = useState<Card[]>([]);
   useEffect(() => {
@@ -26,11 +28,11 @@ export default function NewsCards({ locale, className }: { locale: string; class
   }, [locale]);
   if (cards.length === 0) return null;
   return (
-    <section aria-labelledby="news-cards" className={className}>
-      <h2 id="news-cards">{LABEL[locale] ?? LABEL.en}</h2>
-      <ul>
+    <section aria-labelledby="news-cards" className={`${st.news} ${className ?? ""}`}>
+      <h2 id="news-cards" className={st.title}>{LABEL[locale] ?? LABEL.en}</h2>
+      <ul role="list" className={st.list}>
         {cards.map((c) => (
-          <li key={c.id}>
+          <li key={c.id} className={st.card}>
             <strong>{c.title}</strong>
             {c.published_at && <> · <time dateTime={c.published_at.replace(" ", "T") + "Z"}>{c.published_at.slice(0, 10)}</time></>}
             <p>{plain(c.body_md).slice(0, 280)}</p>

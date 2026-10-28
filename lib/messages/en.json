@@ -1,3 +1,126 @@
 {
-  "site": { "name": "Bdimexport" }
+  "site": { "name": "Bdimexport" },
+  "nav": {
+    "label": "Main menu",
+    "skip": "Skip to content",
+    "home": "Bdimexport home",
+    "links": [
+      { "label": "Services", "href": "/en/services" },
+      { "label": "Products", "href": "/en/products" },
+      { "label": "Industries", "href": "/en/industries" },
+      { "label": "Insights", "href": "/en/insights" }
+    ],
+    "cta": "Get Free Quotation",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "sites": "Market / language"
+  },
+  "quote": {
+    "subject": "Quotation request (bdimexport.com)",
+    "body": "Product / service needed:\nQuantity:\nTarget market:\nDeadline:\nTarget price (optional):\n"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "B2B sourcing from Türkiye",
+      "h1": "Source from Verified Turkish Manufacturers",
+      "sub": "We handle sourcing, factory inspection, private label and logistics end-to-end, so you know who produces your order before it ships. Free quotation within 24 hours.",
+      "ctaPrimary": "Get Free Quotation in 24h",
+      "ctaSecondary": "Explore Our Services",
+      "trust": ["Independent factory inspection", "Fee quoted separately from third-party costs", "Free quotation in 24h"],
+      "visual": {
+        "title": "Order progress",
+        "caption": "Example view",
+        "route": "Türkiye → your port",
+        "steps": ["Supplier verification", "Factory inspection", "Production follow-up", "Logistics and customs"],
+        "done": "Done",
+        "active": "In progress",
+        "next": "Next",
+        "badge": "Photo inspection report within 48h"
+      }
+    },
+    "stats": {
+      "label": "Facts and commitments",
+      "quote": { "unit": "h", "label": "to your free quotation" },
+      "exports": { "unit": "US$ bn", "label": "2025 exports of the product groups we cover (UN Comtrade)" },
+      "services": { "label": "end-to-end services" },
+      "products": { "label": "product pages with sourcing data" }
+    },
+    "services": {
+      "eyebrow": "Services",
+      "title": "One team from sourcing to your port",
+      "lead": "Pick a single service or let us run the whole chain. You always know which factory produces your order.",
+      "more": "All services"
+    },
+    "industries": {
+      "eyebrow": "Industries",
+      "title": "Where Türkiye is a strong sourcing base",
+      "lead": "Export figures are the sum of the linked UN Comtrade values for the product groups on each page.",
+      "figure": "2025 exports: US$ {n} bn",
+      "more": "All industries"
+    },
+    "process": {
+      "eyebrow": "Process",
+      "title": "How a typical order runs",
+      "steps": [
+        { "title": "Request and quotation", "text": "Tell us product, quantity and target market; your quotation arrives within 24 hours." },
+        { "title": "Supplier shortlist", "text": "We screen Turkish manufacturers on documents, capacity and export history." },
+        { "title": "Samples and inspection", "text": "Samples are compared, and an independent inspector checks the factory." },
+        { "title": "Production follow-up", "text": "We track the schedule and report progress at every step." },
+        { "title": "Logistics and customs", "text": "Export customs and freight are handled through to your port." }
+      ]
+    },
+    "partners": {
+      "eyebrow": "Trust",
+      "title": "Verified Turkish Partners",
+      "badge": "Verified Turkish Partner",
+      "empty": "Our first Verified Turkish Partners are coming soon."
+    },
+    "cta": {
+      "title": "Tell us what you need. We quote within 24 hours.",
+      "lead": "Product, quantity, destination and deadline are enough to start. Our fee is quoted separately from third-party costs."
+    }
+  },
+  "page": {
+    "crumbs": "Breadcrumb",
+    "toc": "On this page",
+    "readTime": "{n} min read",
+    "home": "Home",
+    "services": "Services",
+    "products": "Products",
+    "industries": "Industries",
+    "insights": "Insights",
+    "read": "Read more",
+    "view": "View",
+    "comingSoon": "Coming soon",
+    "published": "{n} of {total} product pages published",
+    "related": { "services": "Other services", "categories": "Other categories", "industries": "Other industries" },
+    "aside": {
+      "title": "Free quotation in 24h",
+      "text": "Send product, quantity, destination and deadline. You receive a free quotation within 24 hours.",
+      "cta": "Request a quotation",
+      "services": "Explore our services"
+    },
+    "productsInCategory": "Products in this category",
+    "preparing": "Product pages for this category are being prepared. Send your requirements now and we will quote in 24h.",
+    "industryLink": "Read the {name} industry overview",
+    "partnersTitle": "Verified Turkish Partners",
+    "partnersEmpty": "Approved partners for this category will be listed here after their review is complete.",
+    "partnersProduct": "Approved partners are being onboarded. Verified manufacturers for this product category will appear here as soon as their review is complete.",
+    "quoteTitle": "Get Free Quotation in 24h",
+    "quoteLead": "Tell us what you need, how much, where it should go and by when. Our fee is quoted separately from third-party costs.",
+    "quoteCta": "Request a quotation by email",
+    "notFound": "Page not found",
+    "insightsLead": "Sourced guides on buying from Türkiye. Every article is reviewed by a person before it is published.",
+    "insightsEmpty": "No articles published yet. New guides appear here after human review."
+  },
+  "footer": {
+    "tagline": "B2B sourcing, inspection and export logistics from Türkiye — one team, end to end.",
+    "services": "Services",
+    "products": "Products",
+    "industries": "Industries",
+    "sites": "Markets",
+    "contact": "Contact",
+    "email": "Write to us",
+    "rights": "All rights reserved."
+  }
 }

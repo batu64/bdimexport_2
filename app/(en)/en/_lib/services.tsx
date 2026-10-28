@@ -4,11 +4,18 @@
 import fs from "fs";
 import path from "path";
 import type { Metadata } from "next";
-import Link from "next/link";
-import styles from "@/lib/ui/variant.module.css";
-import { color } from "@/lib/ui/tokens";
-import { renderVariantMd } from "@/lib/ui/md";
+import { Boxes, Factory, Landmark, PackageSearch, Ship, type LucideIcon } from "lucide-react";
+import { renderVariantMd, tocFromHtml } from "@/lib/ui/md";
+import PageHeader from "@/lib/ui/PageHeader";
+import ArticleLayout, { AsideCta } from "@/lib/ui/ArticleLayout";
+import CtaBand from "@/lib/ui/CtaBand";
+import Card from "@/lib/ui/Card";
+import Reveal from "@/lib/ui/motion/Reveal";
+import { Section, SectionHeader } from "@/lib/ui/Section";
+import grid from "@/lib/ui/cardgrid.module.css";
+import dict from "@/lib/messages/en.json";
 import { enAlternates } from "./hreflang";
+import { quoteHref } from "./chrome";
 
 const SITE = "https://bdimexport.com";
 const ROOT = path.join(process.cwd(), "content", "en", "global", "services");
@@ -22,10 +29,11 @@ export const SERVICES = [
   { slug: "customs", label: "Export Customs" },
 ] as const;
 export type ServiceSlug = (typeof SERVICES)[number]["slug"];
+export const SERVICE_ICON: Record<string, LucideIcon> = {
+  sourcing: PackageSearch, manufacturing: Boxes, inspection: Factory, logistics: Ship, customs: Landmark,
+};
+const pg = dict.page;
 
-/** Geçici teklif kanalı. Teklif FORMU/endpoint'i yok (lead POST FAZ 3'te) → sahte form YAZILMADI; gerçek e-posta kanalı.
- *  Adres KVKK metninde yayımlı (content/tr/legal) ama "geçici" etiketli; gerçek posta kutusu bağlanınca env ile değişir. */
-const QUOTE_EMAIL = process.env.NEXT_PUBLIC_QUOTE_EMAIL ?? "iletisim@bdimexport.com";
 
 const plain = (s: string) =>
   s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*([^*]+)\*\*/g, "$1").replace(/`/g, "").replace(/\s+/g, " ").trim();
@@ -58,6 +66,11 @@ function readDoc(slug: string) {
   return { ...parsed, faq: parseFaq(raw) };
 }
 
+/** Kart açıklaması (META desc) */
+export function readServiceDesc(slug: string): string | undefined {
+  return readDoc(slug)?.desc;
+}
+
 export function serviceMetadata(slug: string): Metadata {
   const d = readDoc(slug);
   if (!d) return {};
@@ -82,28 +95,20 @@ const crumbs = (items: { name: string; item: string }[]) => ({
   itemListElement: items.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.name, item: c.item })),
 });
 
-/** Sayfa altı teklif bloğu — #get-quote (kabuk CTA'sının hedefi). mailto: gerçek, çalışan kanal. */
+/** Sayfa altı teklif bandı — #get-quote (Product Offer url'si buraya bağlı). Kanal: gerçek e-posta (sahte form yazılmaz). */
 export function QuoteCta({ context }: { context: string }) {
-  const subject = encodeURIComponent(`Quotation request: ${context}`);
-  const body = encodeURIComponent("Product / service needed:\nQuantity:\nTarget market:\nDeadline:\nTarget price (optional):\n");
   return (
-    <section id="get-quote" className={styles.contact}>
-      <h2>Get Free Quotation in 24h</h2>
-      <p>
-        Tell us what you need, how much, where it should go and by when. You receive a free quotation within 24 hours. Our fee is
-        quoted separately from third-party costs.
-      </p>
-      <p>
-        <a
-          href={`mailto:${QUOTE_EMAIL}?subject=${subject}&body=${body}`}
-          className={`${styles.btn} ${styles.btnPrimary}`}
-          style={{ color: color.primary }}
-        >
-          Request a quotation by email
-        </a>
-      </p>
-    </section>
+    <div id="get-quote">
+      <CtaBand id="get-quote-band" title={pg.quoteTitle} lead={pg.quoteLead} primary={{ label: pg.quoteCta, href: quoteHref(context) }} />
+    </div>
   );
+}
+
+const enCrumbs = (...c: { label: string; href?: string }[]) => [{ label: pg.home, href: "/en" }, ...c];
+
+/** Yan sütun teklif kartı (tüm EN içerik sayfaları) */
+export function QuoteAside({ context }: { context: string }) {
+  return <AsideCta title={pg.aside.title} text={pg.aside.text} cta={{ label: pg.aside.cta, href: quoteHref(context) }} secondary={{ label: pg.aside.services, href: "/en/services" }} />;
 }
 
 export function ServicePage({ slug }: { slug: string }) {
@@ -111,11 +116,8 @@ export function ServicePage({ slug }: { slug: string }) {
   const meta = SERVICES.find((s) => s.slug === slug);
   if (!d || !meta) {
     return (
-      <main className={styles.main}>
-        <h1>Service not found</h1>
-        <p>
-          See all <Link href="/en/services">export services from Turkey</Link>.
-        </p>
+      <main>
+        <PageHeader crumbs={enCrumbs({ label: pg.services, href: "/en/services" }, { label: pg.notFound })} crumbsLabel={pg.crumbs} title={pg.notFound} />
       </main>
     );
   }
@@ -144,27 +146,34 @@ export function ServicePage({ slug }: { slug: string }) {
       { name: meta.label, item: url },
     ]),
   );
+  const others = SERVICES.filter((x) => x.slug !== slug).map((x) => ({ ...x, doc: readDoc(x.slug) })).slice(0, 3);
   return (
-    <main className={styles.main}>
+    <main>
       <JsonLd graph={graph} />
-      <nav aria-label="breadcrumb" className={styles.crumb}>
-        <Link href="/en">Home</Link>
-        <span aria-hidden="true"> → </span>
-        <Link href="/en/services">Services</Link>
-        <span aria-hidden="true"> → </span>
-        <span>{meta.label}</span>
-      </nav>
-      <h1>{d.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: d.html }} />
+      <PageHeader
+        crumbs={enCrumbs({ label: pg.services, href: "/en/services" }, { label: meta.label })}
+        crumbsLabel={pg.crumbs}
+        eyebrow={pg.services}
+        title={d.title}
+        lead={d.desc}
+      />
+      <ArticleLayout toc={tocFromHtml(d.html)} tocLabel={pg.toc} aside={<QuoteAside context={meta.label} />}>
+        <div className="prose" dangerouslySetInnerHTML={{ __html: d.html }} />
+      </ArticleLayout>
+      <Section id="other-services" tone="alt">
+        <SectionHeader id="other-services" title={pg.related.services} />
+        <ul role="list" className={grid.grid}>
+          {others.map((o, i) => {
+            const Icon = SERVICE_ICON[o.slug];
+            return (
+              <Reveal as="li" key={o.slug} index={i}>
+                <Card title={o.label} href={`/en/services/${o.slug}`} description={o.doc?.desc} icon={<Icon />} more={pg.read} />
+              </Reveal>
+            );
+          })}
+        </ul>
+      </Section>
       <QuoteCta context={meta.label} />
-      <nav aria-label="Other services" className={styles.pageNav}>
-        {SERVICES.filter((s) => s.slug !== slug).map((s, i) => (
-          <span key={s.slug}>
-            {i > 0 ? " · " : ""}
-            <Link href={`/en/services/${s.slug}`}>{s.label}</Link>
-          </span>
-        ))}
-      </nav>
     </main>
   );
 }
@@ -188,23 +197,27 @@ export function ServicesIndexPage() {
     },
   ];
   return (
-    <main className={styles.main}>
+    <main>
       <JsonLd graph={graph} />
-      <nav aria-label="breadcrumb" className={styles.crumb}>
-        <Link href="/en">Home</Link>
-        <span aria-hidden="true"> → </span>
-        <span>Services</span>
-      </nav>
-      <h1>{d?.title ?? "Export Services from Turkey"}</h1>
-      {d ? <div dangerouslySetInnerHTML={{ __html: d.html }} /> : null}
-      <ul>
-        {cards.map((c) => (
-          <li key={c.slug}>
-            <Link href={`/en/services/${c.slug}`}>{c.label}</Link>
-            {c.doc?.desc ? <> — {c.doc.desc}</> : null}
-          </li>
-        ))}
-      </ul>
+      <PageHeader crumbs={enCrumbs({ label: pg.services })} crumbsLabel={pg.crumbs} eyebrow={pg.services} title={d?.title ?? "Export Services from Turkey"} lead={d?.desc} />
+      <Section id="services-list">
+        <h2 id="services-list-title" className="visually-hidden">{pg.services}</h2>
+        <ul role="list" className={grid.grid}>
+          {cards.map((c, i) => {
+            const Icon = SERVICE_ICON[c.slug];
+            return (
+              <Reveal as="li" key={c.slug} index={i % 3}>
+                <Card title={c.label} href={`/en/services/${c.slug}`} description={c.doc?.desc} icon={<Icon />} more={pg.read} />
+              </Reveal>
+            );
+          })}
+        </ul>
+      </Section>
+      {d ? (
+        <ArticleLayout toc={tocFromHtml(d.html)} tocLabel={pg.toc} aside={<QuoteAside context="Export services from Turkey" />}>
+          <div className="prose" dangerouslySetInnerHTML={{ __html: d.html }} />
+        </ArticleLayout>
+      ) : null}
       <QuoteCta context="Export services from Turkey" />
     </main>
   );

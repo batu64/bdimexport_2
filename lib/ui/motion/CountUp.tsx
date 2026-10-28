@@ -5,11 +5,11 @@ import { animate, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { motion as t } from "../tokens";
 
-export default function CountUp({ value, locale = "tr", className }: { value: number; locale?: string; className?: string }) {
+export default function CountUp({ value, locale = "tr", decimals = 0, className }: { value: number; locale?: string; decimals?: number; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
   const reduce = useReducedMotion();
-  const fmt = new Intl.NumberFormat(locale);
+  const fmt = new Intl.NumberFormat(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
   useEffect(() => {
     if (!inView || reduce || !ref.current) return;
@@ -17,12 +17,12 @@ export default function CountUp({ value, locale = "tr", className }: { value: nu
     const ctrl = animate(0, value, {
       duration: (t.slow * 3) / 1000,
       ease: t.easeOut,
-      onUpdate: (v) => { el.textContent = fmt.format(Math.round(v)); },
+      onUpdate: (v) => { el.textContent = fmt.format(decimals ? v : Math.round(v)); },
     });
     return () => ctrl.stop();
     // fmt her render'da yeni nesne; değer/locale değişmedikçe yeniden çalıştırmaya gerek yok
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView, reduce, value]);
+  }, [inView, reduce, value, decimals]);
 
   return <span ref={ref} className={className}>{fmt.format(value)}</span>;
 }

@@ -24,6 +24,8 @@ export type NavbarProps = {
   labels: { nav: string; open: string; close: string; sites: string };
   /** Bu yollarda navbar koyu hero üstünde şeffaf başlar */
   heroPaths?: string[];
+  /** Verilirse yerleşik pazar menüsü yerine bu dil seçici (tek kez, tüm genişliklerde) kullanılır */
+  switcher?: React.ReactNode;
 };
 
 const SCROLL_SOLID = space.s6;
@@ -34,7 +36,7 @@ function Go({ href, className, children }: { href: string; className: string; ch
   return isExternal(href) ? <a href={href} className={className}>{children}</a> : <Link href={href} className={className}>{children}</Link>;
 }
 
-export default function Navbar({ brand, homeHref, homeLabel, links, cta, sites, labels, heroPaths = [] }: NavbarProps) {
+export default function Navbar({ brand, homeHref, homeLabel, links, cta, sites, labels, heroPaths = [], switcher }: NavbarProps) {
   const pathname = usePathname() ?? "/";
   const overHero = heroPaths.includes(pathname);
   const [scrolled, setScrolled] = useState(false);
@@ -114,6 +116,7 @@ export default function Navbar({ brand, homeHref, homeLabel, links, cta, sites, 
         </nav>
 
         <div className={s.actions}>
+          {switcher ? <div className={s.switcher}>{switcher}</div> : (
           <div className={s.sites} ref={sitesRef}>
             <button
               type="button"
@@ -138,6 +141,7 @@ export default function Navbar({ brand, homeHref, homeLabel, links, cta, sites, 
               ))}
             </ul>
           </div>
+          )}
           <Go href={cta.href} className={s.cta}>{cta.label}</Go>
           <button
             ref={toggleRef}
@@ -163,8 +167,8 @@ export default function Navbar({ brand, homeHref, homeLabel, links, cta, sites, 
             ))}
           </ul>
           <Go href={cta.href} className={s.sheetCta}>{cta.label}</Go>
-          <p className={s.sheetLabel}>{labels.sites}</p>
-          <ul role="list" className={s.sheetSites}>
+          {!switcher && <p className={s.sheetLabel}>{labels.sites}</p>}
+          {!switcher && <ul role="list" className={s.sheetSites}>
             {sites.map((x) => (
               <li key={x.href}>
                 <a href={x.href} lang={x.lang} hrefLang={x.lang} aria-current={x.current ? "true" : undefined} className={s.siteItem}>
@@ -173,7 +177,7 @@ export default function Navbar({ brand, homeHref, homeLabel, links, cta, sites, 
                 </a>
               </li>
             ))}
-          </ul>
+          </ul>}
         </nav>
       </div>
     </header>

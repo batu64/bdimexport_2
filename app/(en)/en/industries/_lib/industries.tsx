@@ -4,10 +4,16 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { Metadata } from "next";
-import Link from "next/link";
-import styles from "@/lib/ui/variant.module.css";
-import { renderVariantMd } from "@/lib/ui/md";
-import { QuoteCta } from "../../_lib/services";
+import { Building2, Cog, Shirt, Sofa, Wheat, type LucideIcon } from "lucide-react";
+import { renderVariantMd, tocFromHtml } from "@/lib/ui/md";
+import PageHeader from "@/lib/ui/PageHeader";
+import ArticleLayout from "@/lib/ui/ArticleLayout";
+import Card from "@/lib/ui/Card";
+import Reveal from "@/lib/ui/motion/Reveal";
+import { Section, SectionHeader } from "@/lib/ui/Section";
+import grid from "@/lib/ui/cardgrid.module.css";
+import dict from "@/lib/messages/en.json";
+import { QuoteAside, QuoteCta } from "../../_lib/services";
 import { enAlternates } from "../../_lib/hreflang";
 
 const SITE = "https://bdimexport.com";
@@ -22,6 +28,8 @@ export const INDUSTRIES = [
   { slug: "construction", label: "Construction Materials" },
   { slug: "home-living", label: "Home & Living" },
 ] as const;
+export const INDUSTRY_ICON: Record<string, LucideIcon> = { textile: Shirt, food: Wheat, machinery: Cog, construction: Building2, "home-living": Sofa };
+const pg = dict.page;
 
 interface Claim {
   year: number;
@@ -31,7 +39,7 @@ interface Claim {
   verified_on: string;
 }
 
-const CLAIMS = JSON.parse(fs.readFileSync(path.join(ROOT, "_claims.json"), "utf-8")) as Record<string, Claim>;
+export const CLAIMS = JSON.parse(fs.readFileSync(path.join(ROOT, "_claims.json"), "utf-8")) as Record<string, Claim>;
 
 const plain = (s: string) =>
   s.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*([^*]+)\*\*/g, "$1").replace(/`/g, "").replace(/\s+/g, " ").trim();
@@ -76,6 +84,16 @@ function readDoc(name: string) {
   return { ...d, html: withHeadingIds(d.html), faq: parseFaq(raw) };
 }
 
+/** Sektör özeti (ana sayfa kartları): başlık, açıklama, doğrulanmış en son yıl ihracat toplamı (milyar US$) */
+export function industryCards() {
+  return INDUSTRIES.flatMap((i) => {
+    const d = readDoc(i.slug);
+    const c = CLAIMS[i.slug];
+    if (!d || !c) return [];
+    return [{ ...i, desc: d.desc ?? "", year: c.year, bn: c.total_usd_million[String(c.year)] / 1000 }];
+  });
+}
+
 export function industrySlugs(): string[] {
   return INDUSTRIES.map((i) => i.slug).filter((s) => fs.existsSync(path.join(ROOT, `${s}.md`)));
 }
@@ -110,11 +128,8 @@ export function IndustryPageView({ slug }: { slug: string }) {
   const claim = CLAIMS[slug];
   if (!meta || !d || !claim) {
     return (
-      <main className={styles.main}>
-        <h1>Industry not found</h1>
-        <p>
-          See all <Link href="/en/industries">export industries</Link>.
-        </p>
+      <main>
+        <PageHeader crumbs={[{ label: pg.home, href: "/en" }, { label: pg.industries, href: "/en/industries" }, { label: pg.notFound }]} crumbsLabel={pg.crumbs} title={pg.notFound} />
       </main>
     );
   }
@@ -168,18 +183,21 @@ export function IndustryPageView({ slug }: { slug: string }) {
       { name: meta.label, item: url },
     ]),
   );
+  const bn = (claim.total_usd_million[String(claim.year)] / 1000).toLocaleString("en", { maximumFractionDigits: 1 });
   return (
-    <main className={styles.main}>
+    <main>
       <JsonLd graph={graph} />
-      <nav aria-label="breadcrumb" className={styles.crumb}>
-        <Link href="/en">Home</Link>
-        <span aria-hidden="true"> → </span>
-        <Link href="/en/industries">Industries</Link>
-        <span aria-hidden="true"> → </span>
-        <span>{meta.label}</span>
-      </nav>
-      <h1>{d.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: d.html }} />
+      <PageHeader
+        crumbs={[{ label: pg.home, href: "/en" }, { label: pg.industries, href: "/en/industries" }, { label: meta.label }]}
+        crumbsLabel={pg.crumbs}
+        eyebrow={pg.industries}
+        title={d.title}
+        lead={d.desc}
+        meta={<a className="chip" href="#calculation-notes">{dict.home.industries.figure.replace("{n}", bn)}</a>}
+      />
+      <ArticleLayout toc={tocFromHtml(d.html)} tocLabel={pg.toc} aside={<QuoteAside context={meta.label} />}>
+        <div className="prose" dangerouslySetInnerHTML={{ __html: d.html }} />
+      </ArticleLayout>
       <QuoteCta context={meta.label} />
     </main>
   );
@@ -200,24 +218,37 @@ export function IndustriesIndexView() {
       itemListElement: cards.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, url: `${SITE}/en/industries/${c.slug}` })),
     },
   ];
+  const figures = Object.fromEntries(industryCards().map((c) => [c.slug, c.bn]));
   return (
-    <main className={styles.main}>
+    <main>
       <JsonLd graph={graph} />
-      <nav aria-label="breadcrumb" className={styles.crumb}>
-        <Link href="/en">Home</Link>
-        <span aria-hidden="true"> → </span>
-        <span>Industries</span>
-      </nav>
-      <h1>{d?.title ?? "Export Industries of Turkey"}</h1>
-      {d ? <div dangerouslySetInnerHTML={{ __html: d.html }} /> : null}
-      <ul>
-        {cards.map((c) => (
-          <li key={c.slug}>
-            <Link href={`/en/industries/${c.slug}`}>{c.label}</Link>
-            {c.doc?.desc ? <> — {c.doc.desc}</> : null}
-          </li>
-        ))}
-      </ul>
+      <PageHeader crumbs={[{ label: pg.home, href: "/en" }, { label: pg.industries }]} crumbsLabel={pg.crumbs} eyebrow={pg.industries} title={d?.title ?? "Export Industries of Turkey"} lead={d?.desc} />
+      <Section id="industries-list">
+        <h2 id="industries-list-title" className="visually-hidden">{pg.industries}</h2>
+        <ul role="list" className={grid.grid}>
+          {cards.map((c, i) => {
+            const Icon = INDUSTRY_ICON[c.slug];
+            const f = figures[c.slug];
+            return (
+              <Reveal as="li" key={c.slug} index={i % 3}>
+                <Card
+                  title={c.label}
+                  href={`/en/industries/${c.slug}`}
+                  description={c.doc?.desc}
+                  icon={<Icon />}
+                  eyebrow={f ? dict.home.industries.figure.replace("{n}", f.toLocaleString("en", { maximumFractionDigits: 1 })) : undefined}
+                  more={pg.read}
+                />
+              </Reveal>
+            );
+          })}
+        </ul>
+      </Section>
+      {d ? (
+        <ArticleLayout toc={tocFromHtml(d.html)} tocLabel={pg.toc} aside={<QuoteAside context="Export industries of Turkey" />}>
+          <div className="prose" dangerouslySetInnerHTML={{ __html: d.html }} />
+        </ArticleLayout>
+      ) : null}
       <QuoteCta context="Export industries of Turkey" />
     </main>
   );

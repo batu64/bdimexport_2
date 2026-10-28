@@ -3,6 +3,10 @@ import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
+import Navbar from "@/lib/ui/Navbar";
+import Footer from "@/lib/ui/Footer";
+import dict from "@/lib/messages/en.json";
+import { footerProps, navbarProps } from "./en/_lib/chrome";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bdimexport.com"),
@@ -18,9 +22,12 @@ export default function EnLayout({ children }: { children: React.ReactNode }) {
         <ThemeStyle />
       </head>
       <body>
-    <IntlProvider locale="en">
-      <div lang="en">{children}</div>
-    </IntlProvider>
+        <a href="#content" className="skip-link">{dict.nav.skip}</a>
+        <IntlProvider locale="en">
+          <Navbar {...navbarProps()} />
+          <div lang="en" id="content" tabIndex={-1}>{children}</div>
+          <Footer {...footerProps()} />
+        </IntlProvider>
       </body>
     </html>
   );

@@ -1,0 +1,38 @@
+/* Onaylı partner bandı — boş durum (dürüst "yakında" + iskelet logolar) */
+.partners {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--s-4);
+  padding: var(--s-12) var(--s-6);
+  border: var(--bw-1) dashed var(--c-border-strong);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+.partnerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--c-success) 12%, transparent);
+  color: var(--c-success);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+}
+.partnerIcon { inline-size: var(--s-4); block-size: var(--s-4); }
+.partnersTitle { font-size: var(--type-h3); }
+.partnersEmpty { color: var(--c-muted); }
+.ghostLogos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); inline-size: min(100%, calc(var(--s-24) * 6)); margin-block-start: var(--s-4); }
+@media (min-width: 768px) { .ghostLogos { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.ghostLogos li {
+  block-size: var(--s-12);
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--c-border) 0%, color-mix(in srgb, var(--c-border) 40%, var(--c-surface)) 50%, var(--c-border) 100%);
+  background-size: 200% 100%;
+  opacity: 0.6;
+  animation: shimmer 2.4s var(--ease-in-out) infinite;
+  animation-delay: calc(var(--i) * var(--stagger) * 2);
+}
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }

@@ -1,7 +1,7 @@
 // /en/insights — FAZ_4 4.6 article index (Content Factory → bot PR → merge) + edge news cards.
 import type { Metadata } from "next";
-import GlobalShell from "../_lib/GlobalShell";
-import styles from "@/lib/ui/variant.module.css";
+import PageHeader from "@/lib/ui/PageHeader";
+import dict from "@/lib/messages/en.json";
 import { InsightList, SITE } from "@/lib/ui/insights";
 import NewsCards from "@/app/components/NewsCards";
 
@@ -12,13 +12,14 @@ export const metadata: Metadata = {
 };
 
 export default function InsightsPage() {
+  const pg = dict.page;
   return (
-    <GlobalShell>
-      <main className={styles.main}>
-        <h1>Insights</h1>
-        <InsightList scope="en" empty="No articles published yet. New guides appear here after human review." />
-        <NewsCards locale="en" className={styles.news} />
-      </main>
-    </GlobalShell>
+    <main>
+      <PageHeader crumbs={[{ label: pg.home, href: "/en" }, { label: pg.insights }]} crumbsLabel={pg.crumbs} eyebrow={pg.insights} title={pg.insights} lead={pg.insightsLead} />
+      <div className="container section">
+        <InsightList scope="en" empty={pg.insightsEmpty} more={pg.read} />
+        <NewsCards locale="en" />
+      </div>
+    </main>
   );
 }

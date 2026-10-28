@@ -1,0 +1,18 @@
+/* Edge haber kartları (4.6) — dolu olduğunda görünür; kart ızgarası, yalnız token değişkenleri. */
+.news { margin-block-start: var(--s-16); }
+.title { margin-block-end: var(--s-6); font-size: var(--type-h3); }
+.list { display: grid; gap: var(--s-4); padding: 0; list-style: none; }
+@media (min-width: 768px) { .list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.card {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-6);
+  border: var(--bw-1) solid var(--c-border);
+  border-inline-start: var(--s-1) solid var(--c-accent);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  color: var(--c-ink);
+}
+.card time { color: var(--c-muted); font-size: var(--fs-sm); }
+.card p { color: var(--c-muted); font-size: var(--fs-sm); }

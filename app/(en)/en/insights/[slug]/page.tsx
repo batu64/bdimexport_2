@@ -1,8 +1,8 @@
 // /en/insights/{slug} — FAZ_4 4.6 article page. Content: content/en/global/insights/{slug}.md (+ .schema.json JSON-LD).
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import GlobalShell from "../../_lib/GlobalShell";
 import { InsightArticle, insightParams, readInsight } from "@/lib/ui/insights";
+import dict from "@/lib/messages/en.json";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -21,8 +21,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const it = readInsight("en", slug);
   if (!it) notFound();
   return (
-    <GlobalShell>
-      <InsightArticle insight={it} crumbs={[{ label: "Home", href: "/en" }, { label: "Insights", href: "/en/insights" }]} />
-    </GlobalShell>
+    <>
+      <InsightArticle insight={it} crumbs={[{ label: dict.page.home, href: "/en" }, { label: dict.page.insights, href: "/en/insights" }]} crumbsLabel={dict.page.crumbs} tocLabel={dict.page.toc} eyebrow={dict.page.insights} />
+    </>
   );
 }

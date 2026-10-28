@@ -1,0 +1,12 @@
+/* Boş durum kutusu (liste henüz boş): dürüst bilgi metni, kesikli çerçeve. */
+.box {
+  display: grid;
+  justify-items: center;
+  gap: var(--s-3);
+  padding: var(--s-12) var(--s-6);
+  border: var(--bw-1) dashed var(--c-border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--c-muted);
+  text-align: center;
+}
+.icon { inline-size: var(--s-8); block-size: var(--s-8); color: var(--c-accent); }
