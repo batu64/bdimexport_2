@@ -65,7 +65,7 @@
 .rowTitle { color: var(--c-heading); font-weight: var(--fw-heading); }
 .rowDesc { color: var(--c-muted); font-size: var(--fs-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .rowArrow { inline-size: var(--s-4); block-size: var(--s-4); color: var(--c-muted); transition: transform var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out); }
-.serviceRow:hover .rowArrow { transform: translateX(var(--s-1)); color: var(--c-heading); }
+.serviceRow:hover .rowArrow { transform: translateX(calc(var(--dir) * var(--s-1))) scaleX(var(--dir)); color: var(--c-heading); }
 [dir="rtl"] .rowArrow { transform: scaleX(-1); }
 
 /* ── Program (flywheel) */
@@ -116,7 +116,7 @@
   background-image: linear-gradient(color-mix(in srgb, var(--c-on-brand) 5%, transparent), color-mix(in srgb, var(--c-on-brand) 5%, transparent));
   transition: border-color var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
 }
-.flyStep:hover { border-color: color-mix(in srgb, var(--c-accent-on-brand) 50%, transparent); background: color-mix(in srgb, var(--c-on-brand) 8%, transparent); transform: translateX(var(--s-1)); }
+.flyStep:hover { border-color: color-mix(in srgb, var(--c-accent-on-brand) 50%, transparent); background: color-mix(in srgb, var(--c-on-brand) 8%, transparent); transform: translateX(calc(var(--dir) * var(--s-1))); }
 .flyIcon {
   display: inline-grid;
   place-items: center;

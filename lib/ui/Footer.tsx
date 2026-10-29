@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 import type { NavLink, SiteLink } from "./Navbar";
+import Reveal from "./motion/Reveal";
 import s from "./footer.module.css";
 
 export type FooterProps = {
@@ -32,8 +33,9 @@ export default function Footer({ brand, tagline, columns, sites, legal, contact,
             </a>
           </>}
         </div>
-        {columns.map((c) => (
-          <nav key={c.title} aria-label={c.title} className={s.col}>
+        {columns.map((c, i) => (
+          <Reveal key={c.title} index={i + 1}>
+          <nav aria-label={c.title} className={s.col}>
             <p className={s.colTitle}>{c.title}</p>
             <ul role="list">
               {c.links.map((l) => (
@@ -41,6 +43,7 @@ export default function Footer({ brand, tagline, columns, sites, legal, contact,
               ))}
             </ul>
           </nav>
+          </Reveal>
         ))}
         <div className={s.col}>
           <nav aria-label={sites.title}>

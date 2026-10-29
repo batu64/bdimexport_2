@@ -7,6 +7,7 @@ import ChannelCta from "./ChannelCta";
 import LangSwitcher from "./LangSwitcher";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import PageTransition from "./motion/PageTransition";
 import { VARIANTS, switcherItems } from "./variants";
 import type { EnVariant } from "../i18n";
 
@@ -38,7 +39,7 @@ export default function VariantShell({ variant, children }: { variant: EnVariant
         heroPaths={[base]}
         switcher={switcher}
       />
-      <div id="content" tabIndex={-1}>{children}</div>
+      <div id="content" tabIndex={-1}><PageTransition>{children}</PageTransition></div>
       <Footer
         brand="Bdimexport"
         tagline={v.tagline}

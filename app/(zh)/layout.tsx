@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
+import PageTransition from "@/lib/ui/motion/PageTransition";
 import Navbar from "@/lib/ui/Navbar";
 import Footer from "@/lib/ui/Footer";
 import dict from "@/lib/messages/zh.json";
@@ -30,7 +31,7 @@ export default function ZhLayout({ children }: { children: React.ReactNode }) {
         <a href="#zhengwen" className="skip-link">{dict.nav.skip}</a>
         <IntlProvider locale="zh">
           <Navbar {...navbarProps()} />
-          <div lang="zh-CN" id="zhengwen" tabIndex={-1}>{children}</div>
+          <div lang="zh-CN" id="zhengwen" tabIndex={-1}><PageTransition>{children}</PageTransition></div>
           <Footer {...footerProps()} />
         </IntlProvider>
       </body>

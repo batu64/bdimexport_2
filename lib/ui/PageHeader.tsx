@@ -30,11 +30,11 @@ export default function PageHeader({ crumbs, crumbsLabel, eyebrow, title, lead, 
             ))}
           </ol>
         </nav>
-        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+        {eyebrow && <p className="eyebrow enter" style={{ "--d": 0 } as React.CSSProperties}>{eyebrow}</p>}
         <h1 className={s.title}>{title}</h1>
-        {lead && <p className={`lead ${s.lead}`}>{lead}</p>}
-        {meta && <div className={s.meta}>{meta}</div>}
-        {actions && <div className={s.actions}>{actions}</div>}
+        {lead && <p className={`lead enter ${s.lead}`} style={{ "--d": 1 } as React.CSSProperties}>{lead}</p>}
+        {meta && <div className={`enter ${s.meta}`} style={{ "--d": 2 } as React.CSSProperties}>{meta}</div>}
+        {actions && <div className={`enter ${s.actions}`} style={{ "--d": 2 } as React.CSSProperties}>{actions}</div>}
       </div>
     </header>
   );

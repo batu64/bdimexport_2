@@ -42,7 +42,7 @@
 .product:not([data-live]) .productName { color: var(--c-muted); }
 .blurb { color: var(--c-muted); font-size: var(--fs-sm); }
 .arrow { inline-size: var(--s-4); block-size: var(--s-4); color: var(--c-muted); transition: transform var(--dur-fast) var(--ease-out); }
-.productLink:hover .arrow { transform: translateX(var(--s-1)); color: var(--c-heading); }
+.productLink:hover .arrow { transform: translateX(calc(var(--dir) * var(--s-1))) scaleX(var(--dir)); color: var(--c-heading); }
 [dir="rtl"] .arrow { transform: scaleX(-1); }
 .soon {
   display: inline-flex;

@@ -82,7 +82,7 @@
   animation: stepIn var(--dur-slow) var(--ease-out) both;
   animation-delay: calc(0.6s + var(--i) * var(--stagger) * 2);
 }
-@keyframes stepIn { from { opacity: 0; transform: translateX(calc(-1 * var(--s-3))); } to { opacity: 1; transform: none; } }
+@keyframes stepIn { from { opacity: 0; transform: translateX(calc(-1 * var(--dir) * var(--s-3))); } to { opacity: 1; transform: none; } }
 .step[data-state="active"] { background: color-mix(in srgb, var(--c-highlight) 12%, transparent); }
 .mark {
   position: relative;

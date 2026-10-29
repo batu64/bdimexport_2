@@ -27,7 +27,7 @@
 .input:hover { border-color: var(--c-heading); }
 .input:focus { outline: none; border-color: var(--c-accent); box-shadow: 0 0 0 var(--s-1) color-mix(in srgb, var(--c-accent) 22%, transparent); }
 .input[aria-invalid="true"] { border-color: var(--c-danger); background: color-mix(in srgb, var(--c-danger) 4%, var(--c-surface)); animation: shake var(--dur-slow) var(--ease-out); }
-@keyframes shake { 20%, 60% { transform: translateX(calc(-1 * var(--s-1))); } 40%, 80% { transform: translateX(var(--s-1)); } }
+@keyframes shake { 20%, 60% { transform: translateX(calc(-1 * var(--dir) * var(--s-1))); } 40%, 80% { transform: translateX(calc(var(--dir) * var(--s-1))); } }
 textarea.input { resize: vertical; min-block-size: calc(var(--touch) * 2.5); }
 .file { padding-block: var(--s-2); cursor: pointer; }
 .file::file-selector-button {

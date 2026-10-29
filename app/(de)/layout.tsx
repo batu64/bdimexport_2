@@ -4,6 +4,7 @@ import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
+import PageTransition from "@/lib/ui/motion/PageTransition";
 import Navbar from "@/lib/ui/Navbar";
 import Footer from "@/lib/ui/Footer";
 import dict from "@/lib/messages/de.json";
@@ -25,7 +26,7 @@ export default function DeLayout({ children }: { children: React.ReactNode }) {
         <a href="#inhalt" className="skip-link">{dict.nav.skip}</a>
         <IntlProvider locale="de">
           <Navbar {...navbarProps()} />
-          <div lang="de" id="inhalt" tabIndex={-1}>{children}</div>
+          <div lang="de" id="inhalt" tabIndex={-1}><PageTransition>{children}</PageTransition></div>
           <Footer {...footerProps()} />
         </IntlProvider>
       </body>

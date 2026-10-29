@@ -5,6 +5,7 @@ import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import type { Metadata } from "next";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 import { IntlProvider } from "@/lib/intl";
+import PageTransition from "@/lib/ui/motion/PageTransition";
 import Navbar from "@/lib/ui/Navbar";
 import Footer from "@/lib/ui/Footer";
 import dict from "@/lib/messages/tr.json";
@@ -28,7 +29,7 @@ export default function TrLayout({ children }: { children: React.ReactNode }) {
         <a href="#icerik" className="skip-link">{dict.nav.skip}</a>
         <IntlProvider locale="tr">
           <Navbar {...navbarProps()} />
-          <div lang="tr" id="icerik" tabIndex={-1}>{children}</div>
+          <div lang="tr" id="icerik" tabIndex={-1}><PageTransition>{children}</PageTransition></div>
           <Footer {...footerProps()} />
         </IntlProvider>
       </body>

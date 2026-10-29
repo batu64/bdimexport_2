@@ -3,6 +3,10 @@
    @media eşikleri tokens.breakpoint ile birebir (CSS'te değişken kullanılamadığı tek yer; qa/TASARIM taraması doğrular).
    Mantıksal özellikler (inline/block) → /en/ar RTL otomatik aynalanır. */
 
+/* ── yön çarpanı: yatay hareketler translateX(calc(var(--dir) * …)) ile RTL'de otomatik aynalanır */
+:root { --dir: 1; }
+[dir="rtl"] { --dir: -1; }
+
 /* ── reset */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
@@ -237,6 +241,14 @@ a:hover { text-decoration-thickness: var(--bw-2); }
   transform: none;
   transition: opacity var(--dur-slow) var(--ease-out) var(--rd, 0s), transform var(--dur-slow) var(--ease-out) var(--rd, 0s);
 }
+
+/* ── sayfa geçişi (lib/ui/motion/PageTransition — yalnız client-side gezinmede; ilk yüklemede yok) */
+.page-enter { animation: page-enter var(--dur-base) var(--ease-out) both; }
+@keyframes page-enter { from { opacity: 0; transform: translateY(var(--s-2)); } to { opacity: 1; transform: none; } }
+
+/* ── giriş kademesi (başlık bantları): H1 HARİÇ — LCP adayı animasyonsuz */
+.enter { animation: enter-up var(--dur-slow) var(--ease-out) both; animation-delay: calc(var(--d, 0) * var(--stagger) * 2 + var(--dur-fast)); }
+@keyframes enter-up { from { opacity: 0; transform: translateY(var(--motion-distance)); } to { opacity: 1; transform: none; } }
 
 /* ── hareket azaltma: tüm geçiş/animasyonlar kapanır (WCAG 2.3.3) */
 @media (prefers-reduced-motion: reduce) {
