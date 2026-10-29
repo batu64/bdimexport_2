@@ -1,5 +1,5 @@
 // /zh 服务 sayfaları ortak modülü — FAZ_5 5.3. İçerik: content/zh/services/*.md (简体字, Baidu META: title ≤30 / desc ≤78).
-// Render: lib/ui/md (h2 id + 常见问题 akordeon + tablo sarmalayıcı) → D6 stilli kabuk (PageHeader + ArticleLayout + WeChatCard).
+// Render: lib/ui/md (h2 id + 常见问题 akordeon + tablo sarmalayıcı) → D6 stilli kabuk (PageHeader + ArticleLayout + WeChatContact).
 // Schema: Service + FAQPage + BreadcrumbList (SEO_PLAYBOOK §4). hreflang YAZILMAZ (ortak dosya — 5.8); canonical kendi URL'si.
 import fs from "node:fs";
 import path from "node:path";
@@ -9,7 +9,7 @@ import { renderVariantMd, tocFromHtml } from "@/lib/ui/md";
 import PageHeader from "@/lib/ui/PageHeader";
 import ArticleLayout, { AsideCta } from "@/lib/ui/ArticleLayout";
 import Card from "@/lib/ui/Card";
-import WeChatCard from "@/lib/ui/WeChatCard";
+import WeChatContact from "./WeChatContact";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { Section, SectionHeader } from "@/lib/ui/Section";
 import grid from "@/lib/ui/cardgrid.module.css";
@@ -119,7 +119,7 @@ export function ZhServicePage({ slug }: { slug: string }) {
       </Section>
       <section aria-label={dict.wechat.title} className="section">
         <div className="container">
-          <WeChatCard labels={dict.wechat} email={QUOTE_EMAIL} />
+          <WeChatContact email={QUOTE_EMAIL} />
         </div>
       </section>
     </main>

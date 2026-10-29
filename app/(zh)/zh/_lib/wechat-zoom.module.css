@@ -1,0 +1,59 @@
+/* /zh WeChat QR davranışı (FAZ_5 5.6): QR dokun → <dialog> içinde büyük QR + 微信号 + 复制. Yalnız token değişkenleri.
+   Masaüstünde QR + ID kart içinde görünür; "点击放大" ipucu yalnız dokunmatik (pointer: coarse) cihazlarda. */
+.qrBtn {
+  display: block;
+  inline-size: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  cursor: zoom-in;
+}
+.qrBtn:focus-visible { outline: var(--bw-2) solid var(--c-focus); outline-offset: var(--bw-2); }
+.qrBtn img { display: block; inline-size: 100%; block-size: auto; }
+.zoomHint {
+  display: none;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--c-muted);
+  font-size: var(--fs-sm);
+}
+.zoomHint svg { inline-size: var(--s-4); block-size: var(--s-4); }
+@media (pointer: coarse) { .zoomHint { display: inline-flex; } }
+
+.dialog {
+  inline-size: min(calc(100vw - var(--s-8)), calc(var(--s-24) * 4));
+  max-block-size: calc(100dvh - var(--s-8));
+  margin: auto; /* global reset margin:0 UA ortalamasını eziyor */
+  overflow: auto;
+  padding: var(--s-6);
+  border: 0;
+  border-block-start: var(--s-1) solid var(--c-accent);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  color: var(--c-ink);
+  box-shadow: var(--e-3);
+}
+.dialog::backdrop { background: color-mix(in srgb, var(--c-ink) 64%, transparent); }
+.inner { display: grid; gap: var(--s-4); justify-items: center; text-align: center; }
+.big { inline-size: 100%; block-size: auto; border-radius: var(--radius); }
+.title { font-size: var(--type-h3); }
+.hint { color: var(--c-muted); font-size: var(--fs-sm); }
+.close {
+  justify-self: stretch;
+  min-block-size: var(--touch);
+  border: var(--bw-1) solid var(--c-border-strong);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  color: var(--c-heading);
+  font-weight: var(--fw-heading);
+  cursor: pointer;
+}
+.close:focus-visible { outline: var(--bw-2) solid var(--c-focus); outline-offset: var(--bw-2); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .dialog[open] { animation: zoom-in var(--dur-base) var(--ease-out); }
+  .dialog[open]::backdrop { animation: fade-in var(--dur-base) var(--ease-out); }
+}
+@keyframes zoom-in { from { opacity: 0; transform: scale(0.96); } }
+@keyframes fade-in { from { opacity: 0; } }

@@ -10,7 +10,7 @@ import { Section, SectionHeader } from "@/lib/ui/Section";
 import Card from "@/lib/ui/Card";
 import Steps from "@/lib/ui/Steps";
 import PartnerBand from "@/lib/ui/PartnerBand";
-import WeChatCard from "@/lib/ui/WeChatCard";
+import WeChatContact from "./_lib/WeChatContact";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { QUOTE_EMAIL } from "./_lib/chrome";
 import s from "./zh.module.css";
@@ -77,7 +77,7 @@ export default function ZhHomePage() {
             </div>
           </Reveal>
           <Reveal index={1}>
-            <WeChatCard labels={dict.wechat} email={QUOTE_EMAIL} />
+            <WeChatContact email={QUOTE_EMAIL} />
           </Reveal>
         </div>
       </section>
