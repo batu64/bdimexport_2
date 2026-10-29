@@ -43,7 +43,7 @@
 | 7 | 4.7 Hata izleme/fallback/kota | **Opus 5.5** (27.10 kararı) | 4.5, 4.6 | ✅ KOD + TEST (commit `36ddac7`; cron-rss 73/73, negatif kontrol 6/10 FAIL eski kodla). Fallback = aynı sağlayıcı (Gemini varyantı) — Workers AI UYGULANMADI (AGENTS §3). Webhook secret 👤 | Opus 5.5 · 2026-10-27 |
 | 8 | 4.8 Baidu hazırlık (sitemap placeholder) | **Opus 5.5** (27.10 kararı) | — | ✅ KOD (`2605fa2` orchestrator · `25ffa7c` zh). 👤 Baidu hesabı/doğrulama ERTELENDİ → ERTELENEN E9 (FAZ 5.5; custom domain E2 sonrası) | Opus 5.5 · 2026-10-27 |
 | 9 | 4.9 QA (otomasyon güvenilirliği) | **Opus 5.5** (27.10 kararı) | 1–8 ✅ | ✅ `a814c0d` (qa) · `2848f2b` (docs F4-02). run-all 194/194 · FAZ-3 regresyon KIRMIZI 0 · 0 kritik → qa/FAZ-4/rapor.md | Opus 5.5 · 2026-10-27 |
-| 10 | 4.10 faz çıkışı 🚦 | **Opus 5.5** (27.10 kararı) | 4.9 + 👤 | ⏸ 👤 BEKLİYOR — denetim hazır `d17fd8c` (qa/FAZ-4/faz-cikis.md): "devam et" + günlük hız hedefi + 48 s canlı RSS zamanı + squash-merge | Opus 5.5 · 2026-10-27 |
+| 10 | 4.10 faz çıkışı 🚦 | **Opus 5.5** (27.10 kararı) | 4.9 + 👤 | ✅ FAZ 4 KAPANDI (2026-10-30, 👤 "faz hattına dönelim"). Kararlar: günlük hız = **E3 sonrası 5–10 makale/gün**; 48 s canlı RSS testi → **FAZ 8** (crons zamanlı+test); squash-merge → **faz-sonu toplu**. → FAZ 5 | insan · 2026-10-30 |
 
 **Sıralı yürütme:** 4.1 → 4.2 → 4.3 → 4.4 → 4.5 → 4.6 → 4.7 → 4.8 → 4.9 → 4.10
 **Not:** 4.1/4.2/4.4 aynı worker ailesi (cron-rss) → sıralı. 4.3 ayrı (cron-trends). 4.8 bağımsız (ortak dosya, orchestrator).
