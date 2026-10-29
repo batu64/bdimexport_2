@@ -10,15 +10,25 @@ import Footer from "@/lib/ui/Footer";
 import dict from "@/lib/messages/zh.json";
 import { footerProps, navbarProps } from "./zh/_lib/chrome";
 
+// FAZ_5 5.5 — Baidu SEO katmanı. Baidu meta sınırları (SEO_PLAYBOOK §9 / zh-agent §3): title ≤ 30, description ≤ 78 karakter.
+// Doğrulama (HTML标签验证) değeri repoya YAZILMAZ: Pages build env NEXT_PUBLIC_BAIDU_SITE_VERIFICATION (docs/baidu.md §2).
+// Yalnız Baidu kod biçimine uyan değer basılır (ör. codeva-XXXX) — env'e yanlışlıkla HTML/boşluk girerse meta HİÇ basılmaz.
+// Canlı doğrulama = ERTELENEN E9 (bdimexport.com custom domain sonrası, 👤 Baidu hesabı).
+const BAIDU_VERIFY = /^[A-Za-z0-9_-]{6,64}$/.test(process.env.NEXT_PUBLIC_BAIDU_SITE_VERIFICATION ?? "")
+  ? process.env.NEXT_PUBLIC_BAIDU_SITE_VERIFICATION
+  : undefined;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://bdimexport.com"),
-  title: "土耳其贸易服务 — 采购、验厂、物流 | Bdimexport", // eskiden kök şablonuyla gelen marka açık yazıldı
-  description: "为在土耳其开展业务的中国企业提供本地化销售、营销与公司设立服务。",
-  // FAZ_4 4.8 — Baidu HTML标签验证 yeri (docs/baidu.md §2). Kod repoya YAZILMAZ: Pages build env NEXT_PUBLIC_BAIDU_SITE_VERIFICATION.
-  // Tanımlı değilse meta basılmaz.
-  ...(process.env.NEXT_PUBLIC_BAIDU_SITE_VERIFICATION
-    ? { verification: { other: { "baidu-site-verification": process.env.NEXT_PUBLIC_BAIDU_SITE_VERIFICATION } } }
-    : {}),
+  title: dict.seo.title,
+  description: dict.seo.description,
+  // zh robots: açıkça indekslenebilir (Baiduspider robots.txt'de ayrıca Allow + sitemap-zh — 4.8 orchestrator dosyası)
+  robots: { index: true, follow: true },
+  other: {
+    // Baidu mobil uyum beyanı: tek URL, duyarlı tasarım (pc + mobil aynı sayfa)
+    "applicable-device": "pc,mobile",
+    ...(BAIDU_VERIFY ? { "baidu-site-verification": BAIDU_VERIFY } : {}),
+  },
 };
 
 export default function ZhLayout({ children }: { children: React.ReactNode }) {
@@ -26,6 +36,9 @@ export default function ZhLayout({ children }: { children: React.ReactNode }) {
     <html {...htmlAttrs("zh", "zh-CN")}>
       <head>
         <ThemeStyle />
+        {/* Baidu 转码 engeli: mobil arama sonuçlarında sayfanın Baidu tarafından yeniden kodlanmasını/siteapp'e alınmasını önler */}
+        <meta httpEquiv="Cache-Control" content="no-transform" />
+        <meta httpEquiv="Cache-Control" content="no-siteapp" />
       </head>
       <body>
         <a href="#zhengwen" className="skip-link">{dict.nav.skip}</a>

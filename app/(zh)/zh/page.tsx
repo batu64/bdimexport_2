@@ -2,6 +2,7 @@
 // (design-tokens §2.1). Metin lib/messages/zh.json (hero = design/hero-copy.md ZH TASLAK; final FAZ 5.3/5.7).
 // 4'lü gruplama yok: 5 hizmet (5.3 sayfalarına bağlı) · 3 rakam · 5 adım. Rakamlar yalnız doğrulanabilir taahhüt/sayım (uydurma şirket verisi yok).
 import { Building2, Handshake, Megaphone, MessageCircle, Search, ShieldCheck, Store, Truck, Users, LifeBuoy } from "lucide-react";
+import type { Metadata } from "next";
 import dict from "@/lib/messages/zh.json";
 import Hero from "@/lib/ui/Hero";
 import StatBand from "@/lib/ui/StatBand";
@@ -13,6 +14,14 @@ import WeChatCard from "@/lib/ui/WeChatCard";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { QUOTE_EMAIL } from "./_lib/chrome";
 import s from "./zh.module.css";
+
+// 5.5: hub Baidu meta (layout varsayılanı) + canonical + keywords (Baidu meta keywords'ü hâlâ okur; 5.3 hizmet adlarından)
+export const metadata: Metadata = {
+  title: { absolute: dict.seo.title },
+  description: dict.seo.description,
+  keywords: dict.seo.keywords,
+  alternates: { canonical: "https://bdimexport.com/zh" },
+};
 
 const SERVICE_ICON = [Store, Megaphone, Building2, Truck, ShieldCheck];
 const STEP_ICON = [MessageCircle, Search, Handshake, Truck, LifeBuoy];
