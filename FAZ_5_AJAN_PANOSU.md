@@ -29,7 +29,7 @@
 | :-- | :-- | :-- | :-- | :-- | :-- |
 | 1 | 5.1 /de Impressum + Datenschutz 🔒⚖️ | `content/de/legal/**`, `app/(de)` legal page | 👤 veri | ⏸ **👤 ŞİRKET VERİSİ + HUKUK İMZASI bekliyor** | — |
 | 2 | 5.2 /zh kimlik + iskelet | `content/zh/**` (kimlik), `app/(zh)` | D6 shell ✅ | ⚠️ shell D6'da ✅ → içerik 5.3'le | — |
-| 3 | 5.3 /zh hizmet sayfaları | `content/zh/services/**` | 5.2 | ⏳ zh içerik (4–5 sayfa, ≥1200, Baidu meta) | — |
+| 3 | 5.3 /zh hizmet sayfaları | `content/zh/services/**` | 5.2 | ✅ `869dfd4` — 5 sayfa (4'lü gruplama yasağı → 5), 1233–1348 kelime, Baidu meta, 6 SSS/sayfa, sözlük uyuşmazlığı 0, kaynaklı rakam; D6 kabuğuna bağlı · 👤 zh kültür onayı 5.7'de | Opus 5.5 · 2026-10-30 |
 | 4 | 5.5 /zh Baidu SEO | `app/(zh)` meta | 5.3 | ⏳ meta hazır · 👤 doğrulama = ERTELENEN **E9** (custom domain sonrası) | — |
 | 5 | 5.4 /de hizmet + /de/vertrauen | `content/de/services/**`, `content/de/.../vertrauen` | 5.1 | ⏳ de içerik (5 hizmet + Trust, Sie, ≥1200) | — |
 | 6 | 5.6 /de + /zh davranış | `app/(de)/**`, `app/(zh)/**` | 5.3, 5.4 | ⏳ de GDPR double opt-in form + zh WeChat davranış (+ C7: de/zh makale rotaları) | — |
@@ -71,6 +71,7 @@ Kabul: Sie regex temiz; kaynaklı. Tek commit.
 
 ## 4. ÇALIŞMA GÜNLÜĞÜ (append-only)
 - [2026-10-30] Pano kurulumu — FAZ 4 kapandı. D6 tasarım shell'leri (de/zh) hazır; content/de + content/zh BOŞ → bu faz içerik. 5.1 /de hukuk 👤 veri bekliyor; 5.3 /zh hattı veri gerektirmeden başlayabilir. Baidu (5.5) doğrulaması E9'a (custom domain sonrası) ertelendi.
+- [2026-10-30] Opus 5.5 · Step 5.3 · ✅ — commit `869dfd4` (zh: content/zh/services ×5 + manifest.json + app/(zh)/zh/services/[slug] + hub kartları + zh.json). Sayfalar: 本地销售 (bendi-xiaoshou) · 市场推广 (shichang-tuiguang) · 公司设立 (gongsi-sheli) · 物流与清关 (wuliu-qingguan) · 产品合规 (chanpin-renzheng). Talimat 4–5 dedi; zh'de 4'lü gruplama yasak (design-tokens §2.1) → 5. KABUL (`node qa/FAZ-5/zh-content-check.mjs` → 5/5 ok): kelime 1233–1348 (Intl.Segmenter zh; Han 1995–2206) ≥1200 · Baidu title 17–19 ≤30 / desc 60–67 ≤78 · SSS 6/sayfa = FAQPage birebir · 简体字 (geleneksel 0) · I18N §3 sözlük uyuşmazlığı 0 (≤3) · iç link ≥4 · ICP vaadi yok. Rakamlar linkli resmi kaynak: TÜİK ADNKS 2024 (85.664.944; İstanbul 15.701.602), Ticaret Bakanlığı Çin Pazara Giriş Rehberi 05/2026 (2024 Çin'den ithalat ≈44,9 mlr USD), Ticaret Bakanlığı e-ticaret raporu 06.05.2025 (>3 trilyon TL; perakende 1,619 trilyon; 1,85 mlr işlem), RG 25.11.2023/32380 Karar 7887 (Ltd 50.000 / A.Ş. 250.000 TL), 4875 sayılı Kanun. "Sayısal güven (proje/yıl)" şirket verisi verilmediği için YAZILMADI (uydurma=red) — 👤 gerçek rakam gelirse eklenir. "%100 yabancı sahiplik" doğrulanamadığı için kullanılmadı. 7/24 iddiası yerine SLA (24 saatte yanıt). Build yeşil (106 sayfa); sitemap-zh 5 URL'yi içerikten kendiliğinden aldı (ortak dosya değişmedi); JSON-LD Service+FAQPage+BreadcrumbList; hreflang 5.8'de. NOT: hizmet metinleri Opus taslağı — 5.7 kültür/marka onayı (👤) bekliyor.
 
 ## 5. İNSAN AKSİYONLARI (👤)
 1. **5.1 (ŞİMDİ, blokör):** /de Impressum/Datenschutz için gerçek **şirket verisi** (ticaret unvanı, adres, yetkili, iletişim, vergi/sicil no) + **hukuk imzası**.
