@@ -21,7 +21,7 @@ interface SiteVerify {
  * Replay işareti siteverify ÖNCESİ yazılır (eşzamanlı çift kullanım penceresi daralır);
  * Cloudflare da token'ı tek kullanımlık sayar (ikinci savunma hattı).
  */
-export async function verifyTurnstile(env: Env, token: string | null, ip: string): Promise<void> {
+export async function verifyTurnstile(env: Env, token: string | null, ip: string, expectedAction = env.TURNSTILE_ACTION_APPLY ?? "partner_apply"): Promise<void> {
   if (!token || token.length > 2048) throw new HttpError(403, "turnstile_required", "Doğrulama belirteci gerekli");
 
   const tkey = `ts:${await sha256Hex(token)}`;
@@ -41,7 +41,6 @@ export async function verifyTurnstile(env: Env, token: string | null, ip: string
   }
   if (!res.success) throw new HttpError(403, "turnstile_failed", "Doğrulama başarısız");
 
-  const expectedAction = env.TURNSTILE_ACTION_APPLY ?? "partner_apply";
   if (res.action !== expectedAction) throw new HttpError(403, "turnstile_action_mismatch", "Doğrulama bağlamı uyumsuz");
 
   const hosts = (env.TURNSTILE_HOSTNAMES ?? "").split(",").map((s) => s.trim()).filter(Boolean);

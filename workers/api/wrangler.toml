@@ -16,6 +16,9 @@ compatibility_date = "2026-01-01"
 ALLOWED_ORIGINS = "http://localhost:3000"
 TURNSTILE_HOSTNAMES = "localhost"
 KVKK_VERSIONS = "v1 (47ac2ef0a5b43264)"
+# FAZ_5 5.6 /de çift opt-in: yalnız YEREL taslak sürüm. staging/production'da TANIMSIZ → DE talepleri 400 (fail-closed)
+# — 5.1 Datenschutz hukuk imzası + E5 mail sağlayıcısı gelince imzalı sürüm buraya ve env bloklarına yazılır (👤).
+DE_CONSENT_VERSIONS = "de-v0-entwurf"
 # Cloudflare Access (FAZ_3 3.1) — app/admin/middleware.ts guard'ı. PUBLIC config: JWT doğrulamasının
 # girdisidir, gizli değildir (AUD tag tek başına erişim sağlamaz; imzalı token Access'ten gelir).
 # App: bdimexport-admin · domain şu an bdimexport.pages.dev/admin (custom domain sonra — docs/access-setup.md §12)

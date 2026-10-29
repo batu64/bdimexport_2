@@ -12,6 +12,8 @@ export interface Env {
   TURNSTILE_HOSTNAMES: string;      // siteverify yanıtındaki hostname beyaz listesi
   TURNSTILE_ACTION_APPLY?: string;  // default partner_apply
   KVKK_VERSIONS: string;            // kabul edilen rıza metni sürümleri, '|' ile ayrılır
+  DE_CONSENT_VERSIONS?: string;     // FAZ_5 5.6 /de Einwilligung sürümleri, '|' ile; boş → tüm DE talepleri 400 (fail-closed, 5.1 imzasına dek)
+  TURNSTILE_ACTION_DE_QUOTE?: string; // default de_quote
   RL_APPLY_PER_MIN?: string;        // IP başına başvuru limiti (default 5)
   RL_IP_PER_MIN?: string;           // IP başına genel limit (default 120)
   RL_PUBLIC_READ_PER_MIN?: string;  // anahtarsız public read (default 60)

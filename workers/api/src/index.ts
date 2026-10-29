@@ -4,6 +4,7 @@ import { corsHeaders, originAllowed } from "./cors";
 import { rateLimit } from "./ratelimit";
 import { authenticate, extractKey, requireTier } from "./auth";
 import { handleApply } from "./apply";
+import { handleDeOptinConfirm, handleDeQuote } from "./optin";
 import { createKey, listKeys, revokeKey } from "./keys";
 import { listContents, listLeads, listPartners } from "./read";
 import { ADMIN_PREFIX, routeAdmin } from "./admin";
@@ -16,6 +17,8 @@ async function route(req: Request, env: Env, url: URL, ip: string): Promise<Resp
   if (path === ADMIN_PREFIX || path.startsWith(ADMIN_PREFIX + "/")) return routeAdmin(req, env, path);
 
   if (path === "/api/v1/partners/apply") return handleApply(req, env);
+  if (path === "/api/v1/de/anfrage") return handleDeQuote(req, env);
+  if (path === "/api/v1/de/optin/bestaetigen") return handleDeOptinConfirm(req, env);
 
   if (path === "/api/v1/contents" && m === "GET") {
     // Anahtarsız public okuma (IP limitli); anahtar verilirse doğrulanır
