@@ -3,3 +3,6 @@
 .media { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; }
 .video { opacity: 0; transition: opacity var(--dur-slow) var(--ease-out); }
 .video[data-playing] { opacity: 1; }
+/* lazy + display:none → mobilde poster hiç istenmez */
+.desktop { display: none; }
+@media (min-width: 768px) { .desktop { display: block; } }

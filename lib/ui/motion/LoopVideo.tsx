@@ -9,7 +9,8 @@ import s from "./loopvideo.module.css";
 
 const BASE = "/media/video";
 
-export default function LoopVideo({ name, lazy = false, className }: { name: string; lazy?: boolean; className?: string }) {
+/** desktopOnly: poster de yalnız ≥768px (hero: mobilde CSS degrade arka plan = statik poster; LCP metin kalır) */
+export default function LoopVideo({ name, lazy = false, desktopOnly = false, className }: { name: string; lazy?: boolean; desktopOnly?: boolean; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [mount, setMount] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -26,7 +27,7 @@ export default function LoopVideo({ name, lazy = false, className }: { name: str
   return (
     <div ref={ref} className={`${s.wrap} ${className ?? ""}`} aria-hidden="true">
       {/* eslint-disable-next-line @next/next/no-img-element -- static export (images.unoptimized); poster zaten optimize webp */}
-      <img src={`${BASE}/${name}-poster.webp`} alt="" className={s.media} decoding="async" loading={lazy ? "lazy" : "eager"} />
+      <img src={`${BASE}/${name}-poster.webp`} alt="" className={`${s.media} ${desktopOnly ? s.desktop : ""}`} decoding="async" loading={lazy || desktopOnly ? "lazy" : "eager"} />
       {mount && (
         <video
           className={`${s.media} ${s.video}`}

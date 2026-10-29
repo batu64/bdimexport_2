@@ -51,7 +51,7 @@ export default function TrHomePage() {
   return (
     <main>
       <Hero
-        media={<LoopVideo name="hero-loop" />}
+        media={<LoopVideo name="hero-loop" desktopOnly />}
         eyebrow={h.hero.eyebrow}
         title={h.hero.h1}
         subtitle={h.hero.sub}

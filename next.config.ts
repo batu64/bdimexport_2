@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
   // Yerel: dev sunucusu .next'i kullanırken paralel build için ayrı dizin (NEXT_DIST_DIR=.next-build; export HTML de oraya yazılır).
   // CI/Pages: tanımsız → .next + out/ (değişiklik yok)
   distDir: process.env.NEXT_DIST_DIR || ".next",
+  // D9 perf: CSS <head> içine satır içi (render-blocking CSS istekleri yok → FCP ↓). Toplam CSS küçük (~15 KB br).
+  experimental: { inlineCss: true },
 };
 
 export default nextConfig;

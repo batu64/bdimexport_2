@@ -17,11 +17,11 @@
   padding-inline: var(--s-3);
   border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--c-success) 12%, transparent);
-  color: var(--c-success);
+  color: var(--c-heading); /* success metin tint zeminde 4.13:1 → heading; ikon success */
   font-size: var(--fs-sm);
   font-weight: var(--fw-heading);
 }
-.partnerIcon { inline-size: var(--s-4); block-size: var(--s-4); }
+.partnerIcon { inline-size: var(--s-4); block-size: var(--s-4); color: var(--c-success); }
 .partnersTitle { font-size: var(--type-h3); }
 .partnersEmpty { color: var(--c-muted); }
 .ghostLogos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); inline-size: min(100%, calc(var(--s-24) * 6)); margin-block-start: var(--s-4); }

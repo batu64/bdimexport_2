@@ -57,6 +57,7 @@
   font-weight: var(--fw-heading);
 }
 .icon { inline-size: var(--s-4); block-size: var(--s-4); }
+.partnersBadge .icon { color: var(--c-success); }
 
 .partners {
   display: grid;
@@ -75,7 +76,7 @@
   padding-inline: var(--s-3);
   border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--c-success) 12%, transparent);
-  color: var(--c-success);
+  color: var(--c-heading); /* success metin tint zeminde 4.13:1 → heading; ikon success */
   font-size: var(--fs-sm);
   font-weight: var(--fw-heading);
 }

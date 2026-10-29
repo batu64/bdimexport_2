@@ -31,12 +31,12 @@
   padding-inline: var(--s-3);
   border-radius: var(--radius-pill);
   background: color-mix(in srgb, var(--c-accent) 10%, transparent);
-  color: var(--c-accent);
+  color: var(--c-heading); /* accent metin tint zeminde 4.38:1 (AA altı) → heading; ikon accent */
   font-size: var(--fs-sm);
   font-weight: var(--fw-heading);
   white-space: nowrap;
 }
-.routeIcon { inline-size: var(--s-4); block-size: var(--s-4); }
+.routeIcon { inline-size: var(--s-4); block-size: var(--s-4); color: var(--c-accent); }
 
 /* rota çizgisi */
 .map { inline-size: 100%; block-size: var(--s-16); overflow: visible; }
