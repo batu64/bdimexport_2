@@ -15,6 +15,7 @@ import Card from "@/lib/ui/Card";
 import Button from "@/lib/ui/Button";
 import CtaBand from "@/lib/ui/CtaBand";
 import Steps from "@/lib/ui/Steps";
+import LoopVideo from "@/lib/ui/motion/LoopVideo";
 import PartnerBand from "@/lib/ui/PartnerBand";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { listSlugs, readDoc } from "./_lib/content";
@@ -50,6 +51,7 @@ export default function TrHomePage() {
   return (
     <main>
       <Hero
+        media={<LoopVideo name="hero-loop" />}
         eyebrow={h.hero.eyebrow}
         title={h.hero.h1}
         subtitle={h.hero.sub}
@@ -114,7 +116,7 @@ export default function TrHomePage() {
       {/* ── Süreç: 5 adım */}
       <Section id="surec" tone="alt">
         <Reveal><SectionHeader id="surec" eyebrow={h.process.eyebrow} title={h.process.title} align="center" /></Reveal>
-        <Steps steps={h.process.steps} icons={STEP_ICON} />
+        <Steps steps={h.process.steps} icons={STEP_ICON} media={<LoopVideo name="process-flow" lazy />} />
       </Section>
 
       {/* ── İhracat Hızlandırma Programı (flywheel) */}

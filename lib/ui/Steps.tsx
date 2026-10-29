@@ -4,8 +4,10 @@ import Reveal from "./motion/Reveal";
 import s from "./steps.module.css";
 
 /** numbered=false: /zh — "04" gibi 4 rakamı vurgusu yok (design-tokens §2.1); sıra <ol> ile anlamsal olarak korunur */
-export default function Steps({ steps, icons, numbered = true }: { steps: { title: string; text: string }[]; icons: LucideIcon[]; numbered?: boolean }) {
+export default function Steps({ steps, icons, numbered = true, media }: { steps: { title: string; text: string }[]; icons: LucideIcon[]; numbered?: boolean; media?: React.ReactNode }) {
   return (
+    <>
+    {media && <div className={s.media}>{media}</div>}
     <ol className={s.steps}>
       {steps.map((st, i) => {
         const Icon = icons[i % icons.length];
@@ -21,5 +23,6 @@ export default function Steps({ steps, icons, numbered = true }: { steps: { titl
         );
       })}
     </ol>
+    </>
   );
 }

@@ -18,12 +18,15 @@ export type HeroProps = {
   visual?: ReactNode;
   /** zh: simetrik merkez düzen (design-tokens §2.1) */
   align?: "start" | "center";
+  /** arka plan medyası (ör. Remotion döngüsü — LoopVideo); metin okunurluğu için üstünde degrade kalır */
+  media?: ReactNode;
 };
 
-export default function Hero({ id = "hero", eyebrow, title, subtitle, primary, secondary, trust = [], trustLabel, visual, align = "start" }: HeroProps) {
+export default function Hero({ id = "hero", eyebrow, title, subtitle, primary, secondary, trust = [], trustLabel, visual, align = "start", media }: HeroProps) {
   return (
     <section aria-labelledby={`${id}-title`} className={`on-brand ${s.hero}`}>
       <div className={s.bg} aria-hidden="true">
+        {media && <div className={s.media}>{media}</div>}
         <span className={s.glowA} />
         <span className={s.glowB} />
         <span className={s.grid} />

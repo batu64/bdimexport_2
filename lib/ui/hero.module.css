@@ -42,6 +42,16 @@
 }
 @keyframes driftA { to { transform: translate3d(-8%, 10%, 0) scale(1.08); } }
 @keyframes driftB { to { transform: translate3d(10%, -6%, 0) scale(1.12); } }
+/* Remotion döngüsü: tüm hero'yu kaplar; metin tarafına doğru koyulaşan perde okunurluğu korur */
+.media { position: absolute; inset: 0; opacity: 0.9; }
+.media > * { position: absolute; inset: 0; }
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(calc(90deg * var(--dir)), var(--c-brand) 0%, color-mix(in srgb, var(--c-brand) 70%, transparent) 45%, transparent 75%);
+}
+@media not all and (min-width: 1280px) { .media::after { background: color-mix(in srgb, var(--c-brand) 72%, transparent); } }
 .grid {
   position: absolute;
   inset: 0;

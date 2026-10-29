@@ -36,3 +36,16 @@
 .stepTitle { font-size: var(--fs-lg); }
 .stepText { color: var(--c-muted); font-size: var(--fs-sm); }
 
+
+/* infografik şeridi (Remotion process-flow, 4:1) — açık zemin videosu: koyu temada gizli (yerine ikonlu adımlar yeter) */
+.media {
+  aspect-ratio: 4 / 1;
+  margin-block-end: var(--s-12);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--e-1);
+}
+.media > * { block-size: 100%; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .media { display: none; } }
+:root[data-theme="dark"] .media { display: none; }

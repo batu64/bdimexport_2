@@ -10,6 +10,7 @@ import { Section, SectionHeader } from "@/lib/ui/Section";
 import Card from "@/lib/ui/Card";
 import Button from "@/lib/ui/Button";
 import Steps from "@/lib/ui/Steps";
+import LoopVideo from "@/lib/ui/motion/LoopVideo";
 import PartnerBand from "@/lib/ui/PartnerBand";
 import CtaBand from "@/lib/ui/CtaBand";
 import Reveal from "@/lib/ui/motion/Reveal";
@@ -39,6 +40,7 @@ export default function EnHomePage() {
   return (
     <main>
       <Hero
+        media={<LoopVideo name="hero-loop" />}
         eyebrow={h.hero.eyebrow}
         title={h.hero.h1}
         subtitle={h.hero.sub}
@@ -98,7 +100,7 @@ export default function EnHomePage() {
 
       <Section id="process">
         <Reveal><SectionHeader id="process" eyebrow={h.process.eyebrow} title={h.process.title} align="center" /></Reveal>
-        <Steps steps={h.process.steps} icons={STEP_ICON} />
+        <Steps steps={h.process.steps} icons={STEP_ICON} media={<LoopVideo name="process-flow" lazy />} />
       </Section>
 
       <PartnerBand id="partners" badge={h.partners.badge} title={h.partners.title} empty={h.partners.empty} />
