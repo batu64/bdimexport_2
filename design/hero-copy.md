@@ -59,7 +59,7 @@
 ---
 
 ## Açık konular (insan / orchestrator)
-1. **⚠️ DE teklif CTA terim çakışması:** I18N_RULES §3.2 sözlüğü "Kostenlose Angebotseinholung in 24h", cta.md ise "Kostenloses Angebot in 24h" diyor; ikisi de fiil içermiyor ve "Angebotseinholung" alıcı ağzında doğal değil. Bu dosya "Kostenloses Angebot in 24 h anfordern" kullanır. Sözlük güncellemesi **orchestrator + insan onaylı PR** gerektirir (I18N_RULES başlığı); FAZ 5.4'ten önce karara bağlanmalı, aksi halde qa terminoloji testi DE hero'yu reddeder.
+1. **✅ (ÇÖZÜLDÜ 30.10.2026, FAZ_5 5.6 — I18N_RULES §3.2 = "Kostenloses Angebot in 24 h anfordern") DE teklif CTA terim çakışması:** I18N_RULES §3.2 sözlüğü "Kostenlose Angebotseinholung in 24h", cta.md ise "Kostenloses Angebot in 24h" diyor; ikisi de fiil içermiyor ve "Angebotseinholung" alıcı ağzında doğal değil. Bu dosya "Kostenloses Angebot in 24 h anfordern" kullanır. Sözlük güncellemesi **orchestrator + insan onaylı PR** gerektirir (I18N_RULES başlığı); FAZ 5.4'ten önce karara bağlanmalı, aksi halde qa terminoloji testi DE hero'yu reddeder.
 2. **👤 Sayısal güven verisi:** zh/de hero'ya eklenebilecek gerçek rakamlar (kuruluş yılı, tamamlanan proje, onaylı partner sayısı) senden gelir. Gelene kadar hero rakamsız kalır.
 3. **👤 Başvuru SLA'sı:** TR primary CTA (`application`) şablonu SLA içermiyor. Başvuru değerlendirme süresi (ör. "X iş günü") belirlenirse CTA altına mikro metin olarak eklenir; süre uydurulmaz.
 

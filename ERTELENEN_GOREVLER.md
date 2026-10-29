@@ -39,7 +39,7 @@
 | C4 ✅ | ~~**RSS kaynak CRUD kalıcı depolama**~~ (4.1: `settings.rssSources` + cron-rss, 2026-10-19) | 3.6 | İçerik fabrikası arayüzü mock; gerçek depolama FAZ 4 hattında | FAZ 4.1 |
 | C5 | **Lighthouse canlı ölçüm (≥90)** | 2/8 | Canlı URL + gerçek ortam gerek | FAZ 8.1 lansman denetimi (canlı URL / PageSpeed) |
 | C6 | **/en/{ru,fr,nl,es,ar} varyant tam içeriği** (şu an iskelet) | 2.5 | Tasarım gereği FAZ 2 iskelet; tam çeviri FAZ 5 | FAZ 5 |
-| C7 | **/de + /zh makale rotaları** (yayın botu şu an `route_pending` ile reddeder) | 4.6 | de/zh route grupları FAZ 5'te kuruluyor | FAZ 5.6 (render.ts `routeFor` + lib/ui/insights scope'una ekle) |
+| C7 | **/de + /zh makale rotaları** (yayın botu şu an `route_pending` ile reddeder) | 4.6 | de/zh route grupları FAZ 5'te kuruluyor | ◐ app tarafı ✅ 5.6 (`/de/ratgeber` ← content/de/ratgeber · `/zh/insights` ← content/zh/insights, boş-durum shell). KALAN (api): render.ts `routeFor` de/zh dizinleri → bot `route_pending` kalkar |
 
 ---
 

@@ -58,8 +58,10 @@
 | :--- | :--- | :--- | :--- | :--- |
 | Onaylı Türk Partner | Onaylı Türk İş Ortağı | Verified Turkish Partner | 认证的土耳其合作伙伴 | Verifizierter türkischer Partner |
 | Ücretsiz program | Ücretsiz İhracat Hızlandırma | Free Export Acceleration | 免费出口加速计划 | Kostenlose Exportbeschleunigung |
-| Teklif CTA | Ücretsiz Teklif Alın | Get Free Quotation in 24h | 24小时内获取免费报价 | Kostenlose Angebotseinholung in 24h |
+| Teklif CTA | Ücretsiz Teklif Alın | Get Free Quotation in 24h | 24小时内获取免费报价 | Kostenloses Angebot in 24 h anfordern |
 | Denetim raporu | Denetim Raporu | Inspection Report | 验厂报告 | Prüfbericht |
+
+*(30.10.2026 — FAZ_5 5.6, 👤 onaylı: DE teklif CTA'sı "Kostenlose Angebotseinholung in 24h" → **"Kostenloses Angebot in 24 h anfordern"** (hero-copy DE + de.json ile hizalandı; fiilli, alıcı ağzında doğal). Navbar kısa biçimi "Angebot anfordern" — EN/ZH'deki kısa nav kalıbıyla aynı.)*
 
 *(Not: Sözlük Faz 1–5 ilerledikçe satır satır büyür; her ekleme orchestrator PR'ı + insan onayı ile. Yeni terim çeviri görevinde sözlükte yoksa agent önerir, sözlüğe işlenir, sonraki görevlerde bağlayıcı olur.)*
 
