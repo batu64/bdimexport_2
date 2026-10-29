@@ -1,9 +1,13 @@
-// ZH izole site placeholder — FAZ 5 (Qwen 3.8 içerik) + kırmızı-altın palet (design-tokens zh varyantı)
+// ZH izole site kökü — D6: kırmızı-altın palet (data-locale=zh, design-tokens §2.1) + Navbar/Footer; içerik FAZ 5
 // 简体字 only; ICP vaadi yok (Cloudflare HK — agents/zh-agent.md §6.3)
 import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
+import Navbar from "@/lib/ui/Navbar";
+import Footer from "@/lib/ui/Footer";
+import dict from "@/lib/messages/zh.json";
+import { footerProps, navbarProps } from "./zh/_lib/chrome";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bdimexport.com"),
@@ -23,11 +27,12 @@ export default function ZhLayout({ children }: { children: React.ReactNode }) {
         <ThemeStyle />
       </head>
       <body>
-    <IntlProvider locale="zh">
-      <div lang="zh-CN" dir="ltr">
-        {children}
-      </div>
-    </IntlProvider>
+        <a href="#zhengwen" className="skip-link">{dict.nav.skip}</a>
+        <IntlProvider locale="zh">
+          <Navbar {...navbarProps()} />
+          <div lang="zh-CN" id="zhengwen" tabIndex={-1}>{children}</div>
+          <Footer {...footerProps()} />
+        </IntlProvider>
       </body>
     </html>
   );

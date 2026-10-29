@@ -1,0 +1,16 @@
+/* /zh: 3'lü hizmet ızgarası (4'lü gruplama yok) + kırmızı-altın iletişim bölümü (açık zemin: kırmızı ince desen). */
+.services { display: grid; gap: var(--s-6); padding: 0; list-style: none; }
+@media (min-width: 768px) { .services { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.services > li { display: flex; }
+.services > li > * { flex: 1; }
+.contact {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, color-mix(in srgb, var(--c-accent) 10%, transparent), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 100% 100%, color-mix(in srgb, var(--c-highlight) 14%, transparent), transparent 70%);
+}
+.contactHead { display: grid; gap: var(--s-3); justify-items: center; margin-block-end: var(--s-12); text-align: center; }
+.contactHead :global(.lead) { margin-inline: auto; }
+.contactTitle { font-size: var(--type-h2); }
