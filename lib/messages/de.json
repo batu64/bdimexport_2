@@ -37,14 +37,14 @@
     "services": {
       "eyebrow": "Leistungen",
       "title": "Eine Ansprechstelle von der Beschaffung bis zu Ihrem Hafen",
-      "lead": "Die deutschen Leistungsseiten befinden sich in Vorbereitung. Die vollständigen Beschreibungen finden Sie vorerst auf Englisch.",
-      "more": "Details (Englisch)",
+      "lead": "Fünf Leistungen, ein Ansprechpartner: von der Herstellersuche über die Werksprüfung bis zu Fracht und Ausfuhrpapieren.",
+      "more": "Mehr erfahren",
       "items": {
         "sourcing": "Beschaffung",
-        "manufacturing": "Eigenmarken-Fertigung",
+        "manufacturing": "Lohnfertigung / Private Label",
         "inspection": "Werksprüfung",
-        "logistics": "Frachtlogistik",
-        "customs": "Exportzollabwicklung"
+        "logistics": "Logistik",
+        "customs": "Zollabwicklung"
       }
     },
     "trust": {
@@ -86,7 +86,12 @@
     "legal": "Rechtliches",
     "pending": "In Vorbereitung",
     "legalPending": "Der rechtlich geprüfte Text dieser Seite wird vor dem Start der deutschen Website veröffentlicht. Bis dahin erreichen Sie uns per E-Mail.",
-    "contactCta": "E-Mail schreiben"
+    "contactCta": "E-Mail schreiben",
+    "services": "Leistungen",
+    "toc": "Auf dieser Seite",
+    "related": "Weitere Leistungen",
+    "read": "Mehr erfahren",
+    "aside": { "title": "Ihre Anfrage", "text": "Nennen Sie uns Produkt, Menge und Zielort. Ihr Angebot erhalten Sie innerhalb von 24 Stunden." }
   },
   "legal": {
     "impressum": { "title": "Impressum", "lead": "Angaben gemäß § 5 DDG" },
@@ -96,7 +101,7 @@
     "title": "Vertrauen und Standards",
     "lead": "Wie wir arbeiten, was wir dokumentieren und was Sie von uns erhalten.",
     "reviewsTitle": "Kundenstimmen",
-    "reviewsEmpty": "Kundenstimmen veröffentlichen wir erst nach abgeschlossenen Projekten und mit Zustimmung der Kunden. Erfundene Bewertungen gibt es bei uns nicht."
+    "reviewsEmpty": "Kundenstimmen folgen in Kürze. Wir veröffentlichen sie erst nach abgeschlossenen Projekten und mit Zustimmung der Kunden – erfundene Bewertungen gibt es bei uns nicht."
   },
   "footer": {
     "tagline": "Beschaffung, Werksprüfung und Exportlogistik aus der Türkei — eine Ansprechstelle.",
