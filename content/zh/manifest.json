@@ -1,0 +1,51 @@
+{
+  "generated": "2026-10-30",
+  "step": "FAZ_5 5.3",
+  "pages": [
+    {
+      "slug": "bendi-xiaoshou",
+      "url": "/zh/services/bendi-xiaoshou",
+      "h1": "土耳其本地销售：为中国企业对接经销商与客户",
+      "baiduTitle": "土耳其本地销售服务｜中国企业的本地团队",
+      "baiduDesc": "在土耳其寻找经销商、跟进客户与商务谈判：我们的土耳其本地团队帮助中国企业落地销售，全程微信沟通，24小时内获取免费报价。",
+      "wechat": true,
+      "faq": 6
+    },
+    {
+      "slug": "chanpin-renzheng",
+      "url": "/zh/services/chanpin-renzheng",
+      "h1": "进入土耳其的产品合规：认证、标签与进口检查",
+      "baiduTitle": "土耳其产品合规｜认证、标签与进口检查",
+      "baiduDesc": "中国产品进入土耳其前需要准备哪些认证、土耳其语标签与说明书？本地团队帮助梳理CE等要求、进口检查与售后义务，全程微信沟通。",
+      "wechat": true,
+      "faq": 6
+    },
+    {
+      "slug": "gongsi-sheli",
+      "url": "/zh/services/gongsi-sheli",
+      "h1": "在土耳其设立公司：中国企业落地流程与本地支持",
+      "baiduTitle": "在土耳其设立公司｜中国企业落地支持",
+      "baiduDesc": "中国企业在土耳其设立有限公司、股份公司或联络处：流程、资本金要求、文件准备与银行开户，由本地团队协调律师与会计师，全程微信沟通。",
+      "wechat": true,
+      "faq": 6
+    },
+    {
+      "slug": "shichang-tuiguang",
+      "url": "/zh/services/shichang-tuiguang",
+      "h1": "土耳其市场推广：本地化的品牌与渠道方案",
+      "baiduTitle": "土耳其市场推广｜本地化品牌与渠道方案",
+      "baiduDesc": "为进入土耳其的中国品牌制定本地化推广：电商平台、展会、经销商活动与土耳其语内容，由本地团队执行，全程微信沟通，24小时内获取免费报价。",
+      "wechat": true,
+      "faq": 6
+    },
+    {
+      "slug": "wuliu-qingguan",
+      "url": "/zh/services/wuliu-qingguan",
+      "h1": "中国到土耳其物流与清关：本地团队衔接每一环",
+      "baiduTitle": "中国到土耳其物流与清关｜本地团队衔接",
+      "baiduDesc": "从中国港口到土耳其仓库：海运、铁路与空运方案比较，清关文件准备、关税与额外关税提示，由土耳其本地团队跟进每个环节，全程微信沟通。",
+      "wechat": true,
+      "faq": 6
+    }
+  ]
+}

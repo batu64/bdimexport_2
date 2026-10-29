@@ -1,7 +1,7 @@
 // /zh Hub — OPUS_TASARIM D6: kırmızı-altın (data-locale=zh: açık zeminde kırmızı vurgu, koyu zeminde altın), hero SİMETRİK MERKEZ
 // (design-tokens §2.1). Metin lib/messages/zh.json (hero = design/hero-copy.md ZH TASLAK; final FAZ 5.3/5.7).
-// 4'lü gruplama yok: 3 hizmet · 3 rakam · 5 adım. Rakamlar yalnız doğrulanabilir taahhüt/sayım (uydurma şirket verisi yok).
-import { Handshake, Megaphone, MessageCircle, Search, Store, Truck, Users, LifeBuoy } from "lucide-react";
+// 4'lü gruplama yok: 5 hizmet (5.3 sayfalarına bağlı) · 3 rakam · 5 adım. Rakamlar yalnız doğrulanabilir taahhüt/sayım (uydurma şirket verisi yok).
+import { Building2, Handshake, Megaphone, MessageCircle, Search, ShieldCheck, Store, Truck, Users, LifeBuoy } from "lucide-react";
 import dict from "@/lib/messages/zh.json";
 import Hero from "@/lib/ui/Hero";
 import StatBand from "@/lib/ui/StatBand";
@@ -14,7 +14,7 @@ import Reveal from "@/lib/ui/motion/Reveal";
 import { QUOTE_EMAIL } from "./_lib/chrome";
 import s from "./zh.module.css";
 
-const SERVICE_ICON = [Store, Megaphone, Truck];
+const SERVICE_ICON = [Store, Megaphone, Building2, Truck, ShieldCheck];
 const STEP_ICON = [MessageCircle, Search, Handshake, Truck, LifeBuoy];
 
 export default function ZhHomePage() {
@@ -45,7 +45,7 @@ export default function ZhHomePage() {
             const Icon = SERVICE_ICON[i] ?? Users;
             return (
               <Reveal as="li" key={it.title} index={i}>
-                <Card title={it.title} description={it.text} icon={<Icon />} />
+                <Card title={it.title} href={`/zh/services/${it.slug}`} description={it.text} icon={<Icon />} more={h.services.more} />
               </Reveal>
             );
           })}
