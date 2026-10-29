@@ -54,3 +54,19 @@
   font-weight: var(--fw-heading);
 }
 .pendingIcon { inline-size: var(--s-4); block-size: var(--s-4); }
+
+/* /de/anfrage — form + veri kategorileri yan kutusu (FAZ_5 5.6) */
+.anfrage { display: grid; gap: var(--s-8); align-items: start; }
+@media (min-width: 1024px) { .anfrage { grid-template-columns: minmax(0, 1fr) calc(var(--s-24) * 3.5); gap: var(--s-12); } }
+.pendingTitle { font-size: var(--type-h3); }
+.categories {
+  display: grid;
+  gap: var(--s-3);
+  padding: var(--s-6);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  font-size: var(--fs-sm);
+}
+.categories ul { display: grid; gap: var(--s-2); padding-inline-start: var(--s-6); }
+.categoriesTitle { display: flex; align-items: center; gap: var(--s-2); font-size: var(--fs-lg); }

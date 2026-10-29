@@ -103,6 +103,70 @@
     "reviewsTitle": "Kundenstimmen",
     "reviewsEmpty": "Kundenstimmen folgen in Kürze. Wir veröffentlichen sie erst nach abgeschlossenen Projekten und mit Zustimmung der Kunden – erfundene Bewertungen gibt es bei uns nicht."
   },
+  "anfrage": {
+    "title": "Angebotsanfrage",
+    "lead": "Nennen Sie uns Produkt, Menge und Zielort. Ihr kostenloses Angebot erhalten Sie innerhalb von 24 Stunden nach Bestätigung Ihrer E-Mail-Adresse.",
+    "metaDesc": "Angebotsanfrage an Bdimexport: Produkt, Menge und Zielort angeben, E-Mail-Adresse bestätigen, Angebot innerhalb von 24 Stunden erhalten.",
+    "fields": {
+      "name": "Ihr Name",
+      "company": "Unternehmen",
+      "email": "Geschäftliche E-Mail-Adresse",
+      "phone": "Telefon",
+      "message": "Ihre Anfrage",
+      "messageHint": "Produkt, Spezifikation, Menge, Zielort und gewünschter Termin"
+    },
+    "required": "Pflichtfeld",
+    "optional": "optional",
+    "consent": "Ich willige ein, dass Bdimexport die oben angegebenen Daten zur Bearbeitung meiner Anfrage verarbeitet. Die Einwilligung kann ich jederzeit mit Wirkung für die Zukunft widerrufen.",
+    "consentMore": "Datenschutzerklärung",
+    "consentVersion": "Version",
+    "optinNote": "Nach dem Absenden erhalten Sie eine E-Mail mit einem Bestätigungslink. Erst nach Ihrer Bestätigung bearbeiten wir die Anfrage.",
+    "submitting": "Wird gesendet",
+    "categoriesTitle": "Welche Daten wir verarbeiten",
+    "categoriesLead": "Für Ihre Anfrage verarbeiten wir ausschließlich die folgenden Angaben. Einzelheiten finden Sie in der Datenschutzerklärung.",
+    "categories": {
+      "name": "Name",
+      "company": "Unternehmen (freiwillig)",
+      "email": "E-Mail-Adresse",
+      "phone": "Telefonnummer (freiwillig)",
+      "message": "Inhalt Ihrer Anfrage",
+      "consent": "Zeitpunkt und Version Ihrer Einwilligung"
+    },
+    "errors": {
+      "name": "Bitte geben Sie Ihren Namen an.",
+      "email": "Bitte geben Sie eine gültige E-Mail-Adresse an.",
+      "message": "Bitte beschreiben Sie Ihre Anfrage (mindestens 10 Zeichen).",
+      "consent": "Ohne Ihre Einwilligung können wir die Anfrage nicht bearbeiten.",
+      "turnstile": "Bitte schließen Sie die Sicherheitsprüfung ab.",
+      "network": "Die Verbindung ist fehlgeschlagen. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.",
+      "forbidden": "Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuchen Sie es erneut.",
+      "rate": "Zu viele Versuche in kurzer Zeit. Bitte versuchen Sie es in einer Minute erneut.",
+      "generic": "Die Anfrage konnte gerade nicht gesendet werden. Bitte versuchen Sie es in einigen Minuten erneut.",
+      "prefix": "Fehler"
+    },
+    "pendingTitle": "Bitte bestätigen Sie Ihre E-Mail-Adresse",
+    "pendingText": "Wir haben Ihre Anfrage erhalten. Sie bekommen in Kürze eine E-Mail mit einem Bestätigungslink, der 72 Stunden gültig ist. Ohne Bestätigung wird die Anfrage nicht bearbeitet und automatisch gelöscht.",
+    "closedTitle": "Das Anfrageformular wird in Kürze freigeschaltet",
+    "closedText": "Bis dahin senden Sie uns Ihre Anfrage bitte per E-Mail. Ihr Angebot erhalten Sie innerhalb von 24 Stunden.",
+    "closedCta": "Anfrage per E-Mail senden",
+    "confirm": {
+      "title": "E-Mail-Adresse bestätigen",
+      "lead": "Bestätigung Ihrer Angebotsanfrage",
+      "checking": "Ihre Bestätigung wird geprüft …",
+      "ok": "Vielen Dank. Ihre E-Mail-Adresse ist bestätigt. Ihr Angebot erhalten Sie innerhalb von 24 Stunden.",
+      "expired": "Dieser Bestätigungslink ist abgelaufen oder wurde bereits verwendet. Bitte senden Sie Ihre Anfrage erneut.",
+      "invalid": "Dieser Bestätigungslink ist ungültig. Bitte verwenden Sie den vollständigen Link aus unserer E-Mail.",
+      "unavailable": "Die Bestätigung ist gerade nicht möglich. Bitte versuchen Sie es später erneut oder schreiben Sie uns eine E-Mail.",
+      "again": "Neue Anfrage senden"
+    }
+  },
+  "ratgeber": {
+    "title": "Ratgeber",
+    "lead": "Fachartikel zu Beschaffung, Werksprüfung, Logistik und Zoll für Einkäufer aus Deutschland, Österreich und der Schweiz.",
+    "metaDesc": "Ratgeber für die Beschaffung aus der Türkei: Fachartikel zu Herstellerauswahl, Werksprüfung, Logistik und Zoll mit belegten Quellen.",
+    "empty": "Die ersten Fachartikel folgen in Kürze. Jeder Artikel wird vor der Veröffentlichung fachlich geprüft und mit Quellen belegt.",
+    "read": "Artikel lesen"
+  },
   "footer": {
     "tagline": "Beschaffung, Werksprüfung und Exportlogistik aus der Türkei — eine Ansprechstelle.",
     "nav": "Navigation",
