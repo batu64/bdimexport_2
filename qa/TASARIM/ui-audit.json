@@ -1,0 +1,686 @@
+{
+  "base": "http://localhost:3100",
+  "date": "2026-10-29T07:29:16.646Z",
+  "rows": [
+    {
+      "page": "/",
+      "widths": {
+        "375": {
+          "w": 375,
+          "sw": 375,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        },
+        "768": {
+          "w": 768,
+          "sw": 768,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        },
+        "1440": {
+          "w": 1440,
+          "sw": 1440,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        },
+        "1920": {
+          "w": 1920,
+          "sw": 1920,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        }
+      },
+      "dark": {
+        "bg": "rgb(12, 21, 37)",
+        "ink": "rgb(231, 229, 224)",
+        "contrast": 14.51
+      },
+      "reducedMotion": {
+        "hiddenReveal": 0,
+        "videos": 0,
+        "longAnimations": 0
+      },
+      "keyboard": [
+        {
+          "el": "A.skip-link",
+          "text": "İçeriğe geç",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_brand__neS_Q",
+          "text": "Bdimexport",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_link__t4w8_",
+          "text": "İthalat",
+          "outline": true
+        }
+      ]
+    },
+    {
+      "page": "/en",
+      "widths": {
+        "375": {
+          "w": 375,
+          "sw": 375,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "en",
+          "dir": null
+        },
+        "768": {
+          "w": 768,
+          "sw": 768,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "en",
+          "dir": null
+        },
+        "1440": {
+          "w": 1440,
+          "sw": 1440,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "en",
+          "dir": null
+        },
+        "1920": {
+          "w": 1920,
+          "sw": 1920,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "en",
+          "dir": null
+        }
+      },
+      "dark": {
+        "bg": "rgb(12, 21, 37)",
+        "ink": "rgb(231, 229, 224)",
+        "contrast": 14.51
+      },
+      "reducedMotion": {
+        "hiddenReveal": 0,
+        "videos": 0,
+        "longAnimations": 0
+      },
+      "keyboard": [
+        {
+          "el": "A.skip-link",
+          "text": "Skip to content",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_brand__neS_Q",
+          "text": "Bdimexport",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_link__t4w8_",
+          "text": "Services",
+          "outline": true
+        }
+      ]
+    },
+    {
+      "page": "/de",
+      "widths": {
+        "375": {
+          "w": 375,
+          "sw": 375,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "de",
+          "dir": null
+        },
+        "768": {
+          "w": 768,
+          "sw": 768,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "de",
+          "dir": null
+        },
+        "1440": {
+          "w": 1440,
+          "sw": 1440,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "de",
+          "dir": null
+        },
+        "1920": {
+          "w": 1920,
+          "sw": 1920,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "de",
+          "dir": null
+        }
+      },
+      "dark": {
+        "bg": "rgb(12, 21, 37)",
+        "ink": "rgb(231, 229, 224)",
+        "contrast": 14.51
+      },
+      "reducedMotion": {
+        "hiddenReveal": 0,
+        "videos": 0,
+        "longAnimations": 0
+      },
+      "keyboard": [
+        {
+          "el": "A.skip-link",
+          "text": "Zum Inhalt springen",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_brand__neS_Q",
+          "text": "Bdimexport",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_link__t4w8_",
+          "text": "Leistungen",
+          "outline": true
+        }
+      ]
+    },
+    {
+      "page": "/zh",
+      "widths": {
+        "375": {
+          "w": 375,
+          "sw": 375,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "zh-CN",
+          "dir": null
+        },
+        "768": {
+          "w": 768,
+          "sw": 768,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "zh-CN",
+          "dir": null
+        },
+        "1440": {
+          "w": 1440,
+          "sw": 1440,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "zh-CN",
+          "dir": null
+        },
+        "1920": {
+          "w": 1920,
+          "sw": 1920,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "zh-CN",
+          "dir": null
+        }
+      },
+      "dark": {
+        "bg": "rgb(12, 21, 37)",
+        "ink": "rgb(231, 229, 224)",
+        "contrast": 14.51
+      },
+      "reducedMotion": {
+        "hiddenReveal": 0,
+        "videos": 0,
+        "longAnimations": 0
+      },
+      "keyboard": [
+        {
+          "el": "A.skip-link",
+          "text": "跳到正文",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_brand__neS_Q",
+          "text": "Bdimexport",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_link__t4w8_",
+          "text": "服务",
+          "outline": true
+        }
+      ]
+    },
+    {
+      "page": "/en/ar",
+      "widths": {
+        "375": {
+          "w": 375,
+          "sw": 375,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "ar",
+          "dir": "rtl"
+        },
+        "768": {
+          "w": 768,
+          "sw": 768,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "ar",
+          "dir": "rtl"
+        },
+        "1440": {
+          "w": 1440,
+          "sw": 1440,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "ar",
+          "dir": "rtl"
+        },
+        "1920": {
+          "w": 1920,
+          "sw": 1920,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "ar",
+          "dir": "rtl"
+        }
+      },
+      "dark": {
+        "bg": "rgb(12, 21, 37)",
+        "ink": "rgb(231, 229, 224)",
+        "contrast": 14.51
+      },
+      "reducedMotion": {
+        "hiddenReveal": 0,
+        "videos": 0,
+        "longAnimations": 0
+      },
+      "keyboard": [
+        {
+          "el": "A.skip-link",
+          "text": "انتقل إلى المحتوى",
+          "outline": true
+        },
+        {
+          "el": "A.variant_btn____zan",
+          "text": "واتساب للأعمال",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_brand__neS_Q",
+          "text": "Bdimexport",
+          "outline": true
+        }
+      ]
+    },
+    {
+      "page": "/ithalat/tedarik",
+      "widths": {
+        "375": {
+          "w": 375,
+          "sw": 375,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        },
+        "768": {
+          "w": 768,
+          "sw": 768,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        },
+        "1440": {
+          "w": 1440,
+          "sw": 1440,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        },
+        "1920": {
+          "w": 1920,
+          "sw": 1920,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        }
+      },
+      "dark": {
+        "bg": "rgb(12, 21, 37)",
+        "ink": "rgb(231, 229, 224)",
+        "contrast": 14.51
+      },
+      "reducedMotion": {
+        "hiddenReveal": 0,
+        "videos": 0,
+        "longAnimations": 0
+      },
+      "keyboard": [
+        {
+          "el": "A.skip-link",
+          "text": "İçeriğe geç",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_brand__neS_Q",
+          "text": "Bdimexport",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_link__t4w8_",
+          "text": "İthalat",
+          "outline": true
+        }
+      ]
+    },
+    {
+      "page": "/en/products/olive-oil",
+      "widths": {
+        "375": {
+          "w": 375,
+          "sw": 375,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "en",
+          "dir": null
+        },
+        "768": {
+          "w": 768,
+          "sw": 768,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "en",
+          "dir": null
+        },
+        "1440": {
+          "w": 1440,
+          "sw": 1440,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "en",
+          "dir": null
+        },
+        "1920": {
+          "w": 1920,
+          "sw": 1920,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "en",
+          "dir": null
+        }
+      },
+      "dark": {
+        "bg": "rgb(12, 21, 37)",
+        "ink": "rgb(231, 229, 224)",
+        "contrast": 14.51
+      },
+      "reducedMotion": {
+        "hiddenReveal": 0,
+        "videos": 0,
+        "longAnimations": 0
+      },
+      "keyboard": [
+        {
+          "el": "A.skip-link",
+          "text": "Skip to content",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_brand__neS_Q",
+          "text": "Bdimexport",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_link__t4w8_",
+          "text": "Services",
+          "outline": true
+        }
+      ]
+    },
+    {
+      "page": "/ihracat/ucretsiz-destek-basvuru",
+      "widths": {
+        "375": {
+          "w": 375,
+          "sw": 375,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        },
+        "768": {
+          "w": 768,
+          "sw": 768,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        },
+        "1440": {
+          "w": 1440,
+          "sw": 1440,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        },
+        "1920": {
+          "w": 1920,
+          "sw": 1920,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "tr",
+          "dir": null
+        }
+      },
+      "dark": {
+        "bg": "rgb(12, 21, 37)",
+        "ink": "rgb(231, 229, 224)",
+        "contrast": 14.51
+      },
+      "reducedMotion": {
+        "hiddenReveal": 0,
+        "videos": 0,
+        "longAnimations": 0
+      },
+      "keyboard": [
+        {
+          "el": "A.skip-link",
+          "text": "İçeriğe geç",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_brand__neS_Q",
+          "text": "Bdimexport",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_link__t4w8_",
+          "text": "İthalat",
+          "outline": true
+        }
+      ]
+    },
+    {
+      "page": "/de/vertrauen",
+      "widths": {
+        "375": {
+          "w": 375,
+          "sw": 375,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "de",
+          "dir": null
+        },
+        "768": {
+          "w": 768,
+          "sw": 768,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "de",
+          "dir": null
+        },
+        "1440": {
+          "w": 1440,
+          "sw": 1440,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "de",
+          "dir": null
+        },
+        "1920": {
+          "w": 1920,
+          "sw": 1920,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "de",
+          "dir": null
+        }
+      },
+      "dark": {
+        "bg": "rgb(12, 21, 37)",
+        "ink": "rgb(231, 229, 224)",
+        "contrast": 14.51
+      },
+      "reducedMotion": {
+        "hiddenReveal": 0,
+        "videos": 0,
+        "longAnimations": 0
+      },
+      "keyboard": [
+        {
+          "el": "A.skip-link",
+          "text": "Zum Inhalt springen",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_brand__neS_Q",
+          "text": "Bdimexport",
+          "outline": true
+        },
+        {
+          "el": "A.navbar_link__t4w8_",
+          "text": "Leistungen",
+          "outline": true
+        }
+      ]
+    },
+    {
+      "page": "/en/ru",
+      "widths": {
+        "375": {
+          "w": 375,
+          "sw": 375,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "ru",
+          "dir": null
+        },
+        "768": {
+          "w": 768,
+          "sw": 768,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "ru",
+          "dir": null
+        },
+        "1440": {
+          "w": 1440,
+          "sw": 1440,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "ru",
+          "dir": null
+        },
+        "1920": {
+          "w": 1920,
+          "sw": 1920,
+          "overflow": false,
+          "over": [],
+          "h1": 1,
+          "lang": "ru",
+          "dir": null
+        }
+      },
+      "dark": {
+        "bg": "rgb(12, 21, 37)",
+        "ink": "rgb(231, 229, 224)",
+        "contrast": 14.51
+      },
+      "reducedMotion": {
+        "hiddenReveal": 0,
+        "videos": 0,
+        "longAnimations": 0
+      },
+      "keyboard": [
+        {
+          "el": "A.skip-link",
+          "text": "Перейти к содержанию",
+          "outline": true
+        },
+        {
+          "el": "A.variant_btn____zan",
+          "text": "Telegram",
+          "outline": true
+        },
+        {
+          "el": "A.variant_btn____zan",
+          "text": "WhatsApp",
+          "outline": true
+        }
+      ]
+    }
+  ]
+}

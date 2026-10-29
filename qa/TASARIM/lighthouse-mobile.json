@@ -1,0 +1,123 @@
+{
+  "mode": "mobile",
+  "base": "http://localhost:3100",
+  "date": "2026-10-29T07:31:28.293Z",
+  "lighthouse": "13.5.0",
+  "rows": [
+    {
+      "page": "/",
+      "performance": 91,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcp_ms": 2774,
+      "cls": 0,
+      "tbt_ms": 202,
+      "fcp_ms": 1754,
+      "lowAudits": [
+        "largest-contentful-paint",
+        "total-blocking-time",
+        "max-potential-fid",
+        "network-dependency-tree-insight"
+      ]
+    },
+    {
+      "page": "/en",
+      "performance": 89,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcp_ms": 2635,
+      "cls": 0.002,
+      "tbt_ms": 305,
+      "fcp_ms": 1501,
+      "lowAudits": [
+        "largest-contentful-paint",
+        "total-blocking-time",
+        "max-potential-fid",
+        "network-dependency-tree-insight"
+      ]
+    },
+    {
+      "page": "/de",
+      "performance": 90,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcp_ms": 2457,
+      "cls": 0,
+      "tbt_ms": 324,
+      "fcp_ms": 1167,
+      "lowAudits": [
+        "total-blocking-time",
+        "max-potential-fid",
+        "network-dependency-tree-insight"
+      ]
+    },
+    {
+      "page": "/zh",
+      "performance": 97,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcp_ms": 2284,
+      "cls": 0,
+      "tbt_ms": 131,
+      "fcp_ms": 1136,
+      "lowAudits": [
+        "max-potential-fid",
+        "network-dependency-tree-insight"
+      ]
+    },
+    {
+      "page": "/ithalat/tedarik",
+      "performance": 92,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcp_ms": 2631,
+      "cls": 0,
+      "tbt_ms": 201,
+      "fcp_ms": 1731,
+      "lowAudits": [
+        "largest-contentful-paint",
+        "total-blocking-time",
+        "max-potential-fid",
+        "network-dependency-tree-insight"
+      ]
+    },
+    {
+      "page": "/en/products/olive-oil",
+      "performance": 94,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcp_ms": 2490,
+      "cls": 0,
+      "tbt_ms": 208,
+      "fcp_ms": 1449,
+      "lowAudits": [
+        "total-blocking-time",
+        "max-potential-fid",
+        "network-dependency-tree-insight"
+      ]
+    },
+    {
+      "page": "/en/ar",
+      "performance": 90,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "lcp_ms": 3068,
+      "cls": 0.001,
+      "tbt_ms": 155,
+      "fcp_ms": 2018,
+      "lowAudits": [
+        "first-contentful-paint",
+        "largest-contentful-paint",
+        "max-potential-fid",
+        "network-dependency-tree-insight"
+      ]
+    }
+  ]
+}
