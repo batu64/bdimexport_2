@@ -9,7 +9,7 @@
   box-shadow: var(--e-3);
   overflow: hidden;
 }
-@media (min-width: 1280px) { .band { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .band { grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); } }
 .item {
   display: flex;
   flex-direction: column-reverse; /* görsel: sayı üstte; DOM: dt → dd (okuma sırası: etiket, değer) */
@@ -37,3 +37,5 @@
 }
 .unit { color: var(--c-accent); font-size: var(--fs-lg); font-weight: var(--fw-heading); }
 .label { color: var(--c-muted); font-size: var(--fs-sm); }
+/* tek sayıda öğe (ör. zh 3): mobil/tablette son öğe tam satır — boş hücre kalmaz */
+@media not all and (min-width: 1280px) { .item:last-child:nth-child(odd) { grid-column: 1 / -1; border-inline-end: 0; } }

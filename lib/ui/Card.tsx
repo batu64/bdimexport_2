@@ -6,10 +6,13 @@ import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 import s from "./card.module.css";
 
-export default function Card({ title, href, description, icon, eyebrow, more, children, className, headingLevel = 3 }: {
+export default function Card({ title, href, hrefLang, description, icon, eyebrow, more, children, className, headingLevel = 3 }: {
   title: string;
-  href: string;
+  /** yoksa başlık düz metin (sayfası henüz olmayan öğe — 404'a link verilmez) */
+  href?: string;
   description?: string;
+  /** bağlantının dili (ör. DE kartından EN sayfaya) */
+  hrefLang?: string;
   icon?: ReactNode;
   eyebrow?: string;
   more?: string;
@@ -23,11 +26,11 @@ export default function Card({ title, href, description, icon, eyebrow, more, ch
       {icon && <div className={s.icon} aria-hidden="true">{icon}</div>}
       {eyebrow && <p className={s.eyebrow}>{eyebrow}</p>}
       <H className={s.title}>
-        <Link href={href} className={s.titleLink}>{title}</Link>
+        {href ? <Link href={href} className={s.titleLink} hrefLang={hrefLang}>{title}</Link> : title}
       </H>
       {description && <p className={s.desc}>{description}</p>}
       {children}
-      {more && (
+      {more && href && (
         <p className={s.more} aria-hidden="true">
           <span>{more}</span>
           <ArrowRight className={s.arrow} />

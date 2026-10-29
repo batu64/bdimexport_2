@@ -1,3 +1,112 @@
 {
-  "site": { "name": "Bdimexport" }
+  "site": { "name": "Bdimexport" },
+  "nav": {
+    "label": "Hauptmenü",
+    "skip": "Zum Inhalt springen",
+    "home": "Bdimexport Startseite",
+    "links": [
+      { "label": "Leistungen", "href": "/de#leistungen" },
+      { "label": "Ablauf", "href": "/de#ablauf" },
+      { "label": "Vertrauen", "href": "/de/vertrauen" }
+    ],
+    "cta": "Angebot anfordern",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen",
+    "sites": "Markt / Sprache"
+  },
+  "quote": {
+    "subject": "Angebotsanfrage (bdimexport.com)",
+    "body": "Produkt / Leistung:\nMenge:\nZielmarkt:\nTermin:\nZielpreis (optional):\n"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Beschaffung aus der Türkei",
+      "h1": "Verifizierte türkische Hersteller für Ihre Beschaffung",
+      "sub": "Wir übernehmen Beschaffung, Werksprüfung und Logistik. Jede Werksprüfung dokumentieren wir mit einem Prüfbericht. Ihr kostenloses Angebot erhalten Sie innerhalb von 24 Stunden.",
+      "ctaPrimary": "Kostenloses Angebot in 24 h anfordern",
+      "ctaSecondary": "Unsere Leistungen ansehen",
+      "trust": ["Unabhängige Werksprüfung", "Prüfbericht mit Fotos und Messwerten", "Gebühr getrennt von Drittkosten ausgewiesen"]
+    },
+    "stats": {
+      "label": "Fakten und Zusagen",
+      "quote": { "unit": "h", "label": "bis zu Ihrem kostenlosen Angebot" },
+      "report": { "unit": "h", "label": "bis zum Prüfbericht nach dem Werksbesuch" },
+      "exports": { "unit": "Mrd. US$", "label": "Exporte 2025 der von uns abgedeckten Produktgruppen (UN Comtrade)" },
+      "services": { "label": "Leistungen aus einer Hand" }
+    },
+    "services": {
+      "eyebrow": "Leistungen",
+      "title": "Eine Ansprechstelle von der Beschaffung bis zu Ihrem Hafen",
+      "lead": "Die deutschen Leistungsseiten befinden sich in Vorbereitung. Die vollständigen Beschreibungen finden Sie vorerst auf Englisch.",
+      "more": "Details (Englisch)",
+      "items": {
+        "sourcing": "Beschaffung",
+        "manufacturing": "Eigenmarken-Fertigung",
+        "inspection": "Werksprüfung",
+        "logistics": "Frachtlogistik",
+        "customs": "Exportzollabwicklung"
+      }
+    },
+    "trust": {
+      "eyebrow": "Vertrauen",
+      "title": "Nachweisbar statt versprochen",
+      "lead": "Wir arbeiten dokumentiert: Jede Prüfung endet mit einem Bericht, jede Gebühr wird getrennt von Drittkosten ausgewiesen.",
+      "more": "Mehr zu unseren Standards",
+      "items": [
+        { "title": "Unabhängige Werksprüfung", "text": "Ein Prüfer prüft Ihren Auftrag vor Ort gegen Ihre Spezifikation." },
+        { "title": "Prüfbericht innerhalb von 48 Stunden", "text": "Mit Fotos, Messwerten und einem klaren Ergebnis." },
+        { "title": "Transparente Kosten", "text": "Unsere Gebühr wird getrennt von Drittkosten angeboten." }
+      ]
+    },
+    "process": {
+      "eyebrow": "Ablauf",
+      "title": "So läuft ein typischer Auftrag",
+      "steps": [
+        { "title": "Anfrage und Angebot", "text": "Sie nennen Produkt, Menge und Zielmarkt; Ihr Angebot erhalten Sie innerhalb von 24 Stunden." },
+        { "title": "Herstellerauswahl", "text": "Wir prüfen türkische Hersteller auf Unterlagen, Kapazität und Exporterfahrung." },
+        { "title": "Muster und Werksprüfung", "text": "Muster werden verglichen, ein unabhängiger Prüfer besucht das Werk." },
+        { "title": "Produktionsbegleitung", "text": "Wir verfolgen den Zeitplan und berichten Ihnen bei jedem Schritt." },
+        { "title": "Logistik und Zoll", "text": "Exportzoll und Fracht werden bis zu Ihrem Hafen abgewickelt." }
+      ]
+    },
+    "partners": {
+      "eyebrow": "Partner",
+      "title": "Verifizierte türkische Partner",
+      "badge": "Verifizierter türkischer Partner",
+      "empty": "Die ersten verifizierten türkischen Partner folgen in Kürze."
+    },
+    "cta": {
+      "title": "Senden Sie uns Ihre Anfrage. Wir antworten innerhalb von 24 Stunden.",
+      "lead": "Produkt, Menge, Zielort und Termin genügen für den Start. Unsere Gebühr wird getrennt von Drittkosten ausgewiesen."
+    }
+  },
+  "page": {
+    "crumbs": "Brotkrümelnavigation",
+    "home": "Startseite",
+    "legal": "Rechtliches",
+    "pending": "In Vorbereitung",
+    "legalPending": "Der rechtlich geprüfte Text dieser Seite wird vor dem Start der deutschen Website veröffentlicht. Bis dahin erreichen Sie uns per E-Mail.",
+    "contactCta": "E-Mail schreiben"
+  },
+  "legal": {
+    "impressum": { "title": "Impressum", "lead": "Angaben gemäß § 5 DDG" },
+    "datenschutz": { "title": "Datenschutzerklärung", "lead": "Informationen zur Verarbeitung personenbezogener Daten nach DSGVO" }
+  },
+  "vertrauen": {
+    "title": "Vertrauen und Standards",
+    "lead": "Wie wir arbeiten, was wir dokumentieren und was Sie von uns erhalten.",
+    "reviewsTitle": "Kundenstimmen",
+    "reviewsEmpty": "Kundenstimmen veröffentlichen wir erst nach abgeschlossenen Projekten und mit Zustimmung der Kunden. Erfundene Bewertungen gibt es bei uns nicht."
+  },
+  "footer": {
+    "tagline": "Beschaffung, Werksprüfung und Exportlogistik aus der Türkei — eine Ansprechstelle.",
+    "nav": "Navigation",
+    "sites": "Märkte",
+    "legal": "Rechtliches",
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz",
+    "contact": "Kontakt",
+    "email": "E-Mail schreiben",
+    "rights": "Alle Rechte vorbehalten."
+  }
 }

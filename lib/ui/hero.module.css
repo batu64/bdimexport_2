@@ -125,3 +125,12 @@
 /* ── giriş: CSS stagger (opacity + translate), H1 hariç */
 .enter { animation: enter var(--dur-slow) var(--ease-out) both; animation-delay: calc(var(--d, 0) * var(--stagger) * 2 + var(--dur-fast)); }
 @keyframes enter { from { opacity: 0; transform: translateY(var(--motion-distance)); } to { opacity: 1; transform: none; } }
+
+/* zh simetrik merkez: tek kolon, ortalanmış metin + CTA + güven satırı */
+.center { justify-items: center; text-align: center; }
+.center .copy { justify-items: center; margin-inline: auto; }
+.center .eyebrow { justify-self: center; }
+.center .sub { margin-inline: auto; }
+.center .ctas { justify-content: center; }
+@media (min-width: 768px) { .center .ctas { justify-content: center; } }
+.center .trust { justify-content: center; }

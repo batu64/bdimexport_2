@@ -68,7 +68,7 @@ export const tracking = { tight: "-0.02em", caps: "0.08em" } as const;
 export const font = {
   latin: '"Inter", system-ui, sans-serif',
   arabic: '"Noto Sans Arabic", "Inter", system-ui, sans-serif',
-  zh: '"Noto Sans SC", "Inter", system-ui, sans-serif',
+  zh: '"Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif', // [TASLAK-D6] CJK web fontu yok (perf): sistem fontları
 } as const;
 
 // ── Şekil [v2.1 §4]

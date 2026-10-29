@@ -16,9 +16,11 @@ export type HeroProps = {
   trust?: string[];
   trustLabel?: string;
   visual?: ReactNode;
+  /** zh: simetrik merkez düzen (design-tokens §2.1) */
+  align?: "start" | "center";
 };
 
-export default function Hero({ id = "hero", eyebrow, title, subtitle, primary, secondary, trust = [], trustLabel, visual }: HeroProps) {
+export default function Hero({ id = "hero", eyebrow, title, subtitle, primary, secondary, trust = [], trustLabel, visual, align = "start" }: HeroProps) {
   return (
     <section aria-labelledby={`${id}-title`} className={`on-brand ${s.hero}`}>
       <div className={s.bg} aria-hidden="true">
@@ -26,7 +28,7 @@ export default function Hero({ id = "hero", eyebrow, title, subtitle, primary, s
         <span className={s.glowB} />
         <span className={s.grid} />
       </div>
-      <div className={`container ${s.inner} ${visual ? "" : s.single}`}>
+      <div className={`container ${s.inner} ${visual ? "" : s.single} ${align === "center" ? s.center : ""}`}>
         <div className={s.copy}>
           {eyebrow && (
             <p className={`${s.eyebrow} ${s.enter}`} style={{ "--d": 0 } as React.CSSProperties}>

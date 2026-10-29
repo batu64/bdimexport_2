@@ -8,7 +8,7 @@ export type Stat = { value: number; unit?: string; label: string; decimals?: num
 export default function StatBand({ items, label, locale }: { items: Stat[]; label: string; locale: string }) {
   return (
     <div className={`container ${s.wrap}`}>
-      <dl className={s.band} aria-label={label}>
+      <dl className={s.band} aria-label={label} style={{ "--cols": items.length } as React.CSSProperties}>
         {items.map((it) => (
           <div key={it.label} className={s.item}>
             <dt className={s.label}>{it.label}</dt>

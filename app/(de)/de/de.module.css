@@ -1,0 +1,56 @@
+/* /de güven sütunları — sakin-güven: trust-badge tokenları (design-tokens §2.2), altın dolgu yok (yalnız primary CTA). */
+.trust { display: grid; gap: var(--s-6); padding: 0; list-style: none; }
+@media (min-width: 768px) { .trust { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.trustItem {
+  position: relative;
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  padding: var(--s-8) var(--s-6);
+  border: var(--bw-1) solid var(--c-border);
+  border-block-start: var(--s-1) solid var(--c-trust-ink);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+}
+.trustBadge {
+  position: absolute;
+  inset-block-start: var(--s-4);
+  inset-inline-end: var(--s-4);
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--s-8);
+  block-size: var(--s-8);
+  border-radius: 50%;
+  background: var(--c-trust-bg);
+  color: var(--c-trust-ink);
+}
+.badgeIcon { inline-size: var(--s-4); block-size: var(--s-4); }
+.trustIcon { inline-size: var(--s-8); block-size: var(--s-8); color: var(--c-trust-ink); stroke-width: 1.5; }
+.trustTitle { font-size: var(--fs-xl); }
+.trustText { color: var(--c-muted); }
+
+/* hukuki / bekleyen içerik kutusu */
+.pending {
+  display: grid;
+  gap: var(--s-4);
+  justify-items: start;
+  max-inline-size: var(--prose);
+  padding: var(--s-8);
+  border: var(--bw-1) solid var(--c-border);
+  border-inline-start: var(--s-1) solid var(--c-trust-ink);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+}
+.pendingChip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius-pill);
+  background: var(--c-trust-bg);
+  color: var(--c-trust-ink);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+}
+.pendingIcon { inline-size: var(--s-4); block-size: var(--s-4); }

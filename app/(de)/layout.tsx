@@ -1,9 +1,13 @@
-// DE DACH placeholder — FAZ 5'te tam içerik; footer Impressum/Datenschutz zorunlu konum notu
+// DE DACH kökü — D6: sakin-güven paleti (data-locale=de), Navbar/Footer (Impressum/Datenschutz footer'da zorunlu konum)
 // (agents/de-agent.md §3: hukuki sayfalar insan onaylı — bu placeholder hukuki metin İÇERMEZ)
 import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
+import Navbar from "@/lib/ui/Navbar";
+import Footer from "@/lib/ui/Footer";
+import dict from "@/lib/messages/de.json";
+import { footerProps, navbarProps } from "./de/_lib/chrome";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bdimexport.com"),
@@ -18,9 +22,12 @@ export default function DeLayout({ children }: { children: React.ReactNode }) {
         <ThemeStyle />
       </head>
       <body>
-    <IntlProvider locale="de">
-      <div lang="de">{children}</div>
-    </IntlProvider>
+        <a href="#inhalt" className="skip-link">{dict.nav.skip}</a>
+        <IntlProvider locale="de">
+          <Navbar {...navbarProps()} />
+          <div lang="de" id="inhalt" tabIndex={-1}>{children}</div>
+          <Footer {...footerProps()} />
+        </IntlProvider>
       </body>
     </html>
   );

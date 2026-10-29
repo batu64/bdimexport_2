@@ -1,0 +1,36 @@
+// /de site çerçevesi (navbar + footer) — metin lib/messages/de.json (formal Sie). Footer'da Impressum + Datenschutz
+// her /de sayfasında ZORUNLU konum (FAZ_5 5.1; footer.md). Teklif kanalı: gerçek e-posta (WhatsApp handle henüz yok — uydurulmaz).
+import type { FooterProps } from "@/lib/ui/Footer";
+import type { NavbarProps } from "@/lib/ui/Navbar";
+import { marketSites } from "@/lib/ui/sites";
+import dict from "@/lib/messages/de.json";
+
+export const QUOTE_EMAIL = process.env.NEXT_PUBLIC_QUOTE_EMAIL ?? "iletisim@bdimexport.com";
+export const quoteHref = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(dict.quote.subject)}&body=${encodeURIComponent(dict.quote.body)}`;
+
+export function navbarProps(): NavbarProps {
+  const n = dict.nav;
+  return {
+    brand: dict.site.name,
+    homeHref: "/de",
+    homeLabel: n.home,
+    links: n.links,
+    cta: { label: n.cta, href: quoteHref },
+    sites: marketSites("de"),
+    labels: { nav: n.label, open: n.menuOpen, close: n.menuClose, sites: n.sites },
+    heroPaths: ["/de"],
+  };
+}
+
+export function footerProps(): FooterProps {
+  const f = dict.footer;
+  return {
+    brand: dict.site.name,
+    tagline: f.tagline,
+    columns: [{ title: f.nav, links: [{ label: dict.page.home, href: "/de" }, ...dict.nav.links] }],
+    sites: { title: f.sites, links: marketSites("de") },
+    legal: { title: f.legal, links: [{ label: f.impressum, href: "/de/impressum" }, { label: f.datenschutz, href: "/de/datenschutz" }] },
+    contact: { title: f.contact, email: QUOTE_EMAIL, emailLabel: f.email },
+    rights: f.rights,
+  };
+}
