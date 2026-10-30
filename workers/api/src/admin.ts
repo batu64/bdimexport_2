@@ -6,6 +6,7 @@ import { guardAdminRequest, type AdminEnv, type AdminIdentity } from "../../../a
 import { DASHBOARD_QUERIES as Q } from "../../../app/admin/_lib/queries";
 import { HttpError, type Env } from "./types";
 import { json } from "./util";
+import { AttributionQueryError, computeAttribution, parseAttributionQuery } from "./attribution";
 
 export const ADMIN_PREFIX = "/admin/api";
 
@@ -71,5 +72,15 @@ export async function routeAdmin(req: Request, env: Env, path: string): Promise<
 
   if (req.method === "GET" && sub === "/me") return json({ email: id.email, role: id.role });
   if (req.method === "GET" && sub === "/dashboard/summary") return json(await dashboardSummary(env));
+  // FAZ_6 6.1 — dönüşüm atfı (anonim agregat; lead-türevi → admin-only, 3.7 analitik kuralıyla aynı). Sözleşme: ./attribution-contract.ts
+  if (req.method === "GET" && sub === "/analytics/attribution") {
+    if (id.role !== "admin") throw new HttpError(403, "forbidden", "Analitik modülü yalnız admin");
+    try {
+      return json(await computeAttribution(env.DB, parseAttributionQuery(new URL(req.url))));
+    } catch (e) {
+      if (e instanceof AttributionQueryError) throw new HttpError(400, "validation_failed", "Geçersiz sorgu", [{ field: e.field, message: "sınır dışı" }]);
+      throw e;
+    }
+  }
   throw new HttpError(404, "not_found", "Bulunamadı");
 }
