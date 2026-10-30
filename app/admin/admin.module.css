@@ -34,3 +34,40 @@
 .fs { border: 0; padding: 0; margin: var(--a-s2) 0; }
 .opt { margin-inline-end: var(--a-s3); }
 .rowForm { display: flex; flex-wrap: wrap; gap: var(--a-s2); align-items: center; margin: var(--a-s2) 0; }
+/* Analitik dashboard (6.2) — filtreler, bölümler, erişilebilir gizli tablo */
+.wide { grid-column: 1 / -1; }
+.sub { margin: calc(-1 * var(--a-s2)) 0 var(--a-s3); font-size: var(--a-fs-sm); }
+.h3 { margin: var(--a-s6) 0 var(--a-s2); font-size: var(--a-fs-sm); font-weight: 600; }
+.notice { margin: 0 0 var(--a-s4); padding: var(--a-s3) var(--a-s4); border-radius: var(--a-radius); border-inline-start: var(--a-s1) solid var(--a-highlight); background: color-mix(in srgb, var(--a-highlight) 12%, transparent); }
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a-s4); margin: 0 0 var(--a-s6); }
+.seg { display: inline-flex; gap: var(--a-s1); margin: 0 0 var(--a-s3); padding: var(--a-s1); border: 1px solid color-mix(in srgb, var(--a-bg) 15%, transparent); border-radius: var(--a-radius); }
+.filters .seg { margin: 0; }
+.segOpt { display: inline-flex; align-items: center; min-height: var(--a-touch); padding: 0 var(--a-s3); border: 0; border-radius: var(--a-radius); background: none; color: inherit; font: inherit; cursor: pointer; }
+.segOpt:hover { background: color-mix(in srgb, var(--a-bg) 10%, transparent); }
+.segOn { background: color-mix(in srgb, var(--a-accent) 45%, transparent); }
+.segOpt:focus-within, .segOpt:focus-visible { outline: calc(var(--a-s1) / 2) solid var(--a-highlight); outline-offset: calc(var(--a-s1) / 2); }
+.selLabel { display: inline-flex; align-items: center; gap: var(--a-s2); }
+.select { min-height: var(--a-touch); padding: 0 var(--a-s3); border: 1px solid color-mix(in srgb, var(--a-bg) 30%, transparent); border-radius: var(--a-radius); background: var(--a-primary); color: var(--a-bg); font: inherit; }
+.select:focus-visible { outline: calc(var(--a-s1) / 2) solid var(--a-highlight); outline-offset: calc(var(--a-s1) / 2); }
+.chartBoxSm { position: relative; height: calc(var(--a-s16) * 2.5); }
+.funnel { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--a-s2); }
+.path { font-family: ui-monospace, monospace; word-break: break-all; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.more { display: inline-block; margin-top: var(--a-s3); color: var(--a-highlight); }
+.foot { margin: var(--a-s3) 0 0; font-size: var(--a-fs-sm); }
+/* Dar ekran (6.2): flex öğesi daralabilsin (min-width:0) — aksi halde geniş tablo/grafik .shell'in koyu zemininden taşar (beyaz body üzerinde okunmaz).
+   Tabletin altında menü üstte yatay; içerik tam genişlik. */
+.main { min-width: 0; }
+@media (max-width: 768px) {
+  .shell { flex-direction: column; }
+  .side { width: auto; border-inline-end: 0; border-bottom: 1px solid color-mix(in srgb, var(--a-bg) 15%, transparent); }
+  /* tek satır + yatay kaydırma: /me gelince menü 1→7 öğe genişlese de yükseklik sabit (CLS yok) */
+  .nav { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; }
+  .link { white-space: nowrap; }
+  .side > p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .main { padding: var(--a-s4); }
+}
+/* yükleme iskeletleri gerçek içerik yüksekliğinde (6.2 CLS): özet kartı ≈ boş-durum kartı · trend kartı ≈ başlık + küçük grafik + bağlantı */
+.skelCard { min-height: calc(var(--a-s16) * 2.75); }
+.skelTrend { min-height: calc(var(--a-s16) * 4.2); }
+.lede { margin: calc(-1 * var(--a-s3)) 0 var(--a-s6); opacity: .7; }

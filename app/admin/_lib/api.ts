@@ -39,9 +39,12 @@ export type Remote<T> =
   | { state: "error"; message: string }
   | { state: "ready"; data: T };
 
-export function useAdminGet<T>(path: string): Remote<T> {
+/** path = null → istek atılmaz (koşullu veri: ör. viewer rolünde admin-only uç, filtreyle gereksizleşen ek seri); durum "loading" kalır. */
+export function useAdminGet<T>(path: string | null): Remote<T> {
   const [res, setRes] = useState<Remote<T>>({ state: "loading" });
   useEffect(() => {
+    if (path === null) return;
+    setRes({ state: "loading" });
     const ctl = new AbortController();
     fetch(`${BASE}${path}`, { method: "GET", credentials: "same-origin", signal: ctl.signal })
       .then((r) => {
