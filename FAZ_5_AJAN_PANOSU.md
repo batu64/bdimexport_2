@@ -33,14 +33,17 @@
 | 4 | 5.5 /zh Baidu SEO | `app/(zh)` meta | 5.3 | ✅ kod/meta `5c7a5f2` · 👤 canlı doğrulama = ERTELENEN **E9** (custom domain sonrası) | Opus 5.5 |
 | 5 | 5.4 /de hizmet + /de/vertrauen | `content/de/services/**`, `content/de/vertrauen.md` | 5.1 | ✅ `586a6e5` 5 hizmet + Trust (Sie, ≥1200) · Impressum/Datenschutz metni 5.1 PARK | Opus 5.5 |
 | 6 | 5.6 /de + /zh davranış | `app/(de)/**`, `app/(zh)/**` (+ api iskelet) | 5.3, 5.4 | ✅ `239f3f3` api · `9d7c7f7` de · `32aad52` zh — DSGVO çift opt-in (form kapalı, 🔒 review) + WeChat QR dokun-büyüt + C7 shell'leri + CTA hizalama | Opus 5.5 |
-| 7 | 5.7 Dil kalite turu | `qa/**` | 5.3–5.6 | ✅ denetim — 22 kontrol: ✅18 ⚠️4 ❌0 (`qa/FAZ-5/dil-kalite-turu.md`) · ⏸ 👤 **zh kültür/marka onayı HAZIR** | Opus 5.5 |
+| 7 | 5.7 Dil kalite turu | `qa/**` | 5.3–5.6 | ✅ denetim — 22 kontrol: ✅18 ⚠️4 ❌0 (`qa/FAZ-5/dil-kalite-turu.md`) · 👤 **zh kültür onayı VERİLDİ** (kullanıcı Çince okur, 2026-10-30) | Opus 5.5 |
 | 8 | 5.8 hreflang/sitemap (4 dil tam) | `app/sitemap.ts`, `lib/hreflang.*` (+ 9 ana sayfa wiring) | 5.3–5.6 | ✅ `2c81d03` — tr+en+de+zh + en-XX tam karşılıklı, x-default=tr; 9/9 ana sayfa; sitemap 88 URL (/de+/zh); dangling hreflang 0; B1 `0163284` | Opus 4.8 (orchestrator) · 2026-10-30 |
-| 9 | 5.9 QA (dil+hukuk+görsel) | `qa/**` | 1–8 ✅ | ⏳ | — |
-| 10 | 5.10 Hukuk/kültür imza 🚀 | `qa/**` | 5.9 + 👤 | ⏸ 👤 imza | — |
-| 11 | 5.11 Faz çıkışı 🚦 | `qa/**` | 5.10 + 👤 | ⏸ 👤 onay | — |
+| 9 | 5.9 QA (dil+hukuk+görsel) | `qa/**` | 1–8 ✅ | ✅ `qa/FAZ-5/faz5-cikis-QA.md` — lint/build(88)/smoke(7/7)/dil-kalite(✅19⚠️3❌0)/de(6/6)/zh(5/5)/hex(0) yeşil; kırmızı 0 | Opus 4.8 · 2026-10-30 |
+| 10 | 5.10 Hukuk/kültür imza 🚀 | `qa/**` | 5.9 + 👤 | ◐ /zh kültür ✅ (kullanıcı) · /de hukuk ⏸ **C8 ertelendi** (FAZ 8 lansman blokörü) | kullanıcı + Opus 4.8 |
+| 11 | 5.11 Faz çıkışı 🚦 | `qa/**` | 5.10 + 👤 | ✅ **FAZ 5 KAPANDI** (2026-10-30) — içerik/kod tamam; tek kalan hukuki iş C8 (FAZ 8 öncesi) | kullanıcı onayı |
 
-**Sıralı yürütme:** 5.1 → 5.3 → 5.5 → 5.4 → 5.6 → 5.7 → 5.8 → 5.9 → 5.10 → 5.11 · *(5.1 veri gelene kadar bloklu; bu sırada 5.3 /zh hattı başlayabilir — veri gerektirmez)*
+**Sıralı yürütme:** 5.1 → 5.3 → 5.5 → 5.4 → 5.6 → 5.7 → 5.8 → 5.9 → 5.10 → 5.11 · ✅ **TÜMÜ TAMAM** (5.1 hariç → C8 ertelendi).
 **Not:** zh ve de hatları scope olarak ayrı → biri bloklanırsa diğeri akar.
+
+> 🏁 **FAZ 5 KAPANDI — 2026-10-30.** Çıkış: `qa/FAZ-5/faz5-cikis-QA.md`. İçerik+kod+hreflang tamam; kırmızı 0. Ertelenen tek hukuki iş: **C8** (/de Impressum+Datenschutz, kullanıcı veri verecek → FAZ 8 lansman blokörü). Sıradaki: **FAZ 6 (Analitik + Raporlama)** → `FAZ_6_AJAN_PANOSU.md`.
+> **Dal:** çalışma `tasks/faz0-progress-panel` dalında birikiyor (FAZ 0→5). main'e squash-merge = kullanıcı kararı (çok-fazlı dal → tek karede toplanır; geçmişe dokunmadan).
 
 ---
 
@@ -80,8 +83,8 @@ Kabul: Sie regex temiz; kaynaklı. Tek commit.
 - [2026-10-30] Opus 4.8 (orchestrator) · Step 5.8 · ✅ — commit `2c81d03` (ortak dosya tekeli: lib/hreflang.ts + app/sitemap.ts + 9 ana sayfa wiring). Önce durum KIRIKTI: tr ana sayfa yalnız `tr` listeliyordu, **de ana sayfa hreflang YOKTU**, zh yalnız canonical, 5 varyant yalnız en ailesi — karşılıklılık yok. `homeAlternates(self)` eklendi: 9 ana sayfanın (tr / · en · de · zh · en/{ru,fr,nl,es,ar}) HEPSİ AYNI tam seti taşır (tr, x-default, zh-CN, en, de, en-RU/FR/NL/ES/AR), **x-default=tr** (SEO_PLAYBOOK §1:12 / Proje.md:47). İç sayfalar kendi ailesinde (farklı niyet — EN inner "TR/x-default YOK" kuralı korundu; de/zh hizmet sayfaları zaten "hreflang YAZILMAZ — ortak dosya 5.8" notuyla self-canonical bekliyordu). sitemap: /de (hub+5 Leistungen+vertrauen+anfrage) + /zh (hub+5 hizmet) eklendi (74→88 URL); ana sayfa URL'leri homeAlt xhtml:link taşır; kök `<loc>` trailing-slash kaldırıldı → hreflang tr/x-default href'i + canonical ile birebir; /de/ratgeber + /zh/insights makale yokken noindex → sitemap DIŞI. Ayrıca B1 (`0163284`): hero-copy DE CTA'daki kapanmış "Açık Konu 1" ⚠️ işareti kaldırıldı. DOĞRULAMA (`node scratchpad/check-sitemap.mjs` + render HTML): build yeşil (88 URL) · lint yeşil · **9/9 ana sayfa tam karşılıklı** · **dangling hreflang 0** (404-hreflang yok) · de+zh head hreflang+self-canonical render ediliyor. 5.7 B2 (Frachtlogistik korundu) · B3 (de WhatsApp → FAZ 8) · B4 (`_yok` lang/dir → 5.9) · B5+link (👤 tek-tık) kararları verildi.
 
 ## 5. İNSAN AKSİYONLARI (👤)
-1. **5.1 (ŞİMDİ, blokör):** /de Impressum/Datenschutz için gerçek **şirket verisi** (ticaret unvanı, adres, yetkili, iletişim, vergi/sicil no) + **hukuk imzası**.
-2. **5.7:** /zh kültür/marka onayı — **👤 HAZIR**: kontrol listesi `qa/FAZ-5/dil-kalite-turu.md` §6 (marka adı, hitap, kırmızı-altın bağlam, 4-sayısı, örnekler, WeChat ifadeleri, rakam sunumu). Ek: gesetze-im-internet + UNCTAD linklerine tarayıcıda tek tık kontrol (§4).
+1. **5.1 → C8 ERTELENDİ (2026-10-30 kararı):** /de Impressum/Datenschutz şirket verisi + hukuk imzası kullanıcı tarafından **sonra** verilecek. `ERTELENEN_GOREVLER.md` C8 = **FAZ 8 lansman blokörü** (/de metin olmadan yayına alınmaz).
+2. **5.7 → ✅ ONAYLANDI (2026-10-30):** /zh kültür/marka onayı kullanıcı tarafından verildi (Çince okur). (İsteğe bağlı: gesetze-im-internet + UNCTAD linkleri tarayıcı tek-tık, §4.)
 3. **5.6 🔒 review:** /de çift opt-in (workers/api/src/optin.ts + app/(de)/de/anfrage) + rıza metni taslağı (de.json `anfrage.consent`, sürüm de-v0-entwurf) — hukuk onayı; form açılışı = 5.1 yayın + E5 mail + `DE_CONSENT_VERSIONS` + `NEXT_PUBLIC_DE_FORM_ENABLED=1`.
 3. **5.5:** Baidu doğrulama → ERTELENEN E9 (custom domain sonrası).
 4. **5.10 / 5.11:** imza + faz çıkışı.

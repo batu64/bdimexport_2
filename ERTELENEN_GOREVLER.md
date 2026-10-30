@@ -40,6 +40,7 @@
 | C5 | **Lighthouse canlı ölçüm (≥90)** | 2/8 | Canlı URL + gerçek ortam gerek | FAZ 8.1 lansman denetimi (canlı URL / PageSpeed) |
 | C6 | **/en/{ru,fr,nl,es,ar} varyant tam içeriği** (şu an iskelet) | 2.5 | Tasarım gereği FAZ 2 iskelet; tam çeviri FAZ 5 | FAZ 5 |
 | C7 | **/de + /zh makale rotaları** (yayın botu şu an `route_pending` ile reddeder) | 4.6 | de/zh route grupları FAZ 5'te kuruluyor | ◐ app tarafı ✅ 5.6 (`/de/ratgeber` ← content/de/ratgeber · `/zh/insights` ← content/zh/insights, boş-durum shell). KALAN (api): render.ts `routeFor` de/zh dizinleri → bot `route_pending` kalkar |
+| **C8** 🔴⚖️ | **/de Impressum + Datenschutz METNİ (FAZ 5.1)** — gerçek şirket verisi (ticaret unvanı, adres, yetkili temsilci, iletişim, vergi/sicil no, veri sorumlusu) + **hukuk imzası** | 5.1 | Kullanıcı veriyi sonra verecek (2026-10-30 kararı); FAZ 5 bu nedenle metin olmadan kapandı. Shell + footer linkleri + anfrage veri kategorileri (`_lib/datenschutz.ts`) HAZIR, metin boş. | **LANSMAN BLOKÖRÜ (FAZ 8, pazarlıksız):** /de §5 TMG gereği Impressum/Datenschutz olmadan **yayına/indekse ALINAMAZ**. Veri gelince 5.1 yazılır → `de.json anfrage.consent` sürümü güncellenir → form açılır (E5 + `NEXT_PUBLIC_DE_FORM_ENABLED`). Birlikte: C2 (KVKK) + /de/vertrauen gerçek yorumlar + B3 (de WhatsApp numarası). |
 
 ---
 
@@ -49,6 +50,8 @@
 | :-- | :-- | :-- | :-- |
 | T1 | Stray `bdimexport` D1 (`d0a18e47…`) + `bdimexport` R2 bucket silme | Erken denemeden kalma; config kullanmıyor | Karışıklık olmasın diye uygun bir zamanda |
 | T2 | `.tmp_board.py`, `tsconfig.tsbuildinfo` → `.gitignore` | Geçici/artefakt | Repo hijyeni |
+| T3 | **9 makale yer tutucusu (`_yok`) 404 kabuğu `lang`/`dir`'siz** (FAZ 5.7/B4) | noindex + linksiz → SEO/kullanıcı etkisi ihmal edilebilir; düzeltme = route gruplarına `not-found.tsx` (grup layout'unda lang/dir'li) | İlk makaleler gelmeden / repo hijyeni turunda |
+| T4 | **B5: TİM Almanya 13,1 mlr USD ikincil kaynak** (CNN Türk) → TİM birincil bülten linki | content/de — kaynak zinciri güçlendirme | FAZ 8.1 lansman denetimi |
 
 ---
 
@@ -57,4 +60,4 @@
 - **Proje sonunda:** bu listeyi yukarıdan aşağı gez; S (güvenlik) → E (altyapı) → C (içerik) → T (temizlik) sırasıyla kapat.
 - Bir madde yapıldığında satırın başına ✅ koy veya sil.
 
-_Son güncelleme: 2026-10-27 — FAZ 4.6: E7 (yayın botu token), E8 (admin router bağlama), C7 (de/zh makale rotaları); FAZ 4.8: E9 (Baidu hesabı) eklendi._
+_Son güncelleme: 2026-10-30 — FAZ 5 kapanışı: **C8** (/de Impressum/Datenschutz metni — 🔴 LANSMAN BLOKÖRÜ, kullanıcı veriyi sonra verecek), T3 (B4 `_yok` lang/dir), T4 (B5 TİM kaynak) eklendi. Önceki: 2026-10-27 FAZ 4.6 E7/E8/C7, FAZ 4.8 E9._
