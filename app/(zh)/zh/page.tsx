@@ -13,14 +13,16 @@ import PartnerBand from "@/lib/ui/PartnerBand";
 import WeChatContact from "./_lib/WeChatContact";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { QUOTE_EMAIL } from "./_lib/chrome";
+import { homeAlternates } from "@/lib/hreflang";
 import s from "./zh.module.css";
 
-// 5.5: hub Baidu meta (layout varsayılanı) + canonical + keywords (Baidu meta keywords'ü hâlâ okur; 5.3 hizmet adlarından)
+// 5.5: hub Baidu meta (layout varsayılanı) + keywords (Baidu meta keywords'ü hâlâ okur; 5.3 hizmet adlarından).
+// 5.8: canonical + ANA SAYFA tam karşılıklı hreflang (tr/en/de/zh + en-XX, x-default=tr).
 export const metadata: Metadata = {
   title: { absolute: dict.seo.title },
   description: dict.seo.description,
   keywords: dict.seo.keywords,
-  alternates: { canonical: "https://bdimexport.com/zh" },
+  alternates: homeAlternates("zh"),
 };
 
 const SERVICE_ICON = [Store, Megaphone, Building2, Truck, ShieldCheck];

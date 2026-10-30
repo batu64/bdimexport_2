@@ -3,7 +3,7 @@
 // K3: hreflang değeri content/{tr,zh,en/{ru..},de} dizin yapısıyla birebir
 // K4: varyantlar /en-ru DEĞİL /en/ru/
 // K5: bu helper'a veri agent manifest'lerinden gelir; dosyaya yalnızca orchestrator yazar
-import { localeConfig, enVariants, enVariantHreflang, type Locale, type EnVariant } from "./i18n";
+import { locales, localeConfig, enVariants, enVariantHreflang, type Locale, type EnVariant } from "./i18n";
 import manifest from "./hreflang.manifest.json";
 
 const BASE = "https://bdimexport.com";
@@ -53,6 +53,18 @@ export function buildAlternateSet(
     seen.add(k);
     return true;
   });
+}
+
+/** Ana sayfa (homepage) tam karşılıklı set — SEO_PLAYBOOK §1 / Proje.md §3.1:
+ *  bdimexport.com/ → x-default:tr, alternate: en, de, zh-CN + en-XX (5 varyant).
+ *  9 ana sayfanın (tr /, en /en, de /de, zh /zh, en/{ru,fr,nl,es,ar}) HEPSİ bu AYNI seti taşır
+ *  (K1 karşılıklılık + self-referencing). İç sayfalar bu sete DAHİL DEĞİL (farklı niyet — her dil kendi ailesinde). */
+export function homeAlternates(self: string): { canonical: string; languages: Record<string, string> } {
+  const canonical = self ? joinUrl(...self.split("/").filter(Boolean)) : joinUrl();
+  return {
+    canonical,
+    ...toMetadataAlternates(buildAlternateSet("", [...locales], [...enVariants])),
+  };
 }
 
 /** EN ailesi için tam set: en + manifest'te bu yolu içeren varyantlar. TR/x-default YOK (karşılığı yok — 404-yasağı). */

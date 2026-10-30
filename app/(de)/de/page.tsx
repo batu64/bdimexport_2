@@ -1,8 +1,10 @@
 // /de Hub — OPUS_TASARIM D6: onaylı kalıp, "sakin-güven" (data-locale=de: ölçülü altın, yalnız primary CTA'da).
 // Metin lib/messages/de.json (hero = design/hero-copy.md DE TASLAK; final dil pass'i FAZ 5.4). Rakamlar: SLA + doğrulanmış UN Comtrade.
 // Leistungen kartları → /de/leistungen/{slug} (FAZ_5 5.4; DE_SERVICES sırası = EN SERVICES sırası).
+import type { Metadata } from "next";
 import { BadgeCheck, ClipboardCheck, Factory, FileSearch, FileText, PackageSearch, Receipt, Ship } from "lucide-react";
 import dict from "@/lib/messages/de.json";
+import { homeAlternates } from "@/lib/hreflang";
 import Hero from "@/lib/ui/Hero";
 import StatBand from "@/lib/ui/StatBand";
 import { Section, SectionHeader } from "@/lib/ui/Section";
@@ -21,6 +23,9 @@ import s from "./de.module.css";
 
 const STEP_ICON = [FileSearch, PackageSearch, Factory, ClipboardCheck, Ship];
 const TRUST_ICON = [Factory, FileText, Receipt];
+
+// 5.8: canonical + ANA SAYFA tam karşılıklı hreflang (tr/en/de/zh + en-XX, x-default=tr); başlık/açıklama (de) layout'tan
+export const metadata: Metadata = { alternates: homeAlternates("de") };
 
 export default function DeHomePage() {
   const h = dict.home;

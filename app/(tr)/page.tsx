@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Factory, FileSearch, Globe2, Handshake, Landmark, Package, PackageSearch, Rocket, Ship } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
+import { homeAlternates } from "@/lib/hreflang";
 import dict from "@/lib/messages/tr.json";
 import Hero from "@/lib/ui/Hero";
 import ProcessTracker from "@/lib/ui/ProcessTracker";
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   title: { absolute: "İthalat & İhracat Danışmanlığı | Bdimexport" }, // kök layout aynı segmentte: şablon uygulanmaz
   description:
     "Çin'den ithalatta tedarik, denetim, lojistik ve gümrük; ihracatta e-ihracat ve B2B danışmanlık. Ücretsiz teklif alın.",
-  alternates: toMetadataAlternates(buildAlternateSet("", ["tr"])),
+  alternates: homeAlternates(""),
 };
 
 const STEP_ICON: LucideIcon[] = [FileSearch, PackageSearch, Factory, Ship, Landmark];

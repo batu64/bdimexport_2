@@ -6,7 +6,7 @@ import path from "path";
 import type { Metadata } from "next";
 import { renderVariantMd } from "@/lib/ui/md";
 import VariantPageBody from "@/lib/ui/VariantPageBody";
-import { variantAlternates } from "@/app/(en)/en/_lib/hreflang";
+import { homeAlternates } from "@/lib/hreflang";
 
 const RTL = false;
 
@@ -18,7 +18,7 @@ const parsed = renderVariantMd(
 export const metadata: Metadata = {
   title: parsed.metaTitle ?? parsed.title,
   description: parsed.desc,
-  alternates: variantAlternates("nl", ""),
+  alternates: homeAlternates("en/nl"), // 5.8: ana sayfa tam karşılıklı set (x-default=tr)
 };
 
 export default function Page() {

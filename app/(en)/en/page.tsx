@@ -15,14 +15,14 @@ import PartnerBand from "@/lib/ui/PartnerBand";
 import CtaBand from "@/lib/ui/CtaBand";
 import Reveal from "@/lib/ui/motion/Reveal";
 import grid from "@/lib/ui/cardgrid.module.css";
-import { enAlternates } from "./_lib/hreflang";
+import { homeAlternates } from "@/lib/hreflang";
 import { SERVICES, SERVICE_ICON, readServiceDesc } from "./_lib/services";
 import { quoteHref } from "./_lib/chrome";
 import { INDUSTRY_ICON, industryCards } from "./industries/_lib/industries";
 import { productSlugs } from "./products/[slug]/_view";
 
-// canonical + hreflang (en ailesi); başlık/açıklama (en) layout'tan
-export const metadata: Metadata = { alternates: enAlternates("") };
+// canonical + hreflang (ANA SAYFA tam karşılıklı set — tr/en/de/zh + en-XX, x-default=tr); başlık/açıklama (en) layout'tan
+export const metadata: Metadata = { alternates: homeAlternates("en") };
 
 const STEP_ICON = [FileSearch, PackageSearch, Factory, ClipboardCheck, Ship];
 
