@@ -25,7 +25,7 @@
 ## DE — DACH (formal Sie, kanıt odaklı) · TASLAK
 - **H1:** Verifizierte türkische Hersteller für Ihre Beschaffung
 - **Alt:** Wir übernehmen Beschaffung, Werksprüfung und Logistik. Jede Werksprüfung dokumentieren wir mit einem Prüfbericht. Ihr kostenloses Angebot erhalten Sie innerhalb von 24 Stunden.
-- **CTA primary:** Kostenloses Angebot in 24 h anfordern ⚠️ *(bkz. Açık Konu 1)*
+- **CTA primary:** Kostenloses Angebot in 24 h anfordern
 - **CTA secondary:** Unsere Leistungen ansehen
 - **Güven bandı etiketi:** Verifizierter türkischer Partner
 - **Güven bandı boş durum:** Die ersten verifizierten türkischen Partner folgen in Kürze.
