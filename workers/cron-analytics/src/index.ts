@@ -1,5 +1,6 @@
 import type { Env } from "./types";
 import { getYesterdayString, syncAnalyticsDay, syncWithBackfill } from "./sync";
+import { runKeywordEngine } from "./keywords";
 
 /** Sabit-zamanlı karşılaştırma (token sızıntısı için zamanlama farkı vermez). */
 function tokenOk(req: Request, expected?: string): boolean {
@@ -15,7 +16,9 @@ function tokenOk(req: Request, expected?: string): boolean {
 export default {
   // Scheduled Cron Handler
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
-    ctx.waitUntil(syncWithBackfill(env, new Date(controller.scheduledTime)));
+    const at = new Date(controller.scheduledTime);
+    // 6.3: sync bittikten (başarısız olsa da) sonra keyword motoru — veri yoksa no-op (anlık görüntü korunur)
+    ctx.waitUntil(syncWithBackfill(env, at).catch((e) => console.error("sync failed:", e)).then(() => runKeywordEngine(env, at)));
   },
 
   // Manual HTTP Handler for testing & on-demand backfill trigger

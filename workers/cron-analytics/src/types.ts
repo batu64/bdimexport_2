@@ -22,6 +22,18 @@ export interface Env {
   // Meta Marketing API (reklam harcamaları ve dönüşümler)
   META_ACCESS_TOKEN?: string;
   META_AD_ACCOUNT_ID?: string;
+
+  // FAZ_6 6.3 — keyword motoru (deterministik skor her gün sync'ten sonra; AI içgörüsü Gemini STUB — ERTELENEN E3)
+  GSC_QUERY_ROW_LIMIT?: string; // var — günlük sorgu×sayfa satırı (default 500, en çok 5000)
+  KEYWORD_INSIGHTS_MODE?: string; // "off" (varsayılan) | "stub" | "gemini" (E3)
+  // PLACEHOLDER — DEĞER KODDA/REPODA YOK. E3'te (AGENTS §9) `wrangler secret put GEMINI_API_KEY --env <env>` + GEMINI_MODEL var'ı.
+  GEMINI_API_KEY?: string; // SECRET
+  GEMINI_MODEL?: string;
+  GEMINI_FALLBACK_MODEL?: string;
+  AI_DAILY_LIMIT?: string; // 4.7 kota (cron-rss/quota.ts ile aynı anlam)
+  AI_FALLBACK_DAILY_LIMIT?: string;
+  AI_QUOTA_WARN_RATIO?: string;
+  PIPELINE_ALERT_WEBHOOK_URL?: string; // SECRET — kota alert'i (cron-rss/alert.ts)
 }
 
 export interface DayAnalytics {
@@ -37,8 +49,19 @@ export interface GscData {
   clicks: number;
   ctr: number;
   position: number;
-  topQueries?: Array<{ query: string; clicks: number; impressions: number }>;
+  topQueries?: Array<{ query: string; clicks: number; impressions: number; ctr?: number; position?: number }>;
   topPages?: Array<{ page: string; clicks: number; impressions: number }>;
+  /** FAZ_6 6.3 — sorgu × sayfa (keyword motoru girdisi; migration 0007 gsc_query_v okur). */
+  queries?: GscQueryRow[];
+}
+
+export interface GscQueryRow {
+  query: string;
+  page: string;
+  clicks: number;
+  impressions: number;
+  ctr: number;
+  position: number;
 }
 
 export interface Ga4Data {

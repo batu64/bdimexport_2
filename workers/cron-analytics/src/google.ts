@@ -1,4 +1,5 @@
-import type { Env, Ga4Data, GscData } from "./types";
+import type { Env, Ga4Data, GscData, GscQueryRow } from "./types";
+import { isSafeQuery, normalizeQuery } from "../../api/src/keyword-score";
 
 /**
  * Creates Google OAuth2 Service Account JWT assertion and fetches an access token.
@@ -69,6 +70,45 @@ export async function getGoogleAccessToken(
   return tokenData.access_token;
 }
 
+const DEFAULT_QUERY_ROWS = 500;
+const MAX_QUERY_ROWS = 5000;
+export function queryRowLimit(v: string | undefined): number {
+  const n = Number(v);
+  return v !== undefined && v !== "" && Number.isFinite(n) && n >= 1 ? Math.min(MAX_QUERY_ROWS, Math.floor(n)) : DEFAULT_QUERY_ROWS;
+}
+
+/**
+ * GSC searchAnalytics dimensions=[query,page] → GscQueryRow[]. Kişisel veri benzeri sorgu (e-posta/telefon/URL) D1'e HİÇ yazılmaz (isSafeQuery).
+ * Sayısal alan yoksa satır atılır (0 UYDURULMAZ).
+ */
+export async function fetchGscQueryPages(url: string, token: string, day: string, rowLimit: number): Promise<GscQueryRow[] | null> {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ startDate: day, endDate: day, dimensions: ["query", "page"], rowLimit }),
+    });
+    if (!res.ok) {
+      console.error(`GSC query×page HTTP ${res.status}`);
+      return null;
+    }
+    const data = (await res.json()) as { rows?: { keys?: unknown[]; clicks?: unknown; impressions?: unknown; ctr?: unknown; position?: unknown }[] };
+    const isNum = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
+    const out: GscQueryRow[] = [];
+    for (const r of data.rows ?? []) {
+      const q = normalizeQuery(r.keys?.[0]);
+      const page = typeof r.keys?.[1] === "string" ? (r.keys[1] as string) : null;
+      if (!q || !page || !isSafeQuery(q)) continue;
+      if (!isNum(r.clicks) || !isNum(r.impressions) || !isNum(r.ctr) || !isNum(r.position)) continue;
+      out.push({ query: q, page, clicks: r.clicks, impressions: r.impressions, ctr: r.ctr, position: r.position });
+    }
+    return out;
+  } catch (err) {
+    console.error("fetchGscQueryPages error:", err instanceof Error ? err.message : String(err));
+    return null;
+  }
+}
+
 /**
  * Google Search Console Search Analytics API client
  * Fetches impressions, clicks, ctr, position and top queries for a given day.
@@ -130,8 +170,14 @@ export async function fetchGscAnalytics(
         query: q,
         clicks: r.clicks ?? 0,
         impressions: r.impressions ?? 0,
+        ctr: r.ctr ?? 0,
+        position: r.position ?? 0,
       };
     });
+
+    // FAZ_6 6.3 — keyword motoru girdisi: sorgu × sayfa (pozisyon/CTR satır başına). Ayrı istek: üst düzey toplamlar (yukarısı) DEĞİŞMEZ.
+    // Başarısızsa `queries` yazılmaz (motor "veri yok" görür) — günlük sync düşmez.
+    const queries = await fetchGscQueryPages(url, token, day, queryRowLimit(env.GSC_QUERY_ROW_LIMIT));
 
     const count = rows.length || 1;
     return {
@@ -140,6 +186,7 @@ export async function fetchGscAnalytics(
       ctr: sumCtr / count,
       position: sumPosition / count,
       topQueries,
+      ...(queries ? { queries } : {}),
     };
   } catch (err) {
     console.error("fetchGscAnalytics error:", err instanceof Error ? err.message : String(err));
