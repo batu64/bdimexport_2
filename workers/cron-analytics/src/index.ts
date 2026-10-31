@@ -1,6 +1,7 @@
 import type { Env } from "./types";
 import { getYesterdayString, syncAnalyticsDay, syncWithBackfill } from "./sync";
 import { runKeywordEngine } from "./keywords";
+import { recordMetaStatus } from "./status";
 
 /** Sabit-zamanlı karşılaştırma (token sızıntısı için zamanlama farkı vermez). */
 function tokenOk(req: Request, expected?: string): boolean {
@@ -17,8 +18,14 @@ export default {
   // Scheduled Cron Handler
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
     const at = new Date(controller.scheduledTime);
-    // 6.3: sync bittikten (başarısız olsa da) sonra keyword motoru — veri yoksa no-op (anlık görüntü korunur)
-    ctx.waitUntil(syncWithBackfill(env, at).catch((e) => console.error("sync failed:", e)).then(() => runKeywordEngine(env, at)));
+    // 6.5: dünün Meta durumu integration_status'a (unconfigured/pasif/hata ayrımı). 6.3: sync bittikten (başarısız olsa da) sonra keyword motoru.
+    const day = getYesterdayString(at);
+    ctx.waitUntil(
+      syncWithBackfill(env, at)
+        .then((res) => recordMetaStatus(env, res[day]?.meta, day, at))
+        .catch((e) => console.error("sync failed:", e))
+        .then(() => runKeywordEngine(env, at)),
+    );
   },
 
   // Manual HTTP Handler for testing & on-demand backfill trigger
@@ -48,6 +55,7 @@ export default {
       }
 
       const res = await syncAnalyticsDay(env, targetDay);
+      await recordMetaStatus(env, res.meta, targetDay);
       return new Response(JSON.stringify(res), {
         status: res.success ? 200 : 500,
         headers: { "Content-Type": "application/json" },

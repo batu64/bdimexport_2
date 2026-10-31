@@ -8,6 +8,7 @@ import { HttpError, type Env } from "./types";
 import { json } from "./util";
 import { AttributionQueryError, computeAttribution, parseAttributionQuery } from "./attribution";
 import { KeywordQueryError, computeKeywordReport, parseKeywordQuery } from "./keywords";
+import { MetaAdsQueryError, computeMetaAdsReport, parseMetaAdsQuery } from "./meta-ads";
 
 export const ADMIN_PREFIX = "/admin/api";
 
@@ -90,6 +91,16 @@ export async function routeAdmin(req: Request, env: Env, path: string): Promise<
       return json(await computeKeywordReport(env.DB, parseKeywordQuery(new URL(req.url))));
     } catch (e) {
       if (e instanceof KeywordQueryError) throw new HttpError(400, "validation_failed", "Geçersiz sorgu", [{ field: e.field, message: "sınır dışı" }]);
+      throw e;
+    }
+  }
+  // FAZ_6 6.5 — Meta reklam ölçümü (kampanya agregatı + anonim lead sayımı; analitik modülü → admin-only). Sözleşme: ./meta-ads-contract.ts (meta-ads.v1)
+  if (req.method === "GET" && sub === "/analytics/meta") {
+    if (id.role !== "admin") throw new HttpError(403, "forbidden", "Analitik modülü yalnız admin");
+    try {
+      return json(await computeMetaAdsReport(env.DB, parseMetaAdsQuery(new URL(req.url))));
+    } catch (e) {
+      if (e instanceof MetaAdsQueryError) throw new HttpError(400, "validation_failed", "Geçersiz sorgu", [{ field: e.field, message: "sınır dışı" }]);
       throw e;
     }
   }

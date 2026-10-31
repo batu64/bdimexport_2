@@ -41,7 +41,7 @@ describe("cron-analytics sync", () => {
   it("credential yok (stub) → D1'e YAZILMAZ, skipped:no_credentials", async () => {
     const { db, writes } = mockDb();
     const res = await syncAnalyticsDay({ DB: db }, "2026-10-09");
-    expect(res).toEqual({ success: true, skipped: "no_credentials" });
+    expect(res).toEqual({ success: true, skipped: "no_credentials", meta: { status: "unconfigured", detail: "META_ACCESS_TOKEN / META_AD_ACCOUNT_ID tanımlı değil (E4)" } });
     expect(writes.length).toBe(0);
     expect(configuredSources({ DB: db })).toEqual([]);
   });

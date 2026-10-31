@@ -19,9 +19,12 @@ export interface Env {
   GA4_PROPERTY_ID?: string;
   GSC_SITE_URL?: string; // e.g. "https://bdimexport.com" or "sc-domain:bdimexport.com"
 
-  // Meta Marketing API (reklam harcamaları ve dönüşümler)
-  META_ACCESS_TOKEN?: string;
-  META_AD_ACCOUNT_ID?: string;
+  // Meta Marketing API (reklam harcamaları ve dönüşümler) — FAZ_6 6.5. PLACEHOLDER: DEĞER KODDA/REPODA YOK (ERTELENEN E4).
+  // E4'te: `wrangler secret put META_ACCESS_TOKEN --env <env>` (sistem kullanıcısı token'ı, yalnız ads_read) + META_AD_ACCOUNT_ID var'ı.
+  META_ACCESS_TOKEN?: string; // SECRET
+  META_AD_ACCOUNT_ID?: string; // "act_<rakam>" ya da "<rakam>"
+  META_APP_SECRET?: string; // SECRET (opsiyonel) — tanımlıysa appsecret_proof gönderilir
+  META_API_VERSION?: string; // var (varsayılan meta.ts META_DEFAULT_API_VERSION) — E4'te güncel Graph sürümü doğrulanır
 
   // FAZ_6 6.3 — keyword motoru (deterministik skor her gün sync'ten sonra; AI içgörüsü Gemini STUB — ERTELENEN E3)
   GSC_QUERY_ROW_LIMIT?: string; // var — günlük sorgu×sayfa satırı (default 500, en çok 5000)
@@ -81,9 +84,32 @@ export interface CfPagesAnalyticsData {
   topCountries?: Array<{ country: string; requests: number }>;
 }
 
+/**
+ * analytics_daily.meta_json — 3.7 alanları (spend/impressions/clicks/campaigns[id,name,spend,impressions,clicks]) KORUNUR
+ * (/analytics/summary `meta.spend` okur); 6.5 alanları EK. Migration 0008 `meta_campaign_v` campaigns'i okur.
+ * Para birimi = reklam hesabının para birimi (USD varsayılmaz). null = Meta bildirmedi (0 değil).
+ */
 export interface MetaAdsData {
+  schema?: string; // "meta-insights.v1"
   spend: number;
   impressions: number;
   clicks: number;
-  campaigns?: Array<{ id: string; name: string; spend: number; impressions: number; clicks: number }>;
+  link_clicks?: number | null;
+  leads?: number | null; // Meta'nın bildirdiği lead aksiyonu (agregat sayı; kişi verisi yok)
+  currency?: string | null; // ISO 4217
+  campaigns?: MetaCampaign[];
+  fetched_at?: string;
+  truncated?: boolean;
+}
+
+export interface MetaCampaign {
+  id: string;
+  name: string;
+  spend: number;
+  impressions: number;
+  clicks: number;
+  objective?: string | null;
+  link_clicks?: number | null;
+  reach?: number | null;
+  leads?: number | null;
 }
