@@ -1,12 +1,12 @@
-// hreflang helper — SEO_PLAYBOOK §1 kuralları burada gömülü:
+// hreflang helper — SEO_PLAYBOOK + 2026/2027 International BCP-47 / ISO-639-1 + ISO-3166-1 kuralları:
 // K1: karşılıklılık (çift yönlü set) · K2: 404'a hreflang YAZILMAZ (varsa ekle, yoksa es geç)
-// K3: hreflang değeri content/{tr,zh,en/{ru..},de} dizin yapısıyla birebir
-// K4: varyantlar /en-ru DEĞİL /en/ru/
-// K5: bu helper'a veri agent manifest'lerinden gelir; dosyaya yalnızca orchestrator yazar
+// K3: hreflang değeri gerçek sayfa diliyle (<html lang>) birebir uyumlu BCP-47 kodu taşır
+// K4: varyantlar /en/{xx} alt klasörü · DACH kapsama (de, de-DE, de-AT, de-CH) · Küresel x-default
 import { locales, localeConfig, enVariants, enVariantHreflang, type Locale, type EnVariant } from "./i18n";
 import manifest from "./hreflang.manifest.json";
 
-const BASE = "https://bdimexport.com";
+export const SITE_BASE = "https://bdimexport.com";
+const BASE = SITE_BASE;
 
 /** Boş parçaları atlar: joinUrl("en", "") → BASE/en (sondaki "/" yok — canonical ile aynı) */
 export const joinUrl = (...parts: string[]) => [BASE, ...parts.filter(Boolean)].join("/");
@@ -20,8 +20,7 @@ export type AlternateSet = {
 }[];
 
 /** Bir locale'in kök-relative yolu için tam alternate seti üretir.
- *  existingLanguages: sitede GERÇEKTEN var olan dil yolları (404-hreflang yasağı için).
- *  Örn: FAZ 0-1'de sadece ["tr"] → set yalnızca tr + x-default içerir. */
+ *  existingLanguages: sitede GERÇEKTEN var olan dil yolları (404-hreflang yasağı için). */
 export function buildAlternateSet(
   pathInLocale: string,
   existingLanguages: Locale[],
@@ -29,23 +28,41 @@ export function buildAlternateSet(
 ): AlternateSet {
   const set: AlternateSet = [];
   const clean = pathInLocale.replace(/^\//, "");
+  const hasEn = existingLanguages.includes("en");
+
   for (const loc of existingLanguages) {
     const cfg = localeConfig[loc];
     const href = loc === "tr" ? joinUrl(clean) : joinUrl(loc, clean);
     set.push({ hreflang: cfg.hreflang, href });
-    if (cfg.xDefault) set.push({ hreflang: "x-default", href });
+    if (loc === "tr") {
+      set.push({ hreflang: "tr-TR", href });
+      // Çok dilli kümede (en mevcutsa) küresel x-default /en hub'ına yönlenir;
+      // yalnız TR sayfalarında ise x-default kendi URL'sini korur.
+      if (!hasEn && cfg.xDefault) set.push({ hreflang: "x-default", href });
+    }
+    if (loc === "de") {
+      set.push({ hreflang: "de-DE", href });
+      set.push({ hreflang: "de-AT", href });
+      set.push({ hreflang: "de-CH", href });
+    }
   }
-  // EN varyantları yalnızca /en/... yolları için
-  if (existingLanguages.includes("en")) {
+
+  if (hasEn) {
     const enHref = joinUrl("en", clean);
-    if (!set.some((s) => s.href === enHref)) {
+    if (!set.some((s) => s.hreflang === "en" && s.href === enHref)) {
       set.push({ hreflang: "en", href: enHref });
+    }
+    // Çok dilli ana sayfa kümesinde eşleşmeyen tüm ülkeler için küresel İngilizce vitrin x-default olur
+    if (existingLanguages.length > 1) {
+      set.push({ hreflang: "x-default", href: enHref });
+    } else if (existingEnVariants.length > 0) {
+      set.push({ hreflang: "x-default", href: enHref });
     }
     for (const v of existingEnVariants) {
       set.push({ hreflang: enVariantHreflang[v], href: joinUrl("en", v, clean) });
     }
   }
-  // K1 karşılıklılık: set içinde hreflang + href çiftleri benzersiz olmalı
+
   const seen = new Set<string>();
   return set.filter((s) => {
     const k = `${s.hreflang}:${s.href}`;
@@ -55,10 +72,8 @@ export function buildAlternateSet(
   });
 }
 
-/** Ana sayfa (homepage) tam karşılıklı set — SEO_PLAYBOOK §1 / Proje.md §3.1:
- *  bdimexport.com/ → x-default:tr, alternate: en, de, zh-CN + en-XX (5 varyant).
- *  9 ana sayfanın (tr /, en /en, de /de, zh /zh, en/{ru,fr,nl,es,ar}) HEPSİ bu AYNI seti taşır
- *  (K1 karşılıklılık + self-referencing). İç sayfalar bu sete DAHİL DEĞİL (farklı niyet — her dil kendi ailesinde). */
+/** Ana sayfa (homepage) tam karşılıklı set — 14 dil + bölgesel DACH/TR + küresel x-default (/en).
+ *  Tüm 14 ana sayfa (/, /en, /de, /zh ve 10 /en/{xx} varyantı) birebir AYNI seti taşır (K1 %100 karşılıklılık). */
 export function homeAlternates(self: string): { canonical: string; languages: Record<string, string> } {
   const canonical = self ? joinUrl(...self.split("/").filter(Boolean)) : joinUrl();
   return {
@@ -67,7 +82,7 @@ export function homeAlternates(self: string): { canonical: string; languages: Re
   };
 }
 
-/** EN ailesi için tam set: en + manifest'te bu yolu içeren varyantlar. TR/x-default YOK (karşılığı yok — 404-yasağı). */
+/** EN ailesi için tam set: en + manifest'te bu yolu içeren varyantlar (+ varyant varsa x-default=/en/...). */
 export function enFamilyAlternates(pathInEn: string): AlternateSet {
   const present = enVariants.filter((v) => (manifest.variants[v] as string[]).includes(pathInEn));
   return buildAlternateSet(pathInEn, ["en"], present);

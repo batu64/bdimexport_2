@@ -47,8 +47,8 @@ export function footerProps(): FooterProps {
     brand: dict.site.name,
     tagline: f.tagline,
     columns: [
-      { title: f.import, links: [...services("ithalat").map(link), { label: dict.content.guides, href: "/ithalat/rehberler" }] },
-      { title: f.export, links: [...services("ihracat").map(link), { label: dict.content.intelligence, href: INTELLIGENCE_PATH }] },
+      { title: f.import, links: [...services("ithalat").map(link), { label: dict.content.guides, href: "/ithalat/rehberler" }, { label: "Makaleler", href: "/makaleler" }] },
+      { title: f.export, links: [...services("ihracat").map(link), { label: "Hedef İhracat Pazarları", href: "/ihracat/pazarlar" }, { label: "Kurumsal Teklif Şablonları", href: "/teklif" }, { label: dict.content.intelligence, href: INTELLIGENCE_PATH }] },
     ],
     sites: { title: f.sites, links: sites("tr") },
     legal: { title: f.legal, links: [{ label: f.kvkk, href: "/kvkk-riza" }] },

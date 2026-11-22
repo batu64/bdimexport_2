@@ -1,0 +1,31 @@
+// /sitemaps/sitemap-markets.xml — 12 Global Country Corridors + 10 Native-Language Localized Hubs (/en/{xx}).
+import manifest from "@/lib/hreflang.manifest.json";
+import { joinUrl } from "@/lib/hreflang";
+import { enVariants } from "@/lib/i18n";
+import { MARKET_CORRIDORS } from "@/lib/seo/markets";
+import { fileLastMod } from "@/lib/seo/lastmod";
+import { insightBase, listInsights } from "@/lib/ui/insights";
+
+export const dynamic = "force-static";
+
+const BASE = "https://bdimexport.com";
+
+export function GET(): Response {
+  const mod = fileLastMod("lib", "seo", "markets.ts");
+  const locs: string[] = [`${BASE}/en/markets`];
+  for (const m of MARKET_CORRIDORS) locs.push(`${BASE}/en/markets/${m.slug}`);
+  for (const v of enVariants) {
+    for (const p of manifest.variants[v] as string[]) {
+      locs.push(joinUrl("en", v, p));
+    }
+    const ib = insightBase(v);
+    locs.push(`${BASE}${ib}`);
+    for (const slug of listInsights(v)) locs.push(`${BASE}${ib}/${slug}`);
+  }
+
+  const urls = locs
+    .map((loc) => `  <url><loc>${loc}</loc><lastmod>${mod}</lastmod><changefreq>weekly</changefreq></url>`)
+    .join("\n");
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  return new Response(xml, { headers: { "content-type": "application/xml; charset=utf-8" } });
+}

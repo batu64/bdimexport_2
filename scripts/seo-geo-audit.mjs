@@ -1,0 +1,125 @@
+// Deterministik SEO + GEO + Hreflang + Sitemap + ABM Teklif Doğrulama Denetçisi (2026/2027).
+// Kullanım (pnpm build sonrasında): node scripts/seo-geo-audit.mjs
+import fs from "node:fs";
+import path from "node:path";
+import assert from "node:assert/strict";
+
+const ROOT = process.cwd();
+const OUT = path.join(ROOT, "out");
+const SITE = "https://bdimexport.com";
+
+function readOut(rel) {
+  const full = path.join(OUT, rel);
+  assert.ok(fs.existsSync(full), `EKSİK ÇIKTI: out/${rel}`);
+  return fs.readFileSync(full, "utf8");
+}
+
+function urlToOutPath(url) {
+  assert.ok(url.startsWith(SITE), `Dış URL bulundu: ${url}`);
+  const p = url.slice(SITE.length).replace(/^\//, "");
+  if (!p) return "index.html";
+  if (p.endsWith(".xml") || p.endsWith(".txt") || p.endsWith(".json")) return p;
+  return `${p}.html`;
+}
+
+console.log("=== BDIMEXPORT 2026/2027 ASYMMETRIC SEO + GEO AUDIT ===");
+
+// 1. GEO & Agentic Discovery Endpoints
+const robots = readOut("robots.txt");
+assert.ok(robots.includes("OAI-SearchBot") && robots.includes("PerplexityBot") && robots.includes("Disallow: /admin/"), "robots.txt AI bot / admin kuralları eksik");
+const llms = readOut("llms.txt");
+const llmsFull = readOut("llms-full.txt");
+assert.ok(llms.length > 1500 && llmsFull.length > 8000, "llms.txt / llms-full.txt içeriği beklenenden kısa");
+const entityGraph = JSON.parse(readOut("entity-graph.json"));
+assert.equal(entityGraph["@context"], "https://schema.org", "entity-graph.json @context hatalı");
+assert.ok(Array.isArray(entityGraph["@graph"]) && entityGraph["@graph"].length >= 6, "entity-graph.json @graph eksik");
+console.log(`✔ GEO uçları doğrulandı: llms.txt (${llms.length} B), llms-full.txt (${llmsFull.length} B), entity-graph.json (${entityGraph["@graph"].length} düğüm)`);
+
+// 2. Sitemap Index & 6 Split Sitemaps — 0 Kırık Link (404=0) + 0 Geçersiz Hreflang
+const sitemaps = [
+  "sitemap.xml",
+  "sitemaps/sitemap-index.xml",
+  "sitemaps/sitemap-tr.xml",
+  "sitemaps/sitemap-en.xml",
+  "sitemaps/sitemap-markets.xml",
+  "sitemaps/sitemap-de.xml",
+  "sitemaps/sitemap-zh.xml",
+];
+let totalLocs = 0;
+for (const sm of sitemaps) {
+  const xml = readOut(sm);
+  assert.ok(!/en-(AR|SQ|FR|RU|NL|ES|FI|PL|RO|IT)\b/.test(xml), `${sm}: eski/geçersiz en-XX hreflang kodu sızmış!`);
+  const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  assert.ok(locs.length > 0, `${sm}: <loc> boş`);
+  for (const loc of locs) {
+    const target = urlToOutPath(loc);
+    assert.ok(fs.existsSync(path.join(OUT, target)), `${sm}: kırık URL (out/${target} yok) -> ${loc}`);
+  }
+  if (sm === "sitemap.xml") totalLocs = locs.length;
+}
+console.log(`✔ Sitemap mimarisi doğrulandı: ${sitemaps.length} XML dosyası · ana sitemap ${totalLocs} canlı URL · kırık hedef = 0`);
+
+// 3. 14 Ana Sayfa %100 Karşılıklı BCP-47 Hreflang Seti
+const homePages = [
+  "index.html",
+  "en.html",
+  "de.html",
+  "zh.html",
+  ...["ru", "fr", "nl", "es", "ar", "fi", "sq", "pl", "ro", "it"].map((v) => `en/${v}.html`),
+];
+const extractAlternates = (html) =>
+  [...html.matchAll(/<link[^>]*rel="alternate"[^>]*hrefLang="([^"]+)"[^>]*href="([^"]+)"/gi)]
+    .map((m) => `${m[1]}=${m[2]}`)
+    .sort();
+
+const refAlt = extractAlternates(readOut("index.html"));
+assert.ok(refAlt.some((x) => x === `x-default=${SITE}/en`), "Ana sayfa x-default=/en olmalı");
+assert.ok(refAlt.some((x) => x === `ar=${SITE}/en/ar`), "Ana sayfa ar=/en/ar olmalı");
+assert.ok(refAlt.some((x) => x === `sq=${SITE}/en/sq`), "Ana sayfa sq=/en/sq olmalı");
+for (const hp of homePages) {
+  const cur = extractAlternates(readOut(hp));
+  assert.deepEqual(cur, refAlt, `${hp}: ana sayfa hreflang karşılıklılığı bozuldu!`);
+}
+console.log(`✔ Hreflang karşılıklılığı doğrulandı: 14/14 dil merkezi birebir aynı ${refAlt.length} BCP-47 etiketini taşıyor`);
+
+// 4. Ülke Koridorları + Hedefli İş Teklifi Sayfaları (Canonical + H1 + OG + JSON-LD)
+const mustAuditPages = [
+  "en/markets.html",
+  "en/markets/united-states.html",
+  "en/markets/united-kingdom.html",
+  "en/markets/germany.html",
+  "en/markets/saudi-arabia.html",
+  "en/markets/united-arab-emirates.html",
+  "en/proposals.html",
+  "en/proposals/dual-hub-sourcing.html",
+  "en/proposals/container-loading-audit.html",
+  "en/proposals/private-label-manufacturing.html",
+  "en/proposals/trade-intelligence-due-diligence.html",
+  "ihracat/pazarlar.html",
+  "ihracat/pazarlar/almanya-ihracat-pazarlama.html",
+  "ihracat/pazarlar/abd-ihracat-ve-sirketlesme.html",
+  "teklif.html",
+  "teklif/ihracat-buyume-sistemi.html",
+  "teklif/konteyner-yukleme-denetimi.html",
+  "de/angebot/lieferantenpruefung-beschaffung.html",
+  "zh/fangan/tuerqi-bendi-tuandui.html",
+];
+
+for (const rel of mustAuditPages) {
+  const h = readOut(rel);
+  const expectedCanonical = `${SITE}/${rel.replace(/\.html$/, "")}`;
+  const canonical = h.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
+  assert.equal(canonical, expectedCanonical, `${rel}: canonical hatalı (${canonical} != ${expectedCanonical})`);
+  const vis = h.replace(/<script[\s\S]*?<\/script>/g, "");
+  const h1Count = (vis.match(/<h1[ >]/g) ?? []).length;
+  assert.equal(h1Count, 1, `${rel}: tek <h1> olmalı (bulunan: ${h1Count})`);
+  assert.ok(/property="og:image"/.test(h), `${rel}: og:image eksik`);
+  const ldMatches = [...h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  assert.ok(ldMatches.length >= 1, `${rel}: JSON-LD eksik`);
+  for (const m of ldMatches) {
+    const parsed = JSON.parse(m[1]);
+    assert.equal(parsed["@context"], "https://schema.org", `${rel}: JSON-LD @context hatalı`);
+  }
+}
+console.log(`✔ ${mustAuditPages.length} kritik ülke koridoru & hedefli B2B teklif sayfasında canonical, H1=1, OG ve JSON-LD doğrulandı`);
+console.log("=== TÜM SEO + GEO + ABM KONTROLLERİ BAŞARIYLA GEÇTİ ===");

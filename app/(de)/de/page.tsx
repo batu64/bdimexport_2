@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { BadgeCheck, ClipboardCheck, Factory, FileSearch, FileText, PackageSearch, Receipt, Ship } from "lucide-react";
 import dict from "@/lib/messages/de.json";
 import { homeAlternates } from "@/lib/hreflang";
+import { SeoJsonLd, SITE_URL, buildHubGraph, defaultOpenGraph } from "@/lib/seo/schema";
 import Hero from "@/lib/ui/Hero";
 import StatBand from "@/lib/ui/StatBand";
 import { Section, SectionHeader } from "@/lib/ui/Section";
@@ -25,7 +26,15 @@ const STEP_ICON = [FileSearch, PackageSearch, Factory, ClipboardCheck, Ship];
 const TRUST_ICON = [Factory, FileText, Receipt];
 
 // 5.8: canonical + ANA SAYFA tam karşılıklı hreflang (tr/en/de/zh + en-XX, x-default=tr); başlık/açıklama (de) layout'tan
-export const metadata: Metadata = { alternates: homeAlternates("de") };
+export const metadata: Metadata = {
+  alternates: homeAlternates("de"),
+  ...defaultOpenGraph({
+    title: "B2B-Beschaffung & Werkspruefung Tuerkei & China | Bdimexport",
+    description: dict.home.hero.sub,
+    url: `${SITE_URL}/de`,
+    locale: "de_DE",
+  }),
+};
 
 export default function DeHomePage() {
   const h = dict.home;
@@ -36,8 +45,19 @@ export default function DeHomePage() {
     { value: Math.round(bn * 10) / 10, decimals: 1, unit: h.stats.exports.unit, label: h.stats.exports.label },
     { value: DE_SERVICES.length, label: h.stats.services.label },
   ];
+  const hubGraph = buildHubGraph({
+    url: `${SITE_URL}/de`,
+    inLanguage: "de",
+    name: dict.home.hero.h1,
+    description: dict.home.hero.sub,
+    services: DE_SERVICES.map((sv) => ({
+      name: h.services.items[sv.key],
+      url: `${SITE_URL}/de/leistungen/${sv.slug}`,
+    })),
+  });
   return (
     <main>
+      <SeoJsonLd graph={hubGraph} />
       <Hero
         media={<LoopVideo name="hero-loop" desktopOnly />}
         eyebrow={h.hero.eyebrow}

@@ -42,7 +42,16 @@ export function footerProps(): FooterProps {
     tagline: f.tagline,
     columns: [
       { title: f.services, links: SERVICES.map((s) => ({ label: s.label, href: `/en/services/${s.slug}` })) },
-      { title: f.industries, links: [...INDUSTRIES.map((i) => ({ label: i.label, href: `/en/industries/${i.slug}` })), { label: f.products, href: "/en/products" }] },
+      {
+        title: f.industries,
+        links: [
+          ...INDUSTRIES.map((i) => ({ label: i.label, href: `/en/industries/${i.slug}` })),
+          { label: f.products, href: "/en/products" },
+          { label: "Country Corridors (12)", href: "/en/markets" },
+          { label: "B2B Proposals", href: "/en/proposals" },
+          { label: "Insights", href: "/en/insights" },
+        ],
+      },
     ],
     sites: { title: f.sites, links: enSites("en") },
     contact: {

@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
+    "seo:audit": "node scripts/seo-geo-audit.mjs",
     "start": "next start"
   },
   "dependencies": {

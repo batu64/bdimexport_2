@@ -2,7 +2,7 @@
 // Akıllı RFQ, Konteyner Denetimi ve Ticari İstihbarat Konfigüratörü.
 // Static export uyumlu: API_BASE ayarlıysa D1 /api/v1/leads endpoint'ine de kaydeder; her zaman yapılandırılmış RFQ özeti +
 // WhatsApp / E-posta / Pano kopyalama ile 0-sürtünmeli lead dönüşümü sağlar.
-import { useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { BarChart3, CheckCircle2, ClipboardCheck, Copy, Mail, MessageCircle, PackageSearch, Rocket, Send } from "lucide-react";
 import { OFFICIAL_WHATSAPP_WA } from "./entities";
 import s from "./smartrfq.module.css";
@@ -58,26 +58,53 @@ export default function SmartRfq({
   locale,
   email,
   initialTrack = "sourcing",
+  initialTargetMarket = "",
+  initialProduct = "",
+  initialHsCode = "",
+  initialCompany = "",
   sourcePage = "/rfq",
 }: {
   copy: SmartRfqCopy;
   locale: string;
   email: string;
   initialTrack?: RfqTrackId;
+  initialTargetMarket?: string;
+  initialProduct?: string;
+  initialHsCode?: string;
+  initialCompany?: string;
   sourcePage?: string;
 }) {
   const uid = useId();
   const [track, setTrack] = useState<RfqTrackId>(initialTrack);
   const [origin, setOrigin] = useState(copy.origins[0]?.id ?? "dual");
   const [volume, setVolume] = useState(copy.volumes[0] ?? "1x 20GP");
-  const [product, setProduct] = useState("");
-  const [hsCode, setHsCode] = useState("");
-  const [company, setCompany] = useState("");
-  const [targetMarket, setTargetMarket] = useState("");
+  const [product, setProduct] = useState(initialProduct);
+  const [hsCode, setHsCode] = useState(initialHsCode);
+  const [company, setCompany] = useState(initialCompany);
+  const [targetMarket, setTargetMarket] = useState(initialTargetMarket);
   const [contactEmail, setContactEmail] = useState("");
   const [notes, setNotes] = useState("");
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.location.search) return;
+    const q = new URLSearchParams(window.location.search);
+    const qCo = q.get("co") ?? q.get("firma");
+    const qCountry = q.get("country") ?? q.get("ulke");
+    const qSector = q.get("sector") ?? q.get("urun");
+    const qHs = q.get("hs") ?? q.get("gtip");
+    const qVol = q.get("vol") ?? q.get("miktar");
+    if (qCo) setCompany((prev) => prev || qCo);
+    if (qCountry) setTargetMarket((prev) => prev || qCountry);
+    if (qSector) setProduct((prev) => prev || qSector);
+    if (qHs) setHsCode((prev) => prev || qHs);
+    if (qVol) {
+      const matched = copy.volumes.find((v) => v.toLowerCase().includes(qVol.toLowerCase()));
+      if (matched) setVolume(matched);
+      else setNotes((prev) => prev || `Target volume: ${qVol}`);
+    }
+  }, [copy.volumes]);
 
   const selectedTrack = copy.tracks.find((t) => t.id === track) ?? copy.tracks[0];
   const selectedOrigin = copy.origins.find((o) => o.id === origin) ?? copy.origins[0];

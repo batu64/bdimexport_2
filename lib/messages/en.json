@@ -7,9 +7,9 @@
     "links": [
       { "label": "Services", "href": "/en/services" },
       { "label": "Products", "href": "/en/products" },
-      { "label": "Industries", "href": "/en/industries" },
-      { "label": "Smart RFQ", "href": "/en/rfq" },
-      { "label": "Insights", "href": "/en/insights" }
+      { "label": "Markets", "href": "/en/markets" },
+      { "label": "Proposals", "href": "/en/proposals" },
+      { "label": "Smart RFQ", "href": "/en/rfq" }
     ],
     "cta": "Start Smart RFQ",
     "menuOpen": "Open menu",

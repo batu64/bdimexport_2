@@ -39,9 +39,9 @@
     "links": [
       { "label": "İthalat", "href": "/ithalat" },
       { "label": "İhracat", "href": "/ihracat" },
+      { "label": "Pazarlar", "href": "/ihracat/pazarlar" },
       { "label": "Ticari İstihbarat", "href": "/ticari-istihbarat" },
-      { "label": "Rehberler", "href": "/ithalat/rehberler" },
-      { "label": "Makaleler", "href": "/makaleler" }
+      { "label": "Teklifler", "href": "/teklif" }
     ],
     "cta": "Teklif / RFQ Alın",
     "menuOpen": "Menüyü aç",

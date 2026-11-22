@@ -28,7 +28,16 @@ export function footerProps(): FooterProps {
   return {
     brand: dict.site.name,
     tagline: f.tagline,
-    columns: [{ title: f.nav, links: [{ label: dict.page.home, href: "/de" }, ...dict.nav.links] }],
+    columns: [
+      {
+        title: f.nav,
+        links: [
+          { label: dict.page.home, href: "/de" },
+          ...dict.nav.links,
+          { label: "Projektvorschlag (B2B)", href: "/de/angebot/lieferantenpruefung-beschaffung" },
+        ],
+      },
+    ],
     sites: { title: f.sites, links: marketSites("de") },
     legal: { title: f.legal, links: [{ label: f.impressum, href: "/de/impressum" }, { label: f.datenschutz, href: "/de/datenschutz" }] },
     contact: {

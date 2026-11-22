@@ -13,19 +13,20 @@ export const localeConfig: Record<
   zh: { label: "简体中文", hreflang: "zh-CN", dir: "ltr" },
 };
 
-// EN varyantları: mevcut 5 dil + 5 yeni mavi okyanus niş dil (fi, sq, pl, ro, it) — hreflang: en-XX
+// EN varyantları: 10 yerelleştirilmiş alt-hub — içerikler ilgili dilde (<html lang="xx">) yazıldığı için
+// geçerli BCP-47 / ISO-639-1 dil etiketleri kullanılır (eski en-AR=Arjantin ve geçersiz en-SQ hataları giderildi).
 export const enVariants = ["ru", "fr", "nl", "es", "ar", "fi", "sq", "pl", "ro", "it"] as const;
 export type EnVariant = (typeof enVariants)[number];
 
 export const enVariantHreflang: Record<EnVariant, string> = {
-  ru: "en-RU",
-  fr: "en-FR",
-  nl: "en-NL",
-  es: "en-ES",
-  ar: "en-AR",
-  fi: "en-FI",
-  sq: "en-SQ",
-  pl: "en-PL",
-  ro: "en-RO",
-  it: "en-IT",
+  ru: "ru",
+  fr: "fr",
+  nl: "nl",
+  es: "es",
+  ar: "ar",
+  fi: "fi",
+  sq: "sq",
+  pl: "pl",
+  ro: "ro",
+  it: "it",
 };

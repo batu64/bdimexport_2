@@ -1,10 +1,72 @@
+# bdimexport.com — 2026/2027 Search + Generative Engine Optimization (GEO) Crawl Policy
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /admin
 
-# Baidu (zh hattı — SEO_PLAYBOOK §9)
+# Search & AI Answer Engines — Explicit Full Access for Citation & Grounding
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Applebot
+Allow: /
+Disallow: /admin/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /admin/
+
+User-agent: Yandex
+Allow: /
+Disallow: /admin/
+
+# Baidu (/zh hattı — SEO_PLAYBOOK §9)
 User-agent: Baiduspider
 Allow: /
+Disallow: /admin/
 
+# Sitemaps (Master Index + Locale & Country Corridor Splits)
 Sitemap: https://bdimexport.com/sitemap.xml
 Sitemap: https://bdimexport.com/sitemaps/sitemap-index.xml
+Sitemap: https://bdimexport.com/sitemaps/sitemap-tr.xml
+Sitemap: https://bdimexport.com/sitemaps/sitemap-en.xml
+Sitemap: https://bdimexport.com/sitemaps/sitemap-markets.xml
+Sitemap: https://bdimexport.com/sitemaps/sitemap-de.xml
 Sitemap: https://bdimexport.com/sitemaps/sitemap-zh.xml

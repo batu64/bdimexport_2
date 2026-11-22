@@ -15,6 +15,7 @@ import TradeIntelligenceStage, { type StageTab } from "@/lib/ui/motion/TradeInte
 import WeChatContact from "./_lib/WeChatContact";
 import { QUOTE_EMAIL } from "./_lib/chrome";
 import { homeAlternates } from "@/lib/hreflang";
+import { SeoJsonLd, SITE_URL, buildHubGraph, defaultOpenGraph } from "@/lib/seo/schema";
 import s from "./zh.module.css";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
   description: dict.seo.description,
   keywords: dict.seo.keywords,
   alternates: homeAlternates("zh"),
+  ...defaultOpenGraph({ title: dict.seo.title, description: dict.seo.description, url: `${SITE_URL}/zh`, locale: "zh_CN" }),
 };
 
 const SERVICE_ICON = [Store, Megaphone, Building2, Truck, ShieldCheck];
@@ -36,8 +38,21 @@ export default function ZhHomePage() {
   ];
   const stageTabs = h.stage.tabs as [StageTab, StageTab, StageTab];
 
+  const hubGraph = buildHubGraph({
+    url: `${SITE_URL}/zh`,
+    inLanguage: "zh-CN",
+    name: dict.seo.title,
+    description: dict.seo.description,
+    services: h.services.items.map((it) => ({
+      name: it.title,
+      url: `${SITE_URL}/zh/services/${it.slug}`,
+      description: it.text,
+    })),
+  });
+
   return (
     <main>
+      <SeoJsonLd graph={hubGraph} />
       <Hero
         media={<LoopVideo name="hero-loop" desktopOnly />}
         align="center"

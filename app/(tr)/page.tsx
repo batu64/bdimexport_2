@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, ClipboardCheck, Factory, FileSearch, Globe2, Handshake, Landmark, Package, PackageSearch, Rocket, Ship } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { homeAlternates } from "@/lib/hreflang";
+import { SeoJsonLd, SITE_URL, buildHubGraph, defaultOpenGraph } from "@/lib/seo/schema";
 import dict from "@/lib/messages/tr.json";
 import Hero from "@/lib/ui/Hero";
 import ProcessTracker from "@/lib/ui/ProcessTracker";
@@ -23,11 +24,15 @@ import { GUIDE_ICON, SERVICE_ICON } from "./_lib/icons";
 import { APPLY_PATH as APPLY, INTELLIGENCE_PATH } from "./_lib/links";
 import s from "./home.module.css";
 
+const TR_HOME_TITLE = "İthalat, İhracat & Ticari İstihbarat | Bdimexport";
+const TR_HOME_DESC =
+  "Çin'den ithalatta tedarik, konteyner yükleme denetimi, gümrük; ihracatta yurt dışı pazarlama sistemi kurulumu, pazar araştırması ve ticari istihbarat.";
+
 export const metadata: Metadata = {
-  title: { absolute: "İthalat, İhracat & Ticari İstihbarat | Bdimexport" },
-  description:
-    "Çin'den ithalatta tedarik, konteyner yükleme denetimi, gümrük; ihracatta yurt dışı pazarlama sistemi kurulumu, pazar araştırması ve ticari istihbarat.",
+  title: { absolute: TR_HOME_TITLE },
+  description: TR_HOME_DESC,
   alternates: homeAlternates(""),
+  ...defaultOpenGraph({ title: TR_HOME_TITLE, description: TR_HOME_DESC, url: SITE_URL, locale: "tr_TR" }),
 };
 
 const STEP_ICON: LucideIcon[] = [FileSearch, PackageSearch, Factory, ClipboardCheck, Ship, Landmark];
@@ -48,8 +53,21 @@ export default function TrHomePage() {
   }));
   const stageTabs = h.stage.tabs as [StageTab, StageTab, StageTab];
 
+  const hubGraph = buildHubGraph({
+    url: SITE_URL,
+    inLanguage: "tr-TR",
+    name: TR_HOME_TITLE,
+    description: TR_HOME_DESC,
+    services: [...imports, ...exports].map((sv) => ({
+      name: sv.title,
+      url: `${SITE_URL}${sv.href}`,
+      description: sv.desc,
+    })),
+  });
+
   return (
     <main>
+      <SeoJsonLd graph={hubGraph} />
       <Hero
         media={<LoopVideo name="hero-loop" desktopOnly />}
         eyebrow={h.hero.eyebrow}

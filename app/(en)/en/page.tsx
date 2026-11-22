@@ -16,12 +16,22 @@ import Reveal from "@/lib/ui/motion/Reveal";
 import TradeIntelligenceStage, { type StageTab } from "@/lib/ui/motion/TradeIntelligenceStage";
 import grid from "@/lib/ui/cardgrid.module.css";
 import { homeAlternates } from "@/lib/hreflang";
+import { SeoJsonLd, SITE_URL, buildHubGraph, defaultOpenGraph } from "@/lib/seo/schema";
 import { SERVICES, SERVICE_ICON, readServiceDesc } from "./_lib/services";
 import { quoteHref } from "./_lib/chrome";
 import { INDUSTRY_ICON, industryCards } from "./industries/_lib/industries";
 import { productSlugs } from "./products/[slug]/_view";
 
-export const metadata: Metadata = { alternates: homeAlternates("en") };
+const EN_HOME_TITLE = "Dual-Hub Sourcing & Container QC (TR & CN) | Bdimexport";
+const EN_HOME_DESC =
+  "Verified manufacturers in Türkiye and China, 24-48h standalone container loading supervision, OEM manufacturing, and HS-code commercial intelligence.";
+
+export const metadata: Metadata = {
+  title: { absolute: EN_HOME_TITLE },
+  description: EN_HOME_DESC,
+  alternates: homeAlternates("en"),
+  ...defaultOpenGraph({ title: EN_HOME_TITLE, description: EN_HOME_DESC, url: `${SITE_URL}/en`, locale: "en_US" }),
+};
 
 const STEP_ICON = [FileSearch, PackageSearch, Factory, ClipboardCheck, Ship];
 
@@ -38,8 +48,21 @@ export default function EnHomePage() {
   ];
   const stageTabs = h.stage.tabs as [StageTab, StageTab, StageTab];
 
+  const hubGraph = buildHubGraph({
+    url: `${SITE_URL}/en`,
+    inLanguage: "en",
+    name: EN_HOME_TITLE,
+    description: EN_HOME_DESC,
+    services: SERVICES.map((sv) => ({
+      name: sv.label,
+      url: `${SITE_URL}/en/services/${sv.slug}`,
+      description: readServiceDesc(sv.slug),
+    })),
+  });
+
   return (
     <main>
+      <SeoJsonLd graph={hubGraph} />
       <Hero
         media={<LoopVideo name="hero-loop" desktopOnly />}
         eyebrow={h.hero.eyebrow}

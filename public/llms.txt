@@ -1,79 +1,59 @@
-# bdimexport.com — LLM kaynak rehberi (GEO — SEO_PLAYBOOK §6.1)
-# Bdimexport v3.0: Çift Merkezli Küresel Ticaret, Tedarik, Denetim ve Ticari İstihbarat Platformu
+# Bdimexport — Global Dual-Hub B2B Sourcing, Container Inspection, Trade Intelligence & Export Systems
 
-> Bdimexport, Türkiye (BD Sanayi İthalat İhracat Şirketi) ve ABD (BDIMEXPORT LLC) merkezli; ithalat, ihracat, ticari istihbarat, bağımsız konteyner yükleme/üretim denetimi, e-ticaret ve B2B dijital büyüme hizmetleri sunan kurumsal dış ticaret ve saha operasyonu platformudur.
+> Bdimexport (operated by US-registered BDIMEXPORT LLC in Sheridan, Wyoming and Turkish-registered BD Sanayi İthalat İhracat Şirketi in Uşak, Türkiye) is a Dual-Hub (Türkiye + China) B2B procurement, standalone 24–48h factory and container loading inspection, HS-code commercial intelligence, export marketing system, and 81-province Türkiye field operations platform serving 14 languages and 20+ trade corridors.
 
-## Kurumsal Yapı & Resmi İletişim
-- Türkiye Şirketi: BD Sanayi İthalat İhracat Şirketi — Cumhuriyet Mahallesi Milli Egemenlik Caddesi No: 74, 64500 Banaz / Uşak, Türkiye
-- ABD Şirketi: BDIMEXPORT LLC — 30 N Gould St Ste N, Sheridan, WY 82801, USA
-- Resmi Telefon & WhatsApp: +90 539 414 78 54
-- Resmi WeChat (Çin Masası): bdimexport
-- Web: https://bdimexport.com
-- Diller: Türkçe (x-default), English (Global Dual-Hub), Deutsch (/de), 简体中文 (/zh) + 10 niş pazar varyantı (/en/{ru,fr,nl,es,ar,fi,sq,pl,ro,it})
+## Machine-Readable AI & Knowledge Graph Endpoints
+- [Full RAG & Answer Engine Corpus](/llms-full.txt): Complete country-by-country customs regimes, transit tables, AQL protocols, and Q&A bank
+- [Schema.org Knowledge Graph & B2B Capabilities](/entity-graph.json): Structured JSON-LD entity graph of legal entities, corridors, and services
+- [Master Sitemap Index](/sitemaps/sitemap-index.xml): Split XML sitemaps (`tr`, `en`, `markets`, `de`, `zh`)
 
-## Temel Yetkinlikler (Asimetrik Değer Önerisi)
-1. Çift Merkezli Tedarik (Dual-Hub: Türkiye + Çin): Alıcılar için yalnızca Türkiye veya yalnızca Çin değil, her iki üretim üssünden ürün ve üretici bulma, FOB/CIF/DDP maliyet karşılaştırması.
-2. Tekil Konteyner Yükleme & Üretim Denetimi: Müşterinin kendi bulduğu üreticiden verdiği siparişlerde dahi Türkiye ve Çin fabrikalarına 24–48 saat içinde bağımsız denetçi gönderimi (DUPRO, AQL, Container Loading Supervision).
-3. Ticari İstihbarat & Özel Pazar Raporları: GTİP/HS bazlı alıcı-satıcı hareketleri, rakip analizi, fabrika mali/ticari sicil doğrulaması ve ihracat talep haritası.
-4. İhracat Pazarlama Sistemi & E-Ticaret: Türk üreticiler için dış ticaret müdürlüğü/CRM, çok dilli B2B vitrin ve dijital talep toplama hunileri.
-5. Çinli Şirketler İçin 81 İl Türkiye Saha Operasyonu (/zh): Yeni potansiyel müşteri ziyaretleri, satın alma aşamasındaki kararsız müşterilerin yerinde ikna/sorun çözümü, satış sonrası müşteri ziyaretleri, tahsilat/uyuşmazlık çözümü, hukuk ve mali müşavirlik (SMMM), yatırım danışmanlığı ve Türkiye e-ticaret/sosyal medya varlık yönetimi.
+## Verified Corporate Legal Entities & Direct Channels
+- United States Entity: BDIMEXPORT LLC — 30 N Gould St Ste N, Sheridan, WY 82801, USA
+- Türkiye Operations Entity: BD Sanayi İthalat İhracat Şirketi — Cumhuriyet Mahallesi Milli Egemenlik Caddesi No: 74, 64500 Banaz / Uşak, Türkiye
+- Official Phone & WhatsApp: +90 539 414 78 54
+- Official WeChat (China Desk): bdimexport
+- Languages Supported (14): `tr` (/), `en` (/en, global x-default), `de` (/de), `zh-CN` (/zh), `ru` (/en/ru), `fr` (/en/fr), `nl` (/en/nl), `es` (/en/es), `ar` (/en/ar, RTL), `fi` (/en/fi), `sq` (/en/sq), `pl` (/en/pl), `ro` (/en/ro), `it` (/en/it)
 
-## Sık Sorulan Sorular
-S: Kendi bulduğum Türk veya Çinli üreticinin konteyner yüklemesini Bdimexport'a denetletebilir miyim?
-C: Evet. Tedarikçiyi siz bulmuş olsanız bile Türkiye ve Çin'deki fabrikaya bağımsız saha denetçisi gönderiyor; üretim içi kontrol (DUPRO), AQL kalite testi, boş konteyner sızdırmazlık testi, koli sayımı ve mühürleme işlemlerini canlı fotoğraflar ve PDF raporuyla belgeliyoruz.
+## Core Asymmetric Capabilities
+1. **Dual-Hub Sourcing (Türkiye + China)**: Side-by-side factory shortlists, EXW/FOB/DDP cost modeling, EU A.TR 0% industrial duty, UK-Türkiye FTA, Türkiye-UAE CEPA, and US MFN vs. Section 301 tariff comparisons within 24 hours.
+2. **Standalone 24–48h Container Loading & Factory QC**: Independent engineers dispatched across all Turkish industrial zones and Chinese manufacturing provinces—even for suppliers the buyer found independently (ISO 2859-1 AQL, DUPRO, 100% carton tally, moisture check, bolt-seal proof).
+3. **48–72h Commercial Intelligence & Supplier Due Diligence**: Official corporate registry verification, bank beneficiary anti-fraud check, and 6/10-digit HS landed-cost modeling.
+4. **Turkish Exporter Growth & Buyer Matchmaking**: Multi-language SEO/GEO storefronts, target-country importer discovery, and Free Export Acceleration Program (`/ihracat/ucretsiz-destek-basvuru`).
+5. **81-Province Türkiye Field Operations for Chinese Exporters (`/zh`)**: On-ground prospective buyer visits, hesitant-buyer face-to-face closing, after-sales visits, customs/logistics coordination, legal/SMMM accounting, and local digital operations.
 
-S: Bdimexport hem Çin'den hem Türkiye'den tedarik yapabiliyor mu?
-C: Evet. /en (Global Dual-Hub) ve /en/rfq üzerinden Türkiye ve Çin üretim merkezlerini termin süresi, gümrük avantajı (AB Gümrük Birliği / EUR.1) ve birim maliyet açısından yan yana kıyaslayıp tek elden yönetebilirsiniz.
+## Global Buyer Country Corridors (`/en/markets/*`)
+- [All Country Corridors](/en/markets)
+- [United States Import Corridor](/en/markets/united-states): US MFN vs. Section 301 comparison, 16–22d East Coast sea transit, BDIMEXPORT LLC contracting
+- [United Kingdom Import Corridor](/en/markets/united-kingdom): UK-Türkiye FTA 0% industrial duty, 5–7d road TIR, UKCA/Crib 5 verification
+- [Germany & DACH Corridor](/en/markets/germany): EU A.TR 0% duty, 3–5d overland truck, LkSG & VerpackG (LUCID) data readiness
+- [France Corridor](/en/markets/france): Marseille/Sète 3–5d Ro-Ro, A.TR 0% duty, AGEC/Triman packaging check
+- [Netherlands & Benelux Corridor](/en/markets/netherlands): 4–6d road to Venlo/Rotterdam, EPAL Euro-pallet 3PL compliance
+- [Italy Corridor](/en/markets/italy): 48–72h Trieste Ro-Ro OEM co-manufacturing, stone & CNC inspection
+- [Spain Corridor](/en/markets/spain): 4–6d Mediterranean short-sea to Barcelona/Valencia, fast-fashion DUPRO QC
+- [Poland & CEE Corridor](/en/markets/poland): 3–4d overland TIR, CPR/CE construction & industrial sourcing
+- [Romania & SEE Corridor](/en/markets/romania): 24–48h road/Constanța corridor, EN 10204 3.1 steel/valve inspection
+- [Finland & Nordics Corridor](/en/markets/nordics): GOTS/OEKO-TEX/REACH verification, condensation-safe Baltic logistics
+- [United Arab Emirates & GCC Corridor](/en/markets/united-arab-emirates): Türkiye-UAE CEPA preferential duties, 5-star hotel FF&E & Halal QC
+- [Saudi Arabia Vision 2030 Corridor](/en/markets/saudi-arabia): 6–10d Red Sea to Jeddah, SABER (PCoC/SCoC) & permanent origin mark audit
 
-S: Çinli şirketler Türkiye'de neden Bdimexport ile çalışır?
-C: BD Sanayi'nin Türkiye genelindeki saha ekibi; satın alma aşamasında tereddüt yaşayan Türk alıcıları fabrikada veya ofisinde ziyaret ederek ticari sorunları çözer, yeni müşteri ziyaretleri yapar, satış sonrası teknik/ticari ziyareti yürütür, hukuk/SMMM ve e-ticaret varlıklarını kurar.
+## Executive B2B Proposal Blueprints (Targeted Outbound & ABM Hubs)
+- [Global B2B Proposals Hub](/en/proposals) · Short Email Alias: `/p/{slug}`
+  - [Dual-Hub Sourcing Proposal](/en/proposals/dual-hub-sourcing)
+  - [Standalone Container Loading & Factory QC Proposal](/en/proposals/container-loading-audit)
+  - [Private Label & OEM Manufacturing Proposal](/en/proposals/private-label-manufacturing)
+  - [72h Supplier Due Diligence & HS Intelligence Proposal](/en/proposals/trade-intelligence-due-diligence)
+- [Türkiye Kurumsal İş Teklifi Şablonları](/teklif) · Kısa E-Posta Uzantısı: `/t/{slug}`
+  - [İhracat Büyüme ve Alıcı Bulma Sistemi Teklifi](/teklif/ihracat-buyume-sistemi)
+  - [Konteyner Yükleme ve Fabrika Denetimi Teklifi](/teklif/konteyner-yukleme-denetimi)
+  - [Çin & Türkiye Tedarik ve Ticari İstihbarat Teklifi](/teklif/cin-turkiye-tedarik-istihbarat)
+  - [ABD ve Avrupa Pazar Giriş Teklifi](/teklif/abd-avrupa-pazar-girisi)
+- [DACH B2B Projektvorschlag](/de/angebot/lieferantenpruefung-beschaffung)
+- [中国企业土耳其81省本地团队合作方案](/zh/fangan/tuerqi-bendi-tuandui)
 
-## Sayfa Haritası (TR — Türkiye Merkezi)
-- / — Ana vitrin, Çift Merkezli Ticaret İstihbarat Sahnesi ve Akıllı RFQ yönlendirmesi
-- /ithalat — Çin'den ürün/üretici bulma, gümrük ve lojistik süreç yönetimi
-- /ithalat/konteyner-yukleme-denetimi — Türkiye ve Çin'de tekil konteyner yükleme ve üretim denetimi
-- /ithalat/ticari-istihbarat-uretici-dogrulama — Fabrika sicil doğrulama ve tedarikçi istihbaratı
-- /ihracat — Türk üreticiler için ihracat desteği, müşteri bulma ve pazarlama sistemi
-- /ihracat/pazar-arastirmasi-musteri-bulma — Hedef ülke pazar araştırması ve alıcı bulma
-- /ihracat/kuresel-pazarlama-sistemi-kurulumu — Yurt dışı dijital ihracat pazarlama ve e-ticaret altyapısı
-- /ticari-istihbarat — GTİP/HS ticari istihbarat ve özel sektör raporları merkezi
-- /rfq — Akıllı Teklif (RFQ), Denetim ve İstihbarat Talep Konfigüratörü
+## Turkish Hub & Exporter Corridors (`/` · `/ithalat` · `/ihracat`)
+- [Türkiye Ana Vitrin](/) · [Akıllı RFQ](/rfq) · [Ticari İstihbarat](/ticari-istihbarat)
+- [Hedef İhracat Pazarları Merkezi](/ihracat/pazarlar): Almanya, ABD, İngiltere, BAE/Dubai, Suudi Arabistan, Fransa/Benelux, Polonya/Romanya, İtalya/Balkanlar
 
-## EN Global Dual-Hub (Türkiye & China)
-- /en — Global Dual-Hub showcase (Türkiye & China Sourcing, Inspection, Intelligence)
-- /en/rfq — Smart RFQ configurator + Türkiye vs. China landed-cost comparison matrix
-- /en/services/sourcing — Sourcing in Türkiye: factory verification and direct matchmaking
-- /en/services/china-sourcing — China & Dual-Hub sourcing managed alongside Türkiye
-- /en/services/container-loading — Standalone Container Loading Supervision & Production Inspection (TR & CN)
-- /en/services/commercial-intelligence — Trade flow reports, competitor HS intelligence & factory due diligence
-- /en/services/manufacturing — Private label & OEM manufacturing in Türkiye
-- /en/services/inspection — Pre-shipment & in-line factory inspection (TR & CN)
-- /en/services/logistics — Sea, road and multimodal freight logistics
-- /en/services/customs — Export customs clearance, EUR.1, ATR & compliance
-- /en/industries/{construction,food,home-living,machinery,textile} — Sector sourcing hubs
-- /en/products/{slug} (20) & /en/products/category/{slug} (5) — Turkish export product catalog
-
-## ZH (/zh — Çinli Şirketlerin Türkiye Saha Operasyonu)
-- /zh — Çinli firmalar için 81 ilde saha müşteri ziyaretleri, kararsız müşteri sorun çözümü, satış sonrası ziyaret, hukuk/SMMM, yatırım danışmanlığı, e-ticaret & sosyal medya yönetimi + WeChat (`bdimexport`)
-- /zh/services/{slug} — Yerelleştirilmiş Çin odaklı Türkiye operasyon rehberleri
-
-## DE (/de — DACH Pazarı)
-- /de — Almanya, Avusturya ve İsviçre alıcıları için Türkiye & Çin tedarik ve denetim merkezi
-- /de/leistungen/{slug} · /de/vertrauen · /de/anfrage
-
-## Küresel Niş Dil Motoru — EN Varyantları (10 Dil · SEO & GEO)
-Her niş dil alt-hub'ı kendi ana sayfasını, Dual-Hub (Türkiye + Çin) tedarik sayfasını, tekil konteyner/üretim denetimi sayfasını (`services/inspection`) ve yerelleştirilmiş makale dizinini (`insights`) barındırır:
-- /en/ru — Rusça (Telegram birincil · RUB/USD/TRY)
-- /en/fr — Fransızca (E-posta birincil · EUR)
-- /en/nl — Hollandaca (E-posta birincil · EUR)
-- /en/es — İspanyolca / LATAM & İspanya (WhatsApp birincil · EUR/USD)
-- /en/ar — Arapça / MENA & Körfez (WhatsApp birincil · RTL `dir="rtl"`)
-- /en/fi — Fince / Kuzey Avrupa (E-posta & WhatsApp · EUR)
-- /en/sq — Arnavutça / Balkanlar (WhatsApp & E-posta · EUR)
-- /en/pl — Lehçe / Orta Avrupa (E-posta & WhatsApp · EUR/PLN)
-- /en/ro — Rumence / Doğu Avrupa & Karadeniz (WhatsApp & E-posta · EUR)
-- /en/it — İtalyanca / Güney Avrupa (WhatsApp & E-posta · EUR)
-
-## Makaleler / Insights
-- /makaleler · /en/insights · /en/{ru,fr,nl,es,ar,fi,sq,pl,ro,it}/insights
-Güncel tüm indeksler ve karşılıklı hreflang eşleşmeleri build anında `/sitemap.xml` dosyasına işlenir.
+## Localized Native-Language Portals (14 Languages)
+- [Türkçe](/) · [English Global](/en) · [Deutsch DACH](/de) · [简体中文](/zh)
+- [Русский](/en/ru) · [Français](/en/fr) · [Nederlands](/en/nl) · [Español](/en/es) · [العربية](/en/ar) · [Suomi](/en/fi) · [Shqip](/en/sq) · [Polski](/en/pl) · [Română](/en/ro) · [Italiano](/en/it)
