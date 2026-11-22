@@ -124,7 +124,22 @@ export default function SmartRfq({
     return lines.join("\n");
   }, [selectedTrack.title, selectedOrigin, origin, volume, product, hsCode, targetMarket, company, contactEmail, notes]);
 
+  function trackLeadEvent(method: string) {
+    if (typeof window === "undefined") return;
+    const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+    if (typeof w.gtag === "function") {
+      w.gtag("event", "generate_lead", {
+        method,
+        service_track: track,
+        origin_hub: origin,
+        locale,
+        source_page: sourcePage,
+      });
+    }
+  }
+
   async function handleCopy() {
+    trackLeadEvent("copy_brief");
     try {
       await navigator.clipboard.writeText(brief);
       setCopied(true);
@@ -270,11 +285,11 @@ export default function SmartRfq({
         )}
 
         <div className={s.actions}>
-          <a href={waHref} target="_blank" rel="noopener noreferrer" className={s.btnPrimary}>
+          <a href={waHref} target="_blank" rel="noopener noreferrer" className={s.btnPrimary} onClick={() => trackLeadEvent("whatsapp")}>
             <MessageCircle aria-hidden="true" className={s.btnIcon} />
             <span>{copy.whatsappBtn}</span>
           </a>
-          <a href={mailHref} className={s.btnSecondary}>
+          <a href={mailHref} className={s.btnSecondary} onClick={() => trackLeadEvent("email")}>
             <Mail aria-hidden="true" className={s.btnIcon} />
             <span>{copy.emailBtn}</span>
           </a>

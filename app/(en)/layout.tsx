@@ -2,6 +2,7 @@
 import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import ClarityScript from "@/lib/ui/ClarityScript";
+import GoogleAnalyticsScript from "@/lib/ui/GoogleAnalyticsScript";
 import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
 import PageTransition from "@/lib/ui/motion/PageTransition";
@@ -22,6 +23,7 @@ export default function EnLayout({ children }: { children: React.ReactNode }) {
     <html {...htmlAttrs("en")}>
       <head>
         <ThemeStyle />
+        <GoogleAnalyticsScript />
         <ClarityScript />
       </head>
       <body>

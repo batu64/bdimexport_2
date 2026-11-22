@@ -4,6 +4,7 @@
 import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import ClarityScript from "@/lib/ui/ClarityScript";
+import GoogleAnalyticsScript from "@/lib/ui/GoogleAnalyticsScript";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { metadataBase: new URL("https://bdimexport.com") };
@@ -13,6 +14,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
     <html {...htmlAttrs("en", "fr")}>
       <head>
         <ThemeStyle />
+        <GoogleAnalyticsScript />
         <ClarityScript />
       </head>
       <body>{children}</body>

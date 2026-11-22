@@ -3,6 +3,7 @@
 import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import ClarityScript from "@/lib/ui/ClarityScript";
+import GoogleAnalyticsScript from "@/lib/ui/GoogleAnalyticsScript";
 import type { Metadata } from "next";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 import { IntlProvider } from "@/lib/intl";
@@ -25,6 +26,7 @@ export default function TrLayout({ children }: { children: React.ReactNode }) {
     <html {...htmlAttrs("tr")}>
       <head>
         <ThemeStyle />
+        <GoogleAnalyticsScript />
         <ClarityScript />
       </head>
       <body>

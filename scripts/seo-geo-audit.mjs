@@ -77,10 +77,12 @@ assert.ok(refAlt.some((x) => x === `x-default=${SITE}/en`), "Ana sayfa x-default
 assert.ok(refAlt.some((x) => x === `ar=${SITE}/en/ar`), "Ana sayfa ar=/en/ar olmalı");
 assert.ok(refAlt.some((x) => x === `sq=${SITE}/en/sq`), "Ana sayfa sq=/en/sq olmalı");
 for (const hp of homePages) {
-  const cur = extractAlternates(readOut(hp));
+  const rawHp = readOut(hp);
+  const cur = extractAlternates(rawHp);
   assert.deepEqual(cur, refAlt, `${hp}: ana sayfa hreflang karşılıklılığı bozuldu!`);
+  assert.ok(rawHp.includes("https://www.googletagmanager.com/gtag/js?id=G-1PXMK93V3F"), `${hp}: GA4 G-1PXMK93V3F etiketi eksik!`);
 }
-console.log(`✔ Hreflang karşılıklılığı doğrulandı: 14/14 dil merkezi birebir aynı ${refAlt.length} BCP-47 etiketini taşıyor`);
+console.log(`✔ Hreflang karşılıklılığı & GA4 (G-1PXMK93V3F) doğrulandı: 14/14 dil merkezi tam uyumlu`);
 
 // 4. Ülke Koridorları + Hedefli İş Teklifi Sayfaları (Canonical + H1 + OG + JSON-LD)
 const mustAuditPages = [

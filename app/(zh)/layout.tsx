@@ -3,6 +3,7 @@
 import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
 import ClarityScript from "@/lib/ui/ClarityScript";
+import GoogleAnalyticsScript from "@/lib/ui/GoogleAnalyticsScript";
 import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
 import PageTransition from "@/lib/ui/motion/PageTransition";
@@ -37,6 +38,7 @@ export default function ZhLayout({ children }: { children: React.ReactNode }) {
     <html {...htmlAttrs("zh", "zh-CN")}>
       <head>
         <ThemeStyle />
+        <GoogleAnalyticsScript />
         <ClarityScript />
         {/* Baidu 转码 engeli: mobil arama sonuçlarında sayfanın Baidu tarafından yeniden kodlanmasını/siteapp'e alınmasını önler */}
         <meta httpEquiv="Cache-Control" content="no-transform" />
