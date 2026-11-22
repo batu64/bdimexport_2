@@ -7,6 +7,7 @@
     "build": "next build",
     "lint": "eslint .",
     "seo:audit": "node scripts/seo-geo-audit.mjs",
+    "seo:push": "node scripts/seo-index-push.mjs",
     "start": "next start"
   },
   "dependencies": {
