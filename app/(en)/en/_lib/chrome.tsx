@@ -1,6 +1,6 @@
 // /en global site çerçevesi (navbar + footer) — metin lib/messages/en.json, kurumsal bilgiler lib/ui/entities.ts.
 import { enVariants, localeConfig, type Locale } from "@/lib/i18n";
-import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_PHONE_HREF } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_PHONE_HREF, OFFICIAL_WHATSAPP_WA } from "@/lib/ui/entities";
 import type { FooterProps } from "@/lib/ui/Footer";
 import type { NavbarProps, SiteLink } from "@/lib/ui/Navbar";
 import { VARIANTS } from "@/lib/ui/variants";
@@ -11,7 +11,7 @@ import { INDUSTRIES } from "../industries/_lib/industries";
 const SITE_HOME: Record<Locale, string> = { tr: "/", en: "/en", de: "/de", zh: "/zh" };
 const ORDER: Locale[] = ["tr", "en", "de", "zh"];
 
-export const QUOTE_EMAIL = process.env.NEXT_PUBLIC_QUOTE_EMAIL ?? "iletisim@bdimexport.com";
+export const QUOTE_EMAIL = process.env.NEXT_PUBLIC_QUOTE_EMAIL ?? OFFICIAL_EMAIL;
 /** Akıllı RFQ & talep kanalı — kullanıcıyı /en/rfq interaktif teklif ve denetim konfigüratörüne yönlendirir */
 export const quoteHref = (_context?: string) => "/en/rfq";
 
@@ -59,6 +59,7 @@ export function footerProps(): FooterProps {
       title: f.contact,
       email: QUOTE_EMAIL,
       emailLabel: f.email,
+      whatsapp: { href: OFFICIAL_WHATSAPP_WA, label: f.whatsapp },
       phone: { number: OFFICIAL_PHONE, href: OFFICIAL_PHONE_HREF, label: f.phone },
     },
     entities: {

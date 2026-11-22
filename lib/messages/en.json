@@ -237,7 +237,9 @@
     "sites": "Markets & Niche Languages",
     "contact": "Direct Desk",
     "email": "Write to us",
-    "phone": "Phone / WhatsApp",
+    "whatsapp": "WhatsApp",
+    "whatsappMessage": "Hello, I am reaching out via bdimexport.com regarding B2B sourcing, inspection, or trade intelligence.",
+    "phone": "Phone",
     "entitiesTitle": "Registered Corporate Entities",
     "entityBadges": {
       "us": "United States Entity",

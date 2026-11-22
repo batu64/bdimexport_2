@@ -10,7 +10,8 @@
 ## Verified Corporate Legal Entities & Direct Channels
 - United States Entity: BDIMEXPORT LLC — 30 N Gould St Ste N, Sheridan, WY 82801, USA
 - Türkiye Operations Entity: BD Sanayi İthalat İhracat Şirketi — Cumhuriyet Mahallesi Milli Egemenlik Caddesi No: 74, 64500 Banaz / Uşak, Türkiye
-- Official Phone & WhatsApp: +90 539 414 78 54
+- Official Email: info@bdimexport.com
+- Official Phone & WhatsApp: +90 539 414 78 54 (https://wa.me/905394147854)
 - Official WeChat (China Desk): bdimexport
 - Languages Supported (14): `tr` (/), `en` (/en, global x-default), `de` (/de), `zh-CN` (/zh), `ru` (/en/ru), `fr` (/en/fr), `nl` (/en/nl), `es` (/en/es), `ar` (/en/ar, RTL), `fi` (/en/fi), `sq` (/en/sq), `pl` (/en/pl), `ro` (/en/ro), `it` (/en/it)
 
