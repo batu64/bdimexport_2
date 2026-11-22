@@ -132,6 +132,22 @@ async function pushGoogleSearchConsoleSitemaps() {
       console.warn(`✘ GSC API Hatası (${res.status}) [${feed}]: ${await res.text()}`);
     }
   }
+
+  const listRes = await fetch(`https://www.googleapis.com/webmasters/v3/sites/${encSite}/sitemaps`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (listRes.ok) {
+    const listData = await listRes.json();
+    const rows = (listData.sitemap ?? []).map((sm) => ({
+      path: sm.path,
+      lastSubmitted: sm.lastSubmitted,
+      isPending: sm.isPending,
+      errors: sm.errors,
+      warnings: sm.warnings,
+    }));
+    console.log("\nGoogle Search Console Kayıtlı Site Haritaları Durumu:");
+    console.table(rows);
+  }
 }
 
 async function main() {

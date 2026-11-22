@@ -7,8 +7,8 @@ Bu proje üzerinde birden fazla bilgisayarda çalışılmaktadır. Her oturumda 
 
 2. **Her Değişiklik Sonrası Derleme, Canlıya Alma ve Git Push:**
    - Yapılan her kod/içerik değişikliği tamamlandığında sırasıyla:
-     1. `pnpm build` çalıştırarak statik dışa aktarımın (`out/`) hatasız derlendiğini doğrula.
-     2. `firebase deploy --only hosting` çalıştırarak güncel `out/` çıktısını Firebase Hosting üzerinden canlıya (`https://bdimexport64.web.app`, proje: `bdimexport64`) al.
+     1. `pnpm build` çalıştırarak statik dışa aktarımın (`out/`) hatasız derlendiğini doğrula (`pnpm seo:audit`).
+     2. `firebase deploy --only hosting` çalıştırarak güncel `out/` çıktısını Firebase Hosting üzerinden canlıya (`https://bdimexport.com` / `https://bdimexport64.web.app`, proje: `bdimexport64`) al ve `pnpm seo:push` ile site haritalarını / URL'leri Google Search Console + IndexNow API'lerine bildir.
      3. Değişiklikleri anlamlı bir commit mesajıyla kaydet ve `git push origin main` ile GitHub reposuna (`https://github.com/batu64/bdimexport_2.git`) gönder.
 
 3. **Gizli Bilgi Güvenliği:**
