@@ -1,5 +1,5 @@
-// Kurumsal tüzel kişilikler ve sabit iletişim kanalları — tek doğruluk kaynağı (TR + EN + ZH + DE footer).
-// Uyarı: VariantShell (/en/xx) smoke testi visible HTML'de tel:/mailto:/wa.me linki YASAKLAR — burada düz metin/adres ayrılır.
+// Corporate legal entities and official contact channels — single source of truth (TR + EN + ZH + DE).
+// Note: VariantShell (/en/xx) smoke test forbids tel:/mailto:/wa.me links in visible HTML on variant pages.
 export const CORPORATE_ENTITIES = [
   {
     key: "tr" as const,
@@ -13,6 +13,8 @@ export const CORPORATE_ENTITIES = [
   },
 ] as const;
 
+export const OFFICIAL_EMAIL = "info@bdimexport.com";
+export const OFFICIAL_EMAIL_HREF = "mailto:info@bdimexport.com";
 export const OFFICIAL_PHONE = "+90 539 414 78 54";
 export const OFFICIAL_PHONE_HREF = "tel:+905394147854";
 export const OFFICIAL_WHATSAPP_WA = "https://wa.me/905394147854";

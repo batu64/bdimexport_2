@@ -210,7 +210,8 @@
     "sites": "市场 / 语言",
     "contact": "联系我们",
     "email": "发送电子邮件",
-    "phone": "电话 / WhatsApp",
+    "whatsapp": "WhatsApp",
+    "phone": "电话",
     "entitiesTitle": "官方注册公司实体",
     "entityBadges": {
       "tr": "土耳其运营实体",

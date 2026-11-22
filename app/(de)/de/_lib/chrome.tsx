@@ -1,13 +1,14 @@
 // /de site çerçevesi (navbar + footer) — metin lib/messages/de.json (formal Sie). Footer'da Impressum + Datenschutz
 // her /de sayfasında ZORUNLU konum (FAZ_5 5.1; footer.md). Resmi şirket bilgileri lib/ui/entities.ts'den gelir.
-import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_PHONE_HREF } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_PHONE_HREF, OFFICIAL_WHATSAPP_WA } from "@/lib/ui/entities";
 import type { FooterProps } from "@/lib/ui/Footer";
 import type { NavbarProps } from "@/lib/ui/Navbar";
 import { marketSites } from "@/lib/ui/sites";
 import dict from "@/lib/messages/de.json";
 
-export const QUOTE_EMAIL = process.env.NEXT_PUBLIC_QUOTE_EMAIL ?? "iletisim@bdimexport.com";
+export const QUOTE_EMAIL = process.env.NEXT_PUBLIC_QUOTE_EMAIL ?? OFFICIAL_EMAIL;
 export const quoteHref = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(dict.quote.subject)}&body=${encodeURIComponent(dict.quote.body)}`;
+export const whatsappHref = `${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(dict.quote.whatsappText)}`;
 
 export function navbarProps(): NavbarProps {
   const n = dict.nav;
@@ -44,6 +45,7 @@ export function footerProps(): FooterProps {
       title: f.contact,
       email: QUOTE_EMAIL,
       emailLabel: f.email,
+      whatsapp: { href: whatsappHref, label: f.whatsapp },
       phone: { number: OFFICIAL_PHONE, href: OFFICIAL_PHONE_HREF, label: f.phone },
     },
     entities: {

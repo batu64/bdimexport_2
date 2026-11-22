@@ -27,7 +27,18 @@ export default function Button({ href, variant = "primary", tone = "light", size
   );
   // mailto/harici: düz <a> (Next Link iç rota içindir)
   if (/^(mailto:|tel:|https?:)/.test(href)) {
-    return <a href={href} className={cls} aria-label={ariaLabel}>{body}</a>;
+    const ext = /^https?:/.test(href);
+    return (
+      <a
+        href={href}
+        className={cls}
+        aria-label={ariaLabel}
+        target={ext ? "_blank" : undefined}
+        rel={ext ? "noopener noreferrer" : undefined}
+      >
+        {body}
+      </a>
+    );
   }
   return <Link href={href} className={cls} aria-label={ariaLabel}>{body}</Link>;
 }

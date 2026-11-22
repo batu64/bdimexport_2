@@ -63,6 +63,7 @@ console.log(`✔ Sitemap mimarisi doğrulandı: ${sitemaps.length} XML dosyası 
 const homePages = [
   "index.html",
   "en.html",
+  "en/us.html",
   "de.html",
   "zh.html",
   ...["ru", "fr", "nl", "es", "ar", "fi", "sq", "pl", "ro", "it"].map((v) => `en/${v}.html`),
@@ -86,6 +87,15 @@ console.log(`✔ Hreflang karşılıklılığı & GA4 (G-1PXMK93V3F) doğruland�
 
 // 4. Ülke Koridorları + Hedefli İş Teklifi Sayfaları (Canonical + H1 + OG + JSON-LD)
 const mustAuditPages = [
+  "en/us.html",
+  "en/us/china-plus-turkey-sourcing.html",
+  "en/us/turkey-sourcing-agent-for-us-companies.html",
+  "en/us/china-sourcing-and-procurement-partner.html",
+  "en/us/pre-shipment-and-container-loading-inspection.html",
+  "en/us/hospitality-furniture-and-construction-sourcing.html",
+  "en/us/textile-apparel-and-home-goods-manufacturing.html",
+  "en/us/customs-hts-landed-cost-and-supplier-verification.html",
+  "en/proposals/us-procurement-partner.html",
   "en/markets.html",
   "en/markets/united-states.html",
   "en/markets/united-kingdom.html",

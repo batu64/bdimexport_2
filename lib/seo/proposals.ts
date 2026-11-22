@@ -31,6 +31,55 @@ export interface ProposalBlueprint {
 
 export const EN_PROPOSALS: readonly ProposalBlueprint[] = [
   {
+    slug: "us-procurement-partner",
+    locale: "en",
+    track: "sourcing",
+    badge: "US CORPORATE PARTNERSHIP · BDIMEXPORT LLC (WYOMING, USA)",
+    metaTitle: "US Overseas Procurement Partner Proposal | Bdimexport",
+    metaDesc: "Partner with US-registered BDIMEXPORT LLC to manage your end-to-end Türkiye and China purchasing, OEM manufacturing, AQL inspection, and import logistics.",
+    h1: "Your Dedicated US-Based Overseas Procurement, Manufacturing & Import Partner (Türkiye & China)",
+    lead: "Through US-registered BDIMEXPORT LLC (Sheridan, Wyoming) and our full-time engineering teams on the ground in Türkiye and China, we act as your external overseas purchasing department—managing factory vetting, Section 301 vs. MFN tariff optimization, OEM production, 24–48h container QC, and port-to-door import execution.",
+    slaText: "US W-9 Vendor Ready · 24h RFQ & Tariff Brief · Open-Book Factory Pricing",
+    deliverablesTitle: "Full-Lifecycle Overseas Procurement Management",
+    deliverables: [
+      { code: "USA-01", title: "Direct Tier-1 Factory Sourcing & Tariff Optimization (TR + CN)", detail: "Eliminate 15%–25% trading-company markups and model 10-digit US HTS duties (China Section 301 vs. Türkiye MFN) side by side before awarding POs." },
+      { code: "USA-02", title: "OEM Manufacturing, Inline DUPRO & 24–48h Container Sealing", detail: "Dedicated engineers oversee golden samples, mid-production quality gates, ANSI/ISO 2859-1 AQL inspection, and 7-point CTPAT container bolt-seal proof." },
+      { code: "USA-03", title: "US-Compliant Export Docs, ISF 10+2 & Port Delivery", detail: "Accurate commercial invoices, packing lists, Country-of-Origin & FNSKU/UPC audits, ISPM-15 verification, and FOB/CIF/DDP delivery to NY/NJ, Savannah, Houston, or LA." },
+    ],
+    commercialTermsTitle: "US Corporate Partnership & Governance Terms",
+    commercialTerms: [
+      { label: "Contracting US Legal Entity", value: "BDIMEXPORT LLC — 30 N Gould St Ste N, Sheridan, WY 82801 (W-9 Ready)" },
+      { label: "On-Ground Operations Arm", value: "BD Sanayi (Türkiye, 81 Provinces) + Coastal/Inland China QC Network" },
+      { label: "Open-Book Fee Policy", value: "Transparent management or flat inspection fee — zero hidden factory kickbacks" },
+      { label: "Engagement Flexibility", value: "Start with a single 48h container audit, 72h supplier check, or full annual retainer" },
+    ],
+    whyTitle: "Why American Importers Appoint BDIMEXPORT LLC as Their Overseas Partner",
+    whyPoints: [
+      "One US corporate counterparty accountable across BOTH China and Türkiye—never get trapped in a single-country tariff spike.",
+      "Protect every 70% balance wire transfer with timestamped factory-floor AQL measurements and container seal photos.",
+      "Cut East Coast and Gulf replenishment lead times to 16–22 days via Türkiye while retaining China scale for complex tooling.",
+    ],
+    faqTitle: "Frequently Asked Questions for US Partners",
+    faq: [
+      {
+        q: "Can BDIMEXPORT LLC onboard as a standard US vendor with a W-9?",
+        a: "Yes. BDIMEXPORT LLC is a registered Wyoming Limited Liability Company (30 N Gould St Ste N, Sheridan, WY 82801), enabling straightforward US vendor onboarding, NDA execution, and USD invoicing.",
+      },
+      {
+        q: "We already import from China or Türkiye—how can you add value immediately?",
+        a: "Most US partners test us on one of two zero-disruption entry points: (1) a 24–48h standalone container loading & AQL inspection on an upcoming shipment, or (2) a side-by-side Dual-Hub landed-cost benchmark against their current supplier pricing.",
+      },
+      {
+        q: "Do you handle all stages from factory search to US port arrival?",
+        a: "Yes. We manage supplier due diligence, RFQ negotiation, sample consolidation, OEM production tracking, pre-shipment quality control, export customs, ISF 10+2 coordination, and ocean/air freight handover.",
+      },
+    ],
+    emailTemplate: {
+      subject: "US-Based Türkiye & China Procurement Partnership for {{company}} ({{sector}})",
+      body: "Hi {{company}} Supply Chain & Leadership Team,\n\nThrough our US entity, BDIMEXPORT LLC (Sheridan, WY), and our full-time engineering teams on the ground in Türkiye and China, we would like to serve as your dedicated overseas purchasing, manufacturing, and quality inspection partner for {{sector}}.\n\nWe prepared a tailored US Partnership overview for {{company}} here:\n\n{{url}}\n\nHow we support US importers ({{country}}):\n• End-to-end sourcing & OEM production across BOTH Türkiye (16–22d East Coast transit, zero Section 301 surcharge) and China\n• Open-book factory pricing (zero middleman markups) + 24–48h on-site AQL & CTPAT container seal inspection\n• Domestic US LLC contracting (W-9 ready) backed by our Turkish operations company\n\nWhether you want to benchmark landed costs on an active SKU or book a standalone 48h inspection on your next container, you can review the scope directly on the page.\n\nBest regards,\nBDIMEXPORT LLC — US & Dual-Hub Operations Desk\n30 N Gould St Ste N, Sheridan, WY 82801",
+    },
+  },
+  {
     slug: "dual-hub-sourcing",
     locale: "en",
     track: "sourcing",

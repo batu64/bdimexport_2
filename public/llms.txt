@@ -21,6 +21,17 @@
 4. **Turkish Exporter Growth & Buyer Matchmaking**: Multi-language SEO/GEO storefronts, target-country importer discovery, and Free Export Acceleration Program (`/ihracat/ucretsiz-destek-basvuru`).
 5. **81-Province Türkiye Field Operations for Chinese Exporters (`/zh`)**: On-ground prospective buyer visits, hesitant-buyer face-to-face closing, after-sales visits, customs/logistics coordination, legal/SMMM accounting, and local digital operations.
 
+## United States Division (`BDIMEXPORT LLC` · Sheridan, WY · `hreflang="en-US"`)
+- [US Division Flagship Hub](/en/us): Dedicated US-based overseas procurement, manufacturing & import management partner across Türkiye and China (W-9 ready)
+- [China + Türkiye Dual-Hub Tariff Hedging](/en/us/china-plus-turkey-sourcing): US Section 301 vs. MFN 10-digit HTS landed-cost optimization
+- [Turkey Sourcing Agent for US Companies](/en/us/turkey-sourcing-agent-for-us-companies): Direct OSB mill vetting across 81 Turkish provinces
+- [China Sourcing & Procurement Partner for US](/en/us/china-sourcing-and-procurement-partner): USCC factory verification, open-book costing & tooling protection
+- [24–48h Pre-Shipment & Container Loading QC](/en/us/pre-shipment-and-container-loading-inspection): ANSI/ISO 2859-1 AQL & 7-point CTPAT bolt-seal proof
+- [Hospitality FF&E, Stone & Construction Sourcing](/en/us/hospitality-furniture-and-construction-sourcing): Hotel casegoods, travertine/marble & project BOQ execution
+- [Apparel, Home Textiles & Consumer Goods OEM](/en/us/textile-apparel-and-home-goods-manufacturing): 100% UFLPA-clean Aegean cotton, GOTS/OEKO-TEX & FTC labeling
+- [72h Supplier Due Diligence & US HTS Intelligence](/en/us/customs-hts-landed-cost-and-supplier-verification): Anti-fraud registry check + AD/CVD/MPF/HMF landed-cost model
+- [US Corporate Partnership Proposal](/en/proposals/us-procurement-partner) · Short Alias: `/us/partner`
+
 ## Global Buyer Country Corridors (`/en/markets/*`)
 - [All Country Corridors](/en/markets)
 - [United States Import Corridor](/en/markets/united-states): US MFN vs. Section 301 comparison, 16–22d East Coast sea transit, BDIMEXPORT LLC contracting

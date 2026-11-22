@@ -3,6 +3,7 @@ import manifest from "@/lib/hreflang.manifest.json";
 import { joinUrl } from "@/lib/hreflang";
 import { enVariants } from "@/lib/i18n";
 import { MARKET_CORRIDORS } from "@/lib/seo/markets";
+import { US_CLUSTER_PAGES } from "@/lib/seo/us-hub";
 import { fileLastMod } from "@/lib/seo/lastmod";
 import { insightBase, listInsights } from "@/lib/ui/insights";
 
@@ -12,7 +13,7 @@ const BASE = "https://bdimexport.com";
 
 export function GET(): Response {
   const mod = fileLastMod("lib", "seo", "markets.ts");
-  const locs: string[] = [`${BASE}/en/markets`];
+  const locs: string[] = [`${BASE}/en/us`, ...US_CLUSTER_PAGES.map((u) => `${BASE}/en/us/${u.slug}`), `${BASE}/en/markets`];
   for (const m of MARKET_CORRIDORS) locs.push(`${BASE}/en/markets/${m.slug}`);
   for (const v of enVariants) {
     for (const p of manifest.variants[v] as string[]) {

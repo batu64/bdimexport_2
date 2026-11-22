@@ -52,8 +52,10 @@ export function buildAlternateSet(
     if (!set.some((s) => s.hreflang === "en" && s.href === enHref)) {
       set.push({ hreflang: "en", href: enHref });
     }
-    // Çok dilli ana sayfa kümesinde eşleşmeyen tüm ülkeler için küresel İngilizce vitrin x-default olur
+    // Çok dilli ana sayfa kümesinde eşleşmeyen tüm ülkeler için küresel İngilizce vitrin x-default olur;
+    // ABD arama motoru (google.com / en-US) için özel /en/us merkezi tanımlanır.
     if (existingLanguages.length > 1) {
+      set.push({ hreflang: "en-US", href: joinUrl("en", "us") });
       set.push({ hreflang: "x-default", href: enHref });
     } else if (existingEnVariants.length > 0) {
       set.push({ hreflang: "x-default", href: enHref });

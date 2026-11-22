@@ -9,6 +9,7 @@ import { IntlProvider } from "@/lib/intl";
 import PageTransition from "@/lib/ui/motion/PageTransition";
 import Navbar from "@/lib/ui/Navbar";
 import Footer from "@/lib/ui/Footer";
+import WhatsAppFloat from "@/lib/ui/WhatsAppFloat";
 import dict from "@/lib/messages/de.json";
 import { footerProps, navbarProps } from "./de/_lib/chrome";
 
@@ -32,6 +33,12 @@ export default function DeLayout({ children }: { children: React.ReactNode }) {
           <Navbar {...navbarProps()} />
           <div lang="de" id="inhalt" tabIndex={-1}><PageTransition>{children}</PageTransition></div>
           <Footer {...footerProps()} />
+          <WhatsAppFloat
+            locale="de"
+            label={dict.footer.whatsapp}
+            ariaLabel={dict.footer.whatsapp}
+            message={dict.quote.whatsappText}
+          />
         </IntlProvider>
       </body>
     </html>

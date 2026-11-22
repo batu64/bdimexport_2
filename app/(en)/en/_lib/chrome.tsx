@@ -31,7 +31,7 @@ export function navbarProps(): NavbarProps {
     cta: { label: n.cta, href: quoteHref() },
     sites: enSites("en"),
     labels: { nav: n.label, open: n.menuOpen, close: n.menuClose, sites: n.sites },
-    heroPaths: ["/en", "/en/rfq"],
+    heroPaths: ["/en", "/en/rfq", "/en/us"],
   };
 }
 
@@ -47,6 +47,7 @@ export function footerProps(): FooterProps {
         links: [
           ...INDUSTRIES.map((i) => ({ label: i.label, href: `/en/industries/${i.slug}` })),
           { label: f.products, href: "/en/products" },
+          { label: "US Division (BDIMEXPORT LLC)", href: "/en/us" },
           { label: "Country Corridors (12)", href: "/en/markets" },
           { label: "B2B Proposals", href: "/en/proposals" },
           { label: "Insights", href: "/en/insights" },

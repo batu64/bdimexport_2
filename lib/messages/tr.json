@@ -245,7 +245,9 @@
     "kvkk": "KVKK Açık Rıza Metni",
     "contact": "İletişim",
     "email": "E-posta ile yazın",
-    "phone": "Telefon / WhatsApp",
+    "whatsapp": "WhatsApp Hattı",
+    "whatsappMessage": "Merhaba, bdimexport.com üzerinden ulaşıyorum. İthalat / ihracat / denetim hizmetleriniz hakkında bilgi almak istiyorum.",
+    "phone": "Telefon",
     "entitiesTitle": "Resmi Kurumsal Tüzel Kişilikler",
     "entityBadges": {
       "tr": "Türkiye Operasyon Merkezi",

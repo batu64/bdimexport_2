@@ -2,7 +2,7 @@
 // Google Knowledge Graph, AI Overviews / AI Mode, Bing Copilot, Perplexity, Yandex ve kurumsal B2B önizlemeler için
 // tek doğruluk kaynağından (@/lib/ui/entities) türetilen bağlı varlık grafiği (@id referanslı).
 import type { Metadata } from "next";
-import { CORPORATE_ENTITIES, OFFICIAL_PHONE } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA } from "@/lib/ui/entities";
 
 export const SITE_URL = "https://bdimexport.com";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/media/en/heroes/trade-services-hero-og.webp`;
@@ -48,7 +48,9 @@ export function masterOrganizationNodes(): object[] {
         url: `${SITE_URL}/media/brand/logo-gold.png`,
       },
       image: DEFAULT_OG_IMAGE,
+      email: OFFICIAL_EMAIL,
       telephone: OFFICIAL_PHONE,
+      sameAs: [OFFICIAL_WHATSAPP_WA],
       description:
         "Dual-Hub global B2B sourcing (Türkiye and China), standalone 24-48h container loading and factory inspection, HS-code commercial intelligence, export marketing systems, and 81-province Türkiye field operations.",
       knowsLanguage: [...SUPPORTED_BCP47],
@@ -58,7 +60,9 @@ export function masterOrganizationNodes(): object[] {
         {
           "@type": "ContactPoint",
           contactType: "B2B Sourcing, Inspection & Trade Intelligence Desk",
+          email: OFFICIAL_EMAIL,
           telephone: OFFICIAL_PHONE,
+          url: OFFICIAL_WHATSAPP_WA,
           availableLanguage: [...SUPPORTED_BCP47],
           areaServed: [...AREA_SERVED_COUNTRIES],
         },

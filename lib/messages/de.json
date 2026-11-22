@@ -16,7 +16,8 @@
   },
   "quote": {
     "subject": "Angebotsanfrage (bdimexport.com)",
-    "body": "Produkt / Leistung:\nMenge:\nZielmarkt:\nTermin:\nZielpreis (optional):\n"
+    "body": "Produkt / Leistung:\nMenge:\nZielmarkt:\nTermin:\nZielpreis (optional):\n",
+    "whatsappText": "Guten Tag, ich kontaktiere Sie über bdimexport.com/de bezüglich einer B2B-Beschaffungs- oder Werksprüfungsanfrage."
   },
   "home": {
     "hero": {
@@ -147,8 +148,9 @@
     "pendingTitle": "Bitte bestätigen Sie Ihre E-Mail-Adresse",
     "pendingText": "Wir haben Ihre Anfrage erhalten. Sie bekommen in Kürze eine E-Mail mit einem Bestätigungslink, der 72 Stunden gültig ist. Ohne Bestätigung wird die Anfrage nicht bearbeitet und automatisch gelöscht.",
     "closedTitle": "Das Anfrageformular wird in Kürze freigeschaltet",
-    "closedText": "Bis dahin senden Sie uns Ihre Anfrage bitte per E-Mail. Ihr Angebot erhalten Sie innerhalb von 24 Stunden.",
+    "closedText": "Bis dahin senden Sie uns Ihre Anfrage bitte per E-Mail oder direkt per WhatsApp. Ihr Angebot erhalten Sie innerhalb von 24 Stunden.",
     "closedCta": "Anfrage per E-Mail senden",
+    "whatsappCta": "Per WhatsApp anfragen",
     "confirm": {
       "title": "E-Mail-Adresse bestätigen",
       "lead": "Bestätigung Ihrer Angebotsanfrage",
@@ -176,7 +178,8 @@
     "datenschutz": "Datenschutz",
     "contact": "Kontakt",
     "email": "E-Mail schreiben",
-    "phone": "Telefon / WhatsApp",
+    "whatsapp": "WhatsApp",
+    "phone": "Telefon",
     "entitiesTitle": "Unternehmensstruktur",
     "entityBadges": {
       "tr": "Operative Gesellschaft (Türkei)",

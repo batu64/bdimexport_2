@@ -61,12 +61,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // EN ailesi: ana hub + ülke koridorları + teklif şablonları + ürün/hizmet/sektör/kategori sayfaları
+  // EN ailesi: ana hub + ABD bölümü (/en/us) + ülke koridorları + teklif şablonları + ürün/hizmet/sektör/kategori sayfaları
   for (const p of EN_PATHS) {
     const marketMatch = p.startsWith("markets/") ? MARKET_CORRIDORS.find((m) => `markets/${m.slug}` === p) : undefined;
     const url = joinUrl("en", p);
-    let alternates = p === "" ? homeAlt : toMetadataAlternates(enFamilyAlternates(p));
-    if (marketMatch?.hreflangRegional) {
+    let alternates = p === "" || p === "us" ? homeAlt : toMetadataAlternates(enFamilyAlternates(p));
+    if (p.startsWith("us/")) {
+      alternates = {
+        languages: {
+          "en-US": url,
+          en: url,
+          "x-default": url,
+        },
+      };
+    } else if (marketMatch?.hreflangRegional) {
       alternates = {
         languages: {
           en: url,
@@ -79,7 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url,
       lastModified: stableMod,
       changeFrequency: "weekly",
-      priority: p === "" ? 0.95 : p.startsWith("markets") || p.startsWith("proposals") ? 0.85 : 0.75,
+      priority: p === "" || p === "us" ? 0.95 : p.startsWith("us/") || p.startsWith("markets") || p.startsWith("proposals") ? 0.9 : 0.75,
       alternates,
     });
   }

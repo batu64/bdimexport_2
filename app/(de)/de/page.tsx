@@ -18,7 +18,7 @@ import CtaBand from "@/lib/ui/CtaBand";
 import Reveal from "@/lib/ui/motion/Reveal";
 import grid from "@/lib/ui/cardgrid.module.css";
 import { industryCards } from "@/app/(en)/en/industries/_lib/industries";
-import { quoteHref } from "./_lib/chrome";
+import { quoteHref, whatsappHref } from "./_lib/chrome";
 import { DE_SERVICES } from "./_lib/services";
 import s from "./de.module.css";
 
@@ -107,7 +107,12 @@ export default function DeHomePage() {
       </Section>
 
       <PartnerBand id="partner" badge={h.partners.badge} title={h.partners.title} empty={h.partners.empty} />
-      <CtaBand title={h.cta.title} lead={h.cta.lead} primary={{ label: h.hero.ctaPrimary, href: quoteHref }} />
+      <CtaBand
+        title={h.cta.title}
+        lead={h.cta.lead}
+        primary={{ label: h.hero.ctaPrimary, href: quoteHref }}
+        secondary={{ label: dict.anfrage.whatsappCta, href: whatsappHref }}
+      />
     </main>
   );
 }

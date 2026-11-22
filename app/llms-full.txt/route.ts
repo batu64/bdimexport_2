@@ -3,6 +3,7 @@
 // alıntı yapabilmesi için tüm ülke gümrük/lojistik tablolarını, denetim standartlarını, teklif kapsamlarını ve SSS bankasını derler.
 import { CORPORATE_ENTITIES, OFFICIAL_PHONE } from "@/lib/ui/entities";
 import { MARKET_CORRIDORS } from "@/lib/seo/markets";
+import { US_CLUSTER_PAGES } from "@/lib/seo/us-hub";
 import { DE_PROPOSAL, EN_PROPOSALS, ZH_PROPOSAL } from "@/lib/seo/proposals";
 import { SEO_RELEASE_DATE } from "@/lib/seo/lastmod";
 import { TR_EXPORT_CORRIDORS, TR_PROPOSALS } from "@/app/(tr)/_lib/tr-seo-data";
@@ -24,7 +25,16 @@ export function GET(): Response {
     "- Official WeChat (China-to-Türkiye Desk): bdimexport",
     "- Core SLA Commitments: 24-hour written RFQ scoping · 24–48h on-site inspector dispatch across Türkiye & China · 48h illustrated PDF inspection report · 48–72h corporate registry & HS-code intelligence dossier.",
     "",
-    "## 2. Global Buyer Country Trade Corridors (Türkiye vs. China Benchmarks)",
+    "## 2. United States Division (BDIMEXPORT LLC — Sheridan, WY — Dedicated US Overseas Procurement Partner)",
+    `Flagship US Hub: ${BASE}/en/us`,
+    ...US_CLUSTER_PAGES.flatMap((u) => [
+      `### [US Program] ${u.h1} — ${BASE}/en/us/${u.slug}`,
+      `- Summary: ${u.lead}`,
+      ...u.keyMetrics.map((m) => `- ${m.label}: ${m.value}`),
+      ...u.faq.map((f) => `  * Q: ${f.q}\n    A: ${f.a}`),
+      "",
+    ]),
+    "## 3. Global Buyer Country Trade Corridors (Türkiye vs. China Benchmarks)",
   ];
 
   for (const m of MARKET_CORRIDORS) {

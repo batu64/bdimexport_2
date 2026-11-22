@@ -1,7 +1,7 @@
 // TR site çerçevesi (navbar + footer) verisi — metin sözlükten (lib/messages/tr.json), hizmet linkleri İÇERİKTEN
 // (content/tr/**/*.md başlıkları; elle liste tutulmaz → yeni hizmet sayfası footer'a kendiliğinden girer).
 import { localeConfig, type Locale } from "@/lib/i18n";
-import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_PHONE_HREF } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_PHONE_HREF, OFFICIAL_WHATSAPP_WA } from "@/lib/ui/entities";
 import type { FooterProps } from "@/lib/ui/Footer";
 import type { NavbarProps, SiteLink } from "@/lib/ui/Navbar";
 import dict from "@/lib/messages/tr.json";
@@ -56,6 +56,7 @@ export function footerProps(): FooterProps {
       title: f.contact,
       email: QUOTE_EMAIL,
       emailLabel: f.email,
+      whatsapp: { href: OFFICIAL_WHATSAPP_WA, label: f.whatsapp },
       phone: { number: OFFICIAL_PHONE, href: OFFICIAL_PHONE_HREF, label: f.phone },
     },
     entities: {

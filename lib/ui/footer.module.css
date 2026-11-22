@@ -70,6 +70,14 @@
   transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
 }
 .channel:hover { border-color: var(--c-highlight); background: color-mix(in srgb, var(--c-highlight) 10%, transparent); text-decoration: none; }
+.channelWa {
+  border-color: color-mix(in srgb, var(--c-success) 55%, transparent);
+  background: color-mix(in srgb, var(--c-success) 16%, transparent);
+}
+.channelWa:hover {
+  border-color: var(--c-success);
+  background: color-mix(in srgb, var(--c-success) 28%, transparent);
+}
 .icon { inline-size: var(--s-4); block-size: var(--s-4); flex: none; }
 
 .entitiesWrap {

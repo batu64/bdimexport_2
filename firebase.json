@@ -13,6 +13,16 @@
     "trailingSlash": false,
     "redirects": [
       {
+        "source": "/us/partner",
+        "destination": "/en/proposals/us-procurement-partner",
+        "type": 302
+      },
+      {
+        "source": "/us/:slug",
+        "destination": "/en/us/:slug",
+        "type": 301
+      },
+      {
         "source": "/t/:slug",
         "destination": "/teklif/:slug",
         "type": 302

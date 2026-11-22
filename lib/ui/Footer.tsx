@@ -2,7 +2,7 @@
 // Not (brief sapması, bilinçli): 360'ta akordeon yerine 2 kolon — listeler kısa; <details> 768+'da CSS ile açılamıyor
 // (Firefox ::details-content yok) → JS'siz, her BP'de aynı DOM.
 import Link from "next/link";
-import { Building2, Mail, MapPin, Phone } from "lucide-react";
+import { Building2, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import type { NavLink, SiteLink } from "./Navbar";
 import Reveal from "./motion/Reveal";
 import s from "./footer.module.css";
@@ -19,6 +19,7 @@ export type FooterProps = {
     title: string;
     email: string;
     emailLabel: string;
+    whatsapp?: { href: string; label: string };
     phone?: { number: string; href: string; label: string };
   };
   entities?: { title: string; items: CorporateEntity[] };
@@ -46,6 +47,18 @@ export default function Footer({ brand, tagline, columns, sites, legal, contact,
                 <Mail aria-hidden="true" className={s.icon} />
                 <span>{contact.email}</span>
               </a>
+              {contact.whatsapp && (
+                <a
+                  className={`${s.channel} ${s.channelWa}`}
+                  href={contact.whatsapp.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${contact.whatsapp.label}: ${contact.phone?.number ?? "WhatsApp"}`}
+                >
+                  <MessageCircle aria-hidden="true" className={s.icon} />
+                  <span>{contact.whatsapp.label}</span>
+                </a>
+              )}
               {contact.phone && (
                 <a className={s.channel} href={contact.phone.href} aria-label={`${contact.phone.label}: ${contact.phone.number}`}>
                   <Phone aria-hidden="true" className={s.icon} />

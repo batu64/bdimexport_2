@@ -1,6 +1,7 @@
 // /entity-graph.json — Machine-Readable Schema.org Knowledge Graph & B2B Trade Capability Index.
 // Arama motoru bilgi grafikleri (Knowledge Graph) ve kurumsal B2B tedarik ajanları için tüm varlık, koridor ve teklif uçlarını sunar.
 import { MARKET_CORRIDORS } from "@/lib/seo/markets";
+import { US_CLUSTER_PAGES } from "@/lib/seo/us-hub";
 import { DE_PROPOSAL, EN_PROPOSALS, ZH_PROPOSAL } from "@/lib/seo/proposals";
 import { ORG_ID, SITE_URL, SUPPORTED_BCP47, masterOrganizationNodes } from "@/lib/seo/schema";
 import { SEO_RELEASE_DATE } from "@/lib/seo/lastmod";
@@ -15,6 +16,26 @@ export function GET(): Response {
     generatedAt: SEO_RELEASE_DATE,
     "@graph": [
       ...masterOrganizationNodes(),
+      {
+        "@type": "ItemList",
+        "@id": `${SITE_URL}/#us-division-programs`,
+        name: "BDIMEXPORT LLC United States Overseas Procurement & QC Programs",
+        numberOfItems: US_CLUSTER_PAGES.length + 1,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "United States Division Flagship Hub (BDIMEXPORT LLC)",
+            url: `${SITE_URL}/en/us`,
+          },
+          ...US_CLUSTER_PAGES.map((u, i) => ({
+            "@type": "ListItem",
+            position: i + 2,
+            name: u.h1,
+            url: `${SITE_URL}/en/us/${u.slug}`,
+          })),
+        ],
+      },
       {
         "@type": "ItemList",
         "@id": `${SITE_URL}/#global-corridors`,

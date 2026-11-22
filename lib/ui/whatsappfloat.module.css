@@ -1,0 +1,49 @@
+/* Floating WhatsApp button — logical CSS only (RTL-safe) and token variables only (hex=0). */
+.fab {
+  position: fixed;
+  inset-block-end: var(--s-6);
+  inset-inline-end: var(--s-6);
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  padding-inline: var(--s-4);
+  padding-block: var(--s-2);
+  border-radius: var(--radius-pill);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 22%, transparent);
+  background: var(--c-success);
+  color: var(--c-on-brand) !important;
+  box-shadow: var(--e-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  text-decoration: none !important;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.fab:hover {
+  transform: translateY(calc(var(--s-1) * -0.5));
+  box-shadow: var(--e-3);
+  text-decoration: none !important;
+}
+
+.fab:focus-visible {
+  outline: var(--bw-2) solid var(--c-focus);
+  outline-offset: var(--bw-2);
+}
+
+.icon {
+  inline-size: var(--s-6);
+  block-size: var(--s-6);
+  flex: none;
+}
+
+.label {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .label {
+    display: inline;
+  }
+}
