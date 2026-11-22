@@ -1,0 +1,176 @@
+{
+  "_meta": {
+    "description": "master→türev zinciri + alt text (AGENTS.md §5 Kural 3)",
+    "generated": "FAZ_2 Step 2.6"
+  },
+  "masters": [
+    {
+      "master": "media/en/heroes/trade-services-hero.png",
+      "type": "hero",
+      "alt": "Bdimexport sourcing and manufacturing services — global trade consultancy illustration",
+      "derivatives": [
+        {
+          "file": "public/media/en/heroes/trade-services-hero-master.webp",
+          "size": [
+            1024,
+            576
+          ],
+          "kind": "master"
+        },
+        {
+          "file": "public/media/en/heroes/trade-services-hero-og.webp",
+          "size": [
+            1200,
+            630
+          ],
+          "kind": "og-crop"
+        },
+        {
+          "file": "public/media/en/heroes/trade-services-hero-1920.webp",
+          "size": [
+            1920,
+            1080
+          ],
+          "kind": "hero"
+        }
+      ]
+    },
+    {
+      "master": "media/en/heroes/turkish-industries-hero.png",
+      "type": "hero",
+      "alt": "Turkish industry sectors — textile, food, machinery, home living and construction export illustration",
+      "derivatives": [
+        {
+          "file": "public/media/en/heroes/turkish-industries-hero-master.webp",
+          "size": [
+            1024,
+            576
+          ],
+          "kind": "master"
+        },
+        {
+          "file": "public/media/en/heroes/turkish-industries-hero-og.webp",
+          "size": [
+            1200,
+            630
+          ],
+          "kind": "og-crop"
+        },
+        {
+          "file": "public/media/en/heroes/turkish-industries-hero-1920.webp",
+          "size": [
+            1920,
+            1080
+          ],
+          "kind": "hero"
+        }
+      ]
+    },
+    {
+      "master": "media/en/heroes/turkish-products-catalog-hero.png",
+      "type": "hero",
+      "alt": "Turkish export products catalog — textiles, olive oil, ceramics and machinery illustration",
+      "derivatives": [
+        {
+          "file": "public/media/en/heroes/turkish-products-catalog-hero-master.webp",
+          "size": [
+            1024,
+            576
+          ],
+          "kind": "master"
+        },
+        {
+          "file": "public/media/en/heroes/turkish-products-catalog-hero-og.webp",
+          "size": [
+            1200,
+            630
+          ],
+          "kind": "og-crop"
+        },
+        {
+          "file": "public/media/en/heroes/turkish-products-catalog-hero-1920.webp",
+          "size": [
+            1920,
+            1080
+          ],
+          "kind": "hero"
+        }
+      ]
+    },
+    {
+      "master": "media/en/infographics/textile-production-process.png",
+      "type": "infographic",
+      "alt": "Turkish textile production process — 5 steps from fabric to export container",
+      "derivatives": [
+        {
+          "file": "public/media/en/infographics/textile-production-process-master.webp",
+          "size": [
+            1080,
+            1920
+          ],
+          "kind": "master"
+        }
+      ]
+    },
+    {
+      "master": "media/en/infographics/food-export-process.png",
+      "type": "infographic",
+      "alt": "Turkish food export process — 5 steps from production to certified shipment",
+      "derivatives": [
+        {
+          "file": "public/media/en/infographics/food-export-process-master.webp",
+          "size": [
+            1080,
+            1920
+          ],
+          "kind": "master"
+        }
+      ]
+    },
+    {
+      "master": "media/en/infographics/machinery-export-process.png",
+      "type": "infographic",
+      "alt": "Turkish machinery export process — 5 steps from blueprint to crane loading",
+      "derivatives": [
+        {
+          "file": "public/media/en/infographics/machinery-export-process-master.webp",
+          "size": [
+            1080,
+            1920
+          ],
+          "kind": "master"
+        }
+      ]
+    },
+    {
+      "master": "media/en/infographics/home-living-production-process.png",
+      "type": "infographic",
+      "alt": "Turkish home and living production process — 5 steps from pottery to export box",
+      "derivatives": [
+        {
+          "file": "public/media/en/infographics/home-living-production-process-master.webp",
+          "size": [
+            1080,
+            1920
+          ],
+          "kind": "master"
+        }
+      ]
+    },
+    {
+      "master": "media/en/infographics/construction-materials-process.png",
+      "type": "infographic",
+      "alt": "Turkish construction materials export process — 5 steps from quarry to flatbed truck",
+      "derivatives": [
+        {
+          "file": "public/media/en/infographics/construction-materials-process-master.webp",
+          "size": [
+            1080,
+            1920
+          ],
+          "kind": "master"
+        }
+      ]
+    }
+  ]
+}

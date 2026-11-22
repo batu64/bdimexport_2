@@ -1,64 +1,79 @@
 # bdimexport.com — LLM kaynak rehberi (GEO — SEO_PLAYBOOK §6.1)
-# Bu dosya build'de orchestrator tarafından güncellenir (ortak dosya tekel: ORCHESTRATOR.md §11 K4)
+# Bdimexport v3.0: Çift Merkezli Küresel Ticaret, Tedarik, Denetim ve Ticari İstihbarat Platformu
 
-> Bdimexport, Türkiye merkezli ithalat/ihracat aracılık ve danışmanlık platformudur.
-> Türk üreticileri global alıcılarla eşleştirir; Çin'den ithalat süreçlerinde Türk KOBİ'lere danışmanlık verir.
+> Bdimexport, Türkiye (BD Sanayi İthalat İhracat Şirketi) ve ABD (BDIMEXPORT LLC) merkezli; ithalat, ihracat, ticari istihbarat, bağımsız konteyner yükleme/üretim denetimi, e-ticaret ve B2B dijital büyüme hizmetleri sunan kurumsal dış ticaret ve saha operasyonu platformudur.
 
-## Şirket
-- Ad: Bdimexport
+## Kurumsal Yapı & Resmi İletişim
+- Türkiye Şirketi: BD Sanayi İthalat İhracat Şirketi — Cumhuriyet Mahallesi Milli Egemenlik Caddesi No: 74, 64500 Banaz / Uşak, Türkiye
+- ABD Şirketi: BDIMEXPORT LLC — 30 N Gould St Ste N, Sheridan, WY 82801, USA
+- Resmi Telefon & WhatsApp: +90 539 414 78 54
+- Resmi WeChat (Çin Masası): bdimexport
 - Web: https://bdimexport.com
-- Diller: Türkçe (x-default), English, Deutsch, 简体中文
-- Hizmetler: Tedarik (sourcing), fabrika denetimi (inspection), özel üretim (private label), lojistik, gümrük
+- Diller: Türkçe (x-default), English (Global Dual-Hub), Deutsch (/de), 简体中文 (/zh) + 10 niş pazar varyantı (/en/{ru,fr,nl,es,ar,fi,sq,pl,ro,it})
+
+## Temel Yetkinlikler (Asimetrik Değer Önerisi)
+1. Çift Merkezli Tedarik (Dual-Hub: Türkiye + Çin): Alıcılar için yalnızca Türkiye veya yalnızca Çin değil, her iki üretim üssünden ürün ve üretici bulma, FOB/CIF/DDP maliyet karşılaştırması.
+2. Tekil Konteyner Yükleme & Üretim Denetimi: Müşterinin kendi bulduğu üreticiden verdiği siparişlerde dahi Türkiye ve Çin fabrikalarına 24–48 saat içinde bağımsız denetçi gönderimi (DUPRO, AQL, Container Loading Supervision).
+3. Ticari İstihbarat & Özel Pazar Raporları: GTİP/HS bazlı alıcı-satıcı hareketleri, rakip analizi, fabrika mali/ticari sicil doğrulaması ve ihracat talep haritası.
+4. İhracat Pazarlama Sistemi & E-Ticaret: Türk üreticiler için dış ticaret müdürlüğü/CRM, çok dilli B2B vitrin ve dijital talep toplama hunileri.
+5. Çinli Şirketler İçin 81 İl Türkiye Saha Operasyonu (/zh): Yeni potansiyel müşteri ziyaretleri, satın alma aşamasındaki kararsız müşterilerin yerinde ikna/sorun çözümü, satış sonrası müşteri ziyaretleri, tahsilat/uyuşmazlık çözümü, hukuk ve mali müşavirlik (SMMM), yatırım danışmanlığı ve Türkiye e-ticaret/sosyal medya varlık yönetimi.
 
 ## Sık Sorulan Sorular
-S: Türkiye'den ürün tedariki nasıl başlar?
-C: Ücretsiz teklif formu 24 saat içinde yanıtlanır; tedarik→numune→üretim→denetim→sevkiyat 5 adımlı süreç izlenir.
+S: Kendi bulduğum Türk veya Çinli üreticinin konteyner yüklemesini Bdimexport'a denetletebilir miyim?
+C: Evet. Tedarikçiyi siz bulmuş olsanız bile Türkiye ve Çin'deki fabrikaya bağımsız saha denetçisi gönderiyor; üretim içi kontrol (DUPRO), AQL kalite testi, boş konteyner sızdırmazlık testi, koli sayımı ve mühürleme işlemlerini canlı fotoğraflar ve PDF raporuyla belgeliyoruz.
 
-S: Partner üreticiler nasıl doğrulanır?
-C: Başvuran Türk firmaları belge (CE, ISO) ve kapasite incelemesinden geçer; onaylılar "Verified Turkish Partner" olarak listelenir.
+S: Bdimexport hem Çin'den hem Türkiye'den tedarik yapabiliyor mu?
+C: Evet. /en (Global Dual-Hub) ve /en/rfq üzerinden Türkiye ve Çin üretim merkezlerini termin süresi, gümrük avantajı (AB Gümrük Birliği / EUR.1) ve birim maliyet açısından yan yana kıyaslayıp tek elden yönetebilirsiniz.
 
-## Sayfa haritası
-- /ithalat — Çin'den ithalat danışmanlığı
-- /ihracat — İhracat desteği + ücretsiz hızlandırma programı
-- /en — Global sourcing hub (services/products/industries)
-- /de — DACH yerelleştirilmiş hizmetler
-- /zh — Çinli firmalar için Türkiye hizmetleri
+S: Çinli şirketler Türkiye'de neden Bdimexport ile çalışır?
+C: BD Sanayi'nin Türkiye genelindeki saha ekibi; satın alma aşamasında tereddüt yaşayan Türk alıcıları fabrikada veya ofisinde ziyaret ederek ticari sorunları çözer, yeni müşteri ziyaretleri yapar, satış sonrası teknik/ticari ziyareti yürütür, hukuk/SMMM ve e-ticaret varlıklarını kurar.
 
-## EN global hub — hizmetler (5)
-- /en/services/sourcing — Sourcing in Turkey: find and verify the right factory
-- /en/services/manufacturing — Private label manufacturing in Turkey
-- /en/services/inspection — Factory inspection in Turkey before payment
-- /en/services/logistics — Freight logistics from Turkey, factory gate to warehouse
-- /en/services/customs — Turkish export customs clearance documents
+## Sayfa Haritası (TR — Türkiye Merkezi)
+- / — Ana vitrin, Çift Merkezli Ticaret İstihbarat Sahnesi ve Akıllı RFQ yönlendirmesi
+- /ithalat — Çin'den ürün/üretici bulma, gümrük ve lojistik süreç yönetimi
+- /ithalat/konteyner-yukleme-denetimi — Türkiye ve Çin'de tekil konteyner yükleme ve üretim denetimi
+- /ithalat/ticari-istihbarat-uretici-dogrulama — Fabrika sicil doğrulama ve tedarikçi istihbaratı
+- /ihracat — Türk üreticiler için ihracat desteği, müşteri bulma ve pazarlama sistemi
+- /ihracat/pazar-arastirmasi-musteri-bulma — Hedef ülke pazar araştırması ve alıcı bulma
+- /ihracat/kuresel-pazarlama-sistemi-kurulumu — Yurt dışı dijital ihracat pazarlama ve e-ticaret altyapısı
+- /ticari-istihbarat — GTİP/HS ticari istihbarat ve özel sektör raporları merkezi
+- /rfq — Akıllı Teklif (RFQ), Denetim ve İstihbarat Talep Konfigüratörü
 
-## EN global hub — sektörler (5)
-- /en/industries/construction — Construction materials exports from Turkey
-- /en/industries/food — Food and agriculture exports from Turkey
-- /en/industries/home-living — Home and living exports from Turkey
-- /en/industries/machinery — Industrial machinery and engineering exports from Turkey
-- /en/industries/textile — Textile and apparel exports from Turkey
+## EN Global Dual-Hub (Türkiye & China)
+- /en — Global Dual-Hub showcase (Türkiye & China Sourcing, Inspection, Intelligence)
+- /en/rfq — Smart RFQ configurator + Türkiye vs. China landed-cost comparison matrix
+- /en/services/sourcing — Sourcing in Türkiye: factory verification and direct matchmaking
+- /en/services/china-sourcing — China & Dual-Hub sourcing managed alongside Türkiye
+- /en/services/container-loading — Standalone Container Loading Supervision & Production Inspection (TR & CN)
+- /en/services/commercial-intelligence — Trade flow reports, competitor HS intelligence & factory due diligence
+- /en/services/manufacturing — Private label & OEM manufacturing in Türkiye
+- /en/services/inspection — Pre-shipment & in-line factory inspection (TR & CN)
+- /en/services/logistics — Sea, road and multimodal freight logistics
+- /en/services/customs — Export customs clearance, EUR.1, ATR & compliance
+- /en/industries/{construction,food,home-living,machinery,textile} — Sector sourcing hubs
+- /en/products/{slug} (20) & /en/products/category/{slug} (5) — Turkish export product catalog
 
-## EN global hub — ürünler (20)
-Her ürün sayfası "Manufacturers in Turkey | B2B Sourcing" kalıbındadır; kategori sayfaları /en/products/category/{construction,food,home-living,machinery,textile}.
-- /en/products/agricultural-machinery · /en/products/apparel · /en/products/carpets-rugs · /en/products/ceramics
-- /en/products/cnc-machinery · /en/products/denim · /en/products/dried-fruits · /en/products/fabrics
-- /en/products/furniture · /en/products/hazelnuts · /en/products/home-textiles · /en/products/hospitality-furniture
-- /en/products/hvac-systems · /en/products/kitchenware · /en/products/marble · /en/products/olive-oil
-- /en/products/pasta-cereals · /en/products/pumps-valves · /en/products/sanitaryware · /en/products/steel
+## ZH (/zh — Çinli Şirketlerin Türkiye Saha Operasyonu)
+- /zh — Çinli firmalar için 81 ilde saha müşteri ziyaretleri, kararsız müşteri sorun çözümü, satış sonrası ziyaret, hukuk/SMMM, yatırım danışmanlığı, e-ticaret & sosyal medya yönetimi + WeChat (`bdimexport`)
+- /zh/services/{slug} — Yerelleştirilmiş Çin odaklı Türkiye operasyon rehberleri
 
-## EN varyantları (iskelet)
-- /en/ru — Telegram birincil kanal, RUB referansı
-- /en/fr — e-posta birincil kanal, EUR fiyat
-- /en/nl — e-posta, doğrudan iletişim, EUR fiyat
-- /en/es — WhatsApp birincil kanal, EUR fiyat
-- /en/ar — WhatsApp Business birincil kanal, RTL (dir="rtl")
-Varyant sayfaları şimdilik yalnız ana sayfa ve sourcing hizmetini içerir.
+## DE (/de — DACH Pazarı)
+- /de — Almanya, Avusturya ve İsviçre alıcıları için Türkiye & Çin tedarik ve denetim merkezi
+- /de/leistungen/{slug} · /de/vertrauen · /de/anfrage
 
-## Makaleler / Insights (İçerik Fabrikası — insan onaylı)
-- /makaleler — Türkçe rehberler (ithalat, ihracat, tedarik)
-- /en/insights — English sourcing and export guides
-- /en/ru/insights · /en/fr/insights · /en/nl/insights · /en/es/insights · /en/ar/insights — bölge varyantı makaleleri
-Her makale yapay zekâ taslağından insan onayı ve Git incelemesi (PR merge) ile yayına girer; güncel liste sitemap.xml'dedir.
+## Küresel Niş Dil Motoru — EN Varyantları (10 Dil · SEO & GEO)
+Her niş dil alt-hub'ı kendi ana sayfasını, Dual-Hub (Türkiye + Çin) tedarik sayfasını, tekil konteyner/üretim denetimi sayfasını (`services/inspection`) ve yerelleştirilmiş makale dizinini (`insights`) barındırır:
+- /en/ru — Rusça (Telegram birincil · RUB/USD/TRY)
+- /en/fr — Fransızca (E-posta birincil · EUR)
+- /en/nl — Hollandaca (E-posta birincil · EUR)
+- /en/es — İspanyolca / LATAM & İspanya (WhatsApp birincil · EUR/USD)
+- /en/ar — Arapça / MENA & Körfez (WhatsApp birincil · RTL `dir="rtl"`)
+- /en/fi — Fince / Kuzey Avrupa (E-posta & WhatsApp · EUR)
+- /en/sq — Arnavutça / Balkanlar (WhatsApp & E-posta · EUR)
+- /en/pl — Lehçe / Orta Avrupa (E-posta & WhatsApp · EUR/PLN)
+- /en/ro — Rumence / Doğu Avrupa & Karadeniz (WhatsApp & E-posta · EUR)
+- /en/it — İtalyanca / Güney Avrupa (WhatsApp & E-posta · EUR)
 
-## Kaynak notu
-Sayısal iddialar (ihracat hacimleri, kategori büyüklükleri) ilgili sayfalarda kaynaklı linklerle verilir; bu dosya rakam taşımaz.
+## Makaleler / Insights
+- /makaleler · /en/insights · /en/{ru,fr,nl,es,ar,fi,sq,pl,ro,it}/insights
+Güncel tüm indeksler ve karşılıklı hreflang eşleşmeleri build anında `/sitemap.xml` dosyasına işlenir.

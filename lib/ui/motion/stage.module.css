@@ -1,0 +1,213 @@
+/* Interactive Remotion-style kinetic stage — yalnız design token CSS değişkenleri + mantıksal CSS (RTL uyumlu). */
+.wrap {
+  display: grid;
+  gap: var(--s-6);
+}
+.tabs {
+  display: grid;
+  gap: var(--s-3);
+}
+@media (min-width: 768px) {
+  .tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  min-block-size: var(--touch);
+  padding-block: var(--s-3);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid var(--c-border);
+  background: var(--c-surface);
+  color: var(--c-heading);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  text-align: start;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.tab:hover {
+  border-color: var(--c-accent);
+  transform: translateY(calc(-1 * var(--bw-2)));
+}
+.tab[aria-selected="true"] {
+  background: var(--c-highlight);
+  color: var(--c-on-highlight);
+  border-color: var(--c-highlight);
+  box-shadow: var(--e-2);
+}
+.tabArrow {
+  inline-size: var(--s-4);
+  block-size: var(--s-4);
+  flex: none;
+  opacity: 0.7;
+}
+[dir="rtl"] .tabArrow { transform: scaleX(-1); }
+
+.stage {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-highlight) 35%, transparent);
+  background:
+    radial-gradient(ellipse 75% 60% at 80% 15%, color-mix(in srgb, var(--c-accent-on-brand) 16%, transparent), transparent 65%),
+    var(--c-brand);
+  color: var(--c-on-brand);
+  padding: var(--s-6);
+  box-shadow: var(--e-3);
+}
+@media (min-width: 768px) {
+  .stage { padding: var(--s-12); }
+}
+
+.topBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-block-end: var(--s-4);
+  border-block-end: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 14%, transparent);
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius-pill);
+  background: var(--c-highlight);
+  color: var(--c-on-highlight);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-stat);
+  letter-spacing: var(--track-caps);
+}
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-xs);
+  color: var(--c-accent-on-brand);
+  font-weight: var(--fw-label);
+}
+.dot {
+  inline-size: var(--s-2);
+  block-size: var(--s-2);
+  border-radius: 50%;
+  background: var(--c-highlight);
+}
+
+.heroCopy {
+  margin-block: var(--s-6);
+  display: grid;
+  gap: var(--s-3);
+}
+.stageTitle {
+  color: var(--c-on-brand);
+  font-size: var(--type-h3);
+  font-weight: var(--fw-stat);
+  line-height: var(--lh-heading);
+}
+.stageLead {
+  color: var(--c-on-brand-muted);
+  font-size: var(--fs-base);
+  max-inline-size: 68ch;
+}
+
+.progressBox {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-4);
+  margin-block-end: var(--s-6);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 14%, transparent);
+  background: color-mix(in srgb, var(--c-on-brand) 5%, transparent);
+}
+.progressMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-2);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  color: var(--c-on-brand);
+}
+.progressPct { color: var(--c-highlight); font-variant-numeric: tabular-nums; }
+.track {
+  inline-size: 100%;
+  block-size: var(--s-2);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--c-on-brand) 14%, transparent);
+  overflow: hidden;
+}
+.fill {
+  block-size: 100%;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--c-accent-on-brand), var(--c-highlight));
+}
+
+.cards {
+  display: grid;
+  gap: var(--s-4);
+}
+@media (min-width: 768px) {
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.card {
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+  padding: var(--s-4);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-highlight) 30%, transparent);
+  background: color-mix(in srgb, var(--c-on-brand) 6%, transparent);
+}
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+.cardCode {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  color: var(--c-highlight);
+  letter-spacing: var(--track-caps);
+}
+.cardTag {
+  font-size: var(--fs-xs);
+  padding-block: calc(var(--s-1) / 2);
+  padding-inline: var(--s-2);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--c-accent-on-brand) 18%, transparent);
+  color: var(--c-accent-on-brand);
+  font-weight: var(--fw-label);
+}
+.cardTitle {
+  color: var(--c-on-brand);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-heading);
+}
+.cardDesc {
+  color: var(--c-on-brand-muted);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+}
+
+.foot {
+  margin-block-start: var(--s-6);
+  padding-block-start: var(--s-3);
+  border-block-start: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 14%, transparent);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-2);
+  font-size: var(--fs-xs);
+  color: var(--c-on-brand-muted);
+}
+.footAccent { color: var(--c-highlight); font-weight: var(--fw-label); }

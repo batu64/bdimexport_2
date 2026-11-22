@@ -8,65 +8,127 @@
       { "label": "Services", "href": "/en/services" },
       { "label": "Products", "href": "/en/products" },
       { "label": "Industries", "href": "/en/industries" },
+      { "label": "Smart RFQ", "href": "/en/rfq" },
       { "label": "Insights", "href": "/en/insights" }
     ],
-    "cta": "Get Free Quotation",
+    "cta": "Start Smart RFQ",
     "menuOpen": "Open menu",
     "menuClose": "Close menu",
     "sites": "Market / language"
   },
   "quote": {
     "subject": "Quotation request (bdimexport.com)",
-    "body": "Product / service needed:\nQuantity:\nTarget market:\nDeadline:\nTarget price (optional):\n"
+    "body": "Product / service needed:\nOrigin hub (Türkiye / China / Dual-Hub):\nQuantity:\nTarget market:\nDeadline:\n"
   },
   "home": {
     "hero": {
-      "eyebrow": "B2B sourcing from Türkiye",
-      "h1": "Source from Verified Turkish Manufacturers",
-      "sub": "We handle sourcing, factory inspection, private label and logistics end-to-end, so you know who produces your order before it ships. Free quotation within 24 hours.",
-      "ctaPrimary": "Get Free Quotation in 24h",
-      "ctaSecondary": "Explore Our Services",
-      "trust": ["Independent factory inspection", "Fee quoted separately from third-party costs", "Free quotation in 24h"],
+      "eyebrow": "Dual-Hub Sourcing (Türkiye & China) · US & Turkish Corporate Structure",
+      "h1": "One-Stop Sourcing, Container Supervision and Trade Intelligence Across Türkiye and China",
+      "sub": "Whether you want verified manufacturers in Türkiye or China, standalone container loading supervision and production inspection for your existing orders, or HS-code commercial intelligence reports — our on-ground teams deliver within 24–48 hours.",
+      "ctaPrimary": "Launch Smart RFQ (24h)",
+      "ctaSecondary": "Book Inspection / Loading Check",
+      "trust": [
+        "Dual-Hub sourcing: Türkiye & China",
+        "Standalone container loading & QC (even for your own supplier)",
+        "BDIMEXPORT LLC (USA) + BD Sanayi (Türkiye)"
+      ],
       "visual": {
-        "title": "Order progress",
-        "caption": "Example view",
-        "route": "Türkiye → your port",
-        "steps": ["Supplier verification", "Factory inspection", "Production follow-up", "Logistics and customs"],
-        "done": "Done",
-        "active": "In progress",
-        "next": "Next",
-        "badge": "Photo inspection report within 48h"
+        "title": "Dual-Hub Verification",
+        "caption": "Live execution scope",
+        "route": "TR & CN ⇄ Global",
+        "steps": [
+          "Factory & registry verification",
+          "During-production QC (DUPRO)",
+          "Container loading & seal proof",
+          "Customs & port dispatch"
+        ],
+        "done": "Verified",
+        "active": "On-site",
+        "next": "Sealed",
+        "badge": "Live photos + full PDF report in 24–48h"
       }
     },
     "stats": {
       "label": "Facts and commitments",
-      "quote": { "unit": "h", "label": "to your free quotation" },
-      "exports": { "unit": "US$ bn", "label": "2025 exports of the product groups we cover (UN Comtrade)" },
-      "services": { "label": "end-to-end services" },
-      "products": { "label": "product pages with sourcing data" }
+      "quote": { "unit": "h", "label": "to your free sourcing or inspection quote" },
+      "exports": { "unit": "US$ bn", "label": "2025 exports of Turkish product groups we cover (UN Comtrade)" },
+      "services": { "label": "sourcing, loading QC & trade intelligence modules" },
+      "products": { "label": "product hubs with sourcing & compliance specs" }
+    },
+    "stage": {
+      "eyebrow": "Interactive Operations Engine",
+      "title": "How We Protect Global Buyers Across Türkiye and China",
+      "lead": "Explore our three operational modules: Dual-Hub sourcing comparison, standalone container loading supervision, and commercial intelligence due diligence.",
+      "tabs": [
+        {
+          "tabLabel": "01 · Dual-Hub Sourcing (TR & CN)",
+          "badge": "MODULE 01 · TURKEY + CHINA SOURCING",
+          "liveLabel": "DUAL-HUB COST & LEAD-TIME ENGINE",
+          "title": "Compare Verified Turkish vs. Chinese Factories Side by Side",
+          "lead": "Never guess between Türkiye and China. We model landed cost, MOQ, EU ATR 0% duty vs. mass tooling capacity across both manufacturing powerhouses.",
+          "progressLabel": "Dual-Origin Shortlist & Landed-Cost Comparison",
+          "metrics": [
+            { "code": "TR-HUB", "tag": "Fast EU/MENA", "title": "Türkiye Sourcing & Private Label", "desc": "3–7 day European delivery, EU ATR 0% industrial duty, flexible MOQ, and fast re-orders." },
+            { "code": "CN-HUB", "tag": "High Scale", "title": "Direct China Factory Sourcing", "desc": "Verified factories (non-brokers), tooling ownership protection, and multi-factory sample consolidation." },
+            { "code": "DUAL-03", "tag": "Unbiased", "title": "Side-by-Side Landed Cost Matrix", "desc": "EXW/FOB, ocean/road freight, and destination customs tariffs modeled in one spreadsheet." }
+          ],
+          "footnote": "US-registered BDIMEXPORT LLC & Turkish BD Sanayi operational accountability.",
+          "footRight": "Dual-origin quotes delivered within 24 hours"
+        },
+        {
+          "tabLabel": "02 · Standalone Container & QC Audit",
+          "badge": "MODULE 02 · ON-SITE FIELD SUPERVISION",
+          "liveLabel": "AVAILABLE FOR YOUR OWN SUPPLIERS",
+          "title": "Independent Eyes at the Factory Gate and Container Loading Bay",
+          "lead": "Already found a factory in Türkiye or China? Book our inspector within 24–48h to verify production quality, tally every carton, and seal your container.",
+          "progressLabel": "7-Point Container Inspection & AQL Quality Gate",
+          "metrics": [
+            { "code": "CLS-01", "tag": "Loading Check", "title": "Container Loading Supervision", "desc": "Moisture/roof check, exact carton count, barcode verification, and numbered bolt seal proof." },
+            { "code": "DUPRO-02", "tag": "In-Process", "title": "Mid-Production Quality Audit", "desc": "Catch mold, finish, and dimension defects at 20–40% completion before final packing." },
+            { "code": "PSI-03", "tag": "Pre-Shipment", "title": "ISO 2859-1 (AQL) Final Inspection", "desc": "Objective pass/fail reporting before you release your 70% balance payment." }
+          ],
+          "footnote": "Fixed transparent fee independent of cargo value — zero conflict of interest.",
+          "footRight": "Live WhatsApp loading photos + 48h PDF report"
+        },
+        {
+          "tabLabel": "03 · Commercial Intelligence Reports",
+          "badge": "MODULE 03 · TRADE INTELLIGENCE & DUE DILIGENCE",
+          "liveLabel": "CORPORATE REGISTRY & HS-CODE DATA",
+          "title": "Verify Every Supplier and Calculate True Landed Cost Before Paying",
+          "lead": "Prevent wire fraud, trading-company markups, and unexpected customs duties with evidence-backed reports delivered within 48–72 hours.",
+          "progressLabel": "Corporate Verification & Tariff Risk Assessment",
+          "metrics": [
+            { "code": "KYC-01", "tag": "Anti-Fraud", "title": "Factory Registry & Bank Audit", "desc": "Verify real production scope, export license, litigation record, and proforma beneficiary match." },
+            { "code": "HS-02", "tag": "Tariff Model", "title": "HS-Code Duty & Compliance Report", "desc": "CE, FDA, TAREKS, anti-dumping, and preferential origin duties mapped prior to shipping." },
+            { "code": "MKT-03", "tag": "Trade Data", "title": "Market Benchmark & Competitor Map", "desc": "Real export price corridors and country-by-country supply chain resilience analysis." }
+          ],
+          "footnote": "Bookable as a standalone 72-hour intelligence report before signing any contract.",
+          "footRight": "Executive PDF brief + verified documentation"
+        }
+      ]
     },
     "services": {
       "eyebrow": "Services",
-      "title": "One team from sourcing to your port",
-      "lead": "Pick a single service or let us run the whole chain. You always know which factory produces your order.",
+      "title": "One Operational Partner Across Sourcing, Loading QC and Intelligence",
+      "lead": "Book a single standalone inspection or delegate your entire Türkiye and China supply chain end-to-end.",
       "more": "All services"
     },
     "industries": {
       "eyebrow": "Industries",
-      "title": "Where Türkiye is a strong sourcing base",
-      "lead": "Export figures are the sum of the linked UN Comtrade values for the product groups on each page.",
+      "title": "Where Türkiye and China Complement Your Supply Chain",
+      "lead": "Export figures reflect verified UN Comtrade data for Turkish product groups covered on our industry pages.",
       "figure": "2025 exports: US$ {n} bn",
       "more": "All industries"
     },
     "process": {
       "eyebrow": "Process",
-      "title": "How a typical order runs",
+      "title": "How a Typical Order or Standalone Inspection Runs",
       "steps": [
-        { "title": "Request and quotation", "text": "Tell us product, quantity and target market; your quotation arrives within 24 hours." },
-        { "title": "Supplier shortlist", "text": "We screen Turkish manufacturers on documents, capacity and export history." },
-        { "title": "Samples and inspection", "text": "Samples are compared, and an independent inspector checks the factory." },
-        { "title": "Production follow-up", "text": "We track the schedule and report progress at every step." },
-        { "title": "Logistics and customs", "text": "Export customs and freight are handled through to your port." }
+        { "title": "Smart RFQ & Brief", "text": "Select sourcing, standalone container supervision, or trade intelligence; receive scope & quote within 24h." },
+        { "title": "Supplier & Registry Verification", "text": "We validate factory licenses, capacity, and export records across Türkiye or China." },
+        { "title": "Samples & Mid-Production Check", "text": "Compare consolidated samples and catch batch defects early during production." },
+        { "title": "Container Loading & Seal Supervision", "text": "On-site tally, AQL testing, lashing check, and numbered container seal confirmation." },
+        { "title": "Customs, Freight & Handover", "text": "Export clearance, ATR/COO certification, and door/port delivery tracking." }
       ]
     },
     "partners": {
@@ -76,9 +138,63 @@
       "empty": "Our first Verified Turkish Partners are coming soon."
     },
     "cta": {
-      "title": "Tell us what you need. We quote within 24 hours.",
-      "lead": "Product, quantity, destination and deadline are enough to start. Our fee is quoted separately from third-party costs."
+      "title": "Source Smarter or Supervise Your Next Container Within 24 Hours",
+      "lead": "Start a Dual-Hub RFQ, schedule an independent container loading inspection, or order a supplier verification report."
     }
+  },
+  "rfq": {
+    "eyebrow": "Smart RFQ & Field Operations Configurator",
+    "title": "Configure Your Sourcing, Inspection or Trade Intelligence Request",
+    "lead": "Select your required service, origin hub (Türkiye, China, or Dual-Hub Comparison), and cargo scope. Send instantly via WhatsApp, email, or API.",
+    "step1Label": "1. Select Service Track",
+    "tracks": [
+      { "id": "sourcing", "title": "Product & Factory Sourcing (TR / CN)", "desc": "Verified manufacturer shortlist, OEM private label, samples & FOB/CIF/DDP delivery." },
+      { "id": "inspection", "title": "Container Loading & Production QC", "desc": "Standalone 24–48h factory audit, AQL inspection & container seal check for your own supplier." },
+      { "id": "intelligence", "title": "Commercial Intelligence Report", "desc": "Supplier registry due diligence, HS-code tariff analysis & landed-cost modeling." },
+      { "id": "marketing", "title": "Market Entry & Digital Distribution", "desc": "Regional buyer outreach, e-commerce localization & local commercial representation." }
+    ],
+    "step2Label": "2. Preferred Origin Hub",
+    "origins": [
+      { "id": "dual", "label": "Dual-Hub Comparison (Türkiye + China)" },
+      { "id": "tr", "label": "Türkiye Hub (Fast EU/US Delivery)" },
+      { "id": "cn", "label": "China Hub (Scale & Tooling)" }
+    ],
+    "volumesLabel": "3. Estimated Volume / Service Scope",
+    "volumes": ["Standalone Inspection / Report", "Sample / LCL Consolidation", "1× 20GP Container", "1× 40HQ Container", "Recurring Monthly Orders"],
+    "fields": {
+      "productLabel": "Product or Inspection Scope",
+      "productPlaceholder": "e.g., Home textiles, CNC components, furniture or loading supervision in Izmir/Ningbo",
+      "hsLabel": "HS Code (Optional)",
+      "hsPlaceholder": "e.g., 6302.60 or unknown",
+      "companyLabel": "Company Name",
+      "companyPlaceholder": "e.g., Nordic Home Imports Ltd.",
+      "targetMarketLabel": "Destination Country / Port",
+      "targetMarketPlaceholder": "e.g., Germany / Hamburg, Finland / Helsinki, USA / NY",
+      "emailLabel": "Work Email",
+      "emailPlaceholder": "buyer@company.com",
+      "notesLabel": "Technical Specs / Target Timing",
+      "notesPlaceholder": "Target price, required certifications (CE, ISO, OEKO-TEX), loading window..."
+    },
+    "summaryTitle": "Structured B2B RFQ Brief",
+    "slaBadge": "24H WRITTEN RESPONSE",
+    "copyBtn": "Copy RFQ Brief",
+    "copiedBtn": "Copied ✓",
+    "whatsappBtn": "Send via WhatsApp",
+    "emailBtn": "Send via Email",
+    "submitBtn": "Submit to System",
+    "submittedMsg": "RFQ received! Our operational desk will respond within 24 hours.",
+    "emailSubject": "Bdimexport Dual-Hub RFQ"
+  },
+  "dualHub": {
+    "eyebrow": "Asymmetric Supply-Chain Advantage",
+    "title": "Türkiye vs. China: Why Smart Importers Use Both Hubs",
+    "lead": "Our Dual-Hub desk compares unit manufacturing cost, transit days, EU customs duties, and MOQ flexibility objectively.",
+    "rows": [
+      { "metric": "EU / UK / MENA Transit", "tr": "3–7 days (Road / Short-Sea)", "cn": "28–40 days (Ocean Freight)" },
+      { "metric": "EU Industrial Customs Duty", "tr": "0% with ATR Certificate", "cn": "Standard MFN / Anti-Dumping" },
+      { "metric": "Minimum Order (MOQ)", "tr": "Low & Mid-Volume Friendly", "cn": "High-Volume Mass Production" },
+      { "metric": "On-Site Container & QC", "tr": "24–48h Field Inspector", "cn": "24–48h Field Inspector" }
+    ]
   },
   "page": {
     "crumbs": "Breadcrumb",
@@ -96,31 +212,37 @@
     "related": { "services": "Other services", "categories": "Other categories", "industries": "Other industries" },
     "aside": {
       "title": "Free quotation in 24h",
-      "text": "Send product, quantity, destination and deadline. You receive a free quotation within 24 hours.",
-      "cta": "Request a quotation",
-      "services": "Explore our services"
+      "text": "Send product, origin preference, quantity and destination via Smart RFQ. Receive scope and quote in 24h.",
+      "cta": "Start Smart RFQ",
+      "services": "Explore all services"
     },
     "productsInCategory": "Products in this category",
-    "preparing": "Product pages for this category are being prepared. Send your requirements now and we will quote in 24h.",
+    "preparing": "Product pages for this category are being prepared. Send your requirements via Smart RFQ and we will quote in 24h.",
     "industryLink": "Read the {name} industry overview",
     "partnersTitle": "Verified Turkish Partners",
     "partnersEmpty": "Approved partners for this category will be listed here after their review is complete.",
     "partnersProduct": "Approved partners are being onboarded. Verified manufacturers for this product category will appear here as soon as their review is complete.",
-    "quoteTitle": "Get Free Quotation in 24h",
-    "quoteLead": "Tell us what you need, how much, where it should go and by when. Our fee is quoted separately from third-party costs.",
-    "quoteCta": "Request a quotation by email",
+    "quoteTitle": "Get Free Sourcing or Inspection Quotation in 24h",
+    "quoteLead": "Request Türkiye/China factory sourcing, standalone container loading supervision, or a trade intelligence brief.",
+    "quoteCta": "Launch Smart RFQ",
     "notFound": "Page not found",
-    "insightsLead": "Sourced guides on buying from Türkiye. Every article is reviewed by a person before it is published.",
+    "insightsLead": "Sourced guides on buying from Türkiye and China. Every article is reviewed by a person before it is published.",
     "insightsEmpty": "No articles published yet. New guides appear here after human review."
   },
   "footer": {
-    "tagline": "B2B sourcing, inspection and export logistics from Türkiye — one team, end to end.",
-    "services": "Services",
+    "tagline": "US & Turkish corporate sourcing, container supervision, export logistics and trade intelligence across Türkiye and China.",
+    "services": "Services & QC",
     "products": "Products",
     "industries": "Industries",
-    "sites": "Markets",
-    "contact": "Contact",
+    "sites": "Markets & Niche Languages",
+    "contact": "Direct Desk",
     "email": "Write to us",
+    "phone": "Phone / WhatsApp",
+    "entitiesTitle": "Registered Corporate Entities",
+    "entityBadges": {
+      "us": "United States Entity",
+      "tr": "Türkiye Operations Entity"
+    },
     "rights": "All rights reserved."
   }
 }

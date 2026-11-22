@@ -1,0 +1,29 @@
+{
+  "label": "Shqip",
+  "channels": [
+    { "id": "whatsapp", "text": "WhatsApp" },
+    { "id": "email", "text": "E-mail" }
+  ],
+  "ctaNote": "Ofertë falas brenda 24 orësh · Çmimet në EUR",
+  "tagline": "Furnizim B2B, inspektim kontejnerësh dhe inteligjencë tregtare nga Turqia dhe Kina",
+  "home": "Kryefaqja",
+  "navLabel": "Navigimi",
+  "switcherLabel": "Gjuha",
+  "contact": {
+    "title": "Na kontaktoni",
+    "body": "Kanali ynë kryesor për importuesit nga Shqipëria dhe Kosova është WhatsApp, ndërsa kanali dytësor është posta elektronike. Lidhjet e drejtpërdrejta aktivizohen pas konfigurimit të kanalit. Dërgoni produktin, sasinë ose adresën e fabrikës (Turqi ose Kinë) — përgjigjemi brenda 24 orësh me çmime në EUR (+355 / +383)."
+  },
+  "sourcing": { "label": "Furnizimi (TR & CN)" },
+  "inspection": { "label": "Kontrolli i ngarkimit dhe fabrikës" },
+  "skip": "Kalo te përmbajtja",
+  "crumbs": "Gjurma e faqes",
+  "menuOpen": "Hap menynë",
+  "menuClose": "Mbyll menynë",
+  "insights": "Artikuj",
+  "toc": "Në këtë faqe",
+  "read": "Lexo",
+  "languages": "Gjuhët",
+  "rights": "Të gjitha të drejtat e rezervuara.",
+  "insightsLead": "Udhëzues praktikë për blerjen dhe inspektimin nga Turqia dhe Kina.",
+  "insightsEmpty": "Nuk ka ende artikuj të publikuar. Udhëzuesit e rinj do të shfaqen këtu pas rishikimit."
+}

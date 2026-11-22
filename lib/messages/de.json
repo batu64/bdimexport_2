@@ -176,6 +176,12 @@
     "datenschutz": "Datenschutz",
     "contact": "Kontakt",
     "email": "E-Mail schreiben",
+    "phone": "Telefon / WhatsApp",
+    "entitiesTitle": "Unternehmensstruktur",
+    "entityBadges": {
+      "tr": "Operative Gesellschaft (Türkei)",
+      "us": "US-Gesellschaft (USA)"
+    },
     "rights": "Alle Rechte vorbehalten."
   }
 }

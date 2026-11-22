@@ -11,7 +11,7 @@ const OUT = path.join(ROOT, "public", "media", "video");
 const ids = process.argv.slice(2).length ? process.argv.slice(2) : ["hero-loop", "process-flow"];
 // kalite/boyut: arka plan ve dekoratif şerit → yüksek sıkıştırma yeterli
 const CRF = { webm: 40, mp4: 28 };
-const POSTER_FRAME = { "hero-loop": 60, "process-flow": 150 };
+const POSTER_FRAME = { "hero-loop": 60, "process-flow": 150, "dual-hub-radar": 90 };
 
 fs.mkdirSync(OUT, { recursive: true });
 await ensureBrowser();

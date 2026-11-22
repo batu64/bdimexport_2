@@ -1,0 +1,29 @@
+{
+  "label": "Română",
+  "channels": [
+    { "id": "whatsapp", "text": "WhatsApp" },
+    { "id": "email", "text": "E-mail" }
+  ],
+  "ctaNote": "Ofertă gratuită în 24 de ore · Prețuri în EUR",
+  "tagline": "Aprovizionare B2B, inspecție încărcare containere și inteligență comercială (Turcia și China)",
+  "home": "Acasă",
+  "navLabel": "Navigare",
+  "switcherLabel": "Limbă",
+  "contact": {
+    "title": "Contactați-ne",
+    "body": "Canalul principal pentru companiile din România este WhatsApp, iar cel secundar este poșta electronică. Linkurile directe vor fi activate odată cu lansarea canalelor. Trimiteți produsul, cantitatea sau adresa fabricii (Turcia sau China) — răspundem în 24 de ore cu prețuri în EUR (format +40)."
+  },
+  "sourcing": { "label": "Aprovizionare (TR & CN)" },
+  "inspection": { "label": "Inspecție fabrică și container" },
+  "skip": "Sari la conținut",
+  "crumbs": "Navigare",
+  "menuOpen": "Deschide meniul",
+  "menuClose": "Închide meniul",
+  "insights": "Articole",
+  "toc": "Pe această pagină",
+  "read": "Citește",
+  "languages": "Limbi",
+  "rights": "Toate drepturile rezervate.",
+  "insightsLead": "Ghiduri practice pentru importul din Turcia și China, verificate înainte de publicare.",
+  "insightsEmpty": "Nu există articole publicate încă. Ghidurile noi vor apărea aici după verificare."
+}

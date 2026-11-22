@@ -1,0 +1,29 @@
+{
+  "label": "Italiano",
+  "channels": [
+    { "id": "whatsapp", "text": "WhatsApp" },
+    { "id": "email", "text": "E-mail" }
+  ],
+  "ctaNote": "Preventivo gratuito in 24 ore · Prezzi in EUR",
+  "tagline": "Sourcing B2B, ispezione carico container e business intelligence da Turchia e Cina",
+  "home": "Home",
+  "navLabel": "Navigazione",
+  "switcherLabel": "Lingua",
+  "contact": {
+    "title": "Contattaci",
+    "body": "Il nostro canale principale per le aziende italiane è WhatsApp, con supporto secondario via posta elettronica. I collegamenti diretti verranno attivati al lancio dei canali. Inviate prodotto, codice HS o indirizzo dello stabilimento (Turchia o Cina): rispondiamo entro 24 ore con preventivi in EUR (formato +39)."
+  },
+  "sourcing": { "label": "Sourcing (TR & CN)" },
+  "inspection": { "label": "Ispezione container e fabbrica" },
+  "skip": "Vai al contenuto",
+  "crumbs": "Percorso",
+  "menuOpen": "Apri menu",
+  "menuClose": "Chiudi menu",
+  "insights": "Approfondimenti",
+  "toc": "In questa pagina",
+  "read": "Leggi",
+  "languages": "Lingue",
+  "rights": "Tutti i diritti riservati.",
+  "insightsLead": "Guide operative per acquistare e controllare le spedizioni da Turchia e Cina.",
+  "insightsEmpty": "Nessun articolo pubblicato al momento. Le nuove guide appariranno qui dopo la revisione."
+}

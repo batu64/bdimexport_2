@@ -1,5 +1,6 @@
 // /de site çerçevesi (navbar + footer) — metin lib/messages/de.json (formal Sie). Footer'da Impressum + Datenschutz
-// her /de sayfasında ZORUNLU konum (FAZ_5 5.1; footer.md). Teklif kanalı: gerçek e-posta (WhatsApp handle henüz yok — uydurulmaz).
+// her /de sayfasında ZORUNLU konum (FAZ_5 5.1; footer.md). Resmi şirket bilgileri lib/ui/entities.ts'den gelir.
+import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_PHONE_HREF } from "@/lib/ui/entities";
 import type { FooterProps } from "@/lib/ui/Footer";
 import type { NavbarProps } from "@/lib/ui/Navbar";
 import { marketSites } from "@/lib/ui/sites";
@@ -30,7 +31,19 @@ export function footerProps(): FooterProps {
     columns: [{ title: f.nav, links: [{ label: dict.page.home, href: "/de" }, ...dict.nav.links] }],
     sites: { title: f.sites, links: marketSites("de") },
     legal: { title: f.legal, links: [{ label: f.impressum, href: "/de/impressum" }, { label: f.datenschutz, href: "/de/datenschutz" }] },
-    contact: { title: f.contact, email: QUOTE_EMAIL, emailLabel: f.email },
+    contact: {
+      title: f.contact,
+      email: QUOTE_EMAIL,
+      emailLabel: f.email,
+      phone: { number: OFFICIAL_PHONE, href: OFFICIAL_PHONE_HREF, label: f.phone },
+    },
+    entities: {
+      title: f.entitiesTitle,
+      items: [
+        { badge: f.entityBadges.tr, name: CORPORATE_ENTITIES[0].name, address: CORPORATE_ENTITIES[0].address },
+        { badge: f.entityBadges.us, name: CORPORATE_ENTITIES[1].name, address: CORPORATE_ENTITIES[1].address },
+      ],
+    },
     rights: f.rights,
   };
 }

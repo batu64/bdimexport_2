@@ -1,7 +1,8 @@
 {
-  "_note": "EN ailesi hreflang verisi (SEO_PLAYBOOK §1.2). Sayfa yolu /en/ altına göre; varyant listesi yalnız mevcut içerik dosyası olan yolları içerir (404-hreflang yasağı). Üretildi: scripts ile content/en taraması.",
+  "_note": "EN ailesi hreflang verisi (SEO_PLAYBOOK §1.2). Sayfa yolu /en/ altına göre; varyant listesi yalnız mevcut içerik dosyası olan yolları içerir (404-hreflang yasağı).",
   "en": [
     "",
+    "rfq",
     "products",
     "services",
     "industries",
@@ -25,6 +26,9 @@
     "products/pumps-valves",
     "products/sanitaryware",
     "products/steel",
+    "services/china-sourcing",
+    "services/commercial-intelligence",
+    "services/container-loading",
     "services/customs",
     "services/inspection",
     "services/logistics",
@@ -44,23 +48,53 @@
   "variants": {
     "ru": [
       "",
-      "services/sourcing"
+      "services/sourcing",
+      "services/inspection"
     ],
     "fr": [
       "",
-      "services/sourcing"
+      "services/sourcing",
+      "services/inspection"
     ],
     "nl": [
       "",
-      "services/sourcing"
+      "services/sourcing",
+      "services/inspection"
     ],
     "es": [
       "",
-      "services/sourcing"
+      "services/sourcing",
+      "services/inspection"
     ],
     "ar": [
       "",
-      "services/sourcing"
+      "services/sourcing",
+      "services/inspection"
+    ],
+    "fi": [
+      "",
+      "services/sourcing",
+      "services/inspection"
+    ],
+    "sq": [
+      "",
+      "services/sourcing",
+      "services/inspection"
+    ],
+    "pl": [
+      "",
+      "services/sourcing",
+      "services/inspection"
+    ],
+    "ro": [
+      "",
+      "services/sourcing",
+      "services/inspection"
+    ],
+    "it": [
+      "",
+      "services/sourcing",
+      "services/inspection"
     ]
   }
 }

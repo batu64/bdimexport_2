@@ -1,0 +1,44 @@
+/* /en/rfq Dual-Hub comparison matrix — yalnız design token CSS değişkenleri + mantıksal CSS (hex=0). */
+.matrixWrap {
+  overflow-x: auto;
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  box-shadow: var(--e-1);
+}
+.table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+.table th,
+.table td {
+  padding: var(--s-4);
+  border-block-end: var(--bw-1) solid var(--c-border);
+  text-align: start;
+}
+.table th {
+  background: var(--c-brand);
+  color: var(--c-on-brand);
+  font-weight: var(--fw-heading);
+}
+.table tr:last-child td {
+  border-block-end: 0;
+}
+.table tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--c-heading) 3%, transparent);
+}
+.metricCell {
+  font-weight: var(--fw-heading);
+  color: var(--c-heading);
+}
+.radarSection {
+  display: grid;
+  gap: var(--s-6);
+}
+.radarMedia {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: var(--bw-1) solid var(--c-border);
+  box-shadow: var(--e-2);
+}

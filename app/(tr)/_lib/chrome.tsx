@@ -1,11 +1,12 @@
 // TR site çerçevesi (navbar + footer) verisi — metin sözlükten (lib/messages/tr.json), hizmet linkleri İÇERİKTEN
 // (content/tr/**/*.md başlıkları; elle liste tutulmaz → yeni hizmet sayfası footer'a kendiliğinden girer).
 import { localeConfig, type Locale } from "@/lib/i18n";
+import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_PHONE_HREF } from "@/lib/ui/entities";
 import type { FooterProps } from "@/lib/ui/Footer";
 import type { NavbarProps, SiteLink } from "@/lib/ui/Navbar";
 import dict from "@/lib/messages/tr.json";
 import { listSlugs, readDoc, type Kind } from "./content";
-import { QUOTE_EMAIL, quoteHref } from "./links";
+import { INTELLIGENCE_PATH, QUOTE_EMAIL, quoteHref } from "./links";
 
 export { quoteHref };
 
@@ -35,7 +36,7 @@ export function navbarProps(): NavbarProps {
     cta: { label: n.cta, href: quoteHref },
     sites: sites("tr"),
     labels: { nav: n.label, open: n.menuOpen, close: n.menuClose, sites: n.sites },
-    heroPaths: ["/"],
+    heroPaths: ["/", INTELLIGENCE_PATH, "/rfq"],
   };
 }
 
@@ -47,11 +48,23 @@ export function footerProps(): FooterProps {
     tagline: f.tagline,
     columns: [
       { title: f.import, links: [...services("ithalat").map(link), { label: dict.content.guides, href: "/ithalat/rehberler" }] },
-      { title: f.export, links: services("ihracat").map(link) },
+      { title: f.export, links: [...services("ihracat").map(link), { label: dict.content.intelligence, href: INTELLIGENCE_PATH }] },
     ],
     sites: { title: f.sites, links: sites("tr") },
     legal: { title: f.legal, links: [{ label: f.kvkk, href: "/kvkk-riza" }] },
-    contact: { title: f.contact, email: QUOTE_EMAIL, emailLabel: f.email },
+    contact: {
+      title: f.contact,
+      email: QUOTE_EMAIL,
+      emailLabel: f.email,
+      phone: { number: OFFICIAL_PHONE, href: OFFICIAL_PHONE_HREF, label: f.phone },
+    },
+    entities: {
+      title: f.entitiesTitle,
+      items: [
+        { badge: f.entityBadges.tr, name: CORPORATE_ENTITIES[0].name, address: CORPORATE_ENTITIES[0].address },
+        { badge: f.entityBadges.us, name: CORPORATE_ENTITIES[1].name, address: CORPORATE_ENTITIES[1].address },
+      ],
+    },
     rights: f.rights,
   };
 }

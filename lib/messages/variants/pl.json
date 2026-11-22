@@ -1,0 +1,29 @@
+{
+  "label": "Polski",
+  "channels": [
+    { "id": "email", "text": "E-mail" },
+    { "id": "whatsapp", "text": "WhatsApp" }
+  ],
+  "ctaNote": "Bezpłatna wycena w 24 godziny · Ceny w EUR / PLN",
+  "tagline": "Zaopatrzenie B2B, kontrola załadunku kontenerów i wywiad handlowy (Turcja i Chiny)",
+  "home": "Start",
+  "navLabel": "Nawigacja",
+  "switcherLabel": "Język",
+  "contact": {
+    "title": "Kontakt z zespołem",
+    "body": "Głównym kanałem dla importerów z Polski jest poczta elektroniczna, a zapasowym WhatsApp. Bezpośrednie linki zostaną uruchomione po aktywacji kanałów. Opisz produkt, kod HS lub adres fabryki (Turcja albo Chiny) — odpowiemy w ciągu 24 godzin z wyceną w EUR (numery +48)."
+  },
+  "sourcing": { "label": "Wyszukiwanie dostawców" },
+  "inspection": { "label": "Kontrola załadunku i audyt" },
+  "skip": "Przejdź do treści",
+  "crumbs": "Ścieżka",
+  "menuOpen": "Otwórz menu",
+  "menuClose": "Zamknij menu",
+  "insights": "Poradniki",
+  "toc": "Na tej stronie",
+  "read": "Czytaj",
+  "languages": "Języki",
+  "rights": "Wszelkie prawa zastrzeżone.",
+  "insightsLead": "Praktyczne poradniki o imporcie z Turcji i Chin. Każdy tekst przechodzi weryfikację przed publikacją.",
+  "insightsEmpty": "Brak opublikowanych artykułów. Nowe materiały pojawią się po akceptacji redakcyjnej."
+}

@@ -28,7 +28,7 @@ function listServices(locale: string): string[] {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const trRoutes = ["", "ithalat", "ihracat", "kvkk-riza", "ihracat/ucretsiz-destek-basvuru"];
+  const trRoutes = ["", "ithalat", "ihracat", "ticari-istihbarat", "rfq", "kvkk-riza", "ihracat/ucretsiz-destek-basvuru"];
   for (const s of listMd("ithalat")) if (s !== "danismanlik-talebi") trRoutes.push(`ithalat/${s}`);
   for (const s of listMd("ihracat")) if (s !== "ucretsiz-destek-basvuru") trRoutes.push(`ihracat/${s}`);
   for (const g of listMd(path.join("ithalat", "rehberler"))) trRoutes.push(`ithalat/rehberler/${g}`);

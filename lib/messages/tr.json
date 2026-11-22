@@ -6,22 +6,24 @@
     "home": "Ana Sayfa",
     "ithalat": "İthalat",
     "ihracat": "İhracat",
+    "intelligence": "Ticari İstihbarat",
+    "rfq": "Akıllı RFQ",
     "guides": "Rehberler",
     "notFound": "Sayfa bulunamadı",
     "applyCta": "Ücretsiz İhracat Hızlandırma Başvurusu — 48 saatte ön değerlendirme"
   },
   "indexes": {
     "ithalat": {
-      "title": "Çin'den İthalat Danışmanlığı | Bdimexport",
-      "h1": "Çin'den İthalat Danışmanlığı",
-      "desc": "Çin'den ithalatta tedarik, fabrika denetimi, lojistik ve gümrük hizmetlerini tek yerden yönetin. Hizmetleri ve rehberleri inceleyin.",
-      "intro": "Tedarikçi bulmaktan gümrük beyanına kadar ithalat sürecinin her adımı için hizmet ve rehberlerimiz:"
+      "title": "Çin'den İthalat ve Denetim Danışmanlığı | Bdimexport",
+      "h1": "Çin'den İthalat ve Saha Denetimi",
+      "desc": "Çin'den ürün tedariği, üretici doğrulama, konteyner yükleme nezareti, lojistik ve gümrük süreçlerini tek yerden yönetin.",
+      "intro": "Tedarikçi bulmaktan konteyner yükleme denetimine ve gümrüğe kadar tüm ithalat hizmetleri:"
     },
     "ihracat": {
-      "title": "İhracat Danışmanlığı ve Ücretsiz Program | Bdimexport",
-      "h1": "İhracat Danışmanlığı",
-      "desc": "E-ihracat ve B2B pazarlama danışmanlığı ile üreticiler için Ücretsiz İhracat Hızlandırma Programı. Hizmetleri inceleyin, başvurunuzu bırakın.",
-      "intro": "İhracata başlayan veya büyüten üreticiler için hizmetlerimiz ve ücretsiz program:"
+      "title": "İhracat Pazarlama Sistemleri ve Ücretsiz Program | Bdimexport",
+      "h1": "İhracat ve Küresel Pazarlama Sistemleri",
+      "desc": "Türk üreticiler için yurt dışı pazar araştırması, müşteri bulma, çok dilli B2B pazarlama sistemi ve Ücretsiz İhracat Hızlandırma Programı.",
+      "intro": "İhracat sisteminizi kurmak ve yeni pazarlara açılmak için hizmetlerimiz:"
     },
     "rehberler": {
       "title": "Çin İthalat Rehberleri | Ürün Bazlı Süreç ve Risk Rehberi",
@@ -35,168 +37,220 @@
     "skip": "İçeriğe geç",
     "home": "Bdimexport ana sayfa",
     "links": [
-      {
-        "label": "İthalat",
-        "href": "/ithalat"
-      },
-      {
-        "label": "İhracat",
-        "href": "/ihracat"
-      },
-      {
-        "label": "Rehberler",
-        "href": "/ithalat/rehberler"
-      },
-      {
-        "label": "Makaleler",
-        "href": "/makaleler"
-      }
+      { "label": "İthalat", "href": "/ithalat" },
+      { "label": "İhracat", "href": "/ihracat" },
+      { "label": "Ticari İstihbarat", "href": "/ticari-istihbarat" },
+      { "label": "Rehberler", "href": "/ithalat/rehberler" },
+      { "label": "Makaleler", "href": "/makaleler" }
     ],
-    "cta": "Teklif Alın",
+    "cta": "Teklif / RFQ Alın",
     "menuOpen": "Menüyü aç",
     "menuClose": "Menüyü kapat",
     "sites": "Pazar / dil"
   },
   "quote": {
-    "subject": "Teklif talebi (bdimexport.com)"
+    "subject": "Teklif ve Ticari İstihbarat Talebi (bdimexport.com)"
   },
   "home": {
     "hero": {
-      "eyebrow": "Çin'den ithalat · Global ihracat",
-      "h1": "Çin'den İthalat ve Global İhracat: Tedarikten Gümrüğe Tek Ekip",
-      "sub": "Yanlış tedarikçi, kalite sürprizi ve gümrük gecikmesi riskini fabrika denetimi ve adım adım takiple azaltıyoruz. İhracata açılmak isteyen üreticiler için ücretsiz hızlandırma programı sunuyoruz.",
-      "ctaPrimary": "Ücretsiz İhracat Hızlandırma Başvurusu",
-      "ctaSecondary": "Ücretsiz Teklif Alın — 24 saatte yanıt",
+      "eyebrow": "Türkiye & ABD Kurumsal Altyapı · Çin & Türkiye Çift Merkez",
+      "h1": "İthalat, İhracat ve Ticari İstihbaratta Tek Noktadan Küresel Operasyon",
+      "sub": "Çin'den ürün ve üretici bulma, gümrük/lojistik ve tekil konteyner yükleme denetimini yönetiyor; Türk üreticilere yurt dışı pazarlama sistemi, pazar araştırması ve küresel müşteri bulma desteği sunuyoruz.",
+      "ctaPrimary": "Akıllı RFQ / Teklif Oluştur (24s)",
+      "ctaSecondary": "Ücretsiz İhracat Başvurusu",
       "trust": [
-        "Yerinde fabrika denetimi",
-        "Adım adım süreç takibi",
-        "24 saatte teklif yanıtı"
+        "BDIMEXPORT LLC (ABD) + BD Sanayi (TR) güvencesi",
+        "Konteyner yükleme & üretim denetimi (24-48s)",
+        "GTİP bazlı ticari istihbarat & pazar raporları"
       ],
       "visual": {
-        "title": "Sipariş süreci",
-        "caption": "Örnek görünüm",
-        "route": "Çin → Türkiye",
+        "title": "Çift Merkez Operasyon Akışı",
+        "caption": "Canlı izleme modeli",
+        "route": "CN ⇄ TR ⇄ Global",
         "steps": [
-          "Tedarikçi doğrulama",
-          "Fabrika denetimi",
-          "Üretim takibi",
-          "Lojistik ve gümrük"
+          "Üretici & sicil istihbaratı",
+          "Numune & üretim denetimi",
+          "Konteyner yükleme nezareti",
+          "Gümrük & alıcı teslimatı"
         ],
         "done": "Tamamlandı",
-        "active": "Sürüyor",
+        "active": "Sahada",
         "next": "Sırada",
-        "badge": "Fotoğraflı denetim raporu 48 saatte"
+        "badge": "Fotoğraflı & videolu denetim raporu 48 saatte"
       }
     },
     "stats": {
-      "label": "Taahhütlerimiz",
+      "label": "Taahhütlerimiz ve Kapasite",
       "items": [
+        { "value": 24, "unit": "saat", "label": "içinde RFQ ve maliyet ön yanıtı" },
+        { "value": 48, "unit": "saat", "label": "içinde saha denetim & istihbarat raporu" },
+        { "key": "importServices", "label": "ithalat, denetim ve istihbarat çözümü" },
+        { "key": "guides", "label": "ürün bazlı Çin ithalat rehberi" }
+      ]
+    },
+    "stage": {
+      "eyebrow": "İnteraktif Yetenek Vitrinimiz",
+      "title": "Ticaretinizi Uçtan Uca Güvenceye Alan 3 Operasyon Katmanı",
+      "lead": "İster Çin'den ithalat yapın, ister Türk ürünlerini dünyaya satın; saha denetimi, ticari istihbarat ve çok dilli B2B pazarlama motorunu tek ekipte birleştiriyoruz.",
+      "tabs": [
         {
-          "value": 24,
-          "unit": "saat",
-          "label": "içinde teklif yanıtı"
+          "tabLabel": "01 · Çin Tedarik & Konteyner Denetimi",
+          "badge": "MODÜL 01 · İTHALAT VE SAHA NEZARETİ",
+          "liveLabel": "ÇİN & TÜRKİYE SAHA EKİPLERİ",
+          "title": "Üretici Bulmadan Konteyner Mühürlemeye Tam Saha Kontrolü",
+          "lead": "Kendi bulduğunuz üreticiden aldığınız üründe bile üretim bandı kontrolü ve konteyner yükleme nezareti sağlıyoruz.",
+          "progressLabel": "Sevkiyat Güvenliği & Kalite Kontrol Zinciri",
+          "metrics": [
+            { "code": "SRC-01", "tag": "Doğrulama", "title": "Gerçek Fabrika & Üretici Tespiti", "desc": "Aracı firmaları eler, doğrudan üreticiyle fiyat ve sözleşme masasına oturmanızı sağlarız." },
+            { "code": "QC-02", "tag": "Tekil Hizmet", "title": "Konteyner Yükleme & Üretim Denetimi", "desc": "Yükleme öncesi koli sayımı, AQL kalite testi ve seri numaralı mühür doğrulaması." },
+            { "code": "LOG-03", "tag": "Kapıya Teslim", "title": "Gümrük, TAREKS ve Lojistik", "desc": "GTİP analizi, mevzuat uyumu, deniz/hava/kara navlun ve eksiksiz gümrükleme." }
+          ],
+          "footnote": "Mevcut tedarikçinizden verdiğiniz siparişler için dahi 48 saatte saha denetimi.",
+          "footRight": "WhatsApp üzerinden anlık yükleme fotoğrafı"
         },
         {
-          "value": 48,
-          "unit": "saat",
-          "label": "içinde başvuru ön değerlendirmesi"
+          "tabLabel": "02 · İhracat Pazarlama & Müşteri Bulma",
+          "badge": "MODÜL 02 · TÜRK ÜRETİCİ KÜRESEL BÜYÜME",
+          "liveLabel": "10+ DİLDE SEO & GEO LEAD MOTORU",
+          "title": "Türk Üreticilere Yurt Dışı Pazarlama Sistemi ve Alıcı Ağı",
+          "lead": "Rastgele fuar beklemek yerine; hedef ülkelerin dilinde SEO/GEO vitrini, e-ticaret varlığı ve B2B alıcı eşleştirmesi kuruyoruz.",
+          "progressLabel": "İhracat Dönüşüm ve Küresel Görünürlük Hattı",
+          "metrics": [
+            { "code": "MKT-01", "tag": "Sistem", "title": "Çok Dilli Pazarlama & E-Ticaret", "desc": "İngilizce, Almanca, Rusça, Arapça, Fince, Arnavutça vb. dillerde dijital ihracat altyapısı." },
+            { "code": "LEAD-02", "tag": "Alıcı Bulma", "title": "Doğrudan RFQ ve Müşteri Eşleştirme", "desc": "Küresel alıcılardan gelen ürün taleplerini onaylı Türk üreticilere yönlendiririz." },
+            { "code": "EXP-03", "tag": "Ücretsiz Giriş", "title": "İhracat Hızlandırma Programı", "desc": "Kataloğunuzu küresel alıcı sayfalarımızda sergileyin, taleplere öncelikli ulaşın." }
+          ],
+          "footnote": "48 saatte ön değerlendirme ile ücretsiz programa katılım imkânı.",
+          "footRight": "BDIMEXPORT LLC (ABD) + BD Sanayi (TR) güvencesi"
         },
         {
-          "key": "importServices",
-          "label": "ithalat hizmeti: tedarikten gümrüğe"
-        },
-        {
-          "key": "guides",
-          "label": "ürün bazlı ithalat rehberi"
+          "tabLabel": "03 · Ticari İstihbarat & Pazar Raporları",
+          "badge": "MODÜL 03 · VERİYE DAYALI KARAR MOTORU",
+          "liveLabel": "GTİP / HS-CODE TİCARİ İSTİHBARAT",
+          "title": "Para Göndermeden ve Pazara Girmeden Önce Gerçek Veriyi Görün",
+          "lead": "Hem ithalatçılar için üretici sicil & kapıya teslim maliyet raporu, hem ihracatçılar için hedef ülke & aktif alıcı istihbaratı üretiyoruz.",
+          "progressLabel": "İstihbarat Analiz ve Doğrulama Derinliği",
+          "metrics": [
+            { "code": "INT-01", "tag": "Due Diligence", "title": "Şirket Sicil ve Güvenilirlik Raporu", "desc": "Hedef üreticinin resmi kaydı, çalışan kapasitesi, ihracat lisansı ve hukuki risk durumu." },
+            { "code": "PRC-02", "tag": "Landed Cost", "title": "GTİP Bazlı Maliyet & Vergi Simülasyonu", "desc": "Gümrük vergisi, ilave vergi, gözetim ve navlun dahil kuruşu kuruşuna maliyet hesabı." },
+            { "code": "BUY-03", "tag": "Pazar İstihbaratı", "title": "Hedef Pazar & Alıcı Listesi Raporu", "desc": "Ürününüzü dünyada kimlerin, hangi fiyat bandından ithal ettiğini gösteren strateji raporu." }
+          ],
+          "footnote": "İstihbarat raporu tekil hizmet olarak da 72 saat içinde teslim edilir.",
+          "footRight": "PDF Yönetici Özeti + Ham Veri Tablosu"
         }
       ]
     },
     "services": {
       "eyebrow": "Hizmetler",
-      "title": "İki yönde, tek ekip",
-      "lead": "İthalatta tedarikten gümrüğe, ihracatta ilk alıcı talebine kadar süreci birlikte yürütüyoruz.",
+      "title": "İthalat, İhracat ve İstihbaratta Bütüncül Mimari",
+      "lead": "İster Çin'den güvenli ithalat ve saha denetimi, ister Türk ürünleriniz için yurt dışı pazarlama ve müşteri bulma sistemi — tek ekiple ilerleyin.",
       "import": {
-        "title": "Çin'den İthalat",
-        "more": "Tüm ithalat hizmetleri"
+        "title": "İthalat, Çin Tedarik & Saha Denetimi",
+        "more": "Tüm ithalat ve denetim hizmetleri"
       },
       "export": {
-        "title": "Global İhracat",
-        "more": "Tüm ihracat hizmetleri"
+        "title": "İhracat Sistemi, Pazarlama & İstihbarat",
+        "more": "Tüm ihracat ve pazarlama hizmetleri"
       }
     },
     "process": {
-      "eyebrow": "Süreç",
-      "title": "İthalatınız beş adımda, şeffaf ilerler",
+      "eyebrow": "Operasyon Süreci",
+      "title": "Her Sipariş ve Proje Beş Adımda, Şeffaf İlerler",
       "steps": [
-        {
-          "title": "Talep ve teklif",
-          "text": "İhtiyacınızı paylaşın; 24 saat içinde kapsam ve teklifle dönelim."
-        },
-        {
-          "title": "Tedarikçi bulma",
-          "text": "Çin'de uygun üreticileri bulur, belgelerini ve geçmişini doğrularız."
-        },
-        {
-          "title": "Fabrika denetimi",
-          "text": "Üretim öncesi ve sırasında yerinde denetimle kalite riskini azaltırız."
-        },
-        {
-          "title": "Lojistik",
-          "text": "Sevkiyatı planlar, süreci her adımda size raporlarız."
-        },
-        {
-          "title": "Gümrük ve teslim",
-          "text": "Gümrük işlemlerini tamamlar, ürünü teslim noktasına ulaştırırız."
-        }
+        { "title": "Talep ve İstihbarat Ön Analizi", "text": "Akıllı RFQ üzerinden ürün, GTİP ve hedefinizi iletin; 24 saatte kapsamla dönelim." },
+        { "title": "Üretici / Alıcı Doğrulama", "text": "Çin veya Türkiye'deki karşı tarafı resmi sicil ve kapasite testinden geçiririz." },
+        { "title": "Üretim & Numune Kontrolü", "text": "Sözleşme güvencesi altında numune ve üretim bandı ara kontrollerini yaparız." },
+        { "title": "Konteyner Yükleme & Mühür", "text": "Sahada adet sayımı, AQL test ve mühür doğrulamasını video/fotoğrafla raporlarız." },
+        { "title": "Gümrük ve Kapıya Teslim", "text": "Gümrük beyannamesi, mevzuat uyumu ve son teslimatı sorunsuz tamamlarız." }
       ]
     },
     "program": {
       "eyebrow": "İhracat Hızlandırma Programı",
-      "title": "Üreticiden global alıcıya: ücretsiz program",
-      "lead": "Üreticiler ücretsiz sisteme alınır, ürünleri global alıcı sayfalarında sergilenir, gelen talepler doğru üreticiye yönlendirilir.",
+      "title": "Türk Üreticiden Küresel Alıcıya: Ücretsiz Katılım",
+      "lead": "Üreticiler ücretsiz sisteme alınır; ürünleri 10+ dildeki alıcı sayfalarımızda sergilenir ve gelen küresel RFQ talepleri doğrudan eşleştirilir.",
       "steps": [
-        {
-          "title": "Başvuru",
-          "text": "Formu doldurun; 48 saat içinde ön değerlendirme yapılır."
-        },
-        {
-          "title": "Onaylı Türk İş Ortağı",
-          "text": "Onay sonrası firmanız global listelerde yer alır. Logo yayını ayrı rızanıza bağlıdır."
-        },
-        {
-          "title": "Alıcı eşleştirmesi",
-          "text": "Global alıcı talepleri ürün grubunuza yönlendirilir; bağlantıyı siz kabul edersiniz."
-        }
+        { "title": "Başvuru ve Ön Değerlendirme", "text": "Formu doldurun; 48 saat içinde üretim kapasiteniz ve ihracat uygunluğunuz değerlendirilir." },
+        { "title": "Onaylı Türk İş Ortağı Profili", "text": "Onay sonrası firmanız İngilizce, Almanca ve niş dillerde vitrine çıkar (logo yayını açık rızaya bağlıdır)." },
+        { "title": "Nitelikli Alıcı & İstihbarat Eşleştirmesi", "text": "Global alıcıların RFQ talepleri ürün grubunuza yönlendirilir; dilediğinizle doğrudan teklif paylaşırsınız." }
       ],
       "more": "Programı inceleyin"
     },
     "guides": {
-      "eyebrow": "Rehberler",
-      "title": "Ürün bazlı Çin ithalat rehberleri",
-      "lead": "Süreç, maliyet kalemleri ve riskler — ürün grubunuza göre adım adım.",
+      "eyebrow": "İthalat Rehberleri",
+      "title": "Ürün Bazlı Çin İthalat Rehberleri",
+      "lead": "Süreç, gümrük riskleri ve maliyet kalemleri — ürün grubunuza göre adım adım.",
       "more": "Tüm rehberler",
       "read": "Rehberi oku"
     },
     "partners": {
-      "eyebrow": "Güven",
+      "eyebrow": "Doğrulanmış Üreticiler",
       "title": "Onaylı Türk İş Ortakları",
       "badge": "Onaylı Türk İş Ortağı",
       "empty": "İlk Onaylı Türk İş Ortaklarımız yakında burada."
     },
     "cta": {
-      "title": "Üretiminiz hazırsa, ihracat adımını birlikte atalım",
-      "lead": "Başvurunuzu bırakın; 48 saat içinde ön değerlendirmeyle dönelim."
+      "title": "İthalat, İhracat veya İstihbarat Talebinizi 1 Dakikada Oluşturun",
+      "lead": "Ürün tedariği, konteyner yükleme denetimi, pazar araştırması veya ticari istihbarat raporu — 24 saatte yazılı yanıt alın."
     }
   },
+  "rfq": {
+    "eyebrow": "Akıllı RFQ ve Operasyon Konfigüratörü",
+    "title": "Talebinizi Seçin, 24 Saatte Uzman Teklifi Alın",
+    "lead": "İster Çin/Türkiye ürün tedariği, ister kendi fabrikanızda konteyner yükleme denetimi, ister ticari istihbarat raporu isteyin — formu doldurup tek tıkla iletin.",
+    "step1Label": "1. İhtiyaç Duyduğunuz Hizmet Alanı",
+    "tracks": [
+      { "id": "sourcing", "title": "Ürün & Üretici Bulma (TR / Çin)", "desc": "Doğrulanmış fabrika araştırması, numune, fiyat pazarlığı ve FOB/CIF/DDP tedarik." },
+      { "id": "inspection", "title": "Konteyner Yükleme & Üretim Denetimi", "desc": "Kendi bulduğunuz üreticide bile 48 saatte saha denetimi ve mühür doğrulaması." },
+      { "id": "intelligence", "title": "Ticari İstihbarat & Pazar Raporu", "desc": "Şirket sicil doğrulama, GTİP alıcı/fiyat analizi ve kapıya teslim maliyet raporu." },
+      { "id": "marketing", "title": "İhracat Pazarlama & E-Ticaret Sistemi", "desc": "Çok dilli B2B vitrin, SEO/GEO müşteri bulma hunisi ve dijital kanal kurulumu." }
+    ],
+    "step2Label": "2. Operasyon Merkezi / Kaynak Bölge",
+    "origins": [
+      { "id": "dual", "label": "Türkiye + Çin Karşılaştırmalı" },
+      { "id": "tr", "label": "Türkiye Merkezli (İhracat / Tedarik)" },
+      { "id": "cn", "label": "Çin Merkezli (İthalat / Denetim)" }
+    ],
+    "volumesLabel": "3. Tahmini Hacim veya Kapsam",
+    "volumes": ["Tekil Denetim / Rapor", "Numune / LCL Parsiyel", "1× 20GP Konteyner", "1× 40HQ Konteyner", "Düzenli Aylık Sevkiyat"],
+    "fields": {
+      "productLabel": "Ürün Grubu veya Hizmet Konusu",
+      "productPlaceholder": "Örn: CNC yedek parça, tekstil, gıda ambalajı veya fabrika doğrulama",
+      "hsLabel": "GTİP / HS Kodu (Varsa)",
+      "hsPlaceholder": "Örn: 8466.93 veya bilinmiyor",
+      "companyLabel": "Firma Adınız",
+      "companyPlaceholder": "Örn: Anadolu Makine San. Ltd.",
+      "targetMarketLabel": "Hedef Ülke / Teslim Limanı",
+      "targetMarketPlaceholder": "Örn: Türkiye / Ambarlı, Almanya, ABD",
+      "emailLabel": "Kurumsal E-posta",
+      "emailPlaceholder": "adiniz@firmaniz.com",
+      "notesLabel": "Ek Teknik Notlar / Beklentiniz",
+      "notesPlaceholder": "Hedef fiyat, sertifika beklentisi (CE/ISO), yükleme şehri vb."
+    },
+    "summaryTitle": "Oluşturulan Standart RFQ Özeti",
+    "slaBadge": "24 SAATTE YAZILI YANIT",
+    "copyBtn": "Özeti Kopyala",
+    "copiedBtn": "Kopyalandı ✓",
+    "whatsappBtn": "WhatsApp'tan Gönder",
+    "emailBtn": "E-posta ile Gönder",
+    "submitBtn": "Sisteme Kaydet",
+    "submittedMsg": "Talebiniz kaydedildi! Ekibimiz 24 saat içinde dönüş yapacaktır.",
+    "emailSubject": "Bdimexport RFQ Talebi"
+  },
   "footer": {
-    "tagline": "Çin'den ithalat ve global ihracat için tedarikten gümrüğe tek ekip.",
-    "import": "İthalat",
-    "export": "İhracat",
+    "tagline": "ABD ve Türkiye kurumsal altyapısıyla Çin & Türkiye tedarik, denetim, ihracat pazarlama ve ticari istihbarat merkezi.",
+    "import": "İthalat & Denetim",
+    "export": "İhracat & İstihbarat",
     "sites": "Pazarlar",
     "legal": "Yasal",
     "kvkk": "KVKK Açık Rıza Metni",
     "contact": "İletişim",
     "email": "E-posta ile yazın",
+    "phone": "Telefon / WhatsApp",
+    "entitiesTitle": "Resmi Kurumsal Tüzel Kişilikler",
+    "entityBadges": {
+      "tr": "Türkiye Operasyon Merkezi",
+      "us": "ABD Kurumsal Merkezi"
+    },
     "rights": "Tüm hakları saklıdır."
   },
   "page": {
@@ -204,20 +258,20 @@
     "toc": "Bu sayfada",
     "readTime": "{n} dk okuma",
     "eyebrow": {
-      "ithalat": "İthalat hizmeti",
-      "ihracat": "İhracat",
+      "ithalat": "İthalat & Denetim",
+      "ihracat": "İhracat & Pazarlama",
       "rehber": "Çin ithalat rehberi"
     },
     "related": {
-      "ithalat": "Diğer ithalat hizmetleri",
-      "ihracat": "Diğer ihracat hizmetleri",
+      "ithalat": "Diğer ithalat & denetim hizmetleri",
+      "ihracat": "Diğer ihracat & istihbarat hizmetleri",
       "rehber": "Diğer ürün rehberleri"
     },
     "read": "İncele",
     "aside": {
-      "quoteTitle": "24 saatte teklif",
-      "quoteText": "İhtiyacınızı yazın; kapsam ve teklifle 24 saat içinde dönelim.",
-      "quoteCta": "Ücretsiz Teklif Alın",
+      "quoteTitle": "24 saatte teklif & ön analiz",
+      "quoteText": "İhtiyacınızı yazın; kapsam, maliyet ve saha planıyla 24 saat içinde dönelim.",
+      "quoteCta": "Akıllı RFQ Başlat",
       "applyTitle": "Ücretsiz programa başvurun",
       "applyText": "Başvurunuz 48 saat içinde ön değerlendirilir; listeleme ve eşleştirme ücretsizdir.",
       "applyCta": "Başvuruyu başlatın",
@@ -225,12 +279,12 @@
     },
     "cta": {
       "import": {
-        "title": "Çin'den ithalatı riske atmadan yapın",
-        "lead": "Tedarikçi doğrulama, fabrika denetimi ve gümrük — tek ekip, adım adım takip."
+        "title": "İthalatı ve Sevkiyatı Riske Atmadan Yönetin",
+        "lead": "Üretici doğrulama, konteyner yükleme denetimi ve gümrük — tek ekip, tam şeffaflık."
       },
       "export": {
-        "title": "Üretiminiz hazırsa, ihracat adımını birlikte atalım",
-        "lead": "Başvurunuzu bırakın; 48 saat içinde ön değerlendirmeyle dönelim."
+        "title": "Üretiminiz Hazırsa, Küresel Alıcı Sistemini Birlikte Kuralım",
+        "lead": "İhracat hızlandırma başvurunuzu bırakın veya pazar araştırması/RFQ talebi başlatın."
       }
     },
     "index": {
@@ -243,22 +297,10 @@
     "formTitle": "Başvuru formu",
     "trustTitle": "Neden güvenle başvurabilirsiniz?",
     "trust": [
-      {
-        "title": "48 saatte ön değerlendirme",
-        "text": "Sonuç formda verdiğiniz e-postaya bildirilir."
-      },
-      {
-        "title": "Ücretsiz değerlendirme ve listeleme",
-        "text": "Satış olursa uygulanacak bedel baştan yazılı açıklanır."
-      },
-      {
-        "title": "Logo yayını ayrı rızanıza bağlı",
-        "text": "Vermeseniz de başvurunuz değerlendirilir."
-      },
-      {
-        "title": "KVKK uyumlu",
-        "text": "Verileriniz yalnız açık rızanızla ve beyan edilen amaçla işlenir."
-      }
+      { "title": "48 saatte ön değerlendirme", "text": "Sonuç formda verdiğiniz e-postaya bildirilir." },
+      { "title": "Ücretsiz değerlendirme ve listeleme", "text": "Satış olursa uygulanacak bedel baştan yazılı açıklanır." },
+      { "title": "Logo yayını ayrı rızanıza bağlı", "text": "Vermeseniz de başvurunuz değerlendirilir." },
+      { "title": "KVKK uyumlu", "text": "Verileriniz yalnız açık rızanızla ve beyan edilen amaçla işlenir." }
     ],
     "faqTitle": "Sık Sorulan Sorular"
   },
@@ -269,7 +311,7 @@
   "articles": {
     "eyebrow": "Makaleler",
     "title": "Makaleler",
-    "lead": "Türkiye'den ihracat, Çin'den ithalat ve B2B tedarik üzerine kaynaklı rehberler. Her makale insan onayından geçer.",
+    "lead": "Türkiye'den ihracat, Çin'den ithalat, konteyner denetimi ve ticari istihbarat üzerine kaynaklı rehberler.",
     "empty": "Henüz yayınlanmış makale yok. Yeni rehberler insan onayından geçtikçe burada listelenir."
   }
 }

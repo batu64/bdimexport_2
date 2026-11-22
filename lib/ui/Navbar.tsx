@@ -101,7 +101,10 @@ export default function Navbar({ brand, homeHref, homeLabel, links, cta, sites, 
     <header className={clsx(s.bar, transparent ? s.transparent : s.solid, scrolled && s.compact)} data-open={open || undefined}>
       <div className={clsx("container", s.inner)}>
         <Link href={homeHref} className={s.brand} aria-label={homeLabel}>
-          <span className={s.mark} aria-hidden="true" />
+          <span className={s.mark} aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export (images.unoptimized); marka amblemi sabit boyut */}
+            <img src="/media/brand/logo-white.png" alt="" width={28} height={28} className={s.markImg} />
+          </span>
           <span>{brand}</span>
         </Link>
 

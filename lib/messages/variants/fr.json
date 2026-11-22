@@ -22,6 +22,9 @@
   "sourcing": {
     "label": "Approvisionnement (sourcing)"
   },
+  "inspection": {
+    "label": "Contrôle de chargement & audit"
+  },
   "skip": "Aller au contenu",
   "crumbs": "Fil d'Ariane",
   "menuOpen": "Ouvrir le menu",

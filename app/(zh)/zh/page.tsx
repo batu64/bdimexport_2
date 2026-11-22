@@ -1,7 +1,6 @@
-// /zh Hub — OPUS_TASARIM D6: kırmızı-altın (data-locale=zh: açık zeminde kırmızı vurgu, koyu zeminde altın), hero SİMETRİK MERKEZ
-// (design-tokens §2.1). Metin lib/messages/zh.json (hero = design/hero-copy.md ZH TASLAK; final FAZ 5.3/5.7).
-// 4'lü gruplama yok: 5 hizmet (5.3 sayfalarına bağlı) · 3 rakam · 5 adım. Rakamlar yalnız doğrulanabilir taahhüt/sayım (uydurma şirket verisi yok).
-import { Building2, Handshake, Megaphone, MessageCircle, Search, ShieldCheck, Store, Truck, Users, LifeBuoy } from "lucide-react";
+// /zh Hub — Bdimexport v3.0 (Kırmızı-Altın Palet, Remotion Video + İnteraktif Stage, 5 Hizmet, 3 Türk Ürünü, WeChat QR)
+// 4'lü gruplama KESİNLİKLE YOK: 5 hizmet · 3 rakam · 3 Türk ihraç ürünü · 5 adım.
+import { Building2, Handshake, LifeBuoy, Megaphone, MessageCircle, Package, Search, ShieldCheck, Store, Truck, Users } from "lucide-react";
 import type { Metadata } from "next";
 import dict from "@/lib/messages/zh.json";
 import Hero from "@/lib/ui/Hero";
@@ -10,14 +9,14 @@ import { Section, SectionHeader } from "@/lib/ui/Section";
 import Card from "@/lib/ui/Card";
 import Steps from "@/lib/ui/Steps";
 import PartnerBand from "@/lib/ui/PartnerBand";
-import WeChatContact from "./_lib/WeChatContact";
+import LoopVideo from "@/lib/ui/motion/LoopVideo";
 import Reveal from "@/lib/ui/motion/Reveal";
+import TradeIntelligenceStage, { type StageTab } from "@/lib/ui/motion/TradeIntelligenceStage";
+import WeChatContact from "./_lib/WeChatContact";
 import { QUOTE_EMAIL } from "./_lib/chrome";
 import { homeAlternates } from "@/lib/hreflang";
 import s from "./zh.module.css";
 
-// 5.5: hub Baidu meta (layout varsayılanı) + keywords (Baidu meta keywords'ü hâlâ okur; 5.3 hizmet adlarından).
-// 5.8: canonical + ANA SAYFA tam karşılıklı hreflang (tr/en/de/zh + en-XX, x-default=tr).
 export const metadata: Metadata = {
   title: { absolute: dict.seo.title },
   description: dict.seo.description,
@@ -35,9 +34,12 @@ export default function ZhHomePage() {
     { value: h.services.items.length, unit: h.stats.services.unit, label: h.stats.services.label },
     { value: h.process.steps.length, unit: h.stats.steps.unit, label: h.stats.steps.label },
   ];
+  const stageTabs = h.stage.tabs as [StageTab, StageTab, StageTab];
+
   return (
     <main>
       <Hero
+        media={<LoopVideo name="hero-loop" desktopOnly />}
         align="center"
         eyebrow={h.hero.eyebrow}
         title={h.hero.h1}
@@ -48,6 +50,13 @@ export default function ZhHomePage() {
         trustLabel={h.stats.label}
       />
       <StatBand items={stats} label={h.stats.label} locale="zh-CN" />
+
+      <Section id="stage" tone="alt">
+        <Reveal>
+          <SectionHeader id="stage" eyebrow={h.stage.eyebrow} title={h.stage.title} lead={h.stage.lead} align="center" />
+        </Reveal>
+        <TradeIntelligenceStage tabs={stageTabs} />
+      </Section>
 
       <Section id="fuwu">
         <Reveal><SectionHeader id="fuwu" eyebrow={h.services.eyebrow} title={h.services.title} lead={h.services.lead} align="center" /></Reveal>
@@ -63,9 +72,20 @@ export default function ZhHomePage() {
         </ul>
       </Section>
 
-      <Section id="liucheng" tone="alt">
+      <Section id="chanpin" tone="alt">
+        <Reveal><SectionHeader id="chanpin" eyebrow={h.sourcing.eyebrow} title={h.sourcing.title} lead={h.sourcing.lead} align="center" /></Reveal>
+        <ul role="list" className={s.services}>
+          {h.sourcing.items.map((p, i) => (
+            <Reveal as="li" key={p.slug} index={i}>
+              <Card title={p.title} href={p.href} description={p.text} icon={<Package />} more={h.sourcing.more} />
+            </Reveal>
+          ))}
+        </ul>
+      </Section>
+
+      <Section id="liucheng">
         <Reveal><SectionHeader id="liucheng" eyebrow={h.process.eyebrow} title={h.process.title} align="center" /></Reveal>
-        <Steps steps={h.process.steps} icons={STEP_ICON} numbered={false} />
+        <Steps steps={h.process.steps} icons={STEP_ICON} numbered={false} media={<LoopVideo name="process-flow" lazy />} />
       </Section>
 
       <PartnerBand id="hezuo" badge={h.partners.badge} title={h.partners.title} empty={h.partners.empty} />

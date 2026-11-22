@@ -14,12 +14,17 @@ export default function LangSwitcher({
   label,
 }: {
   /** Layout sayfalar arası kalıcıdır → aktif sayfa tipi pathname'den seçilir */
-  itemsByPage: Record<"home" | "sourcing", SwitcherItem[]>;
+  itemsByPage: Record<"home" | "sourcing" | "inspection", SwitcherItem[]>;
   currentCode: string;
   label: string;
 }) {
   const pathname = usePathname() ?? "";
-  const items = itemsByPage[pathname.includes("/services/sourcing") ? "sourcing" : "home"];
+  const pageKey = pathname.includes("/services/sourcing")
+    ? "sourcing"
+    : pathname.includes("/services/inspection")
+    ? "inspection"
+    : "home";
+  const items = itemsByPage[pageKey];
   const uid = useId();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(Math.max(0, items.findIndex((i) => i.code === currentCode)));

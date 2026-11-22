@@ -8,8 +8,8 @@ import dict from "@/lib/messages/zh.json";
 import WeChatQrZoom from "./WeChatQrZoom";
 import z from "./wechat-zoom.module.css";
 
-const WECHAT_ID = process.env.NEXT_PUBLIC_WECHAT_ID ?? "";
-const WECHAT_QR = process.env.NEXT_PUBLIC_WECHAT_QR ?? "";
+const WECHAT_ID = process.env.NEXT_PUBLIC_WECHAT_ID || "bdimexport";
+const WECHAT_QR = process.env.NEXT_PUBLIC_WECHAT_QR || "/media/brand/wechat-qr.jpg";
 
 export default function WeChatContact({ id = "wechat", email }: { id?: string; email: string }) {
   const l = dict.wechat;

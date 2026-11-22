@@ -18,6 +18,9 @@
   "sourcing": {
     "label": "Abastecimiento (sourcing)"
   },
+  "inspection": {
+    "label": "Inspección y carga de contenedor"
+  },
   "skip": "Ir al contenido",
   "crumbs": "Ruta de navegación",
   "menuOpen": "Abrir menú",

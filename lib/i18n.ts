@@ -1,4 +1,4 @@
-// next-intl yapılandırması — 4 route group (tr)(zh)(en)(de)
+// next-intl yapılandırması — 4 ana route group (tr)(zh)(en)(de) + 10 küresel/niş dil varyantı (/en/{xx})
 // x-default: tr (Proje.md §3.1 / SEO_PLAYBOOK §1)
 export const locales = ["tr", "zh", "en", "de"] as const;
 export type Locale = (typeof locales)[number];
@@ -13,8 +13,8 @@ export const localeConfig: Record<
   zh: { label: "简体中文", hreflang: "zh-CN", dir: "ltr" },
 };
 
-// EN varyantları (FAZ 2): /en/{ru,fr,nl,es,ar} — hreflang: en-XX
-export const enVariants = ["ru", "fr", "nl", "es", "ar"] as const;
+// EN varyantları: mevcut 5 dil + 5 yeni mavi okyanus niş dil (fi, sq, pl, ro, it) — hreflang: en-XX
+export const enVariants = ["ru", "fr", "nl", "es", "ar", "fi", "sq", "pl", "ro", "it"] as const;
 export type EnVariant = (typeof enVariants)[number];
 
 export const enVariantHreflang: Record<EnVariant, string> = {
@@ -23,4 +23,9 @@ export const enVariantHreflang: Record<EnVariant, string> = {
   nl: "en-NL",
   es: "en-ES",
   ar: "en-AR",
+  fi: "en-FI",
+  sq: "en-SQ",
+  pl: "en-PL",
+  ro: "en-RO",
+  it: "en-IT",
 };

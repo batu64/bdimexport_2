@@ -1,6 +1,6 @@
-// /en global site çerçevesi (navbar + footer) — metin lib/messages/en.json, hizmet/sektör/kategori linkleri İÇERİK modüllerinden.
-// Pazar/dil seçici: 4 pazar sitesi + 5 EN dil varyantı (her biri kendi ana sayfasına; hreflang alternatifi değil, site seçimi).
+// /en global site çerçevesi (navbar + footer) — metin lib/messages/en.json, kurumsal bilgiler lib/ui/entities.ts.
 import { enVariants, localeConfig, type Locale } from "@/lib/i18n";
+import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_PHONE_HREF } from "@/lib/ui/entities";
 import type { FooterProps } from "@/lib/ui/Footer";
 import type { NavbarProps, SiteLink } from "@/lib/ui/Navbar";
 import { VARIANTS } from "@/lib/ui/variants";
@@ -12,9 +12,8 @@ const SITE_HOME: Record<Locale, string> = { tr: "/", en: "/en", de: "/de", zh: "
 const ORDER: Locale[] = ["tr", "en", "de", "zh"];
 
 export const QUOTE_EMAIL = process.env.NEXT_PUBLIC_QUOTE_EMAIL ?? "iletisim@bdimexport.com";
-/** Teklif kanalı: gerçek e-posta (form/endpoint henüz yok — sahte form yazılmaz). context: hangi sayfadan */
-export const quoteHref = (context?: string) =>
-  `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(context ? `Quotation request: ${context}` : dict.quote.subject)}&body=${encodeURIComponent(dict.quote.body)}`;
+/** Akıllı RFQ & talep kanalı — kullanıcıyı /en/rfq interaktif teklif ve denetim konfigüratörüne yönlendirir */
+export const quoteHref = (_context?: string) => "/en/rfq";
 
 export function enSites(current: string): SiteLink[] {
   const markets = ORDER.map((l) => ({ label: localeConfig[l].label, href: SITE_HOME[l], lang: localeConfig[l].hreflang, current: l === current }));
@@ -32,7 +31,7 @@ export function navbarProps(): NavbarProps {
     cta: { label: n.cta, href: quoteHref() },
     sites: enSites("en"),
     labels: { nav: n.label, open: n.menuOpen, close: n.menuClose, sites: n.sites },
-    heroPaths: ["/en"],
+    heroPaths: ["/en", "/en/rfq"],
   };
 }
 
@@ -46,7 +45,19 @@ export function footerProps(): FooterProps {
       { title: f.industries, links: [...INDUSTRIES.map((i) => ({ label: i.label, href: `/en/industries/${i.slug}` })), { label: f.products, href: "/en/products" }] },
     ],
     sites: { title: f.sites, links: enSites("en") },
-    contact: { title: f.contact, email: QUOTE_EMAIL, emailLabel: f.email },
+    contact: {
+      title: f.contact,
+      email: QUOTE_EMAIL,
+      emailLabel: f.email,
+      phone: { number: OFFICIAL_PHONE, href: OFFICIAL_PHONE_HREF, label: f.phone },
+    },
+    entities: {
+      title: f.entitiesTitle,
+      items: [
+        { badge: f.entityBadges.us, name: CORPORATE_ENTITIES[1].name, address: CORPORATE_ENTITIES[1].address },
+        { badge: f.entityBadges.tr, name: CORPORATE_ENTITIES[0].name, address: CORPORATE_ENTITIES[0].address },
+      ],
+    },
     rights: f.rights,
   };
 }

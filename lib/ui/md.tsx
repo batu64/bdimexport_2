@@ -23,6 +23,7 @@ function inline(s: string, rtl: boolean): string {
 const FAQ_HEADINGS = new Set([
   "Frequently Asked Questions", "Sık Sorulan Sorular", "Häufig gestellte Fragen", "常见问题",
   "Часто задаваемые вопросы", "Questions fréquentes", "Foire aux questions", "Veelgestelde vragen", "Preguntas frecuentes", "الأسئلة الشائعة",
+  "Usein kysytyt kysymykset", "Pyetjet e shpeshta", "Najczęściej zadawane pytania", "Întrebări frecvente", "Domande frequenti",
 ]);
 /** h2 id: industries #calculation-notes çapalarıyla AYNI algoritma (latin); latin dışı başlık → bölüm-N */
 const slugify = (s: string) =>

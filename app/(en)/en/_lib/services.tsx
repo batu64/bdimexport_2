@@ -4,7 +4,7 @@
 import fs from "fs";
 import path from "path";
 import type { Metadata } from "next";
-import { Boxes, Factory, Landmark, PackageSearch, Ship, type LucideIcon } from "lucide-react";
+import { BarChart3, Boxes, ClipboardCheck, Factory, Globe2, Landmark, PackageSearch, Ship, type LucideIcon } from "lucide-react";
 import { renderVariantMd, tocFromHtml } from "@/lib/ui/md";
 import PageHeader from "@/lib/ui/PageHeader";
 import ArticleLayout, { AsideCta } from "@/lib/ui/ArticleLayout";
@@ -22,7 +22,10 @@ const ROOT = path.join(process.cwd(), "content", "en", "global", "services");
 
 /** Sıra = menü/footer/indeks sırası (Proje.md §3.1 hizmet seti). label: kısa ad. */
 export const SERVICES = [
-  { slug: "sourcing", label: "Sourcing" },
+  { slug: "sourcing", label: "Türkiye Sourcing" },
+  { slug: "china-sourcing", label: "China & Dual-Hub Sourcing" },
+  { slug: "container-loading", label: "Container Loading & QC" },
+  { slug: "commercial-intelligence", label: "Commercial Intelligence" },
   { slug: "manufacturing", label: "Private Label Manufacturing" },
   { slug: "inspection", label: "Factory Inspection" },
   { slug: "logistics", label: "Freight Logistics" },
@@ -30,7 +33,14 @@ export const SERVICES = [
 ] as const;
 export type ServiceSlug = (typeof SERVICES)[number]["slug"];
 export const SERVICE_ICON: Record<string, LucideIcon> = {
-  sourcing: PackageSearch, manufacturing: Boxes, inspection: Factory, logistics: Ship, customs: Landmark,
+  sourcing: PackageSearch,
+  "china-sourcing": Globe2,
+  "container-loading": ClipboardCheck,
+  "commercial-intelligence": BarChart3,
+  manufacturing: Boxes,
+  inspection: Factory,
+  logistics: Ship,
+  customs: Landmark,
 };
 const pg = dict.page;
 

@@ -18,6 +18,9 @@
   "sourcing": {
     "label": "Inkoop (sourcing)"
   },
+  "inspection": {
+    "label": "Containerinspectie & controle"
+  },
   "skip": "Naar inhoud",
   "crumbs": "Kruimelpad",
   "menuOpen": "Menu openen",

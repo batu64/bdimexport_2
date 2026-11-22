@@ -1,9 +1,7 @@
-// TR ana sayfa — OPUS_TASARIM_TALIMATI D3. Metin: lib/messages/tr.json (hero = design/hero-copy.md v2.1).
-// Hizmet/rehber kartları İÇERİKTEN (content/tr/**/*.md) — elle liste yok. Rakamlar yalnız SLA taahhüdü veya içerik sayımı.
-// Primary (amber) CTA iki konumda: hero + son bölüm (cta.md). Navbar CTA secondary görünümde.
+// TR ana sayfa — Bdimexport v3.0: Çift Yönlü İthalat/İhracat + Ticari İstihbarat + Remotion Video + İnteraktif Stage.
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Factory, FileSearch, Globe2, Handshake, Landmark, Package, PackageSearch, Rocket, Ship } from "lucide-react";
+import { ArrowRight, BadgeCheck, ClipboardCheck, Factory, FileSearch, Globe2, Handshake, Landmark, Package, PackageSearch, Rocket, Ship } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { homeAlternates } from "@/lib/hreflang";
 import dict from "@/lib/messages/tr.json";
@@ -18,20 +16,21 @@ import Steps from "@/lib/ui/Steps";
 import LoopVideo from "@/lib/ui/motion/LoopVideo";
 import PartnerBand from "@/lib/ui/PartnerBand";
 import Reveal from "@/lib/ui/motion/Reveal";
+import TradeIntelligenceStage, { type StageTab } from "@/lib/ui/motion/TradeIntelligenceStage";
 import { listSlugs, readDoc } from "./_lib/content";
 import { quoteHref, services } from "./_lib/chrome";
 import { GUIDE_ICON, SERVICE_ICON } from "./_lib/icons";
-import { APPLY_PATH as APPLY } from "./_lib/links";
+import { APPLY_PATH as APPLY, INTELLIGENCE_PATH } from "./_lib/links";
 import s from "./home.module.css";
 
 export const metadata: Metadata = {
-  title: { absolute: "İthalat & İhracat Danışmanlığı | Bdimexport" }, // kök layout aynı segmentte: şablon uygulanmaz
+  title: { absolute: "İthalat, İhracat & Ticari İstihbarat | Bdimexport" },
   description:
-    "Çin'den ithalatta tedarik, denetim, lojistik ve gümrük; ihracatta e-ihracat ve B2B danışmanlık. Ücretsiz teklif alın.",
+    "Çin'den ithalatta tedarik, konteyner yükleme denetimi, gümrük; ihracatta yurt dışı pazarlama sistemi kurulumu, pazar araştırması ve ticari istihbarat.",
   alternates: homeAlternates(""),
 };
 
-const STEP_ICON: LucideIcon[] = [FileSearch, PackageSearch, Factory, Ship, Landmark];
+const STEP_ICON: LucideIcon[] = [FileSearch, PackageSearch, Factory, ClipboardCheck, Ship, Landmark];
 
 export default function TrHomePage() {
   const h = dict.home;
@@ -47,6 +46,7 @@ export default function TrHomePage() {
     unit: it.unit,
     label: it.label,
   }));
+  const stageTabs = h.stage.tabs as [StageTab, StageTab, StageTab];
 
   return (
     <main>
@@ -55,8 +55,8 @@ export default function TrHomePage() {
         eyebrow={h.hero.eyebrow}
         title={h.hero.h1}
         subtitle={h.hero.sub}
-        primary={{ label: h.hero.ctaPrimary, href: APPLY }}
-        secondary={{ label: h.hero.ctaSecondary, href: quoteHref }}
+        primary={{ label: h.hero.ctaPrimary, href: quoteHref }}
+        secondary={{ label: h.hero.ctaSecondary, href: APPLY }}
         trust={h.hero.trust}
         trustLabel={h.stats.label}
         visual={
@@ -74,7 +74,22 @@ export default function TrHomePage() {
 
       <StatBand items={stats} label={h.stats.label} locale="tr" />
 
-      {/* ── Hizmetler: iki yön */}
+      {/* ── Remotion Fizikli 3 Katmanlı İnteraktif Operasyon Vitrini */}
+      <Section id="yetenekler" tone="alt">
+        <Reveal>
+          <SectionHeader
+            id="yetenekler"
+            eyebrow={h.stage.eyebrow}
+            title={h.stage.title}
+            lead={h.stage.lead}
+            align="center"
+            action={<Button href={INTELLIGENCE_PATH} variant="ghost">{dict.content.intelligence}</Button>}
+          />
+        </Reveal>
+        <TradeIntelligenceStage tabs={stageTabs} />
+      </Section>
+
+      {/* ── Hizmetler: iki yön (İthalat/Denetim & İhracat/Pazarlama/İstihbarat) */}
       <Section id="hizmetler">
         <Reveal><SectionHeader id="hizmetler" eyebrow={h.services.eyebrow} title={h.services.title} lead={h.services.lead} /></Reveal>
         <div className={s.split}>
@@ -113,7 +128,7 @@ export default function TrHomePage() {
         </div>
       </Section>
 
-      {/* ── Süreç: 5 adım */}
+      {/* ── Süreç: 5 adım + Remotion process-flow */}
       <Section id="surec" tone="alt">
         <Reveal><SectionHeader id="surec" eyebrow={h.process.eyebrow} title={h.process.title} align="center" /></Reveal>
         <Steps steps={h.process.steps} icons={STEP_ICON} media={<LoopVideo name="process-flow" lazy />} />
@@ -169,15 +184,15 @@ export default function TrHomePage() {
         </ul>
       </Section>
 
-      {/* ── Onaylı Türk İş Ortakları (boş durum: hero-copy TR) */}
+      {/* ── Onaylı Türk İş Ortakları */}
       <PartnerBand id="ortaklar" badge={h.partners.badge} title={h.partners.title} empty={h.partners.empty} />
 
       {/* ── Kapanış CTA */}
       <CtaBand
         title={h.cta.title}
         lead={h.cta.lead}
-        primary={{ label: h.hero.ctaPrimary, href: APPLY }}
-        secondary={{ label: h.hero.ctaSecondary, href: quoteHref }}
+        primary={{ label: h.hero.ctaPrimary, href: quoteHref }}
+        secondary={{ label: h.hero.ctaSecondary, href: APPLY }}
       />
     </main>
   );

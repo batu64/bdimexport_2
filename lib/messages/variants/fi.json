@@ -1,0 +1,29 @@
+{
+  "label": "Suomi",
+  "channels": [
+    { "id": "email", "text": "Sähköposti" },
+    { "id": "whatsapp", "text": "WhatsApp" }
+  ],
+  "ctaNote": "Ilmainen tarjous 24 tunnissa · Hinnat EUR",
+  "tagline": "B2B-hankinta, konttivalvonta ja kauppatiedustelu Turkista ja Kiinasta",
+  "home": "Etusivu",
+  "navLabel": "Valikko",
+  "switcherLabel": "Kieli",
+  "contact": {
+    "title": "Ota yhteyttä",
+    "body": "Pääkanavamme suomalaisille maahantuojille on sähköposti ja varakanavana WhatsApp. Suorat kanavalinkit aktivoidaan käyttöönoton yhteydessä. Lähetä tuote-erittely, HS-koodi tai tehtaan osoite (Turkki tai Kiina) — vastaamme 24 tunnissa. Hinnat EUR; puhelinnumerot +358-muodossa."
+  },
+  "sourcing": { "label": "Hankinta (TR & CN)" },
+  "inspection": { "label": "Konttivalvonta ja tarkastus" },
+  "skip": "Siirry sisältöön",
+  "crumbs": "Murupolku",
+  "menuOpen": "Avaa valikko",
+  "menuClose": "Sulje valikko",
+  "insights": "Artikkelit",
+  "toc": "Tällä sivulla",
+  "read": "Lue",
+  "languages": "Kielet",
+  "rights": "Kaikki oikeudet pidätetään.",
+  "insightsLead": "Käytännön oppaita hankintaan Turkista ja Kiinasta. Jokainen artikkeli tarkistetaan ennen julkaisua.",
+  "insightsEmpty": "Ei vielä julkaistuja artikkeleita. Uudet oppaat ilmestyvät tänne tarkistuksen jälkeen."
+}

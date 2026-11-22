@@ -1,5 +1,5 @@
-// EN varyant sayfa gövdesi (D5): ana sayfa → Hero; hizmet → PageHeader (breadcrumb). Ardından prose (içindekiler) + #contact
-// iletişim kartı (kanal CTA hedefi) + kapanış bandı. Tüm 10 page.tsx bunu kullanır → stil/RTL tek yerde. Metin: md + sözlük.
+// EN varyant sayfa gövdesi: ana sayfa → Hero; hizmet (sourcing | inspection) → PageHeader (breadcrumb).
+// Ardından prose (içindekiler) + #contact iletişim kartı. Tüm varyant page.tsx'leri bunu kullanır.
 import { MessageCircle } from "lucide-react";
 import Hero from "./Hero";
 import PageHeader from "./PageHeader";
@@ -19,11 +19,12 @@ export default function VariantPageBody({
   variant: EnVariant;
   title: string;
   html: string;
-  kind: "home" | "sourcing";
+  kind: "home" | "sourcing" | "inspection";
   desc?: string;
 }) {
   const v = VARIANTS[variant];
   const base = `/en/${variant}`;
+  const serviceLabel = kind === "inspection" ? v.inspection.label : v.sourcing.label;
   return (
     <main>
       {kind === "home" ? (
@@ -32,11 +33,11 @@ export default function VariantPageBody({
           title={title}
           subtitle={desc ?? v.ctaNote}
           primary={{ label: v.contact.title, href: "#contact" }}
-          secondary={{ label: v.sourcing.label, href: `${base}/services/sourcing` }}
+          secondary={{ label: v.inspection.label, href: `${base}/services/inspection` }}
         />
       ) : (
         <PageHeader
-          crumbs={[{ label: v.home, href: base }, { label: v.sourcing.label }]}
+          crumbs={[{ label: v.home, href: base }, { label: serviceLabel }]}
           crumbsLabel={v.crumbs}
           eyebrow={v.tagline}
           title={title}

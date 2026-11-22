@@ -1,5 +1,4 @@
-// /en global hub — OPUS_TASARIM_YAYILIM D5: onaylı TR ana sayfa kalıbı, metin lib/messages/en.json (hero = design/hero-copy.md EN).
-// Rakamlar: 24h SLA · UN Comtrade doğrulanmış ihracat toplamı (_claims.json, sektör sayfalarında kaynak linkli) · içerik sayımları.
+// /en global hub — Bdimexport v3.0: Dual-Hub (Türkiye + China) Sourcing, Standalone Container QC, Commercial Intelligence & Remotion Motion
 import type { Metadata } from "next";
 import { ClipboardCheck, Factory, FileSearch, PackageSearch, Ship } from "lucide-react";
 import dict from "@/lib/messages/en.json";
@@ -14,6 +13,7 @@ import LoopVideo from "@/lib/ui/motion/LoopVideo";
 import PartnerBand from "@/lib/ui/PartnerBand";
 import CtaBand from "@/lib/ui/CtaBand";
 import Reveal from "@/lib/ui/motion/Reveal";
+import TradeIntelligenceStage, { type StageTab } from "@/lib/ui/motion/TradeIntelligenceStage";
 import grid from "@/lib/ui/cardgrid.module.css";
 import { homeAlternates } from "@/lib/hreflang";
 import { SERVICES, SERVICE_ICON, readServiceDesc } from "./_lib/services";
@@ -21,7 +21,6 @@ import { quoteHref } from "./_lib/chrome";
 import { INDUSTRY_ICON, industryCards } from "./industries/_lib/industries";
 import { productSlugs } from "./products/[slug]/_view";
 
-// canonical + hreflang (ANA SAYFA tam karşılıklı set — tr/en/de/zh + en-XX, x-default=tr); başlık/açıklama (en) layout'tan
 export const metadata: Metadata = { alternates: homeAlternates("en") };
 
 const STEP_ICON = [FileSearch, PackageSearch, Factory, ClipboardCheck, Ship];
@@ -37,6 +36,8 @@ export default function EnHomePage() {
     { value: SERVICES.length, label: h.stats.services.label },
     { value: productSlugs().length, label: h.stats.products.label },
   ];
+  const stageTabs = h.stage.tabs as [StageTab, StageTab, StageTab];
+
   return (
     <main>
       <Hero
@@ -45,7 +46,7 @@ export default function EnHomePage() {
         title={h.hero.h1}
         subtitle={h.hero.sub}
         primary={{ label: h.hero.ctaPrimary, href: quoteHref() }}
-        secondary={{ label: h.hero.ctaSecondary, href: "/en/services" }}
+        secondary={{ label: h.hero.ctaSecondary, href: "/en/services/container-loading" }}
         trust={h.hero.trust}
         trustLabel={h.stats.label}
         visual={
@@ -63,10 +64,29 @@ export default function EnHomePage() {
 
       <StatBand items={stats} label={h.stats.label} locale="en" />
 
+      <Section id="dual-hub-stage" tone="alt">
+        <Reveal>
+          <SectionHeader
+            id="dual-hub-stage"
+            eyebrow={h.stage.eyebrow}
+            title={h.stage.title}
+            lead={h.stage.lead}
+            align="center"
+            action={<Button href="/en/rfq" variant="ghost">{dict.nav.cta}</Button>}
+          />
+        </Reveal>
+        <TradeIntelligenceStage tabs={stageTabs} />
+      </Section>
+
       <Section id="services">
         <Reveal>
-          <SectionHeader id="services" eyebrow={h.services.eyebrow} title={h.services.title} lead={h.services.lead}
-            action={<Button href="/en/services" variant="ghost">{h.services.more}</Button>} />
+          <SectionHeader
+            id="services"
+            eyebrow={h.services.eyebrow}
+            title={h.services.title}
+            lead={h.services.lead}
+            action={<Button href="/en/services" variant="ghost">{h.services.more}</Button>}
+          />
         </Reveal>
         <ul role="list" className={grid.grid}>
           {SERVICES.map((sv, i) => {
@@ -82,16 +102,27 @@ export default function EnHomePage() {
 
       <Section id="industries" tone="alt">
         <Reveal>
-          <SectionHeader id="industries" eyebrow={h.industries.eyebrow} title={h.industries.title} lead={h.industries.lead}
-            action={<Button href="/en/industries" variant="ghost">{h.industries.more}</Button>} />
+          <SectionHeader
+            id="industries"
+            eyebrow={h.industries.eyebrow}
+            title={h.industries.title}
+            lead={h.industries.lead}
+            action={<Button href="/en/industries" variant="ghost">{h.industries.more}</Button>}
+          />
         </Reveal>
         <ul role="list" className={grid.grid}>
           {industries.map((c, i) => {
             const Icon = INDUSTRY_ICON[c.slug];
             return (
               <Reveal as="li" key={c.slug} index={i % 3}>
-                <Card title={c.label} href={`/en/industries/${c.slug}`} description={c.desc} icon={<Icon />}
-                  eyebrow={h.industries.figure.replace("{n}", fmtBn(c.bn))} more={dict.page.read} />
+                <Card
+                  title={c.label}
+                  href={`/en/industries/${c.slug}`}
+                  description={c.desc}
+                  icon={<Icon />}
+                  eyebrow={h.industries.figure.replace("{n}", fmtBn(c.bn))}
+                  more={dict.page.read}
+                />
               </Reveal>
             );
           })}
@@ -109,7 +140,7 @@ export default function EnHomePage() {
         title={h.cta.title}
         lead={h.cta.lead}
         primary={{ label: h.hero.ctaPrimary, href: quoteHref() }}
-        secondary={{ label: h.hero.ctaSecondary, href: "/en/services" }}
+        secondary={{ label: h.hero.ctaSecondary, href: "/en/services/container-loading" }}
       />
     </main>
   );
