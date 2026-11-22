@@ -2,6 +2,7 @@
 // Eski kök metadata (metadataBase, title şablonu, description, x-default: tr) BURADA; (tr) altındaki alt segmentler şablonu eskisi gibi alır.
 import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
+import ClarityScript from "@/lib/ui/ClarityScript";
 import type { Metadata } from "next";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 import { IntlProvider } from "@/lib/intl";
@@ -24,6 +25,7 @@ export default function TrLayout({ children }: { children: React.ReactNode }) {
     <html {...htmlAttrs("tr")}>
       <head>
         <ThemeStyle />
+        <ClarityScript />
       </head>
       <body>
         <a href="#icerik" className="skip-link">{dict.nav.skip}</a>

@@ -2,6 +2,7 @@
 // (agents/de-agent.md §3: hukuki sayfalar insan onaylı — bu placeholder hukuki metin İÇERMEZ)
 import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
+import ClarityScript from "@/lib/ui/ClarityScript";
 import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
 import PageTransition from "@/lib/ui/motion/PageTransition";
@@ -21,6 +22,7 @@ export default function DeLayout({ children }: { children: React.ReactNode }) {
     <html {...htmlAttrs("de")}>
       <head>
         <ThemeStyle />
+        <ClarityScript />
       </head>
       <body>
         <a href="#inhalt" className="skip-link">{dict.nav.skip}</a>

@@ -1,6 +1,7 @@
 // EN global hub placeholder — FAZ 2'de tam içerik (Proje.md segment EN)
 import "@/app/globals.css";
 import ThemeStyle, { htmlAttrs } from "@/lib/ui/ThemeStyle";
+import ClarityScript from "@/lib/ui/ClarityScript";
 import type { Metadata } from "next";
 import { IntlProvider } from "@/lib/intl";
 import PageTransition from "@/lib/ui/motion/PageTransition";
@@ -21,6 +22,7 @@ export default function EnLayout({ children }: { children: React.ReactNode }) {
     <html {...htmlAttrs("en")}>
       <head>
         <ThemeStyle />
+        <ClarityScript />
       </head>
       <body>
         <a href="#content" className="skip-link">{dict.nav.skip}</a>
