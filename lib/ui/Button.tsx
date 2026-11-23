@@ -14,10 +14,25 @@ export type ButtonProps = {
   arrow?: boolean;
   className?: string;
   ariaLabel?: string;
+  id?: string;
+  clarityEvent?: string;
+  clarityUpgrade?: string;
   children: ReactNode;
 };
 
-export default function Button({ href, variant = "primary", tone = "light", size = "md", arrow, className, ariaLabel, children }: ButtonProps) {
+export default function Button({
+  href,
+  variant = "primary",
+  tone = "light",
+  size = "md",
+  arrow,
+  className,
+  ariaLabel,
+  id,
+  clarityEvent,
+  clarityUpgrade,
+  children,
+}: ButtonProps) {
   const cls = clsx(s.btn, s[variant], tone === "brand" && s.onBrand, size === "lg" && s.lg, className);
   const body = (
     <>
@@ -30,15 +45,29 @@ export default function Button({ href, variant = "primary", tone = "light", size
     const ext = /^https?:/.test(href);
     return (
       <a
+        id={id}
         href={href}
         className={cls}
         aria-label={ariaLabel}
         target={ext ? "_blank" : undefined}
         rel={ext ? "noopener noreferrer" : undefined}
+        data-clarity-event={clarityEvent}
+        data-clarity-upgrade={clarityUpgrade}
       >
         {body}
       </a>
     );
   }
-  return <Link href={href} className={cls} aria-label={ariaLabel}>{body}</Link>;
+  return (
+    <Link
+      id={id}
+      href={href}
+      className={cls}
+      aria-label={ariaLabel}
+      data-clarity-event={clarityEvent}
+      data-clarity-upgrade={clarityUpgrade}
+    >
+      {body}
+    </Link>
+  );
 }

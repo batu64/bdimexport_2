@@ -148,6 +148,7 @@ assert.ok(enPolesAlt.includes(`en=${SITE}/en/wooden-utility-poles`), "wooden-uti
 for (const [name, content] of [["en/wooden-utility-poles.html", enPolesHtml], ["en/ar/wooden-utility-poles.html", arPolesHtml]]) {
   assert.ok(!/semita[sş]|320\s*8169|326\s*20\s*40|657\s*91\s*34/i.test(content), `${name}: üçüncü taraf marka/telefon sızıntısı bulundu!`);
   assert.ok(content.includes("905394147854"), `${name}: resmi WhatsApp hattı (+90 539 414 78 54) eksik!`);
+  assert.ok(content.includes("data-clarity-event=") && content.includes("zhsd81zz12"), `${name}: Clarity tıklama noktaları veya etiketi eksik!`);
 }
 console.log("✔ Elektrik direği EN/AR hunileri doğrulandı: karşılıklı hreflang, resmi WhatsApp hattı ve sıfır marka sızıntısı");
 console.log("=== TÜM SEO + GEO + ABM KONTROLLERİ BAŞARIYLA GEÇTİ ===");

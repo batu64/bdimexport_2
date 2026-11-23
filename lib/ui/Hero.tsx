@@ -11,8 +11,8 @@ export type HeroProps = {
   eyebrow?: string;
   title: string;
   subtitle: string;
-  primary: { label: string; href: string };
-  secondary?: { label: string; href: string };
+  primary: { label: string; href: string; id?: string; clarityEvent?: string; clarityUpgrade?: string };
+  secondary?: { label: string; href: string; id?: string; clarityEvent?: string; clarityUpgrade?: string };
   trust?: string[];
   trustLabel?: string;
   visual?: ReactNode;
@@ -42,8 +42,30 @@ export default function Hero({ id = "hero", eyebrow, title, subtitle, primary, s
           <h1 id={`${id}-title`} className={s.title}>{title}</h1>
           <p className={`${s.sub} ${s.enter}`} style={{ "--d": 1 } as React.CSSProperties}>{subtitle}</p>
           <div className={`${s.ctas} ${s.enter}`} style={{ "--d": 2 } as React.CSSProperties}>
-            <Button href={primary.href} variant="primary" size="lg" arrow>{primary.label}</Button>
-            {secondary && <Button href={secondary.href} variant="secondary" tone="brand" size="lg">{secondary.label}</Button>}
+            <Button
+              id={primary.id}
+              href={primary.href}
+              variant="primary"
+              size="lg"
+              arrow
+              clarityEvent={primary.clarityEvent}
+              clarityUpgrade={primary.clarityUpgrade}
+            >
+              {primary.label}
+            </Button>
+            {secondary && (
+              <Button
+                id={secondary.id}
+                href={secondary.href}
+                variant="secondary"
+                tone="brand"
+                size="lg"
+                clarityEvent={secondary.clarityEvent}
+                clarityUpgrade={secondary.clarityUpgrade}
+              >
+                {secondary.label}
+              </Button>
+            )}
           </div>
           {trust.length > 0 && (
             <ul role="list" aria-label={trustLabel} className={`${s.trust} ${s.enter}`} style={{ "--d": 3 } as React.CSSProperties}>

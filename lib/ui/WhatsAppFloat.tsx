@@ -1,6 +1,7 @@
 "use client";
 // Floating WhatsApp quick-contact button for TR, EN, and DE public hubs.
 import { MessageCircle } from "lucide-react";
+import { clarityEvent, clarityUpgrade } from "./clarity";
 import { OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA } from "./entities";
 import s from "./whatsappfloat.module.css";
 
@@ -17,6 +18,8 @@ export default function WhatsAppFloat({ label, ariaLabel, message, locale }: Pro
     : OFFICIAL_WHATSAPP_WA;
 
   function handleClick() {
+    clarityEvent(`whatsapp_float_${locale}`);
+    clarityUpgrade(`whatsapp_float_${locale}`);
     if (typeof window !== "undefined") {
       const w = window as unknown as { gtag?: (...args: unknown[]) => void };
       w.gtag?.("event", "generate_lead", {
@@ -29,6 +32,7 @@ export default function WhatsAppFloat({ label, ariaLabel, message, locale }: Pro
 
   return (
     <a
+      id={`cta-whatsapp-float-${locale}`}
       href={href}
       target="_blank"
       rel="noopener noreferrer"

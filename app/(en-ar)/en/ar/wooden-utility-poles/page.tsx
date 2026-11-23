@@ -315,7 +315,14 @@ export default function ArWoodenUtilityPolesPage() {
             <Factory aria-hidden="true" className={up.badgeIcon} />
             <span>من المصنع التركي مباشرة بدون وسطاء · شحن سريع إلى مصراتة وطرابلس وبنغازي والعقبة</span>
           </span>
-          <Link href="/en/wooden-utility-poles" lang="en" hrefLang="en" className={up.langSwitchLink}>
+          <Link
+            id="cta-pole-ar-switch-en"
+            href="/en/wooden-utility-poles"
+            lang="en"
+            hrefLang="en"
+            className={up.langSwitchLink}
+            data-clarity-event="pole_ar_switch_to_en"
+          >
             <Globe aria-hidden="true" className={up.badgeIcon} />
             <span>English Version (Africa &amp; Global Export)</span>
           </Link>
@@ -327,8 +334,19 @@ export default function ArWoodenUtilityPolesPage() {
         eyebrow="توريد مصنعي مباشر بدون وسطاء · ليبيا (مصراتة · طرابلس · بنغازي) والأردن (العقبة) والمنطقة العربية"
         title="أعمدة الكهرباء والاتصالات الخشبية المشربة بالأوتوكلاف — من خط إنتاج مصنعنا في تركيا إلى مينائكم"
         subtitle="احصلوا على أسعار بوابة المصنع المباشرة لأعمدة التوزيع الكهربائي والهاتف والألياف الضوئية بأطوال 7م حتى 12م (تشريب بني تصديري حتى 9م وتشريب أخضر حتى 12م)، بتعبئة قياسية 140 عموداً (9م) في الحاوية الواحدة وشحن بحري خلال 3–6 أيام إلى ليبيا."
-        primary={{ label: "احسب الكمية واطلب تسعيرة المصنع", href: "#contact" }}
-        secondary={{ label: "تواصل فوري عبر واتساب المصنع", href: directWaHero }}
+        primary={{
+          id: "cta-pole-ar-hero-calc",
+          label: "احسب الكمية واطلب تسعيرة المصنع",
+          href: "#contact",
+          clarityEvent: "pole_ar_hero_scroll_calc",
+        }}
+        secondary={{
+          id: "cta-pole-ar-hero-wa",
+          label: "تواصل فوري عبر واتساب المصنع",
+          href: directWaHero,
+          clarityEvent: "pole_ar_hero_whatsapp",
+          clarityUpgrade: "pole_ar_hero_wa_lead",
+        }}
         trust={[
           "بدون وسطاء أو سماسرة: تعاقد مباشر مع الشركة المصنعة والمصدرة في تركيا",
           "تعبئة موثقة بالصور والعدّ الفردي: 140 عمود (9م · قمة Ø12–14 سم · قاعدة Ø22–23 سم) بكل حاوية 40' HC",
@@ -376,10 +394,14 @@ export default function ArWoodenUtilityPolesPage() {
                 </ul>
               </div>
               <a
+                id={`cta-pole-ar-corridor-${c.id}`}
                 href={`${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(c.waText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${up.corridorWaLink} ${c.priority ? up.corridorWaPriority : ""}`}
+                data-clarity-event={`pole_ar_corridor_wa_${c.id}`}
+                data-clarity-upgrade={`pole_ar_${c.id}_wa_lead`}
+                data-clarity-tag={`pole_corridor:${c.id}`}
               >
                 <MessageCircle aria-hidden="true" className={up.btnIcon} />
                 <span>{c.cta}</span>
@@ -401,8 +423,13 @@ export default function ArWoodenUtilityPolesPage() {
         </Reveal>
 
         <div className={up.galleryGrid}>
-          {GALLERY_AR.map((img) => (
-            <figure key={img.src} className={up.galleryCard}>
+          {GALLERY_AR.map((img, idx) => (
+            <figure
+              key={img.src}
+              id={`pole-ar-gallery-${idx + 1}`}
+              className={up.galleryCard}
+              data-clarity-event={`pole_ar_gallery_${idx + 1}`}
+            >
               <div className={up.galleryImgWrap}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={img.src} alt={img.title} className={up.galleryImg} loading="lazy" decoding="async" />

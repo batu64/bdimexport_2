@@ -4,6 +4,7 @@
 // WhatsApp / E-posta / Pano kopyalama ile 0-sürtünmeli lead dönüşümü sağlar.
 import { useEffect, useId, useMemo, useState } from "react";
 import { BarChart3, CheckCircle2, ClipboardCheck, Copy, Mail, MessageCircle, PackageSearch, Rocket, Send } from "lucide-react";
+import { clarityEvent, clarityUpgrade } from "./clarity";
 import { OFFICIAL_WHATSAPP_WA } from "./entities";
 import s from "./smartrfq.module.css";
 
@@ -125,6 +126,8 @@ export default function SmartRfq({
   }, [selectedTrack.title, selectedOrigin, origin, volume, product, hsCode, targetMarket, company, contactEmail, notes]);
 
   function trackLeadEvent(method: string) {
+    clarityEvent(`smart_rfq_${locale}_${method}`);
+    clarityUpgrade(`smart_rfq_${method}`);
     if (typeof window === "undefined") return;
     const w = window as unknown as { gtag?: (...args: unknown[]) => void };
     if (typeof w.gtag === "function") {

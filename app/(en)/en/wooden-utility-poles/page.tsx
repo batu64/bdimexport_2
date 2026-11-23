@@ -315,7 +315,14 @@ export default function EnWoodenUtilityPolesPage() {
             <Factory aria-hidden="true" className={up.badgeIcon} />
             <span>100% Direct Integrated Factory in Türkiye — Zero Trading Brokers · Priority Shipping to Senegal &amp; Mozambique</span>
           </span>
-          <Link href="/en/ar/wooden-utility-poles" lang="ar" hrefLang="ar" className={up.langSwitchLink}>
+          <Link
+            id="cta-pole-en-switch-ar"
+            href="/en/ar/wooden-utility-poles"
+            lang="ar"
+            hrefLang="ar"
+            className={up.langSwitchLink}
+            data-clarity-event="pole_en_switch_to_ar"
+          >
             <Globe aria-hidden="true" className={up.badgeIcon} />
             <span>النسخة العربية (ليبيا · الأردن · الشرق الأوسط)</span>
           </Link>
@@ -327,8 +334,19 @@ export default function EnWoodenUtilityPolesPage() {
         eyebrow="Factory-Direct Export (Zero Middlemen) · Senegal (Dakar) · Mozambique (Maputo / Beira / Nacala) & Sub-Saharan Africa"
         title="Autoclave-Impregnated Wooden Electric & Telecom Poles — Shipped Direct from Our Integrated Plant"
         subtitle="Source 7m to 12m lathe-turned, vacuum-pressure impregnated wooden utility poles directly from our production line in Türkiye. Verified 140 × 9m poles per 40' HC container, engineered with 16 kg/m³ dry salt retention for 40–50+ year tropical termite and grid durability."
-        primary={{ label: "Calculate Containers & Get Factory Quote", href: "#rfq" }}
-        secondary={{ label: "Chat with Factory Desk on WhatsApp", href: directWaHero }}
+        primary={{
+          id: "cta-pole-en-hero-calc",
+          label: "Calculate Containers & Get Factory Quote",
+          href: "#rfq",
+          clarityEvent: "pole_en_hero_scroll_calc",
+        }}
+        secondary={{
+          id: "cta-pole-en-hero-wa",
+          label: "Chat with Factory Desk on WhatsApp",
+          href: directWaHero,
+          clarityEvent: "pole_en_hero_whatsapp",
+          clarityUpgrade: "pole_en_hero_wa_lead",
+        }}
         trust={[
           "Direct Manufacturer Pricing (EXW / FOB Türkiye / CIF Dakar, Maputo, Beira, Nacala, Abidjan, Mombasa)",
           "Export Brown Impregnation (7m–9m) & Heavy-Duty Green Impregnation (7m–12m) · ≥10.5 kg/cm² Autoclave",
@@ -376,10 +394,14 @@ export default function EnWoodenUtilityPolesPage() {
                 </ul>
               </div>
               <a
+                id={`cta-pole-en-corridor-${c.id}`}
                 href={`${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(c.waText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${up.corridorWaLink} ${c.priority ? up.corridorWaPriority : ""}`}
+                data-clarity-event={`pole_en_corridor_wa_${c.id}`}
+                data-clarity-upgrade={`pole_en_${c.id}_wa_lead`}
+                data-clarity-tag={`pole_corridor:${c.id}`}
               >
                 <MessageCircle aria-hidden="true" className={up.btnIcon} />
                 <span>{c.cta}</span>
@@ -401,8 +423,13 @@ export default function EnWoodenUtilityPolesPage() {
         </Reveal>
 
         <div className={up.galleryGrid}>
-          {GALLERY_EN.map((img) => (
-            <figure key={img.src} className={up.galleryCard}>
+          {GALLERY_EN.map((img, idx) => (
+            <figure
+              key={img.src}
+              id={`pole-en-gallery-${idx + 1}`}
+              className={up.galleryCard}
+              data-clarity-event={`pole_en_gallery_${idx + 1}`}
+            >
               <div className={up.galleryImgWrap}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={img.src} alt={img.title} className={up.galleryImg} loading="lazy" decoding="async" />

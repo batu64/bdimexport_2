@@ -1,8 +1,9 @@
 "use client";
 // Doğrudan Fabrika Elektrik & Telekom Direği Konteyner Hesaplayıcı ve B2B Lead Hunisi (RTL Arapça + LTR İngilizce).
 // İletişim tek doğruluk kaynağı: lib/ui/entities.ts (OFFICIAL_WHATSAPP_WA = +90 539 414 78 54, OFFICIAL_EMAIL = info@bdimexport.com).
-import { useEffect, useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { CheckCircle2, Copy, Factory, Mail, MessageCircle, ShieldCheck } from "lucide-react";
+import { clarityEvent, claritySet, clarityUpgrade } from "./clarity";
 import { OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA } from "./entities";
 import s from "./utilitypole.module.css";
 
@@ -166,6 +167,19 @@ export default function UtilityPoleFunnel({
   const [notes, setNotes] = useState("");
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const formEngagedRef = useRef(false);
+
+  useEffect(() => {
+    claritySet("funnel_page", sourcePage);
+    claritySet("funnel_locale", locale);
+    claritySet("funnel_product", "wooden_utility_poles");
+  }, [locale, sourcePage]);
+
+  function markFormEngaged() {
+    if (formEngagedRef.current) return;
+    formEngagedRef.current = true;
+    clarityEvent(`pole_${locale}_form_engaged`);
+  }
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.location.search) return;
@@ -226,6 +240,14 @@ export default function UtilityPoleFunnel({
   ]);
 
   function fireLeadAnalytics(method: string) {
+    clarityEvent(`pole_${locale}_${method}`);
+    claritySet("pole_spec", activeSpec.id);
+    claritySet("pole_volume", activeVol.id);
+    claritySet("pole_incoterm", incoterm);
+    claritySet("pole_corridor", activeDest.id);
+    if (method !== "copy_pole_rfq") {
+      clarityUpgrade(`pole_${locale}_${method}`);
+    }
     if (typeof window !== "undefined") {
       const w = window as unknown as { gtag?: (...args: unknown[]) => void };
       w.gtag?.("event", "generate_lead", {
@@ -299,10 +321,15 @@ export default function UtilityPoleFunnel({
             {copy.specs.map((sp) => (
               <button
                 key={sp.id}
+                id={`pole-spec-${locale}-${sp.id}`}
                 type="button"
                 aria-pressed={specId === sp.id}
                 className={s.specBtn}
-                onClick={() => setSpecId(sp.id)}
+                onClick={() => {
+                  setSpecId(sp.id);
+                  clarityEvent(`pole_${locale}_spec_${sp.id}`);
+                  claritySet("pole_spec", sp.id);
+                }}
               >
                 <span className={s.specBtnHead}>
                   <span className={s.specBtnTitle}>{sp.title}</span>
@@ -320,10 +347,15 @@ export default function UtilityPoleFunnel({
             {copy.volumes.map((vl) => (
               <button
                 key={vl.id}
+                id={`pole-vol-${locale}-${vl.id}`}
                 type="button"
                 aria-pressed={volId === vl.id}
                 className={s.pill}
-                onClick={() => setVolId(vl.id)}
+                onClick={() => {
+                  setVolId(vl.id);
+                  clarityEvent(`pole_${locale}_vol_${vl.id}`);
+                  claritySet("pole_volume", vl.id);
+                }}
               >
                 {vl.label}
               </button>
@@ -334,13 +366,18 @@ export default function UtilityPoleFunnel({
         <fieldset className={s.fieldset}>
           <legend className={s.legend}>{copy.incotermLabel}</legend>
           <div className={s.pillRow}>
-            {copy.incoterms.map((inc) => (
+            {copy.incoterms.map((inc, idx) => (
               <button
                 key={inc}
+                id={`pole-incoterm-${locale}-${idx}`}
                 type="button"
                 aria-pressed={incoterm === inc}
                 className={s.pill}
-                onClick={() => setIncoterm(inc)}
+                onClick={() => {
+                  setIncoterm(inc);
+                  clarityEvent(`pole_${locale}_select_incoterm`);
+                  claritySet("pole_incoterm", inc);
+                }}
               >
                 {inc}
               </button>
@@ -354,10 +391,15 @@ export default function UtilityPoleFunnel({
             {copy.destinations.map((dest) => (
               <button
                 key={dest.id}
+                id={`pole-dest-${locale}-${dest.id}`}
                 type="button"
                 aria-pressed={destId === dest.id}
                 className={s.pill}
-                onClick={() => setDestId(dest.id)}
+                onClick={() => {
+                  setDestId(dest.id);
+                  clarityEvent(`pole_${locale}_dest_${dest.id}`);
+                  claritySet("pole_corridor", dest.id);
+                }}
               >
                 {dest.label}
               </button>
@@ -382,7 +424,7 @@ export default function UtilityPoleFunnel({
           </div>
         </div>
 
-        <div className={s.inputGrid}>
+        <div className={s.inputGrid} onFocusCapture={markFormEngaged}>
           <div className={s.field}>
             <label className={s.legend} htmlFor={`${uid}-comp`}>{copy.fields.companyLabel}</label>
             <input
@@ -454,6 +496,7 @@ export default function UtilityPoleFunnel({
 
         <div className={s.ctaActions}>
           <a
+            id={`cta-pole-funnel-wa-${locale}`}
             href={waHref}
             target="_blank"
             rel="noopener noreferrer"
@@ -464,6 +507,7 @@ export default function UtilityPoleFunnel({
             <span>{copy.whatsappCta}</span>
           </a>
           <a
+            id={`cta-pole-funnel-email-${locale}`}
             href={mailHref}
             className={s.secondaryActionBtn}
             onClick={() => fireLeadAnalytics("email_pole_funnel")}
@@ -471,7 +515,12 @@ export default function UtilityPoleFunnel({
             <Mail aria-hidden="true" className={s.btnIcon} />
             <span>{copy.emailCta}</span>
           </a>
-          <button type="button" onClick={handleCopy} className={s.secondaryActionBtn}>
+          <button
+            id={`cta-pole-funnel-copy-${locale}`}
+            type="button"
+            onClick={handleCopy}
+            className={s.secondaryActionBtn}
+          >
             <Copy aria-hidden="true" className={s.btnIcon} />
             <span>{copied ? copy.copiedCta : copy.copyCta}</span>
           </button>
