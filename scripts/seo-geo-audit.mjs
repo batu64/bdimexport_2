@@ -87,6 +87,8 @@ console.log(`✔ Hreflang karşılıklılığı & GA4 (G-1PXMK93V3F) doğruland�
 
 // 4. Ülke Koridorları + Hedefli İş Teklifi Sayfaları (Canonical + H1 + OG + JSON-LD)
 const mustAuditPages = [
+  "en/wooden-utility-poles.html",
+  "en/ar/wooden-utility-poles.html",
   "en/us.html",
   "en/us/china-plus-turkey-sourcing.html",
   "en/us/turkey-sourcing-agent-for-us-companies.html",
@@ -134,4 +136,18 @@ for (const rel of mustAuditPages) {
   }
 }
 console.log(`✔ ${mustAuditPages.length} kritik ülke koridoru & hedefli B2B teklif sayfasında canonical, H1=1, OG ve JSON-LD doğrulandı`);
+
+// 5. Elektrik Direği Hunileri: EN <-> AR Karşılıklı Hreflang + Sıfır Üçüncü Taraf Marka/Telefon Sızıntısı
+const enPolesHtml = readOut("en/wooden-utility-poles.html");
+const arPolesHtml = readOut("en/ar/wooden-utility-poles.html");
+const enPolesAlt = extractAlternates(enPolesHtml);
+const arPolesAlt = extractAlternates(arPolesHtml);
+assert.deepEqual(enPolesAlt, arPolesAlt, "wooden-utility-poles EN <-> AR hreflang karşılıklılığı bozuk!");
+assert.ok(enPolesAlt.includes(`ar=${SITE}/en/ar/wooden-utility-poles`), "wooden-utility-poles ar hreflang eksik!");
+assert.ok(enPolesAlt.includes(`en=${SITE}/en/wooden-utility-poles`), "wooden-utility-poles en hreflang eksik!");
+for (const [name, content] of [["en/wooden-utility-poles.html", enPolesHtml], ["en/ar/wooden-utility-poles.html", arPolesHtml]]) {
+  assert.ok(!/semita[sş]|320\s*8169|326\s*20\s*40|657\s*91\s*34/i.test(content), `${name}: üçüncü taraf marka/telefon sızıntısı bulundu!`);
+  assert.ok(content.includes("905394147854"), `${name}: resmi WhatsApp hattı (+90 539 414 78 54) eksik!`);
+}
+console.log("✔ Elektrik direği EN/AR hunileri doğrulandı: karşılıklı hreflang, resmi WhatsApp hattı ve sıfır marka sızıntısı");
 console.log("=== TÜM SEO + GEO + ABM KONTROLLERİ BAŞARIYLA GEÇTİ ===");

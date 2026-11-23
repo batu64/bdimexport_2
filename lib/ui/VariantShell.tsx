@@ -16,6 +16,7 @@ export default function VariantShell({ variant, children }: { variant: EnVariant
   const base = `/en/${variant}`;
   const links = [
     { label: v.home, href: base },
+    ...(variant === "ar" ? [{ label: "أعمدة الكهرباء الخشبية", href: `${base}/wooden-utility-poles` }] : []),
     { label: v.sourcing.label, href: `${base}/services/sourcing` },
     { label: v.inspection.label, href: `${base}/services/inspection` },
     { label: v.insights, href: `${base}/insights` },

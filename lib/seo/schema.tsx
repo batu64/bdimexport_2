@@ -34,6 +34,7 @@ export const SUPPORTED_BCP47 = [
 export const AREA_SERVED_COUNTRIES = [
   "TR", "US", "GB", "DE", "AT", "CH", "FR", "NL", "BE", "IT", "ES",
   "PL", "RO", "FI", "SE", "NO", "DK", "AL", "AE", "SA", "QA", "KW", "CN",
+  "LY", "JO", "IQ", "EG", "DZ", "TN", "SN", "MZ", "GH", "CI", "KE", "TZ", "NG", "ZA",
 ] as const;
 
 export function masterOrganizationNodes(): object[] {
@@ -224,13 +225,96 @@ export function buildStructuredPageGraph(opts: {
   return graph;
 }
 
+export function buildProductFunnelGraph(opts: {
+  url: string;
+  inLanguage: string;
+  title: string;
+  description: string;
+  productName: string;
+  sku: string;
+  category: string;
+  image: string;
+  areaServed: string[];
+  crumbs: { name: string; url: string }[];
+  faq: { q: string; a: string }[];
+}): object[] {
+  const { url, inLanguage, title, description, productName, sku, category, image, areaServed, crumbs, faq } = opts;
+  return [
+    ...masterOrganizationNodes(),
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: title,
+      description,
+      inLanguage,
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": `${url}#product` },
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["h1", "main h2", "main h3"],
+      },
+    },
+    {
+      "@type": "Product",
+      "@id": `${url}#product`,
+      name: productName,
+      description,
+      sku,
+      category,
+      image: [image],
+      brand: { "@type": "Brand", name: "Bdimexport" },
+      manufacturer: { "@id": ENTITY_TR_ID },
+      countryOfOrigin: "TR",
+      offers: {
+        "@type": "Offer",
+        url: `${url}#contact`,
+        availability: "https://schema.org/InStock",
+        priceCurrency: "USD",
+        seller: { "@id": ORG_ID },
+        areaServed: areaServed.map((c) => ({ "@type": "Country", name: c })),
+      },
+    },
+    {
+      "@type": "Service",
+      "@id": `${url}#service`,
+      name: title,
+      description,
+      serviceType: "Factory-Direct Wooden Utility & Telecom Pole Manufacturing and Container Export",
+      url,
+      provider: { "@id": ORG_ID },
+      areaServed: areaServed.map((c) => ({ "@type": "Country", name: c })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${url}#breadcrumb`,
+      itemListElement: crumbs.map((c, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        name: c.name,
+        item: c.url,
+      })),
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: faq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ];
+}
+
 export function defaultOpenGraph(opts: {
   title: string;
   description: string;
   url: string;
   locale?: string;
+  image?: string;
 }): Pick<Metadata, "openGraph" | "twitter"> {
-  const { title, description, url, locale = "en_US" } = opts;
+  const { title, description, url, locale = "en_US", image = DEFAULT_OG_IMAGE } = opts;
   return {
     openGraph: {
       type: "website",
@@ -241,7 +325,7 @@ export function defaultOpenGraph(opts: {
       locale,
       images: [
         {
-          url: DEFAULT_OG_IMAGE,
+          url: image,
           width: 1200,
           height: 630,
           alt: title,
@@ -252,7 +336,7 @@ export function defaultOpenGraph(opts: {
       card: "summary_large_image",
       title,
       description,
-      images: [DEFAULT_OG_IMAGE],
+      images: [image],
     },
   };
 }

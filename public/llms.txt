@@ -22,6 +22,14 @@
 4. **Turkish Exporter Growth & Buyer Matchmaking**: Multi-language SEO/GEO storefronts, target-country importer discovery, and Free Export Acceleration Program (`/ihracat/ucretsiz-destek-basvuru`).
 5. **81-Province Türkiye Field Operations for Chinese Exporters (`/zh`)**: On-ground prospective buyer visits, hesitant-buyer face-to-face closing, after-sales visits, customs/logistics coordination, legal/SMMM accounting, and local digital operations.
 
+## Factory-Direct Wooden Electric & Telecom Utility Poles (7m–12m Autoclave Export)
+- [Africa Utility & Telecom Poles Direct Factory Hub](/en/wooden-utility-poles) · Short Aliases: `/poles` · `/africa/poles`
+  - Primary Corridors: Senegal (Port of Dakar — 10–14d sea transit for SENELEC/ASER/telecom), Mozambique (Maputo, Beira, Nacala — EDM/FUNAE & hinterland corridors), Côte d'Ivoire (Abidjan), Ghana (Tema), Kenya (Mombasa), Tanzania (Dar es Salaam), Nigeria, Angola.
+  - Specifications: 7m, 8m, 9m, 10m, 11m, 12m machine-peeled pine poles; Export Brown autoclave impregnation (7m–9m, max 9m cylinder) & Heavy-Duty Green autoclave impregnation (7m–12m); verified 140 × 9m poles (Ø12–14 cm top, Ø22–23 cm butt) per 40' HC container; ≥10.5 kg/cm² hydraulic pressure, 60-min initial vacuum @ 63.5 cmHg, ≤25% initial moisture, 16 kg/m³ dry salt retention, ≥75% sapwood penetration.
+- [Arabic Direct Factory Utility Poles Hub (Libya & Jordan Priority)](/en/ar/wooden-utility-poles) · Short Aliases: `/ar/poles` · `/libya/poles` · `/jordan/poles`
+  - Priority #1 Libya: Direct 3–6d short-sea container shipping to Misrata, Tripoli, Benghazi & Al-Khums for GECOL electrical contractors, LPTIC/telecom networks, and municipal tenders.
+  - Priority #2 Jordan & MENA: Direct shipping to Port of Aqaba / Amman (JEPCO/EDCO/IDECO specs), overland TIR dispatch to Iraq (Ibrahim Khalil / Umm Qasr), Egypt (Alexandria), Algeria & Tunisia.
+
 ## United States Division (`BDIMEXPORT LLC` · Sheridan, WY · `hreflang="en-US"`)
 - [US Division Flagship Hub](/en/us): Dedicated US-based overseas procurement, manufacturing & import management partner across Türkiye and China (W-9 ready)
 - [China + Türkiye Dual-Hub Tariff Hedging](/en/us/china-plus-turkey-sourcing): US Section 301 vs. MFN 10-digit HTS landed-cost optimization

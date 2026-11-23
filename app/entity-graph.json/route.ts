@@ -18,6 +18,26 @@ export function GET(): Response {
       ...masterOrganizationNodes(),
       {
         "@type": "ItemList",
+        "@id": `${SITE_URL}/#direct-factory-utility-poles`,
+        name: "Bdimexport Factory-Direct Autoclave Wooden Utility & Telecom Poles (7m–12m)",
+        numberOfItems: 2,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Factory-Direct Wooden Utility & Telecom Poles for Africa (Senegal, Mozambique & Sub-Saharan Grid)",
+            url: `${SITE_URL}/en/wooden-utility-poles`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "توريد أعمدة الكهرباء والاتصالات الخشبية من المصنع مباشرة — ليبيا والأردن والشرق الأوسط",
+            url: `${SITE_URL}/en/ar/wooden-utility-poles`,
+          },
+        ],
+      },
+      {
+        "@type": "ItemList",
         "@id": `${SITE_URL}/#us-division-programs`,
         name: "BDIMEXPORT LLC United States Overseas Procurement & QC Programs",
         numberOfItems: US_CLUSTER_PAGES.length + 1,

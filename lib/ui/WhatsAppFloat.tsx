@@ -8,7 +8,7 @@ type Props = {
   label: string;
   ariaLabel: string;
   message?: string;
-  locale: "tr" | "en" | "de";
+  locale: "tr" | "en" | "de" | "ar";
 };
 
 export default function WhatsAppFloat({ label, ariaLabel, message, locale }: Props) {

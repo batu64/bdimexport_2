@@ -1,0 +1,809 @@
+/* Doğrudan Fabrika Elektrik & Telekom Direği B2B İhracat Hunisi (RTL/LTR Uyumlu)
+ * Sıfır hex/rgb literal, sıfır fiziksel yön özelliği — %100 mantıksal CSS ve tasarım token'ları. */
+
+.langBar {
+  background: var(--c-surface);
+  border-block-end: var(--bw-1) solid var(--c-border);
+  padding-block: var(--s-3);
+}
+
+.langBarInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-size: var(--fs-sm);
+}
+
+.factoryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-weight: var(--fw-heading);
+  color: var(--c-heading);
+}
+
+.badgeIcon {
+  inline-size: var(--s-4);
+  block-size: var(--s-4);
+  color: var(--c-accent);
+  flex-shrink: 0;
+}
+
+.langSwitchLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius-pill);
+  border: var(--bw-1) solid var(--c-border-strong);
+  background: var(--c-bg);
+  color: var(--c-heading);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+
+.langSwitchLink:hover {
+  border-color: var(--c-accent);
+  background: var(--c-surface);
+}
+
+/* ── Hero Sağ/Sol Canlı Konteyner Yükleme Kartı */
+.heroShowcase {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 22%, transparent);
+  background: var(--c-brand);
+  box-shadow: var(--e-3);
+}
+
+.heroMediaFrame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  inline-size: 100%;
+  overflow: hidden;
+  background: var(--c-brand);
+}
+
+.heroMediaEl {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.heroLivePill {
+  position: absolute;
+  inset-block-start: var(--s-3);
+  inset-inline-start: var(--s-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--c-brand) 86%, transparent);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 25%, transparent);
+  color: var(--c-on-brand);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+}
+
+.liveDot {
+  inline-size: var(--s-2);
+  block-size: var(--s-2);
+  border-radius: var(--radius-pill);
+  background: var(--c-highlight);
+}
+
+.heroSpecStrip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-3);
+  padding-block: var(--s-4);
+  padding-inline: var(--s-4);
+  background: color-mix(in srgb, var(--c-brand) 92%, var(--c-ink));
+  border-block-start: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 16%, transparent);
+}
+
+@media (min-width: 768px) {
+  .heroSpecStrip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.heroSpecItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.heroSpecVal {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-stat);
+  color: var(--c-highlight);
+}
+
+.heroSpecLbl {
+  font-size: var(--fs-xs);
+  color: var(--c-on-brand-muted);
+  line-height: var(--lh-caption);
+}
+
+/* ── Hızlı Koridor / Liman Kartları (#1 Libya / #1 Senegal Vurgulu) */
+.corridorGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-6);
+}
+
+@media (min-width: 768px) {
+  .corridorGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.corridorCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-block: var(--s-6);
+  padding-inline: var(--s-6);
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--e-1);
+}
+
+.corridorPriority {
+  border: var(--bw-2) solid var(--c-highlight);
+  box-shadow: var(--e-2);
+}
+
+.corridorTop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.corridorTagRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+
+.corridorBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--c-accent) 12%, transparent);
+  color: var(--c-accent);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+}
+
+.corridorBadgeGold {
+  background: color-mix(in srgb, var(--c-highlight) 22%, transparent);
+  color: var(--c-heading);
+}
+
+.corridorTransit {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  color: var(--c-muted);
+}
+
+.corridorTitle {
+  font-size: var(--fs-xl);
+  color: var(--c-heading);
+}
+
+.corridorDesc {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  line-height: var(--lh-body);
+}
+
+.portList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  list-style: none;
+  padding-inline: 0;
+  margin-block: var(--s-1);
+}
+
+.portChip {
+  padding-block: var(--s-1);
+  padding-inline: var(--s-2);
+  border-radius: var(--radius);
+  background: var(--c-bg);
+  border: var(--bw-1) solid var(--c-border);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-label);
+  color: var(--c-ink);
+}
+
+.corridorWaLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  padding-block: var(--s-2);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius);
+  background: var(--c-primary);
+  color: var(--c-on-brand);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.corridorWaLink:hover {
+  transform: translateY(calc(var(--bw-1) * -1));
+  box-shadow: var(--e-2);
+}
+
+.corridorWaPriority {
+  background: var(--c-highlight);
+  color: var(--c-on-highlight);
+}
+
+.dirArrow {
+  inline-size: var(--s-4);
+  block-size: var(--s-4);
+  flex-shrink: 0;
+}
+
+[dir="rtl"] .dirArrow {
+  transform: scaleX(-1);
+}
+
+/* ── Gerçek Fabrika & Konteyner Yükleme Fotoğraf Galerisi */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-6);
+}
+
+@media (min-width: 768px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .galleryGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.galleryCard {
+  margin-inline: 0;
+  margin-block: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  box-shadow: var(--e-1);
+  display: flex;
+  flex-direction: column;
+}
+
+.galleryImgWrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  inline-size: 100%;
+  overflow: hidden;
+  background: var(--c-bg);
+}
+
+.galleryImg {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.galleryCard:hover .galleryImg {
+  transform: scale(1.03);
+}
+
+.galleryTag {
+  position: absolute;
+  inset-block-end: var(--s-2);
+  inset-inline-start: var(--s-2);
+  padding-block: var(--s-1);
+  padding-inline: var(--s-2);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--c-brand) 88%, transparent);
+  color: var(--c-on-brand);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+}
+
+.galleryCaption {
+  padding-block: var(--s-4);
+  padding-inline: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.galleryTitle {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-heading);
+  color: var(--c-heading);
+}
+
+.gallerySub {
+  font-size: var(--fs-xs);
+  color: var(--c-muted);
+  line-height: var(--lh-body);
+}
+
+/* ── Emprenye (Autoclave) 8-Adım Teknik Protokol Izgarası */
+.protocolGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+}
+
+@media (min-width: 768px) {
+  .protocolGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .protocolGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.protocolStep {
+  padding-block: var(--s-4);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-inline-start: var(--bw-2) solid var(--c-accent);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.protocolNum {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-stat);
+  color: var(--c-accent);
+  letter-spacing: var(--track-caps);
+}
+
+.protocolTitle {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-heading);
+  color: var(--c-heading);
+}
+
+.protocolVal {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  line-height: var(--lh-caption);
+}
+
+/* ── Uyarı / Kazan Boyut Notu */
+.autoclaveNotice {
+  margin-block-start: var(--s-6);
+  padding-block: var(--s-4);
+  padding-inline: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--c-highlight) 14%, var(--c-surface));
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-highlight) 45%, var(--c-border));
+  border-inline-start: var(--bw-2) solid var(--c-highlight);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.autoclaveNoticeTitle {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  color: var(--c-heading);
+}
+
+.autoclaveNoticeBody {
+  font-size: var(--fs-sm);
+  color: var(--c-ink);
+  line-height: var(--lh-body);
+}
+
+/* ── İnteraktif Fabrika Konteyner & Teklif Hunisi (UtilityPoleFunnel) */
+.funnelCard {
+  background: var(--c-surface);
+  border: var(--bw-2) solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding-block: var(--s-8);
+  padding-inline: var(--s-6);
+  box-shadow: var(--e-3);
+}
+
+@media (min-width: 768px) {
+  .funnelCard {
+    padding-block: var(--s-12);
+    padding-inline: var(--s-12);
+  }
+}
+
+.funnelHead {
+  margin-block-end: var(--s-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.funnelEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  align-self: flex-start;
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--c-accent) 12%, transparent);
+  color: var(--c-accent);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+}
+
+.funnelTitle {
+  font-size: var(--type-h2);
+  color: var(--c-heading);
+  line-height: var(--lh-heading);
+}
+
+.funnelLead {
+  font-size: var(--fs-base);
+  color: var(--c-muted);
+  max-inline-size: var(--prose);
+}
+
+.funnelStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+}
+
+.fieldset {
+  border: 0;
+  padding-inline: 0;
+  padding-block: 0;
+  margin-inline: 0;
+  margin-block: 0;
+}
+
+.legend {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  color: var(--c-heading);
+  margin-block-end: var(--s-3);
+}
+
+.specCards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-3);
+}
+
+@media (min-width: 768px) {
+  .specCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.specBtn {
+  text-align: start;
+  padding-block: var(--s-4);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid var(--c-border);
+  background: var(--c-bg);
+  color: var(--c-ink);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.specBtn:hover {
+  border-color: var(--c-accent);
+}
+
+.specBtn[aria-pressed="true"] {
+  border-color: var(--c-accent);
+  background: color-mix(in srgb, var(--c-accent) 9%, var(--c-surface));
+  box-shadow: 0 0 0 var(--bw-1) var(--c-accent);
+}
+
+.specBtnHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+
+.specBtnTitle {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-heading);
+  color: var(--c-heading);
+}
+
+.specBtnTag {
+  padding-block: var(--s-1);
+  padding-inline: var(--s-2);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--c-highlight) 24%, transparent);
+  color: var(--c-heading);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+}
+
+.specBtnMeta {
+  font-size: var(--fs-xs);
+  color: var(--c-muted);
+  line-height: var(--lh-caption);
+}
+
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.pill {
+  min-block-size: var(--touch);
+  padding-block: var(--s-2);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius-pill);
+  border: var(--bw-1) solid var(--c-border);
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-label);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+
+.pill:hover {
+  border-color: var(--c-accent);
+}
+
+.pill[aria-pressed="true"] {
+  border-color: var(--c-accent);
+  background: var(--c-accent);
+  color: var(--c-surface);
+}
+
+/* ── Canlı Konteyner & Teslimat Hesaplayıcı Özeti */
+.calcBar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+  padding-block: var(--s-4);
+  padding-inline: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: var(--c-brand);
+  color: var(--c-on-brand);
+  border-inline-start: var(--bw-2) solid var(--c-highlight);
+}
+
+@media (min-width: 768px) {
+  .calcBar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.calcMetric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+}
+
+.calcLabel {
+  font-size: var(--fs-xs);
+  color: var(--c-on-brand-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+}
+
+.calcVal {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-stat);
+  color: var(--c-highlight);
+}
+
+/* ── Müşteri Bilgi Giriş Alanları */
+.inputGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+}
+
+@media (min-width: 768px) {
+  .inputGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.input,
+.textarea {
+  inline-size: 100%;
+  min-block-size: var(--touch);
+  padding-block: var(--s-2);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid var(--c-border-strong);
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: inherit;
+  font-size: var(--fs-base);
+}
+
+.textarea {
+  min-block-size: var(--s-24);
+  resize: vertical;
+}
+
+.input:focus-visible,
+.textarea:focus-visible {
+  outline: var(--bw-2) solid var(--c-focus);
+  outline-offset: var(--bw-2);
+  border-color: var(--c-accent);
+}
+
+.ltrInput {
+  direction: ltr;
+  text-align: start;
+}
+
+.briefBox {
+  padding-block: var(--s-4);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius);
+  background: var(--c-bg);
+  border: var(--bw-1) solid var(--c-border);
+  border-inline-start: var(--bw-2) solid var(--c-accent);
+}
+
+.briefHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+  margin-block-end: var(--s-2);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+}
+
+.briefPre {
+  margin-block: 0;
+  margin-inline: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  color: var(--c-ink);
+  line-height: var(--lh-body);
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  align-items: center;
+}
+
+.waPrimaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  padding-block: var(--s-3);
+  padding-inline: var(--s-6);
+  border-radius: var(--radius);
+  border: 0;
+  background: var(--c-highlight);
+  color: var(--c-on-highlight);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-stat);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--e-2);
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.waPrimaryBtn:hover {
+  transform: translateY(calc(var(--bw-1) * -1));
+  box-shadow: var(--e-3);
+}
+
+.secondaryActionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  padding-block: var(--s-3);
+  padding-inline: var(--s-6);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid var(--c-border-strong);
+  background: var(--c-surface);
+  color: var(--c-heading);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.secondaryActionBtn:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}
+
+.btnIcon {
+  inline-size: var(--s-4);
+  block-size: var(--s-4);
+  flex-shrink: 0;
+}
+
+.directLineNote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-xs);
+  color: var(--c-muted);
+}
+
+.statusOk {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  color: var(--c-success);
+}

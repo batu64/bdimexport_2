@@ -13,6 +13,36 @@
     "trailingSlash": false,
     "redirects": [
       {
+        "source": "/poles",
+        "destination": "/en/wooden-utility-poles",
+        "type": 302
+      },
+      {
+        "source": "/africa/poles",
+        "destination": "/en/wooden-utility-poles",
+        "type": 302
+      },
+      {
+        "source": "/ar/poles",
+        "destination": "/en/ar/wooden-utility-poles",
+        "type": 302
+      },
+      {
+        "source": "/ar/wooden-utility-poles",
+        "destination": "/en/ar/wooden-utility-poles",
+        "type": 301
+      },
+      {
+        "source": "/libya/poles",
+        "destination": "/en/ar/wooden-utility-poles",
+        "type": 302
+      },
+      {
+        "source": "/jordan/poles",
+        "destination": "/en/ar/wooden-utility-poles",
+        "type": 302
+      },
+      {
         "source": "/us/partner",
         "destination": "/en/proposals/us-procurement-partner",
         "type": 302
