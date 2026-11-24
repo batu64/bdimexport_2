@@ -10,6 +10,7 @@ import PageTransition from "@/lib/ui/motion/PageTransition";
 import Navbar from "@/lib/ui/Navbar";
 import Footer from "@/lib/ui/Footer";
 import WhatsAppFloat from "@/lib/ui/WhatsAppFloat";
+import SmartLocaleBanner from "@/lib/ui/SmartLocaleBanner";
 import dict from "@/lib/messages/de.json";
 import { footerProps, navbarProps } from "./de/_lib/chrome";
 
@@ -39,6 +40,7 @@ export default function DeLayout({ children }: { children: React.ReactNode }) {
             ariaLabel={dict.footer.whatsapp}
             message={dict.quote.whatsappText}
           />
+          <SmartLocaleBanner currentLocale="de" />
         </IntlProvider>
       </body>
     </html>

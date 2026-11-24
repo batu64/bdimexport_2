@@ -11,6 +11,7 @@ import PageTransition from "@/lib/ui/motion/PageTransition";
 import Navbar from "@/lib/ui/Navbar";
 import Footer from "@/lib/ui/Footer";
 import WhatsAppFloat from "@/lib/ui/WhatsAppFloat";
+import SmartLocaleBanner from "@/lib/ui/SmartLocaleBanner";
 import dict from "@/lib/messages/tr.json";
 import { footerProps, navbarProps } from "./_lib/chrome";
 
@@ -42,6 +43,7 @@ export default function TrLayout({ children }: { children: React.ReactNode }) {
             ariaLabel={dict.footer.whatsapp}
             message={dict.footer.whatsappMessage}
           />
+          <SmartLocaleBanner currentLocale="tr" />
         </IntlProvider>
       </body>
     </html>

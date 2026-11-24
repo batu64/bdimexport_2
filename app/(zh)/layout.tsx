@@ -9,6 +9,7 @@ import { IntlProvider } from "@/lib/intl";
 import PageTransition from "@/lib/ui/motion/PageTransition";
 import Navbar from "@/lib/ui/Navbar";
 import Footer from "@/lib/ui/Footer";
+import SmartLocaleBanner from "@/lib/ui/SmartLocaleBanner";
 import dict from "@/lib/messages/zh.json";
 import { footerProps, navbarProps } from "./zh/_lib/chrome";
 
@@ -50,6 +51,7 @@ export default function ZhLayout({ children }: { children: React.ReactNode }) {
           <Navbar {...navbarProps()} />
           <div lang="zh-CN" id="zhengwen" tabIndex={-1}><PageTransition>{children}</PageTransition></div>
           <Footer {...footerProps()} />
+          <SmartLocaleBanner currentLocale="zh" />
         </IntlProvider>
       </body>
     </html>

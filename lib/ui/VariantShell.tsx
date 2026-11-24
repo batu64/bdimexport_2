@@ -6,6 +6,7 @@ import ChannelCta from "./ChannelCta";
 import LangSwitcher from "./LangSwitcher";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import SmartLocaleBanner from "./SmartLocaleBanner";
 import PageTransition from "./motion/PageTransition";
 import { CORPORATE_ENTITIES } from "./entities";
 import { VARIANTS, switcherItems } from "./variants";
@@ -66,6 +67,7 @@ export default function VariantShell({ variant, children }: { variant: EnVariant
         }}
         rights={v.rights}
       />
+      <SmartLocaleBanner currentLocale={variant} />
     </div>
   );
 }
