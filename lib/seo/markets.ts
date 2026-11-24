@@ -52,7 +52,7 @@ export const MARKET_CORRIDORS: readonly MarketCorridor[] = [
       { factor: "US Customs Tariff Exposure", trHub: "Standard MFN duty (no Section 301 surcharge)", cnHub: "MFN + Section 301 duties (7.5%–25%+ on many HS lines)", bdimExecution: "Side-by-side HTS landed-cost modeling before RFQ award" },
       { factor: "Ocean Freight to US East Coast", trHub: "16–22 days direct ex-Mersin / Izmir / Ambarli", cnHub: "28–36 days via Panama / Suez routing", bdimExecution: "FOB/CIF/DDP booking + pre-loading container inspection" },
       { factor: "MOQ & Reorder Agility", trHub: "Flexible mid-volume & hospitality custom runs", cnHub: "High-volume tooling & mass SKU scale", bdimExecution: "Consolidated samples & split-hub risk diversification" },
-      { factor: "Contractual Counterparty", trHub: "BD Sanayi on-ground factory execution", cnHub: "On-site inspector network in coastal hubs", bdimExecution: "Single US domestic invoice option via BDIMEXPORT LLC (WY · D-U-N-S® #14-977-6743)" },
+      { factor: "Contractual Counterparty", trHub: "BD Sanayi on-ground factory execution", cnHub: "On-site inspector network in coastal hubs", bdimExecution: "US domestic invoice via BDIMEXPORT LLC (WY · D-U-N-S® #14-977-6743 · SAP Ariba® BNO-100000188010374)" },
     ],
     priorityProducts: [
       { slug: "hospitality-furniture", label: "Hospitality & Contract Furniture", hsChapter: "HS 9403" },
@@ -68,7 +68,7 @@ export const MARKET_CORRIDORS: readonly MarketCorridor[] = [
       },
       {
         q: "Can US companies contract with a US legal entity instead of wiring funds overseas?",
-        a: "Yes. Bdimexport operates through BDIMEXPORT LLC, registered in Sheridan, Wyoming (Dun & Bradstreet D-U-N-S® #: 14-977-6743), alongside BD Sanayi İthalat İhracat Şirketi in Türkiye. US buyers can engage under familiar corporate documentation while our local engineers execute factory audits, AQL inspections, and container sealing at the manufacturing site.",
+        a: "Yes. Bdimexport operates through BDIMEXPORT LLC, registered in Sheridan, Wyoming (Dun & Bradstreet D-U-N-S® #: 14-977-6743 · SAP Business Network / SAP Ariba ID: BNO-100000188010374), alongside BD Sanayi İthalat İhracat Şirketi in Türkiye. US buyers can onboard us directly into SAP Ariba or standard US ERP vendor systems while our local engineers execute factory audits, AQL inspections, and container sealing at the manufacturing site.",
       },
       {
         q: "Can I book a standalone container loading inspection for a supplier we already found?",
@@ -153,7 +153,7 @@ export const MARKET_CORRIDORS: readonly MarketCorridor[] = [
     gateways: "Munich, Stuttgart, Frankfurt, Hamburg, Vienna, Zurich (3–5d overland truck)",
     complianceStandards: [
       "A.TR free-circulation vs. EUR.1 preferential origin verification (excluding agricultural & ECSC steel lines)",
-      "Supply-chain documentation readiness for LkSG due-diligence questionnaires",
+      "Supply-chain documentation readiness for LkSG due-diligence questionnaires & SAP Ariba vendor onboarding (ID: BNO-100000188010374)",
       "VerpackG (LUCID) packaging material specification sheets & CE/REACH compliance checks",
     ],
     comparisonRows: [
@@ -587,7 +587,7 @@ export const MARKET_CORRIDORS: readonly MarketCorridor[] = [
     complianceStandards: [
       "UAE MoIAT / ECAS / EQM conformity & Certificate of Origin attestation",
       "Halal certification & Arabic/English bilingual shelf-life labeling check for food lines",
-      "FF&E hospitality mock-up & container loading sequence supervision",
+      "FF&E hospitality mock-up, SAP Ariba enterprise vendor readiness (BNO-100000188010374) & container loading supervision",
     ],
     comparisonRows: [
       { factor: "Transit to Jebel Ali / Abu Dhabi", trHub: "8–14 days sea or overland-Gulf multimodal", cnHub: "16–22 days direct ocean freight", bdimExecution: "Synchronized multi-vendor FF&E & construction dispatch" },
@@ -639,7 +639,7 @@ export const MARKET_CORRIDORS: readonly MarketCorridor[] = [
     customsRegime: "GCC Tariff Schedule + Mandatory SABER (PCoC & SCoC) / SFDA Registration",
     gateways: "Jeddah Islamic Port (6–10d ex-TR · 18–24d ex-CN), King Abdulaziz Port Dammam, Riyadh Dry Port",
     complianceStandards: [
-      "SABER Product (PCoC) & Shipment Certificate of Conformity (SCoC) readiness check",
+      "SABER Product (PCoC) & Shipment Certificate of Conformity (SCoC) readiness + SAP Ariba vendor ID (BNO-100000188010374)",
       "Non-removable 'Made in Türkiye' / 'Made in China' marking & SASO plug/voltage check (220V/60Hz)",
       "SFDA & Halal documentation verification for food and agricultural cargo",
     ],

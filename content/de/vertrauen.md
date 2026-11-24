@@ -34,7 +34,7 @@ Türkische Unternehmen, die wir als Verifizierter türkischer Partner kennzeichn
 
 ## Unternehmensstruktur und Registerdaten
 
-Unsere internationalen Beschaffungs- und Prüfprozesse stützen sich auf zwei eingetragene Gesellschaften: `BD Sanayi İthalat İhracat Şirketi` (Operative Gesellschaft in der Türkei) sowie `BDIMEXPORT LLC` (30 N Gould St Ste N, Sheridan, WY 82801, USA · Dun & Bradstreet **D-U-N-S® Nummer: 14-977-6743**). Einkaufsabteilungen im DACH-Raum können die D-U-N-S-Registrierung direkt in ihrer internen Lieferantenanlage hinterlegen.
+Unsere internationalen Beschaffungs- und Prüfprozesse stützen sich auf zwei eingetragene Gesellschaften: `BD Sanayi İthalat İhracat Şirketi` (Operative Gesellschaft in der Türkei) sowie `BDIMEXPORT LLC` (30 N Gould St Ste N, Sheridan, WY 82801, USA · Dun & Bradstreet **D-U-N-S® Nummer: 14-977-6743** · **SAP Business Network / SAP Ariba ID: BNO-100000188010374**). Einkaufsabteilungen im DACH-Raum können unsere D-U-N-S-Kennung und das [öffentliche SAP Ariba Lieferantenprofil (BNO-100000188010374)](https://portal.us.bn.cloud.ariba.com/dashboard/public/appext/company-profile#/?bnoId=BNO-100000188010374) direkt für ihre interne Lieferantenanlage in SAP S/4HANA bzw. SAP Ariba nutzen.
 
 ## Datenschutz und Anbieterkennzeichnung
 

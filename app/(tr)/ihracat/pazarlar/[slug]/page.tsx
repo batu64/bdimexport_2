@@ -10,7 +10,7 @@ import Button from "@/lib/ui/Button";
 import SmartRfq, { type SmartRfqCopy } from "@/lib/ui/SmartRfq";
 import Reveal from "@/lib/ui/motion/Reveal";
 import grid from "@/lib/ui/cardgrid.module.css";
-import { CORPORATE_ENTITIES, US_DUNS_NUMBER } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, SAP_ARIBA_ID, SAP_ARIBA_PROFILE_URL, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 import { SeoJsonLd, SITE_URL, buildStructuredPageGraph, defaultOpenGraph } from "@/lib/seo/schema";
 import s from "@/lib/seo/proposal.module.css";
@@ -201,7 +201,11 @@ export default async function TrExportCorridorPage({ params }: { params: Promise
         <p className="chip" style={{ marginBlockStart: "var(--s-6)" }}>
           <ShieldCheck aria-hidden="true" className="chip-icon" />
           <span>
-            {CORPORATE_ENTITIES[0].name} (TR) &amp; {CORPORATE_ENTITIES[1].name} (ABD · D-U-N-S® #{US_DUNS_NUMBER}) kurumsal güvencesiyle
+            {CORPORATE_ENTITIES[0].name} (TR) &amp; {CORPORATE_ENTITIES[1].name} (ABD · D-U-N-S® #{US_DUNS_NUMBER} ·{" "}
+            <a href={SAP_ARIBA_PROFILE_URL} target="_blank" rel="noopener noreferrer" data-clarity-event="tr_market_sap_ariba_verify">
+              SAP Ariba® {SAP_ARIBA_ID}
+            </a>
+            ) kurumsal güvencesiyle
           </span>
         </p>
       </Section>

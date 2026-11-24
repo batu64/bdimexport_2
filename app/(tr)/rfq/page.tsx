@@ -5,7 +5,7 @@ import dict from "@/lib/messages/tr.json";
 import PageHeader from "@/lib/ui/PageHeader";
 import { Section } from "@/lib/ui/Section";
 import SmartRfq, { type SmartRfqCopy } from "@/lib/ui/SmartRfq";
-import { CORPORATE_ENTITIES, US_DUNS_NUMBER } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, SAP_ARIBA_ID, SAP_ARIBA_PROFILE_URL, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { trAlternates, JsonLd } from "../_lib/content";
 import { QUOTE_EMAIL } from "../_lib/links";
 
@@ -39,7 +39,7 @@ export default function TrRfqPage() {
         meta={
           <span className="chip">
             <ShieldCheck aria-hidden="true" className="chip-icon" />
-            {CORPORATE_ENTITIES[1].name} (D-U-N-S® #{US_DUNS_NUMBER}) &amp; {CORPORATE_ENTITIES[0].name}
+            {CORPORATE_ENTITIES[1].name} (D-U-N-S® #{US_DUNS_NUMBER} · SAP Ariba® {SAP_ARIBA_ID}) &amp; {CORPORATE_ENTITIES[0].name}
           </span>
         }
       />
@@ -61,7 +61,11 @@ export default function TrRfqPage() {
             </li>
             <li>
               <Building2 aria-hidden="true" style={{ display: "inline", verticalAlign: "middle", marginInlineEnd: 8 }} />
-              <strong>ABD Kurumsal Merkezi:</strong> {CORPORATE_ENTITIES[1].name} — {CORPORATE_ENTITIES[1].address} (Dun &amp; Bradstreet D-U-N-S® #: {US_DUNS_NUMBER})
+              <strong>ABD Kurumsal Merkezi:</strong> {CORPORATE_ENTITIES[1].name} — {CORPORATE_ENTITIES[1].address} (Dun &amp; Bradstreet D-U-N-S® #: {US_DUNS_NUMBER} ·{" "}
+              <a href={SAP_ARIBA_PROFILE_URL} target="_blank" rel="noopener noreferrer" data-clarity-event="rfq_tr_sap_ariba_verify">
+                SAP Business Network / SAP Ariba ID: {SAP_ARIBA_ID}
+              </a>
+              )
             </li>
           </ul>
         </div>

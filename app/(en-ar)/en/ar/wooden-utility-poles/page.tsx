@@ -10,7 +10,7 @@ import { Section, SectionHeader } from "@/lib/ui/Section";
 import UtilityPoleFunnel, { PoleHeroVideoShowcase, type UtilityPoleFunnelCopy } from "@/lib/ui/UtilityPoleFunnel";
 import WhatsAppFloat from "@/lib/ui/WhatsAppFloat";
 import Reveal from "@/lib/ui/motion/Reveal";
-import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, US_DUNS_NUMBER } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, SAP_ARIBA_ID, SAP_ARIBA_PROFILE_URL, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { variantAlternates } from "@/app/(en)/en/_lib/hreflang";
 import { SeoJsonLd, SITE_URL, buildProductFunnelGraph, defaultOpenGraph } from "@/lib/seo/schema";
 import ps from "@/lib/seo/proposal.module.css";
@@ -252,7 +252,7 @@ const FUNNEL_COPY_AR: UtilityPoleFunnelCopy = {
 const FAQ_AR = [
   {
     q: "هل أنتم المصنع المباشر لأعمدة الكهرباء الخشبية أم شركة وساطة تجارية؟",
-    a: "نحن جهة التصنيع والتصدير المباشر من منشأتنا الصناعية المتكاملة في تركيا عبر كياننا القانوني التركي (BD Sanayi İthalat İhracat Şirketi) وذراع التعاقد الدولي (BDIMEXPORT LLC — المسجلة في Dun & Bradstreet برقم D-U-N-S®: 14-977-6743). تتم عمليات التقشير، والتجفيف الحراري، والخراطة، والتشريب داخل أسطوانات الأوتوكلاف، وتحميل الحاويات في ساحة مصنعنا مباشرة دون أي سماسرة أو عمولات وسطاء.",
+    a: "نحن جهة التصنيع والتصدير المباشر من منشأتنا الصناعية المتكاملة في تركيا عبر كياننا القانوني التركي (BD Sanayi İthalat İhracat Şirketi) وذراع التعاقد الدولي (BDIMEXPORT LLC — المسجلة في Dun & Bradstreet برقم D-U-N-S®: 14-977-6743 وفي شبكة SAP Business Network / SAP Ariba برقم: BNO-100000188010374). تتم عمليات التقشير، والتجفيف الحراري، والخراطة، والتشريب داخل أسطوانات الأوتوكلاف، وتحميل الحاويات في ساحة مصنعنا مباشرة دون أي سماسرة أو عمولات وسطاء.",
   },
   {
     q: "كم عدد أعمدة الكهرباء بطول 9 أمتار التي تتسع لها حاوية 40 قدم؟",
@@ -552,7 +552,11 @@ export default function ArWoodenUtilityPolesPage() {
         <p className="chip" style={{ marginBlockStart: "var(--s-6)" }}>
           <ShieldCheck aria-hidden="true" className="chip-icon" />
           <span>
-            الكيان المصنّع والمصدّر في تركيا: <bdi dir="ltr">{CORPORATE_ENTITIES[0].name}</bdi> · ذراع التعاقد الدولي: <bdi dir="ltr">{CORPORATE_ENTITIES[1].name} (D-U-N-S® #{US_DUNS_NUMBER})</bdi> · واتساب رسمي: <bdi dir="ltr">{OFFICIAL_PHONE}</bdi>
+            الكيان المصنّع والمصدّر في تركيا: <bdi dir="ltr">{CORPORATE_ENTITIES[0].name}</bdi> · ذراع التعاقد الدولي: <bdi dir="ltr">{CORPORATE_ENTITIES[1].name} (D-U-N-S® #{US_DUNS_NUMBER})</bdi> ·{" "}
+            <a href={SAP_ARIBA_PROFILE_URL} target="_blank" rel="noopener noreferrer" data-clarity-event="pole_ar_sap_ariba_verify">
+              <bdi dir="ltr">SAP Ariba® {SAP_ARIBA_ID}</bdi>
+            </a>{" "}
+            · واتساب رسمي: <bdi dir="ltr">{OFFICIAL_PHONE}</bdi>
           </span>
         </p>
       </Section>

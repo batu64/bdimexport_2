@@ -117,6 +117,12 @@
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
 }
+.entityPills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+}
 .dunsPill {
   display: inline-flex;
   align-items: center;
@@ -129,6 +135,16 @@
   color: var(--c-on-brand);
   font-size: var(--fs-xs);
   font-weight: var(--fw-heading);
+  text-decoration: none;
+}
+.aribaLink {
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+.aribaLink:hover {
+  border-color: var(--c-highlight);
+  background: color-mix(in srgb, var(--c-highlight) 24%, transparent);
+  color: var(--c-on-brand);
+  text-decoration: none;
 }
 .dunsIcon {
   inline-size: var(--s-3);

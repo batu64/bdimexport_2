@@ -2,12 +2,19 @@
 // Not (brief sapması, bilinçli): 360'ta akordeon yerine 2 kolon — listeler kısa; <details> 768+'da CSS ile açılamıyor
 // (Firefox ::details-content yok) → JS'siz, her BP'de aynı DOM.
 import Link from "next/link";
-import { Building2, Mail, MapPin, MessageCircle, Phone, ShieldCheck } from "lucide-react";
+import { Building2, ExternalLink, Mail, MapPin, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 import type { NavLink, SiteLink } from "./Navbar";
 import Reveal from "./motion/Reveal";
 import s from "./footer.module.css";
 
-export type CorporateEntity = { badge: string; name: string; address: string; duns?: string };
+export type CorporateEntity = {
+  badge: string;
+  name: string;
+  address: string;
+  duns?: string;
+  aribaId?: string;
+  aribaUrl?: string;
+};
 
 export type FooterProps = {
   brand: string;
@@ -113,11 +120,29 @@ export default function Footer({ brand, tagline, columns, sites, legal, contact,
                     <Building2 aria-hidden="true" className={s.entityIcon} />
                     {ent.badge}
                   </span>
-                  {ent.duns && (
-                    <span className={s.dunsPill} dir="ltr">
-                      <ShieldCheck aria-hidden="true" className={s.dunsIcon} />
-                      <span>D-U-N-S® #: {ent.duns}</span>
-                    </span>
+                  {(ent.duns || ent.aribaId) && (
+                    <div className={s.entityPills}>
+                      {ent.duns && (
+                        <span className={s.dunsPill} dir="ltr">
+                          <ShieldCheck aria-hidden="true" className={s.dunsIcon} />
+                          <span>D-U-N-S® #: {ent.duns}</span>
+                        </span>
+                      )}
+                      {ent.aribaId && ent.aribaUrl && (
+                        <a
+                          href={ent.aribaUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`${s.dunsPill} ${s.aribaLink}`}
+                          dir="ltr"
+                          data-clarity-event="footer_sap_ariba_verify"
+                        >
+                          <ShieldCheck aria-hidden="true" className={s.dunsIcon} />
+                          <span>SAP Ariba®: {ent.aribaId}</span>
+                          <ExternalLink aria-hidden="true" className={s.dunsIcon} />
+                        </a>
+                      )}
+                    </div>
                   )}
                 </div>
                 <p className={s.entityName}>{ent.name}</p>

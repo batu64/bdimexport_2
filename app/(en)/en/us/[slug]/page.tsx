@@ -10,7 +10,7 @@ import Button from "@/lib/ui/Button";
 import SmartRfq, { type SmartRfqCopy } from "@/lib/ui/SmartRfq";
 import Reveal from "@/lib/ui/motion/Reveal";
 import grid from "@/lib/ui/cardgrid.module.css";
-import { CORPORATE_ENTITIES, US_DUNS_NUMBER } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, SAP_ARIBA_ID, SAP_ARIBA_PROFILE_URL, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { US_CLUSTER_PAGES, getUsClusterBySlug } from "@/lib/seo/us-hub";
 import { SeoJsonLd, SITE_URL, buildStructuredPageGraph, defaultOpenGraph } from "@/lib/seo/schema";
 import s from "@/lib/seo/proposal.module.css";
@@ -75,7 +75,7 @@ export default async function UsClusterDetailPage({ params }: { params: Promise<
           { label: p.eyebrow },
         ]}
         crumbsLabel="Breadcrumb"
-        eyebrow={`${p.eyebrow} · BDIMEXPORT LLC (WY · D-U-N-S® #${US_DUNS_NUMBER})`}
+        eyebrow={`${p.eyebrow} · BDIMEXPORT LLC (D-U-N-S® #${US_DUNS_NUMBER} · SAP Ariba® ${SAP_ARIBA_ID})`}
         title={p.h1}
         lead={p.lead}
         actions={
@@ -193,7 +193,11 @@ export default async function UsClusterDetailPage({ params }: { params: Promise<
         <p className="chip" style={{ marginBlockStart: "var(--s-6)" }}>
           <ShieldCheck aria-hidden="true" className="chip-icon" />
           <span>
-            Contracted via {CORPORATE_ENTITIES[1].name} (Sheridan, WY · D-U-N-S® #{US_DUNS_NUMBER}) · On-ground execution by {CORPORATE_ENTITIES[0].name}
+            Contracted via {CORPORATE_ENTITIES[1].name} (Sheridan, WY · D-U-N-S® #{US_DUNS_NUMBER} ·{" "}
+            <a href={SAP_ARIBA_PROFILE_URL} target="_blank" rel="noopener noreferrer" data-clarity-event="us_cluster_sap_ariba_verify">
+              SAP Ariba® {SAP_ARIBA_ID}
+            </a>
+            ) · On-ground execution by {CORPORATE_ENTITIES[0].name}
           </span>
         </p>
       </Section>

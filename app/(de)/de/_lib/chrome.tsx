@@ -52,7 +52,14 @@ export function footerProps(): FooterProps {
       title: f.entitiesTitle,
       items: [
         { badge: f.entityBadges.tr, name: CORPORATE_ENTITIES[0].name, address: CORPORATE_ENTITIES[0].address },
-        { badge: f.entityBadges.us, name: CORPORATE_ENTITIES[1].name, address: CORPORATE_ENTITIES[1].address, duns: CORPORATE_ENTITIES[1].duns },
+        {
+          badge: f.entityBadges.us,
+          name: CORPORATE_ENTITIES[1].name,
+          address: CORPORATE_ENTITIES[1].address,
+          duns: CORPORATE_ENTITIES[1].duns,
+          aribaId: CORPORATE_ENTITIES[1].aribaId,
+          aribaUrl: CORPORATE_ENTITIES[1].aribaUrl,
+        },
       ],
     },
     rights: f.rights,

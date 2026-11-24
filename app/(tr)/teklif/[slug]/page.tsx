@@ -8,7 +8,7 @@ import { Section, SectionHeader } from "@/lib/ui/Section";
 import Button from "@/lib/ui/Button";
 import SmartRfq, { type SmartRfqCopy } from "@/lib/ui/SmartRfq";
 import Reveal from "@/lib/ui/motion/Reveal";
-import { CORPORATE_ENTITIES, US_DUNS_NUMBER } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, SAP_ARIBA_ID, SAP_ARIBA_PROFILE_URL, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
 import ProposalPersonalizer from "@/lib/seo/ProposalPersonalizer";
 import { SeoJsonLd, SITE_URL, buildStructuredPageGraph, defaultOpenGraph } from "@/lib/seo/schema";
@@ -157,7 +157,11 @@ export default async function TrProposalDetailPage({ params }: { params: Promise
         <p className="chip" style={{ marginBlockStart: "var(--s-6)" }}>
           <ShieldCheck aria-hidden="true" className="chip-icon" />
           <span>
-            {CORPORATE_ENTITIES[0].name} (Türkiye) &amp; {CORPORATE_ENTITIES[1].name} (Wyoming, ABD · D-U-N-S® #{US_DUNS_NUMBER}) resmi altyapısıyla
+            {CORPORATE_ENTITIES[0].name} (Türkiye) &amp; {CORPORATE_ENTITIES[1].name} (Wyoming, ABD · D-U-N-S® #{US_DUNS_NUMBER} ·{" "}
+            <a href={SAP_ARIBA_PROFILE_URL} target="_blank" rel="noopener noreferrer" data-clarity-event="teklif_tr_sap_ariba_verify">
+              SAP Ariba® {SAP_ARIBA_ID}
+            </a>
+            ) resmi altyapısıyla
           </span>
         </p>
       </Section>

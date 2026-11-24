@@ -2,7 +2,16 @@
 // Google Knowledge Graph, AI Overviews / AI Mode, Bing Copilot, Perplexity, Yandex ve kurumsal B2B önizlemeler için
 // tek doğruluk kaynağından (@/lib/ui/entities) türetilen bağlı varlık grafiği (@id referanslı).
 import type { Metadata } from "next";
-import { CORPORATE_ENTITIES, OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, US_DUNS_NUMBER, US_DUNS_RAW } from "@/lib/ui/entities";
+import {
+  CORPORATE_ENTITIES,
+  OFFICIAL_EMAIL,
+  OFFICIAL_PHONE,
+  OFFICIAL_WHATSAPP_WA,
+  SAP_ARIBA_ID,
+  SAP_ARIBA_PROFILE_URL,
+  US_DUNS_NUMBER,
+  US_DUNS_RAW,
+} from "@/lib/ui/entities";
 
 export const SITE_URL = "https://bdimexport.com";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/media/en/heroes/trade-services-hero-og.webp`;
@@ -51,7 +60,7 @@ export function masterOrganizationNodes(): object[] {
       image: DEFAULT_OG_IMAGE,
       email: OFFICIAL_EMAIL,
       telephone: OFFICIAL_PHONE,
-      sameAs: [OFFICIAL_WHATSAPP_WA],
+      sameAs: [OFFICIAL_WHATSAPP_WA, SAP_ARIBA_PROFILE_URL],
       description:
         "Dual-Hub global B2B sourcing (Türkiye and China), standalone 24-48h container loading and factory inspection, HS-code commercial intelligence, export marketing systems, and 81-province Türkiye field operations.",
       knowsLanguage: [...SUPPORTED_BCP47],
@@ -75,11 +84,20 @@ export function masterOrganizationNodes(): object[] {
       name: CORPORATE_ENTITIES[1].name,
       legalName: CORPORATE_ENTITIES[1].name,
       duns: US_DUNS_RAW,
-      identifier: {
-        "@type": "PropertyValue",
-        propertyID: "D-U-N-S",
-        value: US_DUNS_NUMBER,
-      },
+      sameAs: [SAP_ARIBA_PROFILE_URL],
+      identifier: [
+        {
+          "@type": "PropertyValue",
+          propertyID: "D-U-N-S",
+          value: US_DUNS_NUMBER,
+        },
+        {
+          "@type": "PropertyValue",
+          propertyID: "SAP Business Network ID",
+          value: SAP_ARIBA_ID,
+          url: SAP_ARIBA_PROFILE_URL,
+        },
+      ],
       parentOrganization: { "@id": ORG_ID },
       address: {
         "@type": "PostalAddress",

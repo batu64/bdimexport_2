@@ -39,7 +39,7 @@ export const US_CLUSTER_PAGES: readonly UsClusterPage[] = [
       "US-based overseas procurement partner",
     ],
     keyMetrics: [
-      { label: "US Contracting Counterparty", value: "BDIMEXPORT LLC (Sheridan, WY · D-U-N-S® #14-977-6743 · W-9 Ready)" },
+      { label: "US Contracting Counterparty", value: "BDIMEXPORT LLC (Sheridan, WY · D-U-N-S® #14-977-6743 · SAP Ariba® BNO-100000188010374 · W-9 Ready)" },
       { label: "US East Coast Ocean Transit", value: "16–22 Days ex-Türkiye · 28–36 Days ex-China" },
       { label: "Tariff Modeling Turnaround", value: "24h Preliminary Scope · 10-Digit US HTS Duty Comparison" },
       { label: "On-Site Quality & Seal Gate", value: "24–48h Inspector Dispatch Before 70% Balance Wire" },
@@ -105,7 +105,7 @@ export const US_CLUSTER_PAGES: readonly UsClusterPage[] = [
       { label: "On-Ground Reach in Türkiye", value: "All 81 Provinces & Organized Industrial Zones (OSB)" },
       { label: "Broker Elimination Policy", value: "Official Industrial Capacity Report (Kapasite Raporu) Verification" },
       { label: "Shortlist Delivery SLA", value: "3–5 Business Days with Itemized EXW / FOB / CIF Quotes" },
-      { label: "US Legal Counterparty", value: "BDIMEXPORT LLC (30 N Gould St Ste N, Sheridan, WY 82801 · D-U-N-S® #14-977-6743)" },
+      { label: "US Legal Counterparty", value: "BDIMEXPORT LLC (30 N Gould St Ste N, Sheridan, WY 82801 · D-U-N-S® #14-977-6743 · SAP Ariba® BNO-100000188010374)" },
     ],
     matrixTitle: "DIY Alibaba/Trade-Show Hunting vs. BDIMEXPORT LLC On-Ground Procurement",
     matrixLead: "Most English-speaking websites claiming to be 'Turkish factories' online are actually export trading brokers adding 15%–30% margin.",

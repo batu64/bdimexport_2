@@ -12,7 +12,7 @@ import SmartRfq, { type SmartRfqCopy } from "@/lib/ui/SmartRfq";
 import LoopVideo from "@/lib/ui/motion/LoopVideo";
 import Reveal from "@/lib/ui/motion/Reveal";
 import grid from "@/lib/ui/cardgrid.module.css";
-import { CORPORATE_ENTITIES, US_DUNS_NUMBER } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, SAP_ARIBA_ID, SAP_ARIBA_PROFILE_URL, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { homeAlternates } from "@/lib/hreflang";
 import { US_CLUSTER_PAGES } from "@/lib/seo/us-hub";
 import { SeoJsonLd, SITE_URL, buildStructuredPageGraph, defaultOpenGraph } from "@/lib/seo/schema";
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 const US_HOME_FAQ = [
   {
     q: "How does BDIMEXPORT LLC work as an overseas procurement partner for US companies?",
-    a: "BDIMEXPORT LLC (registered in Sheridan, Wyoming · Dun & Bradstreet D-U-N-S® #: 14-977-6743) serves as your dedicated external overseas purchasing and quality department. While you contract domestically with our US LLC (W-9 & D-U-N-S ready for SAP Ariba / Coupa / NetSuite vendor onboarding), our full-time engineering teams on the ground in Türkiye and China execute factory vetting, open-book RFQ negotiation, OEM sample management, 24–48h AQL inspections, and container loading supervision.",
+    a: "BDIMEXPORT LLC (registered in Sheridan, Wyoming · Dun & Bradstreet D-U-N-S® #: 14-977-6743 · SAP Business Network / SAP Ariba ID: BNO-100000188010374) serves as your dedicated external overseas purchasing and quality department. While you contract domestically with our US LLC (W-9, D-U-N-S & SAP Ariba ready for rapid enterprise ERP onboarding), our full-time engineering teams on the ground in Türkiye and China execute factory vetting, open-book RFQ negotiation, OEM sample management, 24–48h AQL inspections, and container loading supervision.",
   },
   {
     q: "Why do American importers combine Türkiye and China instead of relying on one country?",
@@ -75,13 +75,13 @@ export default function UsDivisionHubPage() {
       <SeoJsonLd graph={graph} />
       <Hero
         media={<LoopVideo name="dual-hub-radar" desktopOnly />}
-        eyebrow={`BDIMEXPORT LLC (Sheridan, WY · D-U-N-S® #${US_DUNS_NUMBER}) · Dedicated US Division`}
+        eyebrow={`BDIMEXPORT LLC (WY · D-U-N-S® #${US_DUNS_NUMBER} · SAP Ariba® ${SAP_ARIBA_ID})`}
         title="Your US-Based Overseas Sourcing, Manufacturing & Import Partner Across Türkiye and China"
         subtitle="Stop wiring deposits blind or managing fragmented offshore brokers. Contract with our US LLC while our on-ground engineers in Türkiye and China manage factory sourcing, Section 301 tariff hedging, OEM production, and 24–48h container sealing."
         primary={{ label: "Start US Partnership RFQ (24h)", href: "#rfq" }}
         secondary={{ label: "View US Partnership Proposal", href: "/en/proposals/us-procurement-partner" }}
         trust={[
-          `US Legal Counterparty: BDIMEXPORT LLC (WY) — D-U-N-S® #${US_DUNS_NUMBER} · W-9 Ready`,
+          `US Legal Counterparty: BDIMEXPORT LLC (WY) — D-U-N-S® #${US_DUNS_NUMBER} · SAP Ariba® ${SAP_ARIBA_ID} · W-9 Ready`,
           "Dual-Hub Execution: Türkiye (16–22d East Coast) + China",
           "Open-Book Factory Pricing & 24–48h CTPAT Seal Proof",
         ]}
@@ -199,7 +199,11 @@ export default function UsDivisionHubPage() {
         <p className="chip" style={{ marginBlockStart: "var(--s-6)" }}>
           <ShieldCheck aria-hidden="true" className="chip-icon" />
           <span>
-            US Contracting Entity: {CORPORATE_ENTITIES[1].name} ({CORPORATE_ENTITIES[1].address} · D-U-N-S® #{US_DUNS_NUMBER}) · Field Arm: {CORPORATE_ENTITIES[0].name}
+            US Contracting Entity: {CORPORATE_ENTITIES[1].name} ({CORPORATE_ENTITIES[1].address} · D-U-N-S® #{US_DUNS_NUMBER} ·{" "}
+            <a href={SAP_ARIBA_PROFILE_URL} target="_blank" rel="noopener noreferrer" data-clarity-event="us_hub_sap_ariba_verify">
+              SAP Ariba® {SAP_ARIBA_ID}
+            </a>
+            ) · Field Arm: {CORPORATE_ENTITIES[0].name}
           </span>
         </p>
       </Section>

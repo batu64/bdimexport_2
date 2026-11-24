@@ -34,6 +34,7 @@ const entityGraph = JSON.parse(readOut("entity-graph.json"));
 assert.equal(entityGraph["@context"], "https://schema.org", "entity-graph.json @context hatalı");
 assert.ok(Array.isArray(entityGraph["@graph"]) && entityGraph["@graph"].length >= 6, "entity-graph.json @graph eksik");
 assert.ok(llms.includes("14-977-6743") && llmsFull.includes("14-977-6743") && JSON.stringify(entityGraph).includes("149776743"), "D-U-N-S #14-977-6743 GEO / Knowledge Graph kaydı eksik");
+assert.ok(llms.includes("BNO-100000188010374") && llmsFull.includes("BNO-100000188010374") && JSON.stringify(entityGraph).includes("BNO-100000188010374"), "SAP Ariba BNO-100000188010374 GEO / Knowledge Graph kaydı eksik");
 console.log(`✔ GEO uçları doğrulandı: llms.txt (${llms.length} B), llms-full.txt (${llmsFull.length} B), entity-graph.json (${entityGraph["@graph"].length} düğüm)`);
 
 // 2. Sitemap Index & 6 Split Sitemaps — 0 Kırık Link (404=0) + 0 Geçersiz Hreflang
@@ -150,7 +151,7 @@ for (const [name, content] of [["en/wooden-utility-poles.html", enPolesHtml], ["
   assert.ok(!/semita[sş]|320\s*8169|326\s*20\s*40|657\s*91\s*34/i.test(content), `${name}: üçüncü taraf marka/telefon sızıntısı bulundu!`);
   assert.ok(content.includes("905394147854"), `${name}: resmi WhatsApp hattı (+90 539 414 78 54) eksik!`);
   assert.ok(content.includes("data-clarity-event=") && content.includes("zhsd81zz12"), `${name}: Clarity tıklama noktaları veya etiketi eksik!`);
-  assert.ok(content.includes("14-977-6743"), `${name}: D-U-N-S #14-977-6743 doğrulaması eksik!`);
+  assert.ok(content.includes("14-977-6743") && content.includes("BNO-100000188010374"), `${name}: D-U-N-S veya SAP Ariba doğrulaması eksik!`);
 }
 console.log("✔ Elektrik direği EN/AR hunileri doğrulandı: karşılıklı hreflang, resmi WhatsApp hattı ve sıfır marka sızıntısı");
 console.log("=== TÜM SEO + GEO + ABM KONTROLLERİ BAŞARIYLA GEÇTİ ===");
