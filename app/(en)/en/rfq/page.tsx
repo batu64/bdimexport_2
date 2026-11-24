@@ -7,7 +7,7 @@ import { Section, SectionHeader } from "@/lib/ui/Section";
 import LoopVideo from "@/lib/ui/motion/LoopVideo";
 import Reveal from "@/lib/ui/motion/Reveal";
 import SmartRfq, { type SmartRfqCopy } from "@/lib/ui/SmartRfq";
-import { CORPORATE_ENTITIES } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { enAlternates } from "../_lib/hreflang";
 import { QUOTE_EMAIL } from "../_lib/chrome";
 import s from "./rfq.module.css";
@@ -32,7 +32,7 @@ export default function EnRfqPage() {
         primary={{ label: "Configure Request Below", href: "#smart-rfq" }}
         secondary={{ label: "Explore All Services", href: "/en/services" }}
         trust={[
-          `${CORPORATE_ENTITIES[1].name} (USA) + ${CORPORATE_ENTITIES[0].name} (TR)`,
+          `${CORPORATE_ENTITIES[1].name} (USA · D-U-N-S® #${US_DUNS_NUMBER}) + ${CORPORATE_ENTITIES[0].name} (TR)`,
           "24-hour written sourcing & audit quotation",
           "Fixed inspection fee — zero hidden commissions",
         ]}
@@ -68,7 +68,7 @@ export default function EnRfqPage() {
         <SmartRfq copy={rfqCopy} locale="en" email={QUOTE_EMAIL} initialTrack="sourcing" sourcePage="/en/rfq" />
         <p className="chip" style={{ marginBlockStart: "var(--s-6)" }}>
           <ShieldCheck aria-hidden="true" className="chip-icon" />
-          <span>Supported by {CORPORATE_ENTITIES[1].name} (Wyoming, USA) &amp; {CORPORATE_ENTITIES[0].name} (Türkiye)</span>
+          <span>Supported by {CORPORATE_ENTITIES[1].name} (Wyoming, USA · D-U-N-S® #{US_DUNS_NUMBER}) &amp; {CORPORATE_ENTITIES[0].name} (Türkiye)</span>
         </p>
       </Section>
     </main>

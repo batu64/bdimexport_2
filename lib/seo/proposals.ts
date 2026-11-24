@@ -48,7 +48,7 @@ export const EN_PROPOSALS: readonly ProposalBlueprint[] = [
     ],
     commercialTermsTitle: "US Corporate Partnership & Governance Terms",
     commercialTerms: [
-      { label: "Contracting US Legal Entity", value: "BDIMEXPORT LLC — 30 N Gould St Ste N, Sheridan, WY 82801 (W-9 Ready)" },
+      { label: "Contracting US Legal Entity", value: "BDIMEXPORT LLC — 30 N Gould St Ste N, Sheridan, WY 82801 (D-U-N-S® #: 14-977-6743 · W-9 Ready)" },
       { label: "On-Ground Operations Arm", value: "BD Sanayi (Türkiye, 81 Provinces) + Coastal/Inland China QC Network" },
       { label: "Open-Book Fee Policy", value: "Transparent management or flat inspection fee — zero hidden factory kickbacks" },
       { label: "Engagement Flexibility", value: "Start with a single 48h container audit, 72h supplier check, or full annual retainer" },
@@ -63,7 +63,7 @@ export const EN_PROPOSALS: readonly ProposalBlueprint[] = [
     faq: [
       {
         q: "Can BDIMEXPORT LLC onboard as a standard US vendor with a W-9?",
-        a: "Yes. BDIMEXPORT LLC is a registered Wyoming Limited Liability Company (30 N Gould St Ste N, Sheridan, WY 82801), enabling straightforward US vendor onboarding, NDA execution, and USD invoicing.",
+        a: "Yes. BDIMEXPORT LLC is a registered Wyoming Limited Liability Company (30 N Gould St Ste N, Sheridan, WY 82801 · Dun & Bradstreet D-U-N-S® #: 14-977-6743), enabling straightforward US ERP vendor onboarding, NDA execution, and USD invoicing.",
       },
       {
         q: "We already import from China or Türkiye—how can you add value immediately?",
@@ -76,7 +76,7 @@ export const EN_PROPOSALS: readonly ProposalBlueprint[] = [
     ],
     emailTemplate: {
       subject: "US-Based Türkiye & China Procurement Partnership for {{company}} ({{sector}})",
-      body: "Hi {{company}} Supply Chain & Leadership Team,\n\nThrough our US entity, BDIMEXPORT LLC (Sheridan, WY), and our full-time engineering teams on the ground in Türkiye and China, we would like to serve as your dedicated overseas purchasing, manufacturing, and quality inspection partner for {{sector}}.\n\nWe prepared a tailored US Partnership overview for {{company}} here:\n\n{{url}}\n\nHow we support US importers ({{country}}):\n• End-to-end sourcing & OEM production across BOTH Türkiye (16–22d East Coast transit, zero Section 301 surcharge) and China\n• Open-book factory pricing (zero middleman markups) + 24–48h on-site AQL & CTPAT container seal inspection\n• Domestic US LLC contracting (W-9 ready) backed by our Turkish operations company\n\nWhether you want to benchmark landed costs on an active SKU or book a standalone 48h inspection on your next container, you can review the scope directly on the page.\n\nBest regards,\nBDIMEXPORT LLC — US & Dual-Hub Operations Desk\n30 N Gould St Ste N, Sheridan, WY 82801",
+      body: "Hi {{company}} Supply Chain & Leadership Team,\n\nThrough our US entity, BDIMEXPORT LLC (Sheridan, WY), and our full-time engineering teams on the ground in Türkiye and China, we would like to serve as your dedicated overseas purchasing, manufacturing, and quality inspection partner for {{sector}}.\n\nWe prepared a tailored US Partnership overview for {{company}} here:\n\n{{url}}\n\nHow we support US importers ({{country}}):\n• End-to-end sourcing & OEM production across BOTH Türkiye (16–22d East Coast transit, zero Section 301 surcharge) and China\n• Open-book factory pricing (zero middleman markups) + 24–48h on-site AQL & CTPAT container seal inspection\n• Domestic US LLC contracting (W-9 ready) backed by our Turkish operations company\n\nWhether you want to benchmark landed costs on an active SKU or book a standalone 48h inspection on your next container, you can review the scope directly on the page.\n\nBest regards,\nBDIMEXPORT LLC — US & Dual-Hub Operations Desk\n30 N Gould St Ste N, Sheridan, WY 82801 · D-U-N-S® #: 14-977-6743",
     },
   },
   {
@@ -98,7 +98,7 @@ export const EN_PROPOSALS: readonly ProposalBlueprint[] = [
     commercialTermsTitle: "Transparent Engagement Structure",
     commercialTerms: [
       { label: "Initial Feasibility & Tariff Brief", value: "Complimentary within 24 hours of specification receipt" },
-      { label: "Contracting Entities", value: "BDIMEXPORT LLC (Sheridan, WY, USA) & BD Sanayi (Türkiye)" },
+      { label: "Contracting Entities", value: "BDIMEXPORT LLC (Sheridan, WY · D-U-N-S® #14-977-6743) & BD Sanayi (Türkiye)" },
       { label: "Fee Structure", value: "Disclosed separately upfront — zero hidden factory markups" },
       { label: "Quality Gate", value: "Balance payment released only after passed AQL / loading report" },
     ],
@@ -198,7 +198,7 @@ export const EN_PROPOSALS: readonly ProposalBlueprint[] = [
       { label: "IP & Mold Confidentiality", value: "Bilateral NDA + non-circumvention & mold ownership clauses" },
       { label: "MOQ Structure", value: "Pilot-batch friendly Turkish OEM runs with rapid re-order cycles" },
       { label: "Tariff Advantage", value: "0% industrial duty to EU (A.TR) & UK (UK-TR FTA); MFN to USA" },
-      { label: "Corporate Counterparty", value: "BDIMEXPORT LLC (USA) & BD Sanayi (Türkiye)" },
+      { label: "Corporate Counterparty", value: "BDIMEXPORT LLC (USA · D-U-N-S® #14-977-6743) & BD Sanayi (Türkiye)" },
     ],
     whyTitle: "Why Brands Shift Private Label Lines to Türkiye",
     whyPoints: [
@@ -297,7 +297,7 @@ export const DE_PROPOSAL: ProposalBlueprint = {
   commercialTermsTitle: "Kaufmännische Rahmenbedingungen",
   commercialTerms: [
     { label: "Ersteinschätzung & Angebot", value: "Schriftliche Rückmeldung innerhalb von 24 Stunden in EUR (oder CHF)" },
-    { label: "Vertragspartner", value: "BD Sanayi İthalat İhracat Şirketi (Türkei) & BDIMEXPORT LLC (USA)" },
+    { label: "Vertragspartner", value: "BD Sanayi İthalat İhracat Şirketi (Türkei) & BDIMEXPORT LLC (USA · D-U-N-S® 14-977-6743)" },
     { label: "Vergütungsmodell", value: "Offengelegtes Honorar getrennt von Werkspreisen und Frachtkosten" },
     { label: "Qualitätsfreigabe", value: "Schlusszahlung erst nach dokumentiertem Prüfbericht" },
   ],
@@ -350,7 +350,7 @@ export const ZH_PROPOSAL: ProposalBlueprint = {
   commercialTermsTitle: "三大透明合作保障",
   commercialTerms: [
     { label: "响应承诺", value: "收到产品与目标客户需求后24小时内出具执行方案与报价" },
-    { label: "签约主体", value: "土耳其本土公司 BD Sanayi 与美国公司 BDIMEXPORT LLC 双实体保障" },
+    { label: "签约主体", value: "土耳其本土公司 BD Sanayi 与美国公司 BDIMEXPORT LLC（邓白氏 D-U-N-S® 编码：14-977-6743）双实体保障" },
     { label: "服务模式", value: "支持单次客户拜访/尽调委托，或按季度/年度派驻专属土耳其本地业务团队" },
   ],
   whyTitle: "为什么中国出口企业选择 Bdimexport 土耳其团队",

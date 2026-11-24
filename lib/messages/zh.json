@@ -69,7 +69,7 @@
             { "code": "TAX-02", "tag": "会计税务", "title": "注册会计师(SMMM)记账报税", "desc": "规范管理月度/年度税务申报(KDV/企业税)、电子发票、社保及合规审计。" },
             { "code": "PAY-03", "tag": "资金保障", "title": "本地合规代收与尾款催收", "desc": "支持本地账户代收里拉/美元/欧元货款，配合上门催收与阳光透明跨境结算。" }
           ],
-          "footnote": "美国 BDIMEXPORT LLC 与土耳其 BD Sanayi 双实体架构保障交易合规。",
+          "footnote": "美国 BDIMEXPORT LLC（邓白氏 D-U-N-S® 编码：14-977-6743）与土耳其 BD Sanayi 双实体架构保障交易合规。",
           "footRight": "账目清晰透明 · 拒绝跨国坏账"
         },
         {

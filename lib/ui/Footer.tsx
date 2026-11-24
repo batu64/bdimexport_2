@@ -2,12 +2,12 @@
 // Not (brief sapması, bilinçli): 360'ta akordeon yerine 2 kolon — listeler kısa; <details> 768+'da CSS ile açılamıyor
 // (Firefox ::details-content yok) → JS'siz, her BP'de aynı DOM.
 import Link from "next/link";
-import { Building2, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Building2, Mail, MapPin, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 import type { NavLink, SiteLink } from "./Navbar";
 import Reveal from "./motion/Reveal";
 import s from "./footer.module.css";
 
-export type CorporateEntity = { badge: string; name: string; address: string };
+export type CorporateEntity = { badge: string; name: string; address: string; duns?: string };
 
 export type FooterProps = {
   brand: string;
@@ -108,10 +108,18 @@ export default function Footer({ brand, tagline, columns, sites, legal, contact,
           <div className={s.entities}>
             {entities.items.map((ent) => (
               <div key={ent.name} className={s.entityCard}>
-                <span className={s.entityBadge}>
-                  <Building2 aria-hidden="true" className={s.entityIcon} />
-                  {ent.badge}
-                </span>
+                <div className={s.entityTopRow}>
+                  <span className={s.entityBadge}>
+                    <Building2 aria-hidden="true" className={s.entityIcon} />
+                    {ent.badge}
+                  </span>
+                  {ent.duns && (
+                    <span className={s.dunsPill} dir="ltr">
+                      <ShieldCheck aria-hidden="true" className={s.dunsIcon} />
+                      <span>D-U-N-S® #: {ent.duns}</span>
+                    </span>
+                  )}
+                </div>
                 <p className={s.entityName}>{ent.name}</p>
                 <p className={s.entityAddr}>
                   <MapPin aria-hidden="true" className={s.entityIcon} />

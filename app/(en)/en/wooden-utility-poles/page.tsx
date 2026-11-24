@@ -9,7 +9,7 @@ import StatBand from "@/lib/ui/StatBand";
 import { Section, SectionHeader } from "@/lib/ui/Section";
 import UtilityPoleFunnel, { PoleHeroVideoShowcase, type UtilityPoleFunnelCopy } from "@/lib/ui/UtilityPoleFunnel";
 import Reveal from "@/lib/ui/motion/Reveal";
-import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { enAlternates } from "../_lib/hreflang";
 import { SeoJsonLd, SITE_URL, buildProductFunnelGraph, defaultOpenGraph } from "@/lib/seo/schema";
 import ps from "@/lib/seo/proposal.module.css";
@@ -271,7 +271,7 @@ const FAQ_EN = [
   },
   {
     q: "Can we contract via a US legal entity or documentary Letter of Credit (LC) for utility tenders?",
-    a: "Yes. Depending on your project structure, you can contract directly with our Turkish manufacturing exporter (BD Sanayi İthalat İhracat Şirketi) or our US-registered entity (BDIMEXPORT LLC, Wyoming) for World Bank, AfDB, or corporate USD procurement governance.",
+    a: "Yes. Depending on your project structure, you can contract directly with our Turkish manufacturing exporter (BD Sanayi İthalat İhracat Şirketi) or our US-registered entity (BDIMEXPORT LLC, Wyoming · Dun & Bradstreet D-U-N-S® #: 14-977-6743) for World Bank, AfDB, or corporate USD procurement governance.",
   },
 ];
 
@@ -550,7 +550,7 @@ export default function EnWoodenUtilityPolesPage() {
         <p className="chip" style={{ marginBlockStart: "var(--s-6)" }}>
           <ShieldCheck aria-hidden="true" className="chip-icon" />
           <span>
-            Direct Manufacturing &amp; Export Entity: {CORPORATE_ENTITIES[0].name} (Türkiye) · International USD Contracting Option: {CORPORATE_ENTITIES[1].name} (Wyoming, USA) · Official WhatsApp: {OFFICIAL_PHONE}
+            Direct Manufacturing &amp; Export Entity: {CORPORATE_ENTITIES[0].name} (Türkiye) · International USD Contracting Option: {CORPORATE_ENTITIES[1].name} (Wyoming, USA · D-U-N-S® #{US_DUNS_NUMBER}) · Official WhatsApp: {OFFICIAL_PHONE}
           </span>
         </p>
       </Section>

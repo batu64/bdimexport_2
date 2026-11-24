@@ -5,7 +5,7 @@ import dict from "@/lib/messages/tr.json";
 import PageHeader from "@/lib/ui/PageHeader";
 import { Section } from "@/lib/ui/Section";
 import SmartRfq, { type SmartRfqCopy } from "@/lib/ui/SmartRfq";
-import { CORPORATE_ENTITIES } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { trAlternates, JsonLd } from "../_lib/content";
 import { QUOTE_EMAIL } from "../_lib/links";
 
@@ -39,7 +39,7 @@ export default function TrRfqPage() {
         meta={
           <span className="chip">
             <ShieldCheck aria-hidden="true" className="chip-icon" />
-            {CORPORATE_ENTITIES[1].name} &amp; {CORPORATE_ENTITIES[0].name}
+            {CORPORATE_ENTITIES[1].name} (D-U-N-S® #{US_DUNS_NUMBER}) &amp; {CORPORATE_ENTITIES[0].name}
           </span>
         }
       />
@@ -61,7 +61,7 @@ export default function TrRfqPage() {
             </li>
             <li>
               <Building2 aria-hidden="true" style={{ display: "inline", verticalAlign: "middle", marginInlineEnd: 8 }} />
-              <strong>ABD Kurumsal Merkezi:</strong> {CORPORATE_ENTITIES[1].name} — {CORPORATE_ENTITIES[1].address}
+              <strong>ABD Kurumsal Merkezi:</strong> {CORPORATE_ENTITIES[1].name} — {CORPORATE_ENTITIES[1].address} (Dun &amp; Bradstreet D-U-N-S® #: {US_DUNS_NUMBER})
             </li>
           </ul>
         </div>

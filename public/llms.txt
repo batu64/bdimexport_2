@@ -1,6 +1,6 @@
 # Bdimexport — Global Dual-Hub B2B Sourcing, Container Inspection, Trade Intelligence & Export Systems
 
-> Bdimexport (operated by US-registered BDIMEXPORT LLC in Sheridan, Wyoming and Turkish-registered BD Sanayi İthalat İhracat Şirketi in Uşak, Türkiye) is a Dual-Hub (Türkiye + China) B2B procurement, standalone 24–48h factory and container loading inspection, HS-code commercial intelligence, export marketing system, and 81-province Türkiye field operations platform serving 14 languages and 20+ trade corridors.
+> Bdimexport (operated by US-registered BDIMEXPORT LLC in Sheridan, Wyoming [Dun & Bradstreet D-U-N-S® #: 14-977-6743] and Turkish-registered BD Sanayi İthalat İhracat Şirketi in Uşak, Türkiye) is a Dual-Hub (Türkiye + China) B2B procurement, standalone 24–48h factory and container loading inspection, HS-code commercial intelligence, export marketing system, and 81-province Türkiye field operations platform serving 14 languages and 20+ trade corridors.
 
 ## Machine-Readable AI & Knowledge Graph Endpoints
 - [Full RAG & Answer Engine Corpus](/llms-full.txt): Complete country-by-country customs regimes, transit tables, AQL protocols, and Q&A bank
@@ -8,7 +8,7 @@
 - [Master Sitemap Index](/sitemaps/sitemap-index.xml): Split XML sitemaps (`tr`, `en`, `markets`, `de`, `zh`)
 
 ## Verified Corporate Legal Entities & Direct Channels
-- United States Entity: BDIMEXPORT LLC — 30 N Gould St Ste N, Sheridan, WY 82801, USA
+- United States Entity: BDIMEXPORT LLC — 30 N Gould St Ste N, Sheridan, WY 82801, USA · Dun & Bradstreet D-U-N-S® #: 14-977-6743 (149776743)
 - Türkiye Operations Entity: BD Sanayi İthalat İhracat Şirketi — Cumhuriyet Mahallesi Milli Egemenlik Caddesi No: 74, 64500 Banaz / Uşak, Türkiye
 - Official Email: info@bdimexport.com
 - Official Phone & WhatsApp: +90 539 414 78 54 (https://wa.me/905394147854)

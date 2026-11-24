@@ -100,6 +100,13 @@
   border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 14%, transparent);
   background: color-mix(in srgb, var(--c-on-brand) 4%, transparent);
 }
+.entityTopRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
 .entityBadge {
   display: inline-flex;
   align-items: center;
@@ -109,6 +116,25 @@
   font-weight: var(--fw-heading);
   letter-spacing: var(--track-caps);
   text-transform: uppercase;
+}
+.dunsPill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  padding-block: calc(var(--s-1) / 2);
+  padding-inline: var(--s-2);
+  border-radius: var(--radius-pill);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-highlight) 45%, transparent);
+  background: color-mix(in srgb, var(--c-highlight) 12%, transparent);
+  color: var(--c-on-brand);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+}
+.dunsIcon {
+  inline-size: var(--s-3);
+  block-size: var(--s-3);
+  flex: none;
+  color: var(--c-highlight);
 }
 .entityName { color: var(--c-on-brand); font-weight: var(--fw-heading); font-size: var(--fs-base); }
 .entityAddr { display: flex; align-items: flex-start; gap: var(--s-2); color: var(--c-on-brand-muted); font-size: var(--fs-xs); line-height: var(--lh-body); }

@@ -101,7 +101,7 @@ export const TR_EXPORT_CORRIDORS: readonly TrExportCorridor[] = [
   {
     slug: "abd-ihracat-ve-sirketlesme",
     countryTitle: "Amerika Birleşik Devletleri (ABD)",
-    regionBadge: "BDIMEXPORT LLC (Wyoming) · Section 301 Fırsatı",
+    regionBadge: "BDIMEXPORT LLC (Wyoming · D-U-N-S® #14-977-6743) · Section 301 Fırsatı",
     metaTitle: "ABD İhracat, Müşteri Bulma ve Pazar Girişi | Bdimexport",
     metaDesc: "Çin'e uygulanan Section 301 ek vergilerine karşı Türk üreticiler için ABD alıcı bulma, HTS maliyet analizi ve BDIMEXPORT LLC kurumsal güvencesi.",
     h1: "ABD Pazarına İhracat, Alıcı Eşleştirme ve Kurumsal Ticaret Köprüsü",
@@ -469,7 +469,7 @@ export const TR_PROPOSALS: readonly TrProposalBlueprint[] = [
     commercialTermsTitle: "Çalışma Modeli ve Kurumsal Güvence",
     commercialTerms: [
       { label: "Ön Değerlendirme", value: "Ücretsiz kapasite ve hedef pazar uygunluk analizi (24–48 saat)" },
-      { label: "Kurumsal Altyapı", value: "BD Sanayi İthalat İhracat Şirketi (TR) + BDIMEXPORT LLC (ABD)" },
+      { label: "Kurumsal Altyapı", value: "BD Sanayi İthalat İhracat Şirketi (TR) + BDIMEXPORT LLC (ABD · D-U-N-S® #14-977-6743)" },
       { label: "Ücretlendirme Şeffaflığı", value: "Ücretsiz Hızlandırma Programı veya kapsamı baştan yazılı sistem kurulum paketi" },
       { label: "Veri ve Marka Kontrolü", value: "KVKK uyumlu; logo ve katalog yayını tamamen yazılı onayınıza bağlıdır" },
     ],
@@ -610,7 +610,7 @@ export const TR_PROPOSALS: readonly TrProposalBlueprint[] = [
     commercialTermsTitle: "Program Çerçevesi",
     commercialTerms: [
       { label: "Hedef Bölgeler", value: "ABD, Birleşik Krallık, Almanya/DACH, Benelux, Fransa, Kuzey & Doğu Avrupa" },
-      { label: "Kurumsal Destek", value: "BDIMEXPORT LLC (Wyoming, ABD) + BD Sanayi (Türkiye)" },
+      { label: "Kurumsal Destek", value: "BDIMEXPORT LLC (Wyoming, ABD · D-U-N-S® #14-977-6743) + BD Sanayi (Türkiye)" },
       { label: "Başlangıç", value: "Ücretsiz ön analiz + 30/60/90 günlük ölçülebilir aksiyon takvimi" },
       { label: "Raporlama", value: "Şeffaf alıcı geri bildirimleri ve RFQ dönüşüm takibi" },
     ],

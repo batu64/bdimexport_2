@@ -52,7 +52,7 @@ export const MARKET_CORRIDORS: readonly MarketCorridor[] = [
       { factor: "US Customs Tariff Exposure", trHub: "Standard MFN duty (no Section 301 surcharge)", cnHub: "MFN + Section 301 duties (7.5%–25%+ on many HS lines)", bdimExecution: "Side-by-side HTS landed-cost modeling before RFQ award" },
       { factor: "Ocean Freight to US East Coast", trHub: "16–22 days direct ex-Mersin / Izmir / Ambarli", cnHub: "28–36 days via Panama / Suez routing", bdimExecution: "FOB/CIF/DDP booking + pre-loading container inspection" },
       { factor: "MOQ & Reorder Agility", trHub: "Flexible mid-volume & hospitality custom runs", cnHub: "High-volume tooling & mass SKU scale", bdimExecution: "Consolidated samples & split-hub risk diversification" },
-      { factor: "Contractual Counterparty", trHub: "BD Sanayi on-ground factory execution", cnHub: "On-site inspector network in coastal hubs", bdimExecution: "Single US domestic invoice option via BDIMEXPORT LLC (WY)" },
+      { factor: "Contractual Counterparty", trHub: "BD Sanayi on-ground factory execution", cnHub: "On-site inspector network in coastal hubs", bdimExecution: "Single US domestic invoice option via BDIMEXPORT LLC (WY · D-U-N-S® #14-977-6743)" },
     ],
     priorityProducts: [
       { slug: "hospitality-furniture", label: "Hospitality & Contract Furniture", hsChapter: "HS 9403" },
@@ -68,7 +68,7 @@ export const MARKET_CORRIDORS: readonly MarketCorridor[] = [
       },
       {
         q: "Can US companies contract with a US legal entity instead of wiring funds overseas?",
-        a: "Yes. Bdimexport operates through BDIMEXPORT LLC, registered in Sheridan, Wyoming, alongside BD Sanayi İthalat İhracat Şirketi in Türkiye. US buyers can engage under familiar corporate documentation while our local engineers execute factory audits, AQL inspections, and container sealing at the manufacturing site.",
+        a: "Yes. Bdimexport operates through BDIMEXPORT LLC, registered in Sheridan, Wyoming (Dun & Bradstreet D-U-N-S® #: 14-977-6743), alongside BD Sanayi İthalat İhracat Şirketi in Türkiye. US buyers can engage under familiar corporate documentation while our local engineers execute factory audits, AQL inspections, and container sealing at the manufacturing site.",
       },
       {
         q: "Can I book a standalone container loading inspection for a supplier we already found?",

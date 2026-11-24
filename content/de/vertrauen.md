@@ -32,6 +32,10 @@ Diese Unterlagen gehören Ihnen und können in Ihre interne Lieferantenbewertung
 
 Türkische Unternehmen, die wir als Verifizierter türkischer Partner kennzeichnen, durchlaufen vor der Veröffentlichung eine Prüfung ihrer Unterlagen. Die ersten Partnerprofile veröffentlichen wir, sobald diese Prüfungen abgeschlossen sind. Wir zeigen keine Logos oder Namen von Unternehmen, mit denen keine bestätigte Zusammenarbeit besteht.
 
+## Unternehmensstruktur und Registerdaten
+
+Unsere internationalen Beschaffungs- und Prüfprozesse stützen sich auf zwei eingetragene Gesellschaften: `BD Sanayi İthalat İhracat Şirketi` (Operative Gesellschaft in der Türkei) sowie `BDIMEXPORT LLC` (30 N Gould St Ste N, Sheridan, WY 82801, USA · Dun & Bradstreet **D-U-N-S® Nummer: 14-977-6743**). Einkaufsabteilungen im DACH-Raum können die D-U-N-S-Registrierung direkt in ihrer internen Lieferantenanlage hinterlegen.
+
 ## Datenschutz und Anbieterkennzeichnung
 
 Die Angaben zur Anbieterkennzeichnung (Impressum) und die Datenschutzerklärung für die deutsche Website befinden sich in rechtlicher Prüfung und werden vor dem Start veröffentlicht. Beide Seiten erreichen Sie jederzeit über den Fußbereich jeder Seite: [Impressum](/de/impressum) und [Datenschutz](/de/datenschutz). Bis dahin beantworten wir Fragen zum Umgang mit Ihren Daten gerne per E-Mail.

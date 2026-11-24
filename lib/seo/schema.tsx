@@ -2,7 +2,7 @@
 // Google Knowledge Graph, AI Overviews / AI Mode, Bing Copilot, Perplexity, Yandex ve kurumsal B2B önizlemeler için
 // tek doğruluk kaynağından (@/lib/ui/entities) türetilen bağlı varlık grafiği (@id referanslı).
 import type { Metadata } from "next";
-import { CORPORATE_ENTITIES, OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, US_DUNS_NUMBER, US_DUNS_RAW } from "@/lib/ui/entities";
 
 export const SITE_URL = "https://bdimexport.com";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/media/en/heroes/trade-services-hero-og.webp`;
@@ -74,6 +74,12 @@ export function masterOrganizationNodes(): object[] {
       "@id": ENTITY_US_ID,
       name: CORPORATE_ENTITIES[1].name,
       legalName: CORPORATE_ENTITIES[1].name,
+      duns: US_DUNS_RAW,
+      identifier: {
+        "@type": "PropertyValue",
+        propertyID: "D-U-N-S",
+        value: US_DUNS_NUMBER,
+      },
       parentOrganization: { "@id": ORG_ID },
       address: {
         "@type": "PostalAddress",

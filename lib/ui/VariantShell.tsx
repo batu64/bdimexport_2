@@ -60,7 +60,7 @@ export default function VariantShell({ variant, children }: { variant: EnVariant
         entities={{
           title: "BDIMEXPORT",
           items: [
-            { badge: "USA", name: CORPORATE_ENTITIES[1].name, address: CORPORATE_ENTITIES[1].address },
+            { badge: "USA", name: CORPORATE_ENTITIES[1].name, address: CORPORATE_ENTITIES[1].address, duns: CORPORATE_ENTITIES[1].duns },
             { badge: "TR", name: CORPORATE_ENTITIES[0].name, address: CORPORATE_ENTITIES[0].address },
           ],
         }}

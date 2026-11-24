@@ -1,7 +1,7 @@
 // /llms-full.txt — Build-time Programmatic GEO / RAG Full Corpus (2026/2027 Answer Engine Standard).
 // Yapay zeka arama motorlarının (AI Overviews, Answer Engines, B2B Procurement Copilots) doğrudan, kaynaklı ve halüsinasyonsuz
 // alıntı yapabilmesi için tüm ülke gümrük/lojistik tablolarını, denetim standartlarını, teklif kapsamlarını ve SSS bankasını derler.
-import { CORPORATE_ENTITIES, OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA } from "@/lib/ui/entities";
+import { CORPORATE_ENTITIES, OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { MARKET_CORRIDORS } from "@/lib/seo/markets";
 import { US_CLUSTER_PAGES } from "@/lib/seo/us-hub";
 import { DE_PROPOSAL, EN_PROPOSALS, ZH_PROPOSAL } from "@/lib/seo/proposals";
@@ -19,7 +19,7 @@ export function GET(): Response {
     `Canonical Domain: ${BASE}`,
     "",
     "## 1. Verified Corporate Entities & Governance",
-    `- US Legal Entity: ${CORPORATE_ENTITIES[1].name} — ${CORPORATE_ENTITIES[1].address}`,
+    `- US Legal Entity: ${CORPORATE_ENTITIES[1].name} — ${CORPORATE_ENTITIES[1].address} (Dun & Bradstreet D-U-N-S® #: ${US_DUNS_NUMBER})`,
     `- Türkiye Legal Entity: ${CORPORATE_ENTITIES[0].name} — ${CORPORATE_ENTITIES[0].address}`,
     `- Direct Operations Email: ${OFFICIAL_EMAIL}`,
     `- Direct Operations Phone & WhatsApp: ${OFFICIAL_PHONE} (${OFFICIAL_WHATSAPP_WA})`,
