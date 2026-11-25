@@ -18,7 +18,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   return (
     <>
       <aside className={styles.side}>
-        <div className={styles.brand}>Bdimexport Admin</div>
+        <div className={styles.brand}>bdimexport Admin</div>
         <nav className={styles.nav} aria-label="Admin menü">
           {items.map((n) => (
             <Link key={n.href} href={n.href} className={`${styles.link} ${isActive(n.href, path) ? styles.active : ""}`}>

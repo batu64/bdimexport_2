@@ -34,7 +34,7 @@
   flex: none;
 }
 .brandImg { inline-size: 100%; block-size: 100%; object-fit: contain; display: block; }
-.brand { color: var(--c-on-brand); font-size: var(--fs-x2); font-weight: var(--fw-stat); letter-spacing: var(--track-tight); }
+.brand { color: var(--c-on-brand); font-size: var(--fs-x2); font-weight: var(--fw-stat); letter-spacing: var(--track-tight); text-transform: lowercase; }
 .tagline { margin-block: var(--s-3) var(--s-6); font-size: var(--fs-base); }
 .colTitle {
   margin-block-end: var(--s-3);

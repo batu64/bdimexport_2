@@ -44,7 +44,7 @@ export default function Footer({ brand, tagline, columns, sites, legal, contact,
               {/* eslint-disable-next-line @next/next/no-img-element -- static export (images.unoptimized); marka amblemi sabit boyut */}
               <img src="/media/brand/logo-white.png" alt="" width={28} height={28} className={s.brandImg} />
             </span>
-            <p className={s.brand}>{brand}</p>
+            <p className={s.brand}>{brand.toLowerCase()}</p>
           </div>
           <p className={s.tagline}>{tagline}</p>
           {contact && <>
@@ -157,7 +157,7 @@ export default function Footer({ brand, tagline, columns, sites, legal, contact,
       )}
 
       <div className={`container ${s.bottom}`}>
-        <span>© {year} {brand}. {rights}</span>
+        <span>© {year} {brand.toLowerCase()}. {rights}</span>
       </div>
     </footer>
   );

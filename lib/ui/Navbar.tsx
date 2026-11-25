@@ -105,7 +105,7 @@ export default function Navbar({ brand, homeHref, homeLabel, links, cta, sites, 
             {/* eslint-disable-next-line @next/next/no-img-element -- static export (images.unoptimized); marka amblemi sabit boyut */}
             <img src="/media/brand/logo-white.png" alt="" width={28} height={28} className={s.markImg} />
           </span>
-          <span>{brand}</span>
+          <span>{brand.toLowerCase()}</span>
         </Link>
 
         <nav aria-label={labels.nav} className={s.desktopNav}>

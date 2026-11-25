@@ -41,6 +41,7 @@
   font-size: var(--fs-lg);
   font-weight: var(--fw-stat);
   letter-spacing: var(--track-tight);
+  text-transform: lowercase;
   text-decoration: none;
 }
 .brand:hover { text-decoration: none; }

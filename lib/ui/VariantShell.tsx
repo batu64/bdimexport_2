@@ -42,9 +42,9 @@ export default function VariantShell({ variant, children }: { variant: EnVariant
         </div>
       </div>
       <Navbar
-        brand="Bdimexport"
+        brand="bdimexport"
         homeHref={base}
-        homeLabel={`Bdimexport — ${v.home}`}
+        homeLabel={`bdimexport — ${v.home}`}
         links={links}
         cta={{ label: v.contact.title, href: "#contact" }}
         sites={[]}
@@ -54,7 +54,7 @@ export default function VariantShell({ variant, children }: { variant: EnVariant
       />
       <div id="content" tabIndex={-1}><PageTransition>{children}</PageTransition></div>
       <Footer
-        brand="Bdimexport"
+        brand="bdimexport"
         tagline={v.tagline}
         columns={[{ title: v.navLabel, links: [...links, { label: "English", href: "/en" }, { label: "Smart RFQ", href: "/en/rfq" }] }]}
         sites={{ title: v.languages, links: switcherItems("home").map((i) => ({ label: i.label, href: i.href, lang: i.lang, current: i.code === variant })) }}
