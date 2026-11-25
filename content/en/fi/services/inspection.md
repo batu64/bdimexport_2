@@ -1,4 +1,4 @@
-<!-- META: title="Konttilastauksen valvonta ja tehdastarkastus Turkissa ja Kiinassa | Bdimexport" desc="Riippumaton konttivalvonta, tuotannonaikainen DUPRO ja AQL-lopputarkastus Turkissa ja Kiinassa 24–48 tunnissa. Valokuvat ja PDF-raportti." -->
+<!-- META: title="Konttivalvonta ja tehdastarkastus (Turkki & Kiina)" desc="Riippumaton konttivalvonta, tuotannonaikainen DUPRO ja AQL-lopputarkastus Turkissa ja Kiinassa 24–48 tunnissa. Valokuvat ja PDF-raportti." -->
 
 # Konttilastauksen valvonta ja tehdastarkastus (Turkki ja Kiina)
 

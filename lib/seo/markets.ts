@@ -270,7 +270,7 @@ export const MARKET_CORRIDORS: readonly MarketCorridor[] = [
       { factor: "Supplier Transparency", trHub: "Direct Turkish factory verification", cnHub: "Verified Chinese OEMs (brokers filtered out)", bdimExecution: "72h corporate registry & capacity due-diligence report" },
     ],
     priorityProducts: [
-      { slug: "home-living", label: "Home & Garden Consumer Goods", hsChapter: "HS 94 / 73" },
+      { slug: "kitchenware", label: "Kitchenware, Home & Living Goods", hsChapter: "HS 94 / 73" },
       { slug: "kitchenware", label: "Kitchenware & Tableware", hsChapter: "HS 7323 / 7013" },
       { slug: "fabrics", label: "Technical & Upholstery Fabrics", hsChapter: "HS 54-55" },
       { slug: "steel", label: "Fabricated Metal & Structural Profiles", hsChapter: "HS 7308" },

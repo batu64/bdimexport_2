@@ -133,7 +133,7 @@ Sipariş verdikten sonra tedarikçiyi kendi haline bırakmayın. Kısa bir hafta
 
 ## İlk Adım
 
-Ürününüzü (kumaş tipi/ürün grubu, adet, hedef fiyat) [danışmanlık talebi](/ithalat/danismanlik-talebi) formunda paylaşın; tedarik edilebilirlik ve süreç planı 24 saatte döner.
+Ürününüzü (kumaş tipi/ürün grubu, adet, hedef fiyat) [danışmanlık talebi — Danışmanlık Ücretleri ve Teklif](/ithalat/danismanlik-ucretleri) formunda paylaşın; tedarik edilebilirlik ve süreç planı 24 saatte döner.
 
 ## Sık Sorulan Sorular
 

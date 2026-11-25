@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Kanton Fuarı ve Çin'den Ürün Getirme Rehberi: Fabrikadan Türkiye'deki Deponuza Adım Adım Süreç",
+      "description": "Çin'den ürün ve mal getirmek isteyen firmalar için Kanton Fuarı hazırlığı, fabrika doğrulama, numune, gümrük vergisi ve yükleme rehberi.",
+      "inLanguage": "tr-TR",
+      "url": "https://bdimexport.com/makaleler/kanton-fuari-ve-cinden-mal-getirme-rehberi",
+      "author": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      }
+    }
+  ]
+}

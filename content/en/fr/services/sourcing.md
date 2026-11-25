@@ -1,30 +1,36 @@
-# Approvisionnement (sourcing) en Turquie
-**Sayfa tipi:** /en/fr varyant hizmet sayfası (iskelet — FAZ_2 Step 2.5) · **Ton:** formal « vous » (I18N_RULES §7)
+# Fournisseur en Turquie et en Chine — Approvisionnement B2B
+**Sayfa tipi:** /en/fr varyant hizmet sayfası · **Ton:** formal « vous » (I18N_RULES §7)
 
-<!-- META: title="Approvisionnement en Turquie | Achat B2B" desc="Recherche et vérification d'usines turques, échantillons, négociation des prix et suivi de commande. Devis gratuit sous 24 heures." -->
+<!-- META: title="Fournisseur Turquie & Importer de Turquie | Usines B2B" desc="Importer de Turquie ou de Chine auprès d'usines vérifiées : textile, mobilier, pierre naturelle et poteaux bois. Contrôle AQL et devis gratuit sous 24 h." -->
 
-# Approvisionnement en Turquie
+# Importer de Turquie et de Chine auprès d'usines vérifiées
 
-Le principal risque lors d'un achat à l'étranger est de choisir une usine sur la foi de sa vitrine, plutôt que sur ses documents et ses capacités réelles. Notre service d'approvisionnement écarte ce risque grâce à une vérification avant tout premier paiement.
+Lorsque vous cherchez un **fournisseur en Turquie** ou souhaitez **importer de Turquie** vers la France, la Belgique, la Suisse, le Maghreb ou l'Afrique de l'Ouest, le risque principal consiste à traiter avec un intermédiaire sans atelier réel. Notre équipe vérifie chaque usine sur pièces et sur site avant tout acompte.
 
-## Le déroulé du processus
+## Secteurs industriels couverts
 
-1. **Analyse du besoin (1–2 jours) :** spécification du produit, prix cible, volume.
-2. **Recherche d'usines et liste restreinte (3–7 jours) :** contrôle des documents d'enregistrement, des certificats et des capacités de production.
-3. **Échantillons (7–14 jours) :** demande d'échantillons, évaluation comparative, relevé des écarts avec la qualité de série.
-4. **Prix et contrat :** calcul transparent — conditions FOB/CIF, emballage, tolérances de qualité inscrits au contrat.
-5. **Suivi de commande :** surveillance du calendrier de production ; un audit d'usine peut être ajouté si nécessaire.
+- **Usine textile en Turquie et fabricant de vêtements :** confection en marque propre (private label), maille, chaîne et trame, linge d'hôtel et séries flexibles (Istanbul, Bursa, Denizli, Izmir).
+- **Mobilier, hôtellerie (FF&E) et pierre naturelle :** fabricants de meubles sur mesure, marbre et travertin directement de carrière.
+- **Infrastructures et énergie (Afrique francophone) :** fourniture directe d'usine de [poteaux électriques et télécoms en bois traité](/en/fr/wooden-utility-poles) pour le Sénégal, la Côte d'Ivoire, le Cameroun et la sous-région.
+
+## Le déroulé du processus en 5 étapes
+
+1. **Analyse du cahier des charges (1–2 jours) :** spécifications techniques, quantités cibles et nomenclature douanière (certificat A.TR pour l'Union européenne ou BSC/ECTN pour l'Afrique de l'Ouest).
+2. **Sélection d'usines vérifiées (3–7 jours) :** contrôle du registre du commerce, des certificats ISO/OEKO-TEX et de la capacité réelle de production.
+3. **Échantillonnage contrôlé (7–14 jours) :** validation des prototypes et conservation d'un échantillon témoin scellé.
+4. **Contrat et logistique transparente :** chiffrage détaillé en EUR ou USD (EXW, FOB ou CIF) sans marge cachée.
+5. **Suivi et contrôle avant expédition :** couplage direct avec notre service d'[inspection d'usine et supervision de chargement de conteneur](/en/fr/services/inspection) sous 24 à 48 heures.
 
 ## Ce que vous recevez
 
-- Une liste restreinte d'usines aux documents vérifiés
-- Un protocole de comparaison des échantillons
-- Un contrat avec une structure de prix transparente en EUR
+- Une liste restreinte de fabricants vérifiés en Turquie ou en Chine
+- Un comparatif complet des échantillons, délais et coûts rendus
+- Une structure contractuelle adossée à nos entités enregistrées aux États-Unis (D-U-N-S et SAP Ariba) et en Turquie
 
 ## Délais et coûts
 
-Vous recevez un devis gratuit sous 24 heures après votre demande. Le coût exact de chaque étape dépend de la catégorie de produit et figure dans le devis.
+Vous recevez une proposition chiffrée gratuite sous 24 heures après réception de votre cahier des charges.
 
 ## Canal de contact
 
-E-mail (principal) et WhatsApp. Les liens directs seront activés dès la mise en service des canaux. Numéros de téléphone acceptés au format +33.
+E-mail professionnel (canal principal) et WhatsApp pour le suivi opérationnel. Numéros acceptés aux formats +33, +32, +41, +221 et internationaux.

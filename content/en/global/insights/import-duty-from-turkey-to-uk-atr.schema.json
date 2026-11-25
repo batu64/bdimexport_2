@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Import Duty from Türkiye to the UK & EU: UK-Turkey FTA Origin Rules vs. A.TR Certificate Explained",
+      "description": "Understand UK-Turkey FTA 0% preferential origin rules vs EU A.TR certificates, Postponed VAT Accounting and road transit times.",
+      "inLanguage": "en",
+      "url": "https://bdimexport.com/en/insights/import-duty-from-turkey-to-uk-atr",
+      "author": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      }
+    }
+  ]
+}

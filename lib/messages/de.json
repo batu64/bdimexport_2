@@ -6,7 +6,7 @@
     "home": "Bdimexport Startseite",
     "links": [
       { "label": "Leistungen", "href": "/de#leistungen" },
-      { "label": "Ablauf", "href": "/de#ablauf" },
+      { "label": "Ratgeber & Zoll", "href": "/de/ratgeber" },
       { "label": "Vertrauen", "href": "/de/vertrauen" }
     ],
     "cta": "Angebot anfordern",
@@ -37,13 +37,16 @@
     },
     "services": {
       "eyebrow": "Leistungen",
-      "title": "Eine Ansprechstelle von der Beschaffung bis zu Ihrem Hafen",
-      "lead": "Fünf Leistungen, ein Ansprechpartner: von der Herstellersuche über die Werksprüfung bis zu Fracht und Ausfuhrpapieren.",
+      "title": "Eine Ansprechstelle für Beschaffung aus der Türkei und China",
+      "lead": "Acht Leistungen aus einer Hand: von der Herstellersuche in der Türkei und China über die Werksprüfung bis zu Logistik und Zollabwicklung.",
       "more": "Mehr erfahren",
       "items": {
-        "sourcing": "Beschaffung",
+        "sourcing": "Beschaffung Türkei",
+        "chinaSourcing": "Einkaufsagentur China",
         "manufacturing": "Lohnfertigung / Private Label",
-        "inspection": "Werksprüfung",
+        "textile": "Textilproduktion Türkei",
+        "inspection": "Werksprüfung Türkei",
+        "chinaQc": "Qualitätskontrolle China",
         "logistics": "Logistik",
         "customs": "Zollabwicklung"
       }
@@ -67,7 +70,7 @@
         { "title": "Herstellerauswahl", "text": "Wir prüfen türkische Hersteller auf Unterlagen, Kapazität und Exporterfahrung." },
         { "title": "Muster und Werksprüfung", "text": "Muster werden verglichen, ein unabhängiger Prüfer besucht das Werk." },
         { "title": "Produktionsbegleitung", "text": "Wir verfolgen den Zeitplan und berichten Ihnen bei jedem Schritt." },
-        { "title": "Logistik und Zoll", "text": "Exportzoll und Fracht werden bis zu Ihrem Hafen abgewickelt." }
+        { "title": "Logistik und Zollabwicklung", "text": "Zollabwicklung und Fracht werden bis zu Ihrem Zielort begleitet." }
       ]
     },
     "partners": {
@@ -164,8 +167,8 @@
   },
   "ratgeber": {
     "title": "Ratgeber",
-    "lead": "Fachartikel zu Beschaffung, Werksprüfung, Logistik und Zoll für Einkäufer aus Deutschland, Österreich und der Schweiz.",
-    "metaDesc": "Ratgeber für die Beschaffung aus der Türkei: Fachartikel zu Herstellerauswahl, Werksprüfung, Logistik und Zoll mit belegten Quellen.",
+    "lead": "Fachartikel zu Import aus der Türkei und China, A.TR-Warenverkehrsbescheinigung, Zollabwicklung, CBAM und Werksprüfung für Einkäufer in DACH.",
+    "metaDesc": "Praxisnahe Fachartikel zu Import aus der Türkei und China: A.TR-Zollvorteil, Einfuhrumsatzsteuer, Antidumpingzoll, CBAM und Lieferantenprüfung.",
     "empty": "Die ersten Fachartikel folgen in Kürze. Jeder Artikel wird vor der Veröffentlichung fachlich geprüft und mit Quellen belegt.",
     "read": "Artikel lesen"
   },

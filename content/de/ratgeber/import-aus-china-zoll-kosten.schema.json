@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Import aus China nach Deutschland und Österreich: Zoll, Importkosten und Antidumping richtig kalkulieren",
+      "description": "Leitfaden zum Import aus China nach DACH: Importkosten berechnen, TARIC-Zollsatz, Einfuhrumsatzsteuer, Antidumpingzoll, CBAM und EORI.",
+      "inLanguage": "de",
+      "url": "https://bdimexport.com/de/ratgeber/import-aus-china-zoll-kosten",
+      "author": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      }
+    }
+  ]
+}

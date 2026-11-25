@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "How to Verify Turkish Suppliers: 6-Point Due Diligence Checklist Before Wiring a Deposit",
+      "description": "Step-by-step B2B checklist on how to verify Turkish manufacturers: Trade Registry Gazette, MERSIS, Capacity Report and 48h factory audits.",
+      "inLanguage": "en",
+      "url": "https://bdimexport.com/en/insights/how-to-verify-turkish-suppliers",
+      "author": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      }
+    }
+  ]
+}

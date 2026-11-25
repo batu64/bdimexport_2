@@ -13,7 +13,7 @@ import { QUOTE_EMAIL } from "../_lib/chrome";
 import s from "./rfq.module.css";
 
 export const metadata: Metadata = {
-  title: "Smart RFQ, Container Inspection & Dual-Hub Quote | Bdimexport",
+  title: { absolute: "Free Sourcing & Container Inspection Quote | bdimexport" },
   description:
     "Request Türkiye or China product sourcing, standalone container loading supervision, or a supplier commercial intelligence report within 24 hours.",
   alternates: enAlternates("rfq"),

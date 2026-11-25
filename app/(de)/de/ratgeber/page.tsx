@@ -3,14 +3,19 @@ import type { Metadata } from "next";
 import dict from "@/lib/messages/de.json";
 import PageHeader from "@/lib/ui/PageHeader";
 import { SITE } from "@/lib/ui/insights";
+import { crossClusterAlternates, toMetadataAlternates } from "@/lib/hreflang";
 import { RATGEBER_BASE, RatgeberList, listRatgeber } from "../_lib/ratgeber";
 
 const t = dict.ratgeber;
+const ratgeberCross = crossClusterAlternates(RATGEBER_BASE);
 
 export const metadata: Metadata = {
-  title: { absolute: `${t.title}: Beschaffung aus der Türkei | Bdimexport` },
+  title: { absolute: "Import Ratgeber: Türkei, China, A.TR & Zoll | bdimexport" },
   description: t.metaDesc,
-  alternates: { canonical: `${SITE}${RATGEBER_BASE}` },
+  alternates: {
+    canonical: `${SITE}${RATGEBER_BASE}`,
+    ...(ratgeberCross ? toMetadataAlternates(ratgeberCross) : {}),
+  },
   ...(listRatgeber().length ? {} : { robots: { index: false, follow: true } }),
 };
 

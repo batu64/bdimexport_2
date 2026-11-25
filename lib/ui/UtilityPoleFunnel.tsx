@@ -151,7 +151,7 @@ export default function UtilityPoleFunnel({
   sectionId = "rfq",
 }: {
   copy: UtilityPoleFunnelCopy;
-  locale: "ar" | "en";
+  locale: "ar" | "en" | "fr";
   sourcePage: string;
   sectionId?: string;
 }) {

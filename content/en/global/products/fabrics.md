@@ -1,7 +1,6 @@
 <!-- META: title="Technical Fabrics Manufacturers in Turkey | B2B Sourcing" desc="Source technical and nonwoven fabrics from verified Turkish manufacturers. Specification checks, lab tests and inspection. Free quotation in 24h." -->
 
-# Technical Fabrics Manufacturers in Turkey | B2B Sourcing
-
+# Technical Fabrics Manufacturers in Turkey
 Turkish technical fabric manufacturers produce woven, knitted and nonwoven materials for industrial, medical, automotive, filtration, agricultural and home uses. If you are searching for technical fabric manufacturers in Turkey, this page shows how to specify a material and how the order is verified.
 
 Bdimexport matches your specification with suitable producers, manages samples and lab tests and inspects the goods before shipment. Send your brief and receive a free quotation in 24h.

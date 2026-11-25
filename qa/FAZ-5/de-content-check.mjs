@@ -11,7 +11,16 @@ const DU = /\b(du|dich|dir|dein|deine|deinen|deinem|deiner|deines|euch|euer|eure
 // UWG / CONTENT_STYLE: kanıtsız üstünlük ve garanti (alıntı içindeki "Was wir nicht tun" listesi hariç tutulur)
 const SUPER = /\b(die besten?|beste[nrs]?|Marktführer|garantiert|100\s?%|einzigartig|weltweit führend)\b/gi;
 // I18N_RULES §3.1 — her hizmet sayfası kendi sözlük terimini kullanmalı
-const TERM = { beschaffung: "Beschaffung", lohnfertigung: "Lohnfertigung", werkspruefung: "Werksprüfung", logistik: "Logistik", zollabwicklung: "Zollabwicklung" };
+const TERM = {
+  beschaffung: "Beschaffung",
+  "china-einkauf": "Beschaffung",
+  lohnfertigung: "Lohnfertigung",
+  "textilproduktion-tuerkei": "Textilproduktion",
+  werkspruefung: "Werksprüfung",
+  "qualitaetskontrolle-china": "Werksprüfung",
+  logistik: "Logistik",
+  zollabwicklung: "Zollabwicklung",
+};
 const REVIEW = /(„[^“]{20,}“\s*[–-]\s*[A-ZÄÖÜ][a-zäöüß]+)|\b\d(,\d)?\s?(von 5|\/5)\s?Sterne/; // alıntı + isim veya yıldız puanı
 
 const files = [

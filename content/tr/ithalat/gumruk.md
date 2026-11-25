@@ -1,8 +1,8 @@
-# Gümrük Hizmeti
+# Çin'den İthalat Gümrük İşlemleri, TAREKS ve Vergi Süreci
 **Sayfa tipi:** TR İthalat hizmet sayfası · **Hedef keyword:** çinden ithalat gümrük
 **Durum:** FAZ_1 Step 1.2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den İthalat Gümrük İşlemleri | GTİP, Vergi ve Beyan" (55 kar) desc="GTİP tespiti, ithalat vergisi hesabı, beyanname ve evrak yönetimi. Resmi kaynaklara dayalı hesaplama, kontrol hatı takibi ve arşiv disiplini." (122 kar) -->
+<!-- META: title="Çin İthalat Gümrük, TAREKS ve Vergi İşlemleri" desc="Çin'den ithalatta GTİP tespiti, gümrük vergisi, ilave gümrük vergisi (İGV), gözetim, anti-damping ve TAREKS/CE uyumluluk süreç yönetimi." -->
 
 # Gümrük: İthalatın Vergi Muhasebesi ve Evrak Disiplini
 
@@ -24,7 +24,7 @@ Gümrük vergisi GTİP bazlıdır; KDV genelde %20 bandındadır; Çin menşeli 
 
 Çin-ASEAN değil, Çin-Türkiye hattında menşe düzenlemeleri ürüne göre değişir; menşe belgesi uygunluğu, vergi tabanını doğrudan etkileyebilir. GTİP tespitiyle birlikte değerlendirilir.
 
-[Gümrük Ön Hesabı Talep Et — 24 saatte dönüş](/ithalat/danismanlik-talebi)
+[Gümrük Ön Hesabı Talep Et — 24 saatte dönüş — Danışmanlık Ücretleri ve Teklif](/ithalat/danismanlik-ucretleri)
 
 Sevkiyat sürecinin evrak boyutu için [lojistik hizmeti](/ithalat/lojistik); ürünün doğru tedarik edilmesi için [tedarik hizmeti](/ithalat/tedarik) sayfalarına bakın.
 

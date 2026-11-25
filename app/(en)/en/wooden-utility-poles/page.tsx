@@ -19,10 +19,10 @@ const PAGE_PATH = "wooden-utility-poles";
 const PAGE_URL = `${SITE_URL}/en/${PAGE_PATH}`;
 const OG_IMG = `${SITE_URL}/media/poles/wooden-utility-poles-og.webp`;
 
-// ≤ 60 chars (58 chars) & 120–158 chars (154 chars) SEO_PLAYBOOK §3 compliant
-const META_TITLE = "Wooden Utility Poles Factory Export to Africa | Bdimexport";
+// ≤ 60 chars (56 chars) & 120–158 chars (156 chars) SEO_PLAYBOOK §3 compliant
+const META_TITLE = "Wooden Utility & Electricity Poles Manufacturer | Africa";
 const META_DESC =
-  "Factory-direct 7m-12m autoclave wooden utility and telecom poles from Türkiye to Senegal (Dakar), Mozambique (Maputo/Beira) and Africa. 140x 9m per 40'HC.";
+  "Factory-direct 7m-12m CCA & autoclave treated wood utility, electricity and telecom poles from Türkiye to Senegal & Mozambique. US D-U-N-S & SAP Ariba.";
 
 export const metadata: Metadata = {
   title: { absolute: META_TITLE },
@@ -315,17 +315,30 @@ export default function EnWoodenUtilityPolesPage() {
             <Factory aria-hidden="true" className={up.badgeIcon} />
             <span>100% Direct Integrated Factory in Türkiye — Zero Trading Brokers · Priority Shipping to Senegal &amp; Mozambique</span>
           </span>
-          <Link
-            id="cta-pole-en-switch-ar"
-            href="/en/ar/wooden-utility-poles"
-            lang="ar"
-            hrefLang="ar"
-            className={up.langSwitchLink}
-            data-clarity-event="pole_en_switch_to_ar"
-          >
-            <Globe aria-hidden="true" className={up.badgeIcon} />
-            <span>النسخة العربية (ليبيا · الأردن · الشرق الأوسط)</span>
-          </Link>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-3)" }}>
+            <Link
+              id="cta-pole-en-switch-fr"
+              href="/en/fr/wooden-utility-poles"
+              lang="fr"
+              hrefLang="fr"
+              className={up.langSwitchLink}
+              data-clarity-event="pole_en_switch_to_fr"
+            >
+              <Globe aria-hidden="true" className={up.badgeIcon} />
+              <span>Version Française (Sénégal · Côte d&apos;Ivoire)</span>
+            </Link>
+            <Link
+              id="cta-pole-en-switch-ar"
+              href="/en/ar/wooden-utility-poles"
+              lang="ar"
+              hrefLang="ar"
+              className={up.langSwitchLink}
+              data-clarity-event="pole_en_switch_to_ar"
+            >
+              <Globe aria-hidden="true" className={up.badgeIcon} />
+              <span>النسخة العربية (ليبيا · الأردن)</span>
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -512,9 +525,9 @@ export default function EnWoodenUtilityPolesPage() {
         </div>
 
         <div className={up.autoclaveNotice}>
-          <span className={up.autoclaveNoticeTitle}>Engineering Note on Brown vs. Green Autoclave Cylinder Length:</span>
+          <span className={up.autoclaveNoticeTitle}>Engineering Note on Brown vs. Green Autoclave Cylinder Length &amp; EN 14229 / Lusophone Specs:</span>
           <p className={up.autoclaveNoticeBody}>
-            International export buyers predominantly specify <strong>Brown vacuum-pressure impregnation</strong>. Our dedicated brown-treatment autoclave cylinder processes poles up to <strong>9.0 meters maximum</strong> (7m, 8m, and 9m). Orders requiring <strong>10m, 11m, or 12m</strong> poles are treated in our extended <strong>Green vacuum-pressure autoclave cylinder</strong> with the exact same ≥10.5 kg/cm² hydraulic pressure and preservative retention.
+            International export buyers predominantly specify <strong>Brown vacuum-pressure impregnation</strong> for <strong>treated wood poles</strong> and <strong>wooden electricity poles</strong> (EN 14229 / BS 1990 / SANS 754 equivalent). Our dedicated brown-treatment autoclave cylinder processes poles up to <strong>9.0 meters maximum</strong> (7m, 8m, and 9m). Orders requiring <strong>10m, 11m, or 12m CCA / Tanalith-class treated wooden telecom &amp; MV poles</strong> are processed in our extended <strong>Green autoclave cylinder</strong> with the exact same ≥10.5 kg/cm² hydraulic pressure and 16 kg/m³ retention. <em>Para compradores em Moçambique e Angola (<strong>postes de madeira tratada</strong> para redes elétricas EDM/ENDE e telecomunicações): fornecimento direto da fábrica com entrega CIF Maputo, Beira, Nacala e Luanda e certificado CNCA/autoclave.</em>
           </p>
         </div>
       </Section>

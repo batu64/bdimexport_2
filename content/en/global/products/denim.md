@@ -1,7 +1,6 @@
 <!-- META: title="Denim Manufacturers in Turkey | B2B Sourcing" desc="Source denim and jeans from verified Turkish manufacturers: fabric, washes, finishing and private label. Samples and AQL inspection. Quote in 24h." -->
 
-# Denim Manufacturers in Turkey | B2B Sourcing
-
+# Denim Manufacturers in Turkey
 Turkish denim manufacturers produce denim fabric and finished jeans, from classic five-pocket styles to fashion washes. If you plan to work with denim manufacturers in Turkey, this page explains what to define, which quality points matter and how we control the order.
 
 Bdimexport shortlists and verifies jeans factories and denim producers, manages samples and washes against your specification and inspects the goods before shipment. Send your brief and receive a free quotation in 24h.

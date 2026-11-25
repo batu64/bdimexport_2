@@ -1,7 +1,6 @@
 <!-- META: title="CNC Machinery Manufacturers in Turkey | B2B Sourcing" desc="Source CNC machine tools, lasers and sheet metal machines from verified Turkish builders. Technical vetting, factory acceptance tests. Quote in 24h." -->
 
-# CNC Machinery Manufacturers in Turkey | B2B Sourcing
-
+# CNC Machinery Manufacturers in Turkey
 Turkish machine builders supply CNC machining centres, lathes, laser cutting machines and sheet metal equipment to workshops and factories. If you are searching for CNC machinery manufacturers in Turkey, this page explains how to define your need, vet a builder and control the order until it ships.
 
 Bdimexport vets builders and their references, helps you compare technical offers and arranges inspection and acceptance checks before shipment. Send your requirements and receive a free quotation in 24h.

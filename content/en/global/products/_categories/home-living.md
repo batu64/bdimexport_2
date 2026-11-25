@@ -1,7 +1,6 @@
 <!-- META: title="Home and Living Manufacturers in Turkey | B2B Sourcing" desc="Source furniture, hospitality furniture, kitchenware and carpets from Turkish manufacturers. Sampling, packaging and inspection. Quote in 24h." -->
 
-# Home & Living Manufacturers in Turkey | B2B Sourcing
-
+# Home & Living Manufacturers in Turkey
 Home and living covers products people use every day, so appearance, finish and packaging decide whether customers keep them. Turkish manufacturers supply furniture, kitchenware and carpets for retail, e-commerce and contract projects.
 
 ## What buyers usually source

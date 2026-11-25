@@ -1,7 +1,6 @@
 <!-- META: title="Steel Manufacturers in Turkey | B2B Sourcing" desc="Source rebar, structural steel and steel products from verified Turkish suppliers. Mill certificates, inspection and loading supervision. Quote in 24h." -->
 
-# Steel Manufacturers in Turkey | B2B Sourcing
-
+# Steel Manufacturers in Turkey
 Turkish steel producers and fabricators supply rebar, wire rod, structural sections and fabricated steel structures for building and infrastructure projects. If you are looking for steel manufacturers in Turkey, this page explains what to define, which documents prove quality and how orders are inspected and loaded.
 
 Bdimexport shortlists and verifies suppliers, manages sampling and inspects the goods before shipment. Send your requirements and receive a free quotation in 24h.

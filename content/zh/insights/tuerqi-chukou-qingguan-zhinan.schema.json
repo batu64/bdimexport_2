@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "中国企业出口土耳其全流程指南：海关清关、产品合规与本土客户开发",
+      "description": "详解中国外贸工厂出口土耳其的海关清关流程、TAREKS与CE合规认证、热门行业展会及本土客户拜访促单策略。",
+      "inLanguage": "zh-CN",
+      "url": "https://bdimexport.com/zh/insights/tuerqi-chukou-qingguan-zhinan",
+      "author": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      }
+    }
+  ]
+}

@@ -149,7 +149,7 @@ Belgesiz "çevre dostu" ifadesi ambalaja basılmamalıdır. Sertifikalı malzeme
 
 ## İlk Adım
 
-Ürününüzün ölçüleri + marka rengi (pantone) + hedef adet ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; malzeme-yapı önerisi ve dijital/ofset eşiği analizi 24 saatte döner.
+Ürününüzün ölçüleri + marka rengi (pantone) + hedef adet ile [danışmanlık talebi — Danışmanlık Ücretleri ve Teklif](/ithalat/danismanlik-ucretleri) bırakın; malzeme-yapı önerisi ve dijital/ofset eşiği analizi 24 saatte döner.
 
 ## Sık Sorulan Sorular
 

@@ -1,4 +1,4 @@
-<!-- META: title="Ticari İstihbarat ve Çin Üretici Doğrulama Raporu | Bdimexport" desc="Çin'de tedarikçi sicil doğrulama, gümrük ve GTİP bazlı gerçek maliyet simülasyonu ve risk analizi raporu ile ithalatta sürprizleri önleyin." -->
+<!-- META: title="Çin Şirket Doğrulama ve Ticari İstihbarat Raporu" desc="Çin şirket doğrulama, fabrika sicil denetimi, GTİP bazlı gümrük/gözetim maliyet simülasyonu ve tedarikçi risk analizi raporu." -->
 
 # Ticari İstihbarat ve Üretici Doğrulama
 

@@ -1,7 +1,6 @@
 <!-- META: title="Pasta and Cereals Manufacturers in Turkey | B2B Sourcing" desc="Source pasta, pulses, bulgur and cereal products from verified Turkish producers. Food safety checks, private label and inspection. Quote in 24h." -->
 
-# Pasta and Cereals Manufacturers in Turkey | B2B Sourcing
-
+# Pasta and Cereals Manufacturers in Turkey
 Turkish food producers supply pasta, pulses such as lentils and chickpeas, bulgur and other cereal products for retail, food service and industry. If you are looking for pasta and cereal manufacturers in Turkey, this page explains how to specify the product and how orders are checked before shipment.
 
 Bdimexport shortlists and verifies producers, manages samples and inspects the goods before they ship. Send your requirements and receive a free quotation in 24h.

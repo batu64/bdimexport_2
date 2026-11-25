@@ -28,12 +28,6 @@
     "markets/nordics",
     "markets/united-arab-emirates",
     "markets/saudi-arabia",
-    "proposals",
-    "proposals/us-procurement-partner",
-    "proposals/dual-hub-sourcing",
-    "proposals/container-loading-audit",
-    "proposals/private-label-manufacturing",
-    "proposals/trade-intelligence-due-diligence",
     "products/agricultural-machinery",
     "products/apparel",
     "products/carpets-rugs",
@@ -81,6 +75,7 @@
     ],
     "fr": [
       "",
+      "wooden-utility-poles",
       "services/sourcing",
       "services/inspection"
     ],

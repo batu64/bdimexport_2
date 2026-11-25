@@ -1,7 +1,6 @@
 <!-- META: title="Furniture Manufacturers in Turkey | B2B Sourcing" desc="Source living room, bedroom and modular furniture from verified Turkish manufacturers. Flat-pack or assembled, sampling and inspection. Quote in 24h." -->
 
-# Furniture Manufacturers in Turkey | B2B Sourcing
-
+# Furniture Manufacturers in Turkey
 Turkish furniture manufacturers produce living room, bedroom, dining and modular furniture, both flat-packed and assembled, for retailers, e-commerce sellers and importers. If you are looking for furniture manufacturers in Turkey, this page explains what to specify, how production is controlled and how goods are inspected and loaded.
 
 Bdimexport shortlists and verifies factories, manages samples and inspects the goods before shipment. Send your requirements and receive a free quotation in 24h.

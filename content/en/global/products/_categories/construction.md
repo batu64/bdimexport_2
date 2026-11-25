@@ -1,7 +1,6 @@
 <!-- META: title="Construction Materials Manufacturers in Turkey | B2B" desc="Source natural stone, ceramics, steel and sanitaryware from Turkish manufacturers. Sample approval, batch control and loading supervision. Quote in 24h." -->
 
-# Construction Materials Manufacturers in Turkey | B2B Sourcing
-
+# Construction Materials Manufacturers in Turkey
 Building materials are heavy, bulky and often inspected on site. A good order depends on consistent quality across batches and on careful loading. Turkish producers offer natural stone, ceramics, steel and sanitary products for residential, commercial and infrastructure projects.
 
 ## What buyers usually source

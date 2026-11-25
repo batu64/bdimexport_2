@@ -1,8 +1,8 @@
-# Fabrika Denetimi (Inspection) Hizmeti
+# Çin'de Fabrika Denetimi, Ürün ve Kalite Kontrol Hizmeti
 **Sayfa tipi:** TR İthalat hizmet sayfası · **Hedef keyword:** çin fabrika denetimi
 **Durum:** FAZ_1 Step 1.2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'de Fabrika Denetimi | Sipariş ve Yükleme Öncesi" (63 kar — kısalt) desc="Sipariş öncesi fabrika denetimi, üretim sırası kontrol ve yükleme öncesi son kontrol. Fotoğraflı ölçümlü Türkçe rapor 48 saatte teslim." (128 kar) -->
+<!-- META: title="Çin'de Fabrika Denetimi ve Ürün Kontrolü (48 Saat)" (63 kar — kısalt) desc="Çin'de bağımsız fabrika denetimi, üretim sırası ürün kontrolü ve sevkiyat öncesi AQL kalite kontrolü. Ödeme öncesi 48 saatte fotoğraflı rapor." -->
 
 # Çin'de Fabrika Denetimi: Paranın Arkasındaki Üretimi Görün
 
@@ -26,7 +26,7 @@ AQL (Acceptable Quality Limit), uluslararası örneklem standardıdır: tüm par
 
 Denetim, tedarik hizmetinin ayrılmaz adımıdır; sadece denetim isteyen alıcılar için de tekil hizmet olarak verilir. Yükleme sonrası süreç için [lojistik](/ithalat/lojistik) sayfasına bakın.
 
-[Denetim Talebi Oluştur — 24 saatte dönüş](/ithalat/danismanlik-talebi)
+[Denetim Talebi Oluştur — 24 saatte dönüş — Danışmanlık Ücretleri ve Teklif](/ithalat/danismanlik-ucretleri)
 
 
 ## AQL Pratik Tablosu (tipik eşikler)

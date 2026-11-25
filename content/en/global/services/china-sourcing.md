@@ -1,4 +1,4 @@
-<!-- META: title="China & Dual-Hub Sourcing: Turkey vs China | Bdimexport" desc="Source from China or compare Turkey vs China landed cost, MOQ, transit time and customs duties with one Dual-Hub B2B team. Quote in 24h." -->
+<!-- META: title="China Sourcing Agent & Factory Checks (+ Turkey)" desc="Verified China sourcing agent with Dual-Hub Turkey comparison: factory audits, sample consolidation, tariff modeling and container QC. US LLC & D-U-N-S." -->
 
 # China and Dual-Hub Sourcing: Türkiye vs. China Under One Roof
 

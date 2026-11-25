@@ -14,22 +14,22 @@
   },
   "indexes": {
     "ithalat": {
-      "title": "Çin'den İthalat ve Denetim Danışmanlığı | Bdimexport",
-      "h1": "Çin'den İthalat ve Saha Denetimi",
-      "desc": "Çin'den ürün tedariği, üretici doğrulama, konteyner yükleme nezareti, lojistik ve gümrük süreçlerini tek yerden yönetin.",
-      "intro": "Tedarikçi bulmaktan konteyner yükleme denetimine ve gümrüğe kadar tüm ithalat hizmetleri:"
+      "title": "Çin'den İthalat Danışmanlığı: Ürün Getirme ve Gümrük",
+      "h1": "Çin'den Ürün Getirme, Tedarik ve Saha Denetimi",
+      "desc": "Çin'den ürün ve mal getirmek, tedarikçi bulma, konteyner yükleme nezareti, lojistik ve gümrük vergisi hesaplama süreçlerini tek merkezden yönetin.",
+      "intro": "Tedarikçi bulmaktan gümrük vergisi hesaplamaya, konteyner yükleme nezaretinden kapıya teslim lojistiğe kadar tüm Çin ithalat hizmetlerimiz:"
     },
     "ihracat": {
-      "title": "İhracat Pazarlama Sistemleri ve Ücretsiz Program | Bdimexport",
-      "h1": "İhracat ve Küresel Pazarlama Sistemleri",
-      "desc": "Türk üreticiler için yurt dışı pazar araştırması, müşteri bulma, çok dilli B2B pazarlama sistemi ve Ücretsiz İhracat Hızlandırma Programı.",
-      "intro": "İhracat sisteminizi kurmak ve yeni pazarlara açılmak için hizmetlerimiz:"
+      "title": "İhracat Danışmanlığı ve Yurt Dışı Müşteri Bulma",
+      "h1": "İhracat Danışmanlığı ve Küresel Müşteri Bulma Sistemleri",
+      "desc": "Türk üreticiler için ihracat danışmanlığı, GTİP bazlı yurt dışı pazar araştırması, aktif müşteri bulma, e-ihracat ve Ücretsiz İhracat Programı.",
+      "intro": "İhracat sisteminizi kurmak, devlet desteklerinden yararlanmak ve hedef ülkelerde aktif alıcılara ulaşmak için hizmetlerimiz:"
     },
     "rehberler": {
-      "title": "Çin İthalat Rehberleri | Ürün Bazlı Süreç ve Risk Rehberi",
-      "h1": "Çin İthalat Rehberleri",
-      "desc": "Tekstil, elektronik, makine parçaları, ev ve yaşam, ambalaj ve mobilya ithalatı için adım adım süreç, maliyet ve risk rehberleri.",
-      "intro": "Ürün grubuna göre hazırlanmış, adım adım ithalat rehberleri:"
+      "title": "Çin'den Ürün Getirme ve İthalat Rehberleri (2026)",
+      "h1": "Çin'den Ürün Getirme ve Sektörel İthalat Rehberleri",
+      "desc": "Tekstil, mobilya, elektronik, makine parçaları, ev ve yaşam ile ambalaj gruplarında Çin'den mal getirme, gümrük vergisi ve denetim rehberleri.",
+      "intro": "Ürün grubuna göre hazırlanmış adım adım Çin'den ithalat, GTİP/TAREKS uyumu, numune ve konteyner yükleme rehberleri:"
     }
   },
   "nav": {
@@ -38,10 +38,10 @@
     "home": "Bdimexport ana sayfa",
     "links": [
       { "label": "İthalat", "href": "/ithalat" },
+      { "label": "Vergi Hesaplama", "href": "/ithalat/cin-gumruk-vergisi-hesaplama" },
       { "label": "İhracat", "href": "/ihracat" },
       { "label": "Pazarlar", "href": "/ihracat/pazarlar" },
-      { "label": "Ticari İstihbarat", "href": "/ticari-istihbarat" },
-      { "label": "Teklifler", "href": "/teklif" }
+      { "label": "Ticari İstihbarat", "href": "/ticari-istihbarat" }
     ],
     "cta": "Teklif / RFQ Alın",
     "menuOpen": "Menüyü aç",

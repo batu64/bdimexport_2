@@ -2,13 +2,16 @@
 import type { Metadata } from "next";
 import PageHeader from "@/lib/ui/PageHeader";
 import dict from "@/lib/messages/en.json";
-import { InsightList, SITE } from "@/lib/ui/insights";
+import { InsightList, listInsights, SITE } from "@/lib/ui/insights";
 import NewsCards from "@/app/components/NewsCards";
 
+import { enAlternates } from "../_lib/hreflang";
+
 export const metadata: Metadata = {
-  title: { absolute: "Insights: Turkish Export & Sourcing Guides | Bdimexport" },
-  description: "Sourced guides on buying from Turkish manufacturers: specifications, inspection, logistics and trade data. Every article is human-reviewed before publishing.",
-  alternates: { canonical: `${SITE}/en/insights` },
+  title: { absolute: "Turkey & China Import, Tariff & Sourcing Guides | bdimexport" },
+  description: "Practical B2B guides on US & UK import duties from Türkiye, A.TR customs rules, supplier verification, and factory inspection standards.",
+  alternates: enAlternates("insights"),
+  ...(listInsights("en").length ? {} : { robots: { index: false, follow: true } }),
 };
 
 export default function InsightsPage() {

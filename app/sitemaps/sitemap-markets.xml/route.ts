@@ -1,4 +1,4 @@
-// /sitemaps/sitemap-markets.xml — 12 Global Country Corridors + 10 Native-Language Localized Hubs (/en/{xx}).
+// /sitemaps/sitemap-markets.xml — 12 Global Country Corridors + 10 Native-Language Localized Hubs (/en/{xx}) — boş insights hariç.
 import manifest from "@/lib/hreflang.manifest.json";
 import { joinUrl } from "@/lib/hreflang";
 import { enVariants } from "@/lib/i18n";
@@ -19,9 +19,12 @@ export function GET(): Response {
     for (const p of manifest.variants[v] as string[]) {
       locs.push(joinUrl("en", v, p));
     }
-    const ib = insightBase(v);
-    locs.push(`${BASE}${ib}`);
-    for (const slug of listInsights(v)) locs.push(`${BASE}${ib}/${slug}`);
+    const slugs = listInsights(v);
+    if (slugs.length > 0) {
+      const ib = insightBase(v);
+      locs.push(`${BASE}${ib}`);
+      for (const slug of slugs) locs.push(`${BASE}${ib}/${slug}`);
+    }
   }
 
   const urls = locs

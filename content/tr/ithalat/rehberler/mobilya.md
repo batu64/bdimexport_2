@@ -141,7 +141,7 @@ Satışa çıkmak istediğiniz tarihten geriye sayın: nakliye süresi, sevkiyat
 
 ## İlk Adım
 
-Koleksiyon fikriniz (görseller/adet) ve kullanım senaryosu (ofis/otel/ev) ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; malzeme standardı önerisi ve konteyner planı 24 saatte döner.
+Koleksiyon fikriniz (görseller/adet) ve kullanım senaryosu (ofis/otel/ev) ile [danışmanlık talebi — Danışmanlık Ücretleri ve Teklif](/ithalat/danismanlik-ucretleri) bırakın; malzeme standardı önerisi ve konteyner planı 24 saatte döner.
 
 ## Sık Sorulan Sorular
 

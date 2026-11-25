@@ -1,4 +1,4 @@
-<!-- META: title="Inspección de carga de contenedores y auditoría en Turquía y China | Bdimexport" desc="Supervisión independiente de carga de contenedores, control en línea y revisión AQL en Turquía y China en 24–48 horas. Precios en EUR." -->
+<!-- META: title="Inspección de contenedores y fábrica (Turquía y China)" desc="Supervisión independiente de carga de contenedores, control en línea y revisión AQL en Turquía y China en 24–48 horas. Precios en EUR." -->
 
 # Inspección de carga de contenedores y control de calidad (Turquía y China)
 

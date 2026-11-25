@@ -4,7 +4,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { Metadata } from "next";
-import { Boxes, Factory, Landmark, PackageSearch, Ship, type LucideIcon } from "lucide-react";
+import Link from "next/link";
+import { Boxes, ClipboardCheck, Factory, Globe2, Landmark, PackageSearch, Shirt, Ship, type LucideIcon } from "lucide-react";
 import { renderVariantMd, tocFromHtml } from "@/lib/ui/md";
 import PageHeader from "@/lib/ui/PageHeader";
 import ArticleLayout, { AsideCta } from "@/lib/ui/ArticleLayout";
@@ -13,6 +14,8 @@ import CtaBand from "@/lib/ui/CtaBand";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { Section, SectionHeader } from "@/lib/ui/Section";
 import grid from "@/lib/ui/cardgrid.module.css";
+import { crossClusterAlternates, toMetadataAlternates } from "@/lib/hreflang";
+import { listRatgeber, readRatgeber } from "./ratgeber";
 import dict from "@/lib/messages/de.json";
 import { quoteHref } from "./chrome";
 
@@ -22,8 +25,11 @@ const ROOT = path.join(process.cwd(), "content", "de");
 /** Sıra = hub/ilgili kart sırası; key = EN SERVICES slug'ı (hub ikon/etiket eşlemesi) */
 export const DE_SERVICES: { slug: string; key: keyof typeof dict.home.services.items; Icon: LucideIcon }[] = [
   { slug: "beschaffung", key: "sourcing", Icon: PackageSearch },
+  { slug: "china-einkauf", key: "chinaSourcing", Icon: Globe2 },
   { slug: "lohnfertigung", key: "manufacturing", Icon: Boxes },
+  { slug: "textilproduktion-tuerkei", key: "textile", Icon: Shirt },
   { slug: "werkspruefung", key: "inspection", Icon: Factory },
+  { slug: "qualitaetskontrolle-china", key: "chinaQc", Icon: ClipboardCheck },
   { slug: "logistik", key: "logistics", Icon: Ship },
   { slug: "zollabwicklung", key: "customs", Icon: Landmark },
 ];
@@ -62,7 +68,15 @@ export function deServiceSlugs(): string[] {
 export function deServiceMetadata(slug: string): Metadata {
   const d = readDeService(slug);
   if (!d) return { robots: { index: false, follow: false } };
-  return { title: { absolute: d.metaTitle ?? d.title }, description: d.desc, alternates: { canonical: `${SITE}/de/leistungen/${slug}` } };
+  const canonical = `${SITE}/de/leistungen/${slug}`;
+  const cross = crossClusterAlternates(`/de/leistungen/${slug}`);
+  return {
+    title: { absolute: d.metaTitle ?? d.title },
+    description: d.desc,
+    alternates: cross
+      ? { canonical, ...toMetadataAlternates(cross) }
+      : { canonical, languages: { de: canonical, "de-DE": canonical, "de-AT": canonical, "de-CH": canonical } },
+  };
 }
 
 function JsonLd({ graph }: { graph: object[] }) {
@@ -120,6 +134,22 @@ export function DeServicePage({ slug }: { slug: string }) {
             </Reveal>
           ))}
         </ul>
+        {listRatgeber().length > 0 && (
+          <div className="prose" style={{ marginBlockStart: "var(--s-6)" }}>
+            <p>
+              <strong>Passende Zoll- &amp; Import-Ratgeber:</strong>{" "}
+              {listRatgeber().map((rs, idx) => {
+                const rd = readRatgeber(rs);
+                return rd ? (
+                  <span key={rs}>
+                    {idx > 0 ? " · " : ""}
+                    <Link href={`/de/ratgeber/${rs}`}>{rd.title}</Link>
+                  </span>
+                ) : null;
+              })}
+            </p>
+          </div>
+        )}
       </Section>
       <CtaBand title={h.cta.title} lead={h.cta.lead} primary={{ label: h.hero.ctaPrimary, href: quoteHref }} />
     </main>

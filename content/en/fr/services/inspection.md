@@ -1,4 +1,4 @@
-<!-- META: title="Contrôle de chargement et inspection en Turquie et en Chine | Bdimexport" desc="Supervision indépendante de chargement de conteneur, audit d'usine et contrôle AQL en Turquie et en Chine sous 24–48 h. Devis en EUR." -->
+<!-- META: title="Inspection d'usine et chargement (Turquie & Chine)" desc="Supervision indépendante de chargement de conteneur, audit d'usine et contrôle AQL en Turquie et en Chine sous 24–48 h. Devis en EUR." -->
 
 # Contrôle de chargement de conteneur et inspection qualité (Turquie et Chine)
 

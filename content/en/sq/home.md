@@ -1,4 +1,4 @@
-<!-- META: title="Furnizim B2B dhe kontroll ngarkimi nga Turqia dhe Kina | Bdimexport" desc="Prodhues të verifikuar në Turqi dhe Kinë, inspektim fabrike, kontroll ngarkimi kontejnerësh dhe inteligjencë tregtare për Shqipëri e Kosovë." -->
+<!-- META: title="Furnizim B2B dhe inspektim (Turqi & Kinë) | bdimexport" desc="Prodhues të verifikuar në Turqi dhe Kinë, inspektim fabrike, kontroll ngarkimi kontejnerësh dhe inteligjencë tregtare për Shqipëri e Kosovë." -->
 
 # Furnizim B2B, Kontroll Kontejnerësh dhe Inteligjencë Tregtare nga Turqia dhe Kina
 

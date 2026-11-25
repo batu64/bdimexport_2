@@ -29,6 +29,16 @@
 - [Arabic Direct Factory Utility Poles Hub (Libya & Jordan Priority)](/en/ar/wooden-utility-poles) · Short Aliases: `/ar/poles` · `/libya/poles` · `/jordan/poles`
   - Priority #1 Libya: Direct 3–6d short-sea container shipping to Misrata, Tripoli, Benghazi & Al-Khums for GECOL electrical contractors, LPTIC/telecom networks, and municipal tenders.
   - Priority #2 Jordan & MENA: Direct shipping to Port of Aqaba / Amman (JEPCO/EDCO/IDECO specs), overland TIR dispatch to Iraq (Ibrahim Khalil / Umm Qasr), Egypt (Alexandria), Algeria & Tunisia.
+- [French Direct Factory Utility Poles Hub (Senegal & Francophone Africa)](/en/fr/wooden-utility-poles) · Short Aliases: `/fr/poles` · `/senegal/poles` · `/en/fr/poteaux-electriques-bois`
+  - Priority Corridors: Port autonome de Dakar (Senegal — SENELEC/ASER), Abidjan & San-Pédro (Côte d'Ivoire — CI-ENERGIES), Cotonou, Lomé, Conakry, Douala (Cameroon — ENEO), and Maghreb ports.
+
+## Interactive Tools, DACH Dual-Hub & Flagship Trade Guides
+- [Turkish China Customs Duty, İGV & Gözetim Calculator](/ithalat/cin-gumruk-vergisi-hesaplama): Interactive CIF + GV + İGV + Surveillance (Gözetim) + non-deductible VAT simulator
+- [Transparent China Import Consulting & Inspection Fees (TR)](/ithalat/danismanlik-ucretleri) · [B2B Export Consulting (TR)](/ihracat/ihracat-danismanligi)
+- [German China Sourcing Agency (Einkaufsagentur China)](/de/leistungen/china-einkauf) · [German China QC & Container Inspection](/de/leistungen/qualitaetskontrolle-china) · [German Textile Production in Türkiye](/de/leistungen/textilproduktion-tuerkei)
+- [DACH Customs & A.TR Guide](/de/ratgeber/import-tuerkei-zoll-atr) · [DACH China Import Duties, CBAM & Antidumping Guide](/de/ratgeber/import-aus-china-zoll-kosten)
+- [US Import Tariffs from Türkiye vs. China Section 301 Guide](/en/insights/import-from-turkey-to-usa-tariffs) · [UK-Türkiye FTA 0% Duty vs. EU A.TR Guide](/en/insights/import-duty-from-turkey-to-uk-atr) · [6-Point Turkish Supplier Verification Guide](/en/insights/how-to-verify-turkish-suppliers)
+- [中国企业出口土耳其清关、TAREKS认证与展会指南](/zh/insights/tuerqi-chukou-qingguan-zhinan)
 
 ## United States Division (`BDIMEXPORT LLC` · Sheridan, WY · `hreflang="en-US"`)
 - [US Division Flagship Hub](/en/us): Dedicated US-based overseas procurement, manufacturing & import management partner across Türkiye and China (W-9 ready)

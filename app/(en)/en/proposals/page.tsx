@@ -20,6 +20,7 @@ const DESC =
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESC,
+  robots: { index: false, follow: true },
   alternates: enAlternates("proposals"),
   ...defaultOpenGraph({ title: TITLE, description: DESC, url: URL, locale: "en_US" }),
 };

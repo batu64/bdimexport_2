@@ -1,8 +1,8 @@
-// /sitemaps/sitemap-zh.xml — Baidu & Küresel Arama Motorları Çin (/zh) Sitemap.
+// /sitemaps/sitemap-zh.xml — Baidu & Küresel Arama Motorları Çin (/zh) Sitemap (yalnız indexable URL'ler; noindex fangan hariç).
 import fs from "node:fs";
 import path from "node:path";
-import { ZH_PROPOSAL } from "@/lib/seo/proposals";
 import { fileLastMod } from "@/lib/seo/lastmod";
+import { listZhInsights } from "@/app/(zh)/zh/_lib/insights";
 
 export const dynamic = "force-static";
 
@@ -18,12 +18,16 @@ function zhPaths(): string[] {
       if (f.endsWith(".md") && SLUG.test(s)) out.push(`zh/services/${s}`);
     }
   }
-  out.push(`zh/fangan/${ZH_PROPOSAL.slug}`);
+  const guides = listZhInsights();
+  if (guides.length > 0) {
+    out.push("zh/insights");
+    for (const g of guides) out.push(`zh/insights/${g}`);
+  }
   return out;
 }
 
 export function GET(): Response {
-  const mod = fileLastMod("lib", "seo", "proposals.ts");
+  const mod = fileLastMod("lib", "hreflang.manifest.json");
   const urls = zhPaths()
     .map((p) => `  <url><loc>${BASE}/${p}</loc><lastmod>${mod}</lastmod><changefreq>weekly</changefreq></url>`)
     .join("\n");

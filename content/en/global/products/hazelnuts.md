@@ -1,7 +1,6 @@
 <!-- META: title="Hazelnuts Manufacturers in Turkey | B2B Sourcing" desc="Source Turkish hazelnuts: in shell, kernels, roasted and paste. Quality grading, aflatoxin testing and inspection before shipment. Quote in 24h." -->
 
-# Hazelnuts Manufacturers in Turkey | B2B Sourcing
-
+# Hazelnuts Manufacturers in Turkey
 Turkish hazelnut suppliers offer hazelnuts in shell, natural and blanched kernels, roasted nuts and processed ingredients for confectionery, bakery and snack makers. If you are looking for hazelnut manufacturers in Turkey, this page explains the specification and testing points that matter for a safe order.
 
 Bdimexport shortlists and verifies processors, organises samples and laboratory tests and inspects the goods before they ship. Send your requirements and receive a free quotation in 24h.

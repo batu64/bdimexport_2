@@ -1,4 +1,4 @@
-<!-- META: title="Ispezione carico container e audit fabbrica Turchia e Cina | Bdimexport" desc="Controllo indipendente carico container, ispezione in produzione DUPRO e collaudo AQL in Turchia e Cina entro 24–48 ore. Report fotografico PDF." -->
+<!-- META: title="Ispezione container e audit fabbrica (Turchia & Cina)" desc="Controllo indipendente carico container, ispezione in produzione DUPRO e collaudo AQL in Turchia e Cina entro 24–48 ore. Report fotografico PDF." -->
 
 # Ispezione Carico Container e Controllo Qualità (Turchia e Cina)
 

@@ -1,4 +1,4 @@
-<!-- META: title="Furnizim me shumicë nga Turqia dhe Kina | Prodhues të verifikuar" desc="Gjeni fabrika të verifikuara në Turqi dhe Kinë për tekstile, ndërtim, mobilje dhe makineri. Krahasim çmimesh në EUR dhe mostër brenda 5 ditësh." -->
+<!-- META: title="Furnizim B2B nga Turqia dhe Kina | Prodhues të verifikuar" desc="Gjeni fabrika të verifikuara në Turqi dhe Kinë për tekstile, ndërtim, mobilje dhe makineri. Krahasim çmimesh në EUR dhe mostër brenda 5 ditësh." -->
 
 # Furnizim B2B nga Turqia dhe Kina: Nga fabrika reale deri në magazinën tuaj
 

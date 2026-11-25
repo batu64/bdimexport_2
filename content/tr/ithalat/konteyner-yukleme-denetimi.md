@@ -1,6 +1,6 @@
-<!-- META: title="Konteyner Yükleme Denetimi ve Kalite Kontrol | Bdimexport" desc="Çin ve Türkiye'de konteyner yükleme nezareti, üretim sırası kalite kontrol ve mühür doğrulaması. Bağımsız gözle 48 saatte fotoğraflı rapor alın." -->
+<!-- META: title="Konteyner Yükleme Nezareti ve Denetimi (Çin & Türkiye)" desc="Çin ve Türkiye'de tekil konteyner yükleme nezareti, koli sayımı, üretim kontrolü ve mühür doğrulaması. Kendi tedarikçiniz için bile 48 saatte rapor." -->
 
-# Konteyner Yükleme Denetimi ve Saha Nezareti
+# Konteyner Yükleme Nezareti ve Üretim Kalite Kontrolü
 
 Kendi bulduğunuz bir üreticiden sipariş vermiş olsanız bile, sevkiyat anında fabrikada veya liman sahasında bağımsız bir gözün bulunmaması ciddi ticari kayıplara yol açar. Yanlış ürün kolilenmesi, eksik adet yüklenmesi, nemli veya hasarlı ambalaj kullanılması ya da konteyner içi istifleme hataları, mal Türkiye'deki limana ulaştığında telafisi imkânsız maliyetler doğurur.
 

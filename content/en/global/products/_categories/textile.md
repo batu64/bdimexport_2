@@ -1,7 +1,6 @@
 <!-- META: title="Textile and Apparel Manufacturers in Turkey | B2B" desc="Source apparel, home textiles, denim and technical fabrics from Turkish manufacturers. Verified suppliers, sample control and inspection. Quote in 24h." -->
 
-# Textile & Apparel Manufacturers in Turkey | B2B Sourcing
-
+# Textile & Apparel Manufacturers in Turkey
 Turkish textile production covers the chain from yarn and fabric to finished garments and home textiles. For a buyer, this means a complete collection can often be sourced in one country, with shorter distances to European and regional markets than many other origins.
 
 ## What buyers usually source

@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: { absolute: DE_PROPOSAL.metaTitle },
     description: DE_PROPOSAL.metaDesc,
+    robots: { index: false, follow: true },
     alternates: {
       canonical: url,
       languages: {

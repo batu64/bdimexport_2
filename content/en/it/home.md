@@ -1,4 +1,4 @@
-<!-- META: title="Sourcing B2B e ispezione container in Turchia e Cina | Bdimexport" desc="Produttori verificati in Turchia e Cina, controllo carico container, audit di fabbrica e business intelligence per aziende italiane. Preventivo in 24h." -->
+<!-- META: title="Sourcing B2B e ispezione in Turchia e Cina | bdimexport" desc="Produttori verificati in Turchia e Cina, controllo carico container, audit di fabbrica e business intelligence per aziende italiane. Preventivo in 24h." -->
 
 # Sourcing B2B, Ispezione Container e Business Intelligence in Turchia e Cina
 

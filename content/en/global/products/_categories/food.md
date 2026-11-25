@@ -1,7 +1,6 @@
 <!-- META: title="Food and Agriculture Suppliers in Turkey | B2B Sourcing" desc="Source olive oil, dried fruits, hazelnuts, pasta and cereals from Turkish producers. Supplier checks, quality control and export documents. Quote in 24h." -->
 
-# Food & Agriculture Manufacturers in Turkey | B2B Sourcing
-
+# Food & Agriculture Manufacturers in Turkey
 Turkey grows and processes a wide range of food products, from olive oil and nuts to dried fruit, pulses and pasta. Buyers can choose bulk supply for further processing or retail-ready packs under their own brand.
 
 ## What buyers usually source

@@ -20,10 +20,10 @@ const PAGE_PATH = "wooden-utility-poles";
 const PAGE_URL = `${SITE_URL}/en/ar/${PAGE_PATH}`;
 const OG_IMG = `${SITE_URL}/media/poles/wooden-utility-poles-og.webp`;
 
-// ≤ 60 karakter kuralı (59 karakter) + 120–158 karakter meta description
-const META_TITLE = "أعمدة الكهرباء الخشبية من المصنع لليبيا والأردن | Bdimexport";
+// ≤ 60 karakter kuralı (53 karakter) + 120–158 karakter meta description (Google Autocomplete: أعمدة كهرباء خشبية للبيع ليبيا)
+const META_TITLE = "أعمدة كهرباء خشبية للبيع (ليبيا والأردن) | مصنع مباشر";
 const META_DESC =
-  "مصنع تركي مباشر لأعمدة الكهرباء والاتصالات الخشبية المشربة بالأوتوكلاف (7م–12م). شحن 140 عمود 9م بالحاوية إلى مصراتة وطرابلس وبنغازي والعقبة بدون وسطاء.";
+  "أعمدة كهرباء واتصالات خشبية للبيع من مصنعنا في تركيا مباشرة إلى ليبيا (مصراتة/طرابلس/بنغازي) والأردن والعراق. 140 عمود 9م بالحاوية · D-U-N-S & SAP Ariba.";
 
 export const metadata: Metadata = {
   title: { absolute: META_TITLE },
@@ -315,17 +315,30 @@ export default function ArWoodenUtilityPolesPage() {
             <Factory aria-hidden="true" className={up.badgeIcon} />
             <span>من المصنع التركي مباشرة بدون وسطاء · شحن سريع إلى مصراتة وطرابلس وبنغازي والعقبة</span>
           </span>
-          <Link
-            id="cta-pole-ar-switch-en"
-            href="/en/wooden-utility-poles"
-            lang="en"
-            hrefLang="en"
-            className={up.langSwitchLink}
-            data-clarity-event="pole_ar_switch_to_en"
-          >
-            <Globe aria-hidden="true" className={up.badgeIcon} />
-            <span>English Version (Africa &amp; Global Export)</span>
-          </Link>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "var(--s-3)" }}>
+            <Link
+              id="cta-pole-ar-switch-en"
+              href="/en/wooden-utility-poles"
+              lang="en"
+              hrefLang="en"
+              className={up.langSwitchLink}
+              data-clarity-event="pole_ar_switch_to_en"
+            >
+              <Globe aria-hidden="true" className={up.badgeIcon} />
+              <span>English (Africa &amp; Global)</span>
+            </Link>
+            <Link
+              id="cta-pole-ar-switch-fr"
+              href="/en/fr/wooden-utility-poles"
+              lang="fr"
+              hrefLang="fr"
+              className={up.langSwitchLink}
+              data-clarity-event="pole_ar_switch_to_fr"
+            >
+              <Globe aria-hidden="true" className={up.badgeIcon} />
+              <span>Français (Sénégal &amp; Afrique)</span>
+            </Link>
+          </div>
         </div>
       </div>
 

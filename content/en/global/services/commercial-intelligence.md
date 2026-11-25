@@ -1,4 +1,4 @@
-<!-- META: title="B2B Commercial Intelligence & Supplier Due Diligence | Bdimexport" desc="Verify Turkish or Chinese suppliers before paying a deposit. Get legal registry checks, HS-code market data and landed-cost reports within 72h." -->
+<!-- META: title="Supplier Verification & B2B Trade Intelligence" desc="Verify Chinese and Turkish suppliers before wiring deposits: official registry due diligence, HS-code landed cost modeling and buyer intelligence in 72h." -->
 
 # B2B Commercial Intelligence, Due Diligence and Trade Reports
 

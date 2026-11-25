@@ -1,8 +1,8 @@
-# Tedarik (Sourcing) Hizmeti
+# Çin'den Ürün Getirmek: Tedarikçi Bulma ve Numune Süreci
 **Sayfa tipi:** TR İthalat hizmet sayfası · **Şablon:** CONTENT_STYLE §1 kanıt zinciri · **Hedef keyword:** çin'den tedarik firması
 **Durum:** FAZ_1 Step 1.2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den Tedarik Hizmeti | Fabrika ve Numune Süreci" (58 kar) desc="Çin'den ürün tedarikinin tamamını yönetiyoruz: fabrika araştırması, numune, fiyat pazarlığı ve sipariş takibi. Ücretsiz ön değerlendirme 24 saatte." (147 kar) -->
+<!-- META: title="Çin'den Ürün Getirmek: Tedarikçi Bulma ve Numune" desc="Çin'den ürün ve mal getirmek için doğrulanmış fabrika bulma, numune kontrolü, fiyat pazarlığı ve sipariş takibi. 24 saatte ücretsiz ön değerlendirme." -->
 
 # Çin'den Tedarik Hizmeti: Fabrika Bulmadan Siparişe
 
@@ -29,7 +29,7 @@
 
 Getirmek istediğiniz ürünü anlatın; 24 saat içinde tedarik edilebilirlik, tahmini süreç süresi ve uygun hizmet paketi hakkında ön görüş döner.
 
-[Ücretsiz Ön Değerlendirme Talebi — 24 saatte yanıt](/ithalat/danismanlik-talebi)
+[Ücretsiz Ön Değerlendirme Talebi — 24 saatte yanıt — Danışmanlık Ücretleri ve Teklif](/ithalat/danismanlik-ucretleri)
 
 
 ## Sözleşmede Bulunması Gereken Maddeler

@@ -143,7 +143,7 @@ Test ve sertifika maliyetinin kimin üstüne kalacağını teklif aşamasında n
 
 ## İlk Adım
 
-Ürün (model/işlev, adet, hedef fiyat) ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; regülasyon haritası ve tedarik edilebilirlik 24 saatte döner.
+Ürün (model/işlev, adet, hedef fiyat) ile [danışmanlık talebi — Danışmanlık Ücretleri ve Teklif](/ithalat/danismanlik-ucretleri) bırakın; regülasyon haritası ve tedarik edilebilirlik 24 saatte döner.
 
 ## Sık Sorulan Sorular
 

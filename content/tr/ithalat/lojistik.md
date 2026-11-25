@@ -1,8 +1,8 @@
-# Lojistik Hizmeti
+# Çin–Türkiye Konteyner ve Parsiyel Taşıma Hizmeti
 **Sayfa tipi:** TR İthalat hizmet sayfası · **Hedef keyword:** çinden ithalat lojistik
 **Durum:** FAZ_1 Step 1.2 · Model: GLM 5.3 (Portal) · Agent: tr-import-agent
 
-<!-- META: title="Çin'den İthalat Lojistiği | Deniz, Hava, Demiryolu" (60 kar) desc="Fabrika kapısından Türkiye depo kapısına: deniz/hava/demiryolu taşıma, gümrük evrak takibi ve sigorta. Süreç planı 24 saatte." (137 kar) -->
+<!-- META: title="Çin–Türkiye Konteyner ve Parsiyel Taşıma Fiyatları" desc="Çin–Türkiye 20'lik ve 40'lık konteyner taşımacılığı, parsiyel (LCL) yükleme, deniz, hava ve demiryolu navlun organizasyonu. 24 saatte teklif." -->
 
 # Çin'den Lojistik: Fabrika Kapısından Depo Kapısına
 
@@ -33,7 +33,7 @@ Karar tek kriter süre veya fiyat değil; sermaye bağlılık süresi (denizde p
 2. **Evrak-taşıma uyumsuzluğu:** B/L'deki GTİP-başlık ile gümrük beyanı uyuşmazsa ceza ve gecikme; evrak yüklemeden ÖNCE kontrol edilir.
 3. **Sezon körlemesi:** Çin Yeni Yarı öncesi 4–6 hafta kapasite daralması plana yazılır; ihmal halinde süresi uzar.
 
-[Lojistik Planı Talep Et — 24 saatte dönüş](/ithalat/danismanlik-talebi)
+[Lojistik Planı Talep Et — 24 saatte dönüş — Danışmanlık Ücretleri ve Teklif](/ithalat/danismanlik-ucretleri)
 
 
 ## Incoterm: Sözleşmenin Gizli Maliyet Anahtarı

@@ -1,7 +1,6 @@
-<!-- META: title="Marble and Natural Stone Manufacturers in Turkey | B2B" desc="Source marble, travertine and natural stone slabs and tiles from verified Turkish producers. Sample approval, batch control and inspection. Quote in 24h." -->
+<!-- META: title="Turkish Marble & Travertine Suppliers | Direct Quarries" desc="Source blocks, slabs and cut-to-size tiles from verified Turkish marble and travertine suppliers. Quarry batch inspection and container loading checks." -->
 
-# Marble and Natural Stone Manufacturers in Turkey | B2B Sourcing
-
+# Turkish Marble, Travertine and Natural Stone Manufacturers
 Turkish stone producers quarry and process marble, travertine and other natural stone into blocks, slabs and tiles for architects, contractors and distributors. If you are looking for marble and natural stone manufacturers in Turkey, this page explains what to define, how batches are controlled and how orders are inspected before loading.
 
 Bdimexport shortlists and verifies producers, manages samples and approves reference slabs and inspects goods before shipment. Send your project requirements and receive a free quotation in 24h.

@@ -1,7 +1,6 @@
 <!-- META: title="Carpets and Rugs Manufacturers in Turkey | B2B Sourcing" desc="Source machine-made and handmade carpets and rugs from verified Turkish manufacturers. Quality checks, samples and inspection before shipment. Quote in 24h." -->
 
-# Carpets and Rugs Manufacturers in Turkey | B2B Sourcing
-
+# Carpets and Rugs Manufacturers in Turkey
 Turkish manufacturers produce machine-made carpets and rugs in many designs, materials and qualities, and some suppliers offer handmade and knotted rugs. If you are looking for carpet manufacturers in Turkey, this page explains how to specify a rug, check its quality and control the order before shipment.
 
 Bdimexport shortlists and verifies producers, manages samples and inspects goods before shipment. Send your requirements and receive a free quotation in 24h.

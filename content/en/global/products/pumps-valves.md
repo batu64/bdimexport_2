@@ -1,7 +1,6 @@
 <!-- META: title="Pumps and Valves Manufacturers in Turkey | B2B Sourcing" desc="Source industrial pumps, valves and fluid handling equipment from verified Turkish manufacturers. Material certificates, testing, inspection. Quote in 24h." -->
 
-# Pumps and Valves Manufacturers in Turkey | B2B Sourcing
-
+# Pumps and Valves Manufacturers in Turkey
 Turkish manufacturers supply centrifugal and submersible pumps, industrial valves and fluid handling components for water, energy, process and building projects. If you are searching for pump and valve manufacturers in Turkey, this page explains what to specify and how quality is proven before shipment.
 
 Bdimexport vets manufacturers and references, helps you compare technical offers and arranges inspection and test witnessing before shipment. Send your requirements and receive a free quotation in 24h.

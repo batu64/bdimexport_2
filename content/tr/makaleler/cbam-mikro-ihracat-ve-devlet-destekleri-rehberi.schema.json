@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Türk Üreticiler İçin 2026 İhracat Rehberi: Mikro İhracat (ETGB), CBAM ve Devlet Destekleri",
+      "description": "2026 mikro ihracat ETGB sınırı, AB CBAM karbon düzenlemesi ve Ticaret Bakanlığı ihracat/e-ihracat destekleri rehberi.",
+      "inLanguage": "tr-TR",
+      "url": "https://bdimexport.com/makaleler/cbam-mikro-ihracat-ve-devlet-destekleri-rehberi",
+      "author": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      }
+    }
+  ]
+}

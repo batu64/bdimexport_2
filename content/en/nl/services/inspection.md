@@ -1,4 +1,4 @@
-<!-- META: title="Containerinspectie en fabriekscontrole Turkije & China | Bdimexport" desc="Onafhankelijke laadcontrole van containers, DUPRO en AQL-kwaliteitsinspectie in Turkije en China binnen 24–48 uur. Prijzen in EUR." -->
+<!-- META: title="Container- en fabrieksinspectie (Turkije & China)" desc="Onafhankelijke laadcontrole van containers, DUPRO en AQL-kwaliteitsinspectie in Turkije en China binnen 24–48 uur. Prijzen in EUR." -->
 
 # Containerinspectie en onafhankelijke fabriekscontrole (Turkije en China)
 

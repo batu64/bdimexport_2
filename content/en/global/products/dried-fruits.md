@@ -1,7 +1,6 @@
 <!-- META: title="Dried Fruits Manufacturers in Turkey | B2B Sourcing" desc="Source dried figs, apricots and raisins from verified Turkish producers. Quality grading, lab tests and inspection, bulk or retail packs. Quote in 24h." -->
 
-# Dried Fruits Manufacturers in Turkey | B2B Sourcing
-
+# Dried Fruits Manufacturers in Turkey
 Turkey supplies dried figs, dried apricots and raisins in bulk cartons and in retail packs. If you are looking for dried fruit manufacturers in Turkey, this page explains the specification points that decide quality and how orders are tested and inspected before shipment.
 
 Bdimexport shortlists and verifies producers, organises sampling and laboratory tests and inspects the goods before they ship. Send your requirements and receive a free quotation in 24h.

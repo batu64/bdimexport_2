@@ -10,9 +10,9 @@ import { trAlternates, JsonLd } from "../_lib/content";
 import { QUOTE_EMAIL } from "../_lib/links";
 
 export const metadata: Metadata = {
-  title: "Akıllı Teklif (RFQ), Denetim ve İstihbarat Talebi",
+  title: { absolute: "İthalat, İhracat ve Denetim Teklifi (24s) | bdimexport" },
   description:
-    "Çin veya Türkiye ürün tedariği, tekil konteyner yükleme denetimi, ticari istihbarat raporu ve ihracat pazarlama sistemi için 24 saatte teklif alın.",
+    "Çin'den ürün getirme, konteyner yükleme nezareti, fabrika denetimi, ticari istihbarat ve ihracat danışmanlığı için 24 saatte ücretsiz teklif alın.",
   alternates: trAlternates("/rfq"),
 };
 

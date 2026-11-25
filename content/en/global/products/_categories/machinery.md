@@ -1,7 +1,6 @@
 <!-- META: title="Machinery Manufacturers in Turkey | B2B Sourcing" desc="Source CNC machine tools, HVAC, pumps, valves and agricultural machinery from Turkish builders. Technical vetting and inspection. Quote in 24h." -->
 
-# Industrial Machinery Manufacturers in Turkey | B2B Sourcing
-
+# Industrial Machinery Manufacturers in Turkey
 Turkish machine builders supply equipment for manufacturing, buildings, water and agriculture. Machinery purchases are technical, so the main risk is a mismatch between what you need and what the supplier can build, test and support.
 
 ## What buyers usually source

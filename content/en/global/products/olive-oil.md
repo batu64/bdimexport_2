@@ -1,7 +1,6 @@
-<!-- META: title="Olive Oil Manufacturers in Turkey | B2B Sourcing" desc="Source Turkish olive oil in bulk or bottled, with private label options. Supplier checks, lab analysis and inspection. Free quotation in 24h." -->
+<!-- META: title="Turkish Olive Oil Exporters & Private Label Suppliers" desc="Source bulk and private-label extra virgin olive oil from verified Turkish producers and exporters. Lab acidity/purity checks and export documentation." -->
 
-# Olive Oil Manufacturers in Turkey | B2B Sourcing
-
+# Turkish Olive Oil Manufacturers, Exporters and Private Label
 Turkish producers supply olive oil in bulk for blending and packing, and bottled olive oil for retail and food service. If you are looking for olive oil manufacturers in Turkey, this page explains what to specify, which checks matter and how an order is controlled from sample to shipment.
 
 Bdimexport shortlists and verifies producers, organises samples and laboratory analysis, and inspects the goods before they ship. Send your requirements and receive a free quotation in 24h.

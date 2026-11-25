@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: { absolute: p.metaTitle },
     description: p.metaDesc,
+    robots: { index: false, follow: true },
     alternates: enAlternates(`proposals/${p.slug}`),
     ...defaultOpenGraph({ title: p.metaTitle, description: p.metaDesc, url, locale: "en_US" }),
   };

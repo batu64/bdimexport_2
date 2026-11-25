@@ -2,13 +2,14 @@
 import type { Metadata } from "next";
 import PageHeader from "@/lib/ui/PageHeader";
 import { VARIANTS } from "@/lib/ui/variants";
-import { InsightList, SITE } from "@/lib/ui/insights";
+import { InsightList, listInsights, SITE } from "@/lib/ui/insights";
 import NewsCards from "@/app/components/NewsCards";
 
 export const metadata: Metadata = {
-  title: { absolute: "Insights: Turkish Export & Sourcing Guides | Bdimexport" },
+  title: { absolute: "Sourcing & Export Guides (RU) | bdimexport" },
   description: "Sourced guides on buying from Turkish manufacturers: specifications, inspection, logistics and trade data. Every article is human-reviewed before publishing.",
   alternates: { canonical: `${SITE}/en/ru/insights` },
+  ...(listInsights("ru").length ? {} : { robots: { index: false, follow: true } }),
 };
 
 export default function InsightsPage() {

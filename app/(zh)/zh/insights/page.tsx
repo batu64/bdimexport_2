@@ -3,14 +3,19 @@ import type { Metadata } from "next";
 import dict from "@/lib/messages/zh.json";
 import PageHeader from "@/lib/ui/PageHeader";
 import { SITE } from "@/lib/ui/insights";
+import { crossClusterAlternates, toMetadataAlternates } from "@/lib/hreflang";
 import { INSIGHTS_BASE, ZhInsightList, listZhInsights } from "../_lib/insights";
 
 const t = dict.insights;
+const zhCross = crossClusterAlternates(INSIGHTS_BASE);
 
 export const metadata: Metadata = {
   title: { absolute: `${t.title}｜土耳其市场准入与本地运营` },
   description: t.metaDesc,
-  alternates: { canonical: `${SITE}${INSIGHTS_BASE}` },
+  alternates: {
+    canonical: `${SITE}${INSIGHTS_BASE}`,
+    ...(zhCross ? toMetadataAlternates(zhCross) : {}),
+  },
   ...(listZhInsights().length ? {} : { robots: { index: false, follow: true } }),
 };
 

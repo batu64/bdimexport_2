@@ -14,9 +14,9 @@ import { trAlternates, JsonLd } from "../_lib/content";
 import { QUOTE_EMAIL, RFQ_PATH } from "../_lib/links";
 
 export const metadata: Metadata = {
-  title: "Ticari İstihbarat, Pazar Araştırması ve Maliyet Raporları",
+  title: { absolute: "Ticari İstihbarat, Pazar Araştırması ve Üretici Doğrulama" },
   description:
-    "Çin ve Türkiye merkezli tedarikçi doğrulama, GTİP bazlı aktif alıcı istihbaratı, gümrük ve kapıya teslim maliyet simülasyonu raporları.",
+    "Çin şirket doğrulama, Türkiye tedarikçi denetimi, GTİP bazlı aktif alıcı istihbaratı ve gümrük/gözetim maliyet simülasyonu raporları.",
   alternates: trAlternates("/ticari-istihbarat"),
 };
 

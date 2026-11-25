@@ -1,7 +1,6 @@
 <!-- META: title="Sanitaryware Manufacturers in Turkey | B2B Sourcing" desc="Source sanitaryware, washbasins, toilets and bathroom fittings from verified Turkish manufacturers. Testing, breakage-safe packing, inspection. Quote in 24h." -->
 
-# Sanitaryware Manufacturers in Turkey | B2B Sourcing
-
+# Sanitaryware Manufacturers in Turkey
 Turkish manufacturers produce vitreous china sanitaryware, stainless steel sanitary products and bathroom fittings for housing projects, hotels and retail. If you are looking for sanitaryware manufacturers in Turkey, this page explains the specification points, tests and inspection steps that matter for these breakable, heavy products.
 
 Bdimexport shortlists and verifies producers, manages samples and inspects goods and packing before shipment. Send your requirements and receive a free quotation in 24h.

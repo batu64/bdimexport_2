@@ -4,6 +4,7 @@
 import fs from "fs";
 import path from "path";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BarChart3, Boxes, ClipboardCheck, Factory, Globe2, Landmark, PackageSearch, Ship, type LucideIcon } from "lucide-react";
 import { renderVariantMd, tocFromHtml } from "@/lib/ui/md";
 import PageHeader from "@/lib/ui/PageHeader";
@@ -14,6 +15,9 @@ import Reveal from "@/lib/ui/motion/Reveal";
 import { Section, SectionHeader } from "@/lib/ui/Section";
 import grid from "@/lib/ui/cardgrid.module.css";
 import dict from "@/lib/messages/en.json";
+import { MARKET_CORRIDORS } from "@/lib/seo/markets";
+import { US_CLUSTER_PAGES } from "@/lib/seo/us-hub";
+import { listInsights, readInsight } from "@/lib/ui/insights";
 import { enAlternates } from "./hreflang";
 import { quoteHref } from "./chrome";
 
@@ -182,6 +186,44 @@ export function ServicePage({ slug }: { slug: string }) {
             );
           })}
         </ul>
+        <div className="prose" style={{ marginBlockStart: "var(--s-6)" }}>
+          <p>
+            <strong>US Procurement Hubs &amp; Tariff Guides:</strong>{" "}
+            {US_CLUSTER_PAGES.map((u, idx) => (
+              <span key={u.slug}>
+                {idx > 0 ? " · " : ""}
+                <Link href={`/en/us/${u.slug}`}>{u.metaTitle.replace(/\s*\|\s*bdimexport$/i, "")}</Link>
+              </span>
+            ))}
+            {listInsights("en").map((ins) => {
+              const doc = readInsight("en", ins);
+              return doc ? (
+                <span key={ins}>
+                  {" · "}
+                  <Link href={`/en/insights/${ins}`}>{doc.title}</Link>
+                </span>
+              ) : null;
+            })}
+          </p>
+          <p>
+            <strong>Key Product Hubs &amp; Country Corridors:</strong>{" "}
+            <Link href="/en/products/apparel">Clothing &amp; Low-MOQ Apparel</Link> ·{" "}
+            <Link href="/en/products/hospitality-furniture">Hotel Furniture</Link> ·{" "}
+            <Link href="/en/products/marble">Marble &amp; Travertine</Link> ·{" "}
+            <Link href="/en/products/home-textiles">Towels &amp; Hotel Textiles</Link> ·{" "}
+            <Link href="/en/products/olive-oil">Olive Oil</Link> ·{" "}
+            <Link href="/en/products/ceramics">Ceramic Tiles</Link> ·{" "}
+            <Link href="/en/products/denim">Denim</Link> ·{" "}
+            <Link href="/en/wooden-utility-poles">Wooden Utility Poles (Africa)</Link> ·{" "}
+            <Link href="/en/fr/wooden-utility-poles">Poteaux Bois (Sénégal/Afrique)</Link>
+            {MARKET_CORRIDORS.map((m) => (
+              <span key={m.slug}>
+                {" · "}
+                <Link href={`/en/markets/${m.slug}`}>{m.countryName}</Link>
+              </span>
+            ))}
+          </p>
+        </div>
       </Section>
       <QuoteCta context={meta.label} />
     </main>

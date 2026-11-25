@@ -137,7 +137,7 @@ Her kalem için tek bir dijital klasör tutun: test raporu, malzeme beyanı, num
 
 ## İlk Adım
 
-Koleksiyon fikriniz (ürün listesi veya referans görseller) ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; güvenlik filtresi ve tedarik edilebilirlik 24 saatte döner.
+Koleksiyon fikriniz (ürün listesi veya referans görseller) ile [danışmanlık talebi — Danışmanlık Ücretleri ve Teklif](/ithalat/danismanlik-ucretleri) bırakın; güvenlik filtresi ve tedarik edilebilirlik 24 saatte döner.
 
 ## Sık Sorulan Sorular
 

@@ -1,7 +1,6 @@
 <!-- META: title="Agricultural Machinery Manufacturers in Turkey | B2B" desc="Source tractors, implements and farm machinery from verified Turkish manufacturers. Technical vetting, inspection and spare parts planning. Quote in 24h." -->
 
-# Agricultural Machinery Manufacturers in Turkey | B2B Sourcing
-
+# Agricultural Machinery Manufacturers in Turkey
 Turkish manufacturers supply tractors, tillage and seeding equipment, harvesting machines and farm implements for different crops and farm sizes. If you are searching for agricultural machinery manufacturers in Turkey, this page explains how to specify the equipment and verify the order before shipment.
 
 Bdimexport vets manufacturers and references, helps you compare technical offers and arranges inspection and delivery planning. Send your requirements and receive a free quotation in 24h.

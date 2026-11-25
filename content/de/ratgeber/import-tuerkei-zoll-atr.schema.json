@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Import aus der Türkei nach Deutschland, Österreich und in die Schweiz: Zoll, A.TR und Dokumente",
+      "description": "Praxisleitfaden zum Import aus der Türkei nach DACH: A.TR-Warenverkehrsbescheinigung, Zollunion, EFTA/EUR.1 und Einfuhrumsatzsteuer.",
+      "inLanguage": "de",
+      "url": "https://bdimexport.com/de/ratgeber/import-tuerkei-zoll-atr",
+      "author": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      }
+    }
+  ]
+}

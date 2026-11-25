@@ -1,4 +1,4 @@
-<!-- META: title="Inspecție fabrică și supraveghere încărcare containere Turcia & China | Bdimexport" desc="Inspecție independentă AQL, verificare în timpul producției și supraveghere încărcare containere în Turcia și China în 24–48 de ore." -->
+<!-- META: title="Inspecție fabrică și încărcare containere (Turcia & China)" desc="Inspecție independentă AQL, verificare în timpul producției și supraveghere încărcare containere în Turcia și China în 24–48 de ore." -->
 
 # Supraveghere Încărcare Containere și Control Calitate (Turcia și China)
 

@@ -1,4 +1,4 @@
-<!-- META: title="Kontrola załadunku kontenera i audyt fabryki w Turcji i Chinach | Bdimexport" desc="Niezależny inspektor w Turcji i Chinach w 24–48h: audyt fabryki, kontrola DUPRO, AQL oraz nadzór załadunku i plombowania kontenera." -->
+<!-- META: title="Kontrola załadunku i audyt fabryki (Turcja i Chiny)" desc="Niezależny inspektor w Turcji i Chinach w 24–48h: audyt fabryki, kontrola DUPRO, AQL oraz nadzór załadunku i plombowania kontenera." -->
 
 # Kontrola załadunku kontenera i audyt jakości (Turcja i Chiny)
 

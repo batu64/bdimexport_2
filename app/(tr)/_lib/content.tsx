@@ -4,6 +4,7 @@
 import fs from "fs";
 import path from "path";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Clock } from "lucide-react";
 import ArticleLayout, { AsideCta, type TocItem } from "@/lib/ui/ArticleLayout";
 import PageHeader, { type Crumb } from "@/lib/ui/PageHeader";
@@ -15,7 +16,9 @@ import { Section, SectionHeader } from "@/lib/ui/Section";
 import cardGrid from "@/lib/ui/cardgrid.module.css";
 import { iconFor } from "./icons";
 import { APPLY_PATH, quoteHref } from "./links";
-import { buildAlternateSet, toMetadataAlternates } from "@/lib/hreflang";
+import { buildAlternateSet, crossClusterAlternates, toMetadataAlternates } from "@/lib/hreflang";
+import { TR_EXPORT_CORRIDORS } from "./tr-seo-data";
+import { listInsights, readInsight } from "@/lib/ui/insights";
 import dict from "@/lib/messages/tr.json";
 
 export type Kind = "ithalat" | "ihracat" | "rehber";
@@ -192,9 +195,11 @@ function md2html(md: string): { html: string; toc: TocItem[] } {
   return { html, toc };
 }
 
-/** canonical + hreflang: yalnız tr + x-default (en/de/zh karşılıkları yok → 404-hreflang yasağı, SEO_PLAYBOOK §1.4) */
+/** canonical + hreflang: çapraz-dil kümesi varsa tam karşılıklı set; yoksa yalnız tr + x-default */
 export function trAlternates(urlPath: string): Metadata["alternates"] {
   const p = urlPath.replace(/^\//, "");
+  const cross = crossClusterAlternates(`/${p}`);
+  if (cross) return { canonical: `${SITE}/${p}`, ...toMetadataAlternates(cross) };
   return { canonical: `${SITE}/${p}`, ...toMetadataAlternates(buildAlternateSet(p, ["tr"])) };
 }
 
@@ -353,6 +358,37 @@ export function ContentPage({ kind, slug }: { kind: Kind; slug: string }) {
               );
             })}
           </ul>
+          <div className="prose" style={{ marginBlockStart: "var(--s-6)" }}>
+            {isExport ? (
+              <p>
+                <strong>Hedef İhracat Ülke Koridorları &amp; Rehberler:</strong>{" "}
+                {TR_EXPORT_CORRIDORS.map((c, idx) => (
+                  <span key={c.slug}>
+                    {idx > 0 ? " · " : ""}
+                    <Link href={`/ihracat/pazarlar/${c.slug}`}>{c.countryTitle}</Link>
+                  </span>
+                ))}
+                {" · "}
+                <Link href="/makaleler/cbam-mikro-ihracat-ve-devlet-destekleri-rehberi">CBAM &amp; Mikro İhracat Rehberi</Link>
+              </p>
+            ) : (
+              <p>
+                <strong>İthalat Araçları &amp; Sektörel Rehberler:</strong>{" "}
+                <Link href="/ithalat/cin-gumruk-vergisi-hesaplama">Çin Gümrük Vergisi &amp; Gözetim Hesaplama</Link> ·{" "}
+                <Link href="/ithalat/danismanlik-ucretleri">Danışmanlık &amp; Denetim Ücretleri</Link> ·{" "}
+                <Link href="/makaleler/kanton-fuari-ve-cinden-mal-getirme-rehberi">Kanton Fuarı &amp; Ürün Getirme Rehberi</Link>
+                {listSlugs("rehber").map((g) => {
+                  const gd = readDoc("rehber", g);
+                  return gd ? (
+                    <span key={g}>
+                      {" · "}
+                      <Link href={`/ithalat/rehberler/${g}`}>{gd.title}</Link>
+                    </span>
+                  ) : null;
+                })}
+              </p>
+            )}
+          </div>
         </Section>
       )}
       <CtaBand

@@ -1,4 +1,4 @@
-<!-- META: title="Zollabwicklung für Waren aus der Türkei" desc="Ausfuhrpapiere aus der Türkei für die Einfuhr in die EU: A.TR, Ursprungszeugnis, Handelsrechnung und Packliste geprüft, bevor die Ware das Werk verlässt." -->
+<!-- META: title="Import aus der Türkei: Zollabwicklung & A.TR Dokument" desc="Zollabwicklung beim Import aus der Türkei nach Deutschland, Österreich und in die Schweiz: A.TR-Warenverkehrsbescheinigung, Präferenz und Ausfuhrpapiere." -->
 
 # Zollabwicklung für Waren aus der Türkei: Papiere, die beim Import passen
 

@@ -1,7 +1,6 @@
-<!-- META: title="Hospitality Furniture Manufacturers in Turkey | B2B Sourcing" desc="Source contract furniture for hotels, restaurants and offices from verified Turkish makers. Room samples, durability checks and inspection. Quote in 24h." -->
+<!-- META: title="Hotel & Hospitality Furniture Manufacturers in Turkey" desc="Verified hotel, restaurant and contract hospitality furniture manufacturers in Turkey: custom FF&E casegoods, seating, mock-up rooms and AQL inspection." -->
 
-# Hospitality Furniture Manufacturers in Turkey | B2B Sourcing
-
+# Hotel and Hospitality Furniture Manufacturers in Turkey
 Turkish contract furniture manufacturers produce beds, seating, tables and case goods in volume for hotels, restaurants, offices and student housing. If you are looking for hospitality furniture manufacturers in Turkey, this page explains how to run a project from room sample to installation-ready delivery.
 
 Bdimexport shortlists and verifies manufacturers with project experience, manages samples and room approvals and inspects goods before shipment. Send your project brief and receive a free quotation in 24h.

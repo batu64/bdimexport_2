@@ -23,6 +23,26 @@
         "type": 302
       },
       {
+        "source": "/mozambique/poles",
+        "destination": "/en/wooden-utility-poles",
+        "type": 302
+      },
+      {
+        "source": "/fr/poles",
+        "destination": "/en/fr/wooden-utility-poles",
+        "type": 302
+      },
+      {
+        "source": "/senegal/poles",
+        "destination": "/en/fr/wooden-utility-poles",
+        "type": 302
+      },
+      {
+        "source": "/en/fr/poteaux-electriques-bois",
+        "destination": "/en/fr/wooden-utility-poles",
+        "type": 301
+      },
+      {
         "source": "/ar/poles",
         "destination": "/en/ar/wooden-utility-poles",
         "type": 302

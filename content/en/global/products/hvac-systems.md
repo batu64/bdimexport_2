@@ -1,7 +1,6 @@
 <!-- META: title="Industrial HVAC Manufacturers in Turkey | B2B Sourcing" desc="Source industrial HVAC, chillers and heating equipment from verified Turkish manufacturers. Technical vetting, testing and inspection. Quote in 24h." -->
 
-# Industrial HVAC Manufacturers in Turkey | B2B Sourcing
-
+# Industrial HVAC Manufacturers in Turkey
 Turkish manufacturers supply air conditioning, ventilation, chillers, heat pumps and heating equipment for commercial and industrial buildings. If you are searching for industrial HVAC manufacturers in Turkey, this page explains what to specify, how offers are compared and how equipment is tested before shipment.
 
 Bdimexport vets manufacturers and references, helps you compare technical offers and arranges inspection and test witnessing before shipment. Send your requirements and receive a free quotation in 24h.

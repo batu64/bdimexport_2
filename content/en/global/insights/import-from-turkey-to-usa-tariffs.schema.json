@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Importing from Türkiye to the USA: Tariffs, Import Duties and China Section 301 Comparison",
+      "description": "Complete B2B guide to importing from Türkiye to the USA: HTS customs duties, Section 301 comparison, MPF/HMF fees and landed cost.",
+      "inLanguage": "en",
+      "url": "https://bdimexport.com/en/insights/import-from-turkey-to-usa-tariffs",
+      "author": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "bdimexport",
+        "url": "https://bdimexport.com"
+      }
+    }
+  ]
+}

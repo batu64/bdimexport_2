@@ -1,7 +1,6 @@
 <!-- META: title="Ceramic Tiles Manufacturers in Turkey | B2B Sourcing" desc="Source ceramic and porcelain tiles from verified Turkish manufacturers. Shade and size control, testing and inspection before loading. Quote in 24h." -->
 
-# Ceramic Tiles Manufacturers in Turkey | B2B Sourcing
-
+# Ceramic Tiles Manufacturers in Turkey
 Turkish tile manufacturers produce wall and floor tiles in ceramic and porcelain stoneware, in many sizes, surfaces and designs for residential and commercial projects. If you are looking for ceramic tile manufacturers in Turkey, this page explains the specification, testing and inspection points that prevent shade and size problems.
 
 Bdimexport shortlists and verifies producers, manages samples and inspects the goods before loading. Send your project requirements and receive a free quotation in 24h.

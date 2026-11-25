@@ -1,7 +1,6 @@
 <!-- META: title="Kitchenware Manufacturers in Turkey | B2B Sourcing" desc="Source cookware, tableware and kitchen products from verified Turkish manufacturers. Food contact checks, private label and inspection. Quote in 24h." -->
 
-# Kitchenware Manufacturers in Turkey | B2B Sourcing
-
+# Kitchenware Manufacturers in Turkey
 Turkish manufacturers produce cookware, tableware, cutlery and kitchen products in stainless steel, ceramic, glass, aluminium and other materials for retail, e-commerce and hospitality. If you are looking for kitchenware manufacturers in Turkey, this page explains the product, safety and packaging points that decide an order.
 
 Bdimexport shortlists and verifies manufacturers, manages samples and inspects goods before shipment. Send your requirements and receive a free quotation in 24h.

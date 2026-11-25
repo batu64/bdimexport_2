@@ -1,4 +1,4 @@
-<!-- META: title="Werksprüfung in der Türkei: AQL und Prüfbericht" desc="Unabhängige Werksprüfung in der Türkei: Werksaudit, Produktionskontrolle und Prüfung vor Versand nach AQL – Prüfbericht mit Fotos innerhalb von 48 h." -->
+<!-- META: title="Werksprüfung & Containerkontrolle Türkei (48h Bericht)" desc="Unabhängige Werksprüfung, AQL-Kontrolle und Containerbeladungsüberwachung in der Türkei mit dokumentiertem Prüfbericht in 48h. D-U-N-S & SAP Ariba." -->
 
 # Werksprüfung in der Türkei: unabhängig geprüft, bevor Sie zahlen
 

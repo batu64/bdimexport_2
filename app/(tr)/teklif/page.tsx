@@ -21,6 +21,7 @@ const DESC =
 export const metadata: Metadata = {
   title: { absolute: TITLE },
   description: DESC,
+  robots: { index: false, follow: true },
   alternates: {
     canonical: URL,
     ...toMetadataAlternates(buildAlternateSet("teklif", ["tr"])),

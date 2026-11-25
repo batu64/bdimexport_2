@@ -1,7 +1,7 @@
-// /sitemaps/sitemap-tr.xml — Türkiye (TR) İthalat, İhracat, Ülke Koridorları ve Kurumsal Teklifler Sitemap.
+// /sitemaps/sitemap-tr.xml — Türkiye (TR) İthalat, İhracat, Hesaplayıcı, Rehberler ve Ülke Koridorları Sitemap (noindex teklif hariç).
 import fs from "node:fs";
 import path from "node:path";
-import { TR_EXPORT_CORRIDORS, TR_PROPOSALS } from "@/app/(tr)/_lib/tr-seo-data";
+import { TR_EXPORT_CORRIDORS } from "@/app/(tr)/_lib/tr-seo-data";
 import { fileLastMod } from "@/lib/seo/lastmod";
 import { listInsights } from "@/lib/ui/insights";
 
@@ -20,21 +20,24 @@ export function GET(): Response {
   const routes = [
     "",
     "ithalat",
+    "ithalat/rehberler",
+    "ithalat/cin-gumruk-vergisi-hesaplama",
     "ihracat",
     "ihracat/pazarlar",
-    "teklif",
     "ticari-istihbarat",
     "rfq",
     "kvkk-riza",
     "ihracat/ucretsiz-destek-basvuru",
-    "makaleler",
   ];
   for (const s of listMd("ithalat")) if (s !== "danismanlik-talebi") routes.push(`ithalat/${s}`);
   for (const s of listMd("ihracat")) if (s !== "ucretsiz-destek-basvuru") routes.push(`ihracat/${s}`);
   for (const g of listMd(path.join("ithalat", "rehberler"))) routes.push(`ithalat/rehberler/${g}`);
   for (const c of TR_EXPORT_CORRIDORS) routes.push(`ihracat/pazarlar/${c.slug}`);
-  for (const p of TR_PROPOSALS) routes.push(`teklif/${p.slug}`);
-  for (const slug of listInsights("tr")) routes.push(`makaleler/${slug}`);
+  const trArticles = listInsights("tr");
+  if (trArticles.length > 0) {
+    routes.push("makaleler");
+    for (const slug of trArticles) routes.push(`makaleler/${slug}`);
+  }
 
   const urls = routes
     .map((r) => {

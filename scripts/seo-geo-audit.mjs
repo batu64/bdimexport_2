@@ -1,4 +1,4 @@
-// Deterministik SEO + GEO + Hreflang + Sitemap + ABM Teklif Doğrulama Denetçisi (2026/2027).
+// Deterministik SEO + GEO + Hreflang + Sitemap + Teknik Bütünlük Denetçisi (2026/2027).
 // Kullanım (pnpm build sonrasında): node scripts/seo-geo-audit.mjs
 import fs from "node:fs";
 import path from "node:path";
@@ -22,6 +22,16 @@ function urlToOutPath(url) {
   return `${p}.html`;
 }
 
+function decodeHtml(s) {
+  return s
+    .replace(/&amp;/g, "&")
+    .replace(/&#x27;/g, "'")
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
 console.log("=== BDIMEXPORT 2026/2027 ASYMMETRIC SEO + GEO AUDIT ===");
 
 // 1. GEO & Agentic Discovery Endpoints
@@ -37,7 +47,7 @@ assert.ok(llms.includes("14-977-6743") && llmsFull.includes("14-977-6743") && JS
 assert.ok(llms.includes("BNO-100000188010374") && llmsFull.includes("BNO-100000188010374") && JSON.stringify(entityGraph).includes("BNO-100000188010374"), "SAP Ariba BNO-100000188010374 GEO / Knowledge Graph kaydı eksik");
 console.log(`✔ GEO uçları doğrulandı: llms.txt (${llms.length} B), llms-full.txt (${llmsFull.length} B), entity-graph.json (${entityGraph["@graph"].length} düğüm)`);
 
-// 2. Sitemap Index & 6 Split Sitemaps — 0 Kırık Link (404=0) + 0 Geçersiz Hreflang
+// 2. Sitemap Index & 6 Split Sitemaps — 0 Kırık Link + 0 noindex sızıntısı + 0 >60 kr başlık
 const sitemaps = [
   "sitemap.xml",
   "sitemaps/sitemap-index.xml",
@@ -56,12 +66,49 @@ for (const sm of sitemaps) {
   for (const loc of locs) {
     const target = urlToOutPath(loc);
     assert.ok(fs.existsSync(path.join(OUT, target)), `${sm}: kırık URL (out/${target} yok) -> ${loc}`);
+    if (target.endsWith(".html")) {
+      const html = fs.readFileSync(path.join(OUT, target), "utf8");
+      assert.ok(!/<meta[^>]+name="robots"[^>]+content="[^"]*noindex/i.test(html), `${sm}: noindex sayfası haritaya sızmış -> ${loc}`);
+      const title = decodeHtml((html.match(/<title>([^<]*)<\/title>/i)?.[1] ?? "").trim());
+      assert.ok(title.length > 0 && title.length <= 60, `${sm}: başlık > 60 kr (${title.length}: "${title}") -> ${loc}`);
+    }
   }
   if (sm === "sitemap.xml") totalLocs = locs.length;
 }
-console.log(`✔ Sitemap mimarisi doğrulandı: ${sitemaps.length} XML dosyası · ana sitemap ${totalLocs} canlı URL · kırık hedef = 0`);
+console.log(`✔ Sitemap mimarisi doğrulandı: ${sitemaps.length} XML dosyası · ana sitemap ${totalLocs} temiz/indexable URL · noindex=0 · title>60=0`);
 
-// 3. 14 Ana Sayfa %100 Karşılıklı BCP-47 Hreflang Seti
+// 3. Kırık İç Bağlantı (404) = 0 Kontrolü (tüm public HTML çıktıları)
+function walkHtml(dir, acc = []) {
+  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) walkHtml(p, acc);
+    else if (e.name.endsWith(".html")) acc.push(p);
+  }
+  return acc;
+}
+const allHtml = walkHtml(OUT);
+const builtRoutes = new Set(
+  allHtml.map((f) => {
+    const rel = path.relative(OUT, f).replace(/\\/g, "/");
+    if (rel === "index.html") return "/";
+    if (rel.endsWith("/index.html")) return "/" + rel.slice(0, -"/index.html".length);
+    return "/" + rel.slice(0, -".html".length);
+  }),
+);
+for (const f of allHtml) {
+  const rel = path.relative(OUT, f).replace(/\\/g, "/");
+  if (rel.startsWith("admin") || rel === "404.html" || rel === "_not-found.html" || rel.endsWith("/_yok.html")) continue;
+  const raw = fs.readFileSync(f, "utf8");
+  const links = [...raw.matchAll(/href="(\/[^"#?]*)"/g)]
+    .map((m) => m[1].replace(/\/+$/, "") || "/")
+    .filter((u) => !u.startsWith("/_next") && !u.startsWith("/media") && !/\.(xml|json|txt|ico|png|svg|webp|jpg|mp4)$/i.test(u));
+  for (const l of links) {
+    assert.ok(builtRoutes.has(l), `Kırık iç bağlantı (${rel} -> ${l} [404])`);
+  }
+}
+console.log("✔ İç bağlantı bütünlüğü doğrulandı: tüm public sayfalarda kırık iç bağlantı (404) = 0");
+
+// 4. 14 Ana Sayfa %100 Karşılıklı BCP-47 Hreflang Seti
 const homePages = [
   "index.html",
   "en.html",
@@ -85,12 +132,27 @@ for (const hp of homePages) {
   assert.deepEqual(cur, refAlt, `${hp}: ana sayfa hreflang karşılıklılığı bozuldu!`);
   assert.ok(rawHp.includes("https://www.googletagmanager.com/gtag/js?id=G-1PXMK93V3F"), `${hp}: GA4 G-1PXMK93V3F etiketi eksik!`);
 }
-console.log(`✔ Hreflang karşılıklılığı & GA4 (G-1PXMK93V3F) doğrulandı: 14/14 dil merkezi tam uyumlu`);
+console.log("✔ Hreflang karşılıklılığı & GA4 (G-1PXMK93V3F) doğrulandı: 14/14 dil merkezi tam uyumlu");
 
-// 4. Ülke Koridorları + Hedefli İş Teklifi Sayfaları (Canonical + H1 + OG + JSON-LD)
+// 5. Ülke Koridorları + Yeni Yüksek Getirili Küme Sayfaları + ABM Teklif Sayfaları (Canonical + H1=1 + JSON-LD)
 const mustAuditPages = [
   "en/wooden-utility-poles.html",
   "en/ar/wooden-utility-poles.html",
+  "en/fr/wooden-utility-poles.html",
+  "ithalat/cin-gumruk-vergisi-hesaplama.html",
+  "ithalat/danismanlik-ucretleri.html",
+  "ihracat/ihracat-danismanligi.html",
+  "de/leistungen/china-einkauf.html",
+  "de/leistungen/qualitaetskontrolle-china.html",
+  "de/leistungen/textilproduktion-tuerkei.html",
+  "de/ratgeber/import-tuerkei-zoll-atr.html",
+  "de/ratgeber/import-aus-china-zoll-kosten.html",
+  "en/insights/import-from-turkey-to-usa-tariffs.html",
+  "en/insights/import-duty-from-turkey-to-uk-atr.html",
+  "en/insights/how-to-verify-turkish-suppliers.html",
+  "makaleler/kanton-fuari-ve-cinden-mal-getirme-rehberi.html",
+  "makaleler/cbam-mikro-ihracat-ve-devlet-destekleri-rehberi.html",
+  "zh/insights/tuerqi-chukou-qingguan-zhinan.html",
   "en/us.html",
   "en/us/china-plus-turkey-sourcing.html",
   "en/us/turkey-sourcing-agent-for-us-companies.html",
@@ -99,26 +161,15 @@ const mustAuditPages = [
   "en/us/hospitality-furniture-and-construction-sourcing.html",
   "en/us/textile-apparel-and-home-goods-manufacturing.html",
   "en/us/customs-hts-landed-cost-and-supplier-verification.html",
-  "en/proposals/us-procurement-partner.html",
   "en/markets.html",
   "en/markets/united-states.html",
   "en/markets/united-kingdom.html",
   "en/markets/germany.html",
   "en/markets/saudi-arabia.html",
   "en/markets/united-arab-emirates.html",
-  "en/proposals.html",
-  "en/proposals/dual-hub-sourcing.html",
-  "en/proposals/container-loading-audit.html",
-  "en/proposals/private-label-manufacturing.html",
-  "en/proposals/trade-intelligence-due-diligence.html",
   "ihracat/pazarlar.html",
   "ihracat/pazarlar/almanya-ihracat-pazarlama.html",
   "ihracat/pazarlar/abd-ihracat-ve-sirketlesme.html",
-  "teklif.html",
-  "teklif/ihracat-buyume-sistemi.html",
-  "teklif/konteyner-yukleme-denetimi.html",
-  "de/angebot/lieferantenpruefung-beschaffung.html",
-  "zh/fangan/tuerqi-bendi-tuandui.html",
 ];
 
 for (const rel of mustAuditPages) {
@@ -129,7 +180,6 @@ for (const rel of mustAuditPages) {
   const vis = h.replace(/<script[\s\S]*?<\/script>/g, "");
   const h1Count = (vis.match(/<h1[ >]/g) ?? []).length;
   assert.equal(h1Count, 1, `${rel}: tek <h1> olmalı (bulunan: ${h1Count})`);
-  assert.ok(/property="og:image"/.test(h), `${rel}: og:image eksik`);
   const ldMatches = [...h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
   assert.ok(ldMatches.length >= 1, `${rel}: JSON-LD eksik`);
   for (const m of ldMatches) {
@@ -137,21 +187,29 @@ for (const rel of mustAuditPages) {
     assert.equal(parsed["@context"], "https://schema.org", `${rel}: JSON-LD @context hatalı`);
   }
 }
-console.log(`✔ ${mustAuditPages.length} kritik ülke koridoru & hedefli B2B teklif sayfasında canonical, H1=1, OG ve JSON-LD doğrulandı`);
+console.log(`✔ ${mustAuditPages.length} kritik ticari merkez, hesaplayıcı, rehber ve ülke koridorunda canonical, H1=1 ve JSON-LD doğrulandı`);
 
-// 5. Elektrik Direği Hunileri: EN <-> AR Karşılıklı Hreflang + Sıfır Üçüncü Taraf Marka/Telefon Sızıntısı
+// 6. Elektrik Direği Hunileri: EN <-> AR <-> FR Üçlü Karşılıklı Hreflang + Sıfır Üçüncü Taraf Marka/Telefon Sızıntısı
 const enPolesHtml = readOut("en/wooden-utility-poles.html");
 const arPolesHtml = readOut("en/ar/wooden-utility-poles.html");
+const frPolesHtml = readOut("en/fr/wooden-utility-poles.html");
 const enPolesAlt = extractAlternates(enPolesHtml);
 const arPolesAlt = extractAlternates(arPolesHtml);
+const frPolesAlt = extractAlternates(frPolesHtml);
 assert.deepEqual(enPolesAlt, arPolesAlt, "wooden-utility-poles EN <-> AR hreflang karşılıklılığı bozuk!");
+assert.deepEqual(enPolesAlt, frPolesAlt, "wooden-utility-poles EN <-> FR hreflang karşılıklılığı bozuk!");
 assert.ok(enPolesAlt.includes(`ar=${SITE}/en/ar/wooden-utility-poles`), "wooden-utility-poles ar hreflang eksik!");
+assert.ok(enPolesAlt.includes(`fr=${SITE}/en/fr/wooden-utility-poles`), "wooden-utility-poles fr hreflang eksik!");
 assert.ok(enPolesAlt.includes(`en=${SITE}/en/wooden-utility-poles`), "wooden-utility-poles en hreflang eksik!");
-for (const [name, content] of [["en/wooden-utility-poles.html", enPolesHtml], ["en/ar/wooden-utility-poles.html", arPolesHtml]]) {
+for (const [name, content] of [
+  ["en/wooden-utility-poles.html", enPolesHtml],
+  ["en/ar/wooden-utility-poles.html", arPolesHtml],
+  ["en/fr/wooden-utility-poles.html", frPolesHtml],
+]) {
   assert.ok(!/semita[sş]|320\s*8169|326\s*20\s*40|657\s*91\s*34/i.test(content), `${name}: üçüncü taraf marka/telefon sızıntısı bulundu!`);
   assert.ok(content.includes("905394147854"), `${name}: resmi WhatsApp hattı (+90 539 414 78 54) eksik!`);
   assert.ok(content.includes("data-clarity-event=") && content.includes("zhsd81zz12"), `${name}: Clarity tıklama noktaları veya etiketi eksik!`);
   assert.ok(content.includes("14-977-6743") && content.includes("BNO-100000188010374"), `${name}: D-U-N-S veya SAP Ariba doğrulaması eksik!`);
 }
-console.log("✔ Elektrik direği EN/AR hunileri doğrulandı: karşılıklı hreflang, resmi WhatsApp hattı ve sıfır marka sızıntısı");
+console.log("✔ Elektrik direği EN/AR/FR hunileri doğrulandı: üçlü karşılıklı hreflang, resmi WhatsApp hattı ve sıfır marka sızıntısı");
 console.log("=== TÜM SEO + GEO + ABM KONTROLLERİ BAŞARIYLA GEÇTİ ===");

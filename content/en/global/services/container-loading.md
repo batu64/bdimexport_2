@@ -1,4 +1,4 @@
-<!-- META: title="Container Loading & Inspection in Turkey & China | Bdimexport" desc="Independent container loading supervision, DUPRO and AQL pre-shipment inspection in Turkey and China. Photo and video verification within 48h." -->
+<!-- META: title="Container Loading & 3rd Party Inspection (TR & CN)" desc="Standalone container loading supervision, pre-shipment AQL inspection and third-party factory checks in China and Turkey within 24-48h. US LLC verified." -->
 
 # Container Loading Supervision and On-Site Inspection (Türkiye and China)
 
@@ -22,6 +22,14 @@ Most B2B factories require a 30% deposit and 70% balance against copy of Bill of
 1. **Carton Tally Verification:** Our inspector counts every carton entering the container and cross-checks barcode / SKU markings against your commercial packing list.
 2. **Container Weatherproofing:** Holes in container roofs or damaged door gaskets cause condensation and rust on steel, machinery, textile, and paper packaging during sea transit.
 3. **Live Photo and Seal Proof:** You receive real-time WhatsApp or email photos of the open container, mid-loading stack, lashing, closed doors, and the serial-numbered bolt seal before the truck leaves the factory gate.
+
+## Third-Party Pre-Shipment Inspection in China and Türkiye
+
+Importers searching for a **third party inspection in China** or **third party inspection in Turkey** often face rigid agency portals or multi-week onboarding delays. Our engineering desk dispatches local inspectors across Shenzhen, Ningbo, Yiwu, Foshan, Qingdao, Shanghai, Istanbul, Izmir, Bursa, Gaziantep, and Denizli within 24 to 48 hours:
+
+- **Pre-Shipment Inspection China & Turkey (ISO 2859-1 AQL):** Full statistical carton pull, workmanship defect classification (critical / major / minor), barcode scan, moisture reading, and carton drop testing before your 70% balance wire.
+- **Container Loading Inspection China & Turkey:** Continuous dockside supervision from empty 7-point container check to CTPAT-compliant high-security bolt seal locking.
+- **Enterprise Procurement Compliance:** Contracted under US-registered **BDIMEXPORT LLC** (D-U-N-S® #14-977-6743 · SAP Ariba® BNO-100000188010374) and **BD Sanayi** in Türkiye. Compare with our [US pre-shipment inspection program](/en/us/pre-shipment-and-container-loading-inspection) and [72h supplier verification service](/en/services/commercial-intelligence).
 
 ## Frequently Asked Questions
 

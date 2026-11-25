@@ -153,7 +153,7 @@ Benzer görünen parçalar kolayca karışır. Her parçaya veya poşete parça 
 
 ## İlk Adım
 
-Çiziminiz (veya örnek parça fotoğrafları) ile [danışmanlık talebi](/ithalat/danismanlik-talebi) bırakın; üretim tipi, kalıp ihtiyacı ve tedarik edilebilirlik 24 saatte döner.
+Çiziminiz (veya örnek parça fotoğrafları) ile [danışmanlık talebi — Danışmanlık Ücretleri ve Teklif](/ithalat/danismanlik-ucretleri) bırakın; üretim tipi, kalıp ihtiyacı ve tedarik edilebilirlik 24 saatte döner.
 
 ## Sık Sorulan Sorular
 

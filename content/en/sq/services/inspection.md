@@ -1,4 +1,4 @@
-<!-- META: title="Kontroll ngarkimi kontejneri dhe inspektim fabrike (Turqi & Kinë) | Bdimexport" desc="Inspektim i pavarur i fabrikës, kontroll cilësie AQL dhe mbikëqyrje ngarkimi kontejneri në Turqi dhe Kinë brenda 24–48 orësh." -->
+<!-- META: title="Kontroll ngarkimi dhe inspektim fabrike (Turqi & Kinë)" desc="Inspektim i pavarur i fabrikës, kontroll cilësie AQL dhe mbikëqyrje ngarkimi kontejneri në Turqi dhe Kinë brenda 24–48 orësh." -->
 
 # Kontroll i Ngarkimit të Kontejnerëve dhe Inspektim Fabrike në Turqi dhe Kinë
 
