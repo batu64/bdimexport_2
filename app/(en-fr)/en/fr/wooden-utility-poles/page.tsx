@@ -133,21 +133,93 @@ const AUTOCLAVE_STEPS_FR = [
     num: "01 · Séchage préalable",
     title: "Humidité ramenée ≤ 25 %",
     val: "Aucun poteau n'entre en cylindre d'imprégnation au-dessus de 25 % d'humidité (étuvage possible à 10–12 %) afin d'assurer une absorption homogène.",
+    specId: "9m-brown",
+    cta: "Choisir le format 9 m Brun Export →",
   },
   {
     num: "02 · Vide initial",
     title: "60 minutes à 63,5 cmHg",
     val: "Extraction complète de l'air des cellules du bois pendant au moins 60 minutes sous vide poussé avant l'introduction de la solution.",
+    specId: "7m-8m-brown-green",
+    cta: "Choisir les formats 7 m – 8 m BT / Télécoms →",
   },
   {
     num: "03 · Pression hydraulique",
     title: "Injection ≥ 10,5 kg/cm²",
     val: "Remplissage sous vide puis maintien sous pression hydraulique d'au moins 10,5 kg/cm² pour saturer durablement l'aubier.",
+    specId: "10m-12m-green",
+    cta: "Choisir les formats 10 m – 12 m MT Vert →",
   },
   {
     num: "04 · Rétention certifiée",
     title: "16 kg/m³ de sel sec · ≥ 75 %",
     val: "Solution à 3,5 % (350 L/m³ soit 16 kg/m³ de sel sec) sous 30 °C, pénétration ≥ 75 % de l'aubier suivie d'un vide final de 15 minutes.",
+    specId: "mixed-tender",
+    cta: "Configurer un bordereau DQE / BOQ →",
+  },
+] as const;
+
+const DIMENSION_ROWS_FR = [
+  {
+    lengthLabel: "7,0 m",
+    topDia: "Ø 11 – 13 cm",
+    buttDia: "Ø 18 – 20 cm",
+    treatment: "Brun export ou Vert",
+    capacity: "~180 – 195 poteaux",
+    usage: "Lignes téléphoniques, fibre optique et branchements ruraux BT",
+    specId: "7m-8m-brown-green",
+    notes: "Poteau 7,0 m BT/Télécom (Sommet Ø11-13cm / Base Ø18-20cm — ~185 u./40'HC)",
+    waText:
+      "Bonjour Bureau Usine bdimexport, merci de nous communiquer votre prix CIF/FOB par conteneur 40' HC pour des poteaux bois traité de 7,0 m (~185 poteaux).",
+  },
+  {
+    lengthLabel: "8,0 m",
+    topDia: "Ø 12 – 14 cm",
+    buttDia: "Ø 20 – 22 cm",
+    treatment: "Brun export ou Vert",
+    capacity: "~155 – 170 poteaux",
+    usage: "Distribution basse tension (BT) et éclairage public",
+    specId: "7m-8m-brown-green",
+    notes: "Poteau 8,0 m BT (Sommet Ø12-14cm / Base Ø20-22cm — ~165 u./40'HC)",
+    waText:
+      "Bonjour Bureau Usine bdimexport, merci de nous communiquer votre prix CIF/FOB par conteneur 40' HC pour des poteaux bois traité de 8,0 m (~165 poteaux).",
+  },
+  {
+    lengthLabel: "9,0 m (Référence Export)",
+    topDia: "Ø 12 – 14 cm",
+    buttDia: "Ø 22 – 23 cm",
+    treatment: "Brun export (le plus demandé) ou Vert",
+    capacity: "140 poteaux (pointage vérifié)",
+    usage: "Standard distribution BT/MT Sénégal, Côte d'Ivoire & Afrique",
+    specId: "9m-brown",
+    flagship: true,
+    notes: "Poteau 9,0 m Brun Export (140 poteaux par conteneur 40' HC)",
+    waText:
+      "Bonjour Bureau Usine bdimexport, merci de nous communiquer votre prix CIF/FOB par conteneur 40' HC pour des poteaux bois traité de 9,0 m Brun Export (140 poteaux).",
+  },
+  {
+    lengthLabel: "10,0 m – 11,0 m",
+    topDia: "Ø 14 – 16 cm",
+    buttDia: "Ø 24 – 27 cm",
+    treatment: "Autoclave Vert exclusivement",
+    capacity: "~95 – 110 poteaux",
+    usage: "Lignes moyenne tension (11 kV / 30 kV / 33 kV) et traversées routières",
+    specId: "10m-12m-green",
+    notes: "Poteau 10 m – 11 m MT Autoclave Vert (~100 poteaux/40'HC)",
+    waText:
+      "Bonjour Bureau Usine bdimexport, merci de nous communiquer votre prix CIF/FOB par conteneur 40' HC pour des poteaux moyenne tension 10 m – 11 m Autoclave Vert (~100 poteaux).",
+  },
+  {
+    lengthLabel: "12,0 m",
+    topDia: "Ø 15 – 17 cm",
+    buttDia: "Ø 26 – 30 cm",
+    treatment: "Autoclave Vert exclusivement",
+    capacity: "~80 – 90 poteaux",
+    usage: "Artères MT renforcées et départs de postes",
+    specId: "10m-12m-green",
+    notes: "Poteau 12,0 m MT Autoclave Vert (~85 poteaux/40'HC)",
+    waText:
+      "Bonjour Bureau Usine bdimexport, merci de nous communiquer votre prix CIF/FOB par conteneur 40' HC pour des poteaux 12,0 m Autoclave Vert (~85 poteaux).",
   },
 ] as const;
 
@@ -457,9 +529,9 @@ export default function FrWoodenUtilityPolesPage() {
         <Reveal>
           <SectionHeader
             id="dimensions-poteaux"
-            eyebrow="Barème Dimensionnel & Colisage Maritime"
+            eyebrow="Barème Dimensionnel & Colisage Maritime (Cliquez sur un format pour chiffrer)"
             title="Spécifications des Poteaux Électriques et Télécoms en Bois (7 m – 12 m)"
-            lead="Fabriqués en pin sélectionné à grain droit, écorcés et planés mécaniquement, séchés avant étuvage et imprégnés en autoclave selon les exigences des réseaux aériens BT/MT et télécoms."
+            lead="Fabriqués en pin sélectionné à grain droit, écorcés et planés mécaniquement, séchés avant étuvage et imprégnés en autoclave selon les exigences des réseaux aériens BT/MT et télécoms. Cliquez sur n'importe quelle longueur pour la sélectionner dans le calculateur ou demander un devis WhatsApp."
           />
         </Reveal>
 
@@ -473,49 +545,51 @@ export default function FrWoodenUtilityPolesPage() {
                 <th>Couleur d&apos;autoclave</th>
                 <th>Capacité par 40&apos; HC</th>
                 <th>Usage réseau électrique &amp; télécom</th>
+                <th>Devis direct usine</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className={ps.metricCell}>7,0 m</td>
-                <td>Ø 11 – 13 cm</td>
-                <td>Ø 18 – 20 cm</td>
-                <td>Brun export ou Vert</td>
-                <td>~180 – 195 poteaux</td>
-                <td>Lignes téléphoniques, fibre optique et branchements ruraux BT</td>
-              </tr>
-              <tr>
-                <td className={ps.metricCell}>8,0 m</td>
-                <td>Ø 12 – 14 cm</td>
-                <td>Ø 20 – 22 cm</td>
-                <td>Brun export ou Vert</td>
-                <td>~155 – 170 poteaux</td>
-                <td>Distribution basse tension (BT) et éclairage public</td>
-              </tr>
-              <tr>
-                <td className={ps.metricCell}>9,0 m (Référence Export)</td>
-                <td>Ø 12 – 14 cm</td>
-                <td>Ø 22 – 23 cm</td>
-                <td><strong>Brun export (le plus demandé)</strong> ou Vert</td>
-                <td><strong>140 poteaux (pointage vérifié)</strong></td>
-                <td>Standard distribution BT/MT Sénégal, Côte d&apos;Ivoire &amp; Afrique</td>
-              </tr>
-              <tr>
-                <td className={ps.metricCell}>10,0 m – 11,0 m</td>
-                <td>Ø 14 – 16 cm</td>
-                <td>Ø 24 – 27 cm</td>
-                <td>Autoclave Vert exclusivement</td>
-                <td>~95 – 110 poteaux</td>
-                <td>Lignes moyenne tension (11 kV / 30 kV / 33 kV) et traversées routières</td>
-              </tr>
-              <tr>
-                <td className={ps.metricCell}>12,0 m</td>
-                <td>Ø 15 – 17 cm</td>
-                <td>Ø 26 – 30 cm</td>
-                <td>Autoclave Vert exclusivement</td>
-                <td>~80 – 90 poteaux</td>
-                <td>Artères MT renforcées et départs de postes</td>
-              </tr>
+              {DIMENSION_ROWS_FR.map((row) => (
+                <tr key={row.lengthLabel}>
+                  <td className={ps.metricCell}>
+                    <a
+                      href="#rfq"
+                      data-pole-spec={row.specId}
+                      data-pole-notes={row.notes}
+                      style={{ color: "inherit", textDecoration: "underline" }}
+                    >
+                      {row.lengthLabel}
+                    </a>
+                  </td>
+                  <td>{row.topDia}</td>
+                  <td>{row.buttDia}</td>
+                  <td>{"flagship" in row && row.flagship ? <strong>{row.treatment}</strong> : row.treatment}</td>
+                  <td>{"flagship" in row && row.flagship ? <strong>{row.capacity}</strong> : row.capacity}</td>
+                  <td>{row.usage}</td>
+                  <td>
+                    <div className={up.tableCtaCell}>
+                      <a
+                        href="#rfq"
+                        data-pole-spec={row.specId}
+                        data-pole-notes={row.notes}
+                        className={up.tableCalcLink}
+                      >
+                        <span>Choisir ce format</span>
+                      </a>
+                      <a
+                        href={`${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(row.waText)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={up.tableWaLink}
+                        data-clarity-event={`pole_fr_table_wa_${row.specId}`}
+                      >
+                        <MessageCircle aria-hidden="true" className={up.badgeIcon} />
+                        <span>Devis WhatsApp</span>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -532,7 +606,7 @@ export default function FrWoodenUtilityPolesPage() {
         <Reveal>
           <SectionHeader
             id="protocole-autoclave"
-            eyebrow="Cahier des Charges d'Imprégnation Vide-Pression"
+            eyebrow="Cahier des Charges d'Imprégnation Vide-Pression (Cliquez pour sélectionner)"
             title="Protection Industrielle Contre les Termites, l'Humidité Tropicale et le Pourrissement"
             lead="Chaque charge d'autoclave suit un cycle instrumenté garantissant la pénétration profonde du produit de préservation dans l'aubier."
           />
@@ -540,11 +614,19 @@ export default function FrWoodenUtilityPolesPage() {
 
         <div className={up.protocolGrid}>
           {AUTOCLAVE_STEPS_FR.map((st) => (
-            <article key={st.num} className={up.protocolStep}>
-              <span className={up.protocolNum}>{st.num}</span>
-              <h3 className={up.protocolTitle}>{st.title}</h3>
-              <p className={up.protocolVal}>{st.val}</p>
-            </article>
+            <a
+              key={st.num}
+              href="#rfq"
+              data-pole-spec={st.specId}
+              className={up.protocolStep}
+            >
+              <div>
+                <span className={up.protocolNum}>{st.num}</span>
+                <h3 className={up.protocolTitle}>{st.title}</h3>
+                <p className={up.protocolVal}>{st.val}</p>
+              </div>
+              <span className={up.protocolCta}>{st.cta}</span>
+            </a>
           ))}
         </div>
       </Section>

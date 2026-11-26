@@ -87,10 +87,12 @@ export function PoleHeroVideoShowcase({
   liveBadge,
   posterAlt,
   specs,
+  rfqAnchor = "#rfq",
 }: {
   liveBadge: string;
   posterAlt: string;
-  specs: { val: string; label: string }[];
+  specs: { val: string; label: string; href?: string }[];
+  rfqAnchor?: string;
 }) {
   const [canPlayVideo, setCanPlayVideo] = useState(false);
 
@@ -102,7 +104,7 @@ export function PoleHeroVideoShowcase({
 
   return (
     <div className={s.heroShowcase}>
-      <div className={s.heroMediaFrame}>
+      <a href={rfqAnchor} className={s.heroMediaFrame} style={{ display: "block", textDecoration: "none" }}>
         {canPlayVideo ? (
           <video
             className={s.heroMediaEl}
@@ -129,16 +131,25 @@ export function PoleHeroVideoShowcase({
           <span className={s.liveDot} aria-hidden="true" />
           <span>{liveBadge}</span>
         </span>
-      </div>
+      </a>
       <div className={s.heroSpecStrip}>
-        {specs.map((item) => (
-          <div key={item.val} className={s.heroSpecItem}>
-            <span className={s.heroSpecVal}>
-              <bdi dir="ltr">{item.val}</bdi>
-            </span>
-            <span className={s.heroSpecLbl}>{item.label}</span>
-          </div>
-        ))}
+        {specs.map((item) => {
+          const isPhone = item.val.includes("+90");
+          const targetHref = item.href ?? (isPhone ? OFFICIAL_WHATSAPP_WA : rfqAnchor);
+          return (
+            <a
+              key={item.val}
+              href={targetHref}
+              {...(isPhone ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className={`${s.heroSpecItem} ${s.heroSpecLink}`}
+            >
+              <span className={s.heroSpecVal}>
+                <bdi dir="ltr">{item.val}</bdi>
+              </span>
+              <span className={s.heroSpecLbl}>{item.label}</span>
+            </a>
+          );
+        })}
       </div>
     </div>
   );
@@ -182,24 +193,58 @@ export default function UtilityPoleFunnel({
   }
 
   useEffect(() => {
-    if (typeof window === "undefined" || !window.location.search) return;
-    const q = new URLSearchParams(window.location.search);
-    const qCo = q.get("co") ?? q.get("company");
-    const qPort = q.get("port") ?? q.get("country");
-    const qSpec = q.get("spec");
-    if (qCo) setCompany((prev) => prev || qCo);
-    if (qPort) {
-      const matched = copy.destinations.find(
-        (d) => d.id.toLowerCase() === qPort.toLowerCase() || d.label.toLowerCase().includes(qPort.toLowerCase()),
-      );
-      if (matched) setDestId(matched.id);
-      else setCustomPort((prev) => prev || qPort);
+    if (typeof window === "undefined") return;
+    function applyUrlParams(searchStr: string) {
+      if (!searchStr) return;
+      const q = new URLSearchParams(searchStr);
+      const qCo = q.get("co") ?? q.get("company");
+      const qPort = q.get("port") ?? q.get("country") ?? q.get("dest");
+      const qSpec = q.get("spec");
+      if (qCo) setCompany((prev) => prev || qCo);
+      if (qPort) {
+        const matched = copy.destinations.find(
+          (d) => d.id.toLowerCase().includes(qPort.toLowerCase()) || d.label.toLowerCase().includes(qPort.toLowerCase()),
+        );
+        if (matched) setDestId(matched.id);
+        else setCustomPort((prev) => prev || qPort);
+      }
+      if (qSpec) {
+        const matchedSpec = copy.specs.find((sp) => sp.id.toLowerCase().includes(qSpec.toLowerCase()));
+        if (matchedSpec) setSpecId(matchedSpec.id);
+      }
     }
-    if (qSpec) {
-      const matchedSpec = copy.specs.find((sp) => sp.id.toLowerCase().includes(qSpec.toLowerCase()));
-      if (matchedSpec) setSpecId(matchedSpec.id);
+
+    applyUrlParams(window.location.search);
+
+    function handleClickCapture(e: MouseEvent) {
+      const target = (e.target as HTMLElement | null)?.closest?.("a[data-pole-spec], a[data-pole-dest]") as HTMLAnchorElement | null;
+      if (!target) return;
+      const targetSpec = target.getAttribute("data-pole-spec");
+      const targetDest = target.getAttribute("data-pole-dest");
+      const targetNotes = target.getAttribute("data-pole-notes");
+      if (targetSpec) {
+        const matchedSpec = copy.specs.find((sp) => sp.id.toLowerCase().includes(targetSpec.toLowerCase()));
+        if (matchedSpec) {
+          setSpecId(matchedSpec.id);
+          clarityEvent(`pole_${locale}_card_jump_${matchedSpec.id}`);
+          claritySet("pole_spec", matchedSpec.id);
+        }
+      }
+      if (targetDest) {
+        const matchedDest = copy.destinations.find((d) => d.id.toLowerCase().includes(targetDest.toLowerCase()));
+        if (matchedDest) {
+          setDestId(matchedDest.id);
+          claritySet("pole_corridor", matchedDest.id);
+        }
+      }
+      if (targetNotes) {
+        setNotes((prev) => (prev.includes(targetNotes) ? prev : prev ? `${prev} · ${targetNotes}` : targetNotes));
+      }
     }
-  }, [copy.destinations, copy.specs]);
+
+    document.addEventListener("click", handleClickCapture);
+    return () => document.removeEventListener("click", handleClickCapture);
+  }, [copy.destinations, copy.specs, locale]);
 
   const activeSpec = copy.specs.find((sp) => sp.id === specId) ?? copy.specs[0];
   const activeVol = copy.volumes.find((vl) => vl.id === volId) ?? copy.volumes[0];
@@ -318,26 +363,58 @@ export default function UtilityPoleFunnel({
         <fieldset className={s.fieldset}>
           <legend className={s.legend}>{copy.step1Label}</legend>
           <div className={s.specCards}>
-            {copy.specs.map((sp) => (
-              <button
-                key={sp.id}
-                id={`pole-spec-${locale}-${sp.id}`}
-                type="button"
-                aria-pressed={specId === sp.id}
-                className={s.specBtn}
-                onClick={() => {
-                  setSpecId(sp.id);
-                  clarityEvent(`pole_${locale}_spec_${sp.id}`);
-                  claritySet("pole_spec", sp.id);
-                }}
-              >
-                <span className={s.specBtnHead}>
-                  <span className={s.specBtnTitle}>{sp.title}</span>
-                  <span className={s.specBtnTag}>{sp.tag}</span>
-                </span>
-                <span className={s.specBtnMeta}>{sp.meta}</span>
-              </button>
-            ))}
+            {copy.specs.map((sp) => {
+              const isSelected = specId === sp.id;
+              const quickSpecBrief = [
+                copy.briefLabels.header,
+                `• ${copy.briefLabels.spec}: ${sp.title} (${sp.meta})`,
+                `• ${copy.briefLabels.volume}: ${activeVol.label} (~${(sp.polesPerContainer * activeVol.containers).toLocaleString("en-US")} ${copy.calcLabels.polesUnit})`,
+                `• ${copy.briefLabels.incoterm}: ${incoterm}`,
+                `• ${copy.briefLabels.destination}: ${resolvedDestination}`,
+              ].join("\n");
+              const quickSpecWaHref = `${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(quickSpecBrief)}`;
+              const quickWaLabel =
+                locale === "ar"
+                  ? "اطلب تسعيرة هذا المقاس فوراً عبر واتساب ←"
+                  : locale === "fr"
+                    ? "Devis WhatsApp immédiat pour ce format →"
+                    : "Get Instant WhatsApp Quote for This Size →";
+              return (
+                <div key={sp.id} className={s.specCardWrap}>
+                  <button
+                    id={`pole-spec-${locale}-${sp.id}`}
+                    type="button"
+                    aria-pressed={isSelected}
+                    className={s.specBtn}
+                    onClick={() => {
+                      setSpecId(sp.id);
+                      clarityEvent(`pole_${locale}_spec_${sp.id}`);
+                      claritySet("pole_spec", sp.id);
+                    }}
+                  >
+                    <span className={s.specBtnHead}>
+                      <span className={s.specBtnTitle}>{sp.title}</span>
+                      <span className={s.specBtnTag}>{sp.tag}</span>
+                    </span>
+                    <span className={s.specBtnMeta}>{sp.meta}</span>
+                  </button>
+                  <a
+                    id={`pole-spec-wa-direct-${locale}-${sp.id}`}
+                    href={quickSpecWaHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={s.specQuickWaLink}
+                    onClick={() => {
+                      setSpecId(sp.id);
+                      fireLeadAnalytics(`whatsapp_spec_card_${sp.id}`);
+                    }}
+                  >
+                    <MessageCircle aria-hidden="true" className={s.badgeIcon} />
+                    <span>{quickWaLabel}</span>
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </fieldset>
 

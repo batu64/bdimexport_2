@@ -132,21 +132,93 @@ const AUTOCLAVE_STEPS_EN = [
     num: "01 · Pre-Seasoning",
     title: "Moisture Strictly ≤ 25%",
     val: "Poles are seasoned (with steam kiln capability down to 10–12% and strict ≤25% pre-autoclave ceiling) to prevent post-installation checking and guarantee deep preservative uptake.",
+    specId: "9m-brown",
+    cta: "Select 9m Export Brown Spec →",
   },
   {
     num: "02 · Initial Vacuum",
     title: "60 Min @ 63.5 cmHg",
     val: "Full 60-minute initial vacuum stage evacuates air and sap from sapwood cells (held for the full 60 minutes even if 63.5 cmHg is reached earlier).",
+    specId: "7m-8m-lv-telecom",
+    cta: "Select 7m–8m LV & Telecom Spec →",
   },
   {
     num: "03 · Flooding & Pressure",
     title: "≥ 10.5 kg/cm² Hydraulic Pressure",
     val: "The sealed autoclave cylinder is flooded under vacuum and pressurized to ≥10.5 kg/cm² (~150 psi) until target preservative absorption is locked into the timber.",
+    specId: "10m-12m-green-mv",
+    cta: "Select 10m–12m MV Green Spec →",
   },
   {
     num: "04 · Retention & Penetration",
     title: "16 kg/m³ Dry Salt · ≥75% Sapwood",
     val: "3.5% solution concentration (350 L/m³ = 16 kg/m³ dry salt retention) below 30 °C achieves ≥75% sapwood (≥20–40 mm) penetration, followed by a 15-minute final vacuum.",
+    specId: "mixed-tender-boq",
+    cta: "Configure Custom Tender BOQ →",
+  },
+] as const;
+
+const DIMENSION_ROWS_EN = [
+  {
+    lengthLabel: "7.0 m",
+    topDia: "Ø 11 – 13 cm",
+    buttDia: "Ø 18 – 20 cm",
+    treatment: "Export Brown or Green",
+    capacity: "~180 – 195 poles",
+    usage: "Telecom drop/backhaul lines, rural LV service connections",
+    specId: "7m-8m-lv-telecom",
+    notes: "7.0m LV/Telecom Pole (Top Ø11-13cm / Butt Ø18-20cm — ~185 pcs/40'HC)",
+    waText:
+      "Hello Bdimexport Factory Desk, please send factory-direct CIF/FOB container pricing for 7.0m autoclave-treated wooden utility/telecom poles (~185 pcs per 40' HC).",
+  },
+  {
+    lengthLabel: "8.0 m",
+    topDia: "Ø 12 – 14 cm",
+    buttDia: "Ø 20 – 22 cm",
+    treatment: "Export Brown or Green",
+    capacity: "~155 – 170 poles",
+    usage: "Low-voltage (LV) rural electrification & street lighting",
+    specId: "7m-8m-lv-telecom",
+    notes: "8.0m LV Distribution Pole (Top Ø12-14cm / Butt Ø20-22cm — ~165 pcs/40'HC)",
+    waText:
+      "Hello Bdimexport Factory Desk, please send factory-direct CIF/FOB container pricing for 8.0m autoclave-treated wooden utility poles (~165 pcs per 40' HC).",
+  },
+  {
+    lengthLabel: "9.0 m (Export Flagship)",
+    topDia: "Ø 12 – 14 cm",
+    buttDia: "Ø 22 – 23 cm",
+    treatment: "Export Brown (Most Popular) or Green",
+    capacity: "140 poles (Verified Tally)",
+    usage: "Standard African LV/MV distribution & fiber-optic corridors",
+    specId: "9m-brown",
+    flagship: true,
+    notes: "9.0m Export Brown Utility Pole (140 pcs per 40' HC container)",
+    waText:
+      "Hello Bdimexport Factory Desk, please send factory-direct CIF/FOB container pricing for 9.0m Export Brown wooden utility poles (140 pcs per 40' HC).",
+  },
+  {
+    lengthLabel: "10.0 m – 11.0 m",
+    topDia: "Ø 14 – 16 cm",
+    buttDia: "Ø 24 – 27 cm",
+    treatment: "Green Autoclave Exclusively",
+    capacity: "~95 – 110 poles",
+    usage: "Medium-voltage (11kV / 33kV) feeders & highway crossings",
+    specId: "10m-12m-green-mv",
+    notes: "10m–11m Green Autoclave MV Pole (~100 pcs per 40' HC)",
+    waText:
+      "Hello Bdimexport Factory Desk, please send factory-direct CIF/FOB container pricing for 10m–11m Green Autoclave medium-voltage wooden utility poles (~100 pcs per 40' HC).",
+  },
+  {
+    lengthLabel: "12.0 m",
+    topDia: "Ø 15 – 17 cm",
+    buttDia: "Ø 26 – 30 cm",
+    treatment: "Green Autoclave Exclusively",
+    capacity: "~80 – 90 poles (special stowage)",
+    usage: "Heavy-duty MV distribution backbones & substation approaches",
+    specId: "10m-12m-green-mv",
+    notes: "12.0m Heavy-Duty Green Autoclave MV Pole (~85 pcs per 40' HC)",
+    waText:
+      "Hello Bdimexport Factory Desk, please send factory-direct CIF/FOB container pricing for 12.0m heavy-duty Green Autoclave wooden utility poles (~85 pcs per 40' HC).",
   },
 ] as const;
 
@@ -461,9 +533,9 @@ export default function EnWoodenUtilityPolesPage() {
         <Reveal>
           <SectionHeader
             id="pole-dimensions"
-            eyebrow="Dimensional Schedule & Container Stuffing Matrix"
+            eyebrow="Dimensional Schedule & Container Stuffing Matrix (Click Any Size to Quote)"
             title="7m – 12m Wooden Utility & Telecom Pole Specifications"
-            lead="Manufactured from selected straight-grain pine timber, machine-peeled to uniform taper, seasoned prior to treatment, and pressure-impregnated for overhead LV/MV electrical and telecom lines."
+            lead="Manufactured from selected straight-grain pine timber, machine-peeled to uniform taper, seasoned prior to treatment, and pressure-impregnated for overhead LV/MV electrical and telecom lines. Click any pole length below to pre-select it in the calculator or request an instant WhatsApp quote."
           />
         </Reveal>
 
@@ -477,49 +549,51 @@ export default function EnWoodenUtilityPolesPage() {
                 <th>Autoclave Treatment Color</th>
                 <th>40&apos; HC Container Capacity</th>
                 <th>Primary Grid &amp; Telecom Application</th>
+                <th>Direct Factory Quote</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className={ps.metricCell}>7.0 m</td>
-                <td>Ø 11 – 13 cm</td>
-                <td>Ø 18 – 20 cm</td>
-                <td>Export Brown or Green</td>
-                <td>~180 – 195 poles</td>
-                <td>Telecom drop/backhaul lines, rural LV service connections</td>
-              </tr>
-              <tr>
-                <td className={ps.metricCell}>8.0 m</td>
-                <td>Ø 12 – 14 cm</td>
-                <td>Ø 20 – 22 cm</td>
-                <td>Export Brown or Green</td>
-                <td>~155 – 170 poles</td>
-                <td>Low-voltage (LV) rural electrification &amp; street lighting</td>
-              </tr>
-              <tr>
-                <td className={ps.metricCell}>9.0 m (Export Flagship)</td>
-                <td>Ø 12 – 14 cm</td>
-                <td>Ø 22 – 23 cm</td>
-                <td><strong>Export Brown (Most Popular)</strong> or Green</td>
-                <td><strong>140 poles (Verified Tally)</strong></td>
-                <td>Standard African LV/MV distribution &amp; fiber-optic corridors</td>
-              </tr>
-              <tr>
-                <td className={ps.metricCell}>10.0 m – 11.0 m</td>
-                <td>Ø 14 – 16 cm</td>
-                <td>Ø 24 – 27 cm</td>
-                <td>Green Autoclave Exclusively</td>
-                <td>~95 – 110 poles</td>
-                <td>Medium-voltage (11kV / 33kV) feeders &amp; highway crossings</td>
-              </tr>
-              <tr>
-                <td className={ps.metricCell}>12.0 m</td>
-                <td>Ø 15 – 17 cm</td>
-                <td>Ø 26 – 30 cm</td>
-                <td>Green Autoclave Exclusively</td>
-                <td>~80 – 90 poles (special stowage)</td>
-                <td>Heavy-duty MV distribution backbones &amp; substation approaches</td>
-              </tr>
+              {DIMENSION_ROWS_EN.map((row) => (
+                <tr key={row.lengthLabel}>
+                  <td className={ps.metricCell}>
+                    <a
+                      href="#rfq"
+                      data-pole-spec={row.specId}
+                      data-pole-notes={row.notes}
+                      style={{ color: "inherit", textDecoration: "underline" }}
+                    >
+                      {row.lengthLabel}
+                    </a>
+                  </td>
+                  <td>{row.topDia}</td>
+                  <td>{row.buttDia}</td>
+                  <td>{"flagship" in row && row.flagship ? <strong>{row.treatment}</strong> : row.treatment}</td>
+                  <td>{"flagship" in row && row.flagship ? <strong>{row.capacity}</strong> : row.capacity}</td>
+                  <td>{row.usage}</td>
+                  <td>
+                    <div className={up.tableCtaCell}>
+                      <a
+                        href="#rfq"
+                        data-pole-spec={row.specId}
+                        data-pole-notes={row.notes}
+                        className={up.tableCalcLink}
+                      >
+                        <span>Select Size</span>
+                      </a>
+                      <a
+                        href={`${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(row.waText)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={up.tableWaLink}
+                        data-clarity-event={`pole_en_table_wa_${row.specId}`}
+                      >
+                        <MessageCircle aria-hidden="true" className={up.badgeIcon} />
+                        <span>WhatsApp Quote</span>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -536,7 +610,7 @@ export default function EnWoodenUtilityPolesPage() {
         <Reveal>
           <SectionHeader
             id="autoclave-spec"
-            eyebrow="Industrial Vacuum-Pressure Impregnation Specification"
+            eyebrow="Industrial Vacuum-Pressure Impregnation Specification (Click Any Card to Select)"
             title="Engineered Against Tropical Termites, Fungal Decay & Coastal Humidity"
             lead="Every production batch is processed inside calibrated vacuum-pressure cylinders under strict moisture, pressure, temperature, and sapwood-penetration controls."
           />
@@ -544,11 +618,19 @@ export default function EnWoodenUtilityPolesPage() {
 
         <div className={up.protocolGrid}>
           {AUTOCLAVE_STEPS_EN.map((st) => (
-            <article key={st.num} className={up.protocolStep}>
-              <span className={up.protocolNum}>{st.num}</span>
-              <h3 className={up.protocolTitle}>{st.title}</h3>
-              <p className={up.protocolVal}>{st.val}</p>
-            </article>
+            <a
+              key={st.num}
+              href="#rfq"
+              data-pole-spec={st.specId}
+              className={up.protocolStep}
+            >
+              <div>
+                <span className={up.protocolNum}>{st.num}</span>
+                <h3 className={up.protocolTitle}>{st.title}</h3>
+                <p className={up.protocolVal}>{st.val}</p>
+              </div>
+              <span className={up.protocolCta}>{st.cta}</span>
+            </a>
           ))}
         </div>
       </Section>

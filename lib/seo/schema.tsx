@@ -256,13 +256,16 @@ export function buildProductFunnelGraph(opts: {
   description: string;
   productName: string;
   sku: string;
+  mpn?: string;
+  productId?: string;
   category: string;
   image: string;
   areaServed: string[];
   crumbs: { name: string; url: string }[];
   faq: { q: string; a: string }[];
 }): object[] {
-  const { url, inLanguage, title, description, productName, sku, category, image, areaServed, crumbs, faq } = opts;
+  const { url, inLanguage, title, description, productName, sku, mpn, productId, category, image, areaServed, crumbs, faq } = opts;
+  const resolvedProductId = productId ?? `${url}#product`;
   return [
     ...masterOrganizationNodes(),
     {
@@ -273,7 +276,7 @@ export function buildProductFunnelGraph(opts: {
       description,
       inLanguage,
       isPartOf: { "@id": WEBSITE_ID },
-      about: { "@id": `${url}#product` },
+      about: { "@id": resolvedProductId },
       speakable: {
         "@type": "SpeakableSpecification",
         cssSelector: ["h1", "main h2", "main h3"],
@@ -281,10 +284,12 @@ export function buildProductFunnelGraph(opts: {
     },
     {
       "@type": "Product",
-      "@id": `${url}#product`,
+      "@id": resolvedProductId,
       name: productName,
       description,
       sku,
+      mpn: mpn ?? sku,
+      productID: sku,
       category,
       image: [image],
       brand: { "@type": "Brand", name: "Bdimexport" },
