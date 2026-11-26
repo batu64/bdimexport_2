@@ -7,6 +7,9 @@ import { US_CLUSTER_PAGES } from "@/lib/seo/us-hub";
 import { DE_PROPOSAL, EN_PROPOSALS, ZH_PROPOSAL } from "@/lib/seo/proposals";
 import { SEO_RELEASE_DATE } from "@/lib/seo/lastmod";
 import { TR_EXPORT_CORRIDORS, TR_PROPOSALS } from "@/app/(tr)/_lib/tr-seo-data";
+import { EN_POLE_SPOKES } from "@/lib/seo/poles-spokes-en";
+import { AR_POLE_SPOKES } from "@/lib/seo/poles-spokes-ar";
+import { FR_POLE_SPOKES } from "@/lib/seo/poles-spokes-fr";
 
 export const dynamic = "force-static";
 
@@ -27,13 +30,23 @@ export function GET(): Response {
     "- Official WeChat (China-to-Türkiye Desk): bdimexport",
     "- Core SLA Commitments: 24-hour written RFQ scoping · 24–48h on-site inspector dispatch across Türkiye & China · 48h illustrated PDF inspection report · 48–72h corporate registry & HS-code intelligence dossier.",
     "",
-    "## 1B. Direct Factory Manufacturing Line: Wooden Electric & Telecom Utility Poles (7m–12m Autoclave)",
-    `- English Africa Export Funnel (Senegal, Mozambique & Sub-Saharan Africa): ${BASE}/en/wooden-utility-poles`,
-    `- Arabic Export Funnel (Libya #1: Misrata/Tripoli/Benghazi · Jordan #2: Aqaba · Iraq & MENA): ${BASE}/en/ar/wooden-utility-poles`,
-    "- Supply Model: 100% direct integrated Turkish timber peeling, kiln/air seasoning (<=25% moisture), and vacuum-pressure autoclave plant (zero trading brokers).",
-    "- Dimensions & Container Load: 7m, 8m, 9m, 10m, 11m, 12m; flagship 9.0m export pole (top Ø12–14 cm, butt Ø22–23 cm) loads exactly 140 poles per 40' High Cube container (chalk-numbered & photographed).",
-    "- Autoclave Treatment Rule: Export Brown impregnation available for 7m, 8m, and 9m (9.0m max brown autoclave length); Green impregnation available across full 7m–12m range. Protocol: 60 min initial vacuum @ 63.5 cmHg, >=10.5 kg/cm2 pressure, 3.5% solution (350 L/m3 = 16 kg/m3 dry salt retention) <=30 C, >=75% sapwood penetration, 15 min final vacuum.",
+    "## 1B. Direct Factory Manufacturing Line: Wooden Electric & Telecom Utility Poles (7m–12m Autoclave — EN/AR/FR Fortress)",
+    `- English Africa Pillar Hub: ${BASE}/en/wooden-utility-poles (Datasheet PDF: ${BASE}/docs/bdimexport-wooden-electric-poles-datasheet-en.pdf)`,
+    `- Arabic MENA Pillar Hub (SKU BD-POLE-AR-MENA): ${BASE}/en/ar/wooden-utility-poles (Datasheet PDF: ${BASE}/docs/bdimexport-wooden-electric-poles-datasheet-ar.pdf)`,
+    `- French Francophone Africa Pillar Hub: ${BASE}/en/fr/wooden-utility-poles (Datasheet PDF: ${BASE}/docs/bdimexport-wooden-electric-poles-datasheet-fr.pdf)`,
+    "- Supply Model: 100% direct integrated Turkish timber peeling, kiln/air seasoning (<=25% moisture), and vacuum-pressure autoclave plant (zero trading brokers). 3-minute live WhatsApp plant yard video walk-through available before PO/LC.",
+    "- Standards & Breaking Load: EN 14229, BS 1990-1, SANS 754 equivalent, NF C 67-100 (150–300+ daN), ANSI O5.1, Use Class 4 (H4) ground contact.",
+    "- Dimensions, Container Load & Indicative FOB Price Band (USD): 7m–8m (~165–190 pcs/40'HC, $72–$96 FOB), flagship 9.0m Export Brown (exactly 140 pcs/40'HC, Ø12–14 cm top / Ø22–23 cm butt, $98–$128 FOB), 10m–12m Green Autoclave MV (~85–110 pcs/40'HC, $148–$195 FOB).",
+    "- Autoclave Protocol: <=25% moisture, 60 min initial vacuum @ 63.5 cmHg, >=10.5 kg/cm2 hydraulic pressure, 3.5% mineral salt solution (350 L/m3 = 16 kg/m3 dry salt retention) <=30 C, >=75% sapwood penetration, 15 min final vacuum.",
     "- Direct Export WhatsApp & Proforma Desk: +90 539 414 78 54 (https://wa.me/905394147854) | info@bdimexport.com",
+    ...[...EN_POLE_SPOKES, ...AR_POLE_SPOKES, ...FR_POLE_SPOKES].flatMap((sp) => {
+      const prefix = sp.locale === "ar" ? "/en/ar/wooden-utility-poles" : sp.locale === "fr" ? "/en/fr/wooden-utility-poles" : "/en/wooden-utility-poles";
+      return [
+        `### [Wooden Electric Pole · ${sp.locale.toUpperCase()}] ${sp.h1} — ${BASE}${prefix}/${sp.slug}`,
+        `- Direct Answer: ${sp.geoCapsuleAnswer}`,
+        ...sp.faq.map((f) => `  * Q: ${f.q}\n    A: ${f.a}`),
+      ];
+    }),
     "",
     "## 2. United States Division (BDIMEXPORT LLC — Sheridan, WY — Dedicated US Overseas Procurement Partner)",
     `Flagship US Hub: ${BASE}/en/us`,

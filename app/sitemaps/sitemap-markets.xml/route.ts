@@ -6,6 +6,8 @@ import { MARKET_CORRIDORS } from "@/lib/seo/markets";
 import { US_CLUSTER_PAGES } from "@/lib/seo/us-hub";
 import { fileLastMod } from "@/lib/seo/lastmod";
 import { insightBase, listInsights } from "@/lib/ui/insights";
+import { AR_POLE_SPOKES } from "@/lib/seo/poles-spokes-ar";
+import { FR_POLE_SPOKES } from "@/lib/seo/poles-spokes-fr";
 
 export const dynamic = "force-static";
 
@@ -26,6 +28,9 @@ export function GET(): Response {
       for (const slug of slugs) locs.push(`${BASE}${ib}/${slug}`);
     }
   }
+
+  for (const sp of AR_POLE_SPOKES) locs.push(`${BASE}/en/ar/wooden-utility-poles/${sp.slug}`);
+  for (const sp of FR_POLE_SPOKES) locs.push(`${BASE}/en/fr/wooden-utility-poles/${sp.slug}`);
 
   const urls = locs
     .map((loc) => `  <url><loc>${loc}</loc><lastmod>${mod}</lastmod><changefreq>weekly</changefreq></url>`)

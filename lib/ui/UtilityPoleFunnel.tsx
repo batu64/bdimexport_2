@@ -2,9 +2,9 @@
 // Doğrudan Fabrika Elektrik & Telekom Direği Konteyner Hesaplayıcı ve B2B Lead Hunisi (RTL Arapça + LTR İngilizce).
 // İletişim tek doğruluk kaynağı: lib/ui/entities.ts (OFFICIAL_WHATSAPP_WA = +90 539 414 78 54, OFFICIAL_EMAIL = info@bdimexport.com).
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { CheckCircle2, Copy, Factory, Mail, MessageCircle, ShieldCheck } from "lucide-react";
+import { Calculator, CheckCircle2, Copy, Factory, FileDown, FileSpreadsheet, Mail, MessageCircle, Printer, ShieldCheck, Video } from "lucide-react";
 import { clarityEvent, claritySet, clarityUpgrade } from "./clarity";
-import { OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA } from "./entities";
+import { CORPORATE_ENTITIES, OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, SAP_ARIBA_ID, US_DUNS_NUMBER } from "./entities";
 import s from "./utilitypole.module.css";
 
 export type PoleSpecOption = {
@@ -155,22 +155,198 @@ export function PoleHeroVideoShowcase({
   );
 }
 
+export function PoleConversionBar({
+  locale,
+  sourcePage,
+  rfqAnchor = "#rfq",
+  contextLabel,
+}: {
+  locale: "ar" | "en" | "fr";
+  sourcePage: string;
+  rfqAnchor?: string;
+  contextLabel?: string;
+}) {
+  const ctx = contextLabel ? ` (${contextLabel})` : "";
+  const copy =
+    locale === "ar"
+      ? {
+          eyebrow: "تأكيد مباشر من المصنع — بدون وسطاء",
+          videoTitle: "مكالمة فيديو مباشرة من ساحة المصنع (3 دقائق)",
+          videoSub: "شاهد أسطوانات الأوتوكلاف ومخزون أعمدة 9م البنية مباشرة عبر واتساب قبل التعاقد.",
+          videoCta: "احجز جولة فيديو واتساب الآن",
+          videoWa: `السلام عليكم، نرغب في مكالمة فيديو مباشرة لمدة 3 دقائق من ساحة مصنعكم لمشاهدة أعمدة الكهرباء الخشبية وخط الأوتوكلاف${ctx}.`,
+          boqTitle: "هل لديك جدول كميات عطاء (BOQ / Excel / PDF)؟",
+          boqSub: "أرسل ملف العطاء مباشرة لمهندس التصدير لاستلام تسعيرة CIF/FOB خلال 24 ساعة.",
+          boqCta: "أرسل جدول الكميات عبر واتساب",
+          boqWa: `السلام عليكم، لدينا جدول كميات (BOQ) لمشروع أعمدة كهرباء/اتصالات خشبية${ctx} ونرغب في إرسال الملف لتسعيره خلال 24 ساعة.`,
+          pdfTitle: "الكتالوج الفني الرسمي وشهادة الأوتوكلاف (PDF)",
+          pdfSub: "وثيقة معتمدة جاهزة لإرفاقها في ملفات عطاءات GECOL و JEPCO و Sonelgaz.",
+          pdfCta: "تحميل الكتالوج الفني (PDF)",
+          pdfHref: "/docs/bdimexport-wooden-electric-poles-datasheet-ar.pdf",
+        }
+      : locale === "fr"
+        ? {
+            eyebrow: "Preuve Usine Directe — Zéro Courtier",
+            videoTitle: "Appel Vidéo WhatsApp en Direct du Parc Usine (3 min)",
+            videoSub: "Inspectez nos cylindres d'autoclave et nos stocks 9 m bruns en direct avant commande.",
+            videoCta: "Lancer une visite vidéo usine",
+            videoWa: `Bonjour Bureau Usine bdimexport, nous souhaitons planifier un appel vidéo WhatsApp de 3 minutes depuis votre parc usine pour voir les poteaux bois et l'autoclave${ctx}.`,
+            boqTitle: "Bordereau d'Appel d'Offres (DQE / BOQ Excel ou PDF) ?",
+            boqSub: "Transférez votre fichier directement à notre ingénieur export pour un chiffrage CIF sous 24 h.",
+            boqCta: "Envoyer mon DQE / BOQ sur WhatsApp",
+            boqWa: `Bonjour Bureau Usine bdimexport, nous avons un bordereau de quantités (DQE/BOQ) de poteaux électriques en bois${ctx} à chiffrer sous 24 h.`,
+            pdfTitle: "Fiche Technique Officielle & Protocole Autoclave (PDF)",
+            pdfSub: "Dossier prêt pour vos soumissions SENELEC, CIE, ENEO, ONEE ou Sonelgaz.",
+            pdfCta: "Télécharger la fiche technique (PDF)",
+            pdfHref: "/docs/bdimexport-wooden-electric-poles-datasheet-fr.pdf",
+          }
+        : {
+            eyebrow: "Anti-Broker Factory Verification — Zero Middlemen",
+            videoTitle: "Book a 3-Min Live WhatsApp Video Call From Our Plant Yard",
+            videoSub: "See our autoclave cylinders, seasoned pine stock & 40' HC loading live before issuing a PO.",
+            videoCta: "Request Live Plant Video Call",
+            videoWa: `Hello Bdimexport Factory Desk, we would like a 3-minute live WhatsApp video walk-through of your timber yard and autoclave plant${ctx}.`,
+            boqTitle: "Have a Multi-Length Tender BOQ (Excel / PDF)?",
+            boqSub: "Forward your tender schedule straight to our export engineer for a 24h CIF/FOB proforma.",
+            boqCta: "Send Tender BOQ on WhatsApp",
+            boqWa: `Hello Bdimexport Factory Desk, we have a wooden electric/utility pole Tender BOQ${ctx} and want to share the file for 24h factory-direct pricing.`,
+            pdfTitle: "Official Factory Technical Datasheet & Autoclave Spec (PDF)",
+            pdfSub: "Print-ready engineering dossier for SENELEC, EDM, ECG, KPLC, TANESCO & World Bank tenders.",
+            pdfCta: "Download Technical Datasheet (PDF)",
+            pdfHref: "/docs/bdimexport-wooden-electric-poles-datasheet-en.pdf",
+          };
+
+  return (
+    <div className={s.croStrip} data-source-page={sourcePage}>
+      <div className={s.croCard}>
+        <div className={s.croCardTop}>
+          <span className={s.croBadge}>
+            <Video aria-hidden="true" className={s.badgeIcon} />
+            <span>{copy.eyebrow}</span>
+          </span>
+          <h3 className={s.croTitle}>{copy.videoTitle}</h3>
+          <p className={s.croSub}>{copy.videoSub}</p>
+        </div>
+        <a
+          id={`cta-pole-live-video-${locale}`}
+          href={`${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(copy.videoWa)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={s.croActionPrimary}
+          data-clarity-event={`pole_${locale}_live_video_call`}
+          data-clarity-upgrade={`pole_${locale}_live_video_lead`}
+        >
+          <Video aria-hidden="true" className={s.btnIcon} />
+          <span>{copy.videoCta}</span>
+        </a>
+      </div>
+
+      <div className={s.croCard}>
+        <div className={s.croCardTop}>
+          <span className={s.croBadge}>
+            <FileSpreadsheet aria-hidden="true" className={s.badgeIcon} />
+            <span>BOQ / DQE · 24h SLA</span>
+          </span>
+          <h3 className={s.croTitle}>{copy.boqTitle}</h3>
+          <p className={s.croSub}>{copy.boqSub}</p>
+        </div>
+        <a
+          id={`cta-pole-boq-fasttrack-${locale}`}
+          href={`${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(copy.boqWa)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={s.croActionSecondary}
+          data-clarity-event={`pole_${locale}_boq_fasttrack`}
+          data-clarity-upgrade={`pole_${locale}_boq_lead`}
+        >
+          <MessageCircle aria-hidden="true" className={s.btnIcon} />
+          <span>{copy.boqCta}</span>
+        </a>
+      </div>
+
+      <div className={s.croCard}>
+        <div className={s.croCardTop}>
+          <span className={s.croBadge}>
+            <FileDown aria-hidden="true" className={s.badgeIcon} />
+            <span>EN 14229 · BS 1990 · NF C 67-100</span>
+          </span>
+          <h3 className={s.croTitle}>{copy.pdfTitle}</h3>
+          <p className={s.croSub}>{copy.pdfSub}</p>
+        </div>
+        <div className={s.tableCtaCell}>
+          <a
+            id={`cta-pole-pdf-datasheet-${locale}`}
+            href={copy.pdfHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={s.croActionSecondary}
+            data-clarity-event={`pole_${locale}_download_datasheet_pdf`}
+          >
+            <FileDown aria-hidden="true" className={s.btnIcon} />
+            <span>{copy.pdfCta}</span>
+          </a>
+          <a href={rfqAnchor} className={s.tableCalcLink} data-clarity-event={`pole_${locale}_jump_calc_from_cro`}>
+            <Calculator aria-hidden="true" className={s.badgeIcon} />
+            <span>{locale === "ar" ? "حاسبة الحاويات" : locale === "fr" ? "Calculateur" : "Calculator"}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function PoleStickyMobileBar({
+  locale,
+  rfqAnchor = "#rfq",
+  waMessage,
+}: {
+  locale: "ar" | "en" | "fr";
+  rfqAnchor?: string;
+  waMessage: string;
+}) {
+  const calcLabel = locale === "ar" ? "حاسبة الحاويات" : locale === "fr" ? "Calculer 40' HC" : "Container Calc";
+  const waLabel = locale === "ar" ? "واتساب المصنع" : locale === "fr" ? "WhatsApp Usine" : "Factory WhatsApp";
+  return (
+    <div className={s.mobileStickyBar} role="region" aria-label={waLabel}>
+      <a href={rfqAnchor} className={s.mobileStickyCalc} data-clarity-event={`pole_${locale}_sticky_calc`}>
+        <Calculator aria-hidden="true" className={s.badgeIcon} />
+        <span>{calcLabel}</span>
+      </a>
+      <a
+        href={`${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(waMessage)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={s.mobileStickyWa}
+        data-clarity-event={`pole_${locale}_sticky_wa`}
+        data-clarity-upgrade={`pole_${locale}_sticky_wa_lead`}
+      >
+        <MessageCircle aria-hidden="true" className={s.badgeIcon} />
+        <span>{waLabel}</span>
+      </a>
+    </div>
+  );
+}
+
 export default function UtilityPoleFunnel({
   copy,
   locale,
   sourcePage,
   sectionId = "rfq",
+  defaultSpecId,
+  defaultDestId,
 }: {
   copy: UtilityPoleFunnelCopy;
   locale: "ar" | "en" | "fr";
   sourcePage: string;
   sectionId?: string;
+  defaultSpecId?: string;
+  defaultDestId?: string;
 }) {
   const uid = useId();
-  const [specId, setSpecId] = useState(copy.specs[0]?.id ?? "9m-brown");
+  const [specId, setSpecId] = useState(defaultSpecId ?? copy.specs[0]?.id ?? "9m-brown");
   const [volId, setVolId] = useState(copy.volumes[0]?.id ?? "1x40hc");
   const [incoterm, setIncoterm] = useState(copy.incoterms[0] ?? "CIF");
-  const [destId, setDestId] = useState(copy.destinations[0]?.id ?? "default");
+  const [destId, setDestId] = useState(defaultDestId ?? copy.destinations[0]?.id ?? "default");
   const [customPort, setCustomPort] = useState("");
   const [company, setCompany] = useState("");
   const [whatsappPhone, setWhatsappPhone] = useState("");
@@ -254,6 +430,86 @@ export default function UtilityPoleFunnel({
   const resolvedDestination = customPort.trim()
     ? `${activeDest.label} (${customPort.trim()})`
     : `${activeDest.label} — ${activeDest.portSummary}`;
+
+  // Gösterge bütçe planlama aralığı (FOB / CIF konteyner bazlı — kesin fiyat değil, 24s proforma kilitli planlama rehberi)
+  const budgetRange = useMemo(() => {
+    const id = activeSpec.id.toLowerCase();
+    const baseUnitLow = id.includes("10m") || id.includes("12m") ? 148 : id.includes("7m") || id.includes("8m") ? 72 : 98;
+    const baseUnitHigh = id.includes("10m") || id.includes("12m") ? 195 : id.includes("7m") || id.includes("8m") ? 96 : 128;
+    const volDiscount = activeVol.containers >= 20 ? 0.91 : activeVol.containers >= 8 ? 0.94 : activeVol.containers >= 3 ? 0.97 : 1;
+    const isCif = incoterm.toUpperCase().includes("CIF") || incoterm.toUpperCase().includes("CFR");
+    const freightPerCtrLow = isCif ? 2400 : 0;
+    const freightPerCtrHigh = isCif ? 4600 : 0;
+    const totalLow = Math.round((estimatedPoles * baseUnitLow * volDiscount + activeVol.containers * freightPerCtrLow) / 100) * 100;
+    const totalHigh = Math.round((estimatedPoles * baseUnitHigh * volDiscount + activeVol.containers * freightPerCtrHigh) / 100) * 100;
+    const unitLow = Math.round(totalLow / Math.max(estimatedPoles, 1));
+    const unitHigh = Math.round(totalHigh / Math.max(estimatedPoles, 1));
+    return { totalLow, totalHigh, unitLow, unitHigh };
+  }, [activeSpec.id, activeVol.containers, estimatedPoles, incoterm]);
+
+  function handlePrintProforma() {
+    fireLeadAnalytics("print_pole_proforma_pdf");
+    if (typeof window === "undefined") return;
+    const isRtl = locale === "ar";
+    const docTitle =
+      locale === "ar"
+        ? "ملخص المواصفة الفنية وطلب الفاتورة المبدئية — bdimexport"
+        : locale === "fr"
+          ? "Dossier Technique & Pré-Proforma Usine — bdimexport"
+          : "Factory Technical Specification & Pre-Proforma Summary — bdimexport";
+    const w = window.open("", "_blank", "noopener,noreferrer,width=900,height=780");
+    if (!w) return;
+    const esc = (v: string) => v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    w.document.write(`<!doctype html>
+<html lang="${locale}" dir="${isRtl ? "rtl" : "ltr"}">
+<head>
+<meta charset="utf-8" />
+<title>${esc(docTitle)}</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; color: #111827; margin: 32px; line-height: 1.55; }
+  .head { border-bottom: 3px solid #0b2545; padding-bottom: 14px; margin-bottom: 20px; display: flex; justify-content: space-between; gap: 16px; }
+  .brand { font-size: 22px; font-weight: 800; color: #0b2545; }
+  .meta { font-size: 12px; color: #4b5563; }
+  h1 { font-size: 18px; margin: 0 0 12px; color: #0b2545; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: ${isRtl ? "right" : "left"}; }
+  th { background: #f3f4f6; font-weight: 700; width: 34%; }
+  .box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 14px; margin: 16px 0; font-size: 13px; }
+  .foot { margin-top: 28px; padding-top: 12px; border-top: 1px solid #d1d5db; font-size: 11px; color: #4b5563; }
+  @media print { body { margin: 16px; } }
+</style>
+</head>
+<body>
+  <div class="head">
+    <div>
+      <div class="brand">bdimexport</div>
+      <div class="meta">${esc(CORPORATE_ENTITIES[0].name)} (Türkiye) · ${esc(CORPORATE_ENTITIES[1].name)} (USA)</div>
+    </div>
+    <div class="meta">D-U-N-S® #: ${esc(US_DUNS_NUMBER)}<br/>SAP Ariba®: ${esc(SAP_ARIBA_ID)}<br/>WhatsApp: ${esc(OFFICIAL_PHONE)}</div>
+  </div>
+  <h1>${esc(docTitle)}</h1>
+  <table>
+    <tr><th>${esc(copy.briefLabels.spec)}</th><td>${esc(activeSpec.title)} (${esc(activeSpec.meta)})</td></tr>
+    <tr><th>${esc(copy.briefLabels.volume)}</th><td>${esc(activeVol.label)}</td></tr>
+    <tr><th>${esc(copy.briefLabels.estimatedQty)}</th><td>~${estimatedPoles.toLocaleString("en-US")} ${esc(copy.calcLabels.polesUnit)}</td></tr>
+    <tr><th>${esc(copy.briefLabels.incoterm)}</th><td>${esc(incoterm)}</td></tr>
+    <tr><th>${esc(copy.briefLabels.destination)}</th><td>${esc(resolvedDestination)}</td></tr>
+    <tr><th>Indicative Planning Band (USD)</th><td>$${budgetRange.unitLow} – $${budgetRange.unitHigh} / pole · Est. Container Lot: $${budgetRange.totalLow.toLocaleString("en-US")} – $${budgetRange.totalHigh.toLocaleString("en-US")} (Subject to 24h Formal Proforma)</td></tr>
+    ${company.trim() ? `<tr><th>${esc(copy.briefLabels.company)}</th><td>${esc(company.trim())}</td></tr>` : ""}
+    ${notes.trim() ? `<tr><th>${esc(copy.briefLabels.notes)}</th><td>${esc(notes.trim())}</td></tr>` : ""}
+  </table>
+  <div class="box">
+    <strong>Factory Autoclave Protocol (EN 14229 · BS 1990-1 · SANS 754 · NF C 67-100 · Use Class 4):</strong><br/>
+    Pre-seasoning moisture ≤ 25% · Initial vacuum 60 min @ 63.5 cmHg · Hydraulic pressure ≥ 10.5 kg/cm² · 3.5% solution (350 L/m³ = 16 kg/m³ dry salt retention) · ≥ 75% sapwood penetration · 15 min final vacuum · Chalk-numbered tally photos &amp; Phytosanitary / Origin / SGS-BV readiness.
+  </div>
+  <div class="foot">
+    Official Direct Factory Desk: ${esc(OFFICIAL_PHONE)} (${esc(OFFICIAL_WHATSAPP_WA)}) · ${esc(OFFICIAL_EMAIL)} · https://bdimexport.com${esc(sourcePage)}
+  </div>
+  <script>window.onload = function () { window.print(); };</script>
+</body>
+</html>`);
+    w.document.close();
+  }
 
   const brief = useMemo(() => {
     const L = copy.briefLabels;
@@ -499,6 +755,26 @@ export default function UtilityPoleFunnel({
             <span className={s.calcLabel}>{copy.calcLabels.selectedPort}</span>
             <span className={s.calcVal}>{activeDest.portSummary}</span>
           </div>
+          <div className={s.calcMetric}>
+            <span className={s.calcLabel}>
+              {locale === "ar"
+                ? "نطاق الميزانية الاسترشادي (USD)"
+                : locale === "fr"
+                  ? "Budget indicatif usine (USD)"
+                  : "Indicative Budget Band (USD)"}
+            </span>
+            <span className={s.calcVal}>
+              <bdi dir="ltr">
+                ${budgetRange.unitLow}–${budgetRange.unitHigh}/pc
+              </bdi>
+            </span>
+            <span className={s.calcSubNote}>
+              <bdi dir="ltr">
+                Est. ${budgetRange.totalLow.toLocaleString("en-US")}–${budgetRange.totalHigh.toLocaleString("en-US")}
+              </bdi>{" "}
+              {locale === "ar" ? "(تأكيد نهائي خلال 24 ساعة)" : locale === "fr" ? "(proforma fixe sous 24 h)" : "(lock exact rate in 24h)"}
+            </span>
+          </div>
         </div>
 
         <div className={s.inputGrid} onFocusCapture={markFormEngaged}>
@@ -600,6 +876,21 @@ export default function UtilityPoleFunnel({
           >
             <Copy aria-hidden="true" className={s.btnIcon} />
             <span>{copied ? copy.copiedCta : copy.copyCta}</span>
+          </button>
+          <button
+            id={`cta-pole-funnel-print-pdf-${locale}`}
+            type="button"
+            onClick={handlePrintProforma}
+            className={s.secondaryActionBtn}
+          >
+            <Printer aria-hidden="true" className={s.btnIcon} />
+            <span>
+              {locale === "ar"
+                ? "طباعة / حفظ ملخص العرض (PDF)"
+                : locale === "fr"
+                  ? "Imprimer / PDF Pré-Proforma"
+                  : "Print / Save Spec Proforma (PDF)"}
+            </span>
           </button>
         </div>
 

@@ -12,6 +12,9 @@ import { TR_EXPORT_CORRIDORS } from "@/app/(tr)/_lib/tr-seo-data";
 import { insightBase, listInsights, type InsightScope } from "@/lib/ui/insights";
 import { listRatgeber } from "@/app/(de)/de/_lib/ratgeber";
 import { listZhInsights } from "@/app/(zh)/zh/_lib/insights";
+import { EN_POLE_SPOKES } from "@/lib/seo/poles-spokes-en";
+import { AR_POLE_SPOKES } from "@/lib/seo/poles-spokes-ar";
+import { FR_POLE_SPOKES } from "@/lib/seo/poles-spokes-fr";
 
 const BASE = SITE_BASE;
 
@@ -172,6 +175,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const slug of slugs) {
       entries.push({ url: `${BASE}${base}/${slug}`, lastModified: stableMod, changeFrequency: "monthly", priority: 0.75 });
     }
+  }
+
+  // Ahşap Elektrik & Telekom Direkleri Topikal Kale (17 Spoke: 6 EN + 6 AR + 5 FR)
+  for (const sp of [...EN_POLE_SPOKES, ...AR_POLE_SPOKES, ...FR_POLE_SPOKES]) {
+    const prefix = sp.locale === "ar" ? "/en/ar/wooden-utility-poles" : sp.locale === "fr" ? "/en/fr/wooden-utility-poles" : "/en/wooden-utility-poles";
+    const url = `${BASE}${prefix}/${sp.slug}`;
+    const languages: Record<string, string> = { [sp.locale]: url };
+    if (sp.crossAlternates?.en) {
+      languages.en = `${BASE}${sp.crossAlternates.en}`;
+      languages["x-default"] = `${BASE}${sp.crossAlternates.en}`;
+    } else if (sp.locale === "en") {
+      languages["x-default"] = url;
+    } else {
+      languages["x-default"] = url;
+    }
+    if (sp.crossAlternates?.ar) languages.ar = `${BASE}${sp.crossAlternates.ar}`;
+    if (sp.crossAlternates?.fr) languages.fr = `${BASE}${sp.crossAlternates.fr}`;
+    entries.push({
+      url,
+      lastModified: stableMod,
+      changeFrequency: "weekly",
+      priority: 0.9,
+      alternates: { languages },
+    });
   }
 
   return entries;

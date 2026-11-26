@@ -2,6 +2,7 @@
 import { EN_PATHS, joinUrl } from "@/lib/hreflang";
 import { fileLastMod } from "@/lib/seo/lastmod";
 import { listInsights } from "@/lib/ui/insights";
+import { EN_POLE_SPOKES } from "@/lib/seo/poles-spokes-en";
 
 export const dynamic = "force-static";
 
@@ -16,6 +17,7 @@ export function GET(): Response {
   }
   locs.push(`${BASE}/en/insights`);
   for (const slug of listInsights("en")) locs.push(`${BASE}/en/insights/${slug}`);
+  for (const sp of EN_POLE_SPOKES) locs.push(`${BASE}/en/wooden-utility-poles/${sp.slug}`);
 
   const urls = locs
     .map((loc) => `  <url><loc>${loc}</loc><lastmod>${mod}</lastmod><changefreq>weekly</changefreq></url>`)

@@ -260,13 +260,41 @@ export function buildProductFunnelGraph(opts: {
   productId?: string;
   category: string;
   image: string;
+  images?: string[];
+  video?: {
+    name: string;
+    description: string;
+    thumbnailUrl: string;
+    contentUrl: string;
+    uploadDate?: string;
+    duration?: string;
+  };
+  specs?: { name: string; value: string }[];
   areaServed: string[];
   crumbs: { name: string; url: string }[];
   faq: { q: string; a: string }[];
 }): object[] {
-  const { url, inLanguage, title, description, productName, sku, mpn, productId, category, image, areaServed, crumbs, faq } = opts;
+  const {
+    url,
+    inLanguage,
+    title,
+    description,
+    productName,
+    sku,
+    mpn,
+    productId,
+    category,
+    image,
+    images,
+    video,
+    specs = [],
+    areaServed,
+    crumbs,
+    faq,
+  } = opts;
   const resolvedProductId = productId ?? `${url}#product`;
-  return [
+  const galleryImages = images && images.length > 0 ? images : [image];
+  const nodes: object[] = [
     ...masterOrganizationNodes(),
     {
       "@type": "WebPage",
@@ -291,13 +319,22 @@ export function buildProductFunnelGraph(opts: {
       mpn: mpn ?? sku,
       productID: sku,
       category,
-      image: [image],
+      image: galleryImages,
       brand: { "@type": "Brand", name: "Bdimexport" },
       manufacturer: { "@id": ENTITY_TR_ID },
       countryOfOrigin: "TR",
+      ...(specs.length > 0
+        ? {
+            additionalProperty: specs.map((sp) => ({
+              "@type": "PropertyValue",
+              name: sp.name,
+              value: sp.value,
+            })),
+          }
+        : {}),
       offers: {
         "@type": "Offer",
-        url: `${url}#contact`,
+        url: `${url}#rfq`,
         availability: "https://schema.org/InStock",
         priceCurrency: "USD",
         seller: { "@id": ORG_ID },
@@ -309,7 +346,7 @@ export function buildProductFunnelGraph(opts: {
       "@id": `${url}#service`,
       name: title,
       description,
-      serviceType: "Factory-Direct Wooden Utility & Telecom Pole Manufacturing and Container Export",
+      serviceType: "Factory-Direct Wooden Utility & Electric Pole Manufacturing and Container Export",
       url,
       provider: { "@id": ORG_ID },
       areaServed: areaServed.map((c) => ({ "@type": "Country", name: c })),
@@ -334,6 +371,21 @@ export function buildProductFunnelGraph(opts: {
       })),
     },
   ];
+  if (video) {
+    nodes.push({
+      "@type": "VideoObject",
+      "@id": `${url}#factory-video`,
+      name: video.name,
+      description: video.description,
+      thumbnailUrl: [video.thumbnailUrl],
+      contentUrl: video.contentUrl,
+      uploadDate: video.uploadDate ?? "2026-11-20T00:00:00Z",
+      duration: video.duration ?? "PT0M20S",
+      inLanguage,
+      publisher: { "@id": ORG_ID },
+    });
+  }
+  return nodes;
 }
 
 export function defaultOpenGraph(opts: {

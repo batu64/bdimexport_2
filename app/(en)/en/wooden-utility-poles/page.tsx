@@ -7,11 +7,13 @@ import { ArrowRight, Factory, Globe, MessageCircle, ShieldCheck } from "lucide-r
 import Hero from "@/lib/ui/Hero";
 import StatBand from "@/lib/ui/StatBand";
 import { Section, SectionHeader } from "@/lib/ui/Section";
-import UtilityPoleFunnel, { PoleHeroVideoShowcase, type UtilityPoleFunnelCopy } from "@/lib/ui/UtilityPoleFunnel";
+import UtilityPoleFunnel, { PoleConversionBar, PoleHeroVideoShowcase, PoleStickyMobileBar, type UtilityPoleFunnelCopy } from "@/lib/ui/UtilityPoleFunnel";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, SAP_ARIBA_ID, SAP_ARIBA_PROFILE_URL, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { enAlternates } from "../_lib/hreflang";
 import { SeoJsonLd, SITE_URL, buildProductFunnelGraph, defaultOpenGraph } from "@/lib/seo/schema";
+import { POLE_GALLERY_IMAGES, POLE_SCHEMA_SPECS, POLE_VIDEO_META } from "@/lib/seo/poles-funnel-copy";
+import { EN_POLE_SPOKES } from "@/lib/seo/poles-spokes-en";
 import ps from "@/lib/seo/proposal.module.css";
 import up from "@/lib/ui/utilitypole.module.css";
 
@@ -353,15 +355,20 @@ export default function EnWoodenUtilityPolesPage() {
     inLanguage: "en",
     title: META_TITLE,
     description: META_DESC,
-    productName: "Factory-Direct Autoclave-Impregnated Wooden Utility & Telecom Poles (7m – 12m)",
+    productName: "Factory-Direct Autoclave-Impregnated Wooden Electric & Utility Poles (7m – 12m)",
     sku: "BDIM-POLE-AFRICA-7M-12M",
-    category: "Wooden Electric & Telecom Utility Poles (HS 4403.11 / 4403.21)",
+    mpn: "BDIM-POLE-EN-AFRICA",
+    productId: `${PAGE_URL}#BDIM-POLE-AFRICA-7M-12M`,
+    category: "Wooden Electric & Telecom Utility Poles (HS 4403.11 / 4403.21 · EN 14229 / BS 1990 / SANS 754)",
     image: OG_IMG,
+    images: POLE_GALLERY_IMAGES,
+    video: POLE_VIDEO_META.en,
+    specs: POLE_SCHEMA_SPECS,
     areaServed: ["SN", "MZ", "GH", "CI", "KE", "TZ", "NG", "ZA", "LY", "JO"],
     crumbs: [
       { name: "Global Home", url: `${SITE_URL}/en` },
       { name: "Products", url: `${SITE_URL}/en/products` },
-      { name: "Wooden Utility & Telecom Poles (Direct Factory)", url: PAGE_URL },
+      { name: "Wooden Electric & Utility Poles (Direct Factory)", url: PAGE_URL },
     ],
     faq: FAQ_EN,
   });
@@ -451,6 +458,10 @@ export default function EnWoodenUtilityPolesPage() {
       />
 
       <StatBand items={stats} label="Factory Manufacturing & Export Benchmarks" locale="en" />
+
+      <Section id="factory-verification-cro" tone="alt">
+        <PoleConversionBar locale="en" sourcePage="/en/wooden-utility-poles" rfqAnchor="#rfq" contextLabel="Africa Wooden Electric Poles" />
+      </Section>
 
       <Section id="africa-corridors">
         <Reveal>
@@ -659,7 +670,7 @@ export default function EnWoodenUtilityPolesPage() {
           <SectionHeader
             id="faq"
             eyebrow="Direct Procurement & Engineering Answers"
-            title="Frequently Asked Questions: Importing Wooden Utility Poles to Africa"
+            title="Frequently Asked Questions: Importing Wooden Electric & Utility Poles to Africa"
           />
         </Reveal>
         <div className={ps.faqStack}>
@@ -671,6 +682,40 @@ export default function EnWoodenUtilityPolesPage() {
           ))}
         </div>
       </Section>
+
+      <Section id="pole-guides-fortress">
+        <Reveal>
+          <SectionHeader
+            id="pole-guides-fortress"
+            eyebrow="Wooden Electric Pole Engineering, Pricing & Country Corridors"
+            title="Deep Technical Guides: Prices, EN 14229 / BS 1990 / SANS 754 Standards & Africa Tenders"
+            lead="Explore dedicated pricing calculators, CCA vs. Creosote engineering comparisons, and country-specific port & national utility compliance guides."
+          />
+        </Reveal>
+        <div className={up.spokeGrid}>
+          {EN_POLE_SPOKES.map((sp) => (
+            <Link
+              key={sp.slug}
+              href={`/en/wooden-utility-poles/${sp.slug}`}
+              className={up.spokeCard}
+              data-clarity-event={`pole_en_pillar_to_${sp.slug}`}
+            >
+              <div>
+                <span className={up.spokeTag}>{sp.hubTag}</span>
+                <h3 className={up.spokeTitle}>{sp.metaTitle}</h3>
+                <p className={up.spokeSummary}>{sp.hubSummary}</p>
+              </div>
+              <span className={up.protocolCta}>Open Technical Guide →</span>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <PoleStickyMobileBar
+        locale="en"
+        rfqAnchor="#rfq"
+        waMessage="Hello Bdimexport Factory Desk, we request factory-direct CIF container pricing for 7m–12m wooden electric poles."
+      />
     </main>
   );
 }

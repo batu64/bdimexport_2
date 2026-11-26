@@ -730,8 +730,20 @@
 
 @media (min-width: 768px) {
   .calcBar {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+@media (min-width: 1200px) {
+  .calcBar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.calcSubNote {
+  font-size: var(--fs-xs);
+  color: var(--c-on-brand-muted);
+  line-height: var(--lh-caption);
 }
 
 .calcMetric {
@@ -909,6 +921,250 @@
   gap: var(--s-2);
   font-size: var(--fs-xs);
   color: var(--c-muted);
+}
+
+/* ── Anti-Aracı Dönüşüm Şeridi (Canlı Fabrika Videosu · BOQ Fast-Track · Teknik Katalog PDF) */
+.croStrip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+}
+
+@media (min-width: 960px) {
+  .croStrip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.croCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-block: var(--s-6);
+  padding-inline: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-block-start: var(--bw-2) solid var(--c-highlight);
+  box-shadow: var(--e-1);
+}
+
+.croCardTop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.croBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  align-self: flex-start;
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--c-highlight) 20%, transparent);
+  color: var(--c-heading);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+}
+
+.croTitle {
+  font-size: var(--fs-lg);
+  color: var(--c-heading);
+  line-height: var(--lh-heading);
+}
+
+.croSub {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  line-height: var(--lh-body);
+}
+
+.croActionPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  padding-block: var(--s-2);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius);
+  background: var(--c-highlight);
+  color: var(--c-on-highlight);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-stat);
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.croActionPrimary:hover {
+  transform: translateY(calc(var(--bw-1) * -1));
+  box-shadow: var(--e-2);
+}
+
+.croActionSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  padding-block: var(--s-2);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid var(--c-border-strong);
+  background: var(--c-bg);
+  color: var(--c-heading);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+
+.croActionSecondary:hover {
+  border-color: var(--c-accent);
+  background: var(--c-surface);
+}
+
+/* ── Topikal Kale (Hub & Spoke) Bağlantı Izgarası */
+.spokeGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+}
+
+@media (min-width: 768px) {
+  .spokeGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .spokeGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.spokeCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-block: var(--s-4);
+  padding-inline: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.spokeCard:hover {
+  border-color: var(--c-accent);
+  box-shadow: var(--e-2);
+  transform: translateY(calc(var(--bw-1) * -1));
+}
+
+.spokeTag {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+}
+
+.spokeTitle {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-heading);
+  color: var(--c-heading);
+  line-height: var(--lh-heading);
+}
+
+.spokeSummary {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  line-height: var(--lh-caption);
+}
+
+/* ── GEO Doğrudan Cevap Kapsülü (AI Overviews / ChatGPT / Perplexity) */
+.geoCapsule {
+  padding-block: var(--s-6);
+  padding-inline: var(--s-6);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--c-accent) 7%, var(--c-surface));
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-accent) 30%, var(--c-border));
+  border-inline-start: var(--bw-2) solid var(--c-accent);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin-block-end: var(--s-6);
+}
+
+.geoCapsuleLabel {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-stat);
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: var(--track-caps);
+}
+
+.geoCapsuleBody {
+  font-size: var(--fs-base);
+  color: var(--c-ink);
+  line-height: var(--lh-body);
+}
+
+/* ── Mobil Sabit Çift CTA Çubuğu (Sticky Bottom Conversion Bar) */
+.mobileStickyBar {
+  position: fixed;
+  inset-block-end: 0;
+  inset-inline: 0;
+  z-index: 40;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-2);
+  padding-block: var(--s-2);
+  padding-inline: var(--s-3);
+  background: color-mix(in srgb, var(--c-brand) 96%, var(--c-ink));
+  border-block-start: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 22%, transparent);
+  box-shadow: var(--e-3);
+}
+
+@media (min-width: 768px) {
+  .mobileStickyBar {
+    display: none;
+  }
+}
+
+.mobileStickyCalc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 32%, transparent);
+  background: transparent;
+  color: var(--c-on-brand);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  text-decoration: none;
+}
+
+.mobileStickyWa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  border-radius: var(--radius);
+  background: var(--c-highlight);
+  color: var(--c-on-highlight);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-stat);
+  text-decoration: none;
 }
 
 .statusOk {

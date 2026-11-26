@@ -7,12 +7,14 @@ import { ArrowRight, Factory, Globe, MessageCircle, ShieldCheck } from "lucide-r
 import Hero from "@/lib/ui/Hero";
 import StatBand from "@/lib/ui/StatBand";
 import { Section, SectionHeader } from "@/lib/ui/Section";
-import UtilityPoleFunnel, { PoleHeroVideoShowcase, type UtilityPoleFunnelCopy } from "@/lib/ui/UtilityPoleFunnel";
+import UtilityPoleFunnel, { PoleConversionBar, PoleHeroVideoShowcase, PoleStickyMobileBar, type UtilityPoleFunnelCopy } from "@/lib/ui/UtilityPoleFunnel";
 import WhatsAppFloat from "@/lib/ui/WhatsAppFloat";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, SAP_ARIBA_ID, SAP_ARIBA_PROFILE_URL, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { variantAlternates } from "@/app/(en)/en/_lib/hreflang";
 import { SeoJsonLd, SITE_URL, buildProductFunnelGraph, defaultOpenGraph } from "@/lib/seo/schema";
+import { POLE_GALLERY_IMAGES, POLE_SCHEMA_SPECS, POLE_VIDEO_META } from "@/lib/seo/poles-funnel-copy";
+import { FR_POLE_SPOKES } from "@/lib/seo/poles-spokes-fr";
 import ps from "@/lib/seo/proposal.module.css";
 import up from "@/lib/ui/utilitypole.module.css";
 
@@ -352,8 +354,13 @@ export default function FrWoodenUtilityPolesPage() {
     description: META_DESC,
     productName: "Poteaux électriques et télécoms en bois traité autoclave (7m – 12m)",
     sku: "BDIM-POLE-FR-7M-12M",
-    category: "Poteaux électriques en bois (HS 4403.11 / 4403.21 · EN 14229)",
+    mpn: "BDIM-POLE-FR-NFC67100",
+    productId: `${PAGE_URL}#BDIM-POLE-FR-7M-12M`,
+    category: "Poteaux électriques en bois (HS 4403.11 / 4403.21 · NF C 67-100 · EN 14229)",
     image: OG_IMG,
+    images: POLE_GALLERY_IMAGES,
+    video: POLE_VIDEO_META.fr,
+    specs: POLE_SCHEMA_SPECS,
     areaServed: ["SN", "CI", "CM", "BJ", "TG", "GN", "ML", "MA", "DZ", "TN"],
     crumbs: [
       { name: "Accueil FR", url: `${SITE_URL}/en/fr` },
@@ -447,6 +454,10 @@ export default function FrWoodenUtilityPolesPage() {
       />
 
       <StatBand items={stats} label="Repères industriels et capacités d'exportation" locale="en" />
+
+      <Section id="factory-verification-cro" tone="alt">
+        <PoleConversionBar locale="fr" sourcePage="/en/fr/wooden-utility-poles" rfqAnchor="#rfq" contextLabel="Poteaux Électriques Bois Afrique" />
+      </Section>
 
       <Section id="corridors-afrique">
         <Reveal>
@@ -667,6 +678,40 @@ export default function FrWoodenUtilityPolesPage() {
           ))}
         </div>
       </Section>
+
+      <Section id="pole-guides-fortress">
+        <Reveal>
+          <SectionHeader
+            id="pole-guides-fortress"
+            eyebrow="Dossiers Prix, Norme NF C 67-100 & Corridors Afrique Francophone"
+            title="Guides Spécialisés : Sénégal (SENELEC), Côte d'Ivoire (CIE), Cameroun (ENEO) & Maghreb"
+            lead="Consultez nos barèmes indicatifs par conteneur 40' HC, les exigences NF C 67-100 (150–300 daN) et nos délais maritimes par port."
+          />
+        </Reveal>
+        <div className={up.spokeGrid}>
+          {FR_POLE_SPOKES.map((sp) => (
+            <Link
+              key={sp.slug}
+              href={`/en/fr/wooden-utility-poles/${sp.slug}`}
+              className={up.spokeCard}
+              data-clarity-event={`pole_fr_pillar_to_${sp.slug}`}
+            >
+              <div>
+                <span className={up.spokeTag}>{sp.hubTag}</span>
+                <h3 className={up.spokeTitle}>{sp.metaTitle}</h3>
+                <p className={up.spokeSummary}>{sp.hubSummary}</p>
+              </div>
+              <span className={up.protocolCta}>Ouvrir le dossier technique →</span>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <PoleStickyMobileBar
+        locale="fr"
+        rfqAnchor="#rfq"
+        waMessage="Bonjour Bureau Usine bdimexport, nous souhaitons un devis CIF direct d'usine pour des poteaux électriques en bois traité (7m–12m)."
+      />
 
       <WhatsAppFloat
         locale="en"

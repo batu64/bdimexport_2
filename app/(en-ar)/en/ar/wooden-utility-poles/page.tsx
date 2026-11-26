@@ -7,12 +7,14 @@ import { ArrowRight, Factory, Globe, MessageCircle, ShieldCheck } from "lucide-r
 import Hero from "@/lib/ui/Hero";
 import StatBand from "@/lib/ui/StatBand";
 import { Section, SectionHeader } from "@/lib/ui/Section";
-import UtilityPoleFunnel, { PoleHeroVideoShowcase, type UtilityPoleFunnelCopy } from "@/lib/ui/UtilityPoleFunnel";
+import UtilityPoleFunnel, { PoleConversionBar, PoleHeroVideoShowcase, PoleStickyMobileBar, type UtilityPoleFunnelCopy } from "@/lib/ui/UtilityPoleFunnel";
 import WhatsAppFloat from "@/lib/ui/WhatsAppFloat";
 import Reveal from "@/lib/ui/motion/Reveal";
 import { CORPORATE_ENTITIES, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, SAP_ARIBA_ID, SAP_ARIBA_PROFILE_URL, US_DUNS_NUMBER } from "@/lib/ui/entities";
 import { variantAlternates } from "@/app/(en)/en/_lib/hreflang";
 import { SeoJsonLd, SITE_URL, buildProductFunnelGraph, defaultOpenGraph } from "@/lib/seo/schema";
+import { POLE_GALLERY_IMAGES, POLE_SCHEMA_SPECS, POLE_VIDEO_META } from "@/lib/seo/poles-funnel-copy";
+import { AR_POLE_SPOKES } from "@/lib/seo/poles-spokes-ar";
 import ps from "@/lib/seo/proposal.module.css";
 import up from "@/lib/ui/utilitypole.module.css";
 
@@ -415,6 +417,9 @@ export default function ArWoodenUtilityPolesPage() {
     productId: `${PAGE_URL}#BD-POLE-AR-MENA`,
     category: "أعمدة الكهرباء والاتصالات الخشبية المشربة بالأوتوكلاف (HS 4403.11 / 4403.21 · EN 14229)",
     image: OG_IMG,
+    images: POLE_GALLERY_IMAGES,
+    video: POLE_VIDEO_META.ar,
+    specs: POLE_SCHEMA_SPECS,
     areaServed: ["LY", "JO", "DZ", "IQ", "EG", "TN", "SA", "AE", "LB", "MA"],
     crumbs: [
       { name: "الرئيسية", url: `${SITE_URL}/en/ar` },
@@ -509,6 +514,10 @@ export default function ArWoodenUtilityPolesPage() {
       />
 
       <StatBand items={stats} label="مؤشرات القدرة التصنيعية والتصديرية" locale="ar" />
+
+      <Section id="factory-verification-cro" tone="alt">
+        <PoleConversionBar locale="ar" sourcePage="/en/ar/wooden-utility-poles" rfqAnchor="#contact" contextLabel="أعمدة كهرباء خشبية ليبيا والأردن والعراق والجزائر" />
+      </Section>
 
       <Section id="arab-corridors">
         <Reveal>
@@ -832,6 +841,40 @@ export default function ArWoodenUtilityPolesPage() {
           ))}
         </div>
       </Section>
+
+      <Section id="pole-guides-fortress">
+        <Reveal>
+          <SectionHeader
+            id="pole-guides-fortress"
+            eyebrow="أدلة الأسعار والمواصفات الفنية حسب الدولة العربية (MENA)"
+            title="أدلة متخصصة: ليبيا (GECOL)، الأردن (JEPCO)، العراق، الجزائر (سونلغاز) والأسعار"
+            lead="تصفح الأدلة التفصيلية لكل دولة عربية، ودليل أسعار الأعمدة وحمولة حاوية 40 قدم، والمقارنة الهندسية بين التشريب البني والأخضر."
+          />
+        </Reveal>
+        <div className={up.spokeGrid}>
+          {AR_POLE_SPOKES.map((sp) => (
+            <Link
+              key={sp.slug}
+              href={`/en/ar/wooden-utility-poles/${sp.slug}`}
+              className={up.spokeCard}
+              data-clarity-event={`pole_ar_pillar_to_${sp.slug}`}
+            >
+              <div>
+                <span className={up.spokeTag}>{sp.hubTag}</span>
+                <h3 className={up.spokeTitle}>{sp.metaTitle}</h3>
+                <p className={up.spokeSummary}>{sp.hubSummary}</p>
+              </div>
+              <span className={up.protocolCta}>افتح الدليل الفني والتسعير ←</span>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <PoleStickyMobileBar
+        locale="ar"
+        rfqAnchor="#contact"
+        waMessage="السلام عليكم، نرغب في عرض سعر مصنع مباشر لأعمدة الكهرباء والاتصالات الخشبية (ليبيا / الأردن / العراق / الجزائر)."
+      />
 
       <WhatsAppFloat
         locale="ar"

@@ -101,9 +101,13 @@ for (const f of allHtml) {
   const raw = fs.readFileSync(f, "utf8");
   const links = [...raw.matchAll(/href="(\/[^"#?]*)"/g)]
     .map((m) => m[1].replace(/\/+$/, "") || "/")
-    .filter((u) => !u.startsWith("/_next") && !u.startsWith("/media") && !/\.(xml|json|txt|ico|png|svg|webp|jpg|mp4)$/i.test(u));
+    .filter((u) => !u.startsWith("/_next") && !u.startsWith("/media") && !/\.(xml|json|txt|ico|png|svg|webp|jpg|mp4|pdf)$/i.test(u));
   for (const l of links) {
     assert.ok(builtRoutes.has(l), `Kırık iç bağlantı (${rel} -> ${l} [404])`);
+  }
+  const pdfLinks = [...raw.matchAll(/href="(\/[^"#?]+\.pdf)"/gi)].map((m) => m[1].replace(/^\//, ""));
+  for (const pdfRel of pdfLinks) {
+    assert.ok(fs.existsSync(path.join(OUT, pdfRel)), `Kırık PDF bağlantısı (${rel} -> /${pdfRel} [404])`);
   }
 }
 console.log("✔ İç bağlantı bütünlüğü doğrulandı: tüm public sayfalarda kırık iç bağlantı (404) = 0");
@@ -210,6 +214,41 @@ for (const [name, content] of [
   assert.ok(content.includes("905394147854"), `${name}: resmi WhatsApp hattı (+90 539 414 78 54) eksik!`);
   assert.ok(content.includes("data-clarity-event=") && content.includes("zhsd81zz12"), `${name}: Clarity tıklama noktaları veya etiketi eksik!`);
   assert.ok(content.includes("14-977-6743") && content.includes("BNO-100000188010374"), `${name}: D-U-N-S veya SAP Ariba doğrulaması eksik!`);
+  assert.ok(content.includes('"@type":"VideoObject"'), `${name}: VideoObject şeması eksik!`);
 }
-console.log("✔ Elektrik direği EN/AR/FR hunileri doğrulandı: üçlü karşılıklı hreflang, resmi WhatsApp hattı ve sıfır marka sızıntısı");
+const poleSpokePages = [
+  "en/wooden-utility-poles/price-and-container-calculator.html",
+  "en/wooden-utility-poles/cca-vs-creosote-pine-vs-eucalyptus.html",
+  "en/wooden-utility-poles/standards-en14229-bs1990-sans754.html",
+  "en/wooden-utility-poles/senegal-west-africa.html",
+  "en/wooden-utility-poles/mozambique-southern-africa.html",
+  "en/wooden-utility-poles/ghana-kenya-tanzania-nigeria.html",
+  "en/ar/wooden-utility-poles/libya.html",
+  "en/ar/wooden-utility-poles/jordan.html",
+  "en/ar/wooden-utility-poles/iraq.html",
+  "en/ar/wooden-utility-poles/algeria-maghreb.html",
+  "en/ar/wooden-utility-poles/price-and-container-guide.html",
+  "en/ar/wooden-utility-poles/brown-vs-green-autoclave.html",
+  "en/fr/wooden-utility-poles/prix-conteneur-poteaux-bois.html",
+  "en/fr/wooden-utility-poles/norme-nfc-67-100-en-14229.html",
+  "en/fr/wooden-utility-poles/senegal-senelec.html",
+  "en/fr/wooden-utility-poles/cote-divoire-cameroun.html",
+  "en/fr/wooden-utility-poles/maghreb-algerie-maroc-tunisie.html",
+];
+for (const spRel of poleSpokePages) {
+  const sh = readOut(spRel);
+  const expectedCanonical = `${SITE}/${spRel.replace(/\.html$/, "")}`;
+  assert.equal(sh.match(/<link rel="canonical" href="([^"]+)"/)?.[1], expectedCanonical, `${spRel}: canonical hatalı`);
+  assert.equal((sh.replace(/<script[\s\S]*?<\/script>/g, "").match(/<h1[ >]/g) ?? []).length, 1, `${spRel}: tek H1 olmalı`);
+  assert.ok(sh.includes('"@type":"VideoObject"') && sh.includes('"@type":"Product"'), `${spRel}: VideoObject/Product şeması eksik`);
+  assert.ok(sh.includes("905394147854") && sh.includes("14-977-6743") && sh.includes("BNO-100000188010374"), `${spRel}: WhatsApp / D-U-N-S / SAP Ariba eksik`);
+}
+for (const pdf of [
+  "docs/bdimexport-wooden-electric-poles-datasheet-en.pdf",
+  "docs/bdimexport-wooden-electric-poles-datasheet-ar.pdf",
+  "docs/bdimexport-wooden-electric-poles-datasheet-fr.pdf",
+]) {
+  assert.ok(fs.existsSync(path.join(OUT, pdf)), `Eksik Teknik Katalog PDF: out/${pdf}`);
+}
+console.log(`✔ Elektrik direği EN/AR/FR Topikal Kalesi doğrulandı: 3 Pillar + ${poleSpokePages.length} Spoke + 3 PDF Katalog + VideoObject şeması`);
 console.log("=== TÜM SEO + GEO + ABM KONTROLLERİ BAŞARIYLA GEÇTİ ===");
