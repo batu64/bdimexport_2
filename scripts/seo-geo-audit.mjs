@@ -45,6 +45,7 @@ assert.equal(entityGraph["@context"], "https://schema.org", "entity-graph.json @
 assert.ok(Array.isArray(entityGraph["@graph"]) && entityGraph["@graph"].length >= 6, "entity-graph.json @graph eksik");
 assert.ok(llms.includes("14-977-6743") && llmsFull.includes("14-977-6743") && JSON.stringify(entityGraph).includes("149776743"), "D-U-N-S #14-977-6743 GEO / Knowledge Graph kaydı eksik");
 assert.ok(llms.includes("BNO-100000188010374") && llmsFull.includes("BNO-100000188010374") && JSON.stringify(entityGraph).includes("BNO-100000188010374"), "SAP Ariba BNO-100000188010374 GEO / Knowledge Graph kaydı eksik");
+assert.ok(llms.includes("https://www.youtube.com/@bdimexport") && llmsFull.includes("https://www.youtube.com/@bdimexport") && JSON.stringify(entityGraph).includes("https://www.youtube.com/@bdimexport"), "YouTube @bdimexport GEO / Knowledge Graph kaydı eksik");
 console.log(`✔ GEO uçları doğrulandı: llms.txt (${llms.length} B), llms-full.txt (${llmsFull.length} B), entity-graph.json (${entityGraph["@graph"].length} düğüm)`);
 
 // 2. Sitemap Index & 6 Split Sitemaps — 0 Kırık Link + 0 noindex sızıntısı + 0 >60 kr başlık

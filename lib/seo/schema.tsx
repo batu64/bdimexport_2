@@ -7,6 +7,7 @@ import {
   OFFICIAL_EMAIL,
   OFFICIAL_PHONE,
   OFFICIAL_WHATSAPP_WA,
+  OFFICIAL_YOUTUBE_URL,
   SAP_ARIBA_ID,
   SAP_ARIBA_PROFILE_URL,
   US_DUNS_NUMBER,
@@ -60,7 +61,7 @@ export function masterOrganizationNodes(): object[] {
       image: DEFAULT_OG_IMAGE,
       email: OFFICIAL_EMAIL,
       telephone: OFFICIAL_PHONE,
-      sameAs: [OFFICIAL_WHATSAPP_WA, SAP_ARIBA_PROFILE_URL],
+      sameAs: [OFFICIAL_WHATSAPP_WA, SAP_ARIBA_PROFILE_URL, OFFICIAL_YOUTUBE_URL],
       description:
         "Dual-Hub global B2B sourcing (Türkiye and China), standalone 24-48h container loading and factory inspection, HS-code commercial intelligence, export marketing systems, and 81-province Türkiye field operations.",
       knowsLanguage: [...SUPPORTED_BCP47],

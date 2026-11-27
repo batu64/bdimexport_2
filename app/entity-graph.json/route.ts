@@ -6,6 +6,9 @@ import { DE_PROPOSAL, EN_PROPOSALS, ZH_PROPOSAL } from "@/lib/seo/proposals";
 import { ORG_ID, SITE_URL, SUPPORTED_BCP47, masterOrganizationNodes } from "@/lib/seo/schema";
 import { SEO_RELEASE_DATE } from "@/lib/seo/lastmod";
 import { TR_EXPORT_CORRIDORS, TR_PROPOSALS } from "@/app/(tr)/_lib/tr-seo-data";
+import { EN_POLE_SPOKES } from "@/lib/seo/poles-spokes-en";
+import { AR_POLE_SPOKES } from "@/lib/seo/poles-spokes-ar";
+import { FR_POLE_SPOKES } from "@/lib/seo/poles-spokes-fr";
 
 export const dynamic = "force-static";
 
@@ -19,21 +22,36 @@ export function GET(): Response {
       {
         "@type": "ItemList",
         "@id": `${SITE_URL}/#direct-factory-utility-poles`,
-        name: "Bdimexport Factory-Direct Autoclave Wooden Utility & Telecom Poles (7m–12m)",
-        numberOfItems: 2,
+        name: "Bdimexport Factory-Direct Autoclave Wooden Electric & Telecom Poles (7m–12m)",
+        numberOfItems: 3 + EN_POLE_SPOKES.length + AR_POLE_SPOKES.length + FR_POLE_SPOKES.length,
         itemListElement: [
           {
             "@type": "ListItem",
             position: 1,
-            name: "Factory-Direct Wooden Utility & Telecom Poles for Africa (Senegal, Mozambique & Sub-Saharan Grid)",
+            name: "Factory-Direct Wooden Electric & Utility Poles for Africa (Senegal, Mozambique & Sub-Saharan Grid)",
             url: `${SITE_URL}/en/wooden-utility-poles`,
           },
           {
             "@type": "ListItem",
             position: 2,
-            name: "توريد أعمدة الكهرباء والاتصالات الخشبية من المصنع مباشرة — ليبيا والأردن والشرق الأوسط",
+            name: "توريد أعمدة الكهرباء والاتصالات الخشبية من المصنع مباشرة — ليبيا والأردن والعراق والجزائر",
             url: `${SITE_URL}/en/ar/wooden-utility-poles`,
           },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Poteaux Électriques et Télécoms en Bois Traité Autoclave (Sénégal, Côte d'Ivoire, Cameroun & Maghreb)",
+            url: `${SITE_URL}/en/fr/wooden-utility-poles`,
+          },
+          ...[...EN_POLE_SPOKES, ...AR_POLE_SPOKES, ...FR_POLE_SPOKES].map((sp, i) => {
+            const prefix = sp.locale === "ar" ? "/en/ar/wooden-utility-poles" : sp.locale === "fr" ? "/en/fr/wooden-utility-poles" : "/en/wooden-utility-poles";
+            return {
+              "@type": "ListItem",
+              position: i + 4,
+              name: sp.h1,
+              url: `${SITE_URL}${prefix}/${sp.slug}`,
+            };
+          }),
         ],
       },
       {

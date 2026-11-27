@@ -30,3 +30,4 @@ export const OFFICIAL_EMAIL_HREF = "mailto:info@bdimexport.com";
 export const OFFICIAL_PHONE = "+90 539 414 78 54";
 export const OFFICIAL_PHONE_HREF = "tel:+905394147854";
 export const OFFICIAL_WHATSAPP_WA = "https://wa.me/905394147854";
+export const OFFICIAL_YOUTUBE_URL = "https://www.youtube.com/@bdimexport";
