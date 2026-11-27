@@ -2,6 +2,7 @@
 // Built specifically to rank in Google US & AI Search for US companies seeking a dedicated overseas sourcing,
 // manufacturing, quality inspection, and import management partner across Türkiye and China.
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Building2, ClipboardCheck, FileCheck2, ShieldCheck, Ship } from "lucide-react";
 import dict from "@/lib/messages/en.json";
 import Hero from "@/lib/ui/Hero";
@@ -178,11 +179,11 @@ export default function UsDivisionHubPage() {
           />
         </Reveal>
         <div className={s.faqStack}>
-          {US_HOME_FAQ.map((f) => (
-            <article key={f.q} className={s.faqItem}>
-              <h3 className={s.faqQ}>{f.q}</h3>
-              <p className={s.faqA}>{f.a}</p>
-            </article>
+          {US_HOME_FAQ.map((f, idx) => (
+            <details key={f.q} className={s.faqDetails} open={idx === 0}>
+              <summary className={s.faqSummary}>{f.q}</summary>
+              <p className={s.faqBody}>{f.a}</p>
+            </details>
           ))}
         </div>
       </Section>
@@ -203,6 +204,10 @@ export default function UsDivisionHubPage() {
             <a href={SAP_ARIBA_PROFILE_URL} target="_blank" rel="noopener noreferrer" data-clarity-event="us_hub_sap_ariba_verify">
               SAP Ariba® {SAP_ARIBA_ID}
             </a>
+            {" · "}
+            <Link href="/en/proposals/us-procurement-partner" data-clarity-event="us_hub_w9_proposal_click">
+              W-9 &amp; Partnership Proposal →
+            </Link>
             ) · Field Arm: {CORPORATE_ENTITIES[0].name}
           </span>
         </p>

@@ -33,6 +33,8 @@ export function footerProps(): FooterProps {
       title: f.contact,
       email: QUOTE_EMAIL,
       emailLabel: f.email,
+      locale: "zh",
+      whatsappPrimary: false,
       whatsapp: { href: OFFICIAL_WHATSAPP_WA, label: f.whatsapp },
       phone: { number: OFFICIAL_PHONE, href: OFFICIAL_PHONE_HREF, label: f.phone },
     },

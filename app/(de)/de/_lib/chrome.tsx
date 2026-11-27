@@ -7,7 +7,8 @@ import { marketSites } from "@/lib/ui/sites";
 import dict from "@/lib/messages/de.json";
 
 export const QUOTE_EMAIL = process.env.NEXT_PUBLIC_QUOTE_EMAIL ?? OFFICIAL_EMAIL;
-export const quoteHref = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(dict.quote.subject)}&body=${encodeURIComponent(dict.quote.body)}`;
+export const quoteHref = "/de/anfrage";
+export const quoteMailHref = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(dict.quote.subject)}&body=${encodeURIComponent(dict.quote.body)}`;
 export const whatsappHref = `${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(dict.quote.whatsappText)}`;
 
 export function navbarProps(): NavbarProps {
@@ -51,6 +52,8 @@ export function footerProps(): FooterProps {
       title: f.contact,
       email: QUOTE_EMAIL,
       emailLabel: f.email,
+      locale: "de",
+      whatsappPrimary: false,
       whatsapp: { href: whatsappHref, label: f.whatsapp },
       phone: { number: OFFICIAL_PHONE, href: OFFICIAL_PHONE_HREF, label: f.phone },
     },

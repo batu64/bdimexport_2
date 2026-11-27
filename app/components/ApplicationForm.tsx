@@ -5,8 +5,11 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { AlertCircle, CheckCircle2, FileUp, Loader2, ShieldCheck } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { AlertCircle, Check, CheckCircle2, Copy, ExternalLink, FileUp, Loader2, Mail, MessageCircle, ShieldCheck } from "lucide-react";
+import { clarityEvent, clarityUpgrade } from "@/lib/ui/clarity";
+import { OFFICIAL_EMAIL, OFFICIAL_WHATSAPP_WA } from "@/lib/ui/entities";
+import { buildEmailLinks, getEmailDeliveryCopy, triggerMailtoLink } from "@/lib/ui/email-delivery";
 import st from "./form.module.css";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? "";
@@ -66,8 +69,81 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
   const [errors, setErrors] = useState<Partial<Record<keyof FormState | "form", string>>>({});
   const [status, setStatus] = useState<Status>("idle");
   const [token, setToken] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [copiedAddr, setCopiedAddr] = useState(false);
+  const [emailPanelOpen, setEmailPanelOpen] = useState(false);
   const widgetEl = useRef<HTMLDivElement>(null);
   const widgetId = useRef<string | undefined>(undefined);
+
+  const brief = useMemo(() => {
+    const lines = [
+      "[BDIMEXPORT ÜCRETSİZ İHRACAT HIZLANDIRMA BAŞVURUSU]",
+      f.firmaAdi.trim() ? `• Firma Adı: ${f.firmaAdi.trim()}` : "• Firma Adı: (Belirtilecek)",
+      f.vergiNo.trim() ? `• Vergi No: ${f.vergiNo.trim()}` : null,
+      f.sektor.trim() ? `• Sektör / Ürün Grubu: ${f.sektor.trim()}` : null,
+      f.kapasite.trim() ? `• Üretim Kapasitesi: ${f.kapasite.trim()}` : null,
+      f.sertifikalar.length ? `• Sertifikalar: ${f.sertifikalar.join(", ")}` : null,
+      f.ihracatGecmisi.trim() ? `• İhracat Geçmişi: ${f.ihracatGecmisi.trim()}` : null,
+      f.contactName.trim() ? `• Yetkili: ${f.contactName.trim()}` : null,
+      f.contactEmail.trim() ? `• E-posta: ${f.contactEmail.trim()}` : null,
+      f.contactPhone.trim() ? `• Telefon / WhatsApp: ${f.contactPhone.trim()}` : null,
+      `• KVKK Açık Rıza (${kvkkVersion}): ${f.kvkkConsent ? "Onaylandı" : "Onay bekleniyor"}`,
+      `• Yabancı Dil Sayfalarında Logo/Ünvan Yayını: ${f.logoConsent ? "Onaylı" : "Sadece gizli eşleştirme"}`,
+    ].filter(Boolean);
+    return lines.join("\n");
+  }, [f, kvkkVersion]);
+
+  const directWaHref = `${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(brief)}`;
+  const directEmailLinks = buildEmailLinks({
+    to: OFFICIAL_EMAIL,
+    subject: `Ücretsiz İhracat Hızlandırma Başvurusu — ${f.firmaAdi.trim() || "Yeni Üretici"}`,
+    body: brief,
+  });
+  const deliveryCopy = getEmailDeliveryCopy("tr");
+
+  function validateDirect(): boolean {
+    const e: typeof errors = {};
+    if (!f.firmaAdi.trim()) e.firmaAdi = "Firma adı zorunlu.";
+    if (!f.kvkkConsent) e.kvkkConsent = "KVKK açık rızası olmadan başvuru iletilemez.";
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  }
+
+  async function handleDirectCopy() {
+    clarityEvent("partner_apply_tr_copy");
+    try {
+      await navigator.clipboard.writeText(brief);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // clipboard blocked
+    }
+  }
+
+  async function handleDirectEmail() {
+    if (!validateDirect()) return;
+    clarityEvent("partner_apply_tr_email");
+    clarityUpgrade("partner_apply_tr_email");
+    setEmailPanelOpen(true);
+    try {
+      await navigator.clipboard.writeText(brief);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3200);
+    } catch {
+      // clipboard blocked
+    }
+    triggerMailtoLink(directEmailLinks.mailto);
+  }
+
+  async function handleDirectCopyAddr() {
+    try {
+      await navigator.clipboard.writeText(OFFICIAL_EMAIL);
+      setCopiedAddr(true);
+      setTimeout(() => setCopiedAddr(false), 2400);
+    } catch {
+      // clipboard blocked
+    }
+  }
 
   // Turnstile: açık (explicit) render — action sunucunun beklediğiyle bağlanır; token tek kullanımlık
   useEffect(() => {
@@ -181,21 +257,13 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
     );
   }
 
-  if (!configured) {
-    return (
-      <div role="status" className={st.notice}>
-        <p>Çevrimiçi başvuru şu an alınamıyor. Lütfen daha sonra tekrar deneyin.</p>
-      </div>
-    );
-  }
-
   const aria = (k: keyof FormState) => ({
     "aria-invalid": !!errors[k],
     "aria-describedby": errors[k] ? `err-${k}` : undefined,
   });
 
   return (
-    <form onSubmit={submit} noValidate className={st.form} aria-busy={status === "submitting"}>
+    <form onSubmit={configured ? submit : (ev) => { ev.preventDefault(); }} noValidate className={st.form} aria-busy={status === "submitting"}>
       <div className={st.field}>
         <label className={st.label} htmlFor="firmaAdi">Firma Adı *</label>
         <input id="firmaAdi" className={st.input} value={f.firmaAdi} autoComplete="organization" maxLength={200}
@@ -204,9 +272,9 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
       </div>
 
       <div className={st.field}>
-        <label className={st.label} htmlFor="vergiNo">Vergi No *</label>
+        <label className={st.label} htmlFor="vergiNo">Vergi No {configured ? "*" : "(Opsiyonel)"}</label>
         <input id="vergiNo" className={st.input} inputMode="numeric" value={f.vergiNo} maxLength={14}
-          onChange={(e) => set("vergiNo", e.target.value)} aria-required="true" {...aria("vergiNo")} />
+          onChange={(e) => set("vergiNo", e.target.value)} aria-required={configured} {...aria("vergiNo")} />
         <FieldError id="err-vergiNo" msg={errors.vergiNo} />
       </div>
 
@@ -217,12 +285,14 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
         <FieldError id="err-sektor" msg={errors.sektor} />
       </div>
 
-      <div className={st.field}>
-        <label className={st.label} htmlFor="katalog"><FileUp aria-hidden="true" className={st.labelIcon} />Ürün Kataloğu (PDF, en fazla 25 MB)</label>
-        <input id="katalog" type="file" accept="application/pdf" className={`${st.input} ${st.file}`}
-          onChange={(e) => set("katalogFile", e.target.files?.[0] ?? null)} {...aria("katalogFile")} />
-        <FieldError id="err-katalogFile" msg={errors.katalogFile} />
-      </div>
+      {configured && (
+        <div className={st.field}>
+          <label className={st.label} htmlFor="katalog"><FileUp aria-hidden="true" className={st.labelIcon} />Ürün Kataloğu (PDF, en fazla 25 MB)</label>
+          <input id="katalog" type="file" accept="application/pdf" className={`${st.input} ${st.file}`}
+            onChange={(e) => set("katalogFile", e.target.files?.[0] ?? null)} {...aria("katalogFile")} />
+          <FieldError id="err-katalogFile" msg={errors.katalogFile} />
+        </div>
+      )}
 
       <div className={st.field}>
         <label className={st.label} htmlFor="kapasite">Üretim Kapasitesi</label>
@@ -298,15 +368,71 @@ export default function ApplicationForm({ kvkkVersion }: { kvkkVersion: string }
         </label>
       </div>
 
-      <div ref={widgetEl} className={st.turnstile} />
-      {errors.form && <div role="alert" className={`${st.err} ${st.formErr}`}><AlertCircle aria-hidden="true" className={st.errIcon} />Hata: {errors.form}</div>}
+      {configured ? (
+        <>
+          <div ref={widgetEl} className={st.turnstile} />
+          {errors.form && <div role="alert" className={`${st.err} ${st.formErr}`}><AlertCircle aria-hidden="true" className={st.errIcon} />Hata: {errors.form}</div>}
 
-      <button type="submit" disabled={status === "submitting" || !f.kvkkConsent}
-        className={st.submit} data-busy={status === "submitting" || undefined}>
-        {status === "submitting" ? <Loader2 aria-hidden="true" className={st.spin} /> : <ShieldCheck aria-hidden="true" className={st.submitIcon} />}
-        {status === "submitting" ? "Gönderiliyor…" : "Başvuruyu Gönder"}
-      </button>
-      <p className={st.hint}>* işaretli alanlar zorunludur. Logo yayın rızası ayrıdır ve isteğe bağlıdır.</p>
+          <button type="submit" disabled={status === "submitting" || !f.kvkkConsent}
+            className={st.submit} data-busy={status === "submitting" || undefined}>
+            {status === "submitting" ? <Loader2 aria-hidden="true" className={st.spin} /> : <ShieldCheck aria-hidden="true" className={st.submitIcon} />}
+            {status === "submitting" ? "Gönderiliyor…" : "Başvuruyu Gönder"}
+          </button>
+          <p className={st.hint}>* işaretli alanlar zorunludur. Logo yayın rızası ayrıdır ve isteğe bağlıdır.</p>
+        </>
+      ) : (
+        <div className={st.directWrap}>
+          <div className={st.directActions}>
+            <a
+              href={directWaHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={st.submit}
+              onClick={(ev) => {
+                if (!validateDirect()) {
+                  ev.preventDefault();
+                  return;
+                }
+                clarityEvent("partner_apply_tr_whatsapp");
+                clarityUpgrade("partner_apply_tr_whatsapp");
+              }}
+            >
+              <MessageCircle aria-hidden="true" className={st.submitIcon} />
+              <span>WhatsApp ile Başvuruyu Gönder (Önerilen)</span>
+            </a>
+            <button type="button" className={st.secondaryBtn} onClick={handleDirectEmail}>
+              <Mail aria-hidden="true" className={st.labelIcon} />
+              <span>E-posta / Gmail ile Gönder</span>
+            </button>
+            <button type="button" className={st.secondaryBtn} onClick={handleDirectCopy}>
+              {copied ? <Check aria-hidden="true" className={st.labelIcon} /> : <Copy aria-hidden="true" className={st.labelIcon} />}
+              <span>{copied ? "Başvuru Özeti Kopyalandı ✓" : "Özeti Kopyala"}</span>
+            </button>
+          </div>
+          <p className={st.hint}>
+            {deliveryCopy.priorityWhatsAppHint}. PDF kataloğunuzu WhatsApp sohbetinden veya e-posta ekinden doğrudan iletebilirsiniz.
+          </p>
+          {emailPanelOpen && (
+            <div role="status" aria-live="polite" className={st.emailFallback}>
+              <p className={st.hint}>{deliveryCopy.copiedNotice}</p>
+              <div className={st.directActions}>
+                <a href={directEmailLinks.gmail} target="_blank" rel="noopener noreferrer" className={st.secondaryBtn}>
+                  <ExternalLink aria-hidden="true" className={st.labelIcon} />
+                  <span>{deliveryCopy.gmailBtn}</span>
+                </a>
+                <a href={directEmailLinks.outlook} target="_blank" rel="noopener noreferrer" className={st.secondaryBtn}>
+                  <ExternalLink aria-hidden="true" className={st.labelIcon} />
+                  <span>{deliveryCopy.outlookBtn}</span>
+                </a>
+                <button type="button" className={st.secondaryBtn} onClick={handleDirectCopyAddr}>
+                  {copiedAddr ? <Check aria-hidden="true" className={st.labelIcon} /> : <Copy aria-hidden="true" className={st.labelIcon} />}
+                  <span>{copiedAddr ? deliveryCopy.copiedAddrBtn : deliveryCopy.copyAddrBtn}</span>
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </form>
   );
 }

@@ -20,7 +20,7 @@
 
 bdimexport.com'un kendisi bu döngünün ürünüdür: onaylı partnerler global alıcı sayfalarında sergilenir, gelen talepler doğru üreticiye yönlendirilir. Danışmanlığı alan üretici, kendi görünürlüğünün yanı sıra platformun alıcı ağından da yararlanır.
 
-[B2B Değerlendirme Başlat](/ihracat/ucretsiz-destek-basvuru)
+**Hemen Harekete Geçin:** [WhatsApp'tan B2B Pazarlama Planı İste](https://wa.me/905394147854?text=Merhaba%2C%20B2B%20ihracat%20pazarlama%20ve%20yurt%20d%C4%B1%C5%9F%C4%B1%20al%C4%B1c%C4%B1%20bulma%20sistemi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum.) · [Ücretsiz İhracat Programına Başvur](/ihracat/ucretsiz-destek-basvuru) · [24 Saatte Teklif / RFQ Oluştur](/rfq?track=marketing&urun=B2B%20Ihracat%20Pazarlama%20Sistemi)
 
 Satış kanalı stratejisi için [e-ihracat danışmanlığı](/ihracat/e-ihracat); partner görünürlüğü programı için [program tanıtımı](/ihracat/program-tanitim).
 
@@ -48,7 +48,7 @@ Bu huninin her adımı ölçülür; hangi adımın kırıldığı bilinirse büt
 | Referans | "Birçok müşteri" | İsim/şehir/sektör (onaylıysa) |
 | Fotoğraf | Stok/üretici görseli | Kendi üretim/atölye görselleri |
 
-Bu tablo, çoğu üreticinin bir hafta içinde düzeltebileceği ama düzeltmediği için kaybettiği sinyalleri listeler — danışmanlık ilk turda bunu kurar.
+Bu tablo, çoğu üreticinin bir hafta içinde düzeltebileceği ama düzeltmediği için kaybettiği sinyalleri listeler — danışmanlık ilk turda bunu kurar. [Firmanızın ihracat güven sinyallerini ücretsiz kontrol ettirin →](/rfq?track=marketing&urun=B2B%20Guven%20Sinyali%20ve%20Vitrin%20Analizi)
 
 ## Platformla Nasıl Birlikte Çalışır?
 

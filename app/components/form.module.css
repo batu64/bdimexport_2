@@ -134,3 +134,30 @@ textarea.input { resize: vertical; min-block-size: calc(var(--touch) * 2.5); }
 .notice { border-inline-start: var(--s-1) solid var(--c-warning); }
 .done { border-inline-start: var(--s-1) solid var(--c-success); text-align: start; }
 .doneIcon { inline-size: var(--s-12); block-size: var(--s-12); color: var(--c-success); }
+.directWrap { display: grid; gap: var(--s-3); }
+.directActions { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  padding-inline: var(--s-4);
+  border: var(--bw-1) solid var(--c-border-strong);
+  border-radius: var(--radius);
+  background: var(--c-surface);
+  color: var(--c-heading);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  text-decoration: none;
+  cursor: pointer;
+}
+.secondaryBtn:hover { border-color: var(--c-accent); color: var(--c-accent); text-decoration: none; }
+.emailFallback {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-4);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-accent) 45%, var(--c-border));
+  background: color-mix(in srgb, var(--c-accent) 6%, var(--c-surface));
+}

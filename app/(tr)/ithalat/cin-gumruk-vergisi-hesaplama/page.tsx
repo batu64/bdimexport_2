@@ -146,11 +146,11 @@ export default function CinGumrukVergisiHesaplamaPage() {
       <Section id="sss">
         <SectionHeader id="sss" eyebrow="Sık Sorulan Sorular" title="Çin Gümrük Vergisi ve Gözetim Hakkında Merak Edilenler" />
         <div className={ps.faqStack}>
-          {FAQ.map((f) => (
-            <article key={f.q} className={ps.faqItem}>
-              <h3 className={ps.faqQ}>{f.q}</h3>
-              <p className={ps.faqA}>{f.a}</p>
-            </article>
+          {FAQ.map((f, idx) => (
+            <details key={f.q} className={ps.faqDetails} open={idx === 0}>
+              <summary className={ps.faqSummary}>{f.q}</summary>
+              <p className={ps.faqBody}>{f.a}</p>
+            </details>
           ))}
         </div>
       </Section>

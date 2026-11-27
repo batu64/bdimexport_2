@@ -3,9 +3,16 @@
 // Static export uyumlu: API_BASE ayarlıysa D1 /api/v1/leads endpoint'ine de kaydeder; her zaman yapılandırılmış RFQ özeti +
 // WhatsApp / E-posta / Pano kopyalama ile 0-sürtünmeli lead dönüşümü sağlar.
 import { useEffect, useId, useMemo, useState } from "react";
-import { BarChart3, CheckCircle2, ClipboardCheck, Copy, Mail, MessageCircle, PackageSearch, Rocket, Send } from "lucide-react";
+import { BarChart3, Check, CheckCircle2, ClipboardCheck, Copy, ExternalLink, Mail, MessageCircle, PackageSearch, Rocket, Send } from "lucide-react";
 import { clarityEvent, clarityUpgrade } from "./clarity";
 import { OFFICIAL_WHATSAPP_WA } from "./entities";
+import {
+  buildEmailLinks,
+  getEmailDeliveryCopy,
+  resolveChannelPriority,
+  triggerMailtoLink,
+  type ChannelPriority,
+} from "./email-delivery";
 import s from "./smartrfq.module.css";
 
 export type RfqTrackId = "sourcing" | "inspection" | "intelligence" | "marketing";
@@ -64,6 +71,7 @@ export default function SmartRfq({
   initialHsCode = "",
   initialCompany = "",
   sourcePage = "/rfq",
+  channelPriorityOverride,
 }: {
   copy: SmartRfqCopy;
   locale: string;
@@ -74,8 +82,10 @@ export default function SmartRfq({
   initialHsCode?: string;
   initialCompany?: string;
   sourcePage?: string;
+  channelPriorityOverride?: ChannelPriority;
 }) {
   const uid = useId();
+  const [effectiveLocale, setEffectiveLocale] = useState<string>(locale);
   const [track, setTrack] = useState<RfqTrackId>(initialTrack);
   const [origin, setOrigin] = useState(copy.origins[0]?.id ?? "dual");
   const [volume, setVolume] = useState(copy.volumes[0] ?? "1x 20GP");
@@ -86,20 +96,28 @@ export default function SmartRfq({
   const [contactEmail, setContactEmail] = useState("");
   const [notes, setNotes] = useState("");
   const [copied, setCopied] = useState(false);
+  const [copiedAddr, setCopiedAddr] = useState(false);
+  const [emailPanelOpen, setEmailPanelOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined" || !window.location.search) return;
     const q = new URLSearchParams(window.location.search);
+    const qLang = q.get("lang");
+    const qTrack = q.get("track") as RfqTrackId | null;
     const qCo = q.get("co") ?? q.get("firma");
     const qCountry = q.get("country") ?? q.get("ulke");
-    const qSector = q.get("sector") ?? q.get("urun");
+    const qSector = q.get("sector") ?? q.get("urun") ?? q.get("pkg");
     const qHs = q.get("hs") ?? q.get("gtip");
     const qVol = q.get("vol") ?? q.get("miktar");
+    const qNotes = q.get("notes") ?? q.get("not");
+    if (qLang) setEffectiveLocale(qLang);
+    if (qTrack && ["sourcing", "inspection", "intelligence", "marketing"].includes(qTrack)) setTrack(qTrack);
     if (qCo) setCompany((prev) => prev || qCo);
     if (qCountry) setTargetMarket((prev) => prev || qCountry);
     if (qSector) setProduct((prev) => prev || qSector);
     if (qHs) setHsCode((prev) => prev || qHs);
+    if (qNotes) setNotes((prev) => prev || qNotes);
     if (qVol) {
       const matched = copy.volumes.find((v) => v.toLowerCase().includes(qVol.toLowerCase()));
       if (matched) setVolume(matched);
@@ -175,8 +193,70 @@ export default function SmartRfq({
     }
   }
 
+  const priority = resolveChannelPriority(effectiveLocale, channelPriorityOverride);
+  const emailFirst = priority === "email";
+  const deliveryCopy = getEmailDeliveryCopy(effectiveLocale);
+  const emailSubjectFull = `${copy.emailSubject}: ${selectedTrack.title}`;
+  const emailLinks = buildEmailLinks({ to: email, subject: emailSubjectFull, body: brief });
   const waHref = `${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(brief)}`;
-  const mailHref = `mailto:${email}?subject=${encodeURIComponent(`${copy.emailSubject}: ${selectedTrack.title}`)}&body=${encodeURIComponent(brief)}`;
+
+  async function handleEmailAction() {
+    trackLeadEvent("email");
+    setEmailPanelOpen(true);
+    try {
+      await navigator.clipboard.writeText(brief);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3200);
+    } catch {
+      // clipboard blocked
+    }
+    triggerMailtoLink(emailLinks.mailto);
+  }
+
+  async function handleCopyEmailAddr() {
+    trackLeadEvent("copy_email_address");
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopiedAddr(true);
+      setTimeout(() => setCopiedAddr(false), 2400);
+    } catch {
+      // clipboard blocked
+    }
+  }
+
+  const priorityNote =
+    priority === "email"
+      ? deliveryCopy.priorityEmailHint
+      : priority === "wechat"
+        ? deliveryCopy.priorityWechatHint
+        : deliveryCopy.priorityWhatsAppHint;
+
+  const waActionBtn = (
+    <a
+      key="wa"
+      href={waHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={emailFirst ? s.btnSecondary : s.btnPrimary}
+      onClick={() => trackLeadEvent("whatsapp")}
+    >
+      <MessageCircle aria-hidden="true" className={s.btnIcon} />
+      <span>{copy.whatsappBtn}</span>
+    </a>
+  );
+
+  const emailActionBtn = (
+    <button
+      key="email"
+      type="button"
+      className={emailFirst ? s.btnPrimary : s.btnSecondary}
+      aria-expanded={emailPanelOpen}
+      onClick={handleEmailAction}
+    >
+      <Mail aria-hidden="true" className={s.btnIcon} />
+      <span>{copy.emailBtn}</span>
+    </button>
+  );
 
   return (
     <div id="smart-rfq" className={s.card}>
@@ -275,9 +355,26 @@ export default function SmartRfq({
         <div className={s.summary}>
           <div className={s.summaryHead}>
             <span>{copy.summaryTitle}</span>
-            <span>{copy.slaBadge}</span>
+            <button type="button" onClick={handleCopy} className={s.summaryCopyBadge}>
+              {copied ? <Check aria-hidden="true" className={s.badgeIcon} /> : <Copy aria-hidden="true" className={s.badgeIcon} />}
+              <span>{copied ? copy.copiedBtn : copy.slaBadge}</span>
+            </button>
           </div>
-          <pre className={s.briefPre}>{brief}</pre>
+          <pre
+            className={s.briefPre}
+            role="button"
+            tabIndex={0}
+            title={deliveryCopy.clickToCopyHint}
+            onClick={handleCopy}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                void handleCopy();
+              }
+            }}
+          >
+            {brief}
+          </pre>
         </div>
 
         {submitted && (
@@ -288,14 +385,17 @@ export default function SmartRfq({
         )}
 
         <div className={s.actions}>
-          <a href={waHref} target="_blank" rel="noopener noreferrer" className={s.btnPrimary} onClick={() => trackLeadEvent("whatsapp")}>
-            <MessageCircle aria-hidden="true" className={s.btnIcon} />
-            <span>{copy.whatsappBtn}</span>
-          </a>
-          <a href={mailHref} className={s.btnSecondary} onClick={() => trackLeadEvent("email")}>
-            <Mail aria-hidden="true" className={s.btnIcon} />
-            <span>{copy.emailBtn}</span>
-          </a>
+          {emailFirst ? (
+            <>
+              {emailActionBtn}
+              {waActionBtn}
+            </>
+          ) : (
+            <>
+              {waActionBtn}
+              {emailActionBtn}
+            </>
+          )}
           <button type="button" onClick={handleCopy} className={s.btnSecondary}>
             <Copy aria-hidden="true" className={s.btnIcon} />
             <span>{copied ? copy.copiedBtn : copy.copyBtn}</span>
@@ -307,6 +407,54 @@ export default function SmartRfq({
             </button>
           )}
         </div>
+
+        <p className={s.priorityHint}>{priorityNote}</p>
+
+        {emailPanelOpen && (
+          <div role="status" aria-live="polite" className={s.emailFallback}>
+            <div className={s.emailFallbackHead}>
+              <CheckCircle2 aria-hidden="true" className={s.btnIcon} />
+              <strong>{deliveryCopy.panelTitle}</strong>
+            </div>
+            <p className={s.emailFallbackNote}>{deliveryCopy.copiedNotice}</p>
+            <div className={s.emailFallbackLinks}>
+              <a
+                href={emailLinks.gmail}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={s.fallbackBtnPrimary}
+                onClick={() => trackLeadEvent("gmail_web")}
+              >
+                <ExternalLink aria-hidden="true" className={s.btnIcon} />
+                <span>{deliveryCopy.gmailBtn}</span>
+              </a>
+              <a
+                href={emailLinks.outlook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={s.fallbackBtn}
+                onClick={() => trackLeadEvent("outlook_web")}
+              >
+                <ExternalLink aria-hidden="true" className={s.btnIcon} />
+                <span>{deliveryCopy.outlookBtn}</span>
+              </a>
+              <button type="button" className={s.fallbackBtn} onClick={handleCopyEmailAddr}>
+                {copiedAddr ? <Check aria-hidden="true" className={s.btnIcon} /> : <Copy aria-hidden="true" className={s.btnIcon} />}
+                <span>{copiedAddr ? deliveryCopy.copiedAddrBtn : deliveryCopy.copyAddrBtn}</span>
+              </button>
+              <a
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={s.fallbackBtn}
+                onClick={() => trackLeadEvent("whatsapp_from_email_panel")}
+              >
+                <MessageCircle aria-hidden="true" className={s.btnIcon} />
+                <span>{deliveryCopy.whatsappFallbackBtn}</span>
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

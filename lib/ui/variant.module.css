@@ -123,8 +123,6 @@
 .contactTitle { position: relative; font-size: var(--fs-xl); }
 .channelList { position: relative; display: flex; flex-wrap: wrap; gap: var(--s-2); padding: 0; list-style: none; }
 .channelList li {
-  padding-block: var(--s-1);
-  padding-inline: var(--s-3);
   border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 25%, transparent);
   border-radius: var(--radius-pill);
   color: var(--c-on-brand);
@@ -132,3 +130,30 @@
   font-weight: var(--fw-label);
 }
 .channelList li[data-primary] { border-color: var(--c-highlight); background: color-mix(in srgb, var(--c-highlight) 14%, transparent); }
+.channelLink {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: calc(var(--touch) - var(--s-2));
+  padding-block: var(--s-1);
+  padding-inline: var(--s-3);
+  color: var(--c-on-brand) !important;
+  text-decoration: none;
+}
+.channelLink:hover { text-decoration: underline; }
+.contactCta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: var(--touch);
+  padding-inline: var(--s-4);
+  margin-block-start: var(--s-2);
+  border-radius: var(--radius);
+  background: var(--c-highlight);
+  color: var(--c-on-highlight) !important;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.contactCta:hover { transform: translateY(calc(-1 * var(--bw-1))); text-decoration: none; }

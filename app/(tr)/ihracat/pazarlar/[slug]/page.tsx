@@ -108,6 +108,9 @@ export default async function TrExportCorridorPage({ params }: { params: Promise
                 </span>
               </div>
             </div>
+            <a href="#rfq" className={s.boxCta}>
+              {c.countryTitle} GTİP &amp; Maliyet Analizi İste →
+            </a>
           </div>
 
           <div className={s.box}>
@@ -118,6 +121,9 @@ export default async function TrExportCorridorPage({ params }: { params: Promise
                 <li key={item}>{item}</li>
               ))}
             </ul>
+            <a href="#rfq" className={s.boxCta}>
+              Ücretsiz Sertifika &amp; Pazar Ön Değerlendirmesi →
+            </a>
           </div>
         </div>
       </Section>
@@ -180,11 +186,11 @@ export default async function TrExportCorridorPage({ params }: { params: Promise
           <SectionHeader id="sss" eyebrow="Doğrudan Yanıtlar · GEO Bilgi Bankası" title="Sık Sorulan Sorular" />
         </Reveal>
         <div className={s.faqStack}>
-          {c.faq.map((f) => (
-            <article key={f.q} className={s.faqItem}>
-              <h3 className={s.faqQ}>{f.q}</h3>
-              <p className={s.faqA}>{f.a}</p>
-            </article>
+          {c.faq.map((f, idx) => (
+            <details key={f.q} className={s.faqDetails} open={idx === 0}>
+              <summary className={s.faqSummary}>{f.q}</summary>
+              <p className={s.faqBody}>{f.a}</p>
+            </details>
           ))}
         </div>
       </Section>

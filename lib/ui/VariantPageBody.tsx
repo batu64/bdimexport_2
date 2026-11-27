@@ -1,5 +1,6 @@
 // EN varyant sayfa gövdesi: ana sayfa → Hero; hizmet (sourcing | inspection) → PageHeader (breadcrumb).
 // Ardından prose (içindekiler) + #contact iletişim kartı. Tüm varyant page.tsx'leri bunu kullanır.
+import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import Hero from "./Hero";
 import PageHeader from "./PageHeader";
@@ -54,9 +55,16 @@ export default function VariantPageBody({
             <p>{v.contact.body}</p>
             <ul role="list" className={styles.channelList}>
               {v.channels.map((c, i) => (
-                <li key={c.id} data-primary={i === 0 || undefined}>{c.text}</li>
+                <li key={c.id} data-primary={i === 0 || undefined}>
+                  <Link href={`/en/rfq?lang=${variant}`} className={styles.channelLink}>
+                    {c.text}
+                  </Link>
+                </li>
               ))}
             </ul>
+            <Link href={`/en/rfq?lang=${variant}`} className={styles.contactCta}>
+              {v.contact.title}
+            </Link>
           </section>
         }
       >

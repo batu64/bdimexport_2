@@ -2,9 +2,11 @@
 // Doğrudan Fabrika Elektrik & Telekom Direği Konteyner Hesaplayıcı ve B2B Lead Hunisi (RTL Arapça + LTR İngilizce).
 // İletişim tek doğruluk kaynağı: lib/ui/entities.ts (OFFICIAL_WHATSAPP_WA = +90 539 414 78 54, OFFICIAL_EMAIL = info@bdimexport.com).
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { Calculator, CheckCircle2, Copy, Factory, FileDown, FileSpreadsheet, Mail, MessageCircle, Printer, ShieldCheck, Video } from "lucide-react";
+import { Calculator, Check, CheckCircle2, Copy, ExternalLink, Factory, FileDown, FileSpreadsheet, Mail, MessageCircle, Printer, ShieldCheck, Video } from "lucide-react";
 import { clarityEvent, claritySet, clarityUpgrade } from "./clarity";
 import { CORPORATE_ENTITIES, OFFICIAL_EMAIL, OFFICIAL_PHONE, OFFICIAL_WHATSAPP_WA, SAP_ARIBA_ID, US_DUNS_NUMBER } from "./entities";
+import { buildEmailLinks, getEmailDeliveryCopy, triggerMailtoLink } from "./email-delivery";
+import { color } from "./tokens";
 import s from "./utilitypole.module.css";
 
 export type PoleSpecOption = {
@@ -353,6 +355,8 @@ export default function UtilityPoleFunnel({
   const [contactEmail, setContactEmail] = useState("");
   const [notes, setNotes] = useState("");
   const [copied, setCopied] = useState(false);
+  const [copiedAddr, setCopiedAddr] = useState(false);
+  const [emailPanelOpen, setEmailPanelOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const formEngagedRef = useRef(false);
 
@@ -466,16 +470,16 @@ export default function UtilityPoleFunnel({
 <meta charset="utf-8" />
 <title>${esc(docTitle)}</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; color: #111827; margin: 32px; line-height: 1.55; }
-  .head { border-bottom: 3px solid #0b2545; padding-bottom: 14px; margin-bottom: 20px; display: flex; justify-content: space-between; gap: 16px; }
-  .brand { font-size: 22px; font-weight: 800; color: #0b2545; }
-  .meta { font-size: 12px; color: #4b5563; }
-  h1 { font-size: 18px; margin: 0 0 12px; color: #0b2545; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; color: ${color.ink}; margin: 32px; line-height: 1.55; }
+  .head { border-bottom: 3px solid ${color.primary}; padding-bottom: 14px; margin-bottom: 20px; display: flex; justify-content: space-between; gap: 16px; }
+  .brand { font-size: 22px; font-weight: 800; color: ${color.primary}; }
+  .meta { font-size: 12px; color: ${color.muted}; }
+  h1 { font-size: 18px; margin: 0 0 12px; color: ${color.primary}; }
   table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
-  th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: ${isRtl ? "right" : "left"}; }
-  th { background: #f3f4f6; font-weight: 700; width: 34%; }
-  .box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 6px; padding: 14px; margin: 16px 0; font-size: 13px; }
-  .foot { margin-top: 28px; padding-top: 12px; border-top: 1px solid #d1d5db; font-size: 11px; color: #4b5563; }
+  th, td { border: 1px solid ${color.border}; padding: 8px 10px; text-align: ${isRtl ? "right" : "left"}; }
+  th { background: ${color.bg}; font-weight: 700; width: 34%; }
+  .box { background: ${color.bg}; border: 1px solid ${color.borderStrong}; border-radius: 6px; padding: 14px; margin: 16px 0; font-size: 13px; }
+  .foot { margin-top: 28px; padding-top: 12px; border-top: 1px solid ${color.border}; font-size: 11px; color: ${color.muted}; }
   @media print { body { margin: 16px; } }
 </style>
 </head>
@@ -602,7 +606,36 @@ export default function UtilityPoleFunnel({
   }
 
   const waHref = `${OFFICIAL_WHATSAPP_WA}?text=${encodeURIComponent(brief)}`;
-  const mailHref = `mailto:${OFFICIAL_EMAIL}?subject=${encodeURIComponent(`${copy.emailSubject} — ${activeSpec.title}`)}&body=${encodeURIComponent(brief)}`;
+  const emailLinks = buildEmailLinks({
+    to: OFFICIAL_EMAIL,
+    subject: `${copy.emailSubject} — ${activeSpec.title}`,
+    body: brief,
+  });
+  const deliveryCopy = getEmailDeliveryCopy(locale);
+
+  async function handleEmailAction() {
+    fireLeadAnalytics("email_pole_funnel");
+    setEmailPanelOpen(true);
+    try {
+      await navigator.clipboard.writeText(brief);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3200);
+    } catch {
+      // clipboard unavailable
+    }
+    triggerMailtoLink(emailLinks.mailto);
+  }
+
+  async function handleCopyEmailAddr() {
+    fireLeadAnalytics("copy_pole_email_address");
+    try {
+      await navigator.clipboard.writeText(OFFICIAL_EMAIL);
+      setCopiedAddr(true);
+      setTimeout(() => setCopiedAddr(false), 2400);
+    } catch {
+      // clipboard unavailable
+    }
+  }
 
   return (
     <div id={sectionId} className={s.funnelCard}>
@@ -835,9 +868,26 @@ export default function UtilityPoleFunnel({
         <div className={s.briefBox}>
           <div className={s.briefHead}>
             <span>{copy.briefHeader}</span>
-            <span>{copy.slaBadge}</span>
+            <button type="button" onClick={handleCopy} className={s.briefCopyPill}>
+              {copied ? <Check aria-hidden="true" className={s.badgeIcon} /> : <Copy aria-hidden="true" className={s.badgeIcon} />}
+              <span>{copied ? copy.copiedCta : copy.slaBadge}</span>
+            </button>
           </div>
-          <pre className={s.briefPre}>{brief}</pre>
+          <pre
+            className={s.briefPre}
+            role="button"
+            tabIndex={0}
+            title={deliveryCopy.clickToCopyHint}
+            onClick={handleCopy}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                void handleCopy();
+              }
+            }}
+          >
+            {brief}
+          </pre>
         </div>
 
         {submitted && (
@@ -859,15 +909,16 @@ export default function UtilityPoleFunnel({
             <MessageCircle aria-hidden="true" className={s.btnIcon} />
             <span>{copy.whatsappCta}</span>
           </a>
-          <a
+          <button
             id={`cta-pole-funnel-email-${locale}`}
-            href={mailHref}
+            type="button"
+            aria-expanded={emailPanelOpen}
             className={s.secondaryActionBtn}
-            onClick={() => fireLeadAnalytics("email_pole_funnel")}
+            onClick={handleEmailAction}
           >
             <Mail aria-hidden="true" className={s.btnIcon} />
             <span>{copy.emailCta}</span>
-          </a>
+          </button>
           <button
             id={`cta-pole-funnel-copy-${locale}`}
             type="button"
@@ -893,6 +944,52 @@ export default function UtilityPoleFunnel({
             </span>
           </button>
         </div>
+
+        {emailPanelOpen && (
+          <div role="status" aria-live="polite" className={s.emailFallback}>
+            <div className={s.emailFallbackHead}>
+              <CheckCircle2 aria-hidden="true" className={s.btnIcon} />
+              <strong>{deliveryCopy.panelTitle}</strong>
+            </div>
+            <p className={s.emailFallbackNote}>{deliveryCopy.copiedNotice}</p>
+            <div className={s.emailFallbackLinks}>
+              <a
+                href={emailLinks.gmail}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={s.fallbackBtnPrimary}
+                onClick={() => fireLeadAnalytics("gmail_pole_funnel")}
+              >
+                <ExternalLink aria-hidden="true" className={s.btnIcon} />
+                <span>{deliveryCopy.gmailBtn}</span>
+              </a>
+              <a
+                href={emailLinks.outlook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={s.fallbackBtn}
+                onClick={() => fireLeadAnalytics("outlook_pole_funnel")}
+              >
+                <ExternalLink aria-hidden="true" className={s.btnIcon} />
+                <span>{deliveryCopy.outlookBtn}</span>
+              </a>
+              <button type="button" className={s.fallbackBtn} onClick={handleCopyEmailAddr}>
+                {copiedAddr ? <Check aria-hidden="true" className={s.btnIcon} /> : <Copy aria-hidden="true" className={s.btnIcon} />}
+                <span>{copiedAddr ? deliveryCopy.copiedAddrBtn : deliveryCopy.copyAddrBtn}</span>
+              </button>
+              <a
+                href={waHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={s.fallbackBtn}
+                onClick={() => fireLeadAnalytics("whatsapp_pole_from_email_panel")}
+              >
+                <MessageCircle aria-hidden="true" className={s.btnIcon} />
+                <span>{deliveryCopy.whatsappFallbackBtn}</span>
+              </a>
+            </div>
+          </div>
+        )}
 
         <p className={s.directLineNote}>
           <ShieldCheck aria-hidden="true" className={s.badgeIcon} />

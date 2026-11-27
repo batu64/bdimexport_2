@@ -15,7 +15,7 @@ import Reveal from "@/lib/ui/motion/Reveal";
 import { Section, SectionHeader } from "@/lib/ui/Section";
 import cardGrid from "@/lib/ui/cardgrid.module.css";
 import { iconFor } from "./icons";
-import { APPLY_PATH, quoteHref } from "./links";
+import { APPLY_PATH, WHATSAPP_HREF, quoteHref } from "./links";
 import { buildAlternateSet, crossClusterAlternates, toMetadataAlternates } from "@/lib/hreflang";
 import { TR_EXPORT_CORRIDORS } from "./tr-seo-data";
 import { listInsights, readInsight } from "@/lib/ui/insights";
@@ -321,9 +321,15 @@ export function ContentPage({ kind, slug }: { kind: Kind; slug: string }) {
         }
         actions={
           isExport ? (
-            <Button href={APPLY_PATH} variant="primary" size="lg" arrow>{dict.home.hero.ctaPrimary}</Button>
+            <>
+              <Button href={`${WHATSAPP_HREF}?text=${encodeURIComponent(`Merhaba, bdimexport.com/${kind}/${slug} sayfasından yazıyorum. İhracat danışmanlığı hakkında bilgi almak istiyorum.`)}`} variant="primary" size="lg" arrow>WhatsApp&apos;tan Hızlı Sor</Button>
+              <Button href={APPLY_PATH} variant="secondary" tone="brand" size="lg">{dict.home.hero.ctaSecondary}</Button>
+            </>
           ) : (
-            <Button href={quoteHref} variant="primary" size="lg" arrow>{dict.home.hero.ctaSecondary}</Button>
+            <>
+              <Button href={`${WHATSAPP_HREF}?text=${encodeURIComponent(`Merhaba, bdimexport.com/${kind}/${slug} sayfasından yazıyorum. Çin ithalat / denetim teklifi almak istiyorum.`)}`} variant="primary" size="lg" arrow>WhatsApp&apos;tan Hızlı Teklif Al</Button>
+              <Button href={quoteHref} variant="secondary" tone="brand" size="lg">{dict.home.hero.ctaPrimary}</Button>
+            </>
           )
         }
       />
@@ -336,10 +342,15 @@ export function ContentPage({ kind, slug }: { kind: Kind; slug: string }) {
               title={pg.aside.applyTitle}
               text={pg.aside.applyText}
               cta={{ label: pg.aside.applyCta, href: APPLY_PATH }}
-              secondary={isProgram ? undefined : { label: pg.aside.programLink, href: "/ihracat/program-tanitim" }}
+              secondary={{ label: "WhatsApp'tan Sor", href: `${WHATSAPP_HREF}?text=${encodeURIComponent(`Merhaba, ${doc.title} hakkında görüşmek istiyorum.`)}` }}
             />
           ) : (
-            <AsideCta title={pg.aside.quoteTitle} text={pg.aside.quoteText} cta={{ label: pg.aside.quoteCta, href: quoteHref }} />
+            <AsideCta
+              title={pg.aside.quoteTitle}
+              text={pg.aside.quoteText}
+              cta={{ label: "WhatsApp'tan Teklif Al", href: `${WHATSAPP_HREF}?text=${encodeURIComponent(`Merhaba, ${doc.title} hizmeti için teklif ve süreç bilgisi rica ederim.`)}` }}
+              secondary={{ label: pg.aside.quoteCta, href: quoteHref }}
+            />
           )
         }
       >
@@ -436,6 +447,19 @@ export function IndexPage({ kind, section }: { kind: Kind; section: "ithalat" | 
         title={m.h1}
         lead={m.desc}
         meta={<span className="chip">{pg.index.count.replace("{n}", String(items.length))}</span>}
+        actions={
+          isExport ? (
+            <>
+              <Button href={`${WHATSAPP_HREF}?text=${encodeURIComponent("Merhaba, ihracat danışmanlığı ve yurt dışı müşteri bulma hizmetleriniz hakkında bilgi almak istiyorum.")}`} variant="primary" size="lg" arrow>WhatsApp&apos;tan Hızlı Görüş</Button>
+              <Button href={APPLY_PATH} variant="secondary" tone="brand" size="lg">{dict.home.hero.ctaSecondary}</Button>
+            </>
+          ) : (
+            <>
+              <Button href={`${WHATSAPP_HREF}?text=${encodeURIComponent("Merhaba, Çin'den ürün getirme, tedarik ve konteyner yükleme denetimi hakkında teklif almak istiyorum.")}`} variant="primary" size="lg" arrow>WhatsApp&apos;tan Hızlı Teklif Al</Button>
+              <Button href={quoteHref} variant="secondary" tone="brand" size="lg">{dict.home.hero.ctaPrimary}</Button>
+            </>
+          )
+        }
       />
       <Section id="liste">
         <h2 id="liste-title" className="visually-hidden">{m.intro.replace(/:$/, "")}</h2>

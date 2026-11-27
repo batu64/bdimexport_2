@@ -1,0 +1,125 @@
+/* Resilient Email Smart Action & Delivery Fallback Bar — 100% logical CSS, zero hex/rgb literals */
+.wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-2);
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--touch);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid var(--c-border-strong);
+  background: var(--c-surface);
+  color: var(--c-heading);
+  font-weight: var(--fw-heading);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.trigger:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}
+
+.triggerPrimary {
+  border: 0;
+  background: var(--c-highlight);
+  color: var(--c-on-highlight);
+  padding-inline: var(--s-6);
+}
+
+.triggerPrimary:hover {
+  color: var(--c-on-highlight);
+  transform: translateY(calc(-1 * var(--bw-1)));
+}
+
+.triggerFooter {
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-on-brand) 25%, transparent);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--c-on-brand);
+  font-weight: var(--fw-body);
+}
+
+.triggerFooter:hover {
+  border-color: var(--c-highlight);
+  background: color-mix(in srgb, var(--c-highlight) 10%, transparent);
+  color: var(--c-on-brand);
+}
+
+.panel {
+  display: grid;
+  gap: var(--s-2);
+  inline-size: 100%;
+  max-inline-size: 36rem;
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-accent) 45%, var(--c-border));
+  background: color-mix(in srgb, var(--c-accent) 6%, var(--c-surface));
+  color: var(--c-ink);
+  font-size: var(--fs-xs);
+}
+
+.panelOnBrand {
+  border-color: color-mix(in srgb, var(--c-highlight) 45%, transparent);
+  background: color-mix(in srgb, var(--c-on-brand) 10%, var(--c-brand));
+  color: var(--c-on-brand);
+}
+
+.note {
+  margin: 0;
+  line-height: var(--lh-body);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.chipLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  min-block-size: calc(var(--touch) - var(--s-2));
+  padding-inline: var(--s-3);
+  border-radius: var(--radius-pill);
+  border: var(--bw-1) solid var(--c-border-strong);
+  background: var(--c-surface);
+  color: var(--c-heading);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-heading);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.chipLink:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+  text-decoration: none;
+}
+
+.panelOnBrand .chipLink {
+  border-color: color-mix(in srgb, var(--c-on-brand) 30%, transparent);
+  background: color-mix(in srgb, var(--c-on-brand) 8%, transparent);
+  color: var(--c-on-brand);
+}
+
+.panelOnBrand .chipLink:hover {
+  border-color: var(--c-highlight);
+  color: var(--c-highlight);
+}
+
+.icon {
+  inline-size: var(--s-4);
+  block-size: var(--s-4);
+  flex: none;
+}

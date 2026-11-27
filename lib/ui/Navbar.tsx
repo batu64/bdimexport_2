@@ -98,83 +98,88 @@ export default function Navbar({ brand, homeHref, homeLabel, links, cta, sites, 
   const current = sites.find((x) => x.current);
 
   return (
-    <header className={clsx(s.bar, transparent ? s.transparent : s.solid, scrolled && s.compact)} data-open={open || undefined}>
-      <div className={clsx("container", s.inner)}>
-        <Link href={homeHref} className={s.brand} aria-label={homeLabel}>
-          <span className={s.mark} aria-hidden="true">
-            {/* eslint-disable-next-line @next/next/no-img-element -- static export (images.unoptimized); marka amblemi sabit boyut */}
-            <img src="/media/brand/logo-white.png" alt="" width={28} height={28} className={s.markImg} />
-          </span>
-          <span>{brand.toLowerCase()}</span>
-        </Link>
+    <>
+      {open && <div className={s.barSpacer} aria-hidden="true" />}
+      <header className={clsx(s.bar, open ? s.barOpen : transparent ? s.transparent : s.solid, scrolled && !open && s.compact)} data-open={open || undefined}>
+        <div className={clsx("container", s.inner)}>
+          <Link href={homeHref} className={s.brand} aria-label={homeLabel} onClick={() => open && close(false)}>
+            <span className={s.mark} aria-hidden="true">
+              {/* eslint-disable-next-line @next/next/no-img-element -- static export (images.unoptimized); marka amblemi sabit boyut */}
+              <img src="/media/brand/logo-white.png" alt="" width={28} height={28} className={s.markImg} />
+            </span>
+            <span>{brand.toLowerCase()}</span>
+          </Link>
 
-        <nav aria-label={labels.nav} className={s.desktopNav}>
-          <ul role="list" className={s.links}>
-            {links.map((l) => (
-              <li key={l.href}>
-                <Link href={l.href} className={s.link} aria-current={isActive(l.href) ? "page" : undefined}>{l.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className={s.actions}>
-          {switcher ? <div className={s.switcher}>{switcher}</div> : (
-          <div className={s.sites} ref={sitesRef}>
-            <button
-              type="button"
-              className={s.sitesBtn}
-              aria-expanded={sitesOpen}
-              aria-controls={sitesId}
-              aria-label={`${labels.sites}: ${current?.label ?? ""}`}
-              onClick={() => setSitesOpen((o) => !o)}
-            >
-              <Globe aria-hidden="true" className={s.icon} />
-              <span className={s.sitesCurrent}>{current?.lang.slice(0, 2).toUpperCase()}</span>
-              <ChevronDown aria-hidden="true" className={clsx(s.icon, s.chev)} />
-            </button>
-            <ul role="list" id={sitesId} className={s.sitesMenu} hidden={!sitesOpen}>
-              {sites.map((x) => (
-                <li key={x.href}>
-                  <a href={x.href} lang={x.lang} hrefLang={x.lang} aria-current={x.current ? "true" : undefined} className={s.siteItem}>
-                    <span>{x.label}</span>
-                    {x.current && <Check aria-hidden="true" className={s.icon} />}
-                  </a>
+          <nav aria-label={labels.nav} className={s.desktopNav}>
+            <ul role="list" className={s.links}>
+              {links.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className={s.link} aria-current={isActive(l.href) ? "page" : undefined}>{l.label}</Link>
                 </li>
               ))}
             </ul>
+          </nav>
+
+          <div className={s.actions}>
+            {switcher ? <div className={s.switcher}>{switcher}</div> : (
+            <div className={s.sites} ref={sitesRef}>
+              <button
+                type="button"
+                className={s.sitesBtn}
+                aria-expanded={sitesOpen}
+                aria-controls={sitesId}
+                aria-label={`${labels.sites}: ${current?.label ?? ""}`}
+                onClick={() => setSitesOpen((o) => !o)}
+              >
+                <Globe aria-hidden="true" className={s.icon} />
+                <span className={s.sitesCurrent}>{current?.lang.slice(0, 2).toUpperCase()}</span>
+                <ChevronDown aria-hidden="true" className={clsx(s.icon, s.chev)} />
+              </button>
+              <ul role="list" id={sitesId} className={s.sitesMenu} hidden={!sitesOpen}>
+                {sites.map((x) => (
+                  <li key={x.href}>
+                    <a href={x.href} lang={x.lang} hrefLang={x.lang} aria-current={x.current ? "true" : undefined} className={s.siteItem}>
+                      <span>{x.label}</span>
+                      {x.current && <Check aria-hidden="true" className={s.icon} />}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            )}
+            <Go href={cta.href} className={s.cta}>{cta.label}</Go>
+            <button
+              ref={toggleRef}
+              type="button"
+              className={s.toggle}
+              aria-expanded={open}
+              aria-controls={sheetId}
+              aria-label={open ? labels.close : labels.open}
+              onClick={() => (open ? close(false) : setOpen(true))}
+            >
+              {open ? <X aria-hidden="true" className={s.icon} /> : <Menu aria-hidden="true" className={s.icon} />}
+            </button>
           </div>
-          )}
-          <Go href={cta.href} className={s.cta}>{cta.label}</Go>
-          <button
-            ref={toggleRef}
-            type="button"
-            className={s.toggle}
-            aria-expanded={open}
-            aria-controls={sheetId}
-            aria-label={open ? labels.close : labels.open}
-            onClick={() => (open ? close(false) : setOpen(true))}
-          >
-            {open ? <X aria-hidden="true" className={s.icon} /> : <Menu aria-hidden="true" className={s.icon} />}
-          </button>
         </div>
-      </div>
+      </header>
 
       <div id={sheetId} ref={sheetRef} className={s.sheet} hidden={!open}>
         <nav aria-label={labels.nav} className="container">
           <ul role="list" className={s.sheetLinks}>
             {links.map((l, i) => (
               <li key={l.href} style={{ "--i": i } as React.CSSProperties}>
-                <Link href={l.href} className={s.sheetLink} aria-current={isActive(l.href) ? "page" : undefined}>{l.label}</Link>
+                <Link href={l.href} className={s.sheetLink} aria-current={isActive(l.href) ? "page" : undefined} onClick={() => close(false)}>{l.label}</Link>
               </li>
             ))}
           </ul>
-          <Go href={cta.href} className={s.sheetCta}>{cta.label}</Go>
+          <div onClick={() => close(false)}>
+            <Go href={cta.href} className={s.sheetCta}>{cta.label}</Go>
+          </div>
           {!switcher && <p className={s.sheetLabel}>{labels.sites}</p>}
           {!switcher && <ul role="list" className={s.sheetSites}>
             {sites.map((x) => (
               <li key={x.href}>
-                <a href={x.href} lang={x.lang} hrefLang={x.lang} aria-current={x.current ? "true" : undefined} className={s.siteItem}>
+                <a href={x.href} lang={x.lang} hrefLang={x.lang} aria-current={x.current ? "true" : undefined} className={s.siteItem} onClick={() => close(false)}>
                   <span>{x.label}</span>
                   {x.current && <Check aria-hidden="true" className={s.icon} />}
                 </a>
@@ -183,6 +188,6 @@ export default function Navbar({ brand, homeHref, homeLabel, links, cta, sites, 
           </ul>}
         </nav>
       </div>
-    </header>
+    </>
   );
 }

@@ -2,8 +2,9 @@
 // Not (brief sapması, bilinçli): 360'ta akordeon yerine 2 kolon — listeler kısa; <details> 768+'da CSS ile açılamıyor
 // (Firefox ::details-content yok) → JS'siz, her BP'de aynı DOM.
 import Link from "next/link";
-import { Building2, ExternalLink, Mail, MapPin, MessageCircle, Phone, ShieldCheck } from "lucide-react";
+import { Building2, ExternalLink, MapPin, MessageCircle, Phone, ShieldCheck } from "lucide-react";
 import type { NavLink, SiteLink } from "./Navbar";
+import EmailSmartAction from "./EmailSmartAction";
 import Reveal from "./motion/Reveal";
 import s from "./footer.module.css";
 
@@ -26,6 +27,8 @@ export type FooterProps = {
     title: string;
     email: string;
     emailLabel: string;
+    locale?: string;
+    whatsappPrimary?: boolean;
     whatsapp?: { href: string; label: string };
     phone?: { number: string; href: string; label: string };
   };
@@ -50,11 +53,28 @@ export default function Footer({ brand, tagline, columns, sites, legal, contact,
           {contact && <>
             <p className={s.colTitle}>{contact.title}</p>
             <div className={s.channels}>
-              <a className={s.channel} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>
-                <Mail aria-hidden="true" className={s.icon} />
-                <span>{contact.email}</span>
-              </a>
-              {contact.whatsapp && (
+              {contact.whatsappPrimary && contact.whatsapp && (
+                <a
+                  className={`${s.channel} ${s.channelWa}`}
+                  href={contact.whatsapp.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${contact.whatsapp.label}: ${contact.phone?.number ?? "WhatsApp"}`}
+                >
+                  <MessageCircle aria-hidden="true" className={s.icon} />
+                  <span>{contact.whatsapp.label}</span>
+                </a>
+              )}
+              <EmailSmartAction
+                to={contact.email}
+                label={contact.email}
+                ariaLabel={`${contact.emailLabel}: ${contact.email}`}
+                locale={contact.locale ?? "en"}
+                variant="footer"
+                whatsappHref={contact.whatsapp?.href}
+                eventName={`footer_email_${contact.locale ?? "global"}`}
+              />
+              {!contact.whatsappPrimary && contact.whatsapp && (
                 <a
                   className={`${s.channel} ${s.channelWa}`}
                   href={contact.whatsapp.href}

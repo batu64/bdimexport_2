@@ -1,8 +1,10 @@
 // WeChat iletişim kartı (/zh birincil kanal — I18N_RULES §2). QR + 微信号 + kopyala / (mobilde) WeChat'i aç.
 // Değerler build env'den: NEXT_PUBLIC_WECHAT_ID, NEXT_PUBLIC_WECHAT_QR (public/ altındaki QR görsel yolu). Tanımlı değilse
 // uydurma QR/ID GÖSTERİLMEZ → dürüst "即将上线" durumu + e-posta. Metin çağırandan (zh.json).
-import { Mail, QrCode } from "lucide-react";
+import { MessageCircle, QrCode } from "lucide-react";
 import CopyButton from "./CopyButton";
+import EmailSmartAction from "./EmailSmartAction";
+import { OFFICIAL_WHATSAPP_WA } from "./entities";
 import s from "./wechat.module.css";
 
 export type WeChatLabels = { title: string; scan: string; idLabel: string; copy: string; copied: string; open: string; pending: string; email: string };
@@ -40,10 +42,26 @@ export default function WeChatCard({ id = "wechat", labels, email }: { id?: stri
         ) : (
           <>
             <p className={s.scan} role="status">{labels.pending}</p>
-            <a href={`mailto:${email}`} className={s.copy}>
-              <Mail aria-hidden="true" className={s.btnIcon} />
-              {labels.email}
-            </a>
+            <div className={s.actions}>
+              <EmailSmartAction
+                to={email}
+                subject="Bdimexport 中文商务咨询 (bdimexport.com/zh)"
+                label={labels.email}
+                locale="zh"
+                variant="primary"
+                whatsappHref={OFFICIAL_WHATSAPP_WA}
+                eventName="zh_wechat_card_email"
+              />
+              <a
+                href={OFFICIAL_WHATSAPP_WA}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={s.open}
+              >
+                <MessageCircle aria-hidden="true" className={s.btnIcon} />
+                <span>WhatsApp 国际直连</span>
+              </a>
+            </div>
           </>
         )}
       </div>

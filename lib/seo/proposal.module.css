@@ -187,6 +187,86 @@
   border-radius: var(--radius);
 }
 
+.faqDetails {
+  background: var(--c-surface);
+  border: var(--bw-1) solid var(--c-border);
+  border-radius: var(--radius);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+
+.faqDetails[open] {
+  border-color: color-mix(in srgb, var(--c-accent) 45%, var(--c-border));
+  box-shadow: var(--e-1);
+}
+
+.faqSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  min-block-size: var(--touch);
+  padding-block: var(--s-4);
+  padding-inline: var(--s-6);
+  color: var(--c-heading);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-heading);
+  cursor: pointer;
+  list-style: none;
+}
+
+.faqSummary::-webkit-details-marker {
+  display: none;
+}
+
+.faqSummary::after {
+  content: "+";
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: var(--s-6);
+  block-size: var(--s-6);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--c-accent) 12%, transparent);
+  color: var(--c-accent);
+  font-weight: var(--fw-heading);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.faqDetails[open] .faqSummary::after {
+  transform: rotate(45deg);
+}
+
+.faqBody {
+  padding-block: 0 var(--s-4);
+  padding-inline: var(--s-6);
+  font-size: var(--fs-base);
+  color: var(--c-muted);
+  line-height: var(--lh-body);
+}
+
+.boxCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-block-start: var(--s-4);
+  padding-block: var(--s-2);
+  padding-inline: var(--s-4);
+  border-radius: var(--radius);
+  border: var(--bw-1) solid color-mix(in srgb, var(--c-accent) 45%, var(--c-border));
+  background: color-mix(in srgb, var(--c-accent) 8%, var(--c-surface));
+  color: var(--c-heading);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-heading);
+  text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+}
+
+.boxCta:hover {
+  border-color: var(--c-accent);
+  background: color-mix(in srgb, var(--c-accent) 16%, var(--c-surface));
+  text-decoration: none;
+}
+
 .faqQ {
   font-size: var(--fs-lg);
   margin-block-end: var(--s-2);

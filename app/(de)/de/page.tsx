@@ -2,6 +2,7 @@
 // Metin lib/messages/de.json (hero = design/hero-copy.md DE TASLAK; final dil pass'i FAZ 5.4). Rakamlar: SLA + doğrulanmış UN Comtrade.
 // Leistungen kartları → /de/leistungen/{slug} (FAZ_5 5.4; DE_SERVICES sırası = EN SERVICES sırası).
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BadgeCheck, ClipboardCheck, Factory, FileSearch, FileText, PackageSearch, Receipt, Ship } from "lucide-react";
 import dict from "@/lib/messages/de.json";
 import { homeAlternates } from "@/lib/hreflang";
@@ -91,10 +92,13 @@ export default function DeHomePage() {
             const Icon = TRUST_ICON[i];
             return (
               <Reveal as="li" key={t.title} index={i} className={s.trustItem}>
-                <span className={s.trustBadge}><BadgeCheck aria-hidden="true" className={s.badgeIcon} /></span>
-                <Icon aria-hidden="true" className={s.trustIcon} />
-                <h3 className={s.trustTitle}>{t.title}</h3>
-                <p className={s.trustText}>{t.text}</p>
+                <Link href={i === 2 ? quoteHref : "/de/vertrauen"} className={s.trustLink}>
+                  <span className={s.trustBadge}><BadgeCheck aria-hidden="true" className={s.badgeIcon} /></span>
+                  <Icon aria-hidden="true" className={s.trustIcon} />
+                  <h3 className={s.trustTitle}>{t.title}</h3>
+                  <p className={s.trustText}>{t.text}</p>
+                  <span className={s.trustMore}>{i === 2 ? h.hero.ctaPrimary : h.trust.more} →</span>
+                </Link>
               </Reveal>
             );
           })}

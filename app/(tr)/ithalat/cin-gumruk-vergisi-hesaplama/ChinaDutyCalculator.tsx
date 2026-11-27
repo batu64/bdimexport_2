@@ -2,7 +2,7 @@
 // Interactive China-to-Turkiye Customs Duty, IGV, Surveillance (Gozetim) & Landed Cost Simulator.
 import { useId, useMemo, useState } from "react";
 import Link from "next/link";
-import { Calculator, MessageCircle } from "lucide-react";
+import { Calculator, Check, Copy, MessageCircle } from "lucide-react";
 import { clarityEvent, clarityUpgrade } from "@/lib/ui/clarity";
 import { OFFICIAL_WHATSAPP_WA } from "@/lib/ui/entities";
 import s from "./chinaduty.module.css";
@@ -44,6 +44,7 @@ export default function ChinaDutyCalculator() {
   const [gozetimPerKg, setGozetimPerKg] = useState<number>(0);
   const [localPortUsd, setLocalPortUsd] = useState<number>(850);
   const [kdvPct, setKdvPct] = useState<number>(20);
+  const [copiedCalc, setCopiedCalc] = useState<boolean>(false);
 
   function applyPreset(p: Preset) {
     setPresetId(p.id);
@@ -230,13 +231,30 @@ export default function ChinaDutyCalculator() {
             <span>Bu Hesaplamayı WhatsApp&apos;tan Gönder &amp; Net GTİP Raporu İste</span>
           </a>
           <Link
-            href="/rfq"
+            href={`/rfq?track=intelligence&urun=${encodeURIComponent(`Çin Gümrük Vergisi & GTİP Analizi (FOB ${fmtUsd(fob)} · CIF ${fmtUsd(calc.cif)})`)}`}
             className={s.rfqLink}
             onClick={() => clarityEvent("calc_tr_rfq_click")}
           >
             <Calculator aria-hidden="true" size={18} />
-            <span>Yazılı Tedarik &amp; Maliyet Teklifi Al (24s)</span>
+            <span>Yazılı GTİP &amp; Maliyet Teklifi Al (24s)</span>
           </Link>
+          <button
+            type="button"
+            className={s.rfqLink}
+            onClick={async () => {
+              clarityEvent("calc_tr_copy_result");
+              try {
+                await navigator.clipboard.writeText(waText);
+                setCopiedCalc(true);
+                setTimeout(() => setCopiedCalc(false), 2400);
+              } catch {
+                // clipboard blocked
+              }
+            }}
+          >
+            {copiedCalc ? <Check aria-hidden="true" size={18} /> : <Copy aria-hidden="true" size={18} />}
+            <span>{copiedCalc ? "Hesaplama Kopyalandı ✓" : "Özeti Kopyala"}</span>
+          </button>
         </div>
       </div>
     </div>
