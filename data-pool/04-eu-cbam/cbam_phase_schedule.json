@@ -1,0 +1,92 @@
+[
+  {
+    "calendar_year": 2026,
+    "regime_phase": "definitive",
+    "eu_ets_free_allocation_pct": 97.5,
+    "cbam_financial_factor_pct": 2.5,
+    "default_value_markup_pct": 10,
+    "de_minimis_mass_tonnes": 50,
+    "reference_ets_eur_per_tco2": 75,
+    "note_tr": "Mali dönemin ilk yılı: Gömülü emisyonun %2,5'i oranında sertifika teslim edilir; doğrulanmamış varsayılan değere +%10 ceza uygulanır."
+  },
+  {
+    "calendar_year": 2027,
+    "regime_phase": "definitive",
+    "eu_ets_free_allocation_pct": 95,
+    "cbam_financial_factor_pct": 5,
+    "default_value_markup_pct": 20,
+    "de_minimis_mass_tonnes": 50,
+    "reference_ets_eur_per_tco2": 80,
+    "note_tr": "Mali yükümlülük ikiye katlanır (%5,0); üreticiden gerçek veri alınamazsa varsayılan emisyon cezası +%20'ye çıkar."
+  },
+  {
+    "calendar_year": 2028,
+    "regime_phase": "definitive",
+    "eu_ets_free_allocation_pct": 90,
+    "cbam_financial_factor_pct": 10,
+    "default_value_markup_pct": 30,
+    "de_minimis_mass_tonnes": 50,
+    "reference_ets_eur_per_tco2": 85,
+    "note_tr": "CBAM faktörü %10'a, doğrulanmamış varsayılan değer cezası ise tavan olan +%30'a ulaşır."
+  },
+  {
+    "calendar_year": 2029,
+    "regime_phase": "definitive",
+    "eu_ets_free_allocation_pct": 77.5,
+    "cbam_financial_factor_pct": 22.5,
+    "default_value_markup_pct": 30,
+    "de_minimis_mass_tonnes": 50,
+    "reference_ets_eur_per_tco2": 90,
+    "note_tr": "Hızlı artış yılı: Ücretsiz tahsisat %77,5'e düşer, CBAM mali yükü %22,5'e sıçrar."
+  },
+  {
+    "calendar_year": 2030,
+    "regime_phase": "definitive",
+    "eu_ets_free_allocation_pct": 51.5,
+    "cbam_financial_factor_pct": 48.5,
+    "default_value_markup_pct": 30,
+    "de_minimis_mass_tonnes": 50,
+    "reference_ets_eur_per_tco2": 95,
+    "note_tr": "Kırılma noktası: Gömülü karbon maliyetinin yaklaşık yarısı (%48,5) sınırda tahsil edilir; yüksek emisyonlu Çin BF-BOF çeliği ağır rekabet kaybına uğrar."
+  },
+  {
+    "calendar_year": 2031,
+    "regime_phase": "definitive",
+    "eu_ets_free_allocation_pct": 39,
+    "cbam_financial_factor_pct": 61,
+    "default_value_markup_pct": 30,
+    "de_minimis_mass_tonnes": 50,
+    "reference_ets_eur_per_tco2": 100,
+    "note_tr": "CBAM mali yükümlülük oranı %61,0 seviyesine çıkar."
+  },
+  {
+    "calendar_year": 2032,
+    "regime_phase": "definitive",
+    "eu_ets_free_allocation_pct": 26.5,
+    "cbam_financial_factor_pct": 73.5,
+    "default_value_markup_pct": 30,
+    "de_minimis_mass_tonnes": 50,
+    "reference_ets_eur_per_tco2": 105,
+    "note_tr": "CBAM mali yükümlülük oranı %73,5 seviyesine çıkar."
+  },
+  {
+    "calendar_year": 2033,
+    "regime_phase": "definitive",
+    "eu_ets_free_allocation_pct": 14,
+    "cbam_financial_factor_pct": 86,
+    "default_value_markup_pct": 30,
+    "de_minimis_mass_tonnes": 50,
+    "reference_ets_eur_per_tco2": 110,
+    "note_tr": "CBAM mali yükümlülük oranı %86,0 seviyesine çıkar."
+  },
+  {
+    "calendar_year": 2034,
+    "regime_phase": "definitive",
+    "eu_ets_free_allocation_pct": 0,
+    "cbam_financial_factor_pct": 100,
+    "default_value_markup_pct": 30,
+    "de_minimis_mass_tonnes": 50,
+    "reference_ets_eur_per_tco2": 115,
+    "note_tr": "Tam CBAM uygulamasına geçiş: Ücretsiz AB ETS tahsisatı sıfırlanır, %100 karbon bedeli uygulanır."
+  }
+]

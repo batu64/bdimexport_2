@@ -353,6 +353,65 @@ if (existsSync(join(ROOT, "03-chemical-reach-cas/regulated_chemicals.json"))) {
   }
 }
 
+// ===========================================================================
+// MODÜL 04 DOĞRULAMASI: AB 2023/956 CBAM Takvim Matematiği & Ek-I GTİP Tutarlılığı
+// ===========================================================================
+if (existsSync(join(ROOT, "04-eu-cbam/cbam_goods.json"))) {
+  const schedule = JSON.parse(readFileSync(join(ROOT, "04-eu-cbam/cbam_phase_schedule.json"), "utf8"));
+  const goods = JSON.parse(readFileSync(join(ROOT, "04-eu-cbam/cbam_goods.json"), "utf8"));
+
+  assert(schedule.length === 9, `CBAM 2026-2034 takvimi tam 9 yıl olmalı (gerçek: ${schedule.length})`);
+  for (let i = 0; i < schedule.length; i++) {
+    const row = schedule[i];
+    assert(row.calendar_year === 2026 + i, `Takvim yılı sıralı olmalı: ${row.calendar_year}`);
+    assert(
+      Math.abs((row.eu_ets_free_allocation_pct + row.cbam_financial_factor_pct) - 100.0) < 1e-6,
+      `${row.calendar_year}: Ücretsiz tahsisat (${row.eu_ets_free_allocation_pct}%) + CBAM faktörü (${row.cbam_financial_factor_pct}%) = %100.0 olmalı`
+    );
+    if (i > 0) {
+      assert(
+        row.cbam_financial_factor_pct > schedule[i - 1].cbam_financial_factor_pct,
+        `${row.calendar_year}: CBAM mali yükümlülük oranı her yıl monoton artmalı`
+      );
+    }
+    assert([10, 20, 30].includes(row.default_value_markup_pct), `${row.calendar_year}: Resmi ceza marjı %10/%20/%30 olmalı`);
+  }
+  assert(schedule[0].cbam_financial_factor_pct === 2.5 && schedule[8].cbam_financial_factor_pct === 100.0, "2026=%2.5 ve 2034=%100 sınır koşulları");
+
+  const VALID_CBAM_SECTORS = new Set(["cement", "iron_steel", "aluminium", "fertilisers", "hydrogen", "electricity"]);
+  const seenCn = new Set();
+  const seenSectors = new Set();
+
+  assert(goods.length >= 35, `En az 35 CBAM GTİP/CN grubu tanımlı olmalı (gerçek: ${goods.length})`);
+  for (const g of goods) {
+    assert(!seenCn.has(g.cn_code), `Tekil CBAM CN anahtarı: ${g.cn_code}`);
+    seenCn.add(g.cn_code);
+    assert(VALID_CBAM_SECTORS.has(g.sector), `${g.cn_code}: Geçerli CBAM sektörü (${g.sector})`);
+    seenSectors.add(g.sector);
+
+    if (g.cbam_covered) {
+      assert(
+        g.eu_benchmark_tco2 >= 0 &&
+          g.tr_typical_tco2 >= g.eu_benchmark_tco2 &&
+          g.cn_typical_tco2 >= g.tr_typical_tco2 &&
+          g.eu_default_tco2 >= g.cn_typical_tco2,
+        `${g.cn_code}: Emisyon hiyerarşisi (AB Benchmark <= TR Tipik <= CN Tipik <= AB Cezalı Varsayılan) tutarlı olmalı`
+      );
+      if (g.sector === "hydrogen" || g.sector === "electricity") {
+        assert(g.de_minimis_50t_applies === false, `${g.cn_code}: Hidrojen ve elektrikte 50 ton muafiyeti uygulanmamalı (EU 2025/2083)`);
+      } else {
+        assert(g.de_minimis_50t_applies === true, `${g.cn_code}: Katı CBAM sektörlerinde 50 ton muafiyeti aktif olmalı (EU 2025/2083)`);
+      }
+    } else {
+      assert(
+        g.eu_benchmark_tco2 === 0 && g.eu_default_tco2 === 0 && g.de_minimis_50t_applies === false,
+        `${g.cn_code}: Kapsam dışı (muaf) GTİP satırlarında emisyon katsayısı 0 olmalı`
+      );
+    }
+  }
+  assert(seenSectors.size === 6, "AB 2023/956 kapsamındaki 6 sektörün tamamı temsil edilmeli");
+}
+
 if (failures > 0) {
   console.error(`\n❌ DOĞRULAMA BAŞARISIZ: ${assertions} kontrolden ${failures} tanesi hata verdi.`);
   process.exit(1);

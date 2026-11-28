@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-28T14:12:10.862Z",
+  "updated_at": "2026-11-28T14:29:58.518Z",
   "excluded_modules": [
     "09-global-12digit-live-binding-duty-calculator"
   ],
@@ -111,6 +111,37 @@
           "filename": "03-chemical-reach-cas/regulated_chemicals.json",
           "records": 101,
           "sha256": "298ae18df56e0e29bf9fcabd6a5b616cbb9c1848bb2544a175d7e306d0ea7396"
+        }
+      ]
+    },
+    {
+      "module_id": "04-eu-cbam",
+      "order": 4,
+      "title_tr": "AB CBAM (Sınırda Karbon Düzenleme Mekanizması) GTİP Kapsamı, Muafiyetler & Emisyon Katsayıları",
+      "title_en": "EU CBAM Regulation (EU) 2023/956 Annex I CN Codes, 2025/2083 Exemptions & JRC Emission Benchmarks",
+      "authority": "European Commission DG TAXUD & Joint Research Centre (JRC)",
+      "official_sources": [
+        "Regulation (EU) 2023/956 of the European Parliament and of the Council (Annex I & Article 31 Phase-in)",
+        "Regulation (EU) 2025/2083 Omnibus CBAM Simplification (50-tonne annual De Minimis mass threshold)",
+        "European Commission JRC Technical Report JRC134682 — GHG Emission Intensities of Iron/Steel, Aluminium, Cement & Fertilisers"
+      ],
+      "update_cadence": "annual_benchmark_plus_weekly_ets",
+      "verification_status": "verified",
+      "verified_at": "2026-11-28T14:29:58.514Z",
+      "collections": [
+        "cbam_phase_schedule",
+        "cbam_goods"
+      ],
+      "files": [
+        {
+          "filename": "04-eu-cbam/cbam_phase_schedule.json",
+          "records": 9,
+          "sha256": "2bf096261a7111a18ed6266a6a323614e7ab25ac6d3fe675f6c98d5261c92f40"
+        },
+        {
+          "filename": "04-eu-cbam/cbam_goods.json",
+          "records": 48,
+          "sha256": "84c16bfc1f4ece67b3c9e604aa14d0841eab462f2cb24e675fe736a808737efd"
         }
       ]
     }

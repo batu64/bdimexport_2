@@ -330,6 +330,57 @@ const COLLECTIONS = [
       "CREATE INDEX idx_reg_chem_group ON regulated_chemicals (chem_group, risk_status)",
     ],
   },
+  // -------------------------------------------------------------------------
+  // Modül 04: AB CBAM (Sınırda Karbon Düzenleme Mekanizması)
+  // -------------------------------------------------------------------------
+  {
+    name: "cbam_phase_schedule",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "calendar_year", type: "number", onlyInt: true },
+      { name: "regime_phase", type: "text", required: true, max: 40 },
+      { name: "eu_ets_free_allocation_pct", type: "number" },
+      { name: "cbam_financial_factor_pct", type: "number" },
+      { name: "default_value_markup_pct", type: "number", onlyInt: true },
+      { name: "de_minimis_mass_tonnes", type: "number", onlyInt: true },
+      { name: "reference_ets_eur_per_tco2", type: "number" },
+      { name: "note_tr", type: "text", required: true, max: 600 },
+    ],
+    indexes: ["CREATE UNIQUE INDEX idx_cbam_year ON cbam_phase_schedule (calendar_year)"],
+  },
+  {
+    name: "cbam_goods",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "cn_code", type: "text", required: true, max: 40 },
+      { name: "cn_display", type: "text", required: true, max: 80 },
+      { name: "sector", type: "text", required: true, max: 40 },
+      { name: "cbam_covered", type: "bool" },
+      { name: "ghg_gases", type: "text", required: true, max: 40 },
+      { name: "de_minimis_50t_applies", type: "bool" },
+      { name: "name_tr", type: "text", required: true, max: 240 },
+      { name: "name_en", type: "text", required: true, max: 240 },
+      { name: "eu_benchmark_tco2", type: "number" },
+      { name: "tr_typical_tco2", type: "number" },
+      { name: "cn_typical_tco2", type: "number" },
+      { name: "eu_default_tco2", type: "number" },
+      { name: "guidance_tr", type: "text", required: true, max: 800 },
+    ],
+    indexes: [
+      "CREATE UNIQUE INDEX idx_cbam_goods_cn ON cbam_goods (cn_code)",
+      "CREATE INDEX idx_cbam_goods_sector ON cbam_goods (sector, cbam_covered)",
+    ],
+  },
 ];
 
 async function ensureCollection(colDef) {
@@ -452,5 +503,11 @@ const regChemicals = JSON.parse(readFileSync(join(ROOT, "03-chemical-reach-cas/r
 
 await syncRecords("chemical_regulatory_lists", "list_code", chemLists);
 await syncRecords("regulated_chemicals", "cas_number", regChemicals);
+
+const cbamSchedule = JSON.parse(readFileSync(join(ROOT, "04-eu-cbam/cbam_phase_schedule.json"), "utf8"));
+const cbamGoods = JSON.parse(readFileSync(join(ROOT, "04-eu-cbam/cbam_goods.json"), "utf8"));
+
+await syncRecords("cbam_phase_schedule", "calendar_year", cbamSchedule);
+await syncRecords("cbam_goods", "cn_code", cbamGoods);
 
 console.log("\n🎉 PocketBase senkronizasyonu %100 başarıyla tamamlandı!");

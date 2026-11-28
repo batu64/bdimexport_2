@@ -12,8 +12,8 @@ Bu dizin, `bdimexport.com` üzerindeki interaktif dış ticaret araçlarının *
 | **`01-container-aql`** | Konteyner / Avrupa TIR Doluluk & ISO 2859-1 AQL Numune | ISO 668, AB 96/53/EC, ISO 2859-1:1999 (Tablo 1 & 2-A) | `containers_specs`, `aql_lot_codes`, `aql_sampling_plans` | ✅ Doğrulandı |
 | **`02-supplier-registry`** | Tedarikçi Sicil (Çin USCC, TR VKN, ISO 13616 IBAN) Kuralları | GB 32100-2015, Çin İdari Bölge Kodları, ISO 13616 | `cn_uscc_regions`, `supplier_registry_rules`, `iban_country_rules` | ✅ Doğrulandı |
 | **`03-chemical-reach-cas`** | Kimyasal Yasak & SDS CAS Numarası Takipçisi | ECHA SVHC Aday Listesi, REACH Ek-17, RoHS, CA Prop 65 | `chemical_regulatory_lists`, `regulated_chemicals` | ✅ Doğrulandı |
-| **`04-eu-cbam`** | AB CBAM (Sınırda Karbon) GTİP & Emisyon Katsayıları | AB Tüzüğü 2023/956 Ek-I + Komisyon Varsayılan Değerleri | `cbam_goods`, `cbam_benchmarks` | ⏳ Sıradaki (Adım 4) |
-| **`05-food-mrl-rasff`** | AB Pestisit MRL Limitleri & ABD FDA Sınır Reddi | AB DG SANTE Data Lake JSON API + openFDA Import Refusals | `eu_pesticide_mrls`, `food_border_alerts` | ⏳ Bekliyor (Adım 5) |
+| **`04-eu-cbam`** | AB CBAM (Sınırda Karbon) GTİP & Emisyon Katsayıları | AB Tüzüğü 2023/956 Ek-I + 2025/2083 + JRC Katsayıları | `cbam_phase_schedule`, `cbam_goods` | ✅ Doğrulandı |
+| **`05-food-mrl-rasff`** | AB Pestisit MRL Limitleri & ABD FDA Sınır Reddi | AB DG SANTE Data Lake JSON API + openFDA Import Refusals | `eu_pesticide_mrls`, `food_border_alerts` | ⏳ Sıradaki (Adım 5) |
 | **`06-tareks-ce`** | TAREKS (ÜGD Tebliğleri) & CE Belge Sihirbazı (TR + ZH) | T.C. Ticaret Bakanlığı Yıllık ÜGD Tebliğ Matrisleri | `tareks_regulations`, `tareks_hs_mappings` | ⏳ Bekliyor (Adım 6) |
 | **`07-fta-tariff-corridors`** | STA / Menşe Avantajı & Çin-Türkiye Arbitraj Radarı | UK & XI (AB TARIC) API v2, USITC HTS, TR 23 STA Matrisi | `trade_agreements`, `corridor_tariff_benchmarks` | ⏳ Bekliyor (Adım 7) |
 | **`08-gtip-gazette-alerts`** | GTİP Resmi Gazete / EUR-Lex / ABD Değişiklik Alarm Motoru | Resmi Gazete, EUR-Lex RSS, US Federal Register API | `regulatory_alerts` (Admin Onay Kapılı) | ⏳ Bekliyor (Adım 8) |
