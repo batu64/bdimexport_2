@@ -697,24 +697,30 @@ async function syncRecords(collectionName, uniqueField, rows) {
 
   let created = 0;
   let updated = 0;
-  for (const row of rows) {
-    const keyVal = String(row[uniqueField]);
-    const existingId = existingMap.get(keyVal);
-    if (existingId) {
-      await pbFetch(
-        `/api/collections/${collectionName}/records/${existingId}`,
-        { method: "PATCH", body: JSON.stringify(row) },
-        TOKEN
-      );
-      updated++;
-    } else {
-      await pbFetch(
-        `/api/collections/${collectionName}/records`,
-        { method: "POST", body: JSON.stringify(row) },
-        TOKEN
-      );
-      created++;
-    }
+  const CONCURRENCY = 15;
+  for (let i = 0; i < rows.length; i += CONCURRENCY) {
+    const chunk = rows.slice(i, i + CONCURRENCY);
+    await Promise.all(
+      chunk.map(async (row) => {
+        const keyVal = String(row[uniqueField]);
+        const existingId = existingMap.get(keyVal);
+        if (existingId) {
+          await pbFetch(
+            `/api/collections/${collectionName}/records/${existingId}`,
+            { method: "PATCH", body: JSON.stringify(row) },
+            TOKEN
+          );
+          updated++;
+        } else {
+          await pbFetch(
+            `/api/collections/${collectionName}/records`,
+            { method: "POST", body: JSON.stringify(row) },
+            TOKEN
+          );
+          created++;
+        }
+      })
+    );
   }
   console.log(`  ✅ ${collectionName}: ${created} eklendi, ${updated} güncellendi (toplam: ${rows.length})`);
 }
