@@ -381,6 +381,92 @@ const COLLECTIONS = [
       "CREATE INDEX idx_cbam_goods_sector ON cbam_goods (sector, cbam_covered)",
     ],
   },
+  // -------------------------------------------------------------------------
+  // Modül 05: Gıda İhracatçıları İçin AB DG SANTE MRL & FDA/RASFF Sınır Radarı
+  // -------------------------------------------------------------------------
+  {
+    name: "food_export_commodities",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "commodity_slug", type: "text", required: true, max: 64 },
+      { name: "product_code", type: "text", required: true, max: 16 },
+      { name: "sante_product_id", type: "number", onlyInt: true },
+      { name: "hs_prefix", type: "text", required: true, max: 40 },
+      { name: "name_tr", type: "text", required: true, max: 180 },
+      { name: "name_en", type: "text", required: true, max: 180 },
+      { name: "sante_product_name_official", type: "text", required: true, max: 180 },
+      { name: "eu_border_annex", type: "text", required: true, max: 200 },
+      { name: "eu_sampling_pct", type: "number", onlyInt: true },
+      { name: "contaminant_limits_tr", type: "text", required: true, max: 800 },
+      { name: "exporter_action_tr", type: "text", required: true, max: 800 },
+    ],
+    indexes: [
+      "CREATE UNIQUE INDEX idx_food_comm_slug ON food_export_commodities (commodity_slug)",
+      "CREATE UNIQUE INDEX idx_food_comm_code ON food_export_commodities (product_code)",
+    ],
+  },
+  {
+    name: "eu_pesticide_mrls",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "mrl_key", type: "text", required: true, max: 64 },
+      { name: "commodity_slug", type: "text", required: true, max: 64 },
+      { name: "product_code", type: "text", required: true, max: 16 },
+      { name: "sante_product_id", type: "number", onlyInt: true },
+      { name: "product_name_tr", type: "text", required: true, max: 180 },
+      { name: "product_name_en", type: "text", required: true, max: 180 },
+      { name: "sante_residue_id", type: "number", onlyInt: true },
+      { name: "substance_slug", type: "text", required: true, max: 64 },
+      { name: "substance_name", type: "text", required: true, max: 200 },
+      { name: "eu_approval_status", type: "text", required: true, max: 80 },
+      { name: "mrl_display", type: "text", required: true, max: 32 },
+      { name: "mrl_mg_kg", type: "number" },
+      { name: "is_loq_zero_tolerance", type: "bool" },
+      { name: "regulation_number", type: "text", required: true, max: 120 },
+      { name: "regulation_url", type: "text", required: true, max: 400 },
+      { name: "application_date", type: "text", required: false, max: 40 },
+      { name: "risk_note_tr", type: "text", required: true, max: 600 },
+    ],
+    indexes: [
+      "CREATE UNIQUE INDEX idx_eu_mrl_key ON eu_pesticide_mrls (mrl_key)",
+      "CREATE INDEX idx_eu_mrl_comm_sub ON eu_pesticide_mrls (commodity_slug, substance_slug)",
+    ],
+  },
+  {
+    name: "food_border_alerts",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "alert_key", type: "text", required: true, max: 80 },
+      { name: "source_system", type: "text", required: true, max: 64 },
+      { name: "destination_market", type: "text", required: true, max: 120 },
+      { name: "origin_country", type: "text", required: true, max: 80 },
+      { name: "commodity_slug", type: "text", required: true, max: 64 },
+      { name: "hazard_category", type: "text", required: true, max: 240 },
+      { name: "severity", type: "text", required: true, max: 32 },
+      { name: "typical_action", type: "text", required: true, max: 180 },
+      { name: "summary_tr", type: "text", required: true, max: 800 },
+      { name: "prevention_tr", type: "text", required: true, max: 800 },
+    ],
+    indexes: [
+      "CREATE UNIQUE INDEX idx_food_alert_key ON food_border_alerts (alert_key)",
+      "CREATE INDEX idx_food_alert_comm ON food_border_alerts (commodity_slug)",
+    ],
+  },
 ];
 
 async function ensureCollection(colDef) {
@@ -509,5 +595,13 @@ const cbamGoods = JSON.parse(readFileSync(join(ROOT, "04-eu-cbam/cbam_goods.json
 
 await syncRecords("cbam_phase_schedule", "calendar_year", cbamSchedule);
 await syncRecords("cbam_goods", "cn_code", cbamGoods);
+
+const foodCommodities = JSON.parse(readFileSync(join(ROOT, "05-food-mrl-rasff/food_export_commodities.json"), "utf8"));
+const euMrls = JSON.parse(readFileSync(join(ROOT, "05-food-mrl-rasff/eu_pesticide_mrls.json"), "utf8"));
+const foodAlerts = JSON.parse(readFileSync(join(ROOT, "05-food-mrl-rasff/food_border_alerts.json"), "utf8"));
+
+await syncRecords("food_export_commodities", "commodity_slug", foodCommodities);
+await syncRecords("eu_pesticide_mrls", "mrl_key", euMrls);
+await syncRecords("food_border_alerts", "alert_key", foodAlerts);
 
 console.log("\n🎉 PocketBase senkronizasyonu %100 başarıyla tamamlandı!");

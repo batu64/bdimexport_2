@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-28T14:29:58.518Z",
+  "updated_at": "2026-11-28T14:46:31.368Z",
   "excluded_modules": [
     "09-global-12digit-live-binding-duty-calculator"
   ],
@@ -142,6 +142,45 @@
           "filename": "04-eu-cbam/cbam_goods.json",
           "records": 48,
           "sha256": "84c16bfc1f4ece67b3c9e604aa14d0841eab462f2cb24e675fe736a808737efd"
+        }
+      ]
+    },
+    {
+      "module_id": "05-food-mrl-rasff",
+      "order": 5,
+      "title_tr": "Gıda İhracatçıları İçin AB DG SANTE Pestisit MRL, AB 2019/1793 Sınır Kontrol & FDA/RASFF Radarı",
+      "title_en": "EU DG SANTE Pesticide MRLs (API v3.0), EU 2019/1793 Border Sampling, 2023/915 Mycotoxins & US openFDA Alerts",
+      "authority": "European Commission DG SANTE (Data Lake v3.0), EUR-Lex & U.S. Food and Drug Administration (openFDA)",
+      "official_sources": [
+        "European Commission DG SANTE EU Pesticides Database API v3.0 (api.datalake.sante.service.ec.europa.eu)",
+        "Commission Regulation (EC) No 396/2005 & Regulation (EU) 2025/158 (Acetamiprid MRL Reduction)",
+        "Commission Regulation (EU) 2023/915 on Maximum Levels for Certain Contaminants in Food (Mycotoxins & PA)",
+        "Commission Implementing Regulation (EU) 2019/1793 (Official Border Check Frequencies on Exports from Türkiye)",
+        "US FDA openFDA Food Enforcement API (api.fda.gov/food/enforcement.json)"
+      ],
+      "update_cadence": "monthly_sante_fda_sync",
+      "verification_status": "verified",
+      "verified_at": "2026-11-28T14:46:31.364Z",
+      "collections": [
+        "food_export_commodities",
+        "eu_pesticide_mrls",
+        "food_border_alerts"
+      ],
+      "files": [
+        {
+          "filename": "05-food-mrl-rasff/food_export_commodities.json",
+          "records": 16,
+          "sha256": "43c67e4595b1cef7c28644194ac43d9b80c9c96e4c6178f6753f8cfab0852c3a"
+        },
+        {
+          "filename": "05-food-mrl-rasff/eu_pesticide_mrls.json",
+          "records": 320,
+          "sha256": "482f75b694dcfb2eb15bec361ea274ea8fb1b3c1bd4ad23d9930b1d2c0cca675"
+        },
+        {
+          "filename": "05-food-mrl-rasff/food_border_alerts.json",
+          "records": 16,
+          "sha256": "867c63880d61eb71d766e570762eeb0757ff258ab5ba27e9bbec10ec686861af"
         }
       ]
     }

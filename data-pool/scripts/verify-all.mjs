@@ -412,6 +412,67 @@ if (existsSync(join(ROOT, "04-eu-cbam/cbam_goods.json"))) {
   assert(seenSectors.size === 6, "AB 2023/956 kapsamındaki 6 sektörün tamamı temsil edilmeli");
 }
 
+// ===========================================================================
+// MODÜL 05 DOĞRULAMASI: AB DG SANTE v3.0 Pestisit MRL & AB 2019/1793 / openFDA
+// ===========================================================================
+if (existsSync(join(ROOT, "05-food-mrl-rasff/eu_pesticide_mrls.json"))) {
+  const commodities = JSON.parse(readFileSync(join(ROOT, "05-food-mrl-rasff/food_export_commodities.json"), "utf8"));
+  const mrls = JSON.parse(readFileSync(join(ROOT, "05-food-mrl-rasff/eu_pesticide_mrls.json"), "utf8"));
+  const alerts = JSON.parse(readFileSync(join(ROOT, "05-food-mrl-rasff/food_border_alerts.json"), "utf8"));
+
+  assert(commodities.length === 16, `16 ana Türkiye gıda ihracat ürünü tanımlı olmalı (gerçek: ${commodities.length})`);
+  const validCommoditySlugs = new Set();
+  const validProductCodes = new Set();
+
+  for (const c of commodities) {
+    assert(!validCommoditySlugs.has(c.commodity_slug), `Tekil gıda ürün slug: ${c.commodity_slug}`);
+    validCommoditySlugs.add(c.commodity_slug);
+    validProductCodes.add(c.product_code);
+    assert(/^[0-9]{7}$/.test(c.product_code), `${c.commodity_slug}: Resmi 7 haneli AB ürün kodu (${c.product_code})`);
+    assert(Number.isInteger(c.sante_product_id) && c.sante_product_id > 0, `${c.commodity_slug}: Pozitif DG SANTE product_id`);
+    assert(c.eu_sampling_pct >= 5 && c.eu_sampling_pct <= 50, `${c.commodity_slug}: Sınır numune sıklığı %5-%50 aralığında olmalı`);
+  }
+
+  assert(mrls.length >= 250, `Canlı DG SANTE API'sinden en az 250 resmi ürün×pestisit MRL kaydı gelmeli (gerçek: ${mrls.length})`);
+  const seenMrlKeys = new Set();
+  for (const m of mrls) {
+    assert(!seenMrlKeys.has(m.mrl_key), `Tekil MRL anahtarı: ${m.mrl_key}`);
+    seenMrlKeys.add(m.mrl_key);
+    assert(validCommoditySlugs.has(m.commodity_slug), `${m.mrl_key}: Geçerli commodity_slug`);
+    assert(validProductCodes.has(m.product_code), `${m.mrl_key}: Geçerli AB ürün kodu`);
+    assert(typeof m.mrl_mg_kg === "number" && m.mrl_mg_kg > 0 && m.mrl_mg_kg <= 1000, `${m.mrl_key}: Geçerli pozitif MRL (mg/kg): ${m.mrl_mg_kg}`);
+    if (m.mrl_display.includes("*")) {
+      assert(m.is_loq_zero_tolerance === true, `${m.mrl_key}: '*' içeren MRL değeri LOQ sıfır tolerans olarak işaretlenmeli`);
+    }
+    assert(m.regulation_number.length > 3, `${m.mrl_key}: Resmi AB tüzük numarası dolu olmalı`);
+  }
+
+  // Bilinen kritik resmi AB MRL altın doğrulamaları (EU 2025/158 Acetamiprid düşüşü & Chlorpyrifos 0.01* yasağı!)
+  const tomatoAcetamiprid = mrls.find((m) => m.product_code === "0231010" && m.substance_slug === "acetamiprid");
+  const pepperAcetamiprid = mrls.find((m) => m.product_code === "0231020" && m.substance_slug === "acetamiprid");
+  const lemonChlorpyrifos = mrls.find((m) => m.product_code === "0110030" && m.substance_slug === "chlorpyrifos");
+
+  assert(
+    tomatoAcetamiprid && tomatoAcetamiprid.mrl_mg_kg === 0.06,
+    `Altın MRL Testi [Domates x Acetamiprid EU 2025/158]: beklenen=0.06 mg/kg, gerçek=${tomatoAcetamiprid?.mrl_mg_kg}`
+  );
+  assert(
+    pepperAcetamiprid && pepperAcetamiprid.mrl_mg_kg === 0.09,
+    `Altın MRL Testi [Tatlı Biber x Acetamiprid EU 2025/158]: beklenen=0.09 mg/kg, gerçek=${pepperAcetamiprid?.mrl_mg_kg}`
+  );
+  assert(
+    lemonChlorpyrifos && lemonChlorpyrifos.mrl_mg_kg === 0.01 && lemonChlorpyrifos.is_loq_zero_tolerance === true,
+    `Altın MRL Testi [Limon x Chlorpyrifos LOQ Yasağı]: beklenen=0.01* mg/kg, gerçek=${lemonChlorpyrifos?.mrl_display}`
+  );
+
+  assert(alerts.length >= 12, `En az 12 RASFF + canlı openFDA sınır/yaptırım kaydı bulunmalı (gerçek: ${alerts.length})`);
+  const seenAlertKeys = new Set();
+  for (const a of alerts) {
+    assert(!seenAlertKeys.has(a.alert_key), `Tekil sınır alarm anahtarı: ${a.alert_key}`);
+    seenAlertKeys.add(a.alert_key);
+  }
+}
+
 if (failures > 0) {
   console.error(`\n❌ DOĞRULAMA BAŞARISIZ: ${assertions} kontrolden ${failures} tanesi hata verdi.`);
   process.exit(1);
