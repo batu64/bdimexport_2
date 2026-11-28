@@ -1,0 +1,4 @@
+data-pool/**/*.json text eol=lf
+data-pool/**/*.mjs text eol=lf
+pocketbase/entrypoint.sh text eol=lf
+pocketbase/Dockerfile text eol=lf

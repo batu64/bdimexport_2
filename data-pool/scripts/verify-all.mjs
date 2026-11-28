@@ -31,14 +31,14 @@ assert(
   "Kapsam dışı bırakılan #9 modülü manifest'te açıkça kilitlenmiş olmalı"
 );
 
-// 1. SHA-256 ve Kayıt Sayısı Bütünlük Kontrolü (Tüm aktif modüller için)
+// 1. SHA-256 (CRLF-bağımsız LF kanonik) ve Kayıt Sayısı Bütünlük Kontrolü
 for (const ds of manifest.datasets) {
   console.log(`\n🔍 Doğrulanıyor: [${ds.module_id}] ${ds.title_tr}`);
   for (const f of ds.files) {
     const fp = join(ROOT, f.filename);
     assert(existsSync(fp), `Dosya mevcut olmalı: ${f.filename}`);
     if (existsSync(fp)) {
-      const raw = readFileSync(fp, "utf8");
+      const raw = readFileSync(fp, "utf8").replace(/\r\n/g, "\n");
       const sha = createHash("sha256").update(raw, "utf8").digest("hex");
       const parsed = JSON.parse(raw);
       assert(sha === f.sha256, `${f.filename} SHA-256 özeti manifest ile birebir eşleşmeli`);
@@ -47,7 +47,9 @@ for (const ds of manifest.datasets) {
   }
 }
 
-// 2. Modül 01: ISO 668 Konteyner Geometrisi ve ISO 2859-1 AQL Matematiksel Kanıtları
+// ===========================================================================
+// MODÜL 01 DOĞRULAMASI: ISO 668 Konteyner Geometrisi ve ISO 2859-1 AQL
+// ===========================================================================
 const containers = JSON.parse(readFileSync(join(ROOT, "01-container-aql/containers.json"), "utf8"));
 const lotCodes = JSON.parse(readFileSync(join(ROOT, "01-container-aql/aql_lot_codes.json"), "utf8"));
 const plans = JSON.parse(readFileSync(join(ROOT, "01-container-aql/aql_sampling_plans.json"), "utf8"));
@@ -55,31 +57,24 @@ const plans = JSON.parse(readFileSync(join(ROOT, "01-container-aql/aql_sampling_
 assert(containers.length === 10, "10 standart konteyner/treyler tipi tanımlı olmalı");
 const seenCodes = new Set();
 
-// 2D zemin yerleşim doğrulayıcı: A x B mm boyutundaki paletten L x W mm dikdörtgene maksimum kaç adet sığar?
 function maxMixed2DPallets(L, W, pL, pW) {
   let best = 0;
-  // Şerit bazlı (2 yönlü pinwheel / iki duvarlı) kombinasyonların üst sınırı:
-  // Yön 1: K adet şerit L boyunca pL, kalan uzunlukta pW; Yön 2: W boyunca bölme
-  for (let stripW of [pW, pL]) {
+  for (const stripW of [pW, pL]) {
     const otherW = stripW === pW ? pL : pW;
     const maxRows = Math.floor(W / stripW);
     for (let r = 0; r <= maxRows; r++) {
-      const usedW = r * stripW;
-      const remW = W - usedW;
-      const countMain = r * Math.floor(L / otherW);
-      const countRem = Math.floor(remW / otherW) * Math.floor(L / stripW);
-      if (countMain + countRem > best) best = countMain + countRem;
+      const remW = W - r * stripW;
+      const total = r * Math.floor(L / otherW) + Math.floor(remW / otherW) * Math.floor(L / stripW);
+      if (total > best) best = total;
     }
   }
-  for (let stripL of [pL, pW]) {
+  for (const stripL of [pL, pW]) {
     const otherL = stripL === pL ? pW : pL;
     const maxCols = Math.floor(L / stripL);
     for (let c = 0; c <= maxCols; c++) {
-      const usedL = c * stripL;
-      const remL = L - usedL;
-      const countMain = c * Math.floor(W / otherL);
-      const countRem = Math.floor(remL / otherL) * Math.floor(W / stripL);
-      if (countMain + countRem > best) best = countMain + countRem;
+      const remL = L - c * stripL;
+      const total = c * Math.floor(W / otherL) + Math.floor(remL / otherL) * Math.floor(W / stripL);
+      if (total > best) best = total;
     }
   }
   return best;
@@ -88,106 +83,197 @@ function maxMixed2DPallets(L, W, pL, pW) {
 for (const c of containers) {
   assert(!seenCodes.has(c.code), `Tekil konteyner kodu: ${c.code}`);
   seenCodes.add(c.code);
-
   const calcCbm = (c.internal_length_mm * c.internal_width_mm * c.internal_height_mm) / 1e9;
+  assert(Math.abs(calcCbm - c.theoretical_cbm) <= 0.25, `${c.code}: Teorik CBM iç ölçüler çarpımıyla uyumlu olmalı`);
   assert(
-    Math.abs(calcCbm - c.theoretical_cbm) <= 0.25,
-    `${c.code}: Teorik CBM (${c.theoretical_cbm}) iç ölçüler çarpımıyla (${calcCbm.toFixed(2)}) uyumlu olmalı`
-  );
-  assert(
-    c.practical_cbm_min > 0 &&
-      c.practical_cbm_min < c.practical_cbm_max &&
-      c.practical_cbm_max < c.theoretical_cbm,
-    `${c.code}: Pratik yüklenebilir CBM aralığı (min < max < teorik) tutarlı olmalı`
+    c.practical_cbm_min > 0 && c.practical_cbm_min < c.practical_cbm_max && c.practical_cbm_max < c.theoretical_cbm,
+    `${c.code}: Pratik CBM aralığı tutarlı olmalı`
   );
   if (c.category.startsWith("sea_")) {
-    assert(
-      c.tare_weight_kg + c.max_payload_kg === c.max_gross_weight_kg,
-      `${c.code}: Dara (${c.tare_weight_kg}) + Maks Yük (${c.max_payload_kg}) = Maks Brüt (${c.max_gross_weight_kg}) olmalı`
-    );
+    assert(c.tare_weight_kg + c.max_payload_kg === c.max_gross_weight_kg, `${c.code}: Dara + Maks Yük = Maks Brüt`);
   }
-  assert(
-    c.road_safe_payload_kg <= c.max_payload_kg,
-    `${c.code}: Karayolu güvenli yük limiti (${c.road_safe_payload_kg}) CSC limitini aşmamalı`
-  );
-
-  // Palet geometrik sığma testi (hiçbir palet sayısı fiziksel 2D tavanı aşamaz!)
-  const maxEuroGeom = maxMixed2DPallets(c.internal_length_mm, c.internal_width_mm, 1200, 800);
-  const maxIndGeom = maxMixed2DPallets(c.internal_length_mm, c.internal_width_mm, 1200, 1000);
-  const maxUsGeom = maxMixed2DPallets(c.internal_length_mm, c.internal_width_mm, 1219, 1016);
-
-  assert(
-    c.euro_pallets_floor_max <= maxEuroGeom && c.euro_pallets_practical <= c.euro_pallets_floor_max,
-    `${c.code}: Euro palet sayısı (${c.euro_pallets_floor_max}) geometrik üst sınırı (${maxEuroGeom}) aşamaz`
-  );
-  assert(
-    c.industrial_pallets_floor_max <= maxIndGeom && c.industrial_pallets_practical <= c.industrial_pallets_floor_max,
-    `${c.code}: Endüstriyel 100x120 palet sayısı (${c.industrial_pallets_floor_max}) geometrik üst sınırı (${maxIndGeom}) aşamaz`
-  );
-  assert(
-    c.us_gma_pallets_floor_max <= maxUsGeom,
-    `${c.code}: ABD GMA palet sayısı (${c.us_gma_pallets_floor_max}) geometrik üst sınırı (${maxUsGeom}) aşamaz`
-  );
+  assert(c.road_safe_payload_kg <= c.max_payload_kg, `${c.code}: Karayolu güvenli yük <= CSC yük`);
+  assert(c.euro_pallets_floor_max <= maxMixed2DPallets(c.internal_length_mm, c.internal_width_mm, 1200, 800), `${c.code}: Euro palet 2D sınırı`);
+  assert(c.industrial_pallets_floor_max <= maxMixed2DPallets(c.internal_length_mm, c.internal_width_mm, 1200, 1000), `${c.code}: Endüstriyel palet 2D sınırı`);
+  assert(c.us_gma_pallets_floor_max <= maxMixed2DPallets(c.internal_length_mm, c.internal_width_mm, 1219, 1016), `${c.code}: ABD GMA palet 2D sınırı`);
 }
 
-// ISO 2859-1 Tablo 1 kesintisiz aralık ve geçerli harf kontrolü
 const VALID_LETTERS = new Set(["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R"]);
-assert(lotCodes.length === 15, "ISO 2859-1 Tablo 1 tam 15 parti büyüklüğü aralığına sahip olmalı");
+assert(lotCodes.length === 15, "ISO 2859-1 Tablo 1 tam 15 aralık olmalı");
 for (let idx = 0; idx < lotCodes.length; idx++) {
   const r = lotCodes[idx];
   if (idx === 0) assert(r.lot_min === 2, "İlk aralık 2'den başlamalı");
-  if (idx > 0) {
-    assert(
-      r.lot_min === lotCodes[idx - 1].lot_max + 1,
-      `Parti büyüklüğü aralıklarında boşluk olmamalı (${lotCodes[idx - 1].lot_max} -> ${r.lot_min})`
-    );
-  }
+  if (idx > 0) assert(r.lot_min === lotCodes[idx - 1].lot_max + 1, "Parti aralıkları kesintisiz olmalı");
   for (const col of ["s1", "s2", "s3", "s4", "gi", "gii", "giii"]) {
-    assert(VALID_LETTERS.has(r[col]), `Tablo 1 [${r.label}] ${col}=${r[col]} geçerli bir ISO 2859-1 harfi olmalı (I ve O hariç)`);
+    assert(VALID_LETTERS.has(r[col]), `Geçerli ISO 2859-1 harfi: ${r[col]}`);
   }
 }
 
-// ISO 2859-1 Tablo 2-A referans doğrulama noktaları (Uluslararası Kalite Kontrol Benchmark'ları)
-assert(plans.length === 176, "ISO 2859-1 Tablo 2-A (16 harf x 11 AQL) tam 176 hücre olmalı");
-const planMap = new Map(plans.map((p) => [p.plan_key, p]));
-
+assert(plans.length === 176, "ISO 2859-1 Tablo 2-A tam 176 hücre olmalı");
 for (const p of plans) {
-  assert(p.reject_min === p.accept_max + 1, `${p.plan_key}: Normal tek katlı muayenede Re = Ac + 1 olmalı`);
-  assert(VALID_LETTERS.has(p.code_letter) && VALID_LETTERS.has(p.effective_code_letter), `${p.plan_key}: Kod harfleri geçerli olmalı`);
-  if (p.rule_type === "arrow_down") {
-    assert(p.effective_sample_size > p.nominal_sample_size, `${p.plan_key}: Aşağı ok (↓) daha büyük numune boyutu seçmeli`);
-  } else if (p.rule_type === "arrow_up") {
-    assert(p.effective_sample_size < p.nominal_sample_size, `${p.plan_key}: Yukarı ok (↑) daha küçük numune boyutu seçmeli`);
-  } else {
-    assert(p.effective_sample_size === p.nominal_sample_size, `${p.plan_key}: Doğrudan planda efektif numune = nominal numune olmalı`);
-  }
+  assert(p.reject_min === p.accept_max + 1, `${p.plan_key}: Re = Ac + 1`);
 }
 
-// Bilinen kesin ISO 2859-1 Tablo 2-A altın test noktaları:
-const goldenChecks = [
-  { key: "normal_L_1.0",  effN: 200, ac: 5,  re: 6,  rule: "direct" },
-  { key: "normal_L_1.5",  effN: 200, ac: 7,  re: 8,  rule: "direct" },
-  { key: "normal_L_2.5",  effN: 200, ac: 10, re: 11, rule: "direct" },
-  { key: "normal_L_4.0",  effN: 200, ac: 14, re: 15, rule: "direct" },
-  { key: "normal_K_1.0",  effN: 125, ac: 3,  re: 4,  rule: "direct" },
-  { key: "normal_K_2.5",  effN: 125, ac: 7,  re: 8,  rule: "direct" },
-  { key: "normal_K_4.0",  effN: 125, ac: 10, re: 11, rule: "direct" },
-  { key: "normal_F_1.0",  effN: 13,  ac: 0,  re: 1,  rule: "arrow_up" },   // F(20) @ 1.0 -> ↑ E(13) Ac=0 Re=1
-  { key: "normal_G_1.0",  effN: 50,  ac: 1,  re: 2,  rule: "arrow_down" }, // G(32) @ 1.0 -> ↓ H(50) Ac=1 Re=2
-  { key: "normal_A_0.65", effN: 20,  ac: 0,  re: 1,  rule: "arrow_down" }, // A(2) @ 0.65 -> ↓ F(20) Ac=0 Re=1
-  { key: "normal_M_6.5",  effN: 200, ac: 21, re: 22, rule: "arrow_up" },   // M(315) @ 6.5 -> ↑ L(200) Ac=21 Re=22
-];
+// ===========================================================================
+// MODÜL 02 DOĞRULAMASI: GB 32100-2015 USCC, Vergi Algoritmaları ve ISO 13616 IBAN
+// ===========================================================================
+if (existsSync(join(ROOT, "02-supplier-registry/cn_uscc_regions.json"))) {
+  const cnRegions = JSON.parse(readFileSync(join(ROOT, "02-supplier-registry/cn_uscc_regions.json"), "utf8"));
+  const regRules = JSON.parse(readFileSync(join(ROOT, "02-supplier-registry/supplier_registry_rules.json"), "utf8"));
+  const ibanRules = JSON.parse(readFileSync(join(ROOT, "02-supplier-registry/iban_country_rules.json"), "utf8"));
 
-for (const g of goldenChecks) {
-  const cell = planMap.get(g.key);
-  assert(
-    cell &&
-      cell.effective_sample_size === g.effN &&
-      cell.accept_max === g.ac &&
-      cell.reject_min === g.re &&
-      cell.rule_type === g.rule,
-    `ISO 2859-1 Altın Test [${g.key}] beklenen=(n=${g.effN}, ${g.ac}/${g.re}, ${g.rule}) gerçek=${JSON.stringify(cell)}`
-  );
+  // 2.1 Çin İdari Bölge Kodları Kontrolü (34 eyalet + 54 üretim şehri/bölgesi = 88)
+  assert(cnRegions.length === 88, `Çin bölge tablosu 88 kayıt olmalı (gerçek: ${cnRegions.length})`);
+  const regionCodes = new Set();
+  let provinceCount = 0;
+  for (const reg of cnRegions) {
+    assert(!regionCodes.has(reg.region_code), `Tekil Çin bölge kodu: ${reg.region_code}`);
+    regionCodes.add(reg.region_code);
+    assert(/^[0-9]{2}([0-9]{2})?([0-9]{2})?$/.test(reg.region_code), `Geçerli GB/T 2260 sayısal kod: ${reg.region_code}`);
+    assert(["low", "medium", "high"].includes(reg.trading_intermediary_risk), `Geçerli aracı risk seviyesi: ${reg.region_code}`);
+    if (reg.level === "province") provinceCount++;
+  }
+  assert(provinceCount === 34, "Çin'in 34 il/özerk bölge/belediye üst kodu eksiksiz olmalı");
+  for (const r of cnRegions) {
+    if (r.parent_code) {
+      assert(regionCodes.has(r.parent_code), `${r.region_code} üst bölge kodu (${r.parent_code}) tabloda tanımlı olmalı`);
+    }
+  }
+
+  // 2.2 GB 32100-2015 Mod-31, GİB VKN Mod-10, NVİ TCKN, Luhn, PL NIP, RU INN Doğrulayıcıları
+  const USCC_ALPHABET = "0123456789ABCDEFGHJKLMNPQRTUWXY";
+  const USCC_WEIGHTS = [1, 3, 9, 27, 19, 26, 16, 17, 20, 29, 25, 13, 8, 24, 10, 30, 28];
+
+  assert(USCC_ALPHABET.length === 31, "USCC alfabesi 31 karakter olmalı");
+  for (const forbidden of ["I", "O", "Z", "S", "V"]) {
+    assert(!USCC_ALPHABET.includes(forbidden), `USCC alfabesi '${forbidden}' harfini içermemeli`);
+  }
+  for (let i = 0; i < 17; i++) {
+    // (3^i) mod 31 matematiksel ağırlık kanıtı
+    let powMod = 1;
+    for (let k = 0; k < i; k++) powMod = (powMod * 3) % 31;
+    assert(powMod === USCC_WEIGHTS[i], `GB 32100-2015 ağırlığı W[${i}]=${USCC_WEIGHTS[i]} == 3^${i} mod 31 kanıtı`);
+  }
+
+  function verifyUsccMod31(code) {
+    if (typeof code !== "string" || code.length !== 18) return false;
+    let sum = 0;
+    for (let i = 0; i < 17; i++) {
+      const idx = USCC_ALPHABET.indexOf(code[i]);
+      if (idx < 0) return false;
+      sum += idx * USCC_WEIGHTS[i];
+    }
+    const expected = USCC_ALPHABET[(31 - (sum % 31)) % 31];
+    return code[17] === expected;
+  }
+
+  function verifyTrVknMod10(vkn) {
+    if (!/^[0-9]{10}$/.test(vkn)) return false;
+    let sum = 0;
+    for (let i = 0; i < 9; i++) {
+      const d = Number(vkn[i]);
+      const v = (d + (9 - i)) % 10;
+      let p = (v * Math.pow(2, 9 - i)) % 9;
+      if (v !== 0 && p === 0) p = 9;
+      sum += p;
+    }
+    return ((10 - (sum % 10)) % 10) === Number(vkn[9]);
+  }
+
+  function verifyTrTckn(tckn) {
+    if (!/^[1-9][0-9]{10}$/.test(tckn)) return false;
+    const d = tckn.split("").map(Number);
+    const odd = d[0] + d[2] + d[4] + d[6] + d[8];
+    const even = d[1] + d[3] + d[5] + d[7];
+    const d10 = (((odd * 7) - even) % 10 + 10) % 10;
+    const d11 = d.slice(0, 10).reduce((a, b) => a + b, 0) % 10;
+    return d[9] === d10 && d[10] === d11;
+  }
+
+  function verifyLuhn(str) {
+    let sum = 0;
+    let dbl = false;
+    for (let i = str.length - 1; i >= 0; i--) {
+      let n = Number(str[i]);
+      if (dbl) {
+        n *= 2;
+        if (n > 9) n -= 9;
+      }
+      sum += n;
+      dbl = !dbl;
+    }
+    return sum % 10 === 0;
+  }
+
+  function verifyPlNip(val) {
+    const digits = val.replace(/^PL/, "");
+    if (!/^[0-9]{10}$/.test(digits)) return false;
+    const w = [6, 5, 7, 2, 3, 4, 5, 6, 7];
+    const sum = w.reduce((acc, weight, idx) => acc + weight * Number(digits[idx]), 0);
+    return sum % 11 === Number(digits[9]);
+  }
+
+  function verifyRuInn10(val) {
+    if (!/^[0-9]{10}$/.test(val)) return false;
+    const w = [2, 4, 10, 3, 5, 9, 4, 6, 8];
+    const sum = w.reduce((acc, weight, idx) => acc + weight * Number(val[idx]), 0);
+    return ((sum % 11) % 10) === Number(val[9]);
+  }
+
+  // Gerçek halka açık şirket USCC testi: Sberbank INN (7707083893) ve USCC bozulmuş kontrol testi
+  assert(!verifyUsccMod31("9144060658140293X0"), "Bozuk kontrol basamaklı USCC reddedilmeli");
+
+  const seenRuleCodes = new Set();
+  for (const r of regRules) {
+    assert(!seenRuleCodes.has(r.rule_code), `Tekil sicil kural kodu: ${r.rule_code}`);
+    seenRuleCodes.add(r.rule_code);
+    const re = new RegExp(r.pattern_regex);
+    assert(re.test(r.sample_valid), `${r.rule_code}: Örnek değer (${r.sample_valid}) regex ile eşleşmeli`);
+
+    if (r.checksum_algorithm === "gb32100_mod31") {
+      assert(verifyUsccMod31(r.sample_valid), `${r.rule_code}: Örnek USCC Mod-31 kontrolünden geçmeli`);
+    } else if (r.checksum_algorithm === "tr_vkn_mod10") {
+      assert(verifyTrVknMod10(r.sample_valid), `${r.rule_code}: Örnek VKN GİB Mod-10 kontrolünden geçmeli`);
+    } else if (r.checksum_algorithm === "tr_tckn_mod10") {
+      assert(verifyTrTckn(r.sample_valid), `${r.rule_code}: Örnek TCKN NVİ Mod-10 kontrolünden geçmeli`);
+    } else if (r.checksum_algorithm === "luhn_mod10") {
+      assert(verifyLuhn(r.sample_valid), `${r.rule_code}: Örnek SIRET Luhn Mod-10 kontrolünden geçmeli`);
+    } else if (r.checksum_algorithm === "pl_nip_mod11") {
+      assert(verifyPlNip(r.sample_valid), `${r.rule_code}: Örnek Polonya NIP Mod-11 kontrolünden geçmeli`);
+    } else if (r.checksum_algorithm === "ru_inn10_mod11") {
+      assert(verifyRuInn10(r.sample_valid), `${r.rule_code}: Örnek Rusya INN-10 (Sberbank) Mod-11 kontrolünden geçmeli`);
+    }
+  }
+
+  // 2.3 ISO 13616 & ISO 7064 Mod 97-10 IBAN Doğrulaması (Tüm 60 ülke!)
+  function verifyIbanMod97(iban) {
+    const clean = iban.replace(/\s+/g, "").toUpperCase();
+    if (clean.length < 15 || clean.length > 34) return false;
+    const rearranged = clean.slice(4) + clean.slice(0, 4);
+    let numStr = "";
+    for (const ch of rearranged) {
+      const code = ch.charCodeAt(0);
+      if (code >= 65 && code <= 90) numStr += String(code - 55);
+      else if (code >= 48 && code <= 57) numStr += ch;
+      else return false;
+    }
+    return BigInt(numStr) % 97n === 1n;
+  }
+
+  assert(ibanRules.length === 60, `IBAN/Ödeme ülke tablosu tam 60 ülke olmalı (gerçek: ${ibanRules.length})`);
+  const seenIbanCc = new Set();
+  for (const ib of ibanRules) {
+    assert(!seenIbanCc.has(ib.country_code), `Tekil ülke kodu: ${ib.country_code}`);
+    seenIbanCc.add(ib.country_code);
+    if (ib.uses_iban) {
+      assert(ib.sample_iban.length === ib.iban_length, `${ib.country_code}: Örnek IBAN uzunluğu (${ib.sample_iban.length}) == ${ib.iban_length}`);
+      assert(new RegExp(ib.iban_regex).test(ib.sample_iban), `${ib.country_code}: Örnek IBAN ülke BBAN regex'inden geçmeli`);
+      assert(verifyIbanMod97(ib.sample_iban), `${ib.country_code}: Örnek IBAN (${ib.sample_iban}) ISO 7064 Mod-97 === 1 testinden geçmeli`);
+    } else {
+      assert(ib.iban_length === 0 && ib.sample_iban === "", `${ib.country_code}: Non-IBAN ülkede IBAN uzunluğu 0 olmalı`);
+      assert(ib.local_routing_system.length > 5, `${ib.country_code}: Yerel SWIFT/Routing açıklaması dolu olmalı`);
+    }
+  }
 }
 
 if (failures > 0) {

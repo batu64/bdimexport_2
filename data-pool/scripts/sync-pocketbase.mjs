@@ -206,6 +206,81 @@ const COLLECTIONS = [
       "CREATE INDEX idx_aql_letter_label ON aql_sampling_plans (code_letter, aql_label)",
     ],
   },
+  // -------------------------------------------------------------------------
+  // Modül 02: Tedarikçi Sicil (Çin USCC, Vergi Algoritmaları ve ISO 13616 IBAN)
+  // -------------------------------------------------------------------------
+  {
+    name: "cn_uscc_regions",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "region_code", type: "text", required: true, max: 16 },
+      { name: "level", type: "text", required: true, max: 24 },
+      { name: "parent_code", type: "text", required: false, max: 16 },
+      { name: "name_zh", type: "text", required: true, max: 80 },
+      { name: "name_en", type: "text", required: true, max: 120 },
+      { name: "name_tr", type: "text", required: true, max: 120 },
+      { name: "industrial_clusters_tr", type: "text", required: true, max: 600 },
+      { name: "industrial_clusters_en", type: "text", required: true, max: 600 },
+      { name: "trading_intermediary_risk", type: "text", required: true, max: 24 },
+    ],
+    indexes: ["CREATE UNIQUE INDEX idx_cn_uscc_region_code ON cn_uscc_regions (region_code)"],
+  },
+  {
+    name: "supplier_registry_rules",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "rule_code", type: "text", required: true, max: 40 },
+      { name: "country_code", type: "text", required: true, max: 8 },
+      { name: "id_type", type: "text", required: true, max: 160 },
+      { name: "standard_ref", type: "text", required: true, max: 160 },
+      { name: "char_length_min", type: "number", onlyInt: true },
+      { name: "char_length_max", type: "number", onlyInt: true },
+      { name: "pattern_regex", type: "text", required: true, max: 240 },
+      { name: "checksum_algorithm", type: "text", required: true, max: 64 },
+      { name: "sample_valid", type: "text", required: true, max: 64 },
+      { name: "entity_nature", type: "text", required: true, max: 64 },
+      { name: "fraud_flag_level", type: "text", required: true, max: 40 },
+      { name: "guidance_tr", type: "text", required: true, max: 800 },
+      { name: "guidance_en", type: "text", required: true, max: 800 },
+    ],
+    indexes: [
+      "CREATE UNIQUE INDEX idx_supplier_reg_rule_code ON supplier_registry_rules (rule_code)",
+      "CREATE INDEX idx_supplier_reg_country ON supplier_registry_rules (country_code)",
+    ],
+  },
+  {
+    name: "iban_country_rules",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "country_code", type: "text", required: true, max: 8 },
+      { name: "country_name_tr", type: "text", required: true, max: 120 },
+      { name: "country_name_en", type: "text", required: true, max: 120 },
+      { name: "uses_iban", type: "bool" },
+      { name: "iban_length", type: "number", onlyInt: true },
+      { name: "iban_regex", type: "text", required: false, max: 160 },
+      { name: "local_routing_system", type: "text", required: true, max: 200 },
+      { name: "sample_iban", type: "text", required: false, max: 64 },
+      { name: "sepa_member", type: "bool" },
+      { name: "fintech_offshore_watch", type: "bool" },
+      { name: "compliance_note_tr", type: "text", required: true, max: 600 },
+    ],
+    indexes: ["CREATE UNIQUE INDEX idx_iban_country_code ON iban_country_rules (country_code)"],
+  },
 ];
 
 async function ensureCollection(colDef) {
@@ -314,5 +389,13 @@ const samplingPlans = JSON.parse(readFileSync(join(ROOT, "01-container-aql/aql_s
 await syncRecords("containers_specs", "code", containers);
 await syncRecords("aql_lot_codes", "bracket_index", lotCodes);
 await syncRecords("aql_sampling_plans", "plan_key", samplingPlans);
+
+const cnRegions = JSON.parse(readFileSync(join(ROOT, "02-supplier-registry/cn_uscc_regions.json"), "utf8"));
+const regRules = JSON.parse(readFileSync(join(ROOT, "02-supplier-registry/supplier_registry_rules.json"), "utf8"));
+const ibanRules = JSON.parse(readFileSync(join(ROOT, "02-supplier-registry/iban_country_rules.json"), "utf8"));
+
+await syncRecords("cn_uscc_regions", "region_code", cnRegions);
+await syncRecords("supplier_registry_rules", "rule_code", regRules);
+await syncRecords("iban_country_rules", "country_code", ibanRules);
 
 console.log("\n🎉 PocketBase senkronizasyonu %100 başarıyla tamamlandı!");

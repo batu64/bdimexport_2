@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-28T13:36:01.041Z",
+  "updated_at": "2026-11-28T13:53:39.524Z",
   "excluded_modules": [
     "09-global-12digit-live-binding-duty-calculator"
   ],
@@ -40,6 +40,44 @@
           "filename": "01-container-aql/aql_sampling_plans.json",
           "records": 176,
           "sha256": "5de81e8d4785ba5965981cf910edd0153ccad4352ab325682800e0da9b71f395"
+        }
+      ]
+    },
+    {
+      "module_id": "02-supplier-registry",
+      "order": 2,
+      "title_tr": "Tedarikçi Sicil (Çin USCC, TR VKN, AB VIES) & ISO 13616 IBAN Ödeme Doğrulama Veritabanı",
+      "title_en": "Supplier Corporate Registry (China USCC, Tax IDs) & ISO 13616 IBAN Anti-Fraud Rules",
+      "authority": "SAMR China (GB 32100-2015 & GB/T 2260), T.C. GİB, EU VIES & SWIFT ISO 13616 Registry",
+      "official_sources": [
+        "GB 32100-2015 Unified Social Credit Identifier Coding Rule (Mod-31)",
+        "GB/T 2260 Administrative Division Codes of the People's Republic of China",
+        "T.C. Gelir İdaresi Başkanlığı VKN Mod-10 & NVİ TCKN Algoritması",
+        "SWIFT Official ISO 13616 IBAN Registry & ISO 7064 Mod 97-10"
+      ],
+      "update_cadence": "annual_standard_review",
+      "verification_status": "verified",
+      "verified_at": "2026-11-28T13:53:39.520Z",
+      "collections": [
+        "cn_uscc_regions",
+        "supplier_registry_rules",
+        "iban_country_rules"
+      ],
+      "files": [
+        {
+          "filename": "02-supplier-registry/cn_uscc_regions.json",
+          "records": 88,
+          "sha256": "180c728da071fac42643766a557034b68cdf516ce73e4ac16e797da6f522d94e"
+        },
+        {
+          "filename": "02-supplier-registry/supplier_registry_rules.json",
+          "records": 22,
+          "sha256": "4fad1a753ac2c889bfceee987b2abe1620edfec774c1bc9f4a2e10c46ccf724f"
+        },
+        {
+          "filename": "02-supplier-registry/iban_country_rules.json",
+          "records": 60,
+          "sha256": "4066485f95131e4b3ec1b0e63ed7fd9b3c8ee6da962480e71383654bfda915cd"
         }
       ]
     }
