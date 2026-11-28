@@ -546,6 +546,28 @@ if (existsSync(join(ROOT, "07-fta-tariff-corridors/corridor_tariff_benchmarks.js
   assert(fasteners && fasteners.eu_cn_has_antidumping === true, "Çelik bağlantı elemanlarında (7318) canlı AB TARIC Çin anti-damping tespiti");
 }
 
+// ===========================================================================
+// MODÜL 08 DOĞRULAMASI: Resmi Gazete / EUR-Lex / ABD Federal Register Alarm Motoru
+// ===========================================================================
+if (existsSync(join(ROOT, "08-gtip-gazette-alerts/regulatory_alerts.json"))) {
+  const sources = JSON.parse(readFileSync(join(ROOT, "08-gtip-gazette-alerts/gazette_monitor_sources.json"), "utf8"));
+  const alerts = JSON.parse(readFileSync(join(ROOT, "08-gtip-gazette-alerts/regulatory_alerts.json"), "utf8"));
+
+  assert(sources.length === 4, `4 ana resmi gazete / ticaret bülteni kaynağı olmalı (gerçek: ${sources.length})`);
+  const validSourceCodes = new Set(sources.map((s) => s.source_code));
+
+  assert(alerts.length >= 10, `En az 10 doğrulanmış resmi gazete & Federal Register kaydı bulunmalı (gerçek: ${alerts.length})`);
+  const seenCodes = new Set();
+  for (const a of alerts) {
+    assert(!seenCodes.has(a.alert_code), `Tekil alarm kodu: ${a.alert_code}`);
+    seenCodes.add(a.alert_code);
+    assert(validSourceCodes.has(a.source_code), `${a.alert_code}: Geçerli resmi kaynak kodu (${a.source_code})`);
+    assert(["approved", "pending_admin_review", "archived"].includes(a.approval_status), `${a.alert_code}: Geçerli onay kapısı statüsü`);
+    assert(/^https:\/\//.test(a.official_url), `${a.alert_code}: Resmi HTTPS kaynak bağlantısı zorunludur`);
+    assert(Array.isArray(a.affected_hs_codes) && a.affected_hs_codes.length > 0, `${a.alert_code}: Etkilenen GTİP listesi boş olamaz`);
+  }
+}
+
 if (failures > 0) {
   console.error(`\n❌ DOĞRULAMA BAŞARISIZ: ${assertions} kontrolden ${failures} tanesi hata verdi.`);
   process.exit(1);

@@ -1,0 +1,68 @@
+[
+  {
+    "source_code": "TR_RESMI_GAZETE",
+    "jurisdiction": "TR",
+    "authority": "T.C. Cumhurbaşkanlığı İdari İşler Başkanlığı — Resmî Gazete",
+    "feed_url": "https://www.resmigazete.gov.tr",
+    "scan_schedule": "Her gün 00:15 ve 07:00 TSİ",
+    "watched_keywords": [
+      "İthalat Rejimi Kararında Değişiklik",
+      "İlave Gümrük Vergisi",
+      "İthalatta Gözetim Uygulanmasına İlişkin Tebliğ",
+      "İthalatta Haksız Rekabetin Önlenmesine İlişkin Tebliğ",
+      "İthalatta Korunma Önlemlerine İlişkin",
+      "Tarife Kontenjanı",
+      "Ürün Güvenliği ve Denetimi Tebliği"
+    ],
+    "verification_mode": "human_in_the_loop_30s",
+    "notes_tr": "Resmî Gazete eklerindeki GTİP tabloları PDF formatında yayımlandığı için tarayıcı GTİP ön-eklerini ve PDF linkini yakalar; Admin 30 saniyede onayladıktan sonra abonelere bildirim gider."
+  },
+  {
+    "source_code": "EU_EURLEX_OJ",
+    "jurisdiction": "EU",
+    "authority": "Publications Office of the European Union — Official Journal (EUR-Lex L Series)",
+    "feed_url": "https://eur-lex.europa.eu",
+    "scan_schedule": "Her iş günü 09:00 CET",
+    "watched_keywords": [
+      "imposing a definitive anti-dumping duty",
+      "imposing a provisional anti-dumping duty",
+      "initiating an anti-dumping investigation",
+      "safeguard measure",
+      "tariff quota",
+      "Carbon Border Adjustment Mechanism"
+    ],
+    "verification_mode": "human_in_the_loop_30s",
+    "notes_tr": "AB Resmi Gazetesi L serisinde yayımlanan geçici/kesin anti-damping, telafi edici vergi ve çelik korunma (safeguard) kotalarını CN kodlarıyla yakalar."
+  },
+  {
+    "source_code": "US_FEDERAL_REGISTER",
+    "jurisdiction": "US",
+    "authority": "U.S. National Archives — Federal Register API (ITA / USTR / USITC / CBP)",
+    "feed_url": "https://www.federalregister.gov/api/v1/documents.json",
+    "scan_schedule": "Her iş günü 16:00 TSİ (ABD Doğu 09:00)",
+    "watched_keywords": [
+      "Antidumping or Countervailing Duty",
+      "Section 301",
+      "Section 232",
+      "Harmonized Tariff Schedule",
+      "Scope Ruling"
+    ],
+    "verification_mode": "api_structured_plus_admin_approve",
+    "notes_tr": "ABD Ticaret Bakanlığı (ITA), USTR ve USITC tarafından yayımlanan Çin/Türkiye anti-damping, sübvansiyon (CVD) ve Section 301 kararlarını resmi JSON API üzerinden çeker."
+  },
+  {
+    "source_code": "UK_TRA_NOTICES",
+    "jurisdiction": "GB",
+    "authority": "UK Trade Remedies Authority (TRA) & HMRC Tariff Stop Press Notices",
+    "feed_url": "https://www.trade-tariff.service.gov.uk/api/v2/updates/latest",
+    "scan_schedule": "Günlük",
+    "watched_keywords": [
+      "Anti-dumping",
+      "Safeguard",
+      "Tariff-rate quota",
+      "Suspension"
+    ],
+    "verification_mode": "api_structured_plus_admin_approve",
+    "notes_tr": "İngiltere Gümrük Tarifesi günlük değişiklik API'si ve TRA ticaret önlemleri duyuruları."
+  }
+]

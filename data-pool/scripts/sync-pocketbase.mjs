@@ -580,6 +580,62 @@ const COLLECTIONS = [
       "CREATE INDEX idx_corridor_bench_code ON corridor_tariff_benchmarks (commodity_code_10, sector)",
     ],
   },
+  // -------------------------------------------------------------------------
+  // Modül 08: GTİP Resmi Gazete / EUR-Lex / ABD Federal Register Alarm Motoru
+  // GÜVENLİK KİLİDİ: Sadece `approval_status = 'approved'` olan kayıtlar dışarıdan okunabilir!
+  // -------------------------------------------------------------------------
+  {
+    name: "gazette_monitor_sources",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "source_code", type: "text", required: true, max: 64 },
+      { name: "jurisdiction", type: "text", required: true, max: 16 },
+      { name: "authority", type: "text", required: true, max: 240 },
+      { name: "feed_url", type: "text", required: true, max: 300 },
+      { name: "scan_schedule", type: "text", required: true, max: 120 },
+      { name: "watched_keywords", type: "json", maxSize: 30000 },
+      { name: "verification_mode", type: "text", required: true, max: 80 },
+      { name: "notes_tr", type: "text", required: true, max: 800 },
+    ],
+    indexes: ["CREATE UNIQUE INDEX idx_gazette_source_code ON gazette_monitor_sources (source_code)"],
+  },
+  {
+    name: "regulatory_alerts",
+    type: "base",
+    listRule: "approval_status = 'approved'",
+    viewRule: "approval_status = 'approved'",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "alert_code", type: "text", required: true, max: 100 },
+      { name: "source_code", type: "text", required: true, max: 64 },
+      { name: "jurisdiction", type: "text", required: true, max: 16 },
+      { name: "measure_type", type: "text", required: true, max: 64 },
+      { name: "published_date", type: "text", required: true, max: 32 },
+      { name: "affected_hs_codes", type: "json", maxSize: 50000 },
+      { name: "affected_origins", type: "json", maxSize: 20000 },
+      { name: "title_tr", type: "text", required: true, max: 300 },
+      { name: "summary_tr", type: "text", required: true, max: 1200 },
+      { name: "official_url", type: "text", required: true, max: 500 },
+      { name: "impact_level", type: "text", required: true, max: 32 },
+      {
+        name: "approval_status",
+        type: "select",
+        maxSelect: 1,
+        values: ["pending_admin_review", "approved", "archived"],
+      },
+    ],
+    indexes: [
+      "CREATE UNIQUE INDEX idx_reg_alert_code ON regulatory_alerts (alert_code)",
+      "CREATE INDEX idx_reg_alert_status_date ON regulatory_alerts (approval_status, published_date)",
+    ],
+  },
 ];
 
 async function ensureCollection(colDef) {
@@ -728,5 +784,11 @@ const corridorBenchmarks = JSON.parse(readFileSync(join(ROOT, "07-fta-tariff-cor
 
 await syncRecords("trade_agreements", "agreement_code", tradeAgreements);
 await syncRecords("corridor_tariff_benchmarks", "benchmark_key", corridorBenchmarks);
+
+const gazetteSources = JSON.parse(readFileSync(join(ROOT, "08-gtip-gazette-alerts/gazette_monitor_sources.json"), "utf8"));
+const regAlerts = JSON.parse(readFileSync(join(ROOT, "08-gtip-gazette-alerts/regulatory_alerts.json"), "utf8"));
+
+await syncRecords("gazette_monitor_sources", "source_code", gazetteSources);
+await syncRecords("regulatory_alerts", "alert_code", regAlerts);
 
 console.log("\n🎉 PocketBase senkronizasyonu %100 başarıyla tamamlandı!");

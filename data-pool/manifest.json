@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-28T17:25:38.670Z",
+  "updated_at": "2026-11-28T17:47:47.420Z",
   "excluded_modules": [
     "09-global-12digit-live-binding-duty-calculator"
   ],
@@ -245,6 +245,38 @@
           "filename": "07-fta-tariff-corridors/corridor_tariff_benchmarks.json",
           "records": 18,
           "sha256": "06d554ea8c48b9053f833cbc0621484e7e30f0a3fcf5457169ef0e35574dff7c"
+        }
+      ]
+    },
+    {
+      "module_id": "08-gtip-gazette-alerts",
+      "order": 8,
+      "title_tr": "GTİP Bazlı Resmi Gazete, AB EUR-Lex ve ABD Federal Register Değişiklik Alarm Motoru (Admin Onay Kapılı)",
+      "title_en": "Official Gazette (TR), EUR-Lex (EU), UK TRA & US Federal Register Trade Remedy Alert Feed (Human-in-the-Loop Gated)",
+      "authority": "T.C. Resmî Gazete, EU EUR-Lex, UK HMRC/TRA & U.S. Federal Register API",
+      "official_sources": [
+        "T.C. Cumhurbaşkanlığı Resmî Gazete (resmigazete.gov.tr — İGV, Gözetim, Anti-Damping, Korunma)",
+        "Official Journal of the European Union — EUR-Lex L Series",
+        "U.S. Federal Register Official REST API v1 (federalregister.gov/api/v1/documents.json)",
+        "UK Trade Tariff Updates API (trade-tariff.service.gov.uk/api/v2/updates/latest)"
+      ],
+      "update_cadence": "daily_automated_scan_plus_30s_admin_approve",
+      "verification_status": "verified",
+      "verified_at": "2026-11-28T17:47:47.418Z",
+      "collections": [
+        "gazette_monitor_sources",
+        "regulatory_alerts"
+      ],
+      "files": [
+        {
+          "filename": "08-gtip-gazette-alerts/gazette_monitor_sources.json",
+          "records": 4,
+          "sha256": "99cc97340dfd938b98ce941edbfb01300e8ad0af7caf1e1c6c2ea2e61935610a"
+        },
+        {
+          "filename": "08-gtip-gazette-alerts/regulatory_alerts.json",
+          "records": 14,
+          "sha256": "49d277e0b6e053a196adfe0b50a39c6480120566cb6a24bf15b813b987f73021"
         }
       ]
     }

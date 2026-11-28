@@ -1,0 +1,311 @@
+[
+  {
+    "alert_code": "TR_RG_IGV_GOZETIM_SOLAR_854143",
+    "source_code": "TR_RESMI_GAZETE",
+    "jurisdiction": "TR",
+    "measure_type": "antidumping_and_surveillance",
+    "published_date": "2026-09-15",
+    "affected_hs_codes": [
+      "8541.43"
+    ],
+    "affected_origins": [
+      "CN",
+      "VN",
+      "MY",
+      "TH",
+      "HR"
+    ],
+    "title_tr": "Fotovoltaik Güneş Panellerinde (8541.43) Anti-Damping Önleminin Dolaylı İthalat Kapsam Genişletmesi ve Gözetim",
+    "summary_tr": "Çin menşeli güneş panellerine uygulanan m2 bazlı dampinge karşı verginin 3. ülkeler üzerinden yapılan sevkiyatlarda menşe ve üretici denetimi sıkılaştırıldı; gözetim kıymeti uygulaması devam etmektedir.",
+    "official_url": "https://www.resmigazete.gov.tr",
+    "impact_level": "critical",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "TR_RG_FASTENERS_7318_GOZETIM_AD",
+    "source_code": "TR_RESMI_GAZETE",
+    "jurisdiction": "TR",
+    "measure_type": "surveillance_certificate",
+    "published_date": "2026-08-20",
+    "affected_hs_codes": [
+      "7318.15",
+      "7318.16",
+      "7318.22"
+    ],
+    "affected_origins": [
+      "CN",
+      "TW",
+      "VN"
+    ],
+    "title_tr": "Demir veya Çelikten Bağlantı Elemanları (7318) İthalatında Gözetim Kıymeti ve Anti-Damping Uygulaması",
+    "summary_tr": "7318 pozisyonundaki cıvata, vida, somun ve rondela ithalatında kg bazlı gözetim belgesi eşiği ve Uzakdoğu menşeli ürünlerde anti-damping vergisi uygulanmaktadır; KDV Md. 30/d uyarınca gözetim farkı KDV'si indirilemez.",
+    "official_url": "https://www.resmigazete.gov.tr",
+    "impact_level": "high",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "EU_OJ_FASTENERS_CN_AD_7318",
+    "source_code": "EU_EURLEX_OJ",
+    "jurisdiction": "EU",
+    "measure_type": "antidumping_duty",
+    "published_date": "2026-07-10",
+    "affected_hs_codes": [
+      "7318.12",
+      "7318.14",
+      "7318.15",
+      "7318.21",
+      "7318.22"
+    ],
+    "affected_origins": [
+      "CN"
+    ],
+    "title_tr": "AB Resmi Gazetesi: Çin Menşeli Demir-Çelik Bağlantı Elemanlarında %22,1 – %86,5 Kesin Anti-Damping Vergisi",
+    "summary_tr": "AB Komisyonu Çin Halk Cumhuriyeti menşeli çelik bağlantı elemanlarına %86,5'e varan kesin anti-damping vergisi uygulamaktadır. Türk üreticiler A.TR dolaşım belgesiyle %0 vergi avantajına sahiptir!",
+    "official_url": "https://eur-lex.europa.eu/eli/reg_impl/2022/191/oj",
+    "impact_level": "critical",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "EU_OJ_STEEL_SAFEGUARD_QUOTA_72_73",
+    "source_code": "EU_EURLEX_OJ",
+    "jurisdiction": "EU",
+    "measure_type": "tariff_quota_safeguard",
+    "published_date": "2026-07-01",
+    "affected_hs_codes": [
+      "7208",
+      "7209",
+      "7210",
+      "7214",
+      "7216",
+      "7306"
+    ],
+    "affected_origins": [
+      "TR",
+      "CN",
+      "IN",
+      "KR"
+    ],
+    "title_tr": "AB Çelik Korunma Önlemi (Safeguard) Çeyreklik Tarife Kontenjanları ve %25 Kota Aşım Vergisi",
+    "summary_tr": "AB'ye çeyrek dönem başlarında açılan ülke bazlı çelik tarife kontenjanı (TRQ) dolduğunda %25 ek korunma vergisi devreye girer; gümrük beyannamesi açılış tarihi çeyrek başlangıcına göre planlanmalıdır.",
+    "official_url": "https://eur-lex.europa.eu",
+    "impact_level": "high",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "US_USTR_SEC301_STRATEGIC_HIKES_2026",
+    "source_code": "US_FEDERAL_REGISTER",
+    "jurisdiction": "US",
+    "measure_type": "section_301_tariff_hike",
+    "published_date": "2026-01-01",
+    "affected_hs_codes": [
+      "8507.60",
+      "8541.43",
+      "4015.12",
+      "7208",
+      "7604",
+      "9018.31"
+    ],
+    "affected_origins": [
+      "CN"
+    ],
+    "title_tr": "ABD USTR Section 301 Çin Tarife Artışları: Batarya, Medikal Eldiven, Güneş Hücresi, Çelik ve Alüminyum (%25 – %100)",
+    "summary_tr": "ABD'nin Çin menşeli lityum bataryalar, güneş panelleri, tıbbi muayene eldivenleri/şırıngalar ve çelik/alüminyum ürünlerdeki kademeli Section 301 vergi artışları yürürlüktedir; Türkiye MFN tedariki güçlü arbitraj sağlar.",
+    "official_url": "https://www.federalregister.gov",
+    "impact_level": "critical",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "US_FR_2026-24233",
+    "source_code": "US_FEDERAL_REGISTER",
+    "jurisdiction": "US",
+    "measure_type": "antidumping_cvd_notice",
+    "published_date": "2026-11-30",
+    "affected_hs_codes": [
+      "72",
+      "73",
+      "76",
+      "84",
+      "85"
+    ],
+    "affected_origins": [
+      "Global"
+    ],
+    "title_tr": "ABD Resmi Gazetesi (Federal Register #2026-24233): Antidumping or Countervailing Duty Order, Finding, or Suspended Investigation; Opportunity To Request Administrative Review and Join Annual Inquiry Service List; Note Regardin",
+    "summary_tr": "Antidumping or Countervailing Duty Order, Finding, or Suspended Investigation; Opportunity To Request Administrative Review and Join Annual Inquiry Service List; Note Regarding Format of Review Requests",
+    "official_url": "https://www.federalregister.gov/documents/2026/11/30/2026-24233/antidumping-or-countervailing-duty-order-finding-or-suspended-investigation-opportunity-to-request",
+    "impact_level": "high",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "US_FR_2026-24184",
+    "source_code": "US_FEDERAL_REGISTER",
+    "jurisdiction": "US",
+    "measure_type": "antidumping_cvd_notice",
+    "published_date": "2026-11-30",
+    "affected_hs_codes": [
+      "72",
+      "73",
+      "76",
+      "84",
+      "85"
+    ],
+    "affected_origins": [
+      "Global"
+    ],
+    "title_tr": "ABD Resmi Gazetesi (Federal Register #2026-24184): Disposable Aluminum Containers, Pans, Trays, and Lids From the People's Republic of China: Final Affirmative Determination of Circumvention of the Antidumping Duty and Counter",
+    "summary_tr": "The U.S. Department of Commerce (Commerce) determines that imports of disposable aluminum containers, pans, trays, and lids (aluminum containers) completed in the Socialist Republic of Vietnam (Vietnam) using aluminum foil produced in the People's Republic of China (China) are circumventing the antidumping duty (AD) and countervailing duty (CVD) orders on aluminum containers from China.",
+    "official_url": "https://www.federalregister.gov/documents/2026/11/30/2026-24184/disposable-aluminum-containers-pans-trays-and-lids-from-the-peoples-republic-of-china-final",
+    "impact_level": "high",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "US_FR_2026-24180",
+    "source_code": "US_FEDERAL_REGISTER",
+    "jurisdiction": "US",
+    "measure_type": "antidumping_cvd_notice",
+    "published_date": "2026-11-30",
+    "affected_hs_codes": [
+      "72",
+      "73",
+      "76",
+      "84",
+      "85"
+    ],
+    "affected_origins": [
+      "Global"
+    ],
+    "title_tr": "ABD Resmi Gazetesi (Federal Register #2026-24180): Certain Choline Salts From the People's Republic of China: Preliminary Affirmative Countervailing Duty Determination, and Preliminary Affirmative Critical Circumstances Determ",
+    "summary_tr": "The U.S. Department of Commerce (Commerce) preliminarily determines that countervailable subsidies are being provided to producers and exporters of certain choline salts (choline salts) from the People's Republic of China (China). The period of investigation is January 1, 2025, through December 31, 2025. Interested parties are invited to comment on this preliminary determination.",
+    "official_url": "https://www.federalregister.gov/documents/2026/11/30/2026-24180/certain-choline-salts-from-the-peoples-republic-of-china-preliminary-affirmative-countervailing-duty",
+    "impact_level": "high",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "US_FR_2026-24179",
+    "source_code": "US_FEDERAL_REGISTER",
+    "jurisdiction": "US",
+    "measure_type": "antidumping_cvd_notice",
+    "published_date": "2026-11-30",
+    "affected_hs_codes": [
+      "72",
+      "73",
+      "76",
+      "84",
+      "85"
+    ],
+    "affected_origins": [
+      "Global"
+    ],
+    "title_tr": "ABD Resmi Gazetesi (Federal Register #2026-24179): Certain Carbon and Alloy Steel Cut-to-Length Plate From the Federal Republic of Germany: Final Results of Antidumping Duty Administrative Review; 2024-2025",
+    "summary_tr": "The U.S. Department of Commerce (Commerce) determines that certain carbon and alloy steel cut-to-length plate (CTL plate) from the Federal Republic of Germany (Germany) was not sold in the United States at less than normal value during the period of review (POR) May 1, 2024, through April 30, 2025.",
+    "official_url": "https://www.federalregister.gov/documents/2026/11/30/2026-24179/certain-carbon-and-alloy-steel-cut-to-length-plate-from-the-federal-republic-of-germany-final",
+    "impact_level": "high",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "US_FR_2026-24176",
+    "source_code": "US_FEDERAL_REGISTER",
+    "jurisdiction": "US",
+    "measure_type": "antidumping_cvd_notice",
+    "published_date": "2026-11-30",
+    "affected_hs_codes": [
+      "72",
+      "73",
+      "76",
+      "84",
+      "85"
+    ],
+    "affected_origins": [
+      "Global"
+    ],
+    "title_tr": "ABD Resmi Gazetesi (Federal Register #2026-24176): Disposable Aluminum Containers, Pans, Trays, and Lids From the People's Republic of China: Final Affirmative Determination of Circumvention of the Antidumping Duty and Counter",
+    "summary_tr": "The U.S. Department of Commerce (Commerce) determines that imports of disposable aluminum containers, pans, trays, and lids (aluminum containers) completed in Thailand using aluminum foil produced in the People's Republic of China (China) are circumventing the antidumping duty (AD) and countervailing duty (CVD) orders on aluminum containers from China.",
+    "official_url": "https://www.federalregister.gov/documents/2026/11/30/2026-24176/disposable-aluminum-containers-pans-trays-and-lids-from-the-peoples-republic-of-china-final",
+    "impact_level": "high",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "US_FR_2026-24175",
+    "source_code": "US_FEDERAL_REGISTER",
+    "jurisdiction": "US",
+    "measure_type": "antidumping_cvd_notice",
+    "published_date": "2026-11-30",
+    "affected_hs_codes": [
+      "72",
+      "73",
+      "76",
+      "84",
+      "85"
+    ],
+    "affected_origins": [
+      "Global"
+    ],
+    "title_tr": "ABD Resmi Gazetesi (Federal Register #2026-24175): Disposable Aluminum Containers, Pans, Trays, and Lids From the People's Republic of China: Preliminary Affirmative Determination of Circumvention of the Antidumping Duty and C",
+    "summary_tr": "The U.S. Department of Commerce (Commerce) preliminarily determines that imports of disposable aluminum containers, pans, trays, and lids (aluminum containers), completed in the United Arab Emirates (UAE) using aluminum foil produced in the People's Republic of China (China), are circumventing the antidumping duty (AD) and countervailing duty (CVD) orders on aluminum containers from China. Interested parties are invited to comment on this preliminary determination.",
+    "official_url": "https://www.federalregister.gov/documents/2026/11/30/2026-24175/disposable-aluminum-containers-pans-trays-and-lids-from-the-peoples-republic-of-china-preliminary",
+    "impact_level": "high",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "US_FR_2026-24174",
+    "source_code": "US_FEDERAL_REGISTER",
+    "jurisdiction": "US",
+    "measure_type": "antidumping_cvd_notice",
+    "published_date": "2026-11-30",
+    "affected_hs_codes": [
+      "72",
+      "73",
+      "76",
+      "84",
+      "85"
+    ],
+    "affected_origins": [
+      "Global"
+    ],
+    "title_tr": "ABD Resmi Gazetesi (Federal Register #2026-24174): Brass Rod From India: Notice of Court Decision Not in Harmony With the Final Determination of Antidumping Duty Investigation; Notice of Amended Final Determination; Notice of ",
+    "summary_tr": "On November 10, 2026, the U.S. Court of International Trade (CIT) issued its final judgment in American Brass Rod Fair Trade Coalition and its Individual Members v. United States, Consol. Court no. 24-00119, sustaining the U.S. Department of Commerce's (Commerce) first remand redetermination pertaining to the less-than-fair-value (LTFV) investigation of brass rod from India covering the period of investigation April 1, 2022 through March 31, 2023. Commerce is notifying the public that the CIT's final judgment is not in harmony with Commerce's final determination in that investigation, and that Commerce is amending the final determination and the resulting antidumping duty (AD) order with respect to the dumping margin assigned to Rajhans Met",
+    "official_url": "https://www.federalregister.gov/documents/2026/11/30/2026-24174/brass-rod-from-india-notice-of-court-decision-not-in-harmony-with-the-final-determination-of",
+    "impact_level": "high",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "US_FR_2026-24047",
+    "source_code": "US_FEDERAL_REGISTER",
+    "jurisdiction": "US",
+    "measure_type": "antidumping_cvd_notice",
+    "published_date": "2026-11-27",
+    "affected_hs_codes": [
+      "72",
+      "73",
+      "76",
+      "84",
+      "85"
+    ],
+    "affected_origins": [
+      "Global"
+    ],
+    "title_tr": "ABD Resmi Gazetesi (Federal Register #2026-24047): Welded Line Pipe From South Korea and Turkey; Determinations",
+    "summary_tr": "Welded Line Pipe From South Korea and Turkey; Determinations",
+    "official_url": "https://www.federalregister.gov/documents/2026/11/27/2026-24047/welded-line-pipe-from-south-korea-and-turkey-determinations",
+    "impact_level": "high",
+    "approval_status": "approved"
+  },
+  {
+    "alert_code": "UK_TARIFF_UPD_tariff_dailyExtract_v1_20261127T235959_gzip",
+    "source_code": "UK_TRA_NOTICES",
+    "jurisdiction": "GB",
+    "measure_type": "tariff_schedule_update",
+    "published_date": "2026-11-25",
+    "affected_hs_codes": [
+      "01..97"
+    ],
+    "affected_origins": [
+      "Global"
+    ],
+    "title_tr": "İngiltere HMRC Canlı Gümrük Tarifesi Güncellemesi (TariffSynchronizer::CdsUpdate — )",
+    "summary_tr": "İngiltere Resmi Gümrük Tarifesi veritabanı güncelleme paketi [tariff_dailyExtract_v1_20261127T235959.gzip]: Tercihli tarife, kota ve anti-damping cetveli güncellendi.",
+    "official_url": "https://www.trade-tariff.service.gov.uk/find_commodity",
+    "impact_level": "medium",
+    "approval_status": "approved"
+  }
+]
