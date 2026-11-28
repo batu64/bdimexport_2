@@ -25,6 +25,8 @@ const config = [
       ".wrangler/**",
       "public/**",
       "workers/**", // ayrı paketler (kendi tsconfig/vitest); kapsam dışı
+      "pocketbase/**", // PocketBase JSVM migration/hook dosyaları kapsam dışı
+      "data-pool/**", // Bağımsız veri havuzu ve doğrulama scriptleri
       "**/*.d.ts",
     ],
   },

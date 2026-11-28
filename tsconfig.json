@@ -18,5 +18,5 @@
     "paths": { "@/*": ["./*"] }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "workers", "app/admin/e2e", "app/admin/**/e2e"]
+  "exclude": ["node_modules", "workers", "pocketbase", "data-pool", "app/admin/e2e", "app/admin/**/e2e"]
 }

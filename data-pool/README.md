@@ -1,0 +1,19 @@
+# Bdimexport Doğrulanmış Veri Havuzu (`data-pool/`)
+
+Bu dizin, `bdimexport.com` üzerindeki interaktif dış ticaret araçlarının **Git ile versiyonlanan, SHA-256 bütünlük kontrolünden geçmiş ve otomatik doğrulama testlerine (`verify-all.mjs`) tabi tutulan** ana veri havuzudur.
+
+> **Kapsam Notu:** Küresel 12 haneli canlı bağlayıcı gümrük beyannamesi hesaplayıcısı (#9) hata/istisna riski nedeniyle kapsam dışı bırakılmıştır. Veri havuzu en kolay doğrulanabilenden en zora doğru **8 modülden** oluşur.
+
+## Veritabanı Sıralaması ve Durum Tablosu (1 → 8)
+
+| Modül Kodu | Veritabanı Adı | Resmi Veri Kaynağı | PocketBase Koleksiyonları | Durum |
+| :--- | :--- | :--- | :--- | :--- |
+| **`00-core`** | Veri Kaynağı Kayıt Defteri & Nitelikli Alarm/Lead Havuzu | Bdimexport İç Şema (KVKK Uyumlu) | `data_sources_registry`, `radar_subscriptions` | ✅ Hazır |
+| **`01-container-aql`** | Konteyner / Avrupa TIR Doluluk & ISO 2859-1 AQL Numune | ISO 668, AB 96/53/EC, ISO 2859-1:1999 (Tablo 1 & 2-A) | `containers_specs`, `aql_lot_codes`, `aql_sampling_plans` | ✅ Doğrulandı |
+| **`02-supplier-registry`** | Tedarikçi Sicil (Çin USCC, TR VKN, ISO 13616 IBAN) Kuralları | GB 32100-2015, Çin İdari Bölge Kodları, ISO 13616 | `cn_uscc_regions`, `cn_uscc_org_types`, `iban_country_rules` | ⏳ Sıradaki (Adım 2) |
+| **`03-chemical-reach-cas`** | Kimyasal Yasak & SDS CAS Numarası Takipçisi | ECHA SVHC Aday Listesi, REACH Ek-17, RoHS, CA Prop 65 | `regulated_chemicals` | ⏳ Bekliyor (Adım 3) |
+| **`04-eu-cbam`** | AB CBAM (Sınırda Karbon) GTİP & Emisyon Katsayıları | AB Tüzüğü 2023/956 Ek-I + Komisyon Varsayılan Değerleri | `cbam_goods`, `cbam_benchmarks` | ⏳ Bekliyor (Adım 4) |
+| **`05-food-mrl-rasff`** | AB Pestisit MRL Limitleri & ABD FDA Sınır Reddi | AB DG SANTE Data Lake JSON API + openFDA Import Refusals | `eu_pesticide_mrls`, `food_border_alerts` | ⏳ Bekliyor (Adım 5) |
+| **`06-tareks-ce`** | TAREKS (ÜGD Tebliğleri) & CE Belge Sihirbazı (TR + ZH) | T.C. Ticaret Bakanlığı Yıllık ÜGD Tebliğ Matrisleri | `tareks_regulations`, `tareks_hs_mappings` | ⏳ Bekliyor (Adım 6) |
+| **`07-fta-tariff-corridors`** | STA / Menşe Avantajı & Çin-Türkiye Arbitraj Radarı | UK & XI (AB TARIC) API v2, USITC HTS, TR 23 STA Matrisi | `trade_agreements`, `corridor_tariff_benchmarks` | ⏳ Bekliyor (Adım 7) |
+| **`08-gtip-gazette-alerts`** | GTİP Resmi Gazete / EUR-Lex / ABD Değişiklik Alarm Motoru | Resmi Gazete, EUR-Lex RSS, US Federal Register API | `regulatory_alerts` (Admin Onay Kapılı) | ⏳ Bekliyor (Adım 8) |

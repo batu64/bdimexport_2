@@ -18,4 +18,9 @@ scripts-deploy.sh
 tsconfig.tsbuildinfo
 .tmp_board.py
 ürünler/
+pocketbase/pb_data/
+pocketbase/bin/
+pocketbase/.env
+data-pool/**/raw-cache/
+
 

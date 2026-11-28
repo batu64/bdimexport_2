@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-11-28T13:36:01.041Z",
+  "excluded_modules": [
+    "09-global-12digit-live-binding-duty-calculator"
+  ],
+  "datasets": [
+    {
+      "module_id": "01-container-aql",
+      "order": 1,
+      "title_tr": "Konteyner / TIR Doluluk (ISO 668) & ISO 2859-1 AQL Numune Veritabanı",
+      "title_en": "ISO 668 Container / EU Road Trailer Specs & ISO 2859-1 AQL Sampling Plans",
+      "authority": "ISO (International Organization for Standardization) & EU Directive 96/53/EC",
+      "official_sources": [
+        "ISO 668:2020 Series 1 freight containers — Classification, dimensions and ratings",
+        "ISO 1496-1 / ISO 1496-2 Thermal & Open-Top freight containers",
+        "Council Directive 96/53/EC (European 13.60m road vehicles)",
+        "ISO 2859-1:1999 / ANSI/ASQ Z1.4 Sampling procedures for inspection by attributes (Table 1 & Table 2-A)"
+      ],
+      "update_cadence": "static_iso_standard",
+      "verification_status": "verified",
+      "verified_at": "2026-11-28T13:36:01.039Z",
+      "collections": [
+        "containers_specs",
+        "aql_lot_codes",
+        "aql_sampling_plans"
+      ],
+      "files": [
+        {
+          "filename": "01-container-aql/containers.json",
+          "records": 10,
+          "sha256": "d8f48c85b4f4832d754908d94a5f2015c625334468b26059915d17ae873a6c47"
+        },
+        {
+          "filename": "01-container-aql/aql_lot_codes.json",
+          "records": 15,
+          "sha256": "2780c68d900ebc73b4f6e1826b32d6f0b337b312d660841f77585c0a11e3490b"
+        },
+        {
+          "filename": "01-container-aql/aql_sampling_plans.json",
+          "records": 176,
+          "sha256": "5de81e8d4785ba5965981cf910edd0153ccad4352ab325682800e0da9b71f395"
+        }
+      ]
+    }
+  ]
+}

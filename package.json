@@ -8,6 +8,8 @@
     "lint": "eslint .",
     "seo:audit": "node scripts/seo-geo-audit.mjs",
     "seo:push": "node scripts/seo-index-push.mjs",
+    "pool:verify": "node data-pool/scripts/verify-all.mjs",
+    "pool:sync": "node data-pool/scripts/sync-pocketbase.mjs",
     "start": "next start"
   },
   "dependencies": {
