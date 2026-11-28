@@ -518,6 +518,68 @@ const COLLECTIONS = [
       "CREATE INDEX idx_tareks_hs_ugd ON tareks_hs_mappings (ugd_code, inspection_risk)",
     ],
   },
+  // -------------------------------------------------------------------------
+  // Modül 07: STA / Menşe Avantajı & Çin-Türkiye Tarife Arbitraj Radarı
+  // -------------------------------------------------------------------------
+  {
+    name: "trade_agreements",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "agreement_code", type: "text", required: true, max: 64 },
+      { name: "partner_region", type: "text", required: true, max: 200 },
+      { name: "iso_countries", type: "json", maxSize: 20000 },
+      { name: "regime_type", type: "text", required: true, max: 40 },
+      { name: "proof_document", type: "text", required: true, max: 200 },
+      { name: "industrial_duty_pct", type: "number" },
+      { name: "cumulation_system", type: "text", required: true, max: 200 },
+      { name: "origin_rule_summary_tr", type: "text", required: true, max: 1000 },
+      { name: "exporter_tip_tr", type: "text", required: true, max: 800 },
+    ],
+    indexes: ["CREATE UNIQUE INDEX idx_trade_agreement_code ON trade_agreements (agreement_code)"],
+  },
+  {
+    name: "corridor_tariff_benchmarks",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "benchmark_key", type: "text", required: true, max: 64 },
+      { name: "commodity_code_10", type: "text", required: true, max: 16 },
+      { name: "us_hts_code", type: "text", required: true, max: 24 },
+      { name: "sector", type: "text", required: true, max: 40 },
+      { name: "name_tr", type: "text", required: true, max: 240 },
+      { name: "name_en", type: "text", required: true, max: 240 },
+      { name: "eu_mfn_cn_duty_display", type: "text", required: true, max: 64 },
+      { name: "eu_mfn_cn_duty_pct", type: "number" },
+      { name: "eu_tr_duty_display", type: "text", required: true, max: 64 },
+      { name: "eu_tr_duty_pct", type: "number" },
+      { name: "eu_cn_has_antidumping", type: "bool" },
+      { name: "eu_tr_has_antidumping", type: "bool" },
+      { name: "uk_mfn_cn_duty_display", type: "text", required: true, max: 64 },
+      { name: "uk_mfn_cn_duty_pct", type: "number" },
+      { name: "uk_tr_fta_duty_display", type: "text", required: true, max: 64 },
+      { name: "uk_tr_fta_duty_pct", type: "number" },
+      { name: "us_mfn_tr_duty_display", type: "text", required: true, max: 64 },
+      { name: "us_mfn_tr_duty_pct", type: "number" },
+      { name: "us_cn_sec301_surcharge_pct", type: "number" },
+      { name: "us_cn_effective_duty_pct", type: "number" },
+      { name: "eu_required_doc", type: "text", required: true, max: 160 },
+      { name: "uk_required_doc", type: "text", required: true, max: 160 },
+      { name: "arbitrage_summary_tr", type: "text", required: true, max: 800 },
+    ],
+    indexes: [
+      "CREATE UNIQUE INDEX idx_corridor_bench_key ON corridor_tariff_benchmarks (benchmark_key)",
+      "CREATE INDEX idx_corridor_bench_code ON corridor_tariff_benchmarks (commodity_code_10, sector)",
+    ],
+  },
 ];
 
 async function ensureCollection(colDef) {
@@ -660,5 +722,11 @@ const tareksHs = JSON.parse(readFileSync(join(ROOT, "06-tareks-ce/tareks_hs_mapp
 
 await syncRecords("tareks_regulations", "ugd_code", tareksRegs);
 await syncRecords("tareks_hs_mappings", "hs_prefix", tareksHs);
+
+const tradeAgreements = JSON.parse(readFileSync(join(ROOT, "07-fta-tariff-corridors/trade_agreements.json"), "utf8"));
+const corridorBenchmarks = JSON.parse(readFileSync(join(ROOT, "07-fta-tariff-corridors/corridor_tariff_benchmarks.json"), "utf8"));
+
+await syncRecords("trade_agreements", "agreement_code", tradeAgreements);
+await syncRecords("corridor_tariff_benchmarks", "benchmark_key", corridorBenchmarks);
 
 console.log("\n🎉 PocketBase senkronizasyonu %100 başarıyla tamamlandı!");

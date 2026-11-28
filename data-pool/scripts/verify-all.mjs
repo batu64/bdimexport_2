@@ -503,6 +503,49 @@ if (existsSync(join(ROOT, "06-tareks-ce/tareks_regulations.json"))) {
   }
 }
 
+// ===========================================================================
+// MODÜL 07 DOĞRULAMASI: STA Anlaşmaları & Canlı AB TARIC / UK / ABD Tarife Arbitrajı
+// ===========================================================================
+if (existsSync(join(ROOT, "07-fta-tariff-corridors/corridor_tariff_benchmarks.json"))) {
+  const agreements = JSON.parse(readFileSync(join(ROOT, "07-fta-tariff-corridors/trade_agreements.json"), "utf8"));
+  const benchmarks = JSON.parse(readFileSync(join(ROOT, "07-fta-tariff-corridors/corridor_tariff_benchmarks.json"), "utf8"));
+
+  assert(agreements.length >= 14, `En az 14 ana STA/Gümrük Birliği/PTA rejimi tanımlı olmalı (gerçek: ${agreements.length})`);
+  const seenAgreements = new Set();
+  for (const ag of agreements) {
+    assert(!seenAgreements.has(ag.agreement_code), `Tekil STA kodu: ${ag.agreement_code}`);
+    seenAgreements.add(ag.agreement_code);
+    assert(Array.isArray(ag.iso_countries) && ag.iso_countries.length > 0, `${ag.agreement_code}: En az 1 ISO ülke kodu içermeli`);
+  }
+
+  assert(benchmarks.length === 18, `18 stratejik ürün canlı tarife kıyaslaması bulunmalı (gerçek: ${benchmarks.length})`);
+  const seenBench = new Set();
+  for (const b of benchmarks) {
+    assert(!seenBench.has(b.benchmark_key), `Tekil tarife benchmark anahtarı: ${b.benchmark_key}`);
+    seenBench.add(b.benchmark_key);
+    assert(/^[0-9]{10}$/.test(b.commodity_code_10), `${b.benchmark_key}: 10 haneli TARIC/UK GTİP kodu`);
+    // Sanayi ürünlerinde Türkiye'nin AB Gümrük Birliği vergisi %0 olmalı ve Çin MFN vergisini aşmamalı!
+    if (b.sector !== "agro_food") {
+      assert(b.eu_tr_duty_pct === 0, `${b.benchmark_key}: Sanayi ürününde Türkiye AB Gümrük Birliği vergisi %0 olmalı (gerçek: ${b.eu_tr_duty_pct})`);
+      assert(b.uk_tr_fta_duty_pct === 0, `${b.benchmark_key}: Sanayi ürününde Türkiye-İngiltere STA vergisi %0 olmalı (gerçek: ${b.uk_tr_fta_duty_pct})`);
+      assert(b.eu_tr_duty_pct <= b.eu_mfn_cn_duty_pct, `${b.benchmark_key}: Türkiye AB vergisi Çin MFN vergisinden büyük olamaz`);
+    }
+    assert(
+      Math.abs((b.us_mfn_tr_duty_pct + b.us_cn_sec301_surcharge_pct) - b.us_cn_effective_duty_pct) < 1e-4,
+      `${b.benchmark_key}: ABD Çin efektif vergisi = MFN + Section 301 olmalı`
+    );
+  }
+
+  // Altın canlı API kontrolleri (Pamuklu Tişört 6109100010: AB Çin=%12 vs TR=%0, ABD MFN=%16.5; Seramik 6907210000: Anti-Damping=true)
+  const tshirt = benchmarks.find((x) => x.benchmark_key === "cotton_tshirts_610910");
+  const ceramic = benchmarks.find((x) => x.benchmark_key === "ceramic_tiles_690721");
+  const fasteners = benchmarks.find((x) => x.benchmark_key === "steel_fasteners_731815");
+
+  assert(tshirt && tshirt.eu_mfn_cn_duty_pct === 12 && tshirt.eu_tr_duty_pct === 0 && tshirt.us_mfn_tr_duty_pct === 16.5, "Pamuklu tişört canlı AB (%12 vs %0) ve ABD (%16.5) altın kontrolü");
+  assert(ceramic && ceramic.eu_cn_has_antidumping === true, "Seramik karoda canlı AB TARIC Çin anti-damping tespiti");
+  assert(fasteners && fasteners.eu_cn_has_antidumping === true, "Çelik bağlantı elemanlarında (7318) canlı AB TARIC Çin anti-damping tespiti");
+}
+
 if (failures > 0) {
   console.error(`\n❌ DOĞRULAMA BAŞARISIZ: ${assertions} kontrolden ${failures} tanesi hata verdi.`);
   process.exit(1);

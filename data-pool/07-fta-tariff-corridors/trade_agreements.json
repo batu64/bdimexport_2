@@ -1,0 +1,235 @@
+[
+  {
+    "agreement_code": "EU_TR_CUSTOMS_UNION",
+    "partner_region": "Avrupa Birliği (27 Üye Ülke)",
+    "iso_countries": [
+      "DE",
+      "FR",
+      "IT",
+      "ES",
+      "NL",
+      "BE",
+      "PL",
+      "RO",
+      "AT",
+      "SE",
+      "FI",
+      "DK",
+      "CZ",
+      "HU",
+      "BG",
+      "GR",
+      "PT",
+      "IE",
+      "SK",
+      "HR",
+      "LT",
+      "SI",
+      "LV",
+      "EE",
+      "CY",
+      "LU",
+      "MT"
+    ],
+    "regime_type": "customs_union",
+    "proof_document": "A.TR Dolaşım Belgesi (AKÇT Çelik ve Tarımda EUR.1!)",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "Serbest Dolaşım Esası (Sanayi) + Pan-Avrupa-Akdeniz (AKÇT/Tarım)",
+    "origin_rule_summary_tr": "Sanayi ürünlerinde menşe değil 'Serbest Dolaşım' aranır (Çin'den ithal edilip vergisi ödenmiş sanayi malı bile A.TR ile %0 gümrük vergisiyle AB'ye girer; anti-damping hariç). DİKKAT: Fasıl 72 AKÇT demir-çelik ürünleri ve temel tarım ürünlerinde A.TR GEÇMEZ, Türk menşei ve EUR.1 şarttır!",
+    "exporter_tip_tr": "6.000 EUR altı veya Onaylanmış İhracatçı (Basitleştirilmiş Usul) yetkisi varsa gümrük/oda vizesi beklemeden A.TR düzenlenebilir."
+  },
+  {
+    "agreement_code": "UK_TR_FTA",
+    "partner_region": "Birleşik Krallık (İngiltere, İskoçya, Galler)",
+    "iso_countries": [
+      "GB"
+    ],
+    "regime_type": "fta",
+    "proof_document": "Menşe Beyanı (Fatura Üzeri Metin — Klasik EUR.1 Yoktur!)",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "İkili Kümülasyon + AB Girdileriyle Çapraz İşçilik İmkanı",
+    "origin_rule_summary_tr": "ÖNEMLİ FARK: İngiltere ihracatında A.TR veya matbu EUR.1 KULLANILMAZ! Ticari fatura veya çeki listesi üzerine resmi İngilizce/Türkçe 'Menşe Beyanı (Origin Declaration)' metni yazılır. Tüm sanayi ürünlerinde %0 gümrük vergisi sağlar.",
+    "exporter_tip_tr": "Ürünün Türkiye'de yetersiz işçilik ötesinde menşe kazanmış olması (ör. tekstilde çift dönüşüm veya HS pozisyon değişikliği) şarttır; Çin'den al-sat yapılan ürüne Menşe Beyanı yazılamaz!"
+  },
+  {
+    "agreement_code": "EFTA_TR_FTA",
+    "partner_region": "EFTA Ülkeleri (İsviçre, Norveç, İzlanda, Lihtenştayn)",
+    "iso_countries": [
+      "CH",
+      "NO",
+      "IS",
+      "LI"
+    ],
+    "regime_type": "fta",
+    "proof_document": "EUR.1 / EUR-MED Dolaşım Belgesi veya Fatura Beyanı",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "Pan-Avrupa-Akdeniz (PEM — Yenilenmiş 2021 Kuralları Aktif!)",
+    "origin_rule_summary_tr": "Sanayi ürünlerinde %0 vergi. Yenilenmiş PEM kuralları sayesinde esnek katma değer (%50'ye varan menşeli olmayan girdi toleransı) seçenekleri mevcuttur.",
+    "exporter_tip_tr": "İsviçre (DACH) ihracatında Almanya üzerinden transit geçse bile A.TR değil, doğrudan EUR.1 / Fatura Beyanı düzenlenmelidir."
+  },
+  {
+    "agreement_code": "UAE_TR_CEPA",
+    "partner_region": "Birleşik Arap Emirlikleri (Dubai / Abu Dabi)",
+    "iso_countries": [
+      "AE"
+    ],
+    "regime_type": "cepa_fta",
+    "proof_document": "TR-BAE Menşe İspat Belgesi (Certificate of Origin TR-UAE)",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "İkili Kümülasyon (Genel Kural: >= %40 Yerli Katma Değer veya CTH)",
+    "origin_rule_summary_tr": "1 Eylül 2023'te yürürlüğe girdi. BAE'nin normal %5 Körfez (GCC) gümrük vergisini tarife satırlarının %82+'sında anında veya 3–5 yılda %0'a indirir.",
+    "exporter_tip_tr": "Klasik Menşe Şahadetnamesi değil, özel 'TR-BAE Menşe İspat Belgesi' düzenlenmezse alıcı Dubai gümrüğünde %5 vergi öder!"
+  },
+  {
+    "agreement_code": "KR_TR_FTA",
+    "partner_region": "Güney Kore",
+    "iso_countries": [
+      "KR"
+    ],
+    "regime_type": "fta",
+    "proof_document": "Yalnızca Fatura Üzeri Menşe Beyanı (Matbu Belge Yok!)",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "İkili Kümülasyon",
+    "origin_rule_summary_tr": "Türkiye-Güney Kore STA kapsamında matbu EUR.1 belgesi basılmaz; ihracatçının ticari fatura üzerine yazdığı resmi İngilizce Menşe Beyanı ile gümrük vergisi %0 uygulanır.",
+    "exporter_tip_tr": "Güney Kore'den Türkiye'ye makine/elektronik/kimyasal ithalatında da Koreli üreticiden fatura üzeri Menşe Beyanı istenirse GV %0'a düşer!"
+  },
+  {
+    "agreement_code": "SG_TR_FTA",
+    "partner_region": "Singapur",
+    "iso_countries": [
+      "SG"
+    ],
+    "regime_type": "fta",
+    "proof_document": "Menşe Beyanı (TR-SG Origin Declaration)",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "İkili Kümülasyon",
+    "origin_rule_summary_tr": "Kapsamlı yeni nesil STA; Singapur girişinde neredeyse tüm ürünlerde %0 tarife ve hizmet/kamu alımı kolaylığı sağlar.",
+    "exporter_tip_tr": "Singapur serbest liman aktarmalarında 'Doğrudan Nakliyat / Manipülasyona Uğramama (Non-Manipulation Certificate)' kuralına dikkat edilmelidir."
+  },
+  {
+    "agreement_code": "MY_TR_FTA",
+    "partner_region": "Malezya",
+    "iso_countries": [
+      "MY"
+    ],
+    "regime_type": "fta",
+    "proof_document": "TR-MY Menşe Belgesi (Certificate of Origin)",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "İkili Kümülasyon",
+    "origin_rule_summary_tr": "2015'te yürürlüğe giren ve 2024'te genişletilen STA kapsamında sanayi ürünlerinde (demir-çelik, makine, tekstil, kimya) vergiler sıfırlanmıştır.",
+    "exporter_tip_tr": "Malezya'dan palm yağı/kauçuk/elektronik ithalatında veya Türkiye'den sanayi ihracatında ciddi vergi tasarrufu sağlar."
+  },
+  {
+    "agreement_code": "EG_TR_FTA",
+    "partner_region": "Mısır",
+    "iso_countries": [
+      "EG"
+    ],
+    "regime_type": "fta",
+    "proof_document": "EUR.1 / EUR-MED Dolaşım Belgesi",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "Pan-Avrupa-Akdeniz (PEM)",
+    "origin_rule_summary_tr": "Sanayi ürünlerinde geçiş süreci tamamlanmış olup Mısır gümrüğündeki %10–%60 varan yüksek MFN gümrük vergilerini Türk menşeli ürünlerde %0'a indirir!",
+    "exporter_tip_tr": "Mısır'a ihracatta EUR.1 belgesinin yanı sıra yükleme öncesi CargoX / ACID numarası ve üretici GOEIC kaydı kontrol edilmelidir."
+  },
+  {
+    "agreement_code": "MA_TR_FTA",
+    "partner_region": "Fas",
+    "iso_countries": [
+      "MA"
+    ],
+    "regime_type": "fta",
+    "proof_document": "EUR.1 / EUR-MED Dolaşım Belgesi",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "Pan-Avrupa-Akdeniz (PEM)",
+    "origin_rule_summary_tr": "Genel sanayi ürünlerinde %0 vergi; ancak 2020 revizyonuyla bazı tekstil/konfeksiyon ve gıda kalemlerinde Fas'ın geçici koruma vergisi (%90 MFN indirimi yerine kısmi vergi) listesi kontrol edilmelidir.",
+    "exporter_tip_tr": "Elektrik direği, makine, çelik yapı ve otomotiv yan sanayisinde Fas ONEE/sanayi projelerinde Çin'e karşı %2,5–%40 net tarife üstünlüğü sağlar!"
+  },
+  {
+    "agreement_code": "TN_TR_FTA",
+    "partner_region": "Tunus",
+    "iso_countries": [
+      "TN"
+    ],
+    "regime_type": "fta",
+    "proof_document": "EUR.1 / EUR-MED Dolaşım Belgesi",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "Pan-Avrupa-Akdeniz (PEM)",
+    "origin_rule_summary_tr": "Sanayi ürünlerinin büyük çoğunluğunda %0 gümrük vergisi (bazı hassas tüketim mallarında dönemsel ek vergi istisnaları hariç).",
+    "exporter_tip_tr": "Tunus STEG enerji ve altyapı ihalelerinde EUR.1 belgesi Türk üreticilere büyük fiyat avantajı kazandırır."
+  },
+  {
+    "agreement_code": "BALKANS_PEM_FTA",
+    "partner_region": "Batı Balkanlar & Moldova (Sırbistan, Bosna-Hersek, Arnavutluk, K. Makedonya, Karadağ, Kosova, Moldova)",
+    "iso_countries": [
+      "RS",
+      "BA",
+      "AL",
+      "MK",
+      "ME",
+      "XK",
+      "MD"
+    ],
+    "regime_type": "fta",
+    "proof_document": "EUR.1 / EUR-MED Dolaşım Belgesi",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "Pan-Avrupa-Akdeniz / Batı Balkan Kümülasyonu",
+    "origin_rule_summary_tr": "Tüm sanayi ürünlerinde %0 gümrük vergisi; Bosna-Hersek ve Sırbistan anlaşmalarında tarım/gıda ürünlerinde de çok geniş sıfır gümrüklü kotalar mevcuttur.",
+    "exporter_tip_tr": "1–3 günlük TIR mesafesi + EUR.1 ile %0 vergi sayesinde Çin tedarikine karşı en güçlü yakın tedarik (nearshoring) bölgesidir."
+  },
+  {
+    "agreement_code": "GE_TR_FTA",
+    "partner_region": "Gürcistan",
+    "iso_countries": [
+      "GE"
+    ],
+    "regime_type": "fta",
+    "proof_document": "EUR.1 / EUR-MED Dolaşım Belgesi",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "AB-TR-Gürcistan Diyagonal Kümülasyonu",
+    "origin_rule_summary_tr": "Sanayi ürünlerinin tamamında %0 gümrük vergisi ve AB girdileriyle çapraz kümülasyon imkanı.",
+    "exporter_tip_tr": "Kafkasya ve Orta Asya transit koridorunun ana kapısıdır."
+  },
+  {
+    "agreement_code": "CL_TR_FTA",
+    "partner_region": "Şili",
+    "iso_countries": [
+      "CL"
+    ],
+    "regime_type": "fta",
+    "proof_document": "EUR.1 Dolaşım Belgesi",
+    "industrial_duty_pct": 0,
+    "cumulation_system": "İkili Kümülasyon",
+    "origin_rule_summary_tr": "Güney Amerika'daki en kapsamlı STA'mızdır; tarife satırlarının %96+'sında %0 gümrük vergisi sağlar.",
+    "exporter_tip_tr": "ABD veya Avrupa limanları üzerinden aktarmalı konteyner yüklemelerinde konşimento (Through B/L) bütünlüğü korunmalıdır."
+  },
+  {
+    "agreement_code": "PK_AZ_UZ_IR_PTA",
+    "partner_region": "Tercihli Ticaret Anlaşmaları (Azerbaycan, Özbekistan, Pakistan, İran — PTA)",
+    "iso_countries": [
+      "AZ",
+      "UZ",
+      "PK",
+      "IR"
+    ],
+    "regime_type": "pta_partial",
+    "proof_document": "İkili Tercihli Menşe İspat Belgesi (TR-AZ / TR-PK / TR-UZ / TR-IR)",
+    "industrial_duty_pct": 5,
+    "cumulation_system": "İkili Kümülasyon (Sadece Anlaşma Ek-Listesindeki GTİP'lerde!)",
+    "origin_rule_summary_tr": "DİKKAT: Bunlar tam kapsamlı STA değil 'Tercihli Ticaret Anlaşması (PTA)'dır! Tüm ürünleri kapsamaz; yalnızca anlaşma ekindeki pozitif GTİP listesindeki ürünlerde %20–%100 arası vergi indirimi sağlar.",
+    "exporter_tip_tr": "Sevkiyat öncesi 6/8 haneli GTİP kodunun ilgili ülke PTA taviz listesinde yer aldığı mutlaka kontrol edilmelidir."
+  },
+  {
+    "agreement_code": "US_MFN_VS_SEC301",
+    "partner_region": "Amerika Birleşik Devletleri (STA Yok — MFN vs. Çin Section 301 Arbitrajı!)",
+    "iso_countries": [
+      "US"
+    ],
+    "regime_type": "mfn_arbitrage",
+    "proof_document": "Standart Menşe Şahadetnamesi (Certificate of Origin — Non-Preferential)",
+    "industrial_duty_pct": 3.5,
+    "cumulation_system": "Substantial Transformation (ABD CBP Esaslı Dönüşüm Kuralı!)",
+    "origin_rule_summary_tr": "Türkiye ile ABD arasında STA yoktur; ANCAK Türk menşeli ürünler düşük ABD MFN vergisine (%0–%16,5) tabiyken, Çin menşeli ürünlere bunun ÜZERİNE +%7,5, +%25, +%50 veya +%100 Section 301 ek gümrük vergisi biner!",
+    "exporter_tip_tr": "KRİTİK UYARI: Çin'den bitmiş ürünü Türkiye'ye getirip sadece paketleyerek 'Made in Türkiye' diye ABD'ye göndermek ABD gümrüğünde (CBP EAPA) ağır suçtur! Gerçek 'Esaslı Dönüşüm (Substantial Transformation)' Türkiye fabrikasında yapılmalıdır."
+  }
+]

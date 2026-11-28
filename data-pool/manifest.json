@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-28T17:02:14.488Z",
+  "updated_at": "2026-11-28T17:25:38.670Z",
   "excluded_modules": [
     "09-global-12digit-live-binding-duty-calculator"
   ],
@@ -213,6 +213,38 @@
           "filename": "06-tareks-ce/tareks_hs_mappings.json",
           "records": 32,
           "sha256": "82ba0b6f3bc15032794e89f26d202e59dfcc58fa42eeb97c45a567d2f2fdce37"
+        }
+      ]
+    },
+    {
+      "module_id": "07-fta-tariff-corridors",
+      "order": 7,
+      "title_tr": "STA / Menşe (A.TR, EUR.1, UK-FTA, CEPA) Vergi Tasarrufu & Çin-Türkiye Arbitraj Radarı Veritabanı",
+      "title_en": "Türkiye FTA & Rules of Origin Matrix + Live EU TARIC (XI), UK Global Tariff & US Section 301 Arbitrage Benchmarks",
+      "authority": "EU TARIC (HMRC XI API v2), UK DBT/HMRC API v2, USITC HTS REST API & T.C. Ticaret Bakanlığı",
+      "official_sources": [
+        "EU Integrated Tariff (TARIC) via Northern Ireland Protocol JSON:API v2 (trade-tariff.service.gov.uk/xi/api/v2)",
+        "UK Integrated Online Tariff JSON:API v2 (trade-tariff.service.gov.uk/api/v2)",
+        "U.S. International Trade Commission HTS REST API (hts.usitc.gov/reststop) + USTR Section 301 Chapter 99",
+        "T.C. Ticaret Bakanlığı Serbest Ticaret Anlaşmaları ve Pan-Avrupa-Akdeniz Menşe Kuralları"
+      ],
+      "update_cadence": "monthly_live_api_refresh",
+      "verification_status": "verified",
+      "verified_at": "2026-11-28T17:25:38.668Z",
+      "collections": [
+        "trade_agreements",
+        "corridor_tariff_benchmarks"
+      ],
+      "files": [
+        {
+          "filename": "07-fta-tariff-corridors/trade_agreements.json",
+          "records": 15,
+          "sha256": "9ccd47b27c7527d94e0e8fa8f6a2e8513c815e50cfa7a75c4f14bda801dd53f8"
+        },
+        {
+          "filename": "07-fta-tariff-corridors/corridor_tariff_benchmarks.json",
+          "records": 18,
+          "sha256": "06d554ea8c48b9053f833cbc0621484e7e30f0a3fcf5457169ef0e35574dff7c"
         }
       ]
     }
