@@ -1,0 +1,101 @@
+[
+  {
+    "list_code": "EU_REACH_SVHC",
+    "jurisdiction": "EU",
+    "authority": "European Chemicals Agency (ECHA)",
+    "title_tr": "AB REACH SVHC Aday Listesi (Yüksek Önem Arz Eden Maddeler)",
+    "title_en": "EU REACH Candidate List of Substances of Very High Concern (SVHC)",
+    "default_threshold": "0.1% w/w (1000 ppm)",
+    "update_schedule": "Yılda 2 kez (Ocak ve Haziran)",
+    "legal_consequence_tr": "Eşya içinde ağırlıkça %0,1'i aşarsa alıcıya bildirim (Madde 33), ECHA SCIP veritabanı kaydı ve SDS güncellemesi zorunludur.",
+    "official_url": "https://echa.europa.eu/candidate-list-table"
+  },
+  {
+    "list_code": "EU_REACH_ANNEX_XVII",
+    "jurisdiction": "EU",
+    "authority": "European Commission / ECHA",
+    "title_tr": "AB REACH Ek-17 Kısıtlı ve Yasaklı Maddeler Listesi",
+    "title_en": "EU REACH Annex XVII Restrictions on Manufacture, Placing on Market and Use",
+    "default_threshold": "Maddeye özel ppm / % sınırı",
+    "update_schedule": "AB Komisyonu tüzük değişiklikleriyle sürekli",
+    "legal_consequence_tr": "Belirtilen eşik aşıldığında ürünün AB gümrüğünden girişi ve piyasaya arzı kesin olarak YASAKTIR (RAPEX toplatma + imha).",
+    "official_url": "https://echa.europa.eu/substances-restricted-under-reach"
+  },
+  {
+    "list_code": "EU_REACH_ANNEX_XIV",
+    "jurisdiction": "EU",
+    "authority": "European Chemicals Agency (ECHA)",
+    "title_tr": "AB REACH Ek-14 İzne Tabi Maddeler Listesi (Sunset Date)",
+    "title_en": "EU REACH Annex XIV Authorisation List",
+    "default_threshold": "Özel izin yoksa kullanım yasak",
+    "update_schedule": "Periyodik ECHA tavsiyesi ile",
+    "legal_consequence_tr": "Son kullanım tarihi (Sunset Date) geçen maddeler özel AB Komisyonu izni olmadan AB içinde kullanılamaz.",
+    "official_url": "https://echa.europa.eu/authorisation-list"
+  },
+  {
+    "list_code": "EU_ROHS_10",
+    "jurisdiction": "EU",
+    "authority": "European Parliament & Council (2011/65/EU + 2015/863)",
+    "title_tr": "AB RoHS 3 Elektrikli ve Elektronik Eşyalarda Kısıtlı 10 Madde",
+    "title_en": "EU RoHS Directive Restricted Substances (10 Substances)",
+    "default_threshold": "0.1% w/w (Kadmiyum için 0.01% w/w)",
+    "update_schedule": "Revizyon bazlı",
+    "legal_consequence_tr": "Homojen malzeme bazında sınırı aşan elektrikli, aydınlatma, kablo ve elektronik ürünler CE işareti alamaz ve AB'ye satılamaz.",
+    "official_url": "https://environment.ec.europa.eu/topics/waste-and-recycling/rohs-directive_en"
+  },
+  {
+    "list_code": "EU_POPS",
+    "jurisdiction": "EU",
+    "authority": "European Union Regulation (EU) 2019/1021 (Stockholm Convention)",
+    "title_tr": "AB Kalıcı Organik Kirleticiler (POPs) Yasak Listesi",
+    "title_en": "EU Persistent Organic Pollutants (POPs) Regulation",
+    "default_threshold": "Eser miktarda (UTC ppm) kesin yasak",
+    "update_schedule": "Stockholm Sözleşmesi güncellemeleriyle",
+    "legal_consequence_tr": "REACH'ten bile daha sıkı eser kirlilik (UTC) limitleri uygular; PFOA, PFOS, SCCP, UV-328 içeren ürünler gümrükte reddedilir.",
+    "official_url": "https://echa.europa.eu/understanding-pops"
+  },
+  {
+    "list_code": "US_EPA_TSCA",
+    "jurisdiction": "US",
+    "authority": "U.S. Environmental Protection Agency (EPA TSCA Sec. 6)",
+    "title_tr": "ABD EPA TSCA Bölüm 6 Yasaklı ve Kısıtlı Sanayi Kimyasalları",
+    "title_en": "US EPA Toxic Substances Control Act (TSCA Section 6 & 6h PBT)",
+    "default_threshold": "İthalatta TSCA Pozitif/Negatif Sertifikasyon Zorunlu",
+    "update_schedule": "EPA Federal Register kurallarıyla",
+    "legal_consequence_tr": "ABD gümrüğünde (CBP) TSCA sertifikasyonu zorunludur; PIP (3:1), DecaBDE, Metilen Klorür gibi maddelerde konteyner alıkonulur.",
+    "official_url": "https://www.epa.gov/assessing-and-managing-chemicals-under-tsca"
+  },
+  {
+    "list_code": "US_CA_PROP65",
+    "jurisdiction": "US",
+    "authority": "California OEHHA",
+    "title_tr": "ABD Kaliforniya Proposition 65 Kanserojen & Üreme Toksisitesi Listesi",
+    "title_en": "California Proposition 65 Official Chemical List (OEHHA)",
+    "default_threshold": "Maruziyet limiti (NSRL / MADL µg/gün)",
+    "update_schedule": "Yılda 1-2 kez",
+    "legal_consequence_tr": "Uyarı etiketi olmadan ABD/Kaliforniya'da (Amazon US dahil) satılan ürünlerde özel avukatlık büroları tarafından ağır tazminat davaları (60-Day Notice) açılır.",
+    "official_url": "https://oehha.ca.gov/proposition-65/proposition-65-list"
+  },
+  {
+    "list_code": "TR_KKDIK",
+    "jurisdiction": "TR",
+    "authority": "T.C. Çevre, Şehircilik ve İklim Değişikliği Bakanlığı",
+    "title_tr": "Türkiye KKDİK Yönetmeliği (Türk REACH — Ek-17 Kısıtlamalar)",
+    "title_en": "Türkiye KKDIK Regulation (Turkish REACH Annex XVII)",
+    "default_threshold": "AB REACH Ek-17 ile uyumlu sınırlar",
+    "update_schedule": "Resmi Gazete tebliğleriyle",
+    "legal_consequence_tr": "Türkiye'ye ithalatta TAREKS/Kimyasal denetimi ve sertifikalı Kimyasal Değerlendirme Uzmanı (KDU) onaylı Türkçe GBF (SDS) zorunluluğu doğurur.",
+    "official_url": "https://kimyasallar.csb.gov.tr"
+  },
+  {
+    "list_code": "ECHA_ROI_EARLY_WARNING",
+    "jurisdiction": "EU",
+    "authority": "ECHA Registry of Intentions (RoI)",
+    "title_tr": "ECHA Kısıtlama & SVHC Niyet Sicili (6–12 Ay Önceden Erken Uyarı)",
+    "title_en": "ECHA Registry of Intentions (6–12 Month Early Warning Pipeline)",
+    "default_threshold": "Taslak / İnceleme Aşamasında",
+    "update_schedule": "Sürekli (Üye ülke dosya bildirimleriyle)",
+    "legal_consequence_tr": "Henüz yürürlüğe girmemiş ancak 6–12 ay içinde yasaklanması/SVHC olması beklenen maddelerdir; Ar-Ge ve satınalma şimdiden alternatif bulmalıdır!",
+    "official_url": "https://echa.europa.eu/registry-of-intentions"
+  }
+]

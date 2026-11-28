@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-28T13:53:39.524Z",
+  "updated_at": "2026-11-28T14:12:10.862Z",
   "excluded_modules": [
     "09-global-12digit-live-binding-duty-calculator"
   ],
@@ -78,6 +78,39 @@
           "filename": "02-supplier-registry/iban_country_rules.json",
           "records": 60,
           "sha256": "4066485f95131e4b3ec1b0e63ed7fd9b3c8ee6da962480e71383654bfda915cd"
+        }
+      ]
+    },
+    {
+      "module_id": "03-chemical-reach-cas",
+      "order": 3,
+      "title_tr": "Kimyasal Yasak & SDS (CAS Numarası) Takipçisi Veritabanı (REACH, SVHC, RoHS, POPs, TSCA, Prop 65, KKDİK)",
+      "title_en": "Industrial Chemical Restrictions & SDS CAS Tracker (ECHA SVHC, REACH XVII, RoHS, POPs, EPA TSCA, Prop 65)",
+      "authority": "ECHA (EU REACH/POPs/RoHS), US EPA (TSCA), California OEHHA (Prop 65) & T.C. ÇŞİDB (KKDİK)",
+      "official_sources": [
+        "ECHA Candidate List of SVHC & Registry of Intentions (RoI)",
+        "Regulation (EC) No 1907/2006 REACH Annex XVII (incl. PFHxA 2024/2462, Siloxanes 2024/1328, Formaldehyde 2023/1464)",
+        "Directive 2011/65/EU & (EU) 2015/863 (RoHS 10 Substances) + Regulation (EU) 2019/1021 (POPs)",
+        "US EPA TSCA Section 6 / 6(h) PBT Rules & California OEHHA Proposition 65 List",
+        "ACS CAS Registry Number Mod-10 Checksum Standard & EINECS/ELINCS Mod-11 Checksum Standard"
+      ],
+      "update_cadence": "biannual_jan_jun_plus_roi",
+      "verification_status": "verified",
+      "verified_at": "2026-11-28T14:12:10.860Z",
+      "collections": [
+        "chemical_regulatory_lists",
+        "regulated_chemicals"
+      ],
+      "files": [
+        {
+          "filename": "03-chemical-reach-cas/chemical_regulatory_lists.json",
+          "records": 9,
+          "sha256": "6485555845e4bbf9f8faed3151f48346ae2eee1311a8282e03a1f5da49274af4"
+        },
+        {
+          "filename": "03-chemical-reach-cas/regulated_chemicals.json",
+          "records": 101,
+          "sha256": "298ae18df56e0e29bf9fcabd6a5b616cbb9c1848bb2544a175d7e306d0ea7396"
         }
       ]
     }

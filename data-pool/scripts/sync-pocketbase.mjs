@@ -281,6 +281,55 @@ const COLLECTIONS = [
     ],
     indexes: ["CREATE UNIQUE INDEX idx_iban_country_code ON iban_country_rules (country_code)"],
   },
+  // -------------------------------------------------------------------------
+  // Modül 03: Kimyasal Yasak & SDS (CAS Numarası) Takipçisi
+  // -------------------------------------------------------------------------
+  {
+    name: "chemical_regulatory_lists",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "list_code", type: "text", required: true, max: 64 },
+      { name: "jurisdiction", type: "text", required: true, max: 16 },
+      { name: "authority", type: "text", required: true, max: 180 },
+      { name: "title_tr", type: "text", required: true, max: 240 },
+      { name: "title_en", type: "text", required: true, max: 240 },
+      { name: "default_threshold", type: "text", required: true, max: 160 },
+      { name: "update_schedule", type: "text", required: true, max: 160 },
+      { name: "legal_consequence_tr", type: "text", required: true, max: 800 },
+      { name: "official_url", type: "text", required: true, max: 300 },
+    ],
+    indexes: ["CREATE UNIQUE INDEX idx_chem_reg_list_code ON chemical_regulatory_lists (list_code)"],
+  },
+  {
+    name: "regulated_chemicals",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "cas_number", type: "text", required: true, max: 32 },
+      { name: "ec_number", type: "text", required: false, max: 32 },
+      { name: "name_en", type: "text", required: true, max: 240 },
+      { name: "name_tr", type: "text", required: true, max: 240 },
+      { name: "chem_group", type: "text", required: true, max: 64 },
+      { name: "risk_status", type: "text", required: true, max: 40 },
+      { name: "lists", type: "json", maxSize: 20000 },
+      { name: "threshold", type: "text", required: true, max: 240 },
+      { name: "sectors", type: "json", maxSize: 20000 },
+      { name: "action_tr", type: "text", required: true, max: 800 },
+    ],
+    indexes: [
+      "CREATE UNIQUE INDEX idx_reg_chem_cas ON regulated_chemicals (cas_number)",
+      "CREATE INDEX idx_reg_chem_group ON regulated_chemicals (chem_group, risk_status)",
+    ],
+  },
 ];
 
 async function ensureCollection(colDef) {
@@ -397,5 +446,11 @@ const ibanRules = JSON.parse(readFileSync(join(ROOT, "02-supplier-registry/iban_
 await syncRecords("cn_uscc_regions", "region_code", cnRegions);
 await syncRecords("supplier_registry_rules", "rule_code", regRules);
 await syncRecords("iban_country_rules", "country_code", ibanRules);
+
+const chemLists = JSON.parse(readFileSync(join(ROOT, "03-chemical-reach-cas/chemical_regulatory_lists.json"), "utf8"));
+const regChemicals = JSON.parse(readFileSync(join(ROOT, "03-chemical-reach-cas/regulated_chemicals.json"), "utf8"));
+
+await syncRecords("chemical_regulatory_lists", "list_code", chemLists);
+await syncRecords("regulated_chemicals", "cas_number", regChemicals);
 
 console.log("\n🎉 PocketBase senkronizasyonu %100 başarıyla tamamlandı!");

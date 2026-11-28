@@ -1,0 +1,1987 @@
+[
+  {
+    "cas_number": "7439-92-1",
+    "ec_number": "231-100-4",
+    "name_en": "Lead",
+    "name_tr": "Kurşun (Metal ve Bileşikleri)",
+    "chem_group": "heavy_metals",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (RoHS) · 0.05% w/w (REACH Takı/Tüketici Md.63)",
+    "sectors": [
+      "electronics_cables",
+      "metal_surface",
+      "paints_coatings",
+      "plastics_rubber"
+    ],
+    "action_tr": "Lehim, pirinç alaşım, PVC stabilizatörü ve boya pigmentlerinde kurşunsuz (Pb-free) alternatif zorunludur."
+  },
+  {
+    "cas_number": "7440-43-9",
+    "ec_number": "231-152-8",
+    "name_en": "Cadmium",
+    "name_tr": "Kadmiyum",
+    "chem_group": "heavy_metals",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.01% w/w (100 ppm — RoHS & REACH Md.23)",
+    "sectors": [
+      "electronics_cables",
+      "plastics_rubber",
+      "metal_surface",
+      "paints_coatings"
+    ],
+    "action_tr": "DİKKAT: Kadmiyum sınırı %0,1 değil %0,01'dir (100 ppm)! Plastik pigment, kaplama ve lehimlerde sık yakalanır."
+  },
+  {
+    "cas_number": "7439-97-6",
+    "ec_number": "231-106-7",
+    "name_en": "Mercury",
+    "name_tr": "Cıva",
+    "chem_group": "heavy_metals",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (RoHS)",
+    "sectors": [
+      "electronics_cables",
+      "paints_coatings"
+    ],
+    "action_tr": "Anahtar, röle, sensör, aydınlatma ve poliüretan katalizörlerinde kesin kısıtlıdır."
+  },
+  {
+    "cas_number": "1333-82-0",
+    "ec_number": "215-607-8",
+    "name_en": "Chromium trioxide (Hexavalent Chromium Cr VI)",
+    "name_tr": "Krom Trioksit (Altı Değerlikli Krom — Cr VI)",
+    "chem_group": "heavy_metals",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65"
+    ],
+    "threshold": "0.1% w/w (RoHS) · 3 mg/kg (REACH Md.47 Deri Ürünler!)",
+    "sectors": [
+      "textile_leather",
+      "metal_surface",
+      "electronics_cables"
+    ],
+    "action_tr": "Deri ayakkabı/çanta tabaklamada 3 ppm üzerinde Cr(VI) AB gümrüğünde kesin red sebebidir; metal kaplamada Cr(III) pasivasyona geçilmelidir."
+  },
+  {
+    "cas_number": "10588-01-9",
+    "ec_number": "234-190-3",
+    "name_en": "Sodium dichromate",
+    "name_tr": "Sodyum Dikromat",
+    "chem_group": "heavy_metals",
+    "risk_status": "authorisation_sunset",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "US_CA_PROP65"
+    ],
+    "threshold": "0.1% w/w (Sunset Date geçti)",
+    "sectors": [
+      "metal_surface",
+      "textile_leather"
+    ],
+    "action_tr": "Metal yüzey işlem ve tekstil mordanlamada izinsiz AB kullanımı yasaktır."
+  },
+  {
+    "cas_number": "7778-50-9",
+    "ec_number": "231-906-6",
+    "name_en": "Potassium dichromate",
+    "name_tr": "Potasyum Dikromat",
+    "chem_group": "heavy_metals",
+    "risk_status": "authorisation_sunset",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "US_CA_PROP65"
+    ],
+    "threshold": "0.1% w/w",
+    "sectors": [
+      "metal_surface",
+      "textile_leather"
+    ],
+    "action_tr": "Krom kaplama ve deri işlem proseslerinde Cr(VI) kalıntı testi yapılmalıdır."
+  },
+  {
+    "cas_number": "7440-02-0",
+    "ec_number": "231-111-4",
+    "name_en": "Nickel",
+    "name_tr": "Nikel (Cilt Temaslı Metal Aksesuar)",
+    "chem_group": "heavy_metals",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.5 µg/cm²/hafta salınım sınırı (EN 1811 — REACH Md.27)",
+    "sectors": [
+      "textile_leather",
+      "metal_surface"
+    ],
+    "action_tr": "Kot düğmesi, fermuar, kemer tokası, saat ve gözlük çerçevelerinde EN 1811 nikel salınım testi zorunludur."
+  },
+  {
+    "cas_number": "7646-79-9",
+    "ec_number": "231-589-4",
+    "name_en": "Cobalt dichloride",
+    "name_tr": "Kobalt Diklorür (Mavi Nem Alıcı Silika Jel)",
+    "chem_group": "heavy_metals",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC",
+      "US_CA_PROP65"
+    ],
+    "threshold": "0.01% / 0.1% w/w",
+    "sectors": [
+      "packaging_food_contact",
+      "textile_leather",
+      "electronics_cables"
+    ],
+    "action_tr": "Konteyner ve kutu içine konulan MAVİ indikatörlü silika jel nem alıcı poşetlerde bulunur! Kobalt içermeyen turuncu/beyaz nem alıcı kullanın."
+  },
+  {
+    "cas_number": "10124-43-3",
+    "ec_number": "233-334-2",
+    "name_en": "Cobalt sulfate",
+    "name_tr": "Kobalt Sülfat",
+    "chem_group": "heavy_metals",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC",
+      "US_CA_PROP65"
+    ],
+    "threshold": "0.1% w/w",
+    "sectors": [
+      "metal_surface",
+      "paints_coatings",
+      "electronics_cables"
+    ],
+    "action_tr": "Yüzey kaplama, boya kurutucu (drier) ve batarya kimyasallarında SVHC bildirimine tabidir."
+  },
+  {
+    "cas_number": "7778-39-4",
+    "ec_number": "231-901-9",
+    "name_en": "Arsenic acid",
+    "name_tr": "Arsenik Asit",
+    "chem_group": "heavy_metals",
+    "risk_status": "authorisation_sunset",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65"
+    ],
+    "threshold": "0.1% w/w · Ahşap korumada REACH Md.19 kısıtlı",
+    "sectors": [
+      "furniture_wood",
+      "metal_surface"
+    ],
+    "action_tr": "AB içine konut/tüketici amaçlı emprenyeli ahşapta arsenikli bileşik kullanılamaz; bakır-azol / Tanalith E tercih edilir."
+  },
+  {
+    "cas_number": "1303-28-2",
+    "ec_number": "215-116-9",
+    "name_en": "Diarsenic pentaoxide",
+    "name_tr": "Diarsenik Pentaoksit (CCA Emprenye Bileşeni)",
+    "chem_group": "heavy_metals",
+    "risk_status": "authorisation_sunset",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65"
+    ],
+    "threshold": "0.1% w/w",
+    "sectors": [
+      "furniture_wood"
+    ],
+    "action_tr": "AB pazarında tüketici ahşabında yasaktır; Afrika/MENA altyapı elektrik direklerinde ise alıcı şartnamesine (SANS 754 vb.) tabidir."
+  },
+  {
+    "cas_number": "56-35-9",
+    "ec_number": "200-268-0",
+    "name_en": "Bis(tributyltin) oxide (TBTO)",
+    "name_tr": "Bis(tribütiltin) Oksit (Organokalay Biyosit)",
+    "chem_group": "organotins",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% kalay ağırlığı (REACH Md.20)",
+    "sectors": [
+      "textile_leather",
+      "paints_coatings",
+      "plastics_rubber",
+      "furniture_wood"
+    ],
+    "action_tr": "Tekstil antibakteriyel apre, deniz boyası ve PVC katalizörlerinde kesin yasaklıdır."
+  },
+  {
+    "cas_number": "683-18-1",
+    "ec_number": "211-670-0",
+    "name_en": "Dibutyltin dichloride (DBTC)",
+    "name_tr": "Dibütiltin Diklorür (DBT)",
+    "chem_group": "organotins",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w kalay bazında",
+    "sectors": [
+      "plastics_rubber",
+      "paints_coatings",
+      "textile_leather"
+    ],
+    "action_tr": "Silikon, poliüretan ve PVC stabilizatörlerinde DBT kalıntısı kontrol edilmelidir."
+  },
+  {
+    "cas_number": "117-81-7",
+    "ec_number": "204-211-0",
+    "name_en": "Bis(2-ethylhexyl) phthalate (DEHP)",
+    "name_tr": "DEHP (Dietilheksil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (Tekil veya 4 ftalat toplamı olarak!)",
+    "sectors": [
+      "plastics_rubber",
+      "electronics_cables",
+      "textile_leather",
+      "furniture_wood"
+    ],
+    "action_tr": "Yumuşak PVC kablo kılıfı, suni deri, ayakkabı tabanı ve plastisol tekstil baskılarında en sık yakalanan yasaklı plastikleştiricidir; DOTP/DINCH kullanın."
+  },
+  {
+    "cas_number": "84-74-2",
+    "ec_number": "201-557-4",
+    "name_en": "Dibutyl phthalate (DBP)",
+    "name_tr": "DBP (Dibütil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (Toplam DEHP+DBP+BBP+DIBP < %0.1)",
+    "sectors": [
+      "plastics_rubber",
+      "paints_coatings",
+      "electronics_cables",
+      "textile_leather"
+    ],
+    "action_tr": "Yapıştırıcı, baskı mürekkebi, PVC ve kauçuk contalarda yasaktır."
+  },
+  {
+    "cas_number": "85-68-7",
+    "ec_number": "201-622-7",
+    "name_en": "Benzyl butyl phthalate (BBP)",
+    "name_tr": "BBP (Benzil Bütil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w",
+    "sectors": [
+      "plastics_rubber",
+      "furniture_wood",
+      "paints_coatings",
+      "electronics_cables"
+    ],
+    "action_tr": "Vinil zemin kaplama, suni deri, sızdırmazlık mastikleri ve kablolarda yasaktır."
+  },
+  {
+    "cas_number": "84-69-5",
+    "ec_number": "201-553-2",
+    "name_en": "Diisobutyl phthalate (DIBP)",
+    "name_tr": "DIBP (Diizobütil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w",
+    "sectors": [
+      "plastics_rubber",
+      "electronics_cables",
+      "paints_coatings",
+      "packaging_food_contact"
+    ],
+    "action_tr": "DBP ikamesi olarak eski formüllerde kullanıldığı için kağıt/karton yapıştırıcıları ve PVC'de dikkatle taranmalıdır."
+  },
+  {
+    "cas_number": "28553-12-0",
+    "ec_number": "249-079-5",
+    "name_en": "Diisononyl phthalate (DINP)",
+    "name_tr": "DINP (Diizononil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (Oyuncak ve çocuk bakım ürünlerinde — REACH Md.52)",
+    "sectors": [
+      "plastics_rubber",
+      "textile_leather",
+      "furniture_wood"
+    ],
+    "action_tr": "AB'de ağza alınabilen oyuncaklarda yasaktır; ABD Prop 65 kapsamında ise TÜM tüketici ürünlerinde kanserojen uyarı etiketi doğurur!"
+  },
+  {
+    "cas_number": "26761-40-0",
+    "ec_number": "247-977-1",
+    "name_en": "Diisodecyl phthalate (DIDP)",
+    "name_tr": "DIDP (Diizodesil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (Oyuncak/Çocuk ürünleri + ABD Prop 65)",
+    "sectors": [
+      "plastics_rubber",
+      "electronics_cables",
+      "furniture_wood"
+    ],
+    "action_tr": "Kablo izolasyonu ve suni deride ABD Kaliforniya Prop 65 üreme toksisitesi listesinde yer alır."
+  },
+  {
+    "cas_number": "117-84-0",
+    "ec_number": "204-214-7",
+    "name_en": "Di-n-octyl phthalate (DNOP)",
+    "name_tr": "DNOP (Di-n-oktil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (Oyuncak ve çocuk ürünleri)",
+    "sectors": [
+      "plastics_rubber",
+      "textile_leather"
+    ],
+    "action_tr": "Çocuk tekstili plastisol baskıları ve oyuncaklarda yasaktır."
+  },
+  {
+    "cas_number": "84-61-7",
+    "ec_number": "201-545-9",
+    "name_en": "Dicyclohexyl phthalate (DCHP)",
+    "name_tr": "DCHP (Disikloheksil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC",
+      "US_EPA_TSCA"
+    ],
+    "threshold": "0.1% w/w",
+    "sectors": [
+      "plastics_rubber",
+      "paints_coatings",
+      "packaging_food_contact"
+    ],
+    "action_tr": "Baskı mürekkebi ve termoplastik reçinelerde hem ECHA SVHC hem EPA yüksek öncelikli incelemesindedir."
+  },
+  {
+    "cas_number": "84-75-3",
+    "ec_number": "201-559-5",
+    "name_en": "Di-n-hexyl phthalate (DnHP)",
+    "name_tr": "DnHP (Diheksil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "authorisation_sunset",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65"
+    ],
+    "threshold": "0.1% w/w (Tekstil/Giyim CMR Md.72'de ise 1000 mg/kg)",
+    "sectors": [
+      "textile_leather",
+      "plastics_rubber"
+    ],
+    "action_tr": "Giyim, ayakkabı ve plastik ürünlerde kesin kısıtlıdır."
+  },
+  {
+    "cas_number": "117-82-8",
+    "ec_number": "204-212-6",
+    "name_en": "Bis(2-methoxyethyl) phthalate (DMEP)",
+    "name_tr": "DMEP (Dimetoksietil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "authorisation_sunset",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII"
+    ],
+    "threshold": "0.1% w/w",
+    "sectors": [
+      "plastics_rubber",
+      "textile_leather"
+    ],
+    "action_tr": "Selüloz asetat ve plastikleştirici formüllerinde izne tabidir."
+  },
+  {
+    "cas_number": "131-18-0",
+    "ec_number": "205-017-9",
+    "name_en": "Dipentyl phthalate (DPP)",
+    "name_tr": "DPP (Dipentil Ftalat)",
+    "chem_group": "phthalates",
+    "risk_status": "authorisation_sunset",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII"
+    ],
+    "threshold": "0.1% w/w",
+    "sectors": [
+      "plastics_rubber"
+    ],
+    "action_tr": "PVC ve kauçuk karışımlarında SVHC + Ek-14 kapsamındadır."
+  },
+  {
+    "cas_number": "1163-19-5",
+    "ec_number": "214-604-9",
+    "name_en": "Bis(pentabromophenyl) ether (DecaBDE)",
+    "name_tr": "DecaBDE (Dekabromodifenil Eter — RoHS PBDE)",
+    "chem_group": "flame_retardants",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_ROHS_10",
+      "EU_POPS",
+      "EU_REACH_SVHC",
+      "US_EPA_TSCA",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% RoHS · 10 mg/kg AB POPs · ABD TSCA Kesin Yasak!",
+    "sectors": [
+      "electronics_cables",
+      "plastics_rubber",
+      "textile_leather",
+      "furniture_wood"
+    ],
+    "action_tr": "Kablo, plastik kasa ve döşemelik kumaş alev geciktiricilerinde hem AB POPs hem ABD TSCA kapsamında kesin gümrük yasağına tabidir."
+  },
+  {
+    "cas_number": "68937-41-7",
+    "ec_number": "273-066-3",
+    "name_en": "Phenol, isopropylated, phosphate (3:1) — PIP (3:1)",
+    "name_tr": "PIP (3:1) İzopropillenmiş Trifenil Fosfat",
+    "chem_group": "flame_retardants",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "US_EPA_TSCA",
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "ABD EPA TSCA Sec. 6(h) Kısıtlama!",
+    "sectors": [
+      "electronics_cables",
+      "plastics_rubber"
+    ],
+    "action_tr": "ABD İHRACAT KRİZ MADDESİ: Çin menşeli kablo demetleri, PVC contalar ve güç adaptörlerinde sık çıkar; ABD'ye gidecek elektronik/makinelerde tedarikçi beyanı şarttır!"
+  },
+  {
+    "cas_number": "115-96-8",
+    "ec_number": "204-118-5",
+    "name_en": "Tris(2-chloroethyl) phosphate (TCEP)",
+    "name_tr": "TCEP (Klorlu Fosfat Alev Geciktirici)",
+    "chem_group": "flame_retardants",
+    "risk_status": "authorisation_sunset",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "US_CA_PROP65",
+      "US_EPA_TSCA"
+    ],
+    "threshold": "0.1% w/w (Oyuncaklarda 5 mg/kg)",
+    "sectors": [
+      "furniture_wood",
+      "plastics_rubber",
+      "textile_leather"
+    ],
+    "action_tr": "Poliüretan mobilya süngeri ve tekstil arka kaplamalarında yasaklıdır."
+  },
+  {
+    "cas_number": "13674-84-5",
+    "ec_number": "237-158-7",
+    "name_en": "Tris(2-chloroisopropyl) phosphate (TCPP)",
+    "name_tr": "TCPP (Poliüretan Sünger Alev Geciktiricisi)",
+    "chem_group": "flame_retardants",
+    "risk_status": "early_warning_draft",
+    "lists": [
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "Oyuncaklarda 5 mg/kg · ECHA çocuk ürünleri/sünger kısıtlama gündeminde!",
+    "sectors": [
+      "furniture_wood",
+      "plastics_rubber"
+    ],
+    "action_tr": "ERKEN UYARI: Mobilya PU süngerlerinde çok yaygın kullanılır; ECHA kısıtlama değerlendirmesinde olduğu için halojensiz alev geciktiriciye geçiş planlanmalıdır."
+  },
+  {
+    "cas_number": "13674-87-8",
+    "ec_number": "237-159-2",
+    "name_en": "Tris(1,3-dichloro-2-propyl) phosphate (TDCPP)",
+    "name_tr": "TDCPP",
+    "chem_group": "flame_retardants",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "US_CA_PROP65",
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "5 mg/kg (AB Oyuncak) · ABD Prop 65 Kanserojen",
+    "sectors": [
+      "furniture_wood",
+      "plastics_rubber"
+    ],
+    "action_tr": "ABD'ye otel/konut mobilyası (FF&E) ve oto koltuk süngeri ihracatında Prop 65 ve eyalet alev geciktirici yasaklarına takılır."
+  },
+  {
+    "cas_number": "25637-99-4",
+    "ec_number": "247-148-4",
+    "name_en": "Hexabromocyclododecane (HBCDD)",
+    "name_tr": "HBCDD (EPS/XPS Yalıtım Alev Geciktiricisi)",
+    "chem_group": "flame_retardants",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_POPS",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "US_EPA_TSCA"
+    ],
+    "threshold": "100 mg/kg AB POPs kesin sınır",
+    "sectors": [
+      "plastics_rubber",
+      "furniture_wood",
+      "textile_leather"
+    ],
+    "action_tr": "EPS/XPS inşaat yalıtım köpüğü ve tekstil kaplamada küresel POPs yasağındadır."
+  },
+  {
+    "cas_number": "79-94-7",
+    "ec_number": "201-236-9",
+    "name_en": "2,2',6,6'-Tetrabromo-4,4'-isopropylidenediphenol (TBBPA)",
+    "name_tr": "TBBPA (Tetrabromobisfenol A)",
+    "chem_group": "flame_retardants",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "0.1% w/w SVHC + RoHS kısıtlama adayı!",
+    "sectors": [
+      "electronics_cables",
+      "plastics_rubber"
+    ],
+    "action_tr": "FR-4 PCB devre kartlarında reaktif kullanımı muaf olsa da ABS/HIPS plastik kasalarda katkı maddesi olarak %0,1 aşımı SVHC bildirimi ve gelecek RoHS yasağı riski taşır!"
+  },
+  {
+    "cas_number": "108-78-1",
+    "ec_number": "203-615-4",
+    "name_en": "Melamine",
+    "name_tr": "Melamin (Serbest Monomer)",
+    "chem_group": "flame_retardants",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC"
+    ],
+    "threshold": "0.1% w/w serbest melamin (SVHC)",
+    "sectors": [
+      "furniture_wood",
+      "plastics_rubber",
+      "paints_coatings",
+      "packaging_food_contact"
+    ],
+    "action_tr": "MDF/sunta reçinesi, alev geciktirici sünger ve bambu-melamin mutfak eşyalarında serbest melamin %0,1'i aşarsa SVHC bildirimi doğar (bambu+melamin gıda kabı AB'de yasaktır!)."
+  },
+  {
+    "cas_number": "115-86-6",
+    "ec_number": "204-112-2",
+    "name_en": "Triphenyl phosphate (TPP)",
+    "name_tr": "Trifenil Fosfat (TPP)",
+    "chem_group": "flame_retardants",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC"
+    ],
+    "threshold": "0.1% w/w (Kasım 2024 ECHA SVHC eklentisi!)",
+    "sectors": [
+      "electronics_cables",
+      "plastics_rubber",
+      "paints_coatings"
+    ],
+    "action_tr": "YENİ SVHC UYARISI: Halojensiz alev geciktirici olarak PC/ABS plastiklerde sık kullanılıyordu; artık ECHA SVHC listesinde olduğu için SDS'ler taranmalıdır!"
+  },
+  {
+    "cas_number": "85535-84-8",
+    "ec_number": "287-476-5",
+    "name_en": "Short-chain chlorinated paraffins (SCCPs, C10-13)",
+    "name_tr": "Kısa Zincirli Klorlu Parafinler (SCCP)",
+    "chem_group": "flame_retardants",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_POPS",
+      "EU_REACH_SVHC",
+      "US_EPA_TSCA"
+    ],
+    "threshold": "0.15% eşya içinde (AB POPs kesin yasak!)",
+    "sectors": [
+      "plastics_rubber",
+      "electronics_cables",
+      "textile_leather",
+      "metal_surface"
+    ],
+    "action_tr": "Ucuz Çin PVC kablolarında, yoga matlarında ve suni deride plastikleştirici/alev geciktirici olarak çok sık RAPEX geri çağırmasına yol açar!"
+  },
+  {
+    "cas_number": "85535-85-9",
+    "ec_number": "287-477-0",
+    "name_en": "Medium-chain chlorinated paraffins (MCCPs, C14-17)",
+    "name_tr": "Orta Zincirli Klorlu Parafinler (MCCP)",
+    "chem_group": "flame_retardants",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC",
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "0.1% w/w SVHC + RoHS & POPs kısıtlama taslağı!",
+    "sectors": [
+      "plastics_rubber",
+      "electronics_cables",
+      "metal_surface"
+    ],
+    "action_tr": "ERKEN UYARI: SCCP yasaklanınca fabrikalar MCCP'ye geçmişti; şimdi MCCP de ECHA SVHC listesinde ve yakında tamamen yasaklanıyor!"
+  },
+  {
+    "cas_number": "92-87-5",
+    "ec_number": "202-199-1",
+    "name_en": "Benzidine",
+    "name_tr": "Benzidin (Azo Boyar Parçalanma Amini)",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (0.003% — Tekstil & Deri REACH Md.43)",
+    "sectors": [
+      "textile_leather",
+      "paints_coatings"
+    ],
+    "action_tr": "Ciltle temas eden kumaş, iplik, deri ve ayakkabılarda indirgen parçalanmayla 30 ppm üstü benzidin salan azo boyalar kesin yasaktır."
+  },
+  {
+    "cas_number": "92-67-1",
+    "ec_number": "202-177-1",
+    "name_en": "Biphenyl-4-ylamine (4-Aminobiphenyl)",
+    "name_tr": "4-Aminobifenil",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather"
+    ],
+    "action_tr": "EN ISO 14362-1 / 17234-1 azo boyar madde testi ile parti bazlı doğrulanmalıdır."
+  },
+  {
+    "cas_number": "91-59-8",
+    "ec_number": "202-080-4",
+    "name_en": "2-Naphthylamine",
+    "name_tr": "2-Naftilamin",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather"
+    ],
+    "action_tr": "Yasaklı aromatik amin; boyahane reçetelerinde OEKO-TEX Eco Passport onaylı boya şart koşulmalıdır."
+  },
+  {
+    "cas_number": "95-53-4",
+    "ec_number": "202-429-0",
+    "name_en": "o-Toluidine",
+    "name_tr": "o-Toluidin",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather",
+      "paints_coatings"
+    ],
+    "action_tr": "Tekstil ve deri boyalarında yasaklı 22 aromatik aminden biridir."
+  },
+  {
+    "cas_number": "106-47-8",
+    "ec_number": "203-401-0",
+    "name_en": "4-Chloroaniline",
+    "name_tr": "4-Kloroanilin",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather",
+      "paints_coatings"
+    ],
+    "action_tr": "Koyu renk polyester/pamuk ve deri boyamalarında azo testi zorunludur."
+  },
+  {
+    "cas_number": "101-77-9",
+    "ec_number": "202-974-4",
+    "name_en": "4,4'-Diaminodiphenylmethane (MDA)",
+    "name_tr": "4,4'-Diaminodifenilmetan (MDA)",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (Tekstil) · 0.1% SVHC",
+    "sectors": [
+      "textile_leather",
+      "plastics_rubber",
+      "paints_coatings"
+    ],
+    "action_tr": "Hem yasaklı azo amini hem poliüretan/epoksi sertleştirici SVHC maddesidir."
+  },
+  {
+    "cas_number": "91-94-1",
+    "ec_number": "202-109-0",
+    "name_en": "3,3'-Dichlorobenzidine",
+    "name_tr": "3,3'-Diklorobenzidin",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather",
+      "paints_coatings"
+    ],
+    "action_tr": "Sarı/turuncu/kırmızı pigment ve tekstil baskılarında yasaklı aromatik amindir."
+  },
+  {
+    "cas_number": "119-90-4",
+    "ec_number": "204-355-4",
+    "name_en": "3,3'-Dimethoxybenzidine (o-Dianisidine)",
+    "name_tr": "3,3'-Dimetoksibenzidin",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather"
+    ],
+    "action_tr": "Direkt boyalarda yasaklı aromatik amin bileşenidir."
+  },
+  {
+    "cas_number": "119-93-7",
+    "ec_number": "204-358-0",
+    "name_en": "3,3'-Dimethylbenzidine (o-Tolidine)",
+    "name_tr": "3,3'-Dimetilbenzidin",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather"
+    ],
+    "action_tr": "Tekstil ve deride yasaklı aromatik amin."
+  },
+  {
+    "cas_number": "90-04-0",
+    "ec_number": "201-963-1",
+    "name_en": "o-Anisidine (2-Methoxyaniline)",
+    "name_tr": "o-Anisidin",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather",
+      "paints_coatings"
+    ],
+    "action_tr": "Yasaklı azo boyar parçalanma ürünü ve SVHC kanserojenidir."
+  },
+  {
+    "cas_number": "120-71-8",
+    "ec_number": "204-419-1",
+    "name_en": "6-Methoxy-m-toluidine (p-Cresidine)",
+    "name_tr": "p-Kresidin",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather"
+    ],
+    "action_tr": "Tekstil azo boyar madde kısıtlaması kapsamındadır."
+  },
+  {
+    "cas_number": "95-80-7",
+    "ec_number": "202-453-1",
+    "name_en": "4-Methyl-m-phenylenediamine (2,4-Toluenediamine)",
+    "name_tr": "2,4-Toluendiamin",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather",
+      "plastics_rubber"
+    ],
+    "action_tr": "Tekstil boyaları ve poliüretan ara maddelerinde yasaklıdır."
+  },
+  {
+    "cas_number": "101-14-4",
+    "ec_number": "202-918-9",
+    "name_en": "2,2'-Dichloro-4,4'-methylenedianiline (MOCA)",
+    "name_tr": "MOCA (Metilen-bis-kloroanilin)",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "US_CA_PROP65"
+    ],
+    "threshold": "30 mg/kg (Tekstil) · Ek-14 İzne Tabi",
+    "sectors": [
+      "plastics_rubber",
+      "textile_leather"
+    ],
+    "action_tr": "Döküm poliüretan merdane/tekerlek kürleştiricisi ve yasaklı aromatik amindir."
+  },
+  {
+    "cas_number": "60-09-3",
+    "ec_number": "200-453-6",
+    "name_en": "4-Aminoazobenzene",
+    "name_tr": "4-Aminoazobenzen",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (EN ISO 14362-3 özel testi gerekir!)",
+    "sectors": [
+      "textile_leather"
+    ],
+    "action_tr": "Sarı/turuncu dispers boyalarda standart azo testinde gözden kaçabilir; EN ISO 14362-3 testi istenmelidir."
+  },
+  {
+    "cas_number": "97-56-3",
+    "ec_number": "202-591-2",
+    "name_en": "o-Aminoazotoluene",
+    "name_tr": "o-Aminoazotoluen",
+    "chem_group": "azo_amines",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "30 mg/kg (REACH Md.43)",
+    "sectors": [
+      "textile_leather"
+    ],
+    "action_tr": "Yasaklı azo boya bileşenidir."
+  },
+  {
+    "cas_number": "25154-52-3",
+    "ec_number": "246-672-0",
+    "name_en": "Nonylphenol (NP)",
+    "name_tr": "Nonilfenol (NP)",
+    "chem_group": "alkylphenols",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.01% w/w (100 mg/kg — Tekstil Yıkama REACH Md.46)",
+    "sectors": [
+      "textile_leather",
+      "cosmetics_detergents",
+      "paints_coatings"
+    ],
+    "action_tr": "Tekstil ıslatma/yıkama ajanlarında ve deri yağ gidericilerde kalıntısı 100 ppm'i aşamaz!"
+  },
+  {
+    "cas_number": "84852-15-3",
+    "ec_number": "284-325-5",
+    "name_en": "4-Nonylphenol, branched",
+    "name_tr": "Dallanmış 4-Nonilfenol",
+    "chem_group": "alkylphenols",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.01% w/w (Tekstil) · 0.1% SVHC",
+    "sectors": [
+      "textile_leather",
+      "plastics_rubber",
+      "paints_coatings"
+    ],
+    "action_tr": "TNPP plastik antioksidanının bozunma ürünü veya tekstil yıkama kalıntısı olarak sık çıkar."
+  },
+  {
+    "cas_number": "9016-45-9",
+    "ec_number": "500-024-6",
+    "name_en": "Nonylphenol ethoxylates (NPEO)",
+    "name_tr": "Nonilfenol Etoksilatlar (NPEO — Tekstil Deterjanı)",
+    "chem_group": "alkylphenols",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.01% w/w (100 mg/kg — Yıkanabilir Tekstil Ürünleri REACH Md.46a!)",
+    "sectors": [
+      "textile_leather",
+      "cosmetics_detergents"
+    ],
+    "action_tr": "KRİTİK TEKSTİL YASAĞI: Türkiye/Çin'de yıkanıp Avrupa'ya ihraç edilen havlu, tişört ve ev tekstilinde 100 ppm NPEO kalıntısı konteyner reddine yol açar!"
+  },
+  {
+    "cas_number": "140-66-9",
+    "ec_number": "205-426-2",
+    "name_en": "4-(1,1,3,3-Tetramethylbutyl)phenol (4-tert-Octylphenol)",
+    "name_tr": "4-tert-Oktilfenol (OP)",
+    "chem_group": "alkylphenols",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC"
+    ],
+    "threshold": "0.1% w/w (ZDHC MRSL tekstil yasaklısı)",
+    "sectors": [
+      "textile_leather",
+      "plastics_rubber",
+      "paints_coatings"
+    ],
+    "action_tr": "Kauçuk reçinesi, boya emülgatörü ve tekstil yardımcılarında SVHC endokrin bozucudur."
+  },
+  {
+    "cas_number": "624-49-7",
+    "ec_number": "210-898-8",
+    "name_en": "Dimethyl fumarate (DMFu)",
+    "name_tr": "Dimetil Fumarat (DMFu — Küf Önleyici Poşet)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1 mg/kg (0.1 ppm — REACH Md.61 Kesin Yasak!)",
+    "sectors": [
+      "textile_leather",
+      "furniture_wood",
+      "packaging_food_contact"
+    ],
+    "action_tr": "ÇOK DİKKAT: Ayakkabı kutusu ve deri koltuk ambalajlarına konulan 'anti-mold' küf önleyici saşelerde 0,1 ppm bile çıkarsa AB gümrüğünde tüm konteyner imha edilir!"
+  },
+  {
+    "cas_number": "68-12-2",
+    "ec_number": "200-679-5",
+    "name_en": "N,N-Dimethylformamide (DMFa / DMF)",
+    "name_tr": "Dimetilformamid (DMF — PU Suni Deri Çözücüsü)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "3000 mg/kg Tekstil CMR Md.72 · İşyeri/Çözücü Kısıtlaması Md.76",
+    "sectors": [
+      "textile_leather",
+      "plastics_rubber",
+      "paints_coatings"
+    ],
+    "action_tr": "Poliüretan (PU) koagülasyon suni deri ve eldiven üretiminde kalıntı DMF sınırı ve su bazlı PU geçişi zorunludur."
+  },
+  {
+    "cas_number": "872-50-4",
+    "ec_number": "212-828-1",
+    "name_en": "1-Methyl-2-pyrrolidone (NMP)",
+    "name_tr": "N-Metil-2-pirolidon (NMP)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_EPA_TSCA",
+      "US_CA_PROP65"
+    ],
+    "threshold": "0.3% karışım kısıtlaması (REACH Md.71) · 0.1% SVHC",
+    "sectors": [
+      "electronics_cables",
+      "paints_coatings",
+      "plastics_rubber",
+      "textile_leather"
+    ],
+    "action_tr": "Lityum batarya elektrot çamuru, emaye bobin teli kaplaması ve boya sökücülerde hem AB hem ABD EPA TSCA kısıtlamasındadır."
+  },
+  {
+    "cas_number": "127-19-5",
+    "ec_number": "204-826-4",
+    "name_en": "N,N-Dimethylacetamide (DMAC)",
+    "name_tr": "Dimetilasetamid (DMAC)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65"
+    ],
+    "threshold": "3000 mg/kg Tekstil CMR Md.72 · 0.1% SVHC",
+    "sectors": [
+      "textile_leather",
+      "plastics_rubber"
+    ],
+    "action_tr": "Elastan/spandeks ve akrilik elyaf eğirme çözücüsü kalıntısı olarak tekstilde izlenmelidir."
+  },
+  {
+    "cas_number": "75-12-7",
+    "ec_number": "200-842-0",
+    "name_en": "Formamide",
+    "name_tr": "Formamid (EVA Köpük Yumuşatıcı)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC"
+    ],
+    "threshold": "0.1% SVHC · AB Oyuncak EVA Paspasta 200 mg/kg!",
+    "sectors": [
+      "plastics_rubber",
+      "furniture_wood"
+    ],
+    "action_tr": "Çocuk oyun matı, terlik ve EVA köpük ürünlerde şişirici yan ürünü olarak sık yakalanır."
+  },
+  {
+    "cas_number": "91-22-5",
+    "ec_number": "202-051-6",
+    "name_en": "Quinoline",
+    "name_tr": "Kinolin (Tekstil CMR Md.72)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "50 mg/kg (Giyim, Tekstil ve Ayakkabıda REACH Md.72 Kesin Sınır!)",
+    "sectors": [
+      "textile_leather"
+    ],
+    "action_tr": "Polyester dispers boyalarda safsızlık olarak bulunur; AB giyim ihracatında 50 ppm üstü yasaktır!"
+  },
+  {
+    "cas_number": "335-67-1",
+    "ec_number": "206-397-9",
+    "name_en": "Perfluorooctanoic acid (PFOA)",
+    "name_tr": "PFOA (Perflorooktanoik Asit — C8 Su İtici)",
+    "chem_group": "pfas",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_POPS",
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "US_EPA_TSCA"
+    ],
+    "threshold": "0.025 mg/kg (25 ppb — AB POPs Kesin Yasak!)",
+    "sectors": [
+      "textile_leather",
+      "packaging_food_contact",
+      "paints_coatings",
+      "plastics_rubber"
+    ],
+    "action_tr": "Dış giyim/tente su itici (DWR) aprelerde, yanmaz tavada ve yağ geçirmez gıda kağıdında 25 ppb gibi çok düşük sınırla kesin yasaktır; PFAS-free (C0) apre kullanın!"
+  },
+  {
+    "cas_number": "1763-23-1",
+    "ec_number": "217-179-8",
+    "name_en": "Perfluorooctane sulfonic acid (PFOS)",
+    "name_tr": "PFOS (Perflorooktan Sülfonik Asit)",
+    "chem_group": "pfas",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_POPS",
+      "US_CA_PROP65",
+      "US_EPA_TSCA"
+    ],
+    "threshold": "10 mg/kg (Karışım) · 1 µg/m² (Kaplamalı Tekstil!)",
+    "sectors": [
+      "textile_leather",
+      "metal_surface",
+      "paints_coatings"
+    ],
+    "action_tr": "Leke tutmaz halı/döşemelik kumaş ve sert krom kaplama sis önleyicilerinde küresel POPs yasağındadır."
+  },
+  {
+    "cas_number": "355-46-4",
+    "ec_number": "206-587-1",
+    "name_en": "Perfluorohexane-1-sulphonic acid (PFHxS)",
+    "name_tr": "PFHxS",
+    "chem_group": "pfas",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_POPS",
+      "EU_REACH_SVHC",
+      "US_CA_PROP65"
+    ],
+    "threshold": "0.025 mg/kg (25 ppb — AB POPs)",
+    "sectors": [
+      "textile_leather",
+      "paints_coatings",
+      "packaging_food_contact"
+    ],
+    "action_tr": "Yangın söndürme köpüğü ve su/yağ itici tekstil kaplamalarında kesin yasaklıdır."
+  },
+  {
+    "cas_number": "307-24-4",
+    "ec_number": "206-196-6",
+    "name_en": "Undecafluorohexanoic acid (PFHxA)",
+    "name_tr": "PFHxA (C6 Florokarbon Su/Yağ İtici — YENİ AB YASAĞI!)",
+    "chem_group": "pfas",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "25 ppb PFHxA / 1000 ppb türevleri (AB Tüzüğü 2024/2462 — REACH Md.79, 2026 Yürürlük!)",
+    "sectors": [
+      "textile_leather",
+      "packaging_food_contact",
+      "cosmetics_detergents"
+    ],
+    "action_tr": "2026 KRİTİK ALARM: C8 yasaklanınca tekstil ve pizza/fast-food ambalaj fabrikaları C6 (PFHxA) florokarbona geçmişti; 10 Ekim 2026 itibarıyla AB'de tüketici tekstili, yağmurluk, ayakkabı ve gıda ambalajında C6 da YASAKLANDI!"
+  },
+  {
+    "cas_number": "375-73-5",
+    "ec_number": "206-793-1",
+    "name_en": "Perfluorobutane sulfonic acid (PFBS)",
+    "name_tr": "PFBS (C4 PFAS)",
+    "chem_group": "pfas",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC",
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "0.1% w/w SVHC + Genel AB PFAS Kısıtlama Taslağında!",
+    "sectors": [
+      "plastics_rubber",
+      "textile_leather",
+      "electronics_cables"
+    ],
+    "action_tr": "Polikarbonat alev geciktirici ve C4 aprelerde SVHC bildirimi doğurur; AB evrensel PFAS yasağı kapsamındadır."
+  },
+  {
+    "cas_number": "375-95-1",
+    "ec_number": "206-801-3",
+    "name_en": "Perfluorononanoic acid (PFNA)",
+    "name_tr": "PFNA (C9 PFAS)",
+    "chem_group": "pfas",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65"
+    ],
+    "threshold": "25 ppb (C9-C14 PFCA REACH Md.68 Kısıtlaması!)",
+    "sectors": [
+      "textile_leather",
+      "plastics_rubber",
+      "paints_coatings"
+    ],
+    "action_tr": "PTFE/floropolimer emülsiyon ve su itici kaplamalarda 25 ppb sınırı uygulanır."
+  },
+  {
+    "cas_number": "335-76-2",
+    "ec_number": "206-400-3",
+    "name_en": "Nonadecafluorodecanoic acid (PFDA)",
+    "name_tr": "PFDA (C10 PFAS)",
+    "chem_group": "pfas",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65"
+    ],
+    "threshold": "25 ppb (REACH Md.68)",
+    "sectors": [
+      "textile_leather",
+      "packaging_food_contact",
+      "plastics_rubber"
+    ],
+    "action_tr": "C9-C14 florokarboksilik asitler grubunda kesin kısıtlıdır."
+  },
+  {
+    "cas_number": "13252-13-6",
+    "ec_number": "236-236-8",
+    "name_en": "2,3,3,3-Tetrafluoro-2-(heptafluoropropoxy)propionic acid (HFPO-DA / GenX)",
+    "name_tr": "HFPO-DA (GenX — Floropolimer İşleme Yardımcıları)",
+    "chem_group": "pfas",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC",
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "0.1% w/w SVHC",
+    "sectors": [
+      "plastics_rubber",
+      "paints_coatings",
+      "electronics_cables"
+    ],
+    "action_tr": "Floropolimer kablo ve conta üretiminde PFOA ikamesi olarak girmişti; ECHA SVHC listesine alınmıştır."
+  },
+  {
+    "cas_number": "80-05-7",
+    "ec_number": "201-245-8",
+    "name_en": "4,4'-Isopropylidenediphenol (Bisphenol A — BPA)",
+    "name_tr": "Bisfenol A (BPA)",
+    "chem_group": "bisphenols_uv",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "Termal kağıtta %0.02 yasak · AB Gıda Temaslı Konserve/Kaplama Yasağı (EU 2024/3190)!",
+    "sectors": [
+      "packaging_food_contact",
+      "plastics_rubber",
+      "paints_coatings",
+      "textile_leather"
+    ],
+    "action_tr": "KRİTİK: AB gıda ile temas eden metal konserve iç epoksi verniklerinde, mataralarda ve endüstriyel gıda ekipmanlarında BPA'yı yasakladı (EU 2024/3190)!"
+  },
+  {
+    "cas_number": "80-09-1",
+    "ec_number": "201-250-5",
+    "name_en": "4,4'-Sulphonyldiphenol (Bisphenol S — BPS)",
+    "name_tr": "Bisfenol S (BPS — 'BPA-Free' Ürünlerdeki Gizli SVHC!)",
+    "chem_group": "bisphenols_uv",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "0.1% w/w SVHC + Gıda Teması ve Termal Kağıt Kısıtlaması!",
+    "sectors": [
+      "packaging_food_contact",
+      "plastics_rubber",
+      "textile_leather"
+    ],
+    "action_tr": "'BPA-Free' diye satılan termal fişlerde, sentetik deri tabaklamada ve plastiklerde BPA yerine kullanıldı; ancak hem ECHA SVHC hem Prop 65 listesine girdi!"
+  },
+  {
+    "cas_number": "1478-61-1",
+    "ec_number": "216-036-7",
+    "name_en": "4,4'-[2,2,2-Trifluoro-1-(trifluoromethyl)ethylidene]diphenol (Bisphenol AF)",
+    "name_tr": "Bisfenol AF (BPAF — Viton/FKM Conta Kürleştirici)",
+    "chem_group": "bisphenols_uv",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC",
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "0.1% w/w SVHC (+ PFAS tanımı kapsamında!)",
+    "sectors": [
+      "plastics_rubber",
+      "electronics_cables"
+    ],
+    "action_tr": "Otomotiv ve vana sanayisinde FKM/floroelastomer O-ring contalarda bulunur; SVHC bildirimi zorunludur."
+  },
+  {
+    "cas_number": "77-40-7",
+    "ec_number": "201-025-1",
+    "name_en": "4,4'-(1-Methylpropylidene)bisphenol (Bisphenol B)",
+    "name_tr": "Bisfenol B (BPB)",
+    "chem_group": "bisphenols_uv",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC"
+    ],
+    "threshold": "0.1% w/w SVHC",
+    "sectors": [
+      "plastics_rubber",
+      "paints_coatings"
+    ],
+    "action_tr": "Fenolik ve polikarbonat reçinelerde endokrin bozucu SVHC maddesidir."
+  },
+  {
+    "cas_number": "25973-55-1",
+    "ec_number": "247-384-8",
+    "name_en": "2-(2H-benzotriazol-2-yl)-4,6-ditertpentylphenol (UV-328)",
+    "name_tr": "UV-328 (Plastik & Boya Güneş/UV Stabilizatörü)",
+    "chem_group": "bisphenols_uv",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_POPS",
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV"
+    ],
+    "threshold": "AB POPs Kesin Yasak (Kademeli düşen ppm sınırı)!",
+    "sectors": [
+      "plastics_rubber",
+      "paints_coatings",
+      "furniture_wood"
+    ],
+    "action_tr": "Dış mekan plastik bahçe mobilyası, WPC kompozit, otomotiv boyası ve yapıştırıcılarda UV-328 kullanımı Stockholm Sözleşmesi & AB POPs ile yasaklandı!"
+  },
+  {
+    "cas_number": "3896-11-5",
+    "ec_number": "223-445-4",
+    "name_en": "Bumetrizole (UV-326)",
+    "name_tr": "Bumetrizol (UV-326 — YENİ ECHA SVHC!)",
+    "chem_group": "bisphenols_uv",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC"
+    ],
+    "threshold": "0.1% w/w SVHC",
+    "sectors": [
+      "plastics_rubber",
+      "paints_coatings",
+      "packaging_food_contact"
+    ],
+    "action_tr": "Polipropilen, polietilen streç/sera filmi ve kaplamalarda yaygın UV emicidir; 2024'te SVHC olduğu için SDS taramasında sık yakalanmaktadır!"
+  },
+  {
+    "cas_number": "3846-71-7",
+    "ec_number": "223-346-6",
+    "name_en": "2-Benzotriazol-2-yl-4,6-di-tert-butylphenol (UV-320)",
+    "name_tr": "UV-320",
+    "chem_group": "bisphenols_uv",
+    "risk_status": "authorisation_sunset",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV"
+    ],
+    "threshold": "0.1% w/w (Sunset Date geçti)",
+    "sectors": [
+      "plastics_rubber",
+      "paints_coatings"
+    ],
+    "action_tr": "Plastik ve kaplamalarda yasaklı benzotriazol UV stabilizatörüdür."
+  },
+  {
+    "cas_number": "3864-99-1",
+    "ec_number": "223-383-8",
+    "name_en": "2,4-Di-tert-butyl-6-(5-chlorobenzotriazol-2-yl)phenol (UV-327)",
+    "name_tr": "UV-327",
+    "chem_group": "bisphenols_uv",
+    "risk_status": "authorisation_sunset",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV"
+    ],
+    "threshold": "0.1% w/w (Sunset Date geçti)",
+    "sectors": [
+      "plastics_rubber",
+      "paints_coatings"
+    ],
+    "action_tr": "Polimer ve ahşap/metal dış cephe verniklerinde HALS tipi temiz UV stabilizatörleriyle değiştirilmelidir."
+  },
+  {
+    "cas_number": "50-00-0",
+    "ec_number": "200-001-8",
+    "name_en": "Formaldehyde",
+    "name_tr": "Formaldehit (MDF/Sunta Mobilya & Tekstil Apre)",
+    "chem_group": "wood_furniture_voc",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_EPA_TSCA",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.062 mg/m³ Mobilya/Ahşap Emisyon (REACH Md.77 — 2026 Yürürlük!) · 75 mg/kg Tekstil Md.72",
+    "sectors": [
+      "furniture_wood",
+      "textile_leather",
+      "paints_coatings"
+    ],
+    "action_tr": "AĞUSTOS 2026 YENİ AB SINIRI: Eski E1 standardı (0.124 mg/m³) YARIYA İNDİRİLDİ! AB'ye ihraç edilecek MDF, yonga levha ve mobilyalar artık 0.062 mg/m³ (E05 / TSCA Title VI seviyesi) sağlamak zorundadır!"
+  },
+  {
+    "cas_number": "8001-58-9",
+    "ec_number": "232-287-5",
+    "name_en": "Creosote",
+    "name_tr": "Kreozot (Kömür Katranı Emprenye Yağı)",
+    "chem_group": "wood_furniture_voc",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "Tüketici/Park/Bahçe Ahşabında Kesin Yasak (REACH Md.31)",
+    "sectors": [
+      "furniture_wood"
+    ],
+    "action_tr": "Tüketiciye açık çit, bahçe mobilyası ve tarım kazıklarında yasaktır; bakır esaslı otoklav emprenye (Kahverengi/Yeşil Tanalith) kullanılmalıdır."
+  },
+  {
+    "cas_number": "87-86-5",
+    "ec_number": "201-778-6",
+    "name_en": "Pentachlorophenol (PCP)",
+    "name_tr": "Pentaklorofenol (PCP — Ahşap & Deri Koruyucu)",
+    "chem_group": "wood_furniture_voc",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_POPS",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "5 mg/kg (5 ppm — AB POPs & REACH Md.22)",
+    "sectors": [
+      "furniture_wood",
+      "textile_leather"
+    ],
+    "action_tr": "Ahşap palet, masif mobilya ve deri küf önleyicilerinde 5 ppm üstü gümrük reddine neden olur."
+  },
+  {
+    "cas_number": "10043-35-3",
+    "ec_number": "233-139-2",
+    "name_en": "Boric acid",
+    "name_tr": "Borik Asit",
+    "chem_group": "wood_furniture_voc",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC"
+    ],
+    "threshold": "0.1% w/w SVHC (Karışımlarda üreme toksisitesi etiketi > %0.3)",
+    "sectors": [
+      "furniture_wood",
+      "plastics_rubber",
+      "cosmetics_detergents"
+    ],
+    "action_tr": "Selüloz yalıtım, ahşap emprenye ve cam elyaf/seramik katkılarında SVHC bildirim sınırına dikkat edilmelidir."
+  },
+  {
+    "cas_number": "1303-96-4",
+    "ec_number": "215-540-4",
+    "name_en": "Disodium tetraborate decahydrate (Borax)",
+    "name_tr": "Boraks (Disodyum Tetraborat)",
+    "chem_group": "wood_furniture_voc",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC"
+    ],
+    "threshold": "0.1% w/w SVHC",
+    "sectors": [
+      "furniture_wood",
+      "cosmetics_detergents",
+      "paints_coatings"
+    ],
+    "action_tr": "Nişasta yapıştırıcıları, ahşap koruyucu ve slime/oyuncak ürünlerinde kısıtlıdır (oyuncakta 300/1200 mg/kg bor göç sınırı)."
+  },
+  {
+    "cas_number": "101-68-8",
+    "ec_number": "202-966-0",
+    "name_en": "4,4'-Methylenediphenyl diisocyanate (MDI)",
+    "name_tr": "MDI (Poliüretan Köpük & Yapıştırıcı Diizosiyanatı)",
+    "chem_group": "wood_furniture_voc",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": ">= 0.1% serbest monomerde AB zorunlu eğitim ve etiket şartı (REACH Md.74)",
+    "sectors": [
+      "furniture_wood",
+      "paints_coatings",
+      "plastics_rubber"
+    ],
+    "action_tr": "AB'ye ihraç edilen PU montaj köpüğü, mobilya tutkalı ve izosiyanat sertleştirici ambalajlarında REACH Md.74 'Zorunlu Eğitim' ibaresi yer almalıdır."
+  },
+  {
+    "cas_number": "584-84-9",
+    "ec_number": "209-544-5",
+    "name_en": "4-Methyl-m-phenylene diisocyanate (2,4-TDI)",
+    "name_tr": "2,4-TDI (Toluendiizosiyanat)",
+    "chem_group": "wood_furniture_voc",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": ">= 0.1% monomerde REACH Md.74 kısıtlaması",
+    "sectors": [
+      "furniture_wood",
+      "paints_coatings",
+      "plastics_rubber"
+    ],
+    "action_tr": "Esnek mobilya süngeri ve ahşap poliüretan vernik sertleştiricilerinde düşük serbest monomerli (<%0.1) prepolimer tercih edilmelidir."
+  },
+  {
+    "cas_number": "822-06-0",
+    "ec_number": "212-485-8",
+    "name_en": "Hexamethylene diisocyanate (HDI)",
+    "name_tr": "HDI (Oto/Endüstriyel Boya Sertleştiricisi)",
+    "chem_group": "wood_furniture_voc",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": ">= 0.1% monomerde REACH Md.74 kısıtlaması",
+    "sectors": [
+      "paints_coatings",
+      "furniture_wood"
+    ],
+    "action_tr": "İki bileşenli (2K) akrilik-poliüretan boya sertleştirici SDS ve etiketlerinde Md.74 uyumu şarttır."
+  },
+  {
+    "cas_number": "108-88-3",
+    "ec_number": "203-625-9",
+    "name_en": "Toluene",
+    "name_tr": "Toluen (Ayakkabı/Mobilya Kontak Yapıştırıcı Çözücüsü)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (Halka arz edilen yapıştırıcı ve sprey boyalarda REACH Md.48 Kesin Yasak!)",
+    "sectors": [
+      "paints_coatings",
+      "furniture_wood",
+      "textile_leather"
+    ],
+    "action_tr": "Perakende satılan kontak tutkallarda ve sprey boyalarda %0,1 üstü toluen AB ve Türkiye KKDİK'te yasaktır."
+  },
+  {
+    "cas_number": "71-43-2",
+    "ec_number": "200-753-7",
+    "name_en": "Benzene",
+    "name_tr": "Benzen",
+    "chem_group": "biocides_solvents",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% karışımlarda · Oyuncaklarda 5 mg/kg (REACH Md.5)",
+    "sectors": [
+      "paints_coatings",
+      "plastics_rubber",
+      "textile_leather"
+    ],
+    "action_tr": "Çözücü tinerlerde, kauçuk yapıştırıcılarda ve baskı mürekkeplerinde safsızlık olarak bile < %0,1 olmalıdır."
+  },
+  {
+    "cas_number": "75-09-2",
+    "ec_number": "200-838-9",
+    "name_en": "Dichloromethane (Methylene chloride)",
+    "name_tr": "Diklorometan (Metilen Klorür)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_ANNEX_XVII",
+      "US_EPA_TSCA",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% Boya Sökücü Yasağı (REACH Md.59) · ABD EPA TSCA 2024 Geniş Yasak!",
+    "sectors": [
+      "paints_coatings",
+      "metal_surface",
+      "plastics_rubber"
+    ],
+    "action_tr": "ABD EPA TSCA kapsamında tüketici ve çoğu ticari kullanımı tamamen yasaklandı; metal yağ alma ve boya sökücülerden çıkarılmalıdır."
+  },
+  {
+    "cas_number": "79-01-6",
+    "ec_number": "201-167-4",
+    "name_en": "Trichloroethylene (TCE)",
+    "name_tr": "Trikloroetilen (TCE — Metal Yağ Alma Çözücüsü)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XIV",
+      "US_EPA_TSCA",
+      "US_CA_PROP65"
+    ],
+    "threshold": "AB Ek-14 İzne Tabi · ABD EPA TSCA 2024 Kesin Yasak!",
+    "sectors": [
+      "metal_surface",
+      "textile_leather",
+      "paints_coatings"
+    ],
+    "action_tr": "Buharlı metal yağ alma ve leke çıkarıcılarda hem AB hem ABD'de yasaklanmıştır."
+  },
+  {
+    "cas_number": "127-18-4",
+    "ec_number": "204-825-9",
+    "name_en": "Tetrachloroethylene (Perchloroethylene — PCE)",
+    "name_tr": "Perkloretilen (PCE)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "US_EPA_TSCA",
+      "US_CA_PROP65"
+    ],
+    "threshold": "ABD EPA TSCA 2024 Kısıtlama ve Aşamalı Yasak!",
+    "sectors": [
+      "textile_leather",
+      "metal_surface",
+      "paints_coatings"
+    ],
+    "action_tr": "Kuru temizleme, tekstil terbiyesi ve fren/parça temizleyici spreylerde ABD ihracat kısıtlamasına tabidir."
+  },
+  {
+    "cas_number": "123-91-1",
+    "ec_number": "204-661-8",
+    "name_en": "1,4-Dioxane",
+    "name_tr": "1,4-Dioksan (Etoksile Sürfaktan Safsızlığı)",
+    "chem_group": "biocides_solvents",
+    "risk_status": "svhc_candidate",
+    "lists": [
+      "EU_REACH_SVHC",
+      "US_CA_PROP65",
+      "US_EPA_TSCA"
+    ],
+    "threshold": "0.1% SVHC · ABD New York Şampuan/Deterjanda 1 ppm Sınırı!",
+    "sectors": [
+      "cosmetics_detergents",
+      "textile_leather"
+    ],
+    "action_tr": "SLES gibi etoksile deterjan hammaddelerinde üretim safsızlığı olarak bulunur; ABD ve AB kozmetik/deterjan ihracatında ppm bazında analiz ettirilmelidir!"
+  },
+  {
+    "cas_number": "50-32-8",
+    "ec_number": "200-028-5",
+    "name_en": "Benzo[def]chrysene (Benzo[a]pyrene — BaP)",
+    "name_tr": "Benzo[a]piren (Kauçuk & Karbon Siyahı PAH)",
+    "chem_group": "pah_rubber_monomers",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "1 mg/kg Tüketici Kauçuk/Plastik Tutamak · 0.5 mg/kg Oyuncak (REACH Md.50 + AfPS GS)!",
+    "sectors": [
+      "plastics_rubber",
+      "furniture_wood",
+      "electronics_cables",
+      "textile_leather"
+    ],
+    "action_tr": "ÇOK SIK YAKALANIR: El aleti kauçuk sapı, bisiklet elciği, tekerlek ve terlikteki ucuz aromatik yağ / karbon siyahından gelir; Almanya GS ve REACH Md.50 denetiminde 1 ppm üstü yasaktır!"
+  },
+  {
+    "cas_number": "218-01-9",
+    "ec_number": "205-923-4",
+    "name_en": "Chrysene",
+    "name_tr": "Krisen (8 Ekli PAH Listesi)",
+    "chem_group": "pah_rubber_monomers",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "1 mg/kg (REACH Md.50)",
+    "sectors": [
+      "plastics_rubber"
+    ],
+    "action_tr": "Siyah kauçuk ve geri dönüştürülmüş plastik parçalarda PAH-free proses yağı kullanılmalıdır."
+  },
+  {
+    "cas_number": "91-20-3",
+    "ec_number": "202-049-5",
+    "name_en": "Naphthalene",
+    "name_tr": "Naftalin",
+    "chem_group": "pah_rubber_monomers",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "US_CA_PROP65",
+      "EU_REACH_ANNEX_XVII"
+    ],
+    "threshold": "AfPS GS Kategori 1 (< 1 mg/kg) / Kategori 2 (< 2 mg/kg)",
+    "sectors": [
+      "plastics_rubber",
+      "textile_leather",
+      "paints_coatings"
+    ],
+    "action_tr": "Almanya pazarına (TÜV/GS) satılan ürünlerde naftalin kokusu/kalıntısı laboratuvar reddi doğurur."
+  },
+  {
+    "cas_number": "793-24-8",
+    "ec_number": "212-344-0",
+    "name_en": "N-(1,3-dimethylbutyl)-N'-phenyl-p-phenylenediamine (6PPD)",
+    "name_tr": "6PPD (Kauçuk & Lastik Ozon Antioksidanı)",
+    "chem_group": "pah_rubber_monomers",
+    "risk_status": "early_warning_draft",
+    "lists": [
+      "US_EPA_TSCA",
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "ABD Kaliforniya DTSC Zorunlu Alternatif Analizi & ECHA İncelemesi!",
+    "sectors": [
+      "plastics_rubber"
+    ],
+    "action_tr": "ERKEN UYARI: Lastik ve teknik kauçuk contalarda en yaygın antioksidandır; 6PPD-kinon toksisitesi nedeniyle ABD ve AB'de kısıtlama sürecine girdi!"
+  },
+  {
+    "cas_number": "149-30-4",
+    "ec_number": "205-736-8",
+    "name_en": "2-Benzothiazolethiol (2-Mercaptobenzothiazole — MBT)",
+    "name_tr": "2-Merkaptobenzotiyazol (MBT — Kauçuk Vulkanizasyon Hızlandırıcı)",
+    "chem_group": "pah_rubber_monomers",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "US_CA_PROP65",
+      "ECHA_ROI_EARLY_WARNING"
+    ],
+    "threshold": "ABD Prop 65 Kanserojen + AB Cilt Hassasiyet Kısıtlama Gündemi",
+    "sectors": [
+      "plastics_rubber",
+      "textile_leather"
+    ],
+    "action_tr": "Lateks/nitril eldiven, ayakkabı tabanı ve kauçuk contalarda sızıntı kontrolü yapılmalıdır."
+  },
+  {
+    "cas_number": "79-06-1",
+    "ec_number": "201-173-7",
+    "name_en": "Acrylamide",
+    "name_tr": "Akrilamid (Monomer)",
+    "chem_group": "pah_rubber_monomers",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "US_CA_PROP65",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (REACH Md.60)",
+    "sectors": [
+      "paints_coatings",
+      "textile_leather",
+      "cosmetics_detergents"
+    ],
+    "action_tr": "Poliakrilamid tekstil kıvamlaştırıcı ve atıksu flokülantlarında serbest monomer < %0,1 olmalıdır."
+  },
+  {
+    "cas_number": "106-89-8",
+    "ec_number": "203-439-8",
+    "name_en": "Epichlorohydrin",
+    "name_tr": "Epiklorohidrin (Epoksi Reçine & Islak Mukavemet Kağıt Monomeri)",
+    "chem_group": "pah_rubber_monomers",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "US_CA_PROP65",
+      "EU_REACH_ANNEX_XVII"
+    ],
+    "threshold": "Gıda temasında 1 mg/kg kalıntı sınırı",
+    "sectors": [
+      "paints_coatings",
+      "packaging_food_contact",
+      "plastics_rubber"
+    ],
+    "action_tr": "Epoksi kaplama ve çay poşeti/kağıt havlu ıslak mukavemet reçinelerinde serbest monomer kalıntısı denetlenir."
+  },
+  {
+    "cas_number": "556-67-2",
+    "ec_number": "209-136-7",
+    "name_en": "Octamethylcyclotetrasiloxane (D4)",
+    "name_tr": "D4 Siklosiloksan (Silikon Yumuşatıcı & Kozmetik)",
+    "chem_group": "siloxanes_cosmetics",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (AB Tüzüğü 2024/1328 — REACH Md.70 Genişletilmiş Yasak, Haziran 2026!)",
+    "sectors": [
+      "cosmetics_detergents",
+      "textile_leather",
+      "plastics_rubber",
+      "paints_coatings"
+    ],
+    "action_tr": "HAZİRAN 2026 YASAĞI: Sadece şampuanda değil, artık durulanmayan kozmetiklerde, silikon tekstil yumuşatıcılarında ve silikon kalıplarda da %0,1 üstü D4/D5/D6 yasaklandı!"
+  },
+  {
+    "cas_number": "541-02-6",
+    "ec_number": "208-764-9",
+    "name_en": "Decamethylcyclopentasiloxane (D5)",
+    "name_tr": "D5 Siklosiloksan (Silikon Yağı / Kuru Temizleme)",
+    "chem_group": "siloxanes_cosmetics",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (REACH Md.70 — Haziran 2026 Genişletilmiş Yasak!)",
+    "sectors": [
+      "cosmetics_detergents",
+      "textile_leather",
+      "plastics_rubber"
+    ],
+    "action_tr": "Tekstil silikon yumuşatıcı emülsiyonlarının SDS'lerinde D4/D5/D6 safsızlığı < %0,1 olan 'Low-Cyclic' kalitelere geçilmelidir!"
+  },
+  {
+    "cas_number": "540-97-6",
+    "ec_number": "208-762-8",
+    "name_en": "Dodecamethylcyclohexasiloxane (D6)",
+    "name_tr": "D6 Siklosiloksan",
+    "chem_group": "siloxanes_cosmetics",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII",
+      "TR_KKDIK"
+    ],
+    "threshold": "0.1% w/w (REACH Md.70 — Haziran 2026!)",
+    "sectors": [
+      "cosmetics_detergents",
+      "textile_leather",
+      "plastics_rubber"
+    ],
+    "action_tr": "Silikon kauçuk (LSR/HTV) mutfak eşyaları post-cure (fırınlama) işleminden geçirilmezse D4/D5/D6 kalıntısı %0,1'i aşar ve AB'de reddedilir!"
+  },
+  {
+    "cas_number": "80-54-6",
+    "ec_number": "201-289-8",
+    "name_en": "2-(4-tert-butylbenzyl)propionaldehyde (Lilial / BMHCA)",
+    "name_tr": "Lilial (BMHCA — Yasaklı Parfüm/Deterjan Esansı)",
+    "chem_group": "siloxanes_cosmetics",
+    "risk_status": "banned_restricted",
+    "lists": [
+      "EU_REACH_SVHC",
+      "EU_REACH_ANNEX_XVII"
+    ],
+    "threshold": "AB Kozmetik Tüzüğünde Kesin Yasak · Ev Deterjanlarında %0.1 SVHC",
+    "sectors": [
+      "cosmetics_detergents"
+    ],
+    "action_tr": "Islak mendil, şampuan, krem ve sabun ihracatında AB RAPEX sisteminde hâlâ en çok toplatılan 1 numaralı esans maddesidir!"
+  }
+]

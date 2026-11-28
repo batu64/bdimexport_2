@@ -276,6 +276,83 @@ if (existsSync(join(ROOT, "02-supplier-registry/cn_uscc_regions.json"))) {
   }
 }
 
+// ===========================================================================
+// MODÜL 03 DOĞRULAMASI: ACS CAS Numarası Mod-10 & AB EC (EINECS) Mod-11 Kanıtı
+// ===========================================================================
+if (existsSync(join(ROOT, "03-chemical-reach-cas/regulated_chemicals.json"))) {
+  const chemLists = JSON.parse(readFileSync(join(ROOT, "03-chemical-reach-cas/chemical_regulatory_lists.json"), "utf8"));
+  const chemicals = JSON.parse(readFileSync(join(ROOT, "03-chemical-reach-cas/regulated_chemicals.json"), "utf8"));
+
+  // Resmi Amerikan Kimya Derneği (ACS) CAS Registry Number Mod-10 Checksum Algoritması
+  function verifyCasMod10(cas) {
+    const m = /^([0-9]{2,7})-([0-9]{2})-([0-9])$/.exec(cas);
+    if (!m) return false;
+    const bodyDigits = (m[1] + m[2]).split("").reverse().map(Number);
+    const checkDigit = Number(m[3]);
+    let sum = 0;
+    for (let i = 0; i < bodyDigits.length; i++) {
+      sum += bodyDigits[i] * (i + 1);
+    }
+    return (sum % 10) === checkDigit;
+  }
+
+  // Resmi AB EC / EINECS Numarası (XXX-XXX-X) Mod-11 Checksum Algoritması
+  function verifyEcMod11(ec) {
+    const m = /^([0-9]{3})-([0-9]{3})-([0-9])$/.exec(ec);
+    if (!m) return false;
+    const digits = (m[1] + m[2]).split("").map(Number);
+    const check = Number(m[3]);
+    let sum = 0;
+    for (let i = 0; i < 6; i++) {
+      sum += digits[i] * (i + 1);
+    }
+    return (sum % 11) === check;
+  }
+
+  // Negatif test: Yanlış yazılmış bir CAS numarası kesinlikle reddedilmeli
+  assert(!verifyCasMod10("117-81-8"), "Negatif Test: Hatalı son basamaklı CAS (117-81-8) reddedilmeli");
+
+  const validListCodes = new Set(chemLists.map((l) => l.list_code));
+  assert(chemLists.length === 9, `9 küresel kimyasal mevzuat çerçevesi tanımlı olmalı (gerçek: ${chemLists.length})`);
+
+  const VALID_SECTORS = new Set([
+    "textile_leather",
+    "plastics_rubber",
+    "electronics_cables",
+    "furniture_wood",
+    "paints_coatings",
+    "metal_surface",
+    "packaging_food_contact",
+    "cosmetics_detergents",
+  ]);
+  const VALID_STATUSES = new Set([
+    "banned_restricted",
+    "svhc_candidate",
+    "authorisation_sunset",
+    "early_warning_draft",
+  ]);
+
+  assert(chemicals.length >= 65, `En az 65 yüksek kritiklikli sanayi CAS maddesi bulunmalı (gerçek: ${chemicals.length})`);
+  const seenCas = new Set();
+  for (const ch of chemicals) {
+    assert(!seenCas.has(ch.cas_number), `Tekil CAS numarası olmalı: ${ch.cas_number}`);
+    seenCas.add(ch.cas_number);
+    assert(verifyCasMod10(ch.cas_number), `${ch.name_en} [${ch.cas_number}]: Resmi ACS CAS Mod-10 kontrol basamağı doğrulaması`);
+    if (ch.ec_number) {
+      assert(verifyEcMod11(ch.ec_number), `${ch.name_en} [EC ${ch.ec_number}]: Resmi AB EINECS Mod-11 kontrol basamağı doğrulaması`);
+    }
+    assert(VALID_STATUSES.has(ch.risk_status), `${ch.cas_number}: Geçerli risk statüsü (${ch.risk_status})`);
+    assert(Array.isArray(ch.lists) && ch.lists.length > 0, `${ch.cas_number}: En az 1 resmi listeye bağlı olmalı`);
+    for (const lc of ch.lists) {
+      assert(validListCodes.has(lc), `${ch.cas_number}: Tanımlı mevzuat kodu (${lc})`);
+    }
+    assert(Array.isArray(ch.sectors) && ch.sectors.length > 0, `${ch.cas_number}: En az 1 sektöre bağlı olmalı`);
+    for (const sec of ch.sectors) {
+      assert(VALID_SECTORS.has(sec), `${ch.cas_number}: Geçerli sanayi sektörü (${sec})`);
+    }
+  }
+}
+
 if (failures > 0) {
   console.error(`\n❌ DOĞRULAMA BAŞARISIZ: ${assertions} kontrolden ${failures} tanesi hata verdi.`);
   process.exit(1);
