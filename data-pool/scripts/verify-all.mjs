@@ -473,6 +473,36 @@ if (existsSync(join(ROOT, "05-food-mrl-rasff/eu_pesticide_mrls.json"))) {
   }
 }
 
+// ===========================================================================
+// MODÜL 06 DOĞRULAMASI: TAREKS ÜGD Tebliğleri, GTİP Eşleşmeleri & TR/EN/ZH Bütünlüğü
+// ===========================================================================
+if (existsSync(join(ROOT, "06-tareks-ce/tareks_regulations.json"))) {
+  const regs = JSON.parse(readFileSync(join(ROOT, "06-tareks-ce/tareks_regulations.json"), "utf8"));
+  const mappings = JSON.parse(readFileSync(join(ROOT, "06-tareks-ce/tareks_hs_mappings.json"), "utf8"));
+
+  assert(regs.length === 14, `14 ana T.C. Ticaret Bakanlığı ÜGD Tebliği tanımlı olmalı (gerçek: ${regs.length})`);
+  const validUgdCodes = new Set();
+  for (const r of regs) {
+    assert(!validUgdCodes.has(r.ugd_code), `Tekil ÜGD kodu: ${r.ugd_code}`);
+    validUgdCodes.add(r.ugd_code);
+    assert(/^UGD_[0-9]{2}$/.test(r.ugd_code), `Geçerli ÜGD kod formatı: ${r.ugd_code}`);
+    // Çince (/zh) karakter varlığı kontrolü (Çinli ihracatçı saha operasyonu için zorunlu!)
+    assert(/[\u4e00-\u9fff]/.test(r.title_zh) && /[\u4e00-\u9fff]/.test(r.mandatory_docs_zh), `${r.ugd_code}: Gerçek Çince (汉字) başlık ve belge açıklaması içermeli`);
+  }
+
+  assert(mappings.length >= 30, `En az 30 kritik ithalat GTİP grubu tanımlı olmalı (gerçek: ${mappings.length})`);
+  const seenHs = new Set();
+  for (const m of mappings) {
+    assert(!seenHs.has(m.hs_prefix), `Tekil TAREKS GTİP ön-eki: ${m.hs_prefix}`);
+    seenHs.add(m.hs_prefix);
+    assert(/^[0-9]{4}\.[0-9]{2}$/.test(m.hs_prefix), `${m.hs_prefix}: 6 haneli XXXX.XX GTİP formatında olmalı`);
+    assert(validUgdCodes.has(m.ugd_code), `${m.hs_prefix}: Tanımlı ÜGD tebliğine (${m.ugd_code}) referans vermeli`);
+    assert(["medium", "high", "very_high"].includes(m.inspection_risk), `${m.hs_prefix}: Geçerli denetim risk seviyesi`);
+    assert(typeof m.requires_sshyb === "boolean", `${m.hs_prefix}: SSHYB zorunluluk bayrağı boolean olmalı`);
+    assert(/[\u4e00-\u9fff]/.test(m.product_zh) && /[\u4e00-\u9fff]/.test(m.factory_check_zh), `${m.hs_prefix}: Çin fabrikası yükleme öncesi kontrol listesi Çince (汉字) içermeli`);
+  }
+}
+
 if (failures > 0) {
   console.error(`\n❌ DOĞRULAMA BAŞARISIZ: ${assertions} kontrolden ${failures} tanesi hata verdi.`);
   process.exit(1);

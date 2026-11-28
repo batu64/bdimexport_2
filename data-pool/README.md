@@ -14,6 +14,6 @@ Bu dizin, `bdimexport.com` üzerindeki interaktif dış ticaret araçlarının *
 | **`03-chemical-reach-cas`** | Kimyasal Yasak & SDS CAS Numarası Takipçisi | ECHA SVHC Aday Listesi, REACH Ek-17, RoHS, CA Prop 65 | `chemical_regulatory_lists`, `regulated_chemicals` | ✅ Doğrulandı |
 | **`04-eu-cbam`** | AB CBAM (Sınırda Karbon) GTİP & Emisyon Katsayıları | AB Tüzüğü 2023/956 Ek-I + 2025/2083 + JRC Katsayıları | `cbam_phase_schedule`, `cbam_goods` | ✅ Doğrulandı |
 | **`05-food-mrl-rasff`** | AB Pestisit MRL Limitleri & ABD FDA Sınır Reddi | AB DG SANTE Data Lake v3.0 JSON API + AB 2019/1793 + openFDA | `food_export_commodities`, `eu_pesticide_mrls`, `food_border_alerts` | ✅ Doğrulandı |
-| **`06-tareks-ce`** | TAREKS (ÜGD Tebliğleri) & CE Belge Sihirbazı (TR + ZH) | T.C. Ticaret Bakanlığı Yıllık ÜGD Tebliğ Matrisleri | `tareks_regulations`, `tareks_hs_mappings` | ⏳ Sıradaki (Adım 6) |
-| **`07-fta-tariff-corridors`** | STA / Menşe Avantajı & Çin-Türkiye Arbitraj Radarı | UK & XI (AB TARIC) API v2, USITC HTS, TR 23 STA Matrisi | `trade_agreements`, `corridor_tariff_benchmarks` | ⏳ Bekliyor (Adım 7) |
+| **`06-tareks-ce`** | TAREKS (ÜGD Tebliğleri) & CE Belge Sihirbazı (TR + ZH) | T.C. Ticaret Bakanlığı ÜGD Tebliğleri (1..25) + TSE/BTK/TİTCK | `tareks_regulations`, `tareks_hs_mappings` | ✅ Doğrulandı |
+| **`07-fta-tariff-corridors`** | STA / Menşe Avantajı & Çin-Türkiye Arbitraj Radarı | UK & XI (AB TARIC) API v2, USITC HTS, TR 23 STA Matrisi | `trade_agreements`, `corridor_tariff_benchmarks` | ⏳ Sıradaki (Adım 7) |
 | **`08-gtip-gazette-alerts`** | GTİP Resmi Gazete / EUR-Lex / ABD Değişiklik Alarm Motoru | Resmi Gazete, EUR-Lex RSS, US Federal Register API | `regulatory_alerts` (Admin Onay Kapılı) | ⏳ Bekliyor (Adım 8) |

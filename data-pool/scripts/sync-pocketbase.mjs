@@ -467,6 +467,57 @@ const COLLECTIONS = [
       "CREATE INDEX idx_food_alert_comm ON food_border_alerts (commodity_slug)",
     ],
   },
+  // -------------------------------------------------------------------------
+  // Modül 06: TAREKS (ÜGD Tebliğleri) & CE / E-Mark / ÜTS Sihirbazı (TR+EN+ZH)
+  // -------------------------------------------------------------------------
+  {
+    name: "tareks_regulations",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "ugd_code", type: "text", required: true, max: 32 },
+      { name: "communique_no", type: "text", required: true, max: 80 },
+      { name: "inspecting_authority", type: "text", required: true, max: 160 },
+      { name: "eu_directives", type: "text", required: true, max: 300 },
+      { name: "title_tr", type: "text", required: true, max: 240 },
+      { name: "title_en", type: "text", required: true, max: 240 },
+      { name: "title_zh", type: "text", required: true, max: 240 },
+      { name: "mandatory_docs_tr", type: "text", required: true, max: 1000 },
+      { name: "mandatory_docs_zh", type: "text", required: true, max: 1000 },
+      { name: "eu_vs_non_eu_rule_tr", type: "text", required: true, max: 800 },
+      { name: "exemptions_tr", type: "text", required: true, max: 800 },
+    ],
+    indexes: ["CREATE UNIQUE INDEX idx_tareks_reg_code ON tareks_regulations (ugd_code)"],
+  },
+  {
+    name: "tareks_hs_mappings",
+    type: "base",
+    listRule: "",
+    viewRule: "",
+    createRule: null,
+    updateRule: null,
+    deleteRule: null,
+    fields: [
+      { name: "hs_prefix", type: "text", required: true, max: 24 },
+      { name: "ugd_code", type: "text", required: true, max: 32 },
+      { name: "product_tr", type: "text", required: true, max: 240 },
+      { name: "product_en", type: "text", required: true, max: 240 },
+      { name: "product_zh", type: "text", required: true, max: 240 },
+      { name: "inspection_risk", type: "text", required: true, max: 32 },
+      { name: "requires_sshyb", type: "bool" },
+      { name: "standards", type: "text", required: true, max: 400 },
+      { name: "factory_check_tr", type: "text", required: true, max: 1000 },
+      { name: "factory_check_zh", type: "text", required: true, max: 1000 },
+    ],
+    indexes: [
+      "CREATE UNIQUE INDEX idx_tareks_hs_prefix ON tareks_hs_mappings (hs_prefix)",
+      "CREATE INDEX idx_tareks_hs_ugd ON tareks_hs_mappings (ugd_code, inspection_risk)",
+    ],
+  },
 ];
 
 async function ensureCollection(colDef) {
@@ -603,5 +654,11 @@ const foodAlerts = JSON.parse(readFileSync(join(ROOT, "05-food-mrl-rasff/food_bo
 await syncRecords("food_export_commodities", "commodity_slug", foodCommodities);
 await syncRecords("eu_pesticide_mrls", "mrl_key", euMrls);
 await syncRecords("food_border_alerts", "alert_key", foodAlerts);
+
+const tareksRegs = JSON.parse(readFileSync(join(ROOT, "06-tareks-ce/tareks_regulations.json"), "utf8"));
+const tareksHs = JSON.parse(readFileSync(join(ROOT, "06-tareks-ce/tareks_hs_mappings.json"), "utf8"));
+
+await syncRecords("tareks_regulations", "ugd_code", tareksRegs);
+await syncRecords("tareks_hs_mappings", "hs_prefix", tareksHs);
 
 console.log("\n🎉 PocketBase senkronizasyonu %100 başarıyla tamamlandı!");

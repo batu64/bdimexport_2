@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-11-28T14:46:31.368Z",
+  "updated_at": "2026-11-28T17:02:14.488Z",
   "excluded_modules": [
     "09-global-12digit-live-binding-duty-calculator"
   ],
@@ -181,6 +181,38 @@
           "filename": "05-food-mrl-rasff/food_border_alerts.json",
           "records": 16,
           "sha256": "867c63880d61eb71d766e570762eeb0757ff258ab5ba27e9bbec10ec686861af"
+        }
+      ]
+    },
+    {
+      "module_id": "06-tareks-ce",
+      "order": 6,
+      "title_tr": "TAREKS (ÜGD Tebliğleri) & CE / E-Mark / ÜTS / SSHYB Belge Sihirbazı Veritabanı (TR + EN + ZH)",
+      "title_en": "Türkiye TAREKS Import Product Safety Communiqués, CE/E-Mark/ÜTS Matrix & Factory Pre-Shipment Checklists",
+      "authority": "T.C. Ticaret Bakanlığı, TSE, BTK, TİTCK & Tarım ve Orman Bakanlığı",
+      "official_sources": [
+        "T.C. Resmi Gazete Ürün Güvenliği ve Denetimi (ÜGD) Tebliğleri (2026/1, 2, 5, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 25)",
+        "7223 Sayılı Ürün Güvenliği ve Teknik Düzenlemeler Kanunu",
+        "TSE İthalat Denetim Rehberi, BTK Telsiz Ekipmanları Yönetmeliği & TİTCK ÜTS Kılavuzu",
+        "6502 Sayılı TKHK Garanti Belgesi ve Satış Sonrası Hizmetler Yönetmeliği (SSHYB)"
+      ],
+      "update_cadence": "annual_dec31_mükerrer_gazette",
+      "verification_status": "verified",
+      "verified_at": "2026-11-28T17:02:14.476Z",
+      "collections": [
+        "tareks_regulations",
+        "tareks_hs_mappings"
+      ],
+      "files": [
+        {
+          "filename": "06-tareks-ce/tareks_regulations.json",
+          "records": 14,
+          "sha256": "079eb5ab8429040084451ccd79bee12a509f98e5cc1a201e7a3577e3c2015acf"
+        },
+        {
+          "filename": "06-tareks-ce/tareks_hs_mappings.json",
+          "records": 32,
+          "sha256": "82ba0b6f3bc15032794e89f26d202e59dfcc58fa42eeb97c45a567d2f2fdce37"
         }
       ]
     }
